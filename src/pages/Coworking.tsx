@@ -1,187 +1,295 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Users, Wifi, Coffee, Clock, Check, ArrowRight, Star, Shield, Building2, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Users, Wifi, Coffee, Clock, Check, ArrowRight, Star, Shield, Building2, Sparkles, ChevronRight, MapPin, Zap, Calendar, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SidebarNav from '../components/Nav/SidebarNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
-import { coworkingSpaces, pricingData, testimonials } from '../data/mockData';
 
-const coworkingFeatures = [
+// Données des espaces de coworking
+const coworkingSpaces = [
   {
-    icon: Wifi,
-    title: "Wifi Fibré",
-    description: "Connexion ultra-rapide garantie 1 Gb/s",
-    color: "from-blue-400 to-blue-600"
+    id: 'open-space',
+    title: 'Open Space',
+    subtitle: 'L\'énergie collective',
+    description: 'Un plateau lumineux de 300m² pour 30 coworkers, avec vue panoramique.',
+    image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
+    capacity: '30 postes',
+    price: 'À partir de 29€/jour',
+    features: [
+      'Postes ergonomiques',
+      'Écrans 4K disponibles',
+      'Casiers sécurisés',
+      'Zone silence'
+    ],
+    gradient: 'from-violet-600 to-purple-600',
+    link: '/spaces/open-space'
   },
   {
-    icon: Coffee,
-    title: "Café Illimité",
-    description: "Boissons chaudes et froides à volonté",
-    color: "from-orange-400 to-orange-600"
+    id: 'bureaux-prives',
+    title: 'Bureaux Privés',
+    subtitle: 'Votre espace dédié',
+    description: 'Des bureaux fermés de 2 à 8 personnes, personnalisables selon vos besoins.',
+    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
+    capacity: '2-8 personnes',
+    price: 'À partir de 600€/mois',
+    features: [
+      'Bureau fermé',
+      'Mobilier premium',
+      'Ligne téléphonique',
+      'Accès 24/7'
+    ],
+    gradient: 'from-emerald-600 to-teal-600',
+    link: '/spaces/bureaux-prives'
   },
   {
-    icon: Clock,
-    title: "Accès 24/7",
-    description: "Disponible quand vous en avez besoin",
-    color: "from-purple-400 to-purple-600"
+    id: 'phone-box',
+    title: 'Phone Box',
+    subtitle: 'Confidentialité garantie',
+    description: 'Cabines insonorisées pour vos appels et visioconférences importants.',
+    image: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
+    capacity: '1 personne',
+    price: 'Inclus',
+    features: [
+      'Isolation phonique',
+      'Écran pour visio',
+      'Éclairage optimal',
+      'Ventilation'
+    ],
+    gradient: 'from-pink-600 to-rose-600',
+    link: '/spaces/phone-box'
+  }
+];
+
+// Formules de prix
+const pricingPlans = [
+  {
+    name: 'Nomade',
+    price: '29€',
+    period: '/jour',
+    description: 'Pour une journée productive',
+    features: [
+      'Poste de travail flexible',
+      'Wi-Fi ultra rapide',
+      'Café illimité',
+      'Accès 8h-20h',
+      'Impressions (20 pages)',
+      'Salles de réunion (1h)'
+    ],
+    gradient: 'from-blue-600 to-cyan-600',
+    popular: false
   },
   {
-    icon: Users,
-    title: "Communauté",
-    description: "Networking et événements réguliers",
-    color: "from-green-400 to-green-600"
+    name: 'Résident',
+    price: '299€',
+    period: '/mois',
+    description: 'Votre bureau attitré',
+    features: [
+      'Poste de travail dédié',
+      'Accès 24/7',
+      'Casier personnel',
+      'Salles de réunion (10h/mois)',
+      'Impressions illimitées',
+      'Invités (5/mois)'
+    ],
+    gradient: 'from-violet-600 to-purple-600',
+    popular: true
+  },
+  {
+    name: 'Team',
+    price: '1299€',
+    period: '/mois',
+    description: 'Pour votre équipe',
+    features: [
+      '5 postes dédiés',
+      'Bureau privé disponible',
+      'Salle de réunion privée',
+      'Service conciergerie',
+      'Événements exclusifs',
+      'Parking (2 places)'
+    ],
+    gradient: 'from-amber-600 to-orange-600',
+    popular: false
+  }
+];
+
+// Témoignages
+const testimonials = [
+  {
+    id: 1,
+    name: 'Sophie Martin',
+    role: 'CEO, TechStart',
+    comment: 'Le40 a transformé notre façon de travailler. L\'énergie est incroyable et les rencontres enrichissantes.',
+    rating: 5,
+    image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300'
+  },
+  {
+    id: 2,
+    name: 'Thomas Dubois',
+    role: 'Consultant',
+    comment: 'Les espaces sont magnifiques et l\'équipe toujours aux petits soins. Je recommande vivement !',
+    rating: 5,
+    image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=300'
   }
 ];
 
 export default function Coworking() {
+  const [activeSpace, setActiveSpace] = useState('open-space');
+
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-black">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 film-grain">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920"
-              alt="Espace coworking"
-              className="w-full h-full object-cover opacity-20 ken-burns"
-            />
-          </div>
-          
-          <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+        <section className="relative min-h-screen flex items-center overflow-hidden">
+          {/* Background avec effet parallax */}
+          <div className="absolute inset-0">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+              className="absolute inset-0"
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center px-6 py-3 glass-effect rounded-full border border-white/20 mb-8"
-              >
-                <Building2 className="w-4 h-4 text-coworking mr-2" />
-                <span className="text-sm font-inter font-medium text-white/80 tracking-wide">ESPACES PREMIUM</span>
-              </motion.div>
-
-              <h1 className="text-hero font-montserrat font-black text-white mb-6">
-                Espaces de <span className="bg-gradient-coworking bg-clip-text text-transparent">Coworking</span>
-              </h1>
-              <p className="text-body-large font-inter text-white/70 max-w-4xl mx-auto">
-                Travaillez dans un environnement stimulant au cœur de la ville, entouré d'entrepreneurs passionnés et visionnaires
-              </p>
+              <img 
+                src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920"
+                alt="Coworking space"
+                className="w-full h-full object-cover opacity-20"
+              />
             </motion.div>
-          </div>
-        </section>
-
-        {/* Spaces Grid Détaillée */}
-        <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-8 lg:px-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-section-title font-montserrat font-black text-white mb-6">
-                Nos <span className="bg-gradient-coworking bg-clip-text text-transparent">Espaces</span>
-              </h2>
-            </motion.div>
-
-            <div className="space-y-16">
-              {coworkingSpaces.map((space, index) => (
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+            
+            {/* Floating elements */}
+            <div className="absolute inset-0">
+              {[...Array(15)].map((_, i) => (
                 <motion.div
-                  key={space.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.8 }}
-                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                    index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                  }`}
-                >
-                  {/* Image */}
-                  <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                    <div className="relative h-80 lg:h-96 rounded-4xl overflow-hidden group">
-                      <img 
-                        src={space.image} 
-                        alt={space.title}
-                        className="w-full h-full object-cover ken-burns group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black-deep/60 to-transparent"></div>
-                      
-                      {/* Floating number */}
-                      <div className="absolute top-6 left-6 w-16 h-16 glass-effect rounded-full flex items-center justify-center border border-white/20">
-                        <span className="text-white font-playfair font-bold text-2xl">{space.id}</span>
-                      </div>
-
-                      {/* Capacity badge */}
-                      <div className="absolute top-6 right-6 glass-effect rounded-full px-4 py-2 flex items-center border border-white/20">
-                        <Users className="w-4 h-4 text-coworking mr-2" />
-                        <span className="text-white font-inter font-medium text-sm">{space.capacity}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className={`${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                    <div className="space-y-6">
-                      <div>
-                        <p className="text-coworking font-inter text-lg font-medium mb-3 italic">
-                          {space.tagline}
-                        </p>
-                        <h3 className="text-4xl font-montserrat font-black text-white mb-4">
-                          {space.title}
-                        </h3>
-                        <div className="w-20 h-1 bg-gradient-coworking rounded-full mb-6"></div>
-                      </div>
-
-                      <p className="text-white/80 font-inter text-lg leading-relaxed">
-                        {space.description}
-                      </p>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="glass-effect border border-white/10 rounded-2xl p-4">
-                          <div className="flex items-center mb-2">
-                            <Users className="w-5 h-5 text-coworking mr-2" />
-                            <span className="text-white font-inter font-medium text-sm">Capacité</span>
-                          </div>
-                          <p className="text-white/70 text-sm">{space.capacity}</p>
-                        </div>
-                        <div className="glass-effect border border-white/10 rounded-2xl p-4">
-                          <div className="flex items-center mb-2">
-                            <Clock className="w-5 h-5 text-coworking mr-2" />
-                            <span className="text-white font-inter font-medium text-sm">Accès</span>
-                          </div>
-                          <p className="text-white/70 text-sm">{space.access}</p>
-                        </div>
-                      </div>
-
-                      <motion.button
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="group bg-gradient-coworking text-white px-8 py-4 rounded-2xl font-montserrat font-semibold hover:shadow-lg hover:shadow-coworking/25 transition-all duration-500 relative overflow-hidden"
-                      >
-                        <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
-                        <div className="relative flex items-center">
-                          <span className="tracking-wide">{space.ctaLabel}</span>
-                          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                        </div>
-                      </motion.button>
-                    </div>
-                  </div>
-                </motion.div>
+                  key={i}
+                  className="absolute w-1 h-1 bg-violet-400/30 rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [0, -30, 0],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: Math.random() * 5 + 5,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                  }}
+                />
               ))}
+            </div>
+          </div>
+
+          <div className="relative z-10 w-full">
+            <div className="max-w-7xl mx-auto px-8 lg:px-16 py-32">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-center"
+              >
+                {/* Badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="inline-flex items-center mb-12"
+                >
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4"></div>
+                  <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
+                    Espaces Premium
+                  </span>
+                  <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4"></div>
+                </motion.div>
+
+                {/* Title */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.8 }}
+                  className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white mb-8 leading-[0.9]"
+                >
+                  ESPACES DE
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
+                    COWORKING
+                  </span>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto mb-12"
+                >
+                  Travaillez dans un environnement inspirant, entouré d'entrepreneurs ambitieux
+                </motion.p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.8 }}
+                  className="flex flex-col sm:flex-row gap-6 justify-center"
+                >
+                  <Link to="/contact" className="group relative inline-block">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="relative bg-black rounded-2xl px-8 py-4 border border-violet-500/50"
+                    >
+                      <span className="font-montserrat font-semibold text-white flex items-center gap-3">
+                        <Calendar className="w-5 h-5" />
+                        Réserver une visite
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </motion.div>
+                  </Link>
+
+                  <Link to="#pricing" className="group">
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="bg-white/10 backdrop-blur-xl rounded-2xl px-8 py-4 border border-white/20 hover:bg-white/20 transition-all"
+                    >
+                      <span className="font-montserrat font-semibold text-white">
+                        Voir les tarifs
+                      </span>
+                    </motion.div>
+                  </Link>
+                </motion.div>
+
+                {/* Stats */}
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.8 }}
+                  className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-20"
+                >
+                  {[
+                    { number: '500+', label: 'Membres actifs' },
+                    { number: '1200m²', label: 'D\'espaces' },
+                    { number: '4.9★', label: 'Satisfaction' }
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center">
+                      <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
+                        {stat.number}
+                      </div>
+                      <div className="text-white/60 font-inter text-sm mt-2">{stat.label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Features */}
-        <section className="py-20 bg-[#0F172A] film-grain">
+        {/* Espaces Section avec Tabs */}
+        <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -190,34 +298,248 @@ export default function Coworking() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-section-title font-montserrat font-black text-white mb-6">
-                Tout ce dont vous avez <span className="bg-gradient-coworking bg-clip-text text-transparent">besoin</span>
+              <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">ESPACES</span>
               </h2>
+              <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
+                Choisissez l'environnement qui correspond à votre style de travail
+              </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {coworkingFeatures.map((feature, index) => (
+            {/* Tabs Navigation */}
+            <div className="flex justify-center mb-16">
+              <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-2 border border-white/10">
+                <div className="flex gap-2">
+                  {coworkingSpaces.map((space) => (
+                    <button
+                      key={space.id}
+                      onClick={() => setActiveSpace(space.id)}
+                      className="relative px-6 py-3 rounded-xl transition-all duration-300"
+                    >
+                      {activeSpace === space.id && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute inset-0 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl"
+                          transition={{ type: "spring", duration: 0.6 }}
+                        />
+                      )}
+                      <span className={`relative z-10 font-montserrat font-medium transition-colors ${
+                        activeSpace === space.id ? 'text-white' : 'text-white/60'
+                      }`}>
+                        {space.title}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <AnimatePresence mode="wait">
+              {coworkingSpaces.map((space) => (
+                activeSpace === space.id && (
+                  <motion.div
+                    key={space.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                  >
+                    {/* Image */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2, duration: 0.6 }}
+                      className="relative"
+                    >
+                      <div className="relative rounded-3xl overflow-hidden">
+                        <img
+                          src={space.image}
+                          alt={space.title}
+                          className="w-full h-[600px] object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        
+                        {/* Floating badge */}
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.4, duration: 0.6 }}
+                          className="absolute top-8 left-8"
+                        >
+                          <div className={`bg-gradient-to-r ${space.gradient} p-4 rounded-2xl backdrop-blur-xl`}>
+                            <Users className="w-6 h-6 text-white" />
+                          </div>
+                        </motion.div>
+
+                        {/* Capacity badge */}
+                        <div className="absolute bottom-8 left-8 bg-black/50 backdrop-blur-xl rounded-2xl px-6 py-3 border border-white/20">
+                          <span className="text-white font-montserrat font-semibold">{space.capacity}</span>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Content */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3, duration: 0.6 }}
+                    >
+                      <div className="mb-6">
+                        <span className={`text-transparent bg-clip-text bg-gradient-to-r ${space.gradient} font-montserrat font-semibold text-lg`}>
+                          {space.subtitle}
+                        </span>
+                        <h3 className="text-4xl font-montserrat font-black text-white mt-2 mb-4">
+                          {space.title}
+                        </h3>
+                        <p className="text-xl text-white/70 font-inter leading-relaxed">
+                          {space.description}
+                        </p>
+                      </div>
+
+                      {/* Features */}
+                      <div className="grid grid-cols-2 gap-4 mb-8">
+                        {space.features.map((feature, index) => (
+                          <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                            className="flex items-center gap-3"
+                          >
+                            <div className={`w-2 h-2 bg-gradient-to-r ${space.gradient} rounded-full`}></div>
+                            <span className="text-white/80 font-inter">{feature}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* Price & CTA */}
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-3xl font-montserrat font-black text-white">
+                            {space.price}
+                          </span>
+                        </div>
+                        
+                        <Link to={space.link} className="group">
+                          <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className={`bg-gradient-to-r ${space.gradient} rounded-2xl px-8 py-4 flex items-center gap-3`}
+                          >
+                            <span className="font-montserrat font-semibold text-white">
+                              Découvrir cet espace
+                            </span>
+                            <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+                          </motion.div>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )
+              ))}
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section id="pricing" className="relative py-32 bg-black">
+          <div className="absolute inset-0">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]"></div>
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">FORMULES</span>
+              </h2>
+              <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
+                Des solutions flexibles adaptées à tous les besoins
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {pricingPlans.map((plan, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
-                  className="text-center group"
+                  className="relative"
                 >
-                  <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <feature.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-montserrat font-bold text-white mb-3">{feature.title}</h3>
-                  <p className="text-white/70 font-inter">{feature.description}</p>
+                  {plan.popular && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                      <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white text-xs font-medium px-4 py-1.5 rounded-full flex items-center gap-1">
+                        <Star className="w-3 h-3" />
+                        Plus populaire
+                      </div>
+                    </div>
+                  )}
+
+                  <motion.div
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    className={`relative h-full bg-white/5 backdrop-blur-xl rounded-3xl p-8 border transition-all duration-300 ${
+                      plan.popular ? 'border-violet-500/50' : 'border-white/10'
+                    } hover:border-white/20`}
+                  >
+                    {/* Plan header */}
+                    <div className="text-center mb-8">
+                      <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
+                        {plan.name}
+                      </h3>
+                      <p className="text-white/60 text-sm mb-6">
+                        {plan.description}
+                      </p>
+                      <div className="flex items-baseline justify-center">
+                        <span className={`text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${plan.gradient}`}>
+                          {plan.price}
+                        </span>
+                        <span className="text-white/40 ml-2">{plan.period}</span>
+                      </div>
+                    </div>
+
+                    {/* Features */}
+                    <ul className="space-y-4 mb-8">
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                          <span className="text-white/80 font-inter text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <Link to="/contact" className="block">
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className={`w-full py-4 rounded-2xl font-montserrat font-semibold text-center transition-all duration-300 ${
+                          plan.popular
+                            ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg hover:shadow-violet-600/20`
+                            : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
+                        }`}
+                      >
+                        Choisir cette formule
+                      </motion.div>
+                    </Link>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Pricing */}
-        <section className="py-20 bg-slate-900">
+        {/* Features Grid */}
+        <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -226,63 +548,38 @@ export default function Coworking() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-section-title font-montserrat font-black text-white mb-6">
-                Nos <span className="bg-gradient-coworking bg-clip-text text-transparent">Tarifs</span>
+              <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+                TOUT EST <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">INCLUS</span>
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {pricingData.coworking.map((plan, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                { icon: Wifi, title: 'Wi-Fi Fibré', desc: '1 Gb/s symétrique' },
+                { icon: Coffee, title: 'Café Premium', desc: 'Illimité' },
+                { icon: Clock, title: 'Accès 24/7', desc: 'Badge sécurisé' },
+                { icon: Users, title: 'Communauté', desc: '500+ membres' },
+                { icon: Shield, title: 'Sécurité', desc: 'Surveillance 24h' },
+                { icon: Zap, title: 'Événements', desc: 'Chaque semaine' },
+                { icon: Building2, title: 'Salles', desc: 'Sur réservation' },
+                { icon: MapPin, title: 'Localisation', desc: 'Centre-ville' }
+              ].map((feature, index) => (
                 <motion.div
-                  key={plan.id}
+                  key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className={`group ${plan.title.toLowerCase().includes('résident') ? 'lg:scale-105 lg:-mt-4' : ''}`}
+                  transition={{ delay: index * 0.05, duration: 0.6 }}
+                  className="text-center group"
                 >
-                  {plan.title.toLowerCase().includes('résident') && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-coworking text-white px-4 py-1 rounded-full text-sm font-montserrat font-semibold flex items-center glow-coworking">
-                      <Star className="w-3 h-3 mr-1" />
-                      Populaire
-                    </div>
-                  )}
-
-                  <div className="glass-effect border border-white/10 rounded-4xl p-8 hover:border-white/20 transition-all duration-300 h-full relative">
-                    <div className="text-center mb-8">
-                      <h3 className="text-2xl font-montserrat font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-coworking group-hover:bg-clip-text transition-all duration-500">
-                        {plan.title}
-                      </h3>
-                      <div className="text-3xl font-montserrat font-black text-coworking mb-2">
-                        {plan.price}
-                      </div>
-                      <p className="text-white/70 font-inter text-sm">
-                        {plan.description}
-                      </p>
-                    </div>
-
-                    <div className="space-y-3 mb-8">
-                      {plan.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-start text-white/80">
-                          <Check className="w-4 h-4 text-community mr-3 flex-shrink-0 mt-0.5" />
-                          <span className="font-inter text-sm">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`w-full font-montserrat font-semibold py-3 rounded-2xl transition-all duration-300 ${
-                        plan.title.toLowerCase().includes('résident')
-                          ? 'bg-gradient-coworking text-white hover:shadow-lg hover:shadow-coworking/25'
-                          : 'glass-effect text-white border border-white/20 hover:bg-white/10 hover:border-white/30'
-                      }`}
-                    >
-                      Choisir cette formule
-                    </motion.button>
-                  </div>
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-16 h-16 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                  >
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <h3 className="text-white font-montserrat font-bold mb-1">{feature.title}</h3>
+                  <p className="text-white/60 text-sm font-inter">{feature.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -290,7 +587,7 @@ export default function Coworking() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-20 bg-[#0F172A] film-grain">
+        <section className="relative py-32 bg-black">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -299,12 +596,12 @@ export default function Coworking() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-section-title font-montserrat font-black text-white mb-6">
-                Ce qu'en pensent nos <span className="bg-gradient-coworking bg-clip-text text-transparent">membres</span>
+              <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+                ILS NOUS FONT <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">CONFIANCE</span>
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.id}
@@ -312,29 +609,27 @@ export default function Coworking() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
-                  className="glass-effect border border-white/10 rounded-4xl p-8"
+                  className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300"
                 >
                   <div className="flex mb-6">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-coworking fill-current" />
+                      <Star key={i} className="w-5 h-5 text-violet-400 fill-current" />
                     ))}
                   </div>
 
-                  <blockquote className="text-white/80 font-inter mb-8 leading-relaxed italic">
+                  <blockquote className="text-white/80 font-inter text-lg mb-8 leading-relaxed">
                     "{testimonial.comment}"
                   </blockquote>
 
                   <div className="flex items-center">
-                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4 ring-2 ring-coworking/20">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full mr-4"
+                    />
                     <div>
                       <div className="font-montserrat font-bold text-white">{testimonial.name}</div>
-                      <div className="text-sm text-white/60">{testimonial.role}</div>
+                      <div className="text-white/60 text-sm">{testimonial.role}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -343,31 +638,53 @@ export default function Coworking() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-20 bg-slate-900">
-          <div className="max-w-4xl mx-auto px-8 lg:px-16 text-center">
+        {/* CTA Final */}
+        <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
+          <div className="absolute inset-0">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-600/10 rounded-full blur-[150px]"></div>
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Sparkles className="w-12 h-12 text-coworking mx-auto mb-6" />
-              <h2 className="text-3xl sm:text-4xl font-montserrat font-bold text-white mb-6">
-                Prêt à rejoindre notre communauté ?
+              <Sparkles className="w-12 h-12 text-violet-400 mx-auto mb-6" />
+              <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+                PRÊT À NOUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">REJOINDRE</span> ?
               </h2>
-              <p className="text-xl font-inter text-white/70 mb-8">
-                Réservez votre visite gratuite et découvrez votre futur espace de travail premium
+              <p className="text-xl font-inter text-white/60 mb-12 max-w-2xl mx-auto">
+                Réservez votre visite gratuite et découvrez l'espace de travail qui transformera votre quotidien
               </p>
-              <motion.a
-                href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-8 py-4 bg-gradient-coworking text-white font-montserrat font-semibold rounded-2xl hover:shadow-lg hover:shadow-coworking/25 transition-all duration-500 glow-coworking"
-              >
-                Réserver ma visite
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </motion.a>
+
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Link to="/contact" className="group relative inline-block">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="relative bg-black rounded-2xl px-10 py-5 border border-violet-500/50"
+                  >
+                    <span className="font-montserrat font-semibold text-white flex items-center gap-3">
+                      Réserver ma visite gratuite
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </motion.div>
+                </Link>
+
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-white/10 backdrop-blur-xl rounded-2xl px-10 py-5 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
+                >
+                  <span className="font-montserrat font-semibold text-white flex items-center gap-3">
+                    <Phone className="w-5 h-5" />
+                    01 23 45 67 89
+                  </span>
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </section>

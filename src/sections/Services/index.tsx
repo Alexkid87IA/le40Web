@@ -1,354 +1,601 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Users, MapPin, Presentation as PresentationChart, Video, Network, Calendar, Star, ArrowRight, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
-import { servicesData } from '../../data/mockData';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useScroll } from 'framer-motion';
+import { Users, MapPin, Monitor, Video, Network, ArrowRight, ArrowLeft, Sparkles, Star, Zap, Circle, Hexagon, TrendingUp, Globe, Award, Wifi, Shield, ChevronRight, ChevronLeft } from 'lucide-react';
 
-const iconMap = {
-  Users,
-  MapPin, 
-  PresentationChart,
-  Video,
-  Network,
-  Calendar,
-  Star
-};
+const servicesData = [
+  { 
+    id: 1, 
+    title: "Coworking", 
+    subtitle: "Espaces Collaboratifs",
+    icon: Users, 
+    description: "Rejoignez l'élite entrepreneuriale dans nos espaces pensés pour l'excellence", 
+    features: ["Fibre 10 Gbps", "Conciergerie 7j/7", "Réseau Premium"], 
+    link: "/coworking",
+    metric: "2500",
+    metricLabel: "m² d'innovation",
+    metricPrefix: "",
+    tagline: "Où les idées prennent vie",
+    gradient: "from-violet-600 via-purple-600 to-indigo-600",
+    shadowColor: "rgba(139, 92, 246, 0.5)",
+    accentIcon: Wifi,
+    isNew: true
+  },
+  { 
+    id: 2, 
+    title: "Domiciliation", 
+    subtitle: "Adresse Prestigieuse",
+    icon: MapPin, 
+    description: "Une adresse République qui positionne votre entreprise au sommet", 
+    features: ["Réception Courrier", "Standard Dédié", "Salles Prioritaires"], 
+    link: "/domiciliation",
+    metric: "150",
+    metricLabel: "entreprises",
+    metricPrefix: "+",
+    tagline: "Votre prestige commence ici",
+    gradient: "from-amber-600 via-orange-600 to-red-600",
+    shadowColor: "rgba(245, 158, 11, 0.5)",
+    accentIcon: Shield,
+    isHot: true
+  },
+  { 
+    id: 3, 
+    title: "Salles Premium", 
+    subtitle: "Réunions d'Exception",
+    icon: Monitor, 
+    description: "Impressionnez dans nos écrins technologiques dernière génération", 
+    features: ["Écrans OLED 8K", "IA Transcription", "Barista Privé"], 
+    link: "/salles",
+    metric: "5",
+    metricLabel: "salles signature",
+    metricPrefix: "",
+    tagline: "Où les deals se concrétisent",
+    gradient: "from-emerald-600 via-teal-600 to-cyan-600",
+    shadowColor: "rgba(16, 185, 129, 0.5)",
+    accentIcon: Award
+  },
+  { 
+    id: 4, 
+    title: "Studios Créatifs", 
+    subtitle: "Production Pro",
+    icon: Video, 
+    description: "Hollywood à Marseille - Créez du contenu qui captive le monde", 
+    features: ["Dolby Atmos", "Motion Capture", "Post-prod IA"], 
+    link: "/studios",
+    metric: "8K",
+    metricLabel: "Ultra HD",
+    metricPrefix: "",
+    tagline: "Votre vision, notre expertise",
+    gradient: "from-blue-600 via-indigo-600 to-purple-600",
+    shadowColor: "rgba(59, 130, 246, 0.5)",
+    accentIcon: TrendingUp
+  },
+  { 
+    id: 5, 
+    title: "Cercle Privé", 
+    subtitle: "Réseau Exclusif",
+    icon: Network, 
+    description: "Accédez à un réseau fermé de décideurs et visionnaires", 
+    features: ["Mentors Fortune 500", "Events VIP", "Deals Exclusifs"], 
+    link: "/experts",
+    metric: "1",
+    metricLabel: "% Top entrepreneurs",
+    metricPrefix: "",
+    tagline: "L'excellence attire l'excellence",
+    gradient: "from-pink-600 via-rose-600 to-red-600",
+    shadowColor: "rgba(236, 72, 153, 0.5)",
+    accentIcon: Globe,
+    isExclusive: true
+  },
+];
 
-const colorMap = {
-  Users: 'from-coworking to-blue-600',
-  MapPin: 'from-domiciliation to-orange-600',
-  PresentationChart: 'from-salles to-gray-600',
-  Video: 'from-studios to-purple-600',
-  Network: 'from-community to-green-600',
-  Calendar: 'from-blog to-teal-600',
-  Star: 'from-violet-400 to-fuchsia-400'
-};
-
-// Mapping des services vers leurs pages
-const serviceRoutes = {
-  1: '/coworking',      // Coworking
-  2: '/domiciliation',  // Domiciliation
-  3: '/salles',         // Salles de Réunion
-  4: '/studios',        // Studio de Tournage
-  5: '/experts',        // Réseau d'Experts (nouvelle page)
-  6: '/events',         // Événements (nouvelle page)
-  7: '/services-plus'   // Services+ (nouvelle page)
-};
-
-export default function Services() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  // Gestion du scroll horizontal avec la molette
+// Composant pour l'animation du compteur
+const AnimatedMetric = ({ value, prefix = "", delay = 0 }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const numericValue = parseInt(value) || 0;
+  
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const handleWheel = (e: WheelEvent) => {
-      const rect = container.getBoundingClientRect();
-      const isInContainer = e.clientX >= rect.left && e.clientX <= rect.right && 
-                           e.clientY >= rect.top && e.clientY <= rect.bottom;
+    const duration = 2000;
+    const steps = 60;
+    const increment = numericValue / steps;
+    let current = 0;
+    
+    const timer = setTimeout(() => {
+      const interval = setInterval(() => {
+        current += increment;
+        if (current >= numericValue) {
+          setDisplayValue(numericValue);
+          clearInterval(interval);
+        } else {
+          setDisplayValue(Math.floor(current));
+        }
+      }, duration / steps);
       
-      if (isInContainer) {
-        e.preventDefault();
-        container.scrollLeft += e.deltaY;
-        updateScrollButtons();
-      }
-    };
+      return () => clearInterval(interval);
+    }, delay);
+    
+    return () => clearTimeout(timer);
+  }, [numericValue, delay]);
+  
+  return (
+    <span className="tabular-nums">
+      {prefix}{isNaN(displayValue) ? value : displayValue}
+    </span>
+  );
+};
 
-    const updateScrollButtons = () => {
-      setCanScrollLeft(container.scrollLeft > 0);
-      setCanScrollRight(container.scrollLeft < container.scrollWidth - container.clientWidth);
-    };
-
-    container.addEventListener('wheel', handleWheel, { passive: false });
-    container.addEventListener('scroll', updateScrollButtons);
-    updateScrollButtons();
-
-    return () => {
-      container.removeEventListener('wheel', handleWheel);
-      container.removeEventListener('scroll', updateScrollButtons);
-    };
-  }, []);
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -400, behavior: 'smooth' });
-    }
+// Carte de service pour le carousel
+const ServiceCard = ({ service, index, isActive, isVisible }) => {
+  const [localHover, setLocalHover] = useState(false);
+  
+  // Effets de parallaxe
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useTransform(mouseY, [-100, 100], [3, -3]);
+  const rotateY = useTransform(mouseX, [-100, 100], [-3, 3]);
+  
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    mouseX.set(e.clientX - centerX);
+    mouseY.set(e.clientY - centerY);
   };
 
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
-    }
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+    setLocalHover(false);
   };
 
   return (
-    <section id="services" className="min-h-screen bg-gradient-to-br from-black-deep via-black-nuanced to-black-deep relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ 
+        opacity: isVisible ? 1 : 0.3,
+        scale: isVisible ? 1 : 0.95,
+        filter: isVisible ? 'blur(0px)' : 'blur(4px)'
+      }}
+      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setLocalHover(true)}
+      className={`relative group ${isVisible ? 'cursor-pointer' : 'pointer-events-none'}`}
+      style={{ perspective: 1000 }}
+    >
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        whileHover={{ scale: isVisible ? 1.02 : 1 }}
+        transition={{ scale: { type: "spring", stiffness: 300 } }}
+        className="relative h-full"
+      >
+        {/* Badge */}
+        {(service.isNew || service.isHot || service.isExclusive) && (
+          <motion.div
+            className="absolute -top-3 -right-3 z-20"
+            animate={{
+              scale: [1, 1.05, 1],
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <div className={`px-3 py-1 rounded-full text-xs font-bold text-white
+              ${service.isNew ? 'bg-gradient-to-r from-green-500 to-emerald-500' : 
+                service.isHot ? 'bg-gradient-to-r from-red-500 to-orange-500' :
+                'bg-gradient-to-r from-purple-500 to-pink-500'}`}>
+              {service.isNew ? 'NEW' : service.isHot ? 'HOT' : 'VIP'}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Effet de lueur */}
+        <motion.div
+          className={`absolute -inset-[1px] bg-gradient-to-r ${service.gradient} rounded-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-500`}
+          style={{ filter: 'blur(20px)' }}
+        />
+        
+        {/* Carte principale */}
+        <motion.div
+          className={`relative h-[450px] w-[350px] bg-black/40 backdrop-blur-xl rounded-3xl border overflow-hidden
+                      ${isActive ? 'border-white/30' : 'border-white/10 group-hover:border-white/20'}`}
+          style={{
+            background: localHover 
+              ? 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)'
+              : 'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%)',
+            boxShadow: `
+              0 10px 40px rgba(0,0,0,0.3),
+              inset 0 1px 0 rgba(255,255,255,0.1)
+            `,
+          }}
+        >
+          {/* Gradient overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
+          
+          {/* Effet de brillance */}
+          <motion.div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100"
+            style={{
+              background: 'linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.06) 50%, transparent 70%)',
+            }}
+            initial={{ x: '-100%', y: '-100%' }}
+            whileHover={{ x: '100%', y: '100%' }}
+            transition={{ duration: 0.6 }}
+          />
+
+          <div className="relative p-8 h-full flex flex-col">
+            {/* Header */}
+            <div className="flex items-start justify-between mb-6">
+              <motion.div
+                whileHover={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 0.5 }}
+                className="relative"
+              >
+                <div className={`p-4 rounded-2xl bg-gradient-to-br ${service.gradient} bg-opacity-10`}
+                     style={{ 
+                       boxShadow: localHover ? `0 8px 24px ${service.shadowColor}` : 'none',
+                       transition: 'box-shadow 0.3s'
+                     }}>
+                  <service.icon className="w-8 h-8 text-white" />
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ rotate: localHover ? 360 : 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <service.accentIcon className="w-6 h-6 text-white/30" />
+              </motion.div>
+            </div>
+
+            {/* Titre et sous-titre */}
+            <div className="mb-4">
+              <h3 className="text-2xl font-montserrat font-bold text-white mb-1">
+                {service.title}
+              </h3>
+              <p className="text-sm font-inter text-white/60">
+                {service.subtitle}
+              </p>
+            </div>
+
+            {/* Métrique */}
+            <motion.div
+              className="mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">
+                  <AnimatedMetric 
+                    value={service.metric} 
+                    prefix={service.metricPrefix}
+                    delay={localHover ? 0 : 300}
+                  />
+                </span>
+                <span className="text-sm font-inter text-white/50">
+                  {service.metricLabel}
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Description */}
+            <p className="text-sm font-inter text-white/70 leading-relaxed mb-6 flex-grow">
+              {service.description}
+            </p>
+
+            {/* Features */}
+            <div className="space-y-2 mb-6">
+              {service.features.map((feature, i) => (
+                <motion.div
+                  key={feature}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={localHover ? { opacity: 1, x: 0 } : { opacity: 0.8, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-center gap-3"
+                >
+                  <motion.div
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ backgroundColor: service.shadowColor }}
+                    animate={localHover ? {
+                      scale: [1, 1.5, 1],
+                    } : {}}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                    }}
+                  />
+                  <span className="text-sm font-inter text-white/60">
+                    {feature}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <motion.a
+              href={service.link}
+              className="group/cta inline-flex items-center justify-between w-full"
+              whileHover={{ x: 5 }}
+            >
+              <span className="font-montserrat font-semibold text-white">
+                Explorer
+              </span>
+              <motion.div
+                className="relative w-10 h-10 rounded-full bg-white/10 flex items-center justify-center overflow-hidden"
+                whileHover={{ scale: 1.1 }}
+              >
+                <ChevronRight className="w-5 h-5 text-white relative z-10" />
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.5 }}
+                />
+              </motion.div>
+            </motion.a>
+          </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// Bouton de navigation du carousel
+const CarouselButton = ({ direction, onClick, disabled }) => {
+  return (
+    <motion.button
+      onClick={onClick}
+      disabled={disabled}
+      className={`absolute top-1/2 -translate-y-1/2 ${direction === 'prev' ? '-left-20' : '-right-20'} 
+                  w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 
+                  flex items-center justify-center group transition-all duration-300
+                  ${disabled ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/20 cursor-pointer'}`}
+      whileHover={!disabled ? { scale: 1.1 } : {}}
+      whileTap={!disabled ? { scale: 0.9 } : {}}
+    >
+      {direction === 'prev' ? (
+        <ChevronLeft className="w-6 h-6 text-white" />
+      ) : (
+        <ChevronRight className="w-6 h-6 text-white" />
+      )}
+      
+      {/* Effet de pulse */}
+      {!disabled && (
+        <motion.div
+          className="absolute inset-0 rounded-full border border-white/40"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+      )}
+    </motion.button>
+  );
+};
+
+// Indicateurs de pagination
+const PaginationDots = ({ total, current, onChange }) => {
+  return (
+    <div className="flex items-center justify-center gap-2 mt-12">
+      {[...Array(total)].map((_, i) => (
+        <motion.button
+          key={i}
+          onClick={() => onChange(i)}
+          className={`relative w-2 h-2 rounded-full transition-all duration-300 ${
+            i === current ? 'w-8 bg-white' : 'bg-white/30 hover:bg-white/50'
+          }`}
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+        >
+          {i === current && (
+            <motion.div
+              className="absolute inset-0 rounded-full bg-white"
+              layoutId="active-dot"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
+          )}
+        </motion.button>
+      ))}
+    </div>
+  );
+};
+
+// Composant principal
+export default function ServicesSection() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [hoveredId, setHoveredId] = useState(null);
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.95, 1, 1, 0.95]);
+
+  // Configuration du carousel
+  const cardsPerPage = 3;
+  const totalPages = Math.ceil(servicesData.length / cardsPerPage);
+  const startIndex = currentPage * cardsPerPage;
+  const visibleCards = servicesData.slice(startIndex, startIndex + cardsPerPage);
+
+  const handlePrevious = () => {
+    setCurrentPage((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
+  };
+
+  return (
+    <motion.section 
+      ref={containerRef}
+      style={{ opacity, scale }}
+      className="relative min-h-screen bg-black py-24 overflow-hidden"
+    >
+      {/* Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-950 to-black" />
+        
+        {/* Animated gradient mesh */}
+        <motion.div
+          className="absolute inset-0 opacity-30"
+          animate={{
+            background: [
+              "radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)",
+            ]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
       </div>
 
-      {/* Film grain texture */}
-      <div className="absolute inset-0 film-grain"></div>
+      {/* Light beams */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
+            style={{ top: `${30 + i * 20}%` }}
+            animate={{
+              x: [-1000, 1000],
+              opacity: [0, 0.5, 0],
+            }}
+            transition={{
+              duration: 8 + i * 2,
+              repeat: Infinity,
+              delay: i * 2,
+              ease: "linear"
+            }}
+          />
+        ))}
+      </div>
 
-      <div className="relative z-10 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20 px-8 lg:px-16"
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center mb-20"
         >
-          {/* Badge "Acte 1" */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center mb-8"
+          <div className="inline-flex items-center mb-8">
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4" />
+            <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
+              Écosystème Premium
+            </span>
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4" />
+          </div>
+          
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white leading-[0.9] tracking-[-0.02em]">
+            Nos Services
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 mt-2">
+              d'Excellence
+            </span>
+          </h2>
+        </motion.div>
+
+        {/* Carousel Container */}
+        <div className="relative">
+          {/* Navigation Buttons */}
+          <CarouselButton 
+            direction="prev" 
+            onClick={handlePrevious} 
+            disabled={currentPage === 0} 
+          />
+          <CarouselButton 
+            direction="next" 
+            onClick={handleNext} 
+            disabled={currentPage === totalPages - 1} 
+          />
+
+          {/* Cards Container */}
+          <motion.div 
+            className="relative overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-community"></div>
-              <span className="text-sm font-inter font-medium text-community tracking-[0.3em] uppercase">ACTE 1</span>
-              <div className="w-12 h-0.5 bg-gradient-to-r from-community to-transparent"></div>
-            </div>
+            <motion.div 
+              className="flex gap-8 justify-center items-center min-h-[500px]"
+              animate={{ x: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <AnimatePresence mode="popLayout">
+                {servicesData.map((service, index) => {
+                  const relativeIndex = index - startIndex;
+                  const isVisible = relativeIndex >= 0 && relativeIndex < cardsPerPage;
+                  
+                  return (
+                    <motion.div
+                      key={service.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ 
+                        opacity: 1, 
+                        scale: 1,
+                        x: isVisible ? 0 : relativeIndex < 0 ? -100 : 100
+                      }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                      style={{
+                        display: isVisible ? 'block' : 'none'
+                      }}
+                    >
+                      <ServiceCard
+                        service={service}
+                        index={index}
+                        isActive={hoveredId === service.id}
+                        isVisible={isVisible}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </motion.div>
           </motion.div>
 
-          {/* Titre principal avec animation mot par mot */}
-          <div className="mb-8">
-            <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-hero font-montserrat font-black text-white leading-none tracking-tight"
-            >
-              {['NOS', 'SERVICES'].map((word, index) => (
-                <motion.span
-                  key={word}
-                  initial={{ opacity: 0, rotateX: 90 }}
-                  whileInView={{ opacity: 1, rotateX: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + index * 0.2, duration: 0.8 }}
-                  className={`inline-block mr-6 ${word === 'SERVICES' ? 'gradient-text' : ''}`}
-                  style={{ transformOrigin: 'center bottom' }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </motion.h2>
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-body-large font-inter text-white/70 max-w-2xl mx-auto leading-relaxed"
-          >
-            Des éclats de solutions premium pour nourrir votre ambition entrepreneuriale
-          </motion.p>
-        </motion.div>
-
-        {/* Instructions de navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          className="flex items-center justify-center gap-6 mb-16 px-8"
-        >
-          <button
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-            className={`w-12 h-12 rounded-full glass-effect border transition-all duration-300 flex items-center justify-center ${
-              canScrollLeft 
-                ? 'border-community/50 text-community hover:border-community hover:glow-effect' 
-                : 'border-white/10 text-white/30 cursor-not-allowed'
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          <div className="glass-effect border border-white/10 rounded-2xl px-6 py-3">
-            <span className="text-sm font-inter text-white/70 tracking-wide">
-              Faites défiler horizontalement pour découvrir
-            </span>
-          </div>
-
-          <button
-            onClick={scrollRight}
-            disabled={!canScrollRight}
-            className={`w-12 h-12 rounded-full glass-effect border transition-all duration-300 flex items-center justify-center ${
-              canScrollRight 
-                ? 'border-community/50 text-community hover:border-community hover:glow-effect' 
-                : 'border-white/10 text-white/30 cursor-not-allowed'
-            }`}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </motion.div>
-
-        {/* Grandes flèches latérales */}
-        <button
-          onClick={scrollLeft}
-          disabled={!canScrollLeft}
-          className={`fixed left-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full glass-effect border transition-all duration-300 flex items-center justify-center z-30 ${
-            canScrollLeft 
-              ? 'border-community/50 text-community hover:border-community hover:scale-110 hover:glow-effect' 
-              : 'border-white/10 text-white/20 cursor-not-allowed'
-          }`}
-        >
-          <ChevronLeft className="w-8 h-8" />
-        </button>
-
-        <button
-          onClick={scrollRight}
-          disabled={!canScrollRight}
-          className={`fixed right-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full glass-effect border transition-all duration-300 flex items-center justify-center z-30 ${
-            canScrollRight 
-              ? 'border-community/50 text-community hover:border-community hover:scale-110 hover:glow-effect' 
-              : 'border-white/10 text-white/20 cursor-not-allowed'
-          }`}
-        >
-          <ChevronRight className="w-8 h-8" />
-        </button>
-
-        {/* Container de scroll horizontal */}
-        <div className="relative">
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-8 overflow-x-auto overflow-y-hidden px-8 lg:px-16 pb-8 cursor-grab active:cursor-grabbing scrollbar-hide"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {servicesData.map((service, index) => {
-              const IconComponent = iconMap[service.icon as keyof typeof iconMap];
-              const gradientColor = colorMap[service.icon as keyof typeof colorMap];
-              const serviceRoute = serviceRoutes[service.id as keyof typeof serviceRoutes];
-              
-              return (
-                <motion.a
-                  key={service.id}
-                  href={serviceRoute}
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.7 }}
-                  whileHover={{ y: -12, scale: 1.03, zIndex: 10 }}
-                  className="group flex-shrink-0 w-80 lg:w-96 h-[520px] relative block"
-                >
-                  <div className="glass-effect border border-white/10 rounded-4xl overflow-hidden hover:border-white/20 transition-all duration-700 h-full relative">
-                    {/* Background Image avec Ken Burns */}
-                    <div className="absolute inset-0">
-                      <img
-                        src={`https://images.pexels.com/photos/${3184300 + index}/pexels-photo-${3184300 + index}.jpeg?auto=compress&cs=tinysrgb&w=600`}
-                        alt={service.title}
-                        className="w-full h-full object-cover ken-burns group-hover:scale-110 transition-transform duration-700"
-                      />
-                      {/* Overlays gradients stratégiques */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black-deep/90 via-black-nuanced/20 to-transparent"></div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-black-deep/60 via-transparent to-black-nuanced/40"></div>
-                    </div>
-
-                    {/* Numérotation massive */}
-                    <div className="absolute top-8 left-8 z-20">
-                      <span 
-                        className="font-playfair font-bold text-community opacity-80 group-hover:text-green-300 transition-colors duration-500"
-                        style={{ 
-                          fontSize: 'clamp(4rem, 8vw, 6rem)',
-                          textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-                          WebkitTextStroke: '1px rgba(72, 187, 120, 0.3)'
-                        }}
-                      >
-                        {service.id.toString().padStart(2, '0')}
-                      </span>
-                    </div>
-
-                    {/* Badge durée (simulé) */}
-                    <div className="absolute top-8 right-8 glass-effect border border-white/20 rounded-full px-3 py-1">
-                      <span className="text-white font-inter text-xs font-medium">
-                        {Math.floor(Math.random() * 5) + 2} min
-                      </span>
-                    </div>
-
-                    {/* Icône flottante */}
-                    <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-r ${gradientColor} rounded-full flex items-center justify-center opacity-0 group-hover:opacity-90 transition-all duration-500 z-20`}>
-                      <IconComponent className="w-10 h-10 text-white" />
-                    </div>
-
-                    {/* Zone de contenu (bottom) */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
-                      <h3 className="text-2xl lg:text-3xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-community group-hover:to-green-300 group-hover:bg-clip-text transition-all duration-500">
-                        {service.title}
-                      </h3>
-                      
-                      {/* Ligne décorative */}
-                      <div className="w-16 h-1 bg-gradient-to-r from-community to-green-600 rounded-full mb-4 group-hover:w-24 transition-all duration-500"></div>
-                      
-                      <p className="text-white/80 font-inter leading-relaxed line-clamp-2 group-hover:text-white transition-colors duration-500">
-                        {service.description}
-                      </p>
-
-                      {/* CTA intégré */}
-                      <div className="flex items-center mt-4 text-community font-inter font-medium group-hover:text-green-300 transition-colors duration-500">
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">Découvrir</span>
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
-                      </div>
-                    </div>
-
-                    {/* Hover Effects */}
-                    <div className="absolute inset-0 ring-0 group-hover:ring-2 group-hover:ring-community/50 rounded-4xl transition-all duration-700"></div>
-                    <div className="absolute inset-0 shadow-none group-hover:shadow-2xl group-hover:shadow-community/25 rounded-4xl transition-all duration-700"></div>
-                  </div>
-                </motion.a>
-              );
-            })}
-          </div>
+          {/* Pagination */}
+          <PaginationDots 
+            total={totalPages} 
+            current={currentPage} 
+            onChange={setCurrentPage} 
+          />
         </div>
 
-        {/* CTA Final */}
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="text-center mt-20 px-8 lg:px-16"
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="text-center mt-20"
         >
           <motion.a
-            href="/offres"
-            whileHover={{ scale: 1.05, y: -3 }}
-            whileTap={{ scale: 0.98 }}
-            className="group inline-flex items-center px-10 py-5 glass-effect text-white font-montserrat font-semibold text-lg rounded-2xl border border-community/30 hover:bg-community/10 hover:border-community transition-all duration-500 relative overflow-hidden"
+            href="/contact"
+            className="group inline-flex items-center gap-4 px-8 py-4 rounded-full bg-white text-black font-montserrat font-bold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-community/10 to-green-600/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
-            <div className="relative flex items-center">
-              <span className="tracking-wide">Voir toutes nos offres</span>
-              <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
-            </div>
+            <span>Découvrir notre écosystème complet</span>
+            <motion.div
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <ArrowRight className="w-5 h-5" />
+            </motion.div>
           </motion.a>
         </motion.div>
       </div>
 
-      {/* Style pour masquer la scrollbar */}
-      <style>{`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
-    </section>
+      {/* Noise texture */}
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay">
+        <svg width="100%" height="100%">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+        </svg>
+      </div>
+    </motion.section>
   );
 }

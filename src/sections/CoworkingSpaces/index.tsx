@@ -1,267 +1,463 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Users, ArrowRight, Clock, Shield, Wifi, Coffee, Building2, MapPin, Star, Sparkles } from 'lucide-react';
-import { coworkingSpaces } from '../../data/mockData';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Users, ArrowRight, Clock, Shield, Wifi, Coffee, Building2, Calendar, ArrowUpRight } from 'lucide-react';
 
-// Mapping des espaces vers leurs pages dédiées
-const spaceRoutes = {
-  1: '/spaces/open-space',
-  2: '/spaces/bureaux-prives', 
-  3: '/spaces/phone-box',
-  4: '/spaces/lounge-cafe',
-  5: '/spaces/terrasse-rooftop'
-};
+const coworkingSpaces = [
+  {
+    id: 1,
+    title: "Open Space",
+    tagline: "L'énergie collective",
+    description: "Un espace ouvert et lumineux conçu pour favoriser les échanges et la créativité collective.",
+    image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    capacity: "50 postes",
+    access: "24/7",
+    features: ["Bureaux flexibles", "Écrans 4K", "Casiers sécurisés"],
+    gradient: "from-blue-600 to-cyan-600",
+    price: "À partir de 250€/mois"
+  },
+  {
+    id: 2,
+    title: "Bureaux Privés",
+    tagline: "Votre espace dédié",
+    description: "Des bureaux fermés pour 2 à 10 personnes, entièrement équipés et personnalisables.",
+    image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    capacity: "2-10 personnes",
+    access: "24/7",
+    features: ["Mobilier premium", "Ligne téléphonique", "Stockage privé"],
+    gradient: "from-purple-600 to-pink-600",
+    price: "À partir de 800€/mois"
+  },
+  {
+    id: 3,
+    title: "Phone Box",
+    tagline: "Confidentialité garantie",
+    description: "Cabines insonorisées pour vos appels importants et visioconférences en toute tranquillité.",
+    image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    capacity: "1 personne",
+    access: "Réservation",
+    features: ["Insonorisation totale", "Éclairage optimal", "Ventilation silencieuse"],
+    gradient: "from-emerald-600 to-green-600",
+    price: "Inclus"
+  },
+  {
+    id: 4,
+    title: "Lounge & Café",
+    tagline: "Détente productive",
+    description: "Un espace convivial pour travailler dans une ambiance décontractée ou networker autour d'un café.",
+    image: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    capacity: "30 places",
+    access: "7h-22h",
+    features: ["Canapés confort", "Bar à café", "Espace networking"],
+    gradient: "from-orange-600 to-amber-600",
+    price: "Accès libre"
+  },
+  {
+    id: 5,
+    title: "Terrasse Rooftop",
+    tagline: "Vue panoramique",
+    description: "Un espace extérieur unique avec vue sur Marseille pour travailler ou organiser des événements.",
+    image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    capacity: "40 personnes",
+    access: "Selon météo",
+    features: ["Vue 360°", "Mobilier outdoor", "Zone événements"],
+    gradient: "from-sky-600 to-indigo-600",
+    price: "Sur réservation"
+  }
+];
+
+const features = [
+  { 
+    icon: Wifi, 
+    title: "Wifi Fibré", 
+    desc: "Connexion ultra-rapide 1 Gb/s",
+    gradient: "from-blue-500 to-cyan-500"
+  },
+  { 
+    icon: Coffee, 
+    title: "Café Illimité", 
+    desc: "Boissons chaudes et froides",
+    gradient: "from-orange-500 to-amber-500"
+  },
+  { 
+    icon: Shield, 
+    title: "Accès Sécurisé", 
+    desc: "Badge personnel 24/7",
+    gradient: "from-emerald-500 to-green-500"
+  },
+  { 
+    icon: Users, 
+    title: "Communauté", 
+    desc: "200+ entrepreneurs actifs",
+    gradient: "from-purple-500 to-pink-500"
+  }
+];
 
 export default function CoworkingSpaces() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5]);
+
+  const activeSpace = coworkingSpaces[activeIndex];
+
   return (
-    <section id="espaces" className="min-h-screen bg-gradient-to-br from-black-deep via-black-nuanced to-black-deep relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid-spaces" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid-spaces)" />
-        </svg>
-      </div>
+    <section ref={containerRef} id="espaces" className="relative min-h-screen bg-black overflow-hidden py-32" style={{ position: 'relative' }}>
+      {/* Dynamic gradient background */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{ opacity }}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br ${activeSpace.gradient} opacity-10 transition-all duration-1000`}></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/50 to-black"></div>
+      </motion.div>
 
-      {/* Film grain texture */}
-      <div className="absolute inset-0 film-grain"></div>
+      {/* Animated grid */}
+      <motion.div 
+        className="absolute inset-0 opacity-[0.03]"
+        style={{ y: parallaxY }}
+      >
+        <div className="h-full w-full bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+      </motion.div>
 
-      <div className="relative z-10 py-32">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16">
-          {/* Header */}
+      <div className="relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20 px-8"
+        >
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="inline-flex items-center mb-12"
+          >
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4"></div>
+            <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
+              Nos Espaces
+            </span>
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4"></div>
+          </motion.div>
+
+          {/* Title */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white mb-8 leading-[0.9]"
           >
-            {/* Badge "Acte 2" */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center mb-8"
+            ESPACES
+            <motion.span 
+              className={`block text-transparent bg-clip-text bg-gradient-to-r ${activeSpace.gradient}`}
+              key={activeIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-coworking"></div>
-                <span className="text-sm font-inter font-medium text-coworking tracking-[0.3em] uppercase">ACTE 2</span>
-                <div className="w-12 h-0.5 bg-gradient-to-r from-coworking to-transparent"></div>
+              PREMIUM
+            </motion.span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto"
+          >
+            Des environnements pensés pour stimuler votre productivité et favoriser les rencontres
+          </motion.p>
+        </motion.div>
+
+        {/* Main showcase area */}
+        <div className="max-w-7xl mx-auto px-8 mb-32">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Space showcase */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              {/* Main image container */}
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeIndex}
+                    src={activeSpace.image}
+                    alt={activeSpace.title}
+                    className="w-full h-full object-cover"
+                    initial={{ scale: 1.2, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{ duration: 0.7 }}
+                  />
+                </AnimatePresence>
+                
+                {/* Gradient overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className={`absolute inset-0 bg-gradient-to-br ${activeSpace.gradient} opacity-20`}></div>
+                
+                {/* Space info overlay */}
+                <motion.div 
+                  className="absolute bottom-8 left-8 right-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`px-4 py-2 bg-gradient-to-r ${activeSpace.gradient} rounded-full`}>
+                      <span className="text-white font-montserrat font-semibold text-sm">
+                        {activeSpace.price}
+                      </span>
+                    </div>
+                    <div className="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                      <span className="text-white font-inter text-sm">{activeSpace.capacity}</span>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-4xl font-montserrat font-bold text-white mb-2">
+                    {activeSpace.title}
+                  </h3>
+                  <p className="text-white/80 font-inter text-lg italic">
+                    "{activeSpace.tagline}"
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Navigation dots */}
+              <div className="flex justify-center gap-2 mt-8">
+                {coworkingSpaces.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      index === activeIndex 
+                        ? `w-8 bg-gradient-to-r ${activeSpace.gradient}` 
+                        : 'w-2 bg-white/20 hover:bg-white/40'
+                    }`}
+                  />
+                ))}
               </div>
             </motion.div>
 
-            {/* Titre principal avec animation mot par mot */}
-            <div className="mb-8">
-              <motion.h2
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="text-hero font-montserrat font-black text-white leading-none tracking-tight"
-              >
-                {['NOS', 'ESPACES'].map((word, index) => (
-                  <motion.span
-                    key={word}
-                    initial={{ opacity: 0, rotateX: 90 }}
-                    whileInView={{ opacity: 1, rotateX: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.2, duration: 0.8 }}
-                    className={`inline-block mr-6 ${word === 'ESPACES' ? 'bg-gradient-coworking bg-clip-text text-transparent' : ''}`}
-                    style={{ transformOrigin: 'center bottom' }}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </motion.h2>
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            {/* Right: Space details */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="text-body-large font-inter text-white/70 max-w-2xl mx-auto leading-relaxed"
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
             >
-              Des éclats d'espaces premium pour nourrir votre productivité et créativité
-            </motion.p>
-          </motion.div>
+              {/* Space selector */}
+              <div className="space-y-4">
+                {coworkingSpaces.map((space, index) => (
+                  <motion.button
+                    key={space.id}
+                    onClick={() => setActiveIndex(index)}
+                    className={`w-full text-left p-6 rounded-2xl border transition-all duration-500 ${
+                      index === activeIndex
+                        ? 'bg-white/10 border-white/30 backdrop-blur-md'
+                        : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                    }`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <h4 className={`text-xl font-montserrat font-bold mb-2 transition-colors duration-300 ${
+                          index === activeIndex ? 'text-white' : 'text-white/70'
+                        }`}>
+                          {space.title}
+                        </h4>
+                        <p className={`font-inter text-sm transition-colors duration-300 ${
+                          index === activeIndex ? 'text-white/80' : 'text-white/50'
+                        }`}>
+                          {space.description}
+                        </p>
+                      </div>
+                      
+                      <motion.div
+                        animate={{ rotate: index === activeIndex ? 45 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className={`ml-4 transition-colors duration-300 ${
+                          index === activeIndex ? 'text-white' : 'text-white/30'
+                        }`}
+                      >
+                        <ArrowUpRight className="w-6 h-6" />
+                      </motion.div>
+                    </div>
 
-          {/* Spaces Grid avec design "Fragments" */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {coworkingSpaces.map((space, index) => (
+                    {/* Features - only show for active */}
+                    <AnimatePresence>
+                      {index === activeIndex && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-white/10">
+                            {space.features.map((feature, i) => (
+                              <span
+                                key={i}
+                                className="px-3 py-1 bg-white/10 rounded-full text-white/70 text-xs font-inter"
+                              >
+                                {feature}
+                              </span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
+                ))}
+              </div>
+
+              {/* CTA */}
               <motion.a
-                key={space.id}
-                href={spaceRoutes[space.id as keyof typeof spaceRoutes]}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.7 }}
-                whileHover={{ y: -12, scale: 1.03, zIndex: 10 }}
-                className={`group cursor-pointer h-full block ${
-                  space.id === 5 ? 'md:col-span-2 lg:col-span-1' : ''
-                }`}
+                href={`/spaces/${activeSpace.title.toLowerCase().replace(/\s+/g, '-')}`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="block"
               >
-                <div className="glass-effect border border-white/10 rounded-4xl overflow-hidden hover:border-white/20 transition-all duration-700 h-full relative">
-                  {/* Background Image avec Ken Burns */}
-                  <div className="absolute inset-0">
-                    <img
-                      src={space.image}
-                      alt={space.title}
-                      className="w-full h-full object-cover ken-burns group-hover:scale-110 transition-transform duration-700"
+                <div className={`relative bg-gradient-to-r ${activeSpace.gradient} p-[2px] rounded-2xl overflow-hidden group`}>
+                  <div className="relative bg-black rounded-2xl px-8 py-5 overflow-hidden">
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-r ${activeSpace.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
                     />
-                    {/* Overlays gradients stratégiques */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black-deep/90 via-black-nuanced/20 to-transparent"></div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-black-deep/60 via-transparent to-black-nuanced/40"></div>
-                  </div>
-
-                  {/* Numérotation massive */}
-                  <div className="absolute top-8 left-8 z-20">
-                    <span 
-                      className="font-playfair font-bold text-coworking opacity-80 group-hover:text-blue-300 transition-colors duration-500"
-                      style={{ 
-                        fontSize: 'clamp(4rem, 8vw, 6rem)',
-                        textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
-                        WebkitTextStroke: '1px rgba(66, 153, 225, 0.3)'
-                      }}
-                    >
-                      {space.id.toString().padStart(2, '0')}
-                    </span>
-                  </div>
-
-                  {/* Badge capacité */}
-                  <div className="absolute top-8 right-8 glass-effect border border-white/20 rounded-full px-4 py-2 flex items-center">
-                    <Users className="w-4 h-4 text-coworking mr-2" />
-                    <span className="text-white font-inter text-xs font-medium tracking-wide">
-                      {space.capacity}
-                    </span>
-                  </div>
-
-                  {/* Badge accès */}
-                  <div className="absolute top-20 right-8 glass-effect border border-white/20 rounded-full px-3 py-1">
-                    <div className="flex items-center">
-                      <Clock className="w-3 h-3 text-white/70 mr-1" />
-                      <span className="text-white/70 font-inter text-xs">
-                        {space.access.includes('24') ? '24/7' : 'Horaires'}
+                    
+                    <div className="relative flex items-center justify-between">
+                      <span className="font-montserrat font-bold text-white">
+                        Découvrir cet espace
                       </span>
+                      <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   </div>
-
-                  {/* Icônes flottantes selon le type d'espace */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-90 transition-all duration-500 z-20">
-                    <div className="w-20 h-20 bg-gradient-coworking rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20 glow-coworking">
-                      {space.id === 1 && <Building2 className="w-10 h-10 text-white" />}
-                      {space.id === 2 && <Shield className="w-10 h-10 text-white" />}
-                      {space.id === 3 && <Users className="w-10 h-10 text-white" />}
-                      {space.id === 4 && <Coffee className="w-10 h-10 text-white" />}
-                      {space.id === 5 && <Sparkles className="w-10 h-10 text-white" />}
-                    </div>
-                  </div>
-
-                  {/* Zone de contenu (bottom) */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
-                    {/* Tagline */}
-                    <p className="text-coworking font-inter text-sm font-medium mb-3 italic opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      {space.tagline}
-                    </p>
-
-                    <h3 className="text-2xl lg:text-3xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-coworking group-hover:bg-clip-text transition-all duration-500">
-                      {space.title}
-                    </h3>
-                    
-                    {/* Ligne décorative */}
-                    <div className="w-16 h-1 bg-gradient-coworking rounded-full mb-4 group-hover:w-24 transition-all duration-500"></div>
-                    
-                    <p className="text-white/80 font-inter leading-relaxed line-clamp-3 group-hover:text-white transition-colors duration-500 mb-6">
-                      {space.description}
-                    </p>
-
-                    {/* Informations d'accès */}
-                    <div className="flex items-center justify-between mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="glass-effect border border-white/20 rounded-xl px-3 py-2">
-                        <span className="text-white font-inter text-xs">{space.access}</span>
-                      </div>
-                    </div>
-
-                    {/* CTA avec label dynamique */}
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-coworking text-white font-montserrat font-semibold py-4 rounded-2xl hover:shadow-lg hover:shadow-coworking/25 transition-all duration-500 flex items-center justify-center relative overflow-hidden"
-                    >
-                      <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
-                      <div className="relative flex items-center">
-                        <span className="tracking-wide">{space.ctaLabel}</span>
-                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                      </div>
-                    </motion.button>
-                  </div>
-
-                  {/* Hover Effects */}
-                  <div className="absolute inset-0 ring-0 group-hover:ring-2 group-hover:ring-coworking/50 rounded-4xl transition-all duration-700"></div>
-                  <div className="absolute inset-0 shadow-none group-hover:shadow-2xl group-hover:shadow-coworking/25 rounded-4xl transition-all duration-700"></div>
                 </div>
               </motion.a>
-            ))}
+            </motion.div>
           </div>
-
-          {/* Features Highlight */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
-          >
-            {[
-              { icon: Wifi, title: "Wifi Fibré", desc: "Connexion ultra-rapide 1 Gb/s", color: "from-blue-400 to-blue-600" },
-              { icon: Coffee, title: "Café Illimité", desc: "Boissons chaudes et froides", color: "from-orange-400 to-orange-600" },
-              { icon: Shield, title: "Accès Sécurisé", desc: "Badge personnel 24/7", color: "from-green-400 to-green-600" },
-              { icon: Users, title: "Communauté", desc: "200+ entrepreneurs actifs", color: "from-purple-400 to-purple-600" }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="text-center group"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                  <feature.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-montserrat font-bold text-white mb-3">{feature.title}</h3>
-                <p className="text-white/70 font-inter text-sm">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="text-center"
-          >
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center px-10 py-5 glass-effect text-white font-montserrat font-semibold text-lg rounded-2xl border border-coworking/30 hover:bg-coworking/10 hover:border-coworking transition-all duration-500 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-coworking opacity-10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
-              <div className="relative flex items-center">
-                <span className="tracking-wide">Planifier une visite</span>
-                <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
-            </motion.a>
-          </motion.div>
         </div>
+
+        {/* Features section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto px-8 mb-20"
+        >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              const isHovered = hoveredFeature === index;
+              
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  onMouseEnter={() => setHoveredFeature(index)}
+                  onMouseLeave={() => setHoveredFeature(null)}
+                  className="relative group"
+                >
+                  <div className="text-center">
+                    {/* Icon with animated background */}
+                    <div className="relative inline-block mb-6">
+                      <motion.div
+                        animate={{ 
+                          scale: isHovered ? 1.2 : 1,
+                          rotate: isHovered ? 360 : 0
+                        }}
+                        transition={{ duration: 0.5 }}
+                        className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-3xl blur-xl opacity-30`}
+                      />
+                      <div className={`relative w-20 h-20 bg-gradient-to-r ${feature.gradient} rounded-3xl flex items-center justify-center`}>
+                        <Icon className="w-10 h-10 text-white" />
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-xl font-montserrat font-bold text-white mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/60 font-inter text-sm">
+                      {feature.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="text-center"
+        >
+          <motion.a
+            href="/contact"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative inline-block"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div className="relative bg-white text-black rounded-2xl px-10 py-5">
+              <div className="flex items-center gap-4">
+                <Calendar className="w-5 h-5" />
+                <span className="font-montserrat font-bold">
+                  PLANIFIER UNE VISITE
+                </span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </div>
+          </motion.a>
+        </motion.div>
+      </div>
+
+      {/* Floating elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${20 + i * 15}%`,
+              top: `${10 + i * 20}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 3 + i,
+              repeat: Infinity,
+              delay: i * 0.5,
+            }}
+          >
+            <div className={`w-32 h-32 bg-gradient-to-r ${coworkingSpaces[i].gradient} rounded-full blur-3xl`} />
+          </motion.div>
+        ))}
       </div>
     </section>
   );
