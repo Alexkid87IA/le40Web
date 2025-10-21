@@ -43,32 +43,28 @@ export default function Contact() {
       title: "Adresse",
       content: "40 Rue de la République",
       subcontent: "13001 Marseille",
-      gradient: "from-cyan-500 to-blue-500",
-      accentColor: "#06b6d4"
+      gradient: "from-orange-500 to-amber-600"
     },
     {
       icon: Phone,
       title: "Téléphone",
       content: "+33 4 91 23 45 67",
       subcontent: "Disponible 7j/7",
-      gradient: "from-orange-500 to-amber-500",
-      accentColor: "#f59e0b"
+      gradient: "from-amber-500 to-yellow-600"
     },
     {
       icon: Mail,
       title: "Email",
       content: "contact@le40.fr",
       subcontent: "Réponse sous 24h",
-      gradient: "from-pink-500 to-rose-500",
-      accentColor: "#ec4899"
+      gradient: "from-orange-600 to-red-600"
     },
     {
       icon: Clock,
       title: "Horaires",
       content: "Lun - Ven : 8h - 20h",
       subcontent: "Sam - Dim : 9h - 18h",
-      gradient: "from-emerald-500 to-teal-500",
-      accentColor: "#10b981"
+      gradient: "from-amber-600 to-orange-600"
     }
   ];
 
@@ -89,9 +85,9 @@ export default function Contact() {
         <motion.div
           animate={{
             background: [
-              'radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)',
-              'radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.08) 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.08) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.08) 0%, transparent 50%)',
             ]
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -107,7 +103,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
           >
-            <MessageCircle className="w-4 h-4 text-cyan-400" />
+            <MessageCircle className="w-4 h-4 text-orange-400" />
             <span className="text-sm text-white/70 font-medium">Parlons de Votre Projet</span>
           </motion.div>
 
@@ -119,7 +115,7 @@ export default function Contact() {
             className="text-5xl md:text-7xl font-black text-white mb-6"
           >
             Contactez{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-blue-500 to-pink-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500">
               Nous
             </span>
           </motion.h2>
@@ -191,7 +187,7 @@ export default function Contact() {
                           required
                           value={formData.firstName}
                           onChange={handleChange}
-                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all"
+                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-orange-400/50 focus:border-orange-400/50 transition-all"
                           placeholder="Votre prénom"
                         />
                       </div>
@@ -206,7 +202,7 @@ export default function Contact() {
                           required
                           value={formData.lastName}
                           onChange={handleChange}
-                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all"
+                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-orange-400/50 focus:border-orange-400/50 transition-all"
                           placeholder="Votre nom"
                         />
                       </div>
@@ -223,7 +219,7 @@ export default function Contact() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all"
+                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-orange-400/50 focus:border-orange-400/50 transition-all"
                           placeholder="votre@email.com"
                         />
                       </div>
@@ -237,7 +233,7 @@ export default function Contact() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all"
+                          className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-orange-400/50 focus:border-orange-400/50 transition-all"
                           placeholder="+33 6 12 34 56 78"
                         />
                       </div>
@@ -282,7 +278,7 @@ export default function Contact() {
                       type="submit"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group w-full py-5 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-pink-500 text-white font-black text-lg shadow-2xl relative overflow-hidden"
+                      className="group w-full py-5 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white font-black text-lg shadow-2xl relative overflow-hidden"
                     >
                       <motion.div
                         className="absolute inset-0 bg-white/20"
@@ -376,7 +372,7 @@ export default function Contact() {
                 className="group relative px-6 py-5 rounded-2xl bg-white/10 backdrop-blur-xl text-white font-bold text-center border border-white/20 hover:bg-white/20 transition-all overflow-hidden"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-pink-500/20"
+                  className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.5 }}
@@ -392,7 +388,7 @@ export default function Contact() {
               whileHover={{ y: -5 }}
               className="bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 text-center"
             >
-              <MapPin className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+              <MapPin className="w-12 h-12 text-orange-400 mx-auto mb-4" />
               <h4 className="text-xl font-black text-white mb-3">
                 Visitez-Nous
               </h4>
@@ -402,7 +398,7 @@ export default function Contact() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold shadow-xl"
               >
                 <Calendar className="w-5 h-5" />
                 <span>Réserver une Visite</span>
@@ -423,9 +419,9 @@ export default function Contact() {
             <motion.div
               animate={{
                 background: [
-                  'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%)',
-                  'radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 70%)',
-                  'radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%)',
+                  'radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 70%)',
+                  'radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 70%)',
+                  'radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 70%)',
                 ]
               }}
               transition={{ duration: 10, repeat: Infinity }}
@@ -456,7 +452,7 @@ export default function Contact() {
                   className="group relative px-10 py-5 rounded-2xl bg-white text-black font-black text-lg shadow-2xl overflow-hidden"
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-pink-500/20"
+                    className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20"
                     initial={{ x: '-100%' }}
                     whileHover={{ x: '100%' }}
                     transition={{ duration: 0.5 }}
