@@ -2,14 +2,18 @@ import SidebarNav from '../components/Nav/SidebarNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import HeroSection from '../components/Domiciliation/HeroSection';
+import TrustLogosSection from '../components/Domiciliation/TrustLogosSection';
 import ProblemSection from '../components/Domiciliation/ProblemSection';
 import ServicesDetailSection from '../components/Domiciliation/ServicesDetailSection';
+import LeadMagnetSection from '../components/Domiciliation/LeadMagnetSection';
 import PricingSection from '../components/Domiciliation/PricingSection';
 import ProcessSection from '../components/Domiciliation/ProcessSection';
 import TestimonialsSection from '../components/Domiciliation/TestimonialsSection';
+import GoogleReviewsSection from '../components/Domiciliation/GoogleReviewsSection';
 import FAQSection from '../components/Domiciliation/FAQSection';
 import ComparisonTableSection from '../components/Domiciliation/ComparisonTableSection';
-import UrgencySection from '../components/Domiciliation/UrgencySection';
+import OfficialOrganizationsSection from '../components/Domiciliation/OfficialOrganizationsSection';
+import ImprovedUrgencySection from '../components/Domiciliation/ImprovedUrgencySection';
 import GuaranteesSection from '../components/Domiciliation/GuaranteesSection';
 import FinalCTASection from '../components/Domiciliation/FinalCTASection';
 
@@ -21,14 +25,18 @@ export default function Domiciliation() {
 
       <main className="lg:ml-60">
         <HeroSection />
+        <TrustLogosSection />
         <ProblemSection />
         <ServicesDetailSection />
+        <LeadMagnetSection />
         <PricingSection />
         <ProcessSection />
         <TestimonialsSection />
+        <GoogleReviewsSection />
         <FAQSection />
         <ComparisonTableSection />
-        <UrgencySection />
+        <OfficialOrganizationsSection />
+        <ImprovedUrgencySection />
         <GuaranteesSection />
         <FinalCTASection />
 
