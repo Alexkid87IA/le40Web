@@ -168,12 +168,12 @@ export default function ProcessSection() {
                               whileInView={{ opacity: 1, x: 0 }}
                               viewport={{ once: true }}
                               transition={{ delay: index * 0.2 + i * 0.1, duration: 0.5 }}
-                              className="flex items-start gap-3 group/item"
+                              className="flex items-center gap-3 group/item"
                             >
                               <motion.div
                                 whileHover={{ scale: 1.2, rotate: 360 }}
                                 transition={{ duration: 0.3 }}
-                                className={`mt-0.5 shrink-0 ${
+                                className={`shrink-0 ${
                                   step.color === 'green' ? 'text-green-400' : 'text-orange-400'
                                 }`}
                               >
