@@ -190,26 +190,6 @@ export default function Hero() {
         className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 w-full"
       >
         <div className="max-w-6xl">
-          {/* Ultra-refined badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 sm:mb-8"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/[0.02] border border-white/[0.08]">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <Sparkles className="w-2.5 h-2.5 text-white/40" />
-              </motion.div>
-              <span className="text-[9px] sm:text-[10px] font-montserrat font-medium text-white/50 tracking-[0.2em] uppercase">
-                Le 40 République Marseille
-              </span>
-            </div>
-          </motion.div>
-
           {/* Title Section - Ultra Premium */}
           <div className="mb-8 sm:mb-10">
             {/* VOTRE */}
