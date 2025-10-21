@@ -74,7 +74,7 @@ export default function Hero() {
   const currentService = serviceDetails[currentWord];
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0A0A]">
+    <section ref={containerRef} className="relative h-screen flex items-center overflow-hidden bg-[#0A0A0A]">
       {/* Sophisticated gradient base */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#0F0F0F] to-[#1A1A1A]"></div>
@@ -195,23 +195,23 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-16 sm:mb-20"
+            className="mb-6 sm:mb-8"
           >
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full backdrop-blur-md bg-white/[0.02] border border-white/[0.08]">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-white/[0.02] border border-white/[0.08]">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <Sparkles className="w-3.5 h-3.5 text-white/40" />
+                <Sparkles className="w-2.5 h-2.5 text-white/40" />
               </motion.div>
-              <span className="text-[10px] sm:text-xs font-montserrat font-medium text-white/50 tracking-[0.25em] uppercase">
+              <span className="text-[9px] sm:text-[10px] font-montserrat font-medium text-white/50 tracking-[0.2em] uppercase">
                 Le 40 République Marseille
               </span>
             </div>
           </motion.div>
 
           {/* Title Section - Ultra Premium */}
-          <div className="mb-16 sm:mb-20">
+          <div className="mb-8 sm:mb-10">
             {/* VOTRE */}
             <motion.div
               initial={{ opacity: 0, y: 80, rotateX: 45 }}
@@ -219,7 +219,7 @@ export default function Hero() {
               transition={{ delay: 0.4, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformPerspective: 1000 }}
             >
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-montserrat font-black text-white leading-[0.85] tracking-[-0.04em] mb-3 sm:mb-4"
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white leading-[0.85] tracking-[-0.04em] mb-2 sm:mb-3"
                   style={{
                     textShadow: '0 4px 60px rgba(0,0,0,0.5)',
                   }}>
@@ -228,7 +228,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Rotating Word - Sophisticated animation */}
-            <div className="relative h-24 sm:h-28 md:h-36 lg:h-44 xl:h-56 mb-6 sm:mb-8">
+            <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 mb-3 sm:mb-4">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentWord}
@@ -262,8 +262,8 @@ export default function Hero() {
                 >
                   <h2 className={`${
                     currentWord === 'DOMICILIATION'
-                      ? 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
-                      : 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem]'
+                      ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
+                      : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
                     } font-montserrat font-black leading-[0.85] tracking-[-0.04em] bg-gradient-to-br ${currentService.gradient} bg-clip-text text-transparent`}
                       style={{
                         filter: `drop-shadow(0 2px 30px ${currentService.shadowColor})`,
@@ -276,14 +276,14 @@ export default function Hero() {
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center gap-4 mt-4 sm:mt-6"
+                    className="flex items-center gap-3 mt-2 sm:mt-3"
                   >
-                    <div className="h-px w-8 sm:w-12 bg-gradient-to-r from-white/20 to-transparent"></div>
-                    <p className="text-sm sm:text-base md:text-lg font-inter text-white/40 tracking-wide">
+                    <div className="h-px w-6 sm:w-8 bg-gradient-to-r from-white/20 to-transparent"></div>
+                    <p className="text-xs sm:text-sm md:text-base font-inter text-white/40 tracking-wide">
                       {currentService.tagline}
                     </p>
-                    <div className="px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08]">
-                      <span className="text-xs sm:text-sm font-montserrat font-semibold text-white/60">
+                    <div className="px-2 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.08]">
+                      <span className="text-[10px] sm:text-xs font-montserrat font-semibold text-white/60">
                         {currentService.metric}
                       </span>
                     </div>
@@ -298,9 +298,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ delay: 0.8, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformPerspective: 1000 }}
-              className="mb-12 sm:mb-16"
+              className="mb-6 sm:mb-8"
             >
-              <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-playfair italic font-light text-white/70 leading-[0.9]"
+              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair italic font-light text-white/70 leading-[0.9]"
                   style={{ textShadow: '0 10px 40px rgba(0,0,0,0.5)' }}>
                 à Marseille
               </h3>
@@ -310,12 +310,12 @@ export default function Hero() {
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
                 transition={{ delay: 1.6, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-                className="relative mt-6 sm:mt-8 origin-left"
+                className="relative mt-3 sm:mt-4 origin-left"
               >
-                <div className="h-[1px] w-24 sm:w-32 bg-gradient-to-r from-white/30 via-white/10 to-transparent"></div>
+                <div className="h-[1px] w-20 sm:w-24 bg-gradient-to-r from-white/30 via-white/10 to-transparent"></div>
                 <motion.div
-                  className="absolute top-0 left-0 h-[1px] w-8 bg-white/60"
-                  animate={{ x: [0, 100, 0] }}
+                  className="absolute top-0 left-0 h-[1px] w-6 bg-white/60"
+                  animate={{ x: [0, 80, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
               </motion.div>
@@ -327,9 +327,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-16 sm:mb-20 max-w-3xl"
+            className="mb-8 sm:mb-10 max-w-3xl"
           >
-            <p className="text-lg sm:text-xl md:text-2xl font-inter font-light text-white/60 leading-relaxed sm:leading-relaxed tracking-wide">
+            <p className="text-base sm:text-lg md:text-xl font-inter font-light text-white/60 leading-relaxed tracking-wide">
               Un écosystème d'excellence où convergent innovation, créativité et ambition entrepreneuriale.
             </p>
           </motion.div>
@@ -339,7 +339,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-16 sm:mb-20"
+            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-8 sm:mb-10"
           >
             {/* Primary CTA - Minimalist Luxury */}
             <motion.a
@@ -356,17 +356,17 @@ export default function Hero() {
                 />
               </AnimatePresence>
 
-              <div className="relative bg-white text-black rounded-2xl overflow-hidden group-hover:bg-white/95 transition-colors duration-500">
-                <div className="relative px-8 sm:px-10 py-4 sm:py-5 flex items-center justify-between gap-6">
-                  <span className="font-montserrat font-bold text-sm sm:text-base tracking-wide">
+              <div className="relative bg-white text-black rounded-xl overflow-hidden group-hover:bg-white/95 transition-colors duration-500">
+                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+                  <span className="font-montserrat font-bold text-xs sm:text-sm tracking-wide">
                     RÉSERVER UNE VISITE
                   </span>
                   <motion.div
-                    className="w-9 h-9 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors"
+                    className="w-7 h-7 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors"
                     whileHover={{ rotate: 45 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </motion.div>
                 </div>
               </div>
@@ -378,19 +378,19 @@ export default function Hero() {
               whileTap={{ scale: 0.99 }}
               className="group relative w-full sm:w-auto"
             >
-              <div className="relative backdrop-blur-xl bg-white/[0.04] rounded-2xl border border-white/[0.12] overflow-hidden hover:bg-white/[0.08] hover:border-white/[0.16] transition-all duration-500">
+              <div className="relative backdrop-blur-xl bg-white/[0.04] rounded-xl border border-white/[0.12] overflow-hidden hover:bg-white/[0.08] hover:border-white/[0.16] transition-all duration-500">
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
                   animate={{ x: [-300, 300] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                 />
 
-                <div className="relative px-8 sm:px-10 py-4 sm:py-5 flex items-center justify-between gap-6">
-                  <span className="font-montserrat font-semibold text-sm sm:text-base text-white tracking-wide">
+                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+                  <span className="font-montserrat font-semibold text-xs sm:text-sm text-white tracking-wide">
                     DÉCOUVRIR EN VIDÉO
                   </span>
-                  <div className="w-9 h-9 rounded-full bg-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.12] transition-colors">
-                    <PlayCircle className="w-4 h-4 text-white/80" />
+                  <div className="w-7 h-7 rounded-full bg-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.12] transition-colors">
+                    <PlayCircle className="w-3.5 h-3.5 text-white/80" />
                   </div>
                 </div>
               </div>
@@ -402,28 +402,28 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-6 sm:gap-8 lg:gap-12"
+            className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 lg:gap-8"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-emerald-400"
+                className="w-1 h-1 rounded-full bg-emerald-400"
                 animate={{ opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
-              <span className="text-white/50 font-inter text-xs sm:text-sm tracking-wide">
+              <span className="text-white/50 font-inter text-[10px] sm:text-xs tracking-wide">
                 Disponible immédiatement
               </span>
             </div>
 
-            <div className="h-px w-12 sm:w-8 bg-white/10 hidden sm:block"></div>
+            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
 
-            <div className="font-inter text-xs sm:text-sm text-white/50 tracking-wide">
+            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
               <span className="text-white/80 font-semibold">150+</span> entreprises
             </div>
 
-            <div className="h-px w-12 sm:w-8 bg-white/10 hidden sm:block"></div>
+            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
 
-            <div className="font-inter text-xs sm:text-sm text-white/50 tracking-wide">
+            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
               <span className="text-white/80 font-semibold">2500m²</span> d'espaces
             </div>
           </motion.div>
@@ -431,7 +431,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Premium bottom fade with subtle vignette */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 sm:h-40 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent z-[5] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-24 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent z-[5] pointer-events-none"></div>
 
       {/* Refined film grain texture */}
       <div className="absolute inset-0 z-[3] opacity-[0.015] mix-blend-overlay pointer-events-none">
