@@ -446,7 +446,7 @@ export default function Spaces() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Right: Space Cards with 3D Flip */}
+          {/* Right: Space Cards with Clean Toggle */}
           <div className="space-y-6">
             {currentCategory.spaces.map((space, index) => {
               const isFlipped = flippedCard === index;
@@ -460,139 +460,138 @@ export default function Spaces() {
                   transition={{ delay: index * 0.15, duration: 0.6 }}
                   onMouseEnter={() => setHoveredSpace(index)}
                   onMouseLeave={() => setHoveredSpace(null)}
-                  onClick={() => setFlippedCard(isFlipped ? null : index)}
-                  className="relative cursor-pointer"
-                  style={{ perspective: 1000 }}
+                  className="relative"
                 >
-                  <motion.div
-                    animate={{ rotateY: isFlipped ? 180 : 0 }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                    style={{ transformStyle: 'preserve-3d' }}
-                    className="relative"
-                  >
-                    {/* Front of Card */}
-                    <div
-                      className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500"
-                      style={{ backfaceVisibility: 'hidden' }}
-                    >
-                      {/* Badges */}
-                      <div className="absolute top-4 right-4 flex gap-2">
-                        {space.popular && (
-                          <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            POPULAIRE
-                          </span>
-                        )}
-                        {space.featured && (
-                          <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            PREMIUM
-                          </span>
-                        )}
-                      </div>
+                  <AnimatePresence mode="wait">
+                    {!isFlipped ? (
+                      <motion.div
+                        key="front"
+                        initial={{ opacity: 0, rotateY: -90 }}
+                        animate={{ opacity: 1, rotateY: 0 }}
+                        exit={{ opacity: 0, rotateY: 90 }}
+                        transition={{ duration: 0.4 }}
+                        onClick={() => setFlippedCard(index)}
+                        className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer"
+                      >
+                        {/* Badges */}
+                        <div className="absolute top-4 right-4 flex gap-2 z-10">
+                          {space.popular && (
+                            <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                              POPULAIRE
+                            </span>
+                          )}
+                          {space.featured && (
+                            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                              PREMIUM
+                            </span>
+                          )}
+                        </div>
 
-                      <div className="flex items-start gap-6">
-                        {/* Icon */}
-                        <motion.div
-                          whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                          transition={{ duration: 0.5 }}
-                          className={`p-4 rounded-2xl bg-gradient-to-br ${currentCategory.gradient} flex-shrink-0`}
-                        >
-                          <SpaceIcon className="w-8 h-8 text-white" />
-                        </motion.div>
+                        <div className="flex items-start gap-6">
+                          {/* Icon */}
+                          <motion.div
+                            whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                            className={`p-4 rounded-2xl bg-gradient-to-br ${currentCategory.gradient} flex-shrink-0`}
+                          >
+                            <SpaceIcon className="w-8 h-8 text-white" />
+                          </motion.div>
 
-                        {/* Content */}
-                        <div className="flex-1">
-                          <h3 className="text-2xl font-black text-white mb-2">
-                            {space.name}
-                          </h3>
-                          <p className="text-white/50 italic text-sm mb-4">
-                            "{space.highlight}"
-                          </p>
+                          {/* Content */}
+                          <div className="flex-1">
+                            <h3 className="text-2xl font-black text-white mb-2">
+                              {space.name}
+                            </h3>
+                            <p className="text-white/50 italic text-sm mb-4">
+                              "{space.highlight}"
+                            </p>
 
-                          {/* Capacity & Price */}
-                          <div className="flex items-center gap-4 mb-4">
-                            <div className="flex items-center gap-2 text-white/60 text-sm">
-                              <Users className="w-4 h-4" />
-                              {space.capacity}
+                            {/* Capacity & Price */}
+                            <div className="flex items-center gap-4 mb-4">
+                              <div className="flex items-center gap-2 text-white/60 text-sm">
+                                <Users className="w-4 h-4" />
+                                {space.capacity}
+                              </div>
+                              <div className="w-px h-4 bg-white/20" />
+                              <div className={`font-black text-xl text-transparent bg-clip-text bg-gradient-to-r ${currentCategory.gradient}`}>
+                                {space.price > 0 ? `${space.price}` : 'Inclus'}{space.price > 0 && <span className="text-sm text-white/40 ml-1">{space.priceLabel}</span>}
+                              </div>
                             </div>
-                            <div className="w-px h-4 bg-white/20" />
-                            <div className={`font-black text-xl text-transparent bg-clip-text bg-gradient-to-r ${currentCategory.gradient}`}>
-                              {space.price > 0 ? `${space.price}` : 'Inclus'}{space.price > 0 && <span className="text-sm text-white/40 ml-1">{space.priceLabel}</span>}
-                            </div>
+
+                            {/* Click to flip indicator */}
+                            <motion.div
+                              animate={{ x: hoveredSpace === index ? 5 : 0 }}
+                              className="flex items-center gap-2 text-white/40 text-xs"
+                            >
+                              <span>Cliquer pour voir les détails</span>
+                              <ArrowRight className="w-3 h-3" />
+                            </motion.div>
+                          </div>
+                        </div>
+
+                        {/* Hover Glow */}
+                        {hoveredSpace === index && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className={`absolute inset-0 bg-gradient-to-r ${currentCategory.gradient} opacity-5 rounded-3xl pointer-events-none`}
+                          />
+                        )}
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="back"
+                        initial={{ opacity: 0, rotateY: -90 }}
+                        animate={{ opacity: 1, rotateY: 0 }}
+                        exit={{ opacity: 0, rotateY: 90 }}
+                        transition={{ duration: 0.4 }}
+                        className="relative bg-gradient-to-br from-black/95 to-black/80 backdrop-blur-xl rounded-3xl p-8 border border-white/20"
+                      >
+                        <div className="flex flex-col min-h-[300px]">
+                          <div className="flex items-center justify-between mb-6">
+                            <h3 className="text-2xl font-black text-white">
+                              Caractéristiques
+                            </h3>
+                            <motion.button
+                              whileHover={{ rotate: 180, scale: 1.2 }}
+                              transition={{ duration: 0.3 }}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setFlippedCard(null);
+                              }}
+                              className="text-white/60 hover:text-white text-2xl"
+                            >
+                              ✕
+                            </motion.button>
                           </div>
 
-                          {/* Click to flip indicator */}
-                          <motion.div
-                            animate={{ x: hoveredSpace === index ? 5 : 0 }}
-                            className="flex items-center gap-2 text-white/40 text-xs"
-                          >
-                            <span>Cliquer pour voir les détails</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </motion.div>
-                        </div>
-                      </div>
+                          <div className="space-y-3 flex-1">
+                            {space.features.map((feature, i) => (
+                              <motion.div
+                                key={i}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.1 * i }}
+                                className="flex items-start gap-3"
+                              >
+                                <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5`} style={{ color: currentCategory.accentColor }} />
+                                <span className="text-white/80">{feature}</span>
+                              </motion.div>
+                            ))}
+                          </div>
 
-                      {/* Hover Glow */}
-                      {hoveredSpace === index && (
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className={`absolute inset-0 bg-gradient-to-r ${currentCategory.gradient} opacity-5 rounded-3xl pointer-events-none`}
-                        />
-                      )}
-                    </div>
-
-                    {/* Back of Card */}
-                    <div
-                      className="absolute inset-0 bg-gradient-to-br from-black/95 to-black/80 backdrop-blur-xl rounded-3xl p-8 border border-white/20"
-                      style={{
-                        backfaceVisibility: 'hidden',
-                        transform: 'rotateY(180deg)'
-                      }}
-                    >
-                      <div className="h-full flex flex-col">
-                        <div className="flex items-center justify-between mb-6">
-                          <h3 className="text-2xl font-black text-white">
-                            Caractéristiques
-                          </h3>
                           <motion.button
-                            whileHover={{ rotate: 180 }}
-                            transition={{ duration: 0.3 }}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setFlippedCard(null);
-                            }}
-                            className="text-white/60 hover:text-white"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className={`w-full mt-6 py-4 rounded-2xl bg-gradient-to-r ${currentCategory.gradient} text-white font-bold flex items-center justify-center gap-2`}
                           >
-                            ✕
+                            <span>Réserver maintenant</span>
+                            <ArrowRight className="w-5 h-5" />
                           </motion.button>
                         </div>
-
-                        <div className="space-y-3 flex-1">
-                          {space.features.map((feature, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.1 * i }}
-                              className="flex items-start gap-3"
-                            >
-                              <CheckCircle className={`w-5 h-5 flex-shrink-0 mt-0.5`} style={{ color: currentCategory.accentColor }} />
-                              <span className="text-white/80">{feature}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className={`w-full mt-6 py-4 rounded-2xl bg-gradient-to-r ${currentCategory.gradient} text-white font-bold flex items-center justify-center gap-2`}
-                        >
-                          <span>Réserver maintenant</span>
-                          <ArrowRight className="w-5 h-5" />
-                        </motion.button>
-                      </div>
-                    </div>
-                  </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               );
             })}
