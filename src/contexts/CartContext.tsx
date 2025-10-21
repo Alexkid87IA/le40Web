@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect, ReactNode } from 'react';
 // Types
 export interface CartItem {
   id: string;
-  serviceType: 'coworking' | 'meeting-room' | 'studio' | 'private-office';
+  serviceType: 'coworking' | 'meeting-room' | 'studio' | 'private-office' | 'domiciliation';
   serviceName: string;
   date: string;
   startTime?: string;
