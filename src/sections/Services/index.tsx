@@ -9,9 +9,9 @@ const servicesData = [
     subtitle: "Espaces Collaboratifs",
     icon: Users,
     description: "Rejoignez l'élite entrepreneuriale dans nos espaces pensés pour l'excellence",
-    features: ["Fibre 10 Gbps", "Conciergerie 7j/7", "Réseau Premium"],
+    features: ["Internet Très Haut Débit", "Réseaux Entrepreneurs Premium", "Services Sur Mesure"],
     link: "/coworking",
-    metric: "2500",
+    metric: "4000",
     metricLabel: "m² d'innovation",
     metricPrefix: "",
     tagline: "Où les idées prennent vie",
@@ -23,12 +23,12 @@ const servicesData = [
   {
     id: 2,
     title: "Domiciliation",
-    subtitle: "Adresse Prestigieuse",
+    subtitle: "Adresse de Caractère",
     icon: MapPin,
-    description: "Une adresse République qui positionne votre entreprise au sommet",
-    features: ["Réception Courrier", "Standard Dédié", "Salles Prioritaires"],
+    description: "Positionnez votre entreprise au sommet",
+    features: ["Réception / Expédition Courrier", "Accès Coworking / Networking", "Events"],
     link: "/domiciliation",
-    metric: "150",
+    metric: "120",
     metricLabel: "entreprises",
     metricPrefix: "+",
     tagline: "Votre prestige commence ici",
@@ -77,8 +77,8 @@ const servicesData = [
     description: "Accédez à un réseau fermé de décideurs et visionnaires",
     features: ["Mentors Fortune 500", "Events VIP", "Deals Exclusifs"],
     link: "/experts",
-    metric: "1",
-    metricLabel: "% Top entrepreneurs",
+    metric: "Top 1%",
+    metricLabel: "entrepreneurs",
     metricPrefix: "",
     tagline: "L'excellence attire l'excellence",
     gradient: "from-pink-600 via-rose-600 to-red-600",
@@ -91,8 +91,11 @@ const servicesData = [
 const AnimatedCounter = ({ value, prefix = "", delay = 0 }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const numericValue = parseInt(value) || 0;
+  const hasText = isNaN(parseInt(value));
 
   useEffect(() => {
+    if (hasText) return;
+
     const duration = 2000;
     const steps = 60;
     const increment = numericValue / steps;
@@ -113,11 +116,15 @@ const AnimatedCounter = ({ value, prefix = "", delay = 0 }) => {
     }, delay);
 
     return () => clearTimeout(timer);
-  }, [numericValue, delay]);
+  }, [numericValue, delay, hasText]);
+
+  if (hasText) {
+    return <span className="tabular-nums">{value}</span>;
+  }
 
   return (
     <span className="tabular-nums">
-      {prefix}{isNaN(displayValue) ? value : displayValue}
+      {prefix}{displayValue}
     </span>
   );
 };
@@ -361,7 +368,7 @@ export default function ServicesSection() {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-xl text-white/60 max-w-3xl mx-auto font-light"
           >
-            Un écosystème complet pensé pour propulser votre réussite
+            Un écosystème complet pensé pour propulser votre réussite vers des sommets inédits
           </motion.p>
         </motion.div>
 
