@@ -1,437 +1,315 @@
-import React, { useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { ArrowRight, PlayCircle, Sparkles } from 'lucide-react';
 
 export default function HeroSection() {
   const { scrollY } = useScroll();
-  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
-  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const heroScale = useTransform(scrollY, [0, 300], [1, 0.95]);
+  const y = useTransform(scrollY, [0, 500], [0, 100]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
 
-  // Mouse parallax
+  const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springConfig = { damping: 25, stiffness: 150 };
-  const springX = useSpring(mouseX, springConfig);
-  const springY = useSpring(mouseY, springConfig);
+  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX - innerWidth / 2) / innerWidth;
-      const y = (clientY - innerHeight / 2) / innerHeight;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
       mouseX.set(x * 20);
       mouseY.set(y * 20);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+      return () => container.removeEventListener('mousemove', handleMouseMove);
+    }
   }, [mouseX, mouseY]);
 
   return (
-    <motion.section 
-      style={{ 
-        opacity: heroOpacity,
-        scale: heroScale,
-        y: heroY 
-      }}
-      className="relative h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Background 3D Universe */}
+    <section ref={containerRef} className="relative h-screen flex items-center overflow-hidden bg-[#0A0A0A]">
+      {/* Sophisticated gradient base */}
       <div className="absolute inset-0">
-        {/* Nebula animée */}
-        <div className="absolute inset-0">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 5, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-0 left-0 w-full h-full"
-          >
-            <div className="absolute top-1/4 left-1/4 w-[800px] h-[800px] bg-purple-600/20 rounded-full blur-[200px] animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-[800px] h-[800px] bg-pink-600/20 rounded-full blur-[200px] animate-pulse" style={{ animationDelay: '2s' }}></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue-600/10 rounded-full blur-[250px]"></div>
-          </motion.div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#0F0F0F] to-[#1A1A1A]"></div>
 
-        {/* Grille 3D perspective */}
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `linear-gradient(rgba(147, 51, 234, 0.3) 2px, transparent 2px), linear-gradient(90deg, rgba(147, 51, 234, 0.3) 2px, transparent 2px)`,
-            backgroundSize: '100px 100px',
-            transform: 'perspective(1000px) rotateX(60deg) translateY(-50%)',
-            transformOrigin: 'center center',
+        {/* Subtle mesh pattern */}
+        <div className="absolute inset-0 opacity-[0.015]"
+             style={{
+               backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+               backgroundSize: '48px 48px'
+             }}>
+        </div>
+      </div>
+
+      {/* Dynamic ambient light orbs - Emerald theme */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-1/4 -left-48 w-96 h-96 rounded-full blur-[120px]"
+          style={{ backgroundColor: '#10B981', opacity: 0.08 }}
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0]
           }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
+        <motion.div
+          className="absolute bottom-1/4 -right-48 w-[30rem] h-[30rem] rounded-full blur-[140px]"
+          style={{ backgroundColor: '#14B8A6', opacity: 0.06 }}
+          animate={{
+            scale: [1, 1.15, 1],
+            x: [0, -50, 0],
+            y: [0, 40, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+      </div>
 
-        {/* Particules flottantes améliorées */}
-        <div className="absolute inset-0">
-          {[...Array(100)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                background: i % 3 === 0 ? '#a855f7' : i % 3 === 1 ? '#ec4899' : '#3b82f6',
-                boxShadow: `0 0 ${4 + Math.random() * 6}px currentColor`,
-              }}
-              animate={{
-                y: [0, -100, 0],
-                x: [0, Math.random() * 50 - 25, 0],
-                opacity: [0, 1, 0],
-                scale: [0, Math.random() * 2 + 1, 0],
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                delay: Math.random() * 10,
-                ease: "easeInOut"
-              }}
+      {/* Hero Image with ultra-smooth parallax */}
+      <div className="absolute inset-0 z-0">
+        <motion.div
+          className="absolute inset-[-5%] overflow-hidden"
+          style={{
+            x: smoothMouseX,
+            y: smoothMouseY
+          }}
+        >
+          <div className="relative w-full h-full">
+            <img
+              src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920"
+              alt="Studios de production premium"
+              className="w-full h-full object-cover"
             />
-          ))}
-        </div>
 
-        {/* Orbes lumineux flottants */}
-        {[...Array(5)].map((_, i) => (
+            {/* Multi-layer sophisticated overlays */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/70"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/80 via-transparent to-[#0A0A0A]"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent"></div>
+
+            {/* Subtle emerald accent overlay */}
+            <div
+              className="absolute inset-0 mix-blend-soft-light"
+              style={{ backgroundColor: '#10B981', opacity: 0.04 }}
+            />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Elegant light rays */}
+      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+        {[...Array(4)].map((_, i) => (
           <motion.div
-            key={`orb-${i}`}
-            className="absolute w-64 h-64 rounded-full"
+            key={i}
+            className="absolute h-[0.5px] w-full"
             style={{
-              background: `radial-gradient(circle, ${['#a855f7', '#ec4899', '#3b82f6', '#10b981', '#f59e0b'][i]}40 0%, transparent 70%)`,
-              left: `${20 + i * 15}%`,
-              top: `${20 + i * 10}%`,
-              filter: 'blur(40px)',
+              top: `${20 + i * 15}%`,
+              background: `linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent)`
             }}
             animate={{
-              x: [0, 100, -100, 0],
-              y: [0, -100, 100, 0],
-              scale: [1, 1.5, 1, 1.5, 1],
+              x: [-1200, 1200],
+              opacity: [0, 0.3, 0],
             }}
             transition={{
-              duration: 20 + i * 5,
+              duration: 12 + i * 3,
               repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 2,
+              delay: i * 2.5,
+              ease: "linear"
             }}
           />
         ))}
-
-        {/* Lignes de connexion animées */}
-        <svg className="absolute inset-0 w-full h-full opacity-20">
-          {[...Array(10)].map((_, i) => (
-            <motion.line
-              key={`line-${i}`}
-              x1={`${Math.random() * 100}%`}
-              y1={`${Math.random() * 100}%`}
-              x2={`${Math.random() * 100}%`}
-              y2={`${Math.random() * 100}%`}
-              stroke="url(#gradient)"
-              strokeWidth="1"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "reverse",
-                delay: i * 0.5,
-              }}
-            />
-          ))}
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#a855f7" />
-              <stop offset="50%" stopColor="#ec4899" />
-              <stop offset="100%" stopColor="#3b82f6" />
-            </linearGradient>
-          </defs>
-        </svg>
       </div>
 
-      {/* Contenu Hero Premium */}
-      <div className="relative z-10 text-center px-8 max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-          style={{ x: springX, y: springY }}
-        >
-          {/* Badge premium animé */}
+      {/* Main Content */}
+      <motion.div
+        style={{ y, opacity }}
+        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 w-full"
+      >
+        <div className="max-w-6xl">
+          {/* Badge premium */}
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, type: "spring", bounce: 0.5 }}
-            className="inline-flex items-center gap-4 mb-10"
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-3 mb-8 sm:mb-10"
           >
+            <div className="h-[1px] w-6 sm:w-8 bg-gradient-to-r from-transparent to-white/20"></div>
+            <span className="text-xs sm:text-sm font-inter text-white/40 tracking-wide flex items-center gap-2">
+              <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
+              Studios Premium • Marseille
+            </span>
+            <div className="h-[1px] w-6 sm:w-8 bg-gradient-to-l from-transparent to-white/20"></div>
+          </motion.div>
+
+          {/* Title Section - Ultra Premium */}
+          <div className="mb-8 sm:mb-10">
             <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [1, 0.8, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-              className="relative"
+              initial={{ opacity: 0, y: 80, rotateX: 45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ delay: 0.4, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformPerspective: 1000 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur-xl"></div>
-              <div className="relative bg-black border border-purple-500/50 rounded-full px-8 py-3 backdrop-blur-xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-medium tracking-wider text-sm uppercase">
-                    Studios Premium • Marseille
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white leading-[0.85] tracking-[-0.04em] mb-2 sm:mb-3"
+                  style={{
+                    textShadow: '0 4px 60px rgba(0,0,0,0.5)',
+                  }}>
+                STUDIOS DE
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 80, rotateX: 45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ delay: 0.6, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+              style={{ transformPerspective: 1000 }}
+            >
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black leading-[0.85] tracking-[-0.04em] bg-gradient-to-br from-slate-200 via-emerald-50 to-slate-100 bg-clip-text text-transparent mb-3 sm:mb-4"
+                  style={{
+                    filter: 'drop-shadow(0 2px 30px rgba(16, 185, 129, 0.3))',
+                  }}>
+                PRODUCTION
+              </h2>
+
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center gap-3 mt-2 sm:mt-3"
+              >
+                <div className="h-px w-6 sm:w-8 bg-gradient-to-r from-white/20 to-transparent"></div>
+                <p className="text-xs sm:text-sm md:text-base font-inter text-white/40 tracking-wide">
+                  Production audiovisuelle 4K/8K
+                </p>
+                <div className="px-2 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.08]">
+                  <span className="text-[10px] sm:text-xs font-montserrat font-semibold text-white/60">
+                    3 studios
                   </span>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* Titre principal avec effet 3D */}
-          <motion.div className="mb-8">
-            <motion.h1 
-              className="text-6xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-montserrat font-black leading-[0.85] tracking-tighter"
-              initial={{ opacity: 0, z: -100 }}
-              animate={{ opacity: 1, z: 0 }}
-              transition={{ duration: 1.5, delay: 0.3 }}
-            >
-              <motion.div
-                initial={{ opacity: 0, x: -100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="relative inline-block"
-              >
-                <span className="text-white relative z-10">Studio</span>
-                <motion.div
-                  className="absolute -inset-2 bg-gradient-to-r from-purple-600/30 to-transparent blur-2xl"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.5, 0.8, 0.5],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                  }}
-                />
-              </motion.div>
-              
-              <br />
-              
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.7 }}
-                className="relative inline-block mt-[-0.2em]"
-              >
-                <span 
-                  className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-[length:200%_100%] animate-gradient relative z-10"
-                  style={{
-                    WebkitTextStroke: '1px rgba(255,255,255,0.1)',
-                  }}
-                >
-                  Vision
-                </span>
-                <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-pink-600/30 via-purple-600/30 to-blue-600/30 blur-3xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                  }}
-                />
-              </motion.div>
-            </motion.h1>
-          </motion.div>
-
-          {/* Sous-titre avec effet typewriter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9 }}
-            className="mb-12 max-w-4xl mx-auto"
-          >
-            <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light leading-relaxed">
-              L'excellence créative à votre portée
-            </p>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.2 }}
-              className="text-lg md:text-xl text-white/50 mt-4"
-            >
-              2 studios ultramodernes • 7 configurations • Équipe d'experts
-            </motion.p>
-          </motion.div>
-
-          {/* Boutons avec design futuriste */}
+          {/* Refined description */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.3 }}
-            className="flex flex-col lg:flex-row gap-6 justify-center items-center"
+            transition={{ delay: 1.0, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-8 sm:mb-10 max-w-3xl"
           >
-            {/* Bouton principal */}
+            <p className="text-base sm:text-lg md:text-xl font-inter font-light text-white/60 leading-relaxed tracking-wide">
+              Excellence audiovisuelle et équipements professionnels au service de vos projets créatifs.
+            </p>
+          </motion.div>
+
+          {/* Ultra-Premium CTA Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-8 sm:mb-10"
+          >
+            {/* Primary CTA */}
             <motion.button
-              onClick={() => document.getElementById('setups').scrollIntoView({ behavior: 'smooth' })}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative"
+              onClick={() => document.getElementById('setups')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group relative w-full sm:w-auto"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
             >
-              <motion.div
-                className="absolute -inset-2 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-3xl opacity-70 blur-xl group-hover:opacity-100 transition-opacity"
-                animate={{
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
+              <div
+                className="absolute -inset-[2px] rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700"
+                style={{ backgroundColor: '#10B981' }}
               />
-              <div className="relative bg-black border border-purple-500/50 backdrop-blur-xl rounded-3xl overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-pink-600/20 to-blue-600/20"></div>
-                <div className="relative px-12 py-6 flex items-center gap-4">
-                  <span className="text-white font-montserrat font-bold text-lg tracking-wide">
-                    Découvrir l'expérience
+
+              <div className="relative bg-white text-black rounded-xl overflow-hidden group-hover:bg-white/95 transition-colors duration-500">
+                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+                  <span className="font-montserrat font-bold text-xs sm:text-sm tracking-wide">
+                    DÉCOUVRIR NOS STUDIOS
                   </span>
                   <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="w-7 h-7 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors"
+                    whileHover={{ rotate: 45 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <ArrowRight className="w-6 h-6 text-white" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </motion.div>
                 </div>
               </div>
             </motion.button>
 
-            {/* Bouton secondaire */}
+            {/* Secondary CTA */}
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className="group relative w-full sm:w-auto"
             >
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl px-10 py-6 border border-white/10 hover:border-white/30 transition-all">
-                <div className="flex items-center gap-3 text-white">
-                  <div className="relative">
-                    <motion.div
-                      className="absolute inset-0 bg-purple-600 rounded-full blur-xl"
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.5, 0.8, 0.5],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
-                    />
-                    <Play className="w-6 h-6 relative z-10" />
+              <div className="relative backdrop-blur-xl bg-white/[0.04] rounded-xl border border-white/[0.12] overflow-hidden hover:bg-white/[0.08] hover:border-white/[0.16] transition-all duration-500">
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
+                  animate={{ x: [-300, 300] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                />
+
+                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
+                  <span className="font-montserrat font-semibold text-xs sm:text-sm text-white tracking-wide">
+                    VISITE VIRTUELLE 360°
+                  </span>
+                  <div className="w-7 h-7 rounded-full bg-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.12] transition-colors">
+                    <PlayCircle className="w-3.5 h-3.5 text-white/80" />
                   </div>
-                  <span className="font-montserrat font-semibold">Visite immersive 360°</span>
                 </div>
               </div>
             </motion.button>
           </motion.div>
 
-          {/* Pricing avec animation */}
+          {/* Refined Stats */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1.5, type: "spring" }}
-            className="mt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 lg:gap-8"
           >
-            <div className="inline-flex flex-col items-center">
-              <p className="text-white/40 text-sm uppercase tracking-widest mb-3">À partir de</p>
-              <div className="relative">
-                <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-purple-600/50 to-pink-600/50 rounded-2xl blur-2xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                  }}
-                />
-                <div className="relative flex items-baseline gap-2 bg-black/50 backdrop-blur-xl rounded-2xl px-8 py-4 border border-purple-500/30">
-                  <span className="text-7xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                    119€
-                  </span>
-                  <span className="text-white/40 text-xl mb-2">/heure</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Indicateurs de réalisations */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.7 }}
-            className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
-          >
-            {[
-              { number: "500+", label: "Productions réalisées" },
-              { number: "98%", label: "Clients satisfaits" },
-              { number: "24h", label: "Livraison express" }
-            ].map((stat, index) => (
+            <div className="flex items-center gap-2">
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
-                className="text-center"
-              >
-                <motion.p
-                  className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.5,
-                  }}
-                >
-                  {stat.number}
-                </motion.p>
-                <p className="text-white/50 text-sm mt-2">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator amélioré */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-purple-600 rounded-full blur-xl opacity-50"></div>
-            <div className="relative w-7 h-12 border-2 border-purple-400/50 rounded-full flex justify-center backdrop-blur-xl bg-black/30">
-              <motion.div
-                animate={{ y: [3, 12, 3] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-1.5 h-4 bg-gradient-to-b from-purple-400 to-pink-400 rounded-full mt-2"
+                className="w-1 h-1 rounded-full bg-emerald-400"
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
+              <span className="text-white/50 font-inter text-[10px] sm:text-xs tracking-wide">
+                Disponible immédiatement
+              </span>
+            </div>
+
+            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
+
+            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
+              <span className="text-white/80 font-semibold">500+</span> productions
+            </div>
+
+            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
+
+            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
+              À partir de <span className="text-white/80 font-semibold">119€/h</span>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Premium bottom fade with subtle vignette */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-24 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent z-[5] pointer-events-none"></div>
+
+      {/* Refined film grain texture */}
+      <div className="absolute inset-0 z-[3] opacity-[0.015] mix-blend-overlay pointer-events-none">
+        <svg width="100%" height="100%">
+          <filter id="sophisticatedNoise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#sophisticatedNoise)" />
+        </svg>
       </div>
-    </motion.section>
+    </section>
   );
 }
