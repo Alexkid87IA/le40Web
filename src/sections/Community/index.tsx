@@ -1,534 +1,423 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Coffee, Calendar, ArrowRight, Heart, Sparkles, Trophy, MessageCircle, Lightbulb, Rocket, Star, TrendingUp } from 'lucide-react';
+import { Users, Calendar, Rocket, ArrowRight, Sparkles, Star, Zap, Trophy, Target, TrendingUp } from 'lucide-react';
 
 const communityPillars = [
   {
     id: 'network',
-    title: 'Réseau & Networking',
+    title: 'Réseau',
+    subtitle: 'Networking Premium',
     icon: Users,
     stat: '200+',
     statLabel: 'Membres actifs',
-    description: 'Un écosystème d\'entrepreneurs ambitieux qui partagent la même vision du succès',
-    features: [
-      'Speed networking mensuel',
-      'Annuaire membres exclusif',
-      'Groupes par secteur d\'activité',
-      'Mentorat personnalisé'
-    ],
-    gradient: 'from-violet-600 to-purple-600',
-    image: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=800'
+    description: 'Connectez-vous avec des entrepreneurs ambitieux, créateurs et leaders d\'opinion',
+    gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
+    accentColor: '#06b6d4',
+    benefits: [
+      { icon: Target, text: 'Speed networking mensuel exclusif', highlight: 'Mensuels' },
+      { icon: Users, text: 'Annuaire membres avec profils détaillés', highlight: 'Détaillés' },
+      { icon: Trophy, text: 'Groupes par secteur d\'activité', highlight: 'Secteurs' },
+      { icon: Sparkles, text: 'Mentorat personnalisé avec experts', highlight: 'Experts' }
+    ]
   },
   {
     id: 'events',
-    title: 'Événements & Formation',
+    title: 'Événements',
+    subtitle: 'Inspiration Continue',
     icon: Calendar,
     stat: '50+',
-    statLabel: 'Événements/an',
-    description: 'Des rendez-vous inspirants pour apprendre, partager et grandir ensemble',
-    features: [
-      'Conférences d\'experts',
-      'Ateliers pratiques',
-      'Afterworks thématiques',
-      'Masterclass exclusives'
-    ],
-    gradient: 'from-emerald-600 to-teal-600',
-    image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800'
+    statLabel: 'Par an',
+    description: 'Ateliers, conférences et masterclass pour développer vos compétences',
+    gradient: 'from-orange-500 via-amber-500 to-yellow-500',
+    accentColor: '#f59e0b',
+    benefits: [
+      { icon: Sparkles, text: 'Conférences d\'experts reconnus', highlight: 'Experts' },
+      { icon: Target, text: 'Ateliers pratiques hebdomadaires', highlight: 'Pratiques' },
+      { icon: TrendingUp, text: 'Afterworks thématiques networking', highlight: 'Networking' },
+      { icon: Trophy, text: 'Masterclass exclusives membres', highlight: 'Exclusives' }
+    ]
   },
   {
     id: 'growth',
-    title: 'Croissance & Opportunités',
+    title: 'Croissance',
+    subtitle: 'Opportunités Business',
     icon: Rocket,
     stat: '85%',
-    statLabel: 'Collaborations réussies',
-    description: 'Transformez les rencontres en opportunités concrètes de développement',
-    features: [
-      'Mise en relation business',
-      'Appels d\'offres partagés',
-      'Projets collaboratifs',
-      'Accès investisseurs'
-    ],
-    gradient: 'from-pink-600 to-rose-600',
-    image: 'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=800'
+    statLabel: 'Collaborations',
+    description: 'Des opportunités concrètes pour développer votre activité rapidement',
+    gradient: 'from-pink-500 via-rose-500 to-red-500',
+    accentColor: '#ec4899',
+    benefits: [
+      { icon: Target, text: 'Mise en relation business qualifiée', highlight: 'Qualifiée' },
+      { icon: Trophy, text: 'Appels d\'offres partagés entre membres', highlight: 'Partagés' },
+      { icon: Rocket, text: 'Projets collaboratifs inter-membres', highlight: 'Collaboratifs' },
+      { icon: Zap, text: 'Accès direct aux investisseurs', highlight: 'Direct' }
+    ]
   }
 ];
 
 const testimonials = [
   {
     name: "Sophie Martin",
-    role: "CEO, TechStart",
-    content: "Le 40 m'a permis de rencontrer mon CTO actuel. Notre startup a levé 2M€ en 18 mois.",
+    role: "CEO TechStart",
+    company: "SaaS B2B",
+    content: "J'ai trouvé mon CTO et levé 2M€ en 18 mois. Le réseau du 40 est exceptionnel.",
     avatar: "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400",
-    rating: 5
+    rating: 5,
+    metric: "2M€ levés"
   },
   {
     name: "Thomas Dubois",
-    role: "Consultant Finance",
-    content: "Plus qu'un espace de travail, c'est un véritable accélérateur de business.",
+    role: "Consultant",
+    company: "Finance & Stratégie",
+    content: "Plus de 60% de mes clients viennent du réseau. C'est un vrai game changer.",
     avatar: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400",
-    rating: 5
+    rating: 5,
+    metric: "60% clients"
   },
   {
     name: "Marie Chen",
-    role: "Designer Freelance",
-    content: "J'ai trouvé 80% de mes clients actuels grâce au réseau du 40. Game changer!",
+    role: "Designer",
+    company: "Product Design",
+    content: "Les événements m'ont permis de rencontrer mes meilleurs partenaires business.",
     avatar: "https://images.pexels.com/photos/3762800/pexels-photo-3762800.jpeg?auto=compress&cs=tinysrgb&w=400",
-    rating: 5
+    rating: 5,
+    metric: "10+ projets"
   }
 ];
 
-const upcomingEvents = [
-  {
-    date: "28 Nov",
-    title: "Masterclass IA & Business",
-    type: "Formation",
-    spots: "12 places restantes"
-  },
-  {
-    date: "05 Déc",
-    title: "Investor Day Marseille",
-    type: "Networking",
-    spots: "Sur invitation"
-  },
-  {
-    date: "12 Déc",
-    title: "Afterwork de Noël",
-    type: "Communauté",
-    spots: "Places illimitées"
-  }
+const stats = [
+  { value: '200+', label: 'Membres actifs', icon: Users },
+  { value: '50+', label: 'Événements/an', icon: Calendar },
+  { value: '85%', label: 'Taux collaboration', icon: Trophy },
+  { value: '24/7', label: 'Accès communauté', icon: Zap }
 ];
 
 export default function Community() {
-  const [activeTab, setActiveTab] = useState('network');
+  const [activeTab, setActiveTab] = useState(0);
   const [hoveredTestimonial, setHoveredTestimonial] = useState<number | null>(null);
-  
-  const currentPillar = communityPillars.find(p => p.id === activeTab)!;
+
+  const currentPillar = communityPillars[activeTab];
+  const PillarIcon = currentPillar.icon;
 
   return (
-    <section id="community" className="relative min-h-screen bg-black overflow-hidden py-32">
-      {/* Dynamic gradient background */}
-      <motion.div 
-        className="absolute inset-0"
-        animate={{ opacity: [0.05, 0.1, 0.05] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      >
-        <div className={`absolute inset-0 bg-gradient-to-br ${currentPillar.gradient} transition-all duration-1000`}></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black"></div>
-      </motion.div>
-
-      {/* Animated mesh */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="h-full w-full bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+    <section className="relative py-32 bg-black overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900 via-black to-black" />
+        <motion.div
+          animate={{
+            background: [
+              'radial-gradient(circle at 30% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)',
+              'radial-gradient(circle at 70% 50%, rgba(245, 158, 11, 0.15) 0%, transparent 50%)',
+              'radial-gradient(circle at 50% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%)',
+              'radial-gradient(circle at 30% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)',
+            ]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0"
+        />
       </div>
 
-      <div className="relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20 px-8"
-        >
-          {/* Badge */}
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div className="text-center mb-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center mb-12"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
           >
-            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4"></div>
-            <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
-              Acte 4 - Notre Communauté
-            </span>
-            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4"></div>
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm text-white/70 font-medium">Communauté Exclusive</span>
           </motion.div>
 
-          {/* Title */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white mb-8 leading-[0.9]"
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-black text-white mb-6"
           >
-            REJOIGNEZ
-            <motion.span 
-              className={`block text-transparent bg-clip-text bg-gradient-to-r ${currentPillar.gradient}`}
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              L'ÉLITE
-            </motion.span>
+            Rejoignez{' '}
+            <span className={`text-transparent bg-clip-text bg-gradient-to-r ${currentPillar.gradient}`}>
+              L'Élite
+            </span>
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto"
+            transition={{ delay: 0.2 }}
+            className="text-xl text-white/60 max-w-2xl mx-auto"
           >
-            Un réseau exclusif d'entrepreneurs visionnaires • Opportunités illimitées • Croissance exponentielle
+            Un réseau d'entrepreneurs visionnaires • Opportunités illimitées • Croissance exponentielle
           </motion.p>
-        </motion.div>
-
-        {/* Tabs Navigation */}
-        <div className="max-w-5xl mx-auto px-8 mb-16">
-          <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-2 border border-white/10">
-            <div className="grid grid-cols-3 gap-2">
-              {communityPillars.map((pillar) => {
-                const Icon = pillar.icon;
-                const isActive = activeTab === pillar.id;
-                
-                return (
-                  <button
-                    key={pillar.id}
-                    onClick={() => setActiveTab(pillar.id)}
-                    className={`relative rounded-2xl p-6 transition-all duration-500 ${
-                      isActive ? 'bg-white/10' : 'hover:bg-white/5'
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="communityActiveTab"
-                        className={`absolute inset-0 bg-gradient-to-r ${pillar.gradient} opacity-20 rounded-2xl`}
-                        transition={{ type: "spring", duration: 0.6 }}
-                      />
-                    )}
-                    
-                    <div className="relative flex flex-col items-center gap-3">
-                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${pillar.gradient} flex items-center justify-center ${
-                        isActive ? 'scale-110' : 'scale-100 opacity-70'
-                      } transition-all duration-300`}>
-                        <Icon className="w-7 h-7 text-white" />
-                      </div>
-                      <div>
-                        <h3 className={`font-montserrat font-bold text-lg ${
-                          isActive ? 'text-white' : 'text-white/60'
-                        } transition-colors duration-300`}>
-                          {pillar.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
         </div>
 
-        {/* Main Content */}
+        <div className="grid lg:grid-cols-4 gap-6 mb-20">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all"
+              >
+                <Icon className="w-10 h-10 text-cyan-400 mb-4" />
+                <div className="text-4xl font-black text-white mb-2">{stat.value}</div>
+                <div className="text-white/60 text-sm">{stat.label}</div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="flex items-center justify-center gap-3 mb-16">
+          {communityPillars.map((pillar, index) => {
+            const Icon = pillar.icon;
+            const isActive = activeTab === index;
+
+            return (
+              <motion.button
+                key={pillar.id}
+                onClick={() => setActiveTab(index)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`relative px-8 py-4 rounded-2xl font-bold transition-all duration-500 ${
+                  isActive ? 'text-white' : 'text-white/40 bg-white/5 hover:bg-white/10'
+                }`}
+                style={{
+                  background: isActive ? `linear-gradient(135deg, ${pillar.accentColor}20, ${pillar.accentColor}10)` : undefined,
+                  borderWidth: 2,
+                  borderColor: isActive ? pillar.accentColor : 'transparent'
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <Icon className="w-5 h-5" />
+                  <div className="text-left">
+                    <div className="text-sm font-bold">{pillar.title}</div>
+                    <div className="text-xs opacity-70">{pillar.subtitle}</div>
+                  </div>
+                </div>
+
+                {isActive && (
+                  <motion.div
+                    layoutId="activeCommunityTab"
+                    className="absolute inset-0 rounded-2xl"
+                    style={{
+                      background: `linear-gradient(135deg, ${pillar.accentColor}15, transparent)`,
+                    }}
+                  />
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
+            key={currentPillar.id}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.5 }}
-            className="max-w-7xl mx-auto px-8"
           >
-            <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-              {/* Left: Visual */}
+            <div className="mb-16 text-center">
               <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="relative"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", duration: 0.8 }}
+                className={`inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-br ${currentPillar.gradient} mb-6`}
               >
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
-                  <img
-                    src={currentPillar.image}
-                    alt={currentPillar.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
-                  <div className={`absolute inset-0 bg-gradient-to-br ${currentPillar.gradient} opacity-20`}></div>
-                  
-                  {/* Floating stat */}
-                  <motion.div 
-                    className="absolute top-8 left-8"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.5, type: "spring" }}
+                <PillarIcon className="w-12 h-12 text-white" />
+              </motion.div>
+
+              <h3 className="text-4xl font-black text-white mb-3">
+                {currentPillar.subtitle}
+              </h3>
+              <p className="text-xl text-white/50 italic max-w-2xl mx-auto">
+                {currentPillar.description}
+              </p>
+
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3, type: "spring" }}
+                className="inline-flex items-center gap-4 mt-8 bg-white/5 backdrop-blur-xl rounded-2xl px-8 py-4 border border-white/10"
+              >
+                <div className={`text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${currentPillar.gradient}`}>
+                  {currentPillar.stat}
+                </div>
+                <div className="text-left">
+                  <div className="text-white/60 text-sm">{currentPillar.statLabel}</div>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
+              {currentPillar.benefits.map((benefit, index) => {
+                const BenefitIcon = benefit.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -5, scale: 1.02 }}
+                    className="bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all"
+                    style={{
+                      borderColor: `${currentPillar.accentColor}20`
+                    }}
                   >
-                    <div className="bg-black/50 backdrop-blur-xl rounded-2xl px-8 py-6 border border-white/20">
-                      <div className={`text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${currentPillar.gradient} mb-2`}>
-                        {currentPillar.stat}
-                      </div>
-                      <div className="text-white/80 font-inter">
-                        {currentPillar.statLabel}
+                    <div className="flex items-start gap-6">
+                      <motion.div
+                        whileHover={{ rotate: [0, -10, 10, 0] }}
+                        transition={{ duration: 0.5 }}
+                        className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${currentPillar.gradient} flex items-center justify-center`}
+                      >
+                        <BenefitIcon className="w-8 h-8 text-white" />
+                      </motion.div>
+                      <div className="flex-1">
+                        <p className="text-white/80 text-lg leading-relaxed">
+                          {benefit.text}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
-
-                  {/* Bottom content */}
-                  <div className="absolute bottom-8 left-8 right-8">
-                    <h3 className="text-3xl font-montserrat font-bold text-white mb-3">
-                      {currentPillar.title}
-                    </h3>
-                    <p className="text-white/80 font-inter text-lg">
-                      {currentPillar.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Decorative element */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="absolute -bottom-10 -right-10 w-40 h-40"
-                >
-                  <div className={`w-full h-full bg-gradient-to-r ${currentPillar.gradient} rounded-full opacity-10 blur-3xl`}></div>
-                </motion.div>
-              </motion.div>
-
-              {/* Right: Features & Events */}
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="space-y-8"
-              >
-                {/* Features */}
-                <div>
-                  <h3 className="text-2xl font-montserrat font-bold text-white mb-6">
-                    Ce qui vous attend
-                  </h3>
-                  <div className="space-y-4">
-                    {currentPillar.features.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 * index, duration: 0.5 }}
-                        className="flex items-center gap-4"
-                      >
-                        <div className={`w-2 h-2 bg-gradient-to-r ${currentPillar.gradient} rounded-full`}></div>
-                        <span className="text-white/80 font-inter text-lg">{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Upcoming Events */}
-                <div>
-                  <h3 className="text-2xl font-montserrat font-bold text-white mb-6">
-                    Prochains rendez-vous
-                  </h3>
-                  <div className="space-y-4">
-                    {upcomingEvents.map((event, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-                        whileHover={{ scale: 1.02 }}
-                        className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300"
-                      >
-                        <div className="flex items-start justify-between">
-                          <div className="flex gap-6">
-                            <div className="text-center">
-                              <div className={`text-3xl font-montserrat font-bold text-transparent bg-clip-text bg-gradient-to-r ${currentPillar.gradient}`}>
-                                {event.date.split(' ')[0]}
-                              </div>
-                              <div className="text-white/60 font-inter text-sm uppercase">
-                                {event.date.split(' ')[1]}
-                              </div>
-                            </div>
-                            <div>
-                              <h4 className="text-lg font-montserrat font-semibold text-white mb-1">
-                                {event.title}
-                              </h4>
-                              <div className="flex items-center gap-4">
-                                <span className="text-white/60 font-inter text-sm">{event.type}</span>
-                                <span className="text-white/40">•</span>
-                                <span className="text-white/60 font-inter text-sm">{event.spots}</span>
-                              </div>
-                            </div>
-                          </div>
-                          <ArrowRight className="w-5 h-5 text-white/40" />
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <motion.a
-                  href="/evenements"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="block"
-                >
-                  <div className={`relative bg-gradient-to-r ${currentPillar.gradient} p-[2px] rounded-2xl overflow-hidden group`}>
-                    <div className="relative bg-black rounded-2xl px-8 py-5 overflow-hidden">
-                      <motion.div
-                        className={`absolute inset-0 bg-gradient-to-r ${currentPillar.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
-                      />
-                      
-                      <div className="relative flex items-center justify-between">
-                        <span className="font-montserrat font-bold text-white text-lg">
-                          Voir tous les événements
-                        </span>
-                        <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-2 transition-transform duration-300" />
-                      </div>
-                    </div>
-                  </div>
-                </motion.a>
-              </motion.div>
+                );
+              })}
             </div>
 
-            {/* Testimonials */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="mb-20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mb-16"
             >
-              <h3 className="text-3xl font-montserrat font-bold text-white text-center mb-12">
-                Ils ont transformé leur business ici
+              <h3 className="text-3xl font-black text-white text-center mb-10">
+                Success Stories
               </h3>
-              
-              <div className="grid md:grid-cols-3 gap-8">
+
+              <div className="grid md:grid-cols-3 gap-6">
                 {testimonials.map((testimonial, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + index * 0.1 }}
                     onMouseEnter={() => setHoveredTestimonial(index)}
                     onMouseLeave={() => setHoveredTestimonial(null)}
-                    whileHover={{ y: -5 }}
-                    className="relative"
+                    whileHover={{ y: -8 }}
+                    className="relative bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all"
+                    style={{
+                      borderColor: hoveredTestimonial === index ? currentPillar.accentColor : undefined,
+                      boxShadow: hoveredTestimonial === index ? `0 0 40px ${currentPillar.accentColor}40` : undefined
+                    }}
                   >
-                    <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 h-full">
-                      {/* Rating */}
-                      <div className="flex gap-1 mb-6">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
-                      
-                      {/* Content */}
-                      <p className="text-white/80 font-inter text-lg mb-8 leading-relaxed">
-                        "{testimonial.content}"
-                      </p>
-                      
-                      {/* Author */}
-                      <div className="flex items-center gap-4">
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full object-cover"
-                        />
-                        <div>
-                          <div className="font-montserrat font-semibold text-white">
-                            {testimonial.name}
-                          </div>
-                          <div className="text-white/60 font-inter text-sm">
-                            {testimonial.role}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Hover gradient */}
-                      {hoveredTestimonial === index && (
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          className={`absolute inset-0 bg-gradient-to-r ${currentPillar.gradient} opacity-5 rounded-3xl pointer-events-none`}
-                        />
-                      )}
+                    <div className="flex gap-1 mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      ))}
                     </div>
+
+                    <p className="text-white/80 text-base leading-relaxed mb-6 italic">
+                      "{testimonial.content}"
+                    </p>
+
+                    <div className="flex items-center gap-4 mb-4">
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        className="w-14 h-14 rounded-full object-cover border-2"
+                        style={{ borderColor: currentPillar.accentColor }}
+                      />
+                      <div>
+                        <div className="font-bold text-white">{testimonial.name}</div>
+                        <div className="text-white/60 text-sm">{testimonial.role}</div>
+                        <div className="text-white/40 text-xs">{testimonial.company}</div>
+                      </div>
+                    </div>
+
+                    <div
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white"
+                      style={{ background: `${currentPillar.accentColor}20` }}
+                    >
+                      <Trophy className="w-4 h-4" style={{ color: currentPillar.accentColor }} />
+                      <span>{testimonial.metric}</span>
+                    </div>
+
+                    {hoveredTestimonial === index && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="absolute inset-0 rounded-3xl pointer-events-none"
+                        style={{
+                          background: `linear-gradient(135deg, ${currentPillar.accentColor}10, transparent)`,
+                        }}
+                      />
+                    )}
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Bottom CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8, duration: 0.8 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
               className="text-center"
             >
-              <div className="bg-gradient-to-r from-violet-600/10 via-emerald-600/10 to-pink-600/10 rounded-3xl p-16 backdrop-blur-sm border border-white/10">
-                <Sparkles className="w-16 h-16 text-white/60 mx-auto mb-8" />
-                
-                <h3 className="text-4xl md:text-5xl font-montserrat font-bold text-white mb-6">
-                  Prêt à accélérer votre succès ?
+              <div className="bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-16 border border-white/10">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                  className="inline-block mb-8"
+                >
+                  <Sparkles className="w-20 h-20 text-white/60" />
+                </motion.div>
+
+                <h3 className="text-4xl md:text-5xl font-black text-white mb-6">
+                  Prêt à Accélérer Votre Succès ?
                 </h3>
-                
-                <p className="text-xl text-white/60 font-inter mb-10 max-w-3xl mx-auto">
-                  Rejoignez une communauté où chaque connexion est une opportunité, 
-                  chaque événement une source d'inspiration.
+
+                <p className="text-xl text-white/60 mb-10 max-w-3xl mx-auto">
+                  Rejoignez une communauté où chaque connexion est une opportunité.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <motion.a
-                    href="/adhesion"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group relative"
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`group relative px-10 py-5 rounded-2xl bg-gradient-to-r ${currentPillar.gradient} text-white font-black text-lg shadow-2xl overflow-hidden`}
                   >
-                    <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 via-emerald-600 to-pink-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                    <div className="relative bg-white text-black rounded-2xl px-10 py-5 font-montserrat font-bold">
-                      <div className="flex items-center gap-3">
-                        <Users className="w-5 h-5" />
-                        <span>DEVENIR MEMBRE</span>
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </div>
+                    <motion.div
+                      className="absolute inset-0 bg-white/20"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.5 }}
+                    />
+                    <div className="relative flex items-center gap-3">
+                      <Users className="w-6 h-6" />
+                      <span>Devenir Membre</span>
+                      <ArrowRight className="w-6 h-6" />
                     </div>
-                  </motion.a>
+                  </motion.button>
 
-                  <motion.a
-                    href="/visite"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group"
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-10 py-5 rounded-2xl bg-white/10 backdrop-blur-xl text-white font-bold text-lg border border-white/20 hover:bg-white/20 transition-all"
                   >
-                    <div className="relative bg-white/10 backdrop-blur-sm text-white rounded-2xl px-10 py-5 font-montserrat font-semibold border border-white/20 overflow-hidden">
-                      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="relative flex items-center justify-center gap-3">
-                        <span>VISITER LE 40</span>
-                      </div>
-                    </div>
-                  </motion.a>
+                    Visiter Le 40
+                  </motion.button>
                 </div>
               </div>
             </motion.div>
           </motion.div>
         </AnimatePresence>
-      </div>
-
-      {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white/10 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
       </div>
     </section>
   );
