@@ -101,7 +101,7 @@ export default function Footer() {
                 />
 
                 <img
-                  src="https://res.cloudinary.com/diqco2njt/image/upload/v1750536822/0afc7668-eadb-4d3e-a56c-b66bc5e92653_xh1ie5.png"
+                  src="https://i.imgur.com/OgDg0yM.png"
                   alt="Le 40 - République Marseille"
                   className="relative h-20 w-auto mx-auto"
                   style={{

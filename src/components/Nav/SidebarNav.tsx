@@ -306,7 +306,7 @@ export default function SidebarNav() {
               />
 
               <motion.img
-                src="https://res.cloudinary.com/diqco2njt/image/upload/v1750536822/0afc7668-eadb-4d3e-a56c-b66bc5e92653_xh1ie5.png"
+                src="https://i.imgur.com/OgDg0yM.png"
                 alt="Le 40"
                 className="relative w-full max-w-[160px] h-auto mx-auto"
                 style={{
