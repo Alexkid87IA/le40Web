@@ -7,7 +7,7 @@ const animatedWords = ["BUREAU", "STUDIO", "DOMICILIATION"];
 const serviceDetails = {
   "BUREAU": {
     tagline: "Espaces premium équipés",
-    metric: "2500m²",
+    metric: "4000m²",
     gradient: "from-slate-200 via-blue-50 to-slate-100",
     shadowColor: "rgba(59, 130, 246, 0.3)",
     accentColor: "#3B82F6"
@@ -21,7 +21,7 @@ const serviceDetails = {
   },
   "DOMICILIATION": {
     tagline: "Adresse prestigieuse République",
-    metric: "150+ entreprises",
+    metric: "120+ entreprises",
     gradient: "from-slate-200 via-amber-50 to-slate-100",
     shadowColor: "rgba(245, 158, 11, 0.3)",
     accentColor: "#F59E0B"
@@ -418,13 +418,13 @@ export default function Hero() {
             <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
 
             <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
-              <span className="text-white/80 font-semibold">150+</span> entreprises
+              <span className="text-white/80 font-semibold">120+</span> entreprises
             </div>
 
             <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
 
             <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
-              <span className="text-white/80 font-semibold">2500m²</span> d'espaces
+              <span className="text-white/80 font-semibold">4000m²</span> d'espaces
             </div>
           </motion.div>
         </div>
