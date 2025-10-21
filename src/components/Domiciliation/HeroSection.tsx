@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowRight, PlayCircle } from 'lucide-react';
+import { ArrowRight, Check, Star, Shield, Clock, MapPin, Users } from 'lucide-react';
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -149,209 +149,193 @@ export default function HeroSection() {
         style={{ y, opacity }}
         className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 w-full"
       >
-        <div className="max-w-6xl">
-          {/* Title Section - Ultra Premium */}
-          <div className="mb-8 sm:mb-10">
-            {/* VOTRE */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Column - Sales Message */}
+          <div>
+            {/* Trust Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: 45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.4, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformPerspective: 1000 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 mb-6"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white leading-[0.85] tracking-[-0.04em] mb-2 sm:mb-3"
-                  style={{
-                    textShadow: '0 4px 60px rgba(0,0,0,0.5)',
-                  }}>
-                VOTRE
-              </h1>
+              <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+              <span className="text-amber-400 font-inter text-sm font-semibold">4.9/5 sur Google</span>
+              <span className="text-white/40 text-sm">·</span>
+              <span className="text-white/60 text-sm">120+ entreprises</span>
             </motion.div>
 
-            {/* DOMICILIATION - Sophisticated animation */}
-            <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 mb-3 sm:mb-4">
-              <motion.div
-                className="absolute inset-0"
-                initial={{
-                  opacity: 0,
-                  y: 60,
-                  scale: 0.95,
-                  rotateX: 20,
-                  filter: "blur(10px)"
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  rotateX: 0,
-                  filter: "blur(0px)"
-                }}
-                transition={{
-                  duration: 1,
-                  delay: 0.6,
-                  ease: [0.16, 1, 0.3, 1]
-                }}
-                style={{ transformPerspective: 1000 }}
-              >
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black leading-[0.85] tracking-[-0.04em] bg-gradient-to-br from-slate-200 via-amber-50 to-slate-100 bg-clip-text text-transparent"
-                    style={{
-                      filter: `drop-shadow(0 2px 30px ${serviceDetails.shadowColor})`,
-                    }}>
-                  DOMICILIATION
-                </h2>
-
-                {/* Premium tagline with icon */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.0, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-3 mt-2 sm:mt-3"
-                >
-                  <div className="h-px w-6 sm:w-8 bg-gradient-to-r from-white/20 to-transparent"></div>
-                  <p className="text-xs sm:text-sm md:text-base font-inter text-white/40 tracking-wide">
-                    {serviceDetails.tagline}
-                  </p>
-                  <div className="px-2 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.08]">
-                    <span className="text-[10px] sm:text-xs font-montserrat font-semibold text-white/60">
-                      {serviceDetails.metric}
-                    </span>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </div>
-
-            {/* à Marseille - Elegant serif */}
-            <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: 45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.8, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformPerspective: 1000 }}
-              className="mb-6 sm:mb-8"
+            {/* Main Headline - Short & Benefit-Focused */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white leading-tight tracking-tight mb-4"
+              style={{ textShadow: '0 4px 60px rgba(0,0,0,0.5)' }}
             >
-              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair italic font-light text-white/70 leading-[0.9]"
-                  style={{ textShadow: '0 10px 40px rgba(0,0,0,0.5)' }}>
-                à Marseille
-              </h3>
+              Domiciliez votre entreprise
+            </motion.h1>
 
-              {/* Refined accent line */}
-              <motion.div
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ delay: 1.6, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-                className="relative mt-3 sm:mt-4 origin-left"
-              >
-                <div className="h-[1px] w-20 sm:w-24 bg-gradient-to-r from-white/30 via-white/10 to-transparent"></div>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-montserrat font-black leading-tight tracking-tight mb-6 bg-gradient-to-br from-slate-200 via-amber-50 to-slate-100 bg-clip-text text-transparent"
+              style={{ filter: `drop-shadow(0 2px 30px ${serviceDetails.shadowColor})` }}
+            >
+              à partir de 29€/mois
+            </motion.h2>
+
+            {/* Value Proposition */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-lg text-white/70 font-inter leading-relaxed mb-8 max-w-xl"
+            >
+              Adresse prestigieuse Place de la République + scan courrier 2h + standard téléphonique. Activation en 24h.
+            </motion.p>
+
+            {/* Key Benefits - Quick Scan */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8"
+            >
+              {[
+                { icon: Shield, text: 'Agrément Préfecture' },
+                { icon: Clock, text: 'Activation 24h' },
+                { icon: MapPin, text: 'Adresse prestigieuse' },
+                { icon: Users, text: '120+ clients actifs' }
+              ].map((benefit, index) => (
                 <motion.div
-                  className="absolute top-0 left-0 h-[1px] w-6 bg-white/60"
-                  animate={{ x: [0, 80, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
+                  className="flex items-center gap-2"
+                >
+                  <div className="w-5 h-5 rounded-full bg-green-400/10 flex items-center justify-center shrink-0">
+                    <Check className="w-3 h-3 text-green-400" />
+                  </div>
+                  <span className="text-white/80 font-inter text-sm">{benefit.text}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTAs - More Prominent */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              {/* Primary CTA */}
+              <motion.a
+                href="#pricing"
+                className="group relative"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <motion.div
+                  className="absolute -inset-1 rounded-xl opacity-50 group-hover:opacity-100 blur-lg transition-opacity duration-500"
+                  style={{ backgroundColor: serviceDetails.accentColor }}
                 />
-              </motion.div>
+                <div className="relative bg-white text-black rounded-xl px-8 py-4 flex items-center justify-center gap-3 shadow-2xl">
+                  <span className="font-montserrat font-bold text-base">
+                    Voir les formules
+                  </span>
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </motion.a>
+
+              {/* Secondary CTA */}
+              <motion.a
+                href="/contact"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl px-8 py-4 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+              >
+                <span className="font-montserrat font-semibold text-base text-white">
+                  Être rappelé
+                </span>
+              </motion.a>
+            </motion.div>
+
+            {/* Urgency/Scarcity */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.8 }}
+              className="mt-6 flex items-center gap-2"
+            >
+              <motion.div
+                className="w-2 h-2 rounded-full bg-green-400"
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <span className="text-white/50 font-inter text-sm">
+                <span className="text-green-400 font-semibold">3 places disponibles</span> ce mois-ci
+              </span>
             </motion.div>
           </div>
 
-          {/* Refined description */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-8 sm:mb-10 max-w-3xl"
-          >
-            <p className="text-base sm:text-lg md:text-xl font-inter font-light text-white/60 leading-relaxed tracking-wide">
-              Bien plus qu'une adresse prestigieuse : un service complet avec scan courrier 2h, standard téléphonique professionnel et accompagnement dédié.
-            </p>
-          </motion.div>
-
-          {/* Ultra-Premium CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-8 sm:mb-10"
-          >
-            {/* Primary CTA - Minimalist Luxury */}
-            <motion.a
-              href="#pricing"
-              className="group relative w-full sm:w-auto"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
+          {/* Right Column - Social Proof & Trust */}
+          <div className="hidden lg:block">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 1 }}
+              className="space-y-6"
             >
-              <motion.div
-                className="absolute -inset-[2px] rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700"
-                style={{ backgroundColor: serviceDetails.accentColor }}
-              />
-
-              <div className="relative bg-white text-black rounded-xl overflow-hidden group-hover:bg-white/95 transition-colors duration-500">
-                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
-                  <span className="font-montserrat font-bold text-xs sm:text-sm tracking-wide">
-                    VOIR LES 3 FORMULES
-                  </span>
-                  <motion.div
-                    className="w-7 h-7 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors"
-                    whileHover={{ rotate: 45 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </motion.div>
+              {/* Testimonial Card */}
+              <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  ))}
                 </div>
-              </div>
-            </motion.a>
-
-            {/* Secondary CTA - Ultra Glass */}
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="group relative w-full sm:w-auto"
-            >
-              <div className="relative backdrop-blur-xl bg-white/[0.04] rounded-xl border border-white/[0.12] overflow-hidden hover:bg-white/[0.08] hover:border-white/[0.16] transition-all duration-500">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
-                  animate={{ x: [-300, 300] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                />
-
-                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
-                  <span className="font-montserrat font-semibold text-xs sm:text-sm text-white tracking-wide">
-                    PARLER À UN CONSEILLER
-                  </span>
-                  <div className="w-7 h-7 rounded-full bg-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.12] transition-colors">
-                    <PlayCircle className="w-3.5 h-3.5 text-white/80" />
+                <p className="text-white/80 font-inter text-sm leading-relaxed mb-4">
+                  "Service impeccable depuis 2 ans. Le scan courrier en 2h est un vrai gain de temps. Équipe très pro et réactive."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500"></div>
+                  <div>
+                    <p className="text-white font-inter text-sm font-semibold">Marie Dubois</p>
+                    <p className="text-white/50 font-inter text-xs">CEO, Startup Tech</p>
                   </div>
                 </div>
               </div>
-            </motion.a>
-          </motion.div>
 
-          {/* Refined Stats - Minimal & Elegant */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 lg:gap-8"
-          >
-            <div className="flex items-center gap-2">
-              <motion.div
-                className="w-1 h-1 rounded-full bg-emerald-400"
-                animate={{ opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <span className="text-white/50 font-inter text-[10px] sm:text-xs tracking-wide">
-                Activation en 24h
-              </span>
-            </div>
+              {/* Trust Badges */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+                  <Shield className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+                  <p className="text-white/90 font-montserrat text-sm font-bold">Agrément</p>
+                  <p className="text-white/50 font-inter text-xs">Préfecture 13</p>
+                </div>
+                <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+                  <Users className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+                  <p className="text-white/90 font-montserrat text-sm font-bold">120+</p>
+                  <p className="text-white/50 font-inter text-xs">Entreprises</p>
+                </div>
+              </div>
 
-            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
-
-            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
-              <span className="text-white/80 font-semibold">120+</span> entreprises
-            </div>
-
-            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
-
-            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
-              Agrément <span className="text-white/80 font-semibold">Préfecture</span>
-            </div>
-          </motion.div>
+              {/* Additional testimonial */}
+              <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4">
+                <div className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-white/80 font-inter text-sm leading-relaxed">
+                      "J'ai créé ma société en <span className="text-white font-semibold">moins de 48h</span> grâce à leur accompagnement."
+                    </p>
+                    <p className="text-white/50 font-inter text-xs mt-2">Thomas L. - Consultant</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </motion.div>
 
