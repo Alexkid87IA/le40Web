@@ -36,8 +36,8 @@ const socialLinks = [
 ];
 
 const footerStats = [
-  { number: "2500", suffix: "m²", label: "d'espaces premium", icon: Building2 },
-  { number: "150", suffix: "+", label: "entrepreneurs", icon: Users },
+  { number: "4000", suffix: "m²", label: "d'espaces premium", icon: Building2 },
+  { number: "120", suffix: "+", label: "entreprises", icon: Users },
   { number: "24", suffix: "/7", label: "accès flexible", icon: Clock },
   { number: "100", suffix: "%", label: "satisfaction", icon: Award }
 ];
