@@ -100,14 +100,12 @@ export default function Footer() {
                   }}
                 />
 
-                <img
-                  src="https://i.imgur.com/OgDg0yM.png"
-                  alt="Le 40 - République Marseille"
-                  className="relative h-20 w-auto mx-auto"
-                  style={{
-                    filter: 'drop-shadow(0 10px 40px rgba(249, 115, 22, 0.3))'
-                  }}
-                />
+                <div className="relative text-6xl font-black tracking-tight text-white">
+                  <span className="inline-block">le</span>
+                  <span className="inline-flex items-center justify-center w-16 h-16 mx-2 rounded-full bg-white text-black text-3xl align-middle">
+                    40
+                  </span>
+                </div>
               </motion.div>
 
               <motion.p
