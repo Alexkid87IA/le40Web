@@ -168,18 +168,18 @@ export default function ProcessSection() {
                               whileInView={{ opacity: 1, x: 0 }}
                               viewport={{ once: true }}
                               transition={{ delay: index * 0.2 + i * 0.1, duration: 0.5 }}
-                              className="flex items-center gap-3 group/item"
+                              className="flex items-start gap-3 group/item"
                             >
                               <motion.div
                                 whileHover={{ scale: 1.2, rotate: 360 }}
                                 transition={{ duration: 0.3 }}
-                                className={`shrink-0 ${
+                                className={`shrink-0 mt-0.5 ${
                                   step.color === 'green' ? 'text-green-400' : 'text-orange-400'
                                 }`}
                               >
                                 <Check className="w-5 h-5" />
                               </motion.div>
-                              <span className="text-white/70 group-hover/item:text-white/90 transition-colors font-inter">
+                              <span className="text-white/70 group-hover/item:text-white/90 transition-colors font-inter leading-relaxed">
                                 {item}
                               </span>
                             </motion.li>
