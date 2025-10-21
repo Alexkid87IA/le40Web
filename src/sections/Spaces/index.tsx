@@ -471,7 +471,11 @@ export default function Spaces() {
                         exit={{ opacity: 0, rotateY: 90 }}
                         transition={{ duration: 0.4 }}
                         onClick={() => setFlippedCard(index)}
-                        className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer"
+                        whileHover={{ scale: 1.01 }}
+                        className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border transition-all duration-500 cursor-pointer"
+                        style={{
+                          borderColor: hoveredSpace === index ? `${currentCategory.accentColor}40` : 'rgba(255,255,255,0.1)'
+                        }}
                       >
                         {/* Badges */}
                         <div className="absolute top-4 right-4 flex gap-2 z-10">
@@ -529,12 +533,15 @@ export default function Spaces() {
                           </div>
                         </div>
 
-                        {/* Hover Glow */}
+                        {/* Hover Glow - Subtle border effect */}
                         {hoveredSpace === index && (
                           <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className={`absolute inset-0 bg-gradient-to-r ${currentCategory.gradient} opacity-5 rounded-3xl pointer-events-none`}
+                            className="absolute inset-0 rounded-3xl pointer-events-none"
+                            style={{
+                              background: `linear-gradient(135deg, ${currentCategory.accentColor}10, transparent)`,
+                            }}
                           />
                         )}
                       </motion.div>
