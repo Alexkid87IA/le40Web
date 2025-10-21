@@ -8,7 +8,8 @@ const spaceCategories = [
     title: 'Espaces Coworking',
     subtitle: 'Bureaux flexibles et privés',
     icon: Users,
-    gradient: 'from-violet-600 to-purple-600',
+    gradient: 'from-violet-600 via-purple-600 to-indigo-600',
+    shadowColor: '#8b5cf6',
     image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920',
     spaces: [
       {
@@ -41,7 +42,8 @@ const spaceCategories = [
     title: 'Salles de Réunion',
     subtitle: 'Espaces équipés tout compris',
     icon: Monitor,
-    gradient: 'from-emerald-600 to-teal-600',
+    gradient: 'from-emerald-600 via-teal-600 to-cyan-600',
+    shadowColor: '#10b981',
     image: 'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1920',
     spaces: [
       {
@@ -74,7 +76,8 @@ const spaceCategories = [
     title: 'Studios Production',
     subtitle: 'Création audiovisuelle 4K/8K',
     icon: Video,
-    gradient: 'from-pink-600 to-rose-600',
+    gradient: 'from-pink-600 via-rose-600 to-red-600',
+    shadowColor: '#ec4899',
     image: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1920',
     spaces: [
       {
@@ -114,52 +117,95 @@ const globalFeatures = [
 export default function Spaces() {
   const [activeCategory, setActiveCategory] = useState('coworking');
   const [hoveredSpace, setHoveredSpace] = useState<string | null>(null);
-  
+
   const currentCategory = spaceCategories.find(cat => cat.id === activeCategory)!;
 
   return (
-    <section id="espaces" className="relative min-h-screen bg-black overflow-hidden py-32">
-      {/* Dynamic gradient background */}
-      <motion.div 
-        className="absolute inset-0"
-        animate={{ opacity: [0.05, 0.1, 0.05] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      >
-        <div className={`absolute inset-0 bg-gradient-to-br ${currentCategory.gradient} transition-all duration-1000`}></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/60 to-black"></div>
-      </motion.div>
+    <section id="espaces" className="relative min-h-screen bg-[#0A0A0A] py-32 overflow-hidden">
+      {/* Sophisticated gradient base - Matching Hero exactly */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#0F0F0F] to-[#1A1A1A]"></div>
 
-      {/* Animated particles */}
+        {/* Subtle mesh pattern - Matching Hero exactly */}
+        <div className="absolute inset-0 opacity-[0.015]"
+             style={{
+               backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+               backgroundSize: '48px 48px'
+             }}>
+        </div>
+      </div>
+
+      {/* Dynamic ambient light orbs - Matching Hero system */}
       <div className="absolute inset-0 overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2 }}
+          >
+            <motion.div
+              className="absolute top-1/4 -left-48 w-96 h-96 rounded-full blur-[120px]"
+              style={{ backgroundColor: currentCategory.shadowColor, opacity: 0.08 }}
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 50, 0],
+                y: [0, -30, 0]
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 -right-48 w-[30rem] h-[30rem] rounded-full blur-[140px]"
+              style={{ backgroundColor: currentCategory.shadowColor, opacity: 0.06 }}
+              animate={{
+                scale: [1, 1.15, 1],
+                x: [0, -50, 0],
+                y: [0, 40, 0]
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Floating particles - Matching Hero */}
+      <div className="absolute inset-0 pointer-events-none">
         {[...Array(30)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full"
+            className="absolute w-1 h-1 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              background: i % 3 === 0 ? currentCategory.shadowColor : i % 3 === 1 ? '#ec4899' : '#3b82f6',
+              boxShadow: `0 0 ${4 + Math.random() * 6}px currentColor`,
             }}
             animate={{
-              y: [0, -50, 0],
-              opacity: [0, 0.5, 0],
+              y: [0, -60, 0],
+              x: [0, Math.random() * 30 - 15, 0],
+              opacity: [0, 0.7, 0],
+              scale: [0, Math.random() * 1.5 + 0.5, 0],
             }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: Math.random() * 8 + 6,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: Math.random() * 8,
+              ease: "easeInOut"
             }}
           />
         ))}
       </div>
 
-      <div className="relative z-10">
-        {/* Header */}
+      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+        {/* Header - Matching Hero exactly */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20 px-8"
+          className="text-center mb-20"
         >
           {/* Badge */}
           <motion.div
@@ -185,7 +231,7 @@ export default function Spaces() {
             className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white mb-8 leading-[0.9]"
           >
             ESPACES
-            <motion.span 
+            <motion.span
               className={`block text-transparent bg-clip-text bg-gradient-to-r ${currentCategory.gradient}`}
               key={activeCategory}
               initial={{ opacity: 0, y: 20 }}
@@ -196,29 +242,47 @@ export default function Spaces() {
             </motion.span>
           </motion.h2>
 
+          {/* Refined accent line - Matching Hero */}
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto w-24 origin-center mb-8"
+          >
+            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+            <motion.div
+              className="absolute top-0 left-0 h-[1px] w-6 bg-white/60"
+              animate={{ x: [0, 72, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto"
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto leading-relaxed"
           >
             2500m² dédiés à votre réussite • Technologie de pointe • Services all-inclusive
           </motion.p>
         </motion.div>
 
-        {/* Category Tabs */}
-        <div className="max-w-5xl mx-auto px-8 mb-16">
+        {/* Category Tabs - Already matches well */}
+        <div className="max-w-5xl mx-auto mb-16">
           <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-2 border border-white/10">
             <div className="grid grid-cols-3 gap-2">
               {spaceCategories.map((category) => {
                 const Icon = category.icon;
                 const isActive = activeCategory === category.id;
-                
+
                 return (
-                  <button
+                  <motion.button
                     key={category.id}
                     onClick={() => setActiveCategory(category.id)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     className={`relative rounded-2xl p-6 transition-all duration-500 ${
                       isActive ? 'bg-white/10' : 'hover:bg-white/5'
                     }`}
@@ -230,7 +294,7 @@ export default function Spaces() {
                         transition={{ type: "spring", duration: 0.6 }}
                       />
                     )}
-                    
+
                     <div className="relative flex flex-col items-center gap-3">
                       <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${category.gradient} flex items-center justify-center ${
                         isActive ? 'scale-110' : 'scale-100 opacity-70'
@@ -250,7 +314,7 @@ export default function Spaces() {
                         </p>
                       </div>
                     </div>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
@@ -265,7 +329,6 @@ export default function Spaces() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="max-w-7xl mx-auto px-8"
           >
             <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
               {/* Left: Image showcase */}
@@ -283,7 +346,7 @@ export default function Spaces() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
                   <div className={`absolute inset-0 bg-gradient-to-br ${currentCategory.gradient} opacity-20`}></div>
-                  
+
                   {/* Floating stats */}
                   <div className="absolute bottom-8 left-8 right-8">
                     <div className="flex gap-4 flex-wrap">
@@ -300,11 +363,11 @@ export default function Spaces() {
                   </div>
                 </div>
 
-                {/* Decorative elements */}
+                {/* Decorative element */}
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="absolute -top-10 -right-10 w-40 h-40"
+                  className="absolute -top-10 -right-10 w-40 h-40 pointer-events-none"
                 >
                   <div className={`w-full h-full bg-gradient-to-r ${currentCategory.gradient} rounded-full opacity-10 blur-3xl`}></div>
                 </motion.div>
@@ -325,11 +388,12 @@ export default function Spaces() {
                     transition={{ delay: 0.1 * index, duration: 0.6 }}
                     onMouseEnter={() => setHoveredSpace(space.name)}
                     onMouseLeave={() => setHoveredSpace(null)}
+                    whileHover={{ y: -4, scale: 1.01 }}
                     className="group"
                   >
                     <div className={`relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border transition-all duration-500 ${
-                      hoveredSpace === space.name 
-                        ? 'border-white/30 bg-white/10 scale-[1.02]' 
+                      hoveredSpace === space.name
+                        ? 'border-white/30 bg-white/10'
                         : 'border-white/10 hover:border-white/20'
                     }`}>
                       {/* Hover gradient */}
@@ -351,7 +415,7 @@ export default function Spaces() {
                               "{space.highlight}"
                             </p>
                           </div>
-                          
+
                           <motion.div
                             animate={{ rotate: hoveredSpace === space.name ? 45 : 0 }}
                             transition={{ duration: 0.3 }}
@@ -375,9 +439,15 @@ export default function Spaces() {
                         {/* Features */}
                         <div className="flex flex-wrap gap-3">
                           {space.features.map((feature, i) => (
-                            <span key={i} className="px-4 py-2 bg-white/5 rounded-full text-white/60 text-sm font-inter border border-white/10">
+                            <motion.span
+                              key={i}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.05 * i + 0.2 }}
+                              className="px-4 py-2 bg-white/5 rounded-full text-white/60 text-sm font-inter border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300"
+                            >
                               {feature}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
                       </div>
@@ -395,17 +465,17 @@ export default function Spaces() {
                   whileTap={{ scale: 0.98 }}
                   className="block mt-8"
                 >
-                  <div className={`relative bg-gradient-to-r ${currentCategory.gradient} p-[2px] rounded-2xl overflow-hidden group`}>
-                    <div className="relative bg-black rounded-2xl px-8 py-5 overflow-hidden">
+                  <div className="relative group">
+                    <div className={`absolute -inset-1 bg-gradient-to-r ${currentCategory.gradient} rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity duration-500`}></div>
+                    <div className="relative bg-white text-black rounded-2xl px-10 py-5 overflow-hidden">
                       <motion.div
                         className={`absolute inset-0 bg-gradient-to-r ${currentCategory.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
                       />
-                      
                       <div className="relative flex items-center justify-between">
-                        <span className="font-montserrat font-bold text-white text-lg">
+                        <span className="font-montserrat font-bold text-lg tracking-wide">
                           {currentCategory.cta}
                         </span>
-                        <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-2 transition-transform duration-300" />
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
                       </div>
                     </div>
                   </div>
@@ -419,16 +489,16 @@ export default function Spaces() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-center"
+              className="mb-20"
             >
-              <h3 className="text-2xl font-montserrat font-bold text-white/80 mb-12">
+              <h3 className="text-2xl font-montserrat font-bold text-white/80 text-center mb-12">
                 Inclus dans tous nos espaces
               </h3>
-              
+
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
                 {globalFeatures.map((feature, index) => {
                   const Icon = feature.icon;
-                  
+
                   return (
                     <motion.div
                       key={index}
@@ -437,24 +507,22 @@ export default function Spaces() {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1, duration: 0.6 }}
                       whileHover={{ y: -5 }}
-                      className="group"
+                      className="group text-center"
                     >
-                      <div className="text-center">
-                        <div className="relative inline-block mb-6">
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                            className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
-                          />
-                          <div className={`relative w-20 h-20 bg-gradient-to-r ${feature.gradient} rounded-3xl flex items-center justify-center`}>
-                            <Icon className="w-10 h-10 text-white" />
-                          </div>
+                      <div className="relative inline-block mb-6">
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                          className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
+                        />
+                        <div className={`relative w-20 h-20 bg-gradient-to-r ${feature.gradient} rounded-3xl flex items-center justify-center`}>
+                          <Icon className="w-10 h-10 text-white" />
                         </div>
-                        
-                        <h4 className="text-lg font-montserrat font-semibold text-white">
-                          {feature.title}
-                        </h4>
                       </div>
+
+                      <h4 className="text-lg font-montserrat font-semibold text-white">
+                        {feature.title}
+                      </h4>
                     </motion.div>
                   );
                 })}
@@ -467,7 +535,7 @@ export default function Spaces() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="text-center mt-20"
+              className="text-center"
             >
               <motion.a
                 href="/visite"
@@ -479,7 +547,7 @@ export default function Spaces() {
                 <div className="relative bg-white text-black rounded-2xl px-10 py-5">
                   <div className="flex items-center gap-4">
                     <Calendar className="w-5 h-5" />
-                    <span className="font-montserrat font-bold">
+                    <span className="font-montserrat font-bold tracking-wide">
                       PLANIFIER UNE VISITE
                     </span>
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -491,29 +559,15 @@ export default function Spaces() {
         </AnimatePresence>
       </div>
 
-      {/* Floating orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${20 + i * 15}%`,
-              top: `${10 + i * 20}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 4 + i,
-              repeat: Infinity,
-              delay: i * 0.5,
-            }}
-          >
-            <div className={`w-48 h-48 bg-gradient-to-r ${spaceCategories[i % 3].gradient} rounded-full blur-3xl`} />
-          </motion.div>
-        ))}
+      {/* Premium film grain texture - Matching Hero */}
+      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none z-20">
+        <svg width="100%" height="100%">
+          <filter id="sophisticatedNoiseSpaces">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#sophisticatedNoiseSpaces)" />
+        </svg>
       </div>
     </section>
   );
