@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, Check, Star, Shield, Building2, Zap, Phone, Mail, TrendingUp, Award, Clock } from 'lucide-react';
+import { designTokens } from '../../styles/designTokens';
+import Button from '../UI/Button';
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -158,7 +160,7 @@ export default function HeroSection() {
               transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="mb-7"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white leading-[0.95] tracking-tight mb-6"
+              <h1 className={`${designTokens.typography.h1.size} font-montserrat ${designTokens.typography.h1.weight} text-white ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} mb-6`}
                   style={{ textShadow: '0 8px 32px rgba(0,0,0,0.6)' }}>
                 Domiciliez votre entreprise en{' '}
                 <span className="relative inline-block">
@@ -190,7 +192,7 @@ export default function HeroSection() {
                   <span className="text-green-400 font-inter text-sm font-bold">-40%</span>
                 </div>
               </div>
-              <p className="text-xl sm:text-2xl text-white/80 font-inter font-medium leading-relaxed">
+              <p className={`${designTokens.typography.body.size} text-white/80 font-inter font-medium ${designTokens.typography.body.leading}`}>
                 Adresse prestigieuse République + Scan courrier 2h + Standard téléphonique inclus
               </p>
             </motion.div>
@@ -219,7 +221,7 @@ export default function HeroSection() {
                     <benefit.icon className="w-6 h-6 text-amber-400" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-white font-inter text-lg font-medium leading-snug">
+                    <p className={`text-white font-inter ${designTokens.typography.body.size} font-medium leading-snug`}>
                       {benefit.text}
                     </p>
                   </div>
@@ -237,14 +239,9 @@ export default function HeroSection() {
               transition={{ delay: 0.9, duration: 0.8 }}
               className="space-y-5"
             >
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className={`flex flex-col sm:flex-row ${designTokens.spacing.gap.sm}`}>
                 {/* Primary Mega CTA */}
-                <motion.a
-                  href="#pricing"
-                  className="group relative flex-1"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
+                <div className="group relative flex-1">
                   <motion.div
                     className="absolute -inset-1 rounded-2xl opacity-60 group-hover:opacity-100 blur-xl transition-all duration-500"
                     style={{ background: `linear-gradient(135deg, ${serviceDetails.accentColor}, #F97316)` }}
@@ -253,30 +250,36 @@ export default function HeroSection() {
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                   />
-                  <div className="relative bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl px-10 py-5 shadow-2xl shadow-amber-500/30">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-montserrat font-black text-xl">Choisir ma formule</p>
-                        <p className="text-white/90 text-sm font-inter">Dès 29€/mois • 3 forfaits</p>
+                  <div className="relative">
+                    <Button
+                      href="#pricing"
+                      size="lg"
+                      icon={ArrowRight}
+                      iconPosition="right"
+                      fullWidth
+                      className="shadow-2xl shadow-amber-500/30"
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <div className="text-left">
+                          <p className="font-montserrat font-black text-base">Choisir ma formule</p>
+                          <p className="text-white/90 text-xs font-inter">Dès 29€/mois • 3 forfaits</p>
+                        </div>
                       </div>
-                      <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    </Button>
                   </div>
-                </motion.a>
+                </div>
               </div>
 
               {/* Secondary CTA */}
-              <motion.a
+              <Button
                 href="/contact"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm"
+                variant="secondary"
+                size="md"
+                icon={Phone}
+                fullWidth
               >
-                <Phone className="w-5 h-5 text-white/80" />
-                <span className="font-montserrat font-semibold text-white text-base">
-                  Parler à un conseiller maintenant
-                </span>
-              </motion.a>
+                Parler à un conseiller maintenant
+              </Button>
 
               {/* Trust Signals */}
               <div className="flex flex-wrap items-center gap-6 pt-4">

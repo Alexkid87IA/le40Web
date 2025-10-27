@@ -1,54 +1,70 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
+import { designTokens } from '../../styles/designTokens';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   icon?: LucideIcon;
+  iconPosition?: 'left' | 'right';
   className?: string;
   onClick?: () => void;
   href?: string;
+  fullWidth?: boolean;
+  disabled?: boolean;
 }
 
-export default function Button({ 
-  children, 
-  variant = 'primary', 
-  size = 'md', 
+export default function Button({
+  children,
+  variant = 'primary',
+  size = 'md',
   icon: Icon,
+  iconPosition = 'left',
   className = '',
   onClick,
-  href
+  href,
+  fullWidth = false,
+  disabled = false
 }: ButtonProps) {
-  const baseClasses = "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent";
-  
+  const baseClasses = "inline-flex items-center justify-center font-montserrat font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed";
+
   const variants = {
-    primary: "bg-gradient-to-r from-orange-400 to-orange-600 text-white hover:shadow-lg hover:shadow-orange-500/25 focus:ring-orange-500",
-    secondary: "bg-white/10 text-white border border-white/20 hover:bg-white/20 focus:ring-white/50",
-    outline: "border-2 border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white focus:ring-orange-500"
+    primary: `bg-gradient-to-r ${designTokens.colors.services.domiciliation.gradient} text-white hover:shadow-xl focus:ring-orange-500`,
+    secondary: "backdrop-blur-xl bg-white/[0.04] text-white border border-white/[0.12] hover:bg-white/[0.08] hover:border-white/[0.16] focus:ring-white/50",
+    outline: "border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white focus:ring-orange-500",
+    ghost: "bg-transparent text-white hover:bg-white/10 focus:ring-white/50"
   };
 
   const sizes = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-base", 
-    lg: "px-8 py-4 text-lg"
+    sm: designTokens.buttons.size.sm,
+    md: designTokens.buttons.size.md,
+    lg: designTokens.buttons.size.lg,
   };
 
-  const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`;
+  const radius = designTokens.buttons.radius.large;
+  const transition = designTokens.animations.transition.fast;
+  const widthClass = fullWidth ? 'w-full' : '';
+
+  const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${radius} ${transition} ${widthClass} ${className}`;
+
+  const iconClasses = size === 'sm' ? 'w-4 h-4' : size === 'lg' ? 'w-6 h-6' : 'w-5 h-5';
+  const iconMargin = iconPosition === 'left' ? 'mr-2' : 'ml-2';
 
   const content = (
     <>
-      {Icon && <Icon className="w-5 h-5 mr-2" />}
+      {Icon && iconPosition === 'left' && <Icon className={`${iconClasses} ${iconMargin}`} />}
       {children}
+      {Icon && iconPosition === 'right' && <Icon className={`${iconClasses} ${iconMargin}`} />}
     </>
   );
 
-  if (href) {
+  if (href && !disabled) {
     return (
       <motion.a
         href={href}
-        whileHover={{ scale: 1.02 }}
+        whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
         className={classes}
       >
@@ -60,8 +76,9 @@ export default function Button({
   return (
     <motion.button
       onClick={onClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      disabled={disabled}
+      whileHover={disabled ? {} : { scale: 1.02, y: -2 }}
+      whileTap={disabled ? {} : { scale: 0.98 }}
       className={classes}
     >
       {content}

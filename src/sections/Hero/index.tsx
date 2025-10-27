@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { ArrowRight, Sparkles, PlayCircle } from 'lucide-react';
+import { designTokens } from '../../styles/designTokens';
+import Button from '../../components/UI/Button';
 
 const animatedWords = ["BUREAU", "STUDIO", "DOMICILIATION"];
 
@@ -199,7 +201,7 @@ export default function Hero() {
               transition={{ delay: 0.4, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
               style={{ transformPerspective: 1000 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white leading-[0.85] tracking-[-0.04em] mb-2 sm:mb-3"
+              <h1 className={`${designTokens.typography.h1.size} font-montserrat ${designTokens.typography.h1.weight} text-white ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} mb-2 sm:mb-3`}
                   style={{
                     textShadow: '0 4px 60px rgba(0,0,0,0.5)',
                   }}>
@@ -243,8 +245,8 @@ export default function Hero() {
                   <h2 className={`${
                     currentWord === 'DOMICILIATION'
                       ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
-                      : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
-                    } font-montserrat font-black leading-[0.85] tracking-[-0.04em] bg-gradient-to-br ${currentService.gradient} bg-clip-text text-transparent`}
+                      : designTokens.typography.h1.size
+                    } font-montserrat ${designTokens.typography.h1.weight} ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} bg-gradient-to-br ${currentService.gradient} bg-clip-text text-transparent`}
                       style={{
                         filter: `drop-shadow(0 2px 30px ${currentService.shadowColor})`,
                       }}>
@@ -280,7 +282,7 @@ export default function Hero() {
               style={{ transformPerspective: 1000 }}
               className="mb-6 sm:mb-8"
             >
-              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair italic font-light text-white/70 leading-[0.9]"
+              <h3 className={`${designTokens.typography.h2.size} font-playfair italic font-light text-white/70 ${designTokens.typography.h2.leading}`}
                   style={{ textShadow: '0 10px 40px rgba(0,0,0,0.5)' }}>
                 à Marseille
               </h3>
@@ -309,7 +311,7 @@ export default function Hero() {
             transition={{ delay: 1.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="mb-8 sm:mb-10 max-w-3xl"
           >
-            <p className="text-base sm:text-lg md:text-xl font-inter font-light text-white/60 leading-relaxed tracking-wide">
+            <p className={`${designTokens.typography.body.size} font-inter font-light text-white/60 ${designTokens.typography.body.leading} tracking-wide`}>
               Un écosystème d'excellence où convergent innovation, créativité et ambition entrepreneuriale.
             </p>
           </motion.div>
@@ -319,15 +321,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 mb-8 sm:mb-10"
+            className={`flex flex-col sm:flex-row items-start ${designTokens.spacing.gap.sm} mb-8 sm:mb-10`}
           >
             {/* Primary CTA - Minimalist Luxury */}
-            <motion.a
-              href="/contact"
-              className="group relative w-full sm:w-auto"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-            >
+            <div className="relative w-full sm:w-auto group">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentWord}
@@ -335,46 +332,34 @@ export default function Hero() {
                   style={{ backgroundColor: currentService.accentColor }}
                 />
               </AnimatePresence>
-
-              <div className="relative bg-white text-black rounded-xl overflow-hidden group-hover:bg-white/95 transition-colors duration-500">
-                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
-                  <span className="font-montserrat font-bold text-xs sm:text-sm tracking-wide">
-                    RÉSERVER UNE VISITE
-                  </span>
-                  <motion.div
-                    className="w-7 h-7 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors"
-                    whileHover={{ rotate: 45 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </motion.div>
-                </div>
-              </div>
-            </motion.a>
+              <Button
+                href="/contact"
+                size="md"
+                icon={ArrowRight}
+                iconPosition="right"
+                className="relative bg-white text-black hover:bg-white/95 hover:shadow-none w-full sm:w-auto"
+              >
+                RÉSERVER UNE VISITE
+              </Button>
+            </div>
 
             {/* Secondary CTA - Ultra Glass */}
-            <motion.button
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className="group relative w-full sm:w-auto"
-            >
-              <div className="relative backdrop-blur-xl bg-white/[0.04] rounded-xl border border-white/[0.12] overflow-hidden hover:bg-white/[0.08] hover:border-white/[0.16] transition-all duration-500">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent"
-                  animate={{ x: [-300, 300] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                />
-
-                <div className="relative px-6 sm:px-8 py-3 sm:py-3.5 flex items-center justify-between gap-4">
-                  <span className="font-montserrat font-semibold text-xs sm:text-sm text-white tracking-wide">
-                    DÉCOUVRIR EN VIDÉO
-                  </span>
-                  <div className="w-7 h-7 rounded-full bg-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.12] transition-colors">
-                    <PlayCircle className="w-3.5 h-3.5 text-white/80" />
-                  </div>
-                </div>
-              </div>
-            </motion.button>
+            <div className="relative w-full sm:w-auto">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none"
+                animate={{ x: [-300, 300] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              />
+              <Button
+                variant="secondary"
+                size="md"
+                icon={PlayCircle}
+                iconPosition="right"
+                className="w-full sm:w-auto relative"
+              >
+                DÉCOUVRIR EN VIDÉO
+              </Button>
+            </div>
           </motion.div>
 
           {/* Refined Stats - Minimal & Elegant */}
