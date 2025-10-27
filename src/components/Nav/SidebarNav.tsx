@@ -137,7 +137,7 @@ export default function SidebarNav() {
               transition={{ duration: 0.2 }}
             >
               <img
-                src="https://i.imgur.com/OgDg0yM.png"
+                src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
                 alt="Le 40"
                 className="w-full max-w-[180px] h-auto mx-auto drop-shadow-2xl"
               />
