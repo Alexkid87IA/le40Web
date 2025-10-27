@@ -139,7 +139,7 @@ export default function SidebarNav() {
               <img
                 src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
                 alt="Le 40"
-                className="w-full max-w-[180px] h-auto mx-auto drop-shadow-2xl"
+                className="w-full max-w-[180px] h-auto mx-auto drop-shadow-2xl brightness-0 invert"
               />
             </motion.div>
           </Link>
