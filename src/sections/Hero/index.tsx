@@ -242,11 +242,7 @@ export default function Hero() {
                   }}
                   style={{ transformPerspective: 1000 }}
                 >
-                  <h2 className={`${
-                    currentWord === 'DOMICILIATION'
-                      ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
-                      : designTokens.typography.h1.size
-                    } font-montserrat ${designTokens.typography.h1.weight} ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} bg-gradient-to-br ${currentService.gradient} bg-clip-text text-transparent`}
+                  <h2 className={`${designTokens.typography.h1.size} font-montserrat ${designTokens.typography.h1.weight} ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} bg-gradient-to-br ${currentService.gradient} bg-clip-text text-transparent`}
                       style={{
                         filter: `drop-shadow(0 2px 30px ${currentService.shadowColor})`,
                       }}>
