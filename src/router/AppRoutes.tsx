@@ -10,6 +10,7 @@ const Offres = lazy(() => import('../pages/Offres'));
 const Tarifs = lazy(() => import('../pages/Tarifs'));
 const Coworking = lazy(() => import('../pages/Coworking'));
 const Domiciliation = lazy(() => import('../pages/Domiciliation'));
+const DomiciliationNew = lazy(() => import('../pages/DomiciliationNew'));
 const Salles = lazy(() => import('../pages/Salles'));
 const Studios = lazy(() => import('../pages/Studios/Studios'));
 const Blog = lazy(() => import('../pages/Blog'));
@@ -53,6 +54,7 @@ export default function AppRoutes() {
           <Route path="/tarifs" element={<Tarifs />} />
           <Route path="/coworking" element={<Coworking />} />
           <Route path="/domiciliation" element={<Domiciliation />} />
+          <Route path="/domiciliation-v2" element={<DomiciliationNew />} />
           <Route path="/salles" element={<Salles />} />
           <Route path="/studios" element={<Studios />} />
           <Route path="/blog" element={<Blog />} />
