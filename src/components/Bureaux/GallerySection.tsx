@@ -162,28 +162,14 @@ export default function GallerySection() {
                   </motion.div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
-                    <motion.div
-                      initial={{ y: 10, opacity: 0.8 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
+                    <div>
                       <h3 className="text-white font-montserrat font-black text-2xl mb-3 line-clamp-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 transition-all duration-300">
                         {item.title}
                       </h3>
-                      <motion.p
-                        initial={{ opacity: 0, height: 0 }}
-                        whileHover={{ opacity: 1, height: 'auto' }}
-                        transition={{ duration: 0.3 }}
-                        className="text-white/85 font-inter text-sm mb-4 line-clamp-2 leading-relaxed"
-                      >
+                      <p className="text-white/85 font-inter text-sm mb-4 line-clamp-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         {item.description}
-                      </motion.p>
-                      <motion.div
-                        initial={{ opacity: 0, y: 5 }}
-                        whileHover={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 }}
-                        className="flex items-center gap-4"
-                      >
+                      </p>
+                      <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span className="text-emerald-400 text-sm font-bold flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                           {item.capacity}
@@ -192,8 +178,8 @@ export default function GallerySection() {
                         <span className="text-teal-400 text-sm font-bold">{item.surface}</span>
                         <span className="text-white/30">•</span>
                         <span className="text-cyan-400 text-sm font-bold">Dès {item.priceFrom}</span>
-                      </motion.div>
-                    </motion.div>
+                      </div>
+                    </div>
                   </div>
 
                   <motion.div
