@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home.new';
 import Offres from '../pages/Offres';
 import Tarifs from '../pages/Tarifs';
-import Bureaux from '../pages/Bureaux';
+import BureauxComparison from '../pages/Bureaux';
 import Coworking from '../pages/Coworking';
 import BureauxPrives from '../pages/BureauxPrives';
 import Domiciliation from '../pages/Domiciliation';
@@ -28,9 +28,10 @@ export default function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/offres" element={<Offres />} />
         <Route path="/tarifs" element={<Tarifs />} />
-        <Route path="/bureaux" element={<Bureaux />} />
+        <Route path="/bureaux" element={<BureauxPrives />} />
         <Route path="/coworking" element={<Coworking />} />
         <Route path="/bureaux-prives" element={<BureauxPrives />} />
+        <Route path="/bureaux-comparaison" element={<BureauxComparison />} />
         <Route path="/domiciliation" element={<Domiciliation />} />
         <Route path="/salles" element={<Salles />} />
         <Route path="/studios" element={<Studios />} />
