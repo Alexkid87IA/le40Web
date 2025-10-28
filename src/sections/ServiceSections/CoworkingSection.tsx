@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Wifi, Coffee, Calendar, ArrowRight, Zap } from 'lucide-react';
+import { Users, Wifi, Coffee, Calendar, ArrowRight, Zap, Building2, Target } from 'lucide-react';
 import Button from '../../components/UI/Button';
 
 export default function CoworkingSection() {
@@ -130,29 +130,35 @@ export default function CoworkingSection() {
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-violet-600 to-purple-600 rounded-3xl blur-3xl opacity-30"></div>
-              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6">
+              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-6 space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-white/50 text-sm mb-1">Membres actifs</div>
-                    <div className="text-4xl font-bold text-white">120+</div>
+                    <div className="text-3xl font-bold text-white">120+</div>
                   </div>
-                  <div className="text-6xl">👥</div>
+                  <div className="p-3 bg-violet-500/10 rounded-xl">
+                    <Users className="w-8 h-8 text-violet-400" />
+                  </div>
                 </div>
                 <div className="h-px bg-white/10"></div>
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-white/50 text-sm mb-1">Surface totale</div>
-                    <div className="text-4xl font-bold text-white">4000m²</div>
+                    <div className="text-3xl font-bold text-white">4000m²</div>
                   </div>
-                  <div className="text-6xl">🏢</div>
+                  <div className="p-3 bg-violet-500/10 rounded-xl">
+                    <Building2 className="w-8 h-8 text-violet-400" />
+                  </div>
                 </div>
                 <div className="h-px bg-white/10"></div>
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-white/50 text-sm mb-1">Événements / mois</div>
-                    <div className="text-4xl font-bold text-white">15+</div>
+                    <div className="text-3xl font-bold text-white">15+</div>
                   </div>
-                  <div className="text-6xl">🎯</div>
+                  <div className="p-3 bg-violet-500/10 rounded-xl">
+                    <Target className="w-8 h-8 text-violet-400" />
+                  </div>
                 </div>
               </div>
             </div>
