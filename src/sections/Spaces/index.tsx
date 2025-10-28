@@ -294,7 +294,7 @@ export default function SpacesSection() {
             </div>
 
             {/* Space Cards Grid */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-8">
               {currentCategory.spaces.map((space, index) => {
                 const isExpanded = expandedCard === index;
                 const SpaceIcon = space.icon;
@@ -302,91 +302,163 @@ export default function SpacesSection() {
                 return (
                   <motion.div
                     key={space.name}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    initial={{ opacity: 0, y: 60, scale: 0.93 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{
+                      delay: index * 0.12,
+                      duration: 0.7,
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
                     layout
-                    className="relative"
+                    className="relative group"
                   >
+                    <div
+                      className="absolute -inset-[2px] rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"
+                      style={{
+                        background: `radial-gradient(circle at 50% 0%, ${currentCategory.accentColor}40, transparent 70%)`
+                      }}
+                    />
+
                     <motion.div
                       onClick={() => setExpandedCard(isExpanded ? null : index)}
-                      whileHover={{ y: -8 }}
-                      className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer h-full flex flex-col"
+                      whileHover={{ y: -12, scale: 1.01 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative bg-gradient-to-br from-zinc-900/95 via-zinc-900/90 to-zinc-950/98 backdrop-blur-2xl rounded-3xl p-10 border transition-all duration-500 cursor-pointer h-full flex flex-col overflow-hidden shadow-xl"
                       style={{
-                        borderColor: isExpanded ? currentCategory.accentColor : undefined,
-                        boxShadow: isExpanded ? `0 0 40px ${currentCategory.accentColor}40` : undefined
+                        borderColor: isExpanded ? `${currentCategory.accentColor}60` : 'rgba(255,255,255,0.06)',
+                        boxShadow: isExpanded ? `0 0 50px ${currentCategory.accentColor}30, 0 20px 40px rgba(0,0,0,0.4)` : undefined
                       }}
                     >
+                      <div
+                        className="absolute top-0 right-0 w-40 h-40 rounded-bl-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                        style={{
+                          background: `linear-gradient(to bottom left, ${currentCategory.accentColor}15, transparent)`
+                        }}
+                      />
+
+                      <div className="absolute inset-0 opacity-[0.03]">
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                            backgroundSize: '24px 24px'
+                          }}
+                        ></div>
+                      </div>
                       {/* Badges - Fixed height zone */}
-                      <div className="absolute top-6 right-6 flex flex-col gap-2 z-10 h-8">
+                      <div className="absolute top-8 right-8 flex flex-col gap-2 z-10">
                         {space.popular && (
-                          <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                            POPULAIRE
-                          </span>
+                          <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.12 + 0.3 }}
+                            className="relative"
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-full blur-md opacity-60"></div>
+                            <span className="relative bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-2xl border border-orange-300/30 block">
+                              POPULAIRE
+                            </span>
+                          </motion.div>
                         )}
                         {space.featured && (
-                          <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                            PREMIUM
-                          </span>
+                          <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.12 + 0.3 }}
+                            className="relative"
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-md opacity-60"></div>
+                            <span className="relative bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-2xl border border-blue-300/30 block">
+                              PREMIUM
+                            </span>
+                          </motion.div>
                         )}
                       </div>
 
                       {/* Icon - Fixed height */}
-                      <div className="h-20 mb-6">
+                      <div className="relative h-24 mb-8">
                         <motion.div
-                          whileHover={{ rotate: [0, -10, 10, 0] }}
-                          transition={{ duration: 0.5 }}
-                          className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${currentCategory.gradient}`}
+                          whileHover={{ rotate: [0, -8, 8, 0], scale: 1.05 }}
+                          transition={{ duration: 0.6 }}
+                          className="relative inline-flex"
                         >
-                          <SpaceIcon className="w-8 h-8 text-white" />
+                          <div
+                            className="absolute -inset-2 rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                            style={{
+                              background: `radial-gradient(circle, ${currentCategory.accentColor}, transparent)`
+                            }}
+                          />
+                          <div
+                            className={`relative p-5 rounded-2xl bg-gradient-to-br ${currentCategory.gradient} shadow-lg border border-white/10`}
+                            style={{
+                              boxShadow: isExpanded ? `0 0 30px ${currentCategory.accentColor}40` : undefined
+                            }}
+                          >
+                            <SpaceIcon className="w-10 h-10 text-white" />
+                          </div>
                         </motion.div>
                       </div>
 
                       {/* Content - Aligned titles */}
-                      <h4 className="text-2xl font-black text-white mb-2 min-h-[2rem]">
+                      <h4
+                        className="relative text-3xl font-black text-white mb-3 min-h-[2.5rem] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r transition-all duration-500"
+                        style={{
+                          backgroundImage: isExpanded ? `linear-gradient(to right, ${currentCategory.accentColor}, ${currentCategory.accentColor}dd)` : undefined,
+                          WebkitBackgroundClip: isExpanded ? 'text' : undefined,
+                          WebkitTextFillColor: isExpanded ? 'transparent' : undefined
+                        }}
+                      >
                         {space.name}
                       </h4>
 
-                      <p className="text-white/50 italic text-sm mb-6 min-h-[2.5rem] line-clamp-2">
+                      <p className="text-white/60 italic text-base mb-8 min-h-[3rem] line-clamp-2 leading-relaxed">
                         "{space.highlight}"
                       </p>
 
                       {/* Capacity & Price */}
-                      <div className="flex items-center justify-between mb-6 pb-6 border-b border-white/10">
-                        <div className="flex items-center gap-2 text-white/60 text-sm">
-                          <Users className="w-4 h-4" />
+                      <div className="flex items-center justify-between mb-8 pb-8 border-b border-white/[0.08]">
+                        <div className="flex items-center gap-3 text-white/60 text-sm font-medium">
+                          <Users className="w-5 h-5" style={{ color: currentCategory.accentColor }} />
                           {space.capacity}
                         </div>
-                        <div className={`font-black text-2xl text-transparent bg-clip-text bg-gradient-to-r ${currentCategory.gradient}`}>
-                          {space.price > 0 ? space.price : 'Inclus'}
+                        <div className="text-right">
+                          <div className={`font-black text-3xl text-transparent bg-clip-text bg-gradient-to-r ${currentCategory.gradient}`}>
+                            {space.price > 0 ? space.price : 'Inclus'}
+                          </div>
                           {space.price > 0 && (
-                            <span className="text-xs text-white/40 ml-1">{space.priceLabel}</span>
+                            <span className="text-xs text-white/50 font-semibold">{space.priceLabel}</span>
                           )}
                         </div>
                       </div>
 
                       {/* Features */}
-                      <AnimatePresence>
+                      <AnimatePresence mode="wait">
                         {isExpanded ? (
                           <motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="space-y-3 mb-6"
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                            className="space-y-4 mb-8"
                           >
                             {space.features.map((feature, i) => (
                               <motion.div
                                 key={i}
-                                initial={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, x: -15 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: i * 0.05 }}
-                                className="flex items-start gap-3"
+                                transition={{ delay: i * 0.06, duration: 0.3 }}
+                                className="flex items-start gap-4 group/feature"
                               >
-                                <CheckCircle
-                                  className="w-5 h-5 flex-shrink-0 mt-0.5"
-                                  style={{ color: currentCategory.accentColor }}
-                                />
-                                <span className="text-white/80 text-sm">{feature}</span>
+                                <motion.div
+                                  whileHover={{ scale: 1.2, rotate: 360 }}
+                                  transition={{ duration: 0.4 }}
+                                >
+                                  <CheckCircle
+                                    className="w-6 h-6 flex-shrink-0 mt-0.5"
+                                    style={{ color: currentCategory.accentColor }}
+                                  />
+                                </motion.div>
+                                <span className="text-white/85 text-sm leading-relaxed group-hover/feature:text-white transition-colors">{feature}</span>
                               </motion.div>
                             ))}
                           </motion.div>
@@ -394,22 +466,32 @@ export default function SpacesSection() {
                           <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="text-white/40 text-sm mb-6"
+                            className="mb-8 p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]"
                           >
-                            {space.features.length} caractéristiques • Cliquer pour détails
+                            <div className="text-white/50 text-sm font-medium text-center">
+                              <span style={{ color: currentCategory.accentColor }} className="font-bold">{space.features.length}</span> caractéristiques • Cliquer pour détails
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
 
                       {/* CTA */}
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className={`w-full py-4 rounded-2xl bg-gradient-to-r ${currentCategory.gradient} text-white font-bold flex items-center justify-center gap-2 shadow-xl`}
-                      >
-                        <span>Réserver</span>
-                        <ArrowRight className="w-5 h-5" />
-                      </motion.button>
+                      <div className="relative mt-auto">
+                        <div
+                          className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                          style={{
+                            background: `linear-gradient(to right, ${currentCategory.accentColor}, ${currentCategory.accentColor}dd)`
+                          }}
+                        />
+                        <motion.button
+                          whileHover={{ scale: 1.03, y: -2 }}
+                          whileTap={{ scale: 0.97 }}
+                          className={`relative w-full py-5 rounded-2xl bg-gradient-to-r ${currentCategory.gradient} text-white font-bold text-lg flex items-center justify-center gap-3 shadow-2xl border border-white/10`}
+                        >
+                          <span>Réserver</span>
+                          <ArrowRight className="w-6 h-6" />
+                        </motion.button>
+                      </div>
                     </motion.div>
                   </motion.div>
                 );

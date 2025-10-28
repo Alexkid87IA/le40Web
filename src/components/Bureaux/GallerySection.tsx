@@ -90,88 +90,125 @@ export default function GallerySection() {
             {filteredGallery.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.05, duration: 0.5 }}
+                initial={{ opacity: 0, scale: 0.92, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{
+                  delay: index * 0.06,
+                  duration: 0.6,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
                 className="group relative"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500" />
+                <div className="absolute -inset-[2px] bg-gradient-to-br from-emerald-500/25 via-teal-500/20 to-cyan-500/25 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700" />
 
                 <motion.div
-                  whileHover={{ y: -8 }}
+                  whileHover={{ y: -12, scale: 1.01 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   onClick={() => handleCardClick(item)}
-                  className="relative overflow-hidden rounded-2xl cursor-pointer border border-white/10 hover:border-emerald-500/50 transition-all duration-500"
+                  className="relative overflow-hidden rounded-3xl cursor-pointer border border-white/[0.08] hover:border-emerald-400/40 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-emerald-500/20"
                 >
-                  <div className="aspect-[4/3] overflow-hidden relative">
+                  <div className="aspect-[4/3] overflow-hidden relative bg-zinc-950">
                     <motion.img
                       src={item.images[0].url}
                       alt={item.images[0].alt}
                       className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
+                      whileHover={{ scale: 1.12 }}
+                      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
 
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileHover={{ opacity: 1, scale: 1 }}
-                      className="absolute inset-0 flex items-center justify-center"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
                     >
-                      <div className="bg-emerald-500 text-white px-6 py-3 rounded-full flex items-center gap-2 shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <Eye className="w-5 h-5" />
-                        <span className="font-semibold">Explorer</span>
-                      </div>
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.7, y: 10 }}
+                        whileHover={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="relative"
+                      >
+                        <div className="absolute inset-0 bg-emerald-500 rounded-full blur-xl opacity-60"></div>
+                        <div className="relative bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-4 rounded-full flex items-center gap-3 shadow-2xl border border-emerald-300/30">
+                          <Eye className="w-6 h-6" />
+                          <span className="font-bold text-lg">Explorer</span>
+                        </div>
+                      </motion.div>
                     </motion.div>
                   </div>
 
-                  <div className="absolute top-4 left-4 z-10">
-                    <motion.span
-                      whileHover={{ scale: 1.1 }}
-                      className="px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 backdrop-blur-sm text-white text-xs font-semibold rounded-full shadow-lg"
+                  <div className="absolute top-5 left-5 z-10">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: [0, -2, 2, 0] }}
+                      transition={{ duration: 0.3 }}
+                      className="relative"
                     >
-                      {item.category}
-                    </motion.span>
-                  </div>
-
-                  <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-black/80 backdrop-blur-xl px-3 py-1.5 rounded-full flex items-center gap-1 text-white text-xs font-medium">
-                      <span>{item.images.length}</span>
-                      <span className="text-white/60">photos</span>
-                    </div>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transition-transform duration-300">
-                    <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      <h3 className="text-white font-montserrat font-bold text-xl mb-2 line-clamp-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-white/80 font-inter text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-3 line-clamp-2">
-                        {item.description}
-                      </p>
-                      <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
-                        <span className="text-emerald-400 text-sm font-semibold">{item.capacity}</span>
-                        <span className="text-white/40">•</span>
-                        <span className="text-teal-400 text-sm font-semibold">{item.surface}</span>
-                        <span className="text-white/40">•</span>
-                        <span className="text-cyan-400 text-sm font-semibold">Dès {item.priceFrom}</span>
-                      </div>
-                    </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full blur-md opacity-60"></div>
+                      <span className="relative px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 backdrop-blur-xl text-white text-xs font-bold rounded-full shadow-xl border border-emerald-300/30 block">
+                        {item.category}
+                      </span>
+                    </motion.div>
                   </div>
 
                   <motion.div
-                    className="absolute inset-0 border-2 border-emerald-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={{ opacity: 0, x: 10 }}
+                    whileHover={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute top-5 right-5 z-10"
+                  >
+                    <div className="bg-black/90 backdrop-blur-xl px-4 py-2 rounded-full flex items-center gap-2 text-white text-xs font-bold border border-white/10 shadow-xl">
+                      <span className="text-emerald-400">{item.images.length}</span>
+                      <span className="text-white/70">photos</span>
+                    </div>
+                  </motion.div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
+                    <motion.div
+                      initial={{ y: 10, opacity: 0.8 }}
+                      whileHover={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <h3 className="text-white font-montserrat font-black text-2xl mb-3 line-clamp-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 transition-all duration-300">
+                        {item.title}
+                      </h3>
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        whileHover={{ opacity: 1, height: 'auto' }}
+                        transition={{ duration: 0.3 }}
+                        className="text-white/85 font-inter text-sm mb-4 line-clamp-2 leading-relaxed"
+                      >
+                        {item.description}
+                      </motion.p>
+                      <motion.div
+                        initial={{ opacity: 0, y: 5 }}
+                        whileHover={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                        className="flex items-center gap-4"
+                      >
+                        <span className="text-emerald-400 text-sm font-bold flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                          {item.capacity}
+                        </span>
+                        <span className="text-white/30">•</span>
+                        <span className="text-teal-400 text-sm font-bold">{item.surface}</span>
+                        <span className="text-white/30">•</span>
+                        <span className="text-cyan-400 text-sm font-bold">Dès {item.priceFrom}</span>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+
+                  <motion.div
+                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{
-                      background: 'linear-gradient(45deg, transparent 0%, rgba(16, 185, 129, 0.1) 50%, transparent 100%)',
+                      background: 'linear-gradient(135deg, transparent 0%, rgba(16, 185, 129, 0.08) 30%, rgba(20, 184, 166, 0.08) 60%, transparent 100%)',
                       backgroundSize: '200% 200%',
                     }}
                     animate={{
-                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                      backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
                     }}
                     transition={{
-                      duration: 3,
+                      duration: 4,
                       repeat: Infinity,
-                      ease: 'linear'
+                      ease: 'easeInOut'
                     }}
                   />
                 </motion.div>
