@@ -6,31 +6,40 @@ export const designTokens = {
       tertiary: '#1A1A1A',
     },
 
+    brand: {
+      primary: '#F59E0B',
+      secondary: '#06B6D4',
+      accent: '#10B981',
+      gradient: 'from-orange-500 via-amber-500 to-yellow-500',
+      gradientAlt: 'from-cyan-500 via-blue-500 to-teal-500',
+      shadow: 'rgba(245, 158, 11, 0.3)',
+    },
+
     services: {
       coworking: {
-        primary: '#4299E1',
-        gradient: 'from-blue-500 via-cyan-500 to-teal-500',
-        shadow: 'rgba(66, 153, 225, 0.3)',
+        primary: '#06B6D4',
+        gradient: 'from-cyan-500 via-blue-500 to-teal-500',
+        shadow: 'rgba(6, 182, 212, 0.3)',
       },
       domiciliation: {
         primary: '#F59E0B',
-        gradient: 'from-orange-500 to-orange-600',
+        gradient: 'from-orange-500 via-amber-500 to-yellow-500',
         shadow: 'rgba(245, 158, 11, 0.3)',
       },
       salles: {
-        primary: '#4A5568',
+        primary: '#F59E0B',
         gradient: 'from-orange-500 via-amber-500 to-yellow-500',
         shadow: 'rgba(245, 158, 11, 0.3)',
       },
       studios: {
-        primary: '#9F7AEA',
-        gradient: 'from-purple-500 via-pink-500 to-rose-500',
-        shadow: 'rgba(236, 72, 153, 0.3)',
+        primary: '#10B981',
+        gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+        shadow: 'rgba(16, 185, 129, 0.3)',
       },
       community: {
-        primary: '#48BB78',
-        gradient: 'from-emerald-500 to-teal-500',
-        shadow: 'rgba(72, 187, 120, 0.3)',
+        primary: '#06B6D4',
+        gradient: 'from-cyan-500 via-blue-500 to-teal-500',
+        shadow: 'rgba(6, 182, 212, 0.3)',
       },
     },
   },

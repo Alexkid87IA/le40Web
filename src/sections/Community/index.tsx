@@ -11,8 +11,8 @@ const communityPillars = [
     stat: '200+',
     statLabel: 'Membres actifs',
     description: 'Connectez-vous avec des entrepreneurs ambitieux, créateurs et leaders d\'opinion',
-    gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
-    accentColor: '#06b6d4',
+    gradient: 'from-cyan-500 via-blue-500 to-teal-500',
+    accentColor: '#06B6D4',
     benefits: [
       { icon: Target, text: 'Speed networking mensuel exclusif', highlight: 'Mensuels' },
       { icon: Users, text: 'Annuaire membres avec profils détaillés', highlight: 'Détaillés' },
@@ -45,8 +45,8 @@ const communityPillars = [
     stat: '85%',
     statLabel: 'Collaborations',
     description: 'Des opportunités concrètes pour développer votre activité rapidement',
-    gradient: 'from-pink-500 via-rose-500 to-red-500',
-    accentColor: '#ec4899',
+    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+    accentColor: '#10B981',
     benefits: [
       { icon: Target, text: 'Mise en relation business qualifiée', highlight: 'Qualifiée' },
       { icon: Trophy, text: 'Appels d\'offres partagés entre membres', highlight: 'Partagés' },

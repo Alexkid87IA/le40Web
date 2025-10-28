@@ -10,21 +10,21 @@ const serviceDetails = {
   "BUREAU": {
     tagline: "Espaces premium équipés",
     metric: "4000m²",
-    gradient: "from-slate-200 via-blue-50 to-slate-100",
-    shadowColor: "rgba(59, 130, 246, 0.3)",
-    accentColor: "#3B82F6"
+    gradient: "from-cyan-400 via-blue-400 to-teal-400",
+    shadowColor: "rgba(6, 182, 212, 0.3)",
+    accentColor: "#06B6D4"
   },
   "STUDIO": {
     tagline: "Production audiovisuelle 4K/8K",
     metric: "3 studios",
-    gradient: "from-slate-200 via-emerald-50 to-slate-100",
+    gradient: "from-emerald-400 via-teal-400 to-cyan-400",
     shadowColor: "rgba(16, 185, 129, 0.3)",
     accentColor: "#10B981"
   },
   "DOMICILIATION": {
     tagline: "Adresse prestigieuse République",
     metric: "120+ entreprises",
-    gradient: "from-slate-200 via-amber-50 to-slate-100",
+    gradient: "from-orange-400 via-amber-400 to-yellow-400",
     shadowColor: "rgba(245, 158, 11, 0.3)",
     accentColor: "#F59E0B"
   }
@@ -32,29 +32,25 @@ const serviceDetails = {
 
 export default function Hero() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 100]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
-  
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
-  // Mouse tracking for subtle image movement only
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      // Reduced movement range to prevent overflow
-      mouseX.set(x * 20);
-      mouseY.set(y * 20);
-      setMousePosition({ x: x * 50, y: y * 50 });
+      mouseX.set(x * 15);
+      mouseY.set(y * 15);
     };
 
     const container = containerRef.current;
@@ -64,7 +60,6 @@ export default function Hero() {
     }
   }, [mouseX, mouseY]);
 
-  // Word rotation
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWordIndex((prev) => (prev + 1) % animatedWords.length);
@@ -77,11 +72,9 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="relative h-screen flex items-center overflow-hidden bg-[#0A0A0A]">
-      {/* Sophisticated gradient base */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#0F0F0F] to-[#1A1A1A]"></div>
 
-        {/* Subtle mesh pattern */}
         <div className="absolute inset-0 opacity-[0.015]"
              style={{
                backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
@@ -90,7 +83,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Dynamic ambient light orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -125,7 +117,6 @@ export default function Hero() {
         </AnimatePresence>
       </div>
 
-      {/* Hero Image with ultra-smooth parallax */}
       <div className="absolute inset-0 z-0">
         <motion.div
           className="absolute inset-[-5%] overflow-hidden"
@@ -141,12 +132,10 @@ export default function Hero() {
               className="w-full h-full object-cover"
             />
 
-            {/* Multi-layer sophisticated overlays */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/70"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/80 via-transparent to-[#0A0A0A]"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent"></div>
 
-            {/* Subtle color accent overlay */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentWord}
@@ -162,39 +151,12 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Elegant light rays */}
-      <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute h-[0.5px] w-full"
-            style={{
-              top: `${20 + i * 15}%`,
-              background: `linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent)`
-            }}
-            animate={{
-              x: [-1200, 1200],
-              opacity: [0, 0.3, 0],
-            }}
-            transition={{
-              duration: 12 + i * 3,
-              repeat: Infinity,
-              delay: i * 2.5,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Main Content */}
       <motion.div
         style={{ y, opacity }}
         className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 w-full"
       >
         <div className="max-w-6xl">
-          {/* Title Section - Ultra Premium */}
           <div className="mb-8 sm:mb-10">
-            {/* VOTRE */}
             <motion.div
               initial={{ opacity: 0, y: 80, rotateX: 45 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -209,7 +171,6 @@ export default function Hero() {
               </h1>
             </motion.div>
 
-            {/* Rotating Word - Sophisticated animation */}
             <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 mb-3 sm:mb-4">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -249,7 +210,6 @@ export default function Hero() {
                     {currentWord}
                   </h2>
 
-                  {/* Premium tagline with icon */}
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -270,7 +230,6 @@ export default function Hero() {
               </AnimatePresence>
             </div>
 
-            {/* à Marseille - Elegant serif */}
             <motion.div
               initial={{ opacity: 0, y: 80, rotateX: 45 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -283,7 +242,6 @@ export default function Hero() {
                 à Marseille
               </h3>
 
-              {/* Refined accent line */}
               <motion.div
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
@@ -300,7 +258,6 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Refined description */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -312,14 +269,12 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          {/* Ultra-Premium CTA Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className={`flex flex-col sm:flex-row items-start ${designTokens.spacing.gap.sm} mb-8 sm:mb-10`}
           >
-            {/* Primary CTA - Minimalist Luxury */}
             <div className="relative w-full sm:w-auto group">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -339,7 +294,6 @@ export default function Hero() {
               </Button>
             </div>
 
-            {/* Secondary CTA - Ultra Glass */}
             <div className="relative w-full sm:w-auto">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none"
@@ -358,7 +312,6 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Refined Stats - Minimal & Elegant */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -391,10 +344,8 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Premium bottom fade with subtle vignette */}
       <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-24 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent z-[5] pointer-events-none"></div>
 
-      {/* Refined film grain texture */}
       <div className="absolute inset-0 z-[3] opacity-[0.015] mix-blend-overlay pointer-events-none">
         <svg width="100%" height="100%">
           <filter id="sophisticatedNoise">

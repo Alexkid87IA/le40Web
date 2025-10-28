@@ -9,8 +9,8 @@ const spaceCategories = [
     subtitle: 'Bureaux flexibles et privés',
     tagline: 'Votre écosystème créatif',
     icon: Users,
-    gradient: 'from-blue-500 via-cyan-500 to-teal-500',
-    accentColor: '#06b6d4',
+    gradient: 'from-cyan-500 via-blue-500 to-teal-500',
+    accentColor: '#06B6D4',
     spaces: [
       {
         name: 'Open Space',
@@ -89,8 +89,8 @@ const spaceCategories = [
     subtitle: 'Production professionnelle',
     tagline: 'Créez du contenu exceptionnel',
     icon: Video,
-    gradient: 'from-purple-500 via-pink-500 to-rose-500',
-    accentColor: '#ec4899',
+    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+    accentColor: '#10B981',
     spaces: [
       {
         name: 'Studio Podcast',
