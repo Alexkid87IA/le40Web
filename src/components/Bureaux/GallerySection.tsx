@@ -108,12 +108,10 @@ export default function GallerySection() {
 
                   <div className="relative h-full bg-zinc-900/50 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden group-hover:border-emerald-500/30 transition-all duration-500">
                     <div className="aspect-[4/3] relative overflow-hidden">
-                      <motion.img
+                      <img
                         src={item.images[0].url}
                         alt={item.images[0].alt}
                         className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.08 }}
-                        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                       />
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
