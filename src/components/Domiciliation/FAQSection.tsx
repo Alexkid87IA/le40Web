@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Sparkles } from 'lucide-react';
 import SectionHeader from './SectionHeader';
@@ -8,6 +8,18 @@ import { faqItems } from '../../data/domiciliation/faq';
 export default function FAQSection() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Filtrer les FAQs en fonction de la recherche (mémoïsé pour performance)
+  const filteredFaqItems = useMemo(() => {
+    if (!searchQuery.trim()) return faqItems;
+
+    const query = searchQuery.toLowerCase();
+    return faqItems.filter(
+      (item) =>
+        item.question.toLowerCase().includes(query) ||
+        item.answer.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
 
   return (
     <section className="relative py-32 bg-gradient-to-b from-black via-zinc-950 to-black overflow-hidden">
@@ -59,12 +71,17 @@ export default function FAQSection() {
                   <Search className="w-5 h-5 text-orange-400" />
                 </motion.div>
               </div>
+              <label htmlFor="faq-search" className="sr-only">
+                Rechercher dans la FAQ
+              </label>
               <input
+                id="faq-search"
                 type="text"
                 placeholder="Rechercher dans la FAQ..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-14 pr-5 py-5 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl text-white placeholder-white/40 focus:outline-none focus:border-orange-400/50 transition-all duration-300 font-inter"
+                aria-label="Rechercher dans les questions fréquentes"
+                className="w-full pl-14 pr-5 py-5 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl text-white placeholder-white/40 focus:outline-none focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/50 transition-all duration-300 font-inter"
               />
             </div>
           </div>
@@ -73,24 +90,44 @@ export default function FAQSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="mt-4 flex items-center gap-2 text-sm text-white/40 font-inter"
+            className="mt-4 flex items-center gap-2 text-sm text-white/60 font-inter"
           >
             <Sparkles className="w-4 h-4" />
-            <span>{faqItems.length} questions fréquentes</span>
+            <span>
+              {searchQuery ? `${filteredFaqItems.length} résultat${filteredFaqItems.length > 1 ? 's' : ''}` : `${faqItems.length} questions fréquentes`}
+            </span>
           </motion.div>
         </motion.div>
 
-        <div className="space-y-4">
-          {faqItems.map((item, index) => (
-            <FAQItem
-              key={index}
-              item={item}
-              index={index}
-              isOpen={openFaqIndex === index}
-              onToggle={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-            />
-          ))}
-        </div>
+        {filteredFaqItems.length > 0 ? (
+          <div className="space-y-4">
+            {filteredFaqItems.map((item, index) => (
+              <FAQItem
+                key={index}
+                item={item}
+                index={index}
+                isOpen={openFaqIndex === index}
+                onToggle={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+              />
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-12"
+          >
+            <p className="text-white/60 font-inter">
+              Aucune question ne correspond à votre recherche.
+            </p>
+            <button
+              onClick={() => setSearchQuery('')}
+              className="mt-4 text-orange-400 hover:text-orange-300 transition-colors font-medium"
+            >
+              Réinitialiser la recherche
+            </button>
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

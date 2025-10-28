@@ -1,39 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight, Check, Star, Shield, Building2, Zap, Phone, Mail, TrendingUp, Award, Clock } from 'lucide-react';
 import { designTokens } from '../../styles/designTokens';
 import Button from '../UI/Button';
+import { useParallaxMouse } from '../../hooks/useParallaxMouse';
 
 export default function HeroSection() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 100]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  // Hook personnalisé optimisé avec throttle pour l'effet parallax
+  const { containerRef, mouseX, mouseY } = useParallaxMouse(20, 16);
   const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      mouseX.set(x * 20);
-      mouseY.set(y * 20);
-      setMousePosition({ x: x * 50, y: y * 50 });
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('mousemove', handleMouseMove);
-      return () => container.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, [mouseX, mouseY]);
 
   const serviceDetails = {
     accentColor: "#F59E0B",
@@ -41,7 +20,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-red-600">
 
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
@@ -94,6 +73,12 @@ export default function HeroSection() {
               src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1920"
               alt="Domiciliation Marseille - Le 40"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              srcSet="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=640 640w,
+                      https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1280 1280w,
+                      https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1920 1920w"
+              sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/98 to-slate-950/85"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-transparent to-slate-950"></div>
@@ -149,7 +134,7 @@ export default function HeroSection() {
               <div className="flex items-center gap-1">
                 <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                 <span className="text-white/90 font-inter text-sm font-semibold">4.9/5</span>
-                <span className="text-white/50 text-xs">(127 avis)</span>
+                <span className="text-white/60 text-xs">(127 avis)</span>
               </div>
             </motion.div>
 
@@ -382,7 +367,7 @@ export default function HeroSection() {
                         <p className="text-white/90 font-inter text-sm leading-relaxed mb-1.5">
                           "{testimonial.text}"
                         </p>
-                        <p className="text-white/50 font-inter text-xs">
+                        <p className="text-white/60 font-inter text-xs">
                           <span className="font-semibold">{testimonial.name}</span> · {testimonial.role}
                         </p>
                       </div>

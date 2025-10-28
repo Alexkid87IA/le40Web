@@ -74,7 +74,7 @@ export const designTokens = {
 
   typography: {
     h1: {
-      size: 'text-5xl sm:text-6xl md:text-7xl lg:text-8xl',
+      size: 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl',
       weight: 'font-black',
       leading: 'leading-[0.9]',
       tracking: 'tracking-[-0.04em]',

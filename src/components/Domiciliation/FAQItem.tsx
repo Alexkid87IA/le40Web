@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Play, ArrowRight } from 'lucide-react';
 import { FAQItem as FAQItemType } from '../../data/domiciliation/faq';
@@ -9,7 +10,7 @@ interface FAQItemProps {
   onToggle: () => void;
 }
 
-export default function FAQItem({ item, index, isOpen, onToggle }: FAQItemProps) {
+const FAQItem = memo<FAQItemProps>(function FAQItem({ item, index, isOpen, onToggle }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,6 +29,9 @@ export default function FAQItem({ item, index, isOpen, onToggle }: FAQItemProps)
           className="w-full p-6 lg:p-7 text-left flex items-center justify-between group/button"
           whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.02)' }}
           transition={{ duration: 0.3 }}
+          aria-expanded={isOpen}
+          aria-controls={`faq-content-${index}`}
+          aria-label={`Question ${index + 1}: ${item.question}`}
         >
           <div className="flex items-start gap-4 flex-1 pr-4">
             <motion.div
@@ -38,7 +42,7 @@ export default function FAQItem({ item, index, isOpen, onToggle }: FAQItemProps)
               className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border border-white/10"
             >
               <span className={`text-sm font-bold font-montserrat transition-colors ${
-                isOpen ? 'text-orange-400' : 'text-white/40 group-hover/button:text-white/60'
+                isOpen ? 'text-orange-400' : 'text-white/60 group-hover/button:text-white/60'
               }`}>
                 {(index + 1).toString().padStart(2, '0')}
               </span>
@@ -54,7 +58,7 @@ export default function FAQItem({ item, index, isOpen, onToggle }: FAQItemProps)
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="shrink-0"
           >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 ${
+            <div className={`w-11 h-11 rounded-xl flex items-center justify-center border transition-all duration-300 ${
               isOpen
                 ? 'bg-orange-500/20 border-orange-500/30'
                 : 'bg-white/[0.03] border-white/10 group-hover/button:bg-white/[0.06]'
@@ -69,10 +73,13 @@ export default function FAQItem({ item, index, isOpen, onToggle }: FAQItemProps)
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              id={`faq-content-${index}`}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              role="region"
+              aria-labelledby={`faq-button-${index}`}
             >
               <div className="px-6 lg:px-7 pb-6 lg:pb-7">
                 <div className="ml-12">
@@ -121,4 +128,6 @@ export default function FAQItem({ item, index, isOpen, onToggle }: FAQItemProps)
       </div>
     </motion.div>
   );
-}
+});
+
+export default FAQItem;

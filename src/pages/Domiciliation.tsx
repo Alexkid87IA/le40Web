@@ -23,7 +23,7 @@ export default function Domiciliation() {
       <SidebarNav />
       <MobileBurger />
 
-      <main className="lg:ml-60">
+      <main className="md:ml-60 pb-28 md:pb-0">
         <HeroSection />
         <TrustLogosSection />
         <ProblemSection />
@@ -40,7 +40,7 @@ export default function Domiciliation() {
         <GuaranteesSection />
         <FinalCTASection />
 
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 p-4 bg-black/95 backdrop-blur-xl border-t border-white/10">
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 p-4 bg-black/95 backdrop-blur-xl border-t border-white/10">
           <div className="flex items-center justify-between gap-4">
             <div className="flex-1">
               <div className="text-white font-bold">Domiciliation Marseille</div>

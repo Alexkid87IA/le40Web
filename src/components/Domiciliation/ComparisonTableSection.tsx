@@ -96,10 +96,10 @@ export default function ComparisonTableSection() {
                         <span className="text-xs text-orange-400/60 font-inter">Notre service</span>
                       </div>
                     </th>
-                    <th className="text-center py-6 px-6 text-white/40 font-semibold font-montserrat text-sm">
+                    <th className="text-center py-6 px-6 text-white/60 font-semibold font-montserrat text-sm">
                       Concurrent A
                     </th>
-                    <th className="text-center py-6 px-6 text-white/40 font-semibold font-montserrat text-sm">
+                    <th className="text-center py-6 px-6 text-white/60 font-semibold font-montserrat text-sm">
                       Concurrent B
                     </th>
                   </tr>
@@ -143,7 +143,7 @@ export default function ComparisonTableSection() {
                         </div>
                       </td>
 
-                      <td className="text-center py-5 px-6 text-white/40 font-inter text-sm">
+                      <td className="text-center py-5 px-6 text-white/60 font-inter text-sm">
                         <div className="inline-flex items-center justify-center gap-2">
                           {row.competitorA.icon && (
                             <row.competitorA.icon className={`w-4 h-4 ${
@@ -156,7 +156,7 @@ export default function ComparisonTableSection() {
                         </div>
                       </td>
 
-                      <td className="text-center py-5 px-6 text-white/40 font-inter text-sm">
+                      <td className="text-center py-5 px-6 text-white/60 font-inter text-sm">
                         <div className="inline-flex items-center justify-center gap-2">
                           {row.competitorB.icon && (
                             <row.competitorB.icon className={`w-4 h-4 ${

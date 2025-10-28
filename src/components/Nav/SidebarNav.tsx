@@ -247,7 +247,7 @@ export default function SidebarNav() {
         initial={{ x: -300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="hidden lg:flex fixed left-0 top-0 h-screen w-[320px] bg-black/95 backdrop-blur-2xl border-r border-white/[0.06] flex-col z-50"
+        className="hidden md:flex fixed left-0 top-0 h-screen w-[320px] bg-black/95 backdrop-blur-2xl border-r border-white/[0.06] flex-col z-50"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-white/[0.01] pointer-events-none" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-40 pointer-events-none" />
@@ -369,7 +369,7 @@ export default function SidebarNav() {
         </div>
       </motion.nav>
 
-      <div className="hidden lg:block w-[320px]" />
+      <div className="hidden md:block w-[320px]" />
     </>
   );
 }

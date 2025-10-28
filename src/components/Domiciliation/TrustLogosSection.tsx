@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
+import { Rocket, Briefcase, Leaf, Palette, BarChart3, Smartphone } from 'lucide-react';
 
 export default function TrustLogosSection() {
   const clients = [
-    { name: 'TechStart', icon: '🚀' },
-    { name: 'ConseilPro', icon: '💼' },
-    { name: 'EcoDesign', icon: '🌱' },
-    { name: 'CreativeHub', icon: '🎨' },
-    { name: 'DataFlow', icon: '📊' },
-    { name: 'MediaCorp', icon: '📱' }
+    { name: 'TechStart', Icon: Rocket },
+    { name: 'ConseilPro', Icon: Briefcase },
+    { name: 'EcoDesign', Icon: Leaf },
+    { name: 'CreativeHub', Icon: Palette },
+    { name: 'DataFlow', Icon: BarChart3 },
+    { name: 'MediaCorp', Icon: Smartphone }
   ];
 
   const stats = [
@@ -38,7 +39,7 @@ export default function TrustLogosSection() {
                 transition={{ delay: index * 0.1 }}
                 className="flex flex-col items-center gap-2 opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300"
               >
-                <div className="text-4xl">{client.icon}</div>
+                <client.Icon className="w-12 h-12 text-white/60" />
                 <div className="text-white/60 text-xs font-semibold font-inter">{client.name}</div>
               </motion.div>
             ))}

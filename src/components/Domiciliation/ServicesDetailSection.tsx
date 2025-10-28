@@ -105,7 +105,7 @@ export default function ServicesDetailSection() {
                       <p className="text-xs text-white/90 italic font-inter leading-relaxed mb-1">
                         "{service.testimonial.quote}"
                       </p>
-                      <p className="text-xs text-white/40 font-inter">
+                      <p className="text-xs text-white/60 font-inter">
                         {service.testimonial.author}
                       </p>
                     </div>
