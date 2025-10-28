@@ -11,33 +11,22 @@ export default function CoworkingSection() {
     { icon: Zap, text: 'Salles de Réunion Incluses' }
   ];
 
+  const stats = [
+    { value: '120+', label: 'Membres actifs', icon: Users },
+    { value: '4000m²', label: 'Surface totale', icon: Building2 },
+    { value: '15+', label: 'Événements / mois', icon: Target }
+  ];
+
   return (
     <section id="coworking" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-950/30 via-[#0A0A0A] to-purple-950/20"></div>
-
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-violet-600/20 rounded-full blur-[150px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[140px]"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.15, 0.25, 0.15]
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-950/20 via-[#0A0A0A] to-amber-950/10"></div>
       </div>
 
       <div className="absolute inset-0 z-0">
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.4 }}
+          whileInView={{ opacity: 0.15 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
           className="absolute inset-0"
@@ -47,56 +36,83 @@ export default function CoworkingSection() {
             alt="Espace coworking Le 40"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/90 via-transparent to-[#0A0A0A]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-[#0A0A0A]"></div>
         </motion.div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/20 rounded-full px-4 py-2 mb-6">
-              <Users className="w-4 h-4 text-violet-400" />
-              <span className="text-violet-300 text-sm font-medium uppercase tracking-wider">Coworking Premium</span>
+            <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-2 mb-8">
+              <Users className="w-4 h-4 text-orange-400" />
+              <span className="text-orange-300 text-sm font-medium uppercase tracking-wider">Coworking Premium</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
-              Travaillez<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400">
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
+              Travaillez
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
                 Entouré d'Entrepreneurs
               </span>
             </h2>
 
-            <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
+            <p className="text-xl text-white/70 mb-12 leading-relaxed max-w-3xl">
               Rejoignez une communauté dynamique d'entrepreneurs, freelances et innovateurs dans nos espaces de travail haut de gamme. Flexibilité totale, équipements premium et networking au quotidien.
             </p>
+          </motion.div>
 
-            <div className="grid grid-cols-2 gap-4 mb-10">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="flex items-start gap-3"
-                >
-                  <div className="p-2 bg-violet-500/10 rounded-lg">
-                    <feature.icon className="w-5 h-5 text-violet-400" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid sm:grid-cols-3 gap-6 mb-12"
+          >
+            {stats.map((stat, index) => (
+              <div key={index} className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-white/40 text-sm">{stat.label}</div>
+                  <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                    <stat.icon className="w-5 h-5 text-orange-400" />
                   </div>
-                  <span className="text-white/80 text-sm leading-tight pt-1">{feature.text}</span>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+                <div className="text-3xl font-bold text-white">{stat.value}</div>
+              </div>
+            ))}
+          </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="grid sm:grid-cols-2 gap-4 mb-12"
+          >
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+                <div className="p-2 bg-orange-500/10 rounded-lg flex-shrink-0">
+                  <feature.icon className="w-5 h-5 text-orange-400" />
+                </div>
+                <span className="text-white/80 text-sm">{feature.text}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
             <div className="flex items-center gap-3 mb-8">
               <div className="text-white/50 text-sm">À partir de</div>
-              <div className="text-5xl font-montserrat font-black text-white">199€</div>
+              <div className="text-5xl font-bold text-white">199€</div>
               <div className="text-white/50 text-sm">/mois</div>
             </div>
 
@@ -106,7 +122,7 @@ export default function CoworkingSection() {
                 size="md"
                 icon={ArrowRight}
                 iconPosition="right"
-                className="bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white"
+                className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg shadow-orange-500/25"
               >
                 RÉSERVER MAINTENANT
               </Button>
@@ -114,66 +130,13 @@ export default function CoworkingSection() {
                 href="/tarifs"
                 variant="secondary"
                 size="md"
-                className="border-violet-500/30 text-violet-300 hover:bg-violet-500/10"
+                className="border-white/20 text-white hover:bg-white/10"
               >
                 Voir tous les tarifs
               </Button>
             </div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
-            className="hidden lg:block lg:mt-12"
-          >
-            <div className="relative max-w-sm">
-              <div className="absolute -inset-3 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl blur-2xl opacity-20"></div>
-              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-4 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-white/40 text-xs mb-0.5">Membres actifs</div>
-                    <div className="text-2xl font-bold text-white">120+</div>
-                  </div>
-                  <div className="p-2 bg-violet-500/10 rounded-lg">
-                    <Users className="w-6 h-6 text-violet-400" />
-                  </div>
-                </div>
-                <div className="h-px bg-white/10"></div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-white/40 text-xs mb-0.5">Surface totale</div>
-                    <div className="text-2xl font-bold text-white">4000m²</div>
-                  </div>
-                  <div className="p-2 bg-violet-500/10 rounded-lg">
-                    <Building2 className="w-6 h-6 text-violet-400" />
-                  </div>
-                </div>
-                <div className="h-px bg-white/10"></div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-white/40 text-xs mb-0.5">Événements / mois</div>
-                    <div className="text-2xl font-bold text-white">15+</div>
-                  </div>
-                  <div className="p-2 bg-violet-500/10 rounded-lg">
-                    <Target className="w-6 h-6 text-violet-400" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
-      </div>
-
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
-        <svg width="100%" height="100%">
-          <filter id="noiseCoworking">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseCoworking)" />
-        </svg>
       </div>
     </section>
   );
