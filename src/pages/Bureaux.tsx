@@ -102,7 +102,7 @@ export default function Bureaux() {
       <SidebarNav />
       <MobileBurger />
 
-      <main className="lg:ml-60">
+      <main className="md:ml-[320px]">
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0">
             <motion.div
