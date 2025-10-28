@@ -44,7 +44,7 @@ const footerStats = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black overflow-hidden lg:ml-[320px]">
+    <footer className="relative bg-black overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-950 to-black" />
 

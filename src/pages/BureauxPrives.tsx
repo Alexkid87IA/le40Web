@@ -1,4 +1,4 @@
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import BureauHeroSection from '../components/Bureaux/HeroSection';
@@ -14,10 +14,10 @@ import FinalCTASection from '../components/Bureaux/FinalCTASection';
 export default function BureauxPrives() {
   return (
     <div className="min-h-screen bg-black">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
 
-      <main className="lg:ml-60">
+      <main className="pt-24">
         <BureauHeroSection />
         <ProblemSolutionSection />
         <GallerySection />

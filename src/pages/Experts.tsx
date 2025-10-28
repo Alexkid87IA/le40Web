@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Star, ArrowRight, Sparkles, Award, Target, Zap, Heart, CheckCircle, Calendar } from 'lucide-react';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 
@@ -83,10 +83,10 @@ const testimonials = [
 export default function Experts() {
   return (
     <div className="min-h-screen bg-[#0F172A]">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60">
+      <main className="pt-24">
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 film-grain">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">

@@ -1,16 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Home, ArrowLeft, Search, Building2 } from 'lucide-react';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#0F172A]">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60 min-h-screen flex items-center justify-center">
+      <main className="pt-24 min-h-screen flex items-center justify-center">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

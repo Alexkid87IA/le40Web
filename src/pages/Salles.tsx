@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Clock, Users, Check, ArrowRight, Calendar, ChevronLeft, ChevronRight, Monitor, Wifi, Video, Presentation, Coffee, Sparkles, Award, MapPin, Phone, Mic, Sun, Music, Projector, X, ShoppingCart, Plus, Star, Zap, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import AddToCartButton from '../components/Cart/AddToCartButton';
@@ -195,10 +195,10 @@ export default function Salles() {
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60">
+      <main className="pt-24">
         {/* Hero Section avec effet parallax */}
         <motion.section 
           style={{ opacity: heroOpacity, scale: heroScale }}

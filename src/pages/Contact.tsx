@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, Sparkles, ArrowRight, Calendar, MessageSquare, User, Building } from 'lucide-react';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 
@@ -53,10 +53,10 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-black">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-[260px]">
+      <main className="pt-24">
         {/* Hero Section avec animation 3D */}
         <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
           {/* Background animé */}

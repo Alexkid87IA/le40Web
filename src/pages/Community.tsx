@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring, useInView } from 'framer-motion';
 import { Users, Calendar, Coffee, ArrowRight, Star, Heart, Zap, Target, Clock, Network, Sparkles, Rocket, Crown, TrendingUp, Handshake, Award, Shield, CheckCircle, Globe, Linkedin, Twitter, Mail, ChevronDown, Quote } from 'lucide-react';
 // Import des composants existants sans les recréer
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 
@@ -360,13 +360,13 @@ export default function Community() {
   return (
     <div ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden">
       {/* Sidebar Navigation */}
-      <SidebarNav />
+      <HeaderNav />
       
       {/* Mobile Menu */}
       <MobileBurger />
       
       {/* Main Content - with margin for sidebar */}
-      <main className="lg:ml-[260px]">
+      <main className="pt-24">
         {/* Hero Section Épique */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Animé */}

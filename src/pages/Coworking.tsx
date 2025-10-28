@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Wifi, Coffee, Clock, Check, ArrowRight, Star, Shield, Building2, Sparkles, ChevronRight, MapPin, Zap, Calendar, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 
@@ -138,10 +138,10 @@ export default function Coworking() {
 
   return (
     <div className="min-h-screen bg-black">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60">
+      <main className="pt-24">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           {/* Background avec effet parallax */}

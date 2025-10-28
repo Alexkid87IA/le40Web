@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, ArrowRight, Search, Filter, BookOpen } from 'lucide-react';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import { blogPosts } from '../data/mockData';
@@ -58,10 +58,10 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-[#0F172A]">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60">
+      <main className="pt-24">
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

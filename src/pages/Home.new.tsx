@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { usePreroll } from '../contexts/PrerollContext';
 import Preroll from '../components/Preroll/Preroll';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import SectionNavigator from '../components/Navigation/SectionNavigator';
 import Hero from '../sections/Hero';
@@ -38,11 +38,11 @@ export default function HomeNew() {
         />
       )}
 
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       <SectionNavigator />
 
-      <main className="lg:ml-60">
+      <main className="pt-24">
         <Hero />
         <CoworkingSection />
         <DomiciliationSection />

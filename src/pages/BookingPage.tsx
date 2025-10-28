@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, Users, MapPin, ArrowRight, Check, Sparkles, Building2, Presentation, Video, Coffee, Wifi, Monitor, Phone, ChevronRight } from 'lucide-react';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import { useCart } from '../hooks/useCart';
@@ -142,10 +142,10 @@ export default function BookingPage() {
 
   return (
     <div className="min-h-screen bg-black">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60">
+      <main className="pt-24">
         {/* Hero Section */}
         <section className="relative min-h-[40vh] flex items-center overflow-hidden">
           {/* Background animé */}

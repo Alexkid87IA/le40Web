@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Video, Clock, Users, Check, ArrowRight, Play, Mic, Camera, Calendar, Sparkles, Zap, Headphones, Radio, Film, Monitor, Wifi, Shield, Star, ChevronLeft, ChevronRight, X, ShoppingCart, Plus, Coffee, Car, Utensils, MapPin, Phone, Palette, Volume2, Image, Layers, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 
@@ -548,10 +548,10 @@ export default function Studios() {
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60">
+      <main className="pt-24">
         {/* Hero Section Premium avec univers 3D immersif */}
         <motion.section 
           style={{ 

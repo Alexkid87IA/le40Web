@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Building2, Users, Lock, Wifi, Coffee, Clock, ArrowRight, Check, Sparkles, Shield, Zap, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 
@@ -99,10 +99,10 @@ const comparisonFeatures = [
 export default function Bureaux() {
   return (
     <div className="min-h-screen bg-black">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
 
-      <main className="md:ml-[320px]">
+      <main className="pt-24">
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <div className="absolute inset-0">
             <motion.div

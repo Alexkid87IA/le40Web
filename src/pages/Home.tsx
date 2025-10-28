@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Hero from '../sections/Hero';
 import Services from '../sections/Services';
@@ -11,10 +11,10 @@ import Footer from '../components/Footer';
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0F172A]">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       
-      <main className="lg:ml-60">
+      <main className="pt-24">
         <Hero />
         <Services />
         <Spaces /> {/* Fusion de Coworking + Meeting + Studio */}
