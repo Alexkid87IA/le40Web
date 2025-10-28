@@ -2,18 +2,40 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ArrowRight, Check } from 'lucide-react';
 
+const SUCCESS_MESSAGE_DURATION = 3000;
+
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 export default function LeadMagnetSection() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email captured:', email);
+    setError('');
+
+    if (!validateEmail(email)) {
+      setError('Veuillez entrer une adresse email valide');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // TODO: Intégrer avec le backend
+    // await submitEmailToBackend(email);
+
     setSubmitted(true);
+    setIsSubmitting(false);
+
     setTimeout(() => {
       setSubmitted(false);
       setEmail('');
-    }, 3000);
+    }, SUCCESS_MESSAGE_DURATION);
   };
 
   const benefits = [
@@ -63,22 +85,44 @@ export default function LeadMagnetSection() {
               </div>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-6">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Votre email professionnel"
-                required
-                className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-orange-400 backdrop-blur-sm font-inter"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-lg hover:scale-105 transition-transform whitespace-nowrap flex items-center justify-center gap-2 font-montserrat"
-              >
-                Télécharger
-                <ArrowRight className="w-4 h-4" />
-              </button>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto mb-6">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <label htmlFor="lead-magnet-email" className="sr-only">
+                  Adresse email professionnelle
+                </label>
+                <input
+                  id="lead-magnet-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Votre email professionnel"
+                  required
+                  disabled={isSubmitting}
+                  aria-invalid={!!error}
+                  aria-describedby={error ? "email-error" : undefined}
+                  className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50 backdrop-blur-sm font-inter disabled:opacity-50 disabled:cursor-not-allowed"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  aria-label="Télécharger le guide gratuit"
+                  className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-lg hover:scale-105 transition-transform whitespace-nowrap flex items-center justify-center gap-2 font-montserrat disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {isSubmitting ? 'Envoi...' : 'Télécharger'}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+              {error && (
+                <motion.p
+                  id="email-error"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-400 text-sm text-left"
+                  role="alert"
+                >
+                  {error}
+                </motion.p>
+              )}
             </form>
           )}
 

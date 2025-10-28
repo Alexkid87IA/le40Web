@@ -43,9 +43,9 @@ export default function GoogleReviewsSection() {
               </div>
               <span className="text-2xl font-bold text-white font-montserrat">4.9/5</span>
             </div>
-            <h3 className="text-3xl font-black text-white mb-2 font-montserrat">
+            <h2 className="text-3xl font-black text-white mb-2 font-montserrat">
               Ce que disent nos clients sur Google
-            </h3>
+            </h2>
             <a
               href="https://www.google.com/search?q=le+40+marseille+avis"
               target="_blank"

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { DetailedService } from '../../data/domiciliation/services';
@@ -7,7 +8,7 @@ interface ServiceCardProps {
   index: number;
 }
 
-export default function ServiceCard({ service, index }: ServiceCardProps) {
+const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index }) {
   const isFirstService = index === 0;
 
   return (
@@ -69,4 +70,6 @@ export default function ServiceCard({ service, index }: ServiceCardProps) {
       </div>
     </motion.div>
   );
-}
+});
+
+export default ServiceCard;

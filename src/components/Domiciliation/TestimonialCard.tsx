@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { TrendingUp, Check, Quote } from 'lucide-react';
 import { Testimonial } from '../../data/domiciliation/testimonials';
@@ -7,7 +8,7 @@ interface TestimonialCardProps {
   index: number;
 }
 
-export default function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
+const TestimonialCard = memo<TestimonialCardProps>(function TestimonialCard({ testimonial, index }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, rotateX: 15 }}
@@ -128,4 +129,6 @@ export default function TestimonialCard({ testimonial, index }: TestimonialCardP
       </motion.div>
     </motion.div>
   );
-}
+});
+
+export default TestimonialCard;
