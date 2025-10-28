@@ -8,7 +8,7 @@ import Coworking from '../pages/Coworking';
 import BureauxPrives from '../pages/BureauxPrives';
 import Domiciliation from '../pages/Domiciliation';
 import Salles from '../pages/Salles';
-import Studios from '../pages/Studios/Studios';
+import Studios from '../pages/Studios';
 import Blog from '../pages/Blog';
 import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
