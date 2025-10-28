@@ -1,358 +1,250 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
-import { ArrowRight, Sparkles, PlayCircle } from 'lucide-react';
-import { designTokens } from '../../styles/designTokens';
-import Button from '../../components/UI/Button';
-
-const animatedWords = ["BUREAU", "STUDIO", "DOMICILIATION"];
-
-const serviceDetails = {
-  "BUREAU": {
-    tagline: "Espaces professionnels équipés",
-    metric: "4000m²",
-    gradient: "from-cyan-500 via-blue-500 to-teal-500",
-    shadowColor: "rgba(6, 182, 212, 0.3)",
-    accentColor: "#06B6D4"
-  },
-  "STUDIO": {
-    tagline: "Production audiovisuelle 4K/8K",
-    metric: "3 studios",
-    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
-    shadowColor: "rgba(16, 185, 129, 0.3)",
-    accentColor: "#10B981"
-  },
-  "DOMICILIATION": {
-    tagline: "Adresse professionnelle République",
-    metric: "120+ entreprises",
-    gradient: "from-orange-500 via-amber-500 to-yellow-500",
-    shadowColor: "rgba(245, 158, 11, 0.3)",
-    accentColor: "#F59E0B"
-  }
-};
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Users, Building2, Calendar, Wifi, Coffee, Zap, Calendar as CalendarIcon } from 'lucide-react';
 
 export default function Hero() {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 100]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
-
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      mouseX.set(x * 15);
-      mouseY.set(y * 15);
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('mousemove', handleMouseMove);
-      return () => container.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, [mouseX, mouseY]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWordIndex((prev) => (prev + 1) % animatedWords.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const currentWord = animatedWords[currentWordIndex];
-  const currentService = serviceDetails[currentWord];
-
   return (
-    <section ref={containerRef} className="relative h-screen flex items-center overflow-hidden bg-[#0A0A0A]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0A0A0A]">
+      {/* Background gradients */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A] via-[#0F0F0F] to-[#1A1A1A]"></div>
 
-        <div className="absolute inset-0 opacity-[0.015]"
-             style={{
-               backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-               backgroundSize: '48px 48px'
-             }}>
-        </div>
-      </div>
-
-      <div className="absolute inset-0 overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentWord}
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2 }}
-          >
-            <motion.div
-              className="absolute top-1/4 -left-48 w-96 h-96 rounded-full blur-[120px]"
-              style={{ backgroundColor: currentService.accentColor, opacity: 0.10 }}
-              animate={{
-                scale: [1, 1.2, 1],
-                x: [0, 50, 0],
-                y: [0, -30, 0]
-              }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 -right-48 w-[30rem] h-[30rem] rounded-full blur-[140px]"
-              style={{ backgroundColor: currentService.accentColor, opacity: 0.08 }}
-              animate={{
-                scale: [1, 1.15, 1],
-                x: [0, -50, 0],
-                y: [0, 40, 0]
-              }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="absolute inset-0 z-0">
-        <motion.div
-          className="absolute inset-[-5%] overflow-hidden"
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.015]"
           style={{
-            x: smoothMouseX,
-            y: smoothMouseY
+            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+            backgroundSize: '48px 48px'
           }}
-        >
-          <div className="relative w-full h-full">
-            <img
-              src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920"
-              alt="Le 40 - Espace de travail premium"
-              className="w-full h-full object-cover"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/70"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/80 via-transparent to-[#0A0A0A]"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent"></div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentWord}
-                className="absolute inset-0 mix-blend-soft-light"
-                style={{ backgroundColor: currentService.accentColor }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.04 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 2 }}
-              />
-            </AnimatePresence>
-          </div>
-        </motion.div>
+        />
       </div>
 
-      <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 w-full"
-      >
-        <div className="max-w-6xl">
-          <div className="mb-8 sm:mb-10">
+      {/* Ambient light effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-1/4 -left-48 w-96 h-96 rounded-full blur-[120px] bg-orange-500/10"
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 -right-48 w-[30rem] h-[30rem] rounded-full blur-[140px] bg-amber-500/8"
+          animate={{
+            scale: [1, 1.15, 1],
+            x: [0, -50, 0],
+            y: [0, 40, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+      </div>
+
+      {/* Main content container */}
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-16 py-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* Left column - Text content */}
+          <div className="space-y-8">
+            {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: 45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.4, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformPerspective: 1000 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
             >
-              <h1 className={`${designTokens.typography.h1.size} font-montserrat ${designTokens.typography.h1.weight} text-white ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} mb-2 sm:mb-3`}
-                  style={{
-                    textShadow: '0 4px 60px rgba(0,0,0,0.5)',
-                  }}>
-                VOTRE
-              </h1>
+              <Users className="w-4 h-4 text-orange-400" />
+              <span className="text-sm font-medium text-white/80 tracking-wide">
+                COWORKING PREMIUM
+              </span>
             </motion.div>
 
-            <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 mb-3 sm:mb-4">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentWord}
-                  className="absolute inset-0"
-                  initial={{
-                    opacity: 0,
-                    y: 60,
-                    scale: 0.95,
-                    rotateX: 20,
-                    filter: "blur(10px)"
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    rotateX: 0,
-                    filter: "blur(0px)"
-                  }}
-                  exit={{
-                    opacity: 0,
-                    y: -60,
-                    scale: 1.05,
-                    rotateX: -20,
-                    filter: "blur(10px)"
-                  }}
-                  transition={{
-                    duration: 1,
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  style={{ transformPerspective: 1000 }}
-                >
-                  <h2 className={`${designTokens.typography.h1.size} font-montserrat ${designTokens.typography.h1.weight} ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} bg-gradient-to-br ${currentService.gradient} bg-clip-text text-transparent`}
-                      style={{
-                        filter: `drop-shadow(0 2px 30px ${currentService.shadowColor})`,
-                      }}>
-                    {currentWord}
-                  </h2>
+            {/* Main heading */}
+            <div className="space-y-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.1] tracking-tight"
+              >
+                Travaillez
+              </motion.h1>
 
-                  <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex items-center gap-3 mt-2 sm:mt-3"
-                  >
-                    <div className="h-px w-6 sm:w-8 bg-gradient-to-r from-white/20 to-transparent"></div>
-                    <p className="text-xs sm:text-sm md:text-base font-inter text-white/40 tracking-wide">
-                      {currentService.tagline}
-                    </p>
-                    <div className="px-2 py-0.5 rounded-full bg-white/[0.03] border border-white/[0.08]">
-                      <span className="text-[10px] sm:text-xs font-montserrat font-semibold text-white/60">
-                        {currentService.metric}
-                      </span>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight"
+                style={{
+                  background: 'linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                Entouré
+              </motion.h1>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight"
+                style={{
+                  background: 'linear-gradient(135deg, #a855f7 0%, #c084fc 50%, #e879f9 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                d'Entrepreneurs
+              </motion.h1>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: 45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.8, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformPerspective: 1000 }}
-              className="mb-6 sm:mb-8"
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-xl font-light"
             >
-              <h3 className={`${designTokens.typography.h2.size} font-playfair italic font-light text-white/70 ${designTokens.typography.h2.leading}`}
-                  style={{ textShadow: '0 10px 40px rgba(0,0,0,0.5)' }}>
-                à Marseille
-              </h3>
+              Rejoignez une communauté dynamique d'entrepreneurs, freelances et innovateurs dans nos espaces de travail haut de gamme. Flexibilité totale, équipements premium et networking au quotidien.
+            </motion.p>
 
-              <motion.div
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ delay: 1.6, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-                className="relative mt-3 sm:mt-4 origin-left"
-              >
-                <div className="h-[1px] w-20 sm:w-24 bg-gradient-to-r from-white/30 via-white/10 to-transparent"></div>
-                <motion.div
-                  className="absolute top-0 left-0 h-[1px] w-6 bg-white/60"
-                  animate={{ x: [0, 80, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </motion.div>
+            {/* Feature pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-wrap items-center gap-3"
+            >
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                <Wifi className="w-4 h-4 text-cyan-400" />
+                <span className="text-sm text-white/70">Internet Très Haut Débit Fibre</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                <Coffee className="w-4 h-4 text-amber-400" />
+                <span className="text-sm text-white/70">Café & Thé Premium Illimités</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                <CalendarIcon className="w-4 h-4 text-orange-400" />
+                <span className="text-sm text-white/70">Accès 24/7 avec Badge</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                <Zap className="w-4 h-4 text-purple-400" />
+                <span className="text-sm text-white/70">Salles de Réunion Incluses</span>
+              </div>
+            </motion.div>
+
+            {/* Price and CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4"
+            >
+              <div className="space-y-1">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-xs text-white/40 uppercase tracking-wider">À partir de</span>
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-5xl sm:text-6xl font-bold text-white">199€</span>
+                  <span className="text-xl text-white/50">/mois</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <motion.a
+                  href="/contact"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all"
+                  style={{
+                    background: 'linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%)',
+                    color: 'white',
+                    boxShadow: '0 10px 40px rgba(249, 115, 22, 0.3)'
+                  }}
+                >
+                  <span>RÉSERVER MAINTENANT</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
+
+                <motion.a
+                  href="/tarifs"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base bg-white/5 border border-white/10 text-white backdrop-blur-sm hover:bg-white/10 transition-all"
+                >
+                  Voir tous les tarifs
+                </motion.a>
+              </div>
             </motion.div>
           </div>
 
+          {/* Right column - Stats card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-8 sm:mb-10 max-w-3xl"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative"
           >
-            <p className={`${designTokens.typography.body.size} font-inter font-light text-white/60 ${designTokens.typography.body.leading} tracking-wide`}>
-              Un écosystème professionnel où innovation, créativité et ambition entrepreneuriale se rencontrent.
-            </p>
-          </motion.div>
+            <div className="relative rounded-3xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 backdrop-blur-xl p-8 space-y-6">
+              {/* Glow effect */}
+              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-orange-500/20 via-amber-500/10 to-purple-500/20 blur-xl -z-10" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className={`flex flex-col sm:flex-row items-start ${designTokens.spacing.gap.sm} mb-8 sm:mb-10`}
-          >
-            <div className="relative w-full sm:w-auto group">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentWord}
-                  className="absolute -inset-[2px] rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700"
-                  style={{ backgroundColor: currentService.accentColor }}
-                />
-              </AnimatePresence>
-              <Button
-                href="/contact"
-                size="md"
-                icon={ArrowRight}
-                iconPosition="right"
-                className="relative bg-white text-black hover:bg-white/95 hover:shadow-none w-full sm:w-auto"
-              >
-                Réserver une visite
-              </Button>
-            </div>
+              {/* Stats items */}
+              <div className="space-y-6">
+                {/* Stat 1 */}
+                <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] transition-colors">
+                  <div className="space-y-1">
+                    <p className="text-sm text-white/50 font-medium">Membres actifs</p>
+                    <p className="text-4xl font-bold text-white">120+</p>
+                  </div>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 flex items-center justify-center">
+                    <Users className="w-7 h-7 text-orange-400" />
+                  </div>
+                </div>
 
-            <div className="relative w-full sm:w-auto">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none"
-                animate={{ x: [-300, 300] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              />
-              <Button
-                variant="secondary"
-                size="md"
-                icon={PlayCircle}
-                iconPosition="right"
-                className="w-full sm:w-auto relative"
-              >
-                Voir la vidéo
-              </Button>
+                {/* Stat 2 */}
+                <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] transition-colors">
+                  <div className="space-y-1">
+                    <p className="text-sm text-white/50 font-medium">Surface totale</p>
+                    <p className="text-4xl font-bold text-white">4000m²</p>
+                  </div>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center">
+                    <Building2 className="w-7 h-7 text-cyan-400" />
+                  </div>
+                </div>
+
+                {/* Stat 3 */}
+                <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.05] transition-colors">
+                  <div className="space-y-1">
+                    <p className="text-sm text-white/50 font-medium">Événements / mois</p>
+                    <p className="text-4xl font-bold text-white">15+</p>
+                  </div>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                    <Calendar className="w-7 h-7 text-purple-400" />
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 lg:gap-8"
-          >
-            <div className="flex items-center gap-2">
-              <motion.div
-                className="w-1 h-1 rounded-full bg-emerald-400"
-                animate={{ opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <span className="text-white/50 font-inter text-[10px] sm:text-xs tracking-wide">
-                Disponible immédiatement
-              </span>
-            </div>
-
-            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
-
-            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
-              <span className="text-white/80 font-semibold">120+</span> entreprises
-            </div>
-
-            <div className="h-px w-8 sm:w-6 bg-white/10 hidden sm:block"></div>
-
-            <div className="font-inter text-[10px] sm:text-xs text-white/50 tracking-wide">
-              <span className="text-white/80 font-semibold">4000m²</span> d'espaces
-            </div>
-          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-24 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/90 to-transparent z-[5] pointer-events-none"></div>
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0A0A] to-transparent z-[5] pointer-events-none" />
 
+      {/* Noise texture overlay */}
       <div className="absolute inset-0 z-[3] opacity-[0.015] mix-blend-overlay pointer-events-none">
         <svg width="100%" height="100%">
-          <filter id="sophisticatedNoise">
+          <filter id="noise">
             <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" />
             <feColorMatrix type="saturate" values="0" />
           </filter>
-          <rect width="100%" height="100%" filter="url(#sophisticatedNoise)" />
+          <rect width="100%" height="100%" filter="url(#noise)" />
         </svg>
       </div>
     </section>
