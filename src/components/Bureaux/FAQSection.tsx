@@ -6,16 +6,22 @@ import { bureauFAQ } from '../../data/bureaux/faq';
 export default function FAQSection() {
   const [openId, setOpenId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState<string>('Toutes');
+  const [activeCategory, setActiveCategory] = useState<string>('Essentiel');
+  const [showAll, setShowAll] = useState(false);
 
-  const categories = ['Toutes', ...Array.from(new Set(bureauFAQ.map(faq => faq.category)))];
+  const essentialQuestionIds = [1, 4, 7, 10, 13, 16];
+
+  const categories = ['Essentiel', 'Toutes', ...Array.from(new Set(bureauFAQ.map(faq => faq.category)))];
 
   const filteredFAQ = bureauFAQ.filter(faq => {
     const matchesSearch = faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'Toutes' || faq.category === activeCategory;
+    const matchesCategory = activeCategory === 'Toutes' ||
+                           (activeCategory === 'Essentiel' ? essentialQuestionIds.includes(faq.id) : faq.category === activeCategory);
     return matchesSearch && matchesCategory;
   });
+
+  const displayedFAQ = showAll || activeCategory !== 'Essentiel' ? filteredFAQ : filteredFAQ.slice(0, 6);
 
   return (
     <section className="py-32 bg-gradient-to-b from-black to-zinc-900">
@@ -74,7 +80,7 @@ export default function FAQSection() {
         </motion.div>
 
         <div className="space-y-4">
-          {filteredFAQ.map((faq, index) => (
+          {displayedFAQ.map((faq, index) => (
             <motion.div
               key={faq.id}
               initial={{ opacity: 0, y: 20 }}
@@ -121,7 +127,22 @@ export default function FAQSection() {
           ))}
         </div>
 
-        {filteredFAQ.length === 0 && (
+        {activeCategory === 'Essentiel' && !showAll && filteredFAQ.length > 6 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mt-8"
+          >
+            <button
+              onClick={() => setShowAll(true)}
+              className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 rounded-xl text-white font-inter font-semibold transition-all"
+            >
+              Voir plus de questions ({filteredFAQ.length - 6} autres)
+            </button>
+          </motion.div>
+        )}
+
+        {displayedFAQ.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

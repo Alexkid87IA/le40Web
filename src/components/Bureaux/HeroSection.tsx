@@ -61,13 +61,6 @@ export default function BureauHeroSection() {
               >
                 <Shield className="w-4 h-4 text-emerald-400" />
                 <span className="text-emerald-300 font-inter text-sm font-bold">Bureaux Disponibles</span>
-                <div className="w-px h-4 bg-emerald-400/30"></div>
-                <motion.div
-                  className="w-2 h-2 rounded-full bg-green-400"
-                  animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <span className="text-white/90 font-inter text-sm font-semibold">3 bureaux restants</span>
               </motion.div>
 
               <motion.h1

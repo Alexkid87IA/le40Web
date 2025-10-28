@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Monitor, Video, ArrowRight, CheckCircle, Star, Award, Zap, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { Users, Monitor, Video, ArrowRight, CheckCircle, Star, Award, Zap, ChevronLeft, ChevronRight, Sparkles, Building2, Shield } from 'lucide-react';
 
 const spaceCategories = [
   {
     id: 'coworking',
     title: 'Espaces Coworking',
-    subtitle: 'Bureaux flexibles et privés',
+    subtitle: 'Bureaux flexibles et communauté',
     tagline: 'Votre écosystème créatif',
     icon: Users,
     gradient: 'from-cyan-500 via-blue-500 to-teal-500',
@@ -14,18 +14,38 @@ const spaceCategories = [
     spaces: [
       {
         name: 'Open Space',
-        capacity: '50 postes',
-        price: 250,
+        capacity: '120+ postes',
+        price: 299,
         priceLabel: '€/mois',
-        features: ['Bureaux flexibles', 'Écrans 4K', 'Casiers sécurisés', 'Wifi 1Gb/s'],
+        features: ['Bureaux flexibles', 'Écrans disponibles', 'Casiers sécurisés', 'Wifi 1Gb/s'],
         highlight: 'L\'énergie collective',
         icon: Users,
         popular: true
       },
       {
+        name: 'Terrasse',
+        capacity: 'Espace partagé',
+        price: 0,
+        priceLabel: 'Inclus',
+        features: ['Vue dégagée', 'Mobilier confort', 'Espace détente', 'Accès membres'],
+        highlight: 'Travaillez en plein air',
+        icon: Sparkles
+      }
+    ]
+  },
+  {
+    id: 'bureaux',
+    title: 'Bureaux Privés',
+    subtitle: 'Espaces dédiés pour équipes',
+    tagline: 'Votre QG professionnel',
+    icon: Building2,
+    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+    accentColor: '#10B981',
+    spaces: [
+      {
         name: 'Bureaux Privés',
-        capacity: '2-10 personnes',
-        price: 800,
+        capacity: '2-20 personnes',
+        price: 699,
         priceLabel: '€/mois',
         features: ['Mobilier premium', 'Ligne téléphonique', 'Stockage privé', 'Personnalisable'],
         highlight: 'Votre espace dédié',
@@ -33,13 +53,13 @@ const spaceCategories = [
         featured: true
       },
       {
-        name: 'Phone Box',
-        capacity: '1 personne',
-        price: 0,
-        priceLabel: 'Inclus',
-        features: ['Insonorisation totale', 'Éclairage optimal', 'Ventilation', 'Réservation app'],
-        highlight: 'Confidentialité garantie',
-        icon: Zap
+        name: 'Parking Privé',
+        capacity: 'Sécurisé 24/7',
+        price: 150,
+        priceLabel: '€/mois',
+        features: ['Accès sécurisé', 'Places réservées', 'Vidéosurveillance', 'Accès badge'],
+        highlight: 'Stationnement garanti',
+        icon: Shield
       }
     ]
   },
@@ -54,7 +74,7 @@ const spaceCategories = [
     spaces: [
       {
         name: 'Salle Conférence',
-        capacity: '2-50 personnes',
+        capacity: 'Jusqu\'à 50 personnes',
         price: 150,
         priceLabel: '€/heure',
         features: ['Écran géant 85"', 'Système audio pro', 'Streaming HD', 'Visioconférence'],
@@ -63,63 +83,45 @@ const spaceCategories = [
         featured: true
       },
       {
-        name: 'Salle Créative',
-        capacity: '4-20 personnes',
-        price: 80,
+        name: 'Salles de Réunion',
+        capacity: '2-50 personnes',
+        price: 50,
         priceLabel: '€/heure',
-        features: ['Murs inscriptibles', 'Écrans tactiles', 'Kit créatif', 'Mobilier modulable'],
-        highlight: 'Brainstorming dynamique',
-        icon: Star,
+        features: ['Écrans connectés', 'Tableau blanc', 'Visioconférence', 'Configurations flexibles'],
+        highlight: 'Pour tous vos besoins',
+        icon: Users,
         popular: true
-      },
-      {
-        name: 'Salle Executive',
-        capacity: '6-12 personnes',
-        price: 120,
-        priceLabel: '€/heure',
-        features: ['Table ovale premium', 'Visio 4K', 'Bar privé', 'Service conciergerie'],
-        highlight: 'Réunions stratégiques',
-        icon: Award
       }
     ]
   },
   {
     id: 'studio',
-    title: 'Studios Audio/Vidéo',
+    title: 'Studios Créatifs',
     subtitle: 'Production professionnelle',
     tagline: 'Créez du contenu exceptionnel',
     icon: Video,
-    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
-    accentColor: '#10B981',
+    gradient: 'from-purple-500 via-pink-500 to-rose-500',
+    accentColor: '#a855f7',
     spaces: [
       {
-        name: 'Studio Podcast',
-        capacity: '2-4 personnes',
-        price: 60,
+        name: 'Studio Créatif',
+        capacity: '5-15 personnes',
+        price: 80,
         priceLabel: '€/heure',
-        features: ['Micros Shure SM7B', 'Traitement acoustique', 'Rodecaster Pro', 'Éclairage LED'],
+        features: ['Matériel photo/vidéo', 'Éclairage pro', 'Fond modulable', 'Équipement audio'],
         highlight: 'Qualité broadcast',
         icon: Video,
         popular: true
       },
       {
-        name: 'Studio Vidéo',
-        capacity: '5-10 personnes',
-        price: 100,
+        name: 'Studios de Tournage',
+        capacity: '20-200m²',
+        price: 120,
         priceLabel: '€/heure',
-        features: ['Sony FX6', 'Fond vert 6m', 'Éclairage Aputure', 'Prompteur'],
+        features: ['4 studios disponibles', 'Équipement complet', 'Fonds verts', 'Régie intégrée'],
         highlight: 'Production cinéma',
         icon: Monitor,
         featured: true
-      },
-      {
-        name: 'Studio Hybride',
-        capacity: '3-8 personnes',
-        price: 80,
-        priceLabel: '€/heure',
-        features: ['Audio + Vidéo', 'Streaming multi-cam', 'Régie intégrée', 'Post-production'],
-        highlight: 'Tout-en-un créatif',
-        icon: Sparkles
       }
     ]
   }

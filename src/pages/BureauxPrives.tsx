@@ -8,7 +8,6 @@ import TestimonialsSection from '../components/Bureaux/TestimonialsSection';
 import ProcessSection from '../components/Bureaux/ProcessSection';
 import FAQSection from '../components/Bureaux/FAQSection';
 import ComparisonSection from '../components/Bureaux/ComparisonSection';
-import UrgencySection from '../components/Bureaux/UrgencySection';
 import GuaranteesSection from '../components/Bureaux/GuaranteesSection';
 import FinalCTASection from '../components/Bureaux/FinalCTASection';
 
@@ -27,7 +26,6 @@ export default function BureauxPrives() {
         <ComparisonSection />
         <FAQSection />
         <GuaranteesSection />
-        <UrgencySection />
         <FinalCTASection />
       </main>
 
