@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ArrowRight, Check } from 'lucide-react';
+import { logger } from '../../utils/logger';
 
 export default function LeadMagnetSection() {
   const [email, setEmail] = useState('');
@@ -8,7 +9,10 @@ export default function LeadMagnetSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email captured:', email);
+    logger.info('Lead magnet email captured', {
+      context: 'domiciliation',
+      emailProvided: !!email
+    });
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);

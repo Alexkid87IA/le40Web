@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Sparkles, MessageCircle, Calendar, ArrowRight, User, Briefcase, Zap } from 'lucide-react';
+import { logger } from '../../utils/logger';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,7 +16,10 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    logger.info('Contact form submitted', {
+      service: formData.service,
+      hasMessage: !!formData.message
+    });
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);

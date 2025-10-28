@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { env } from '../utils/env';
+import { logger } from '../utils/logger';
+import { isValidSessionId } from '../utils/validation';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Utilisation des variables d'environnement validées
+const supabase = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY);
 
 interface PrerollContextType {
   showPreroll: boolean;
@@ -48,9 +49,17 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
   const logSelection = async (serviceId: string, interactionData?: Record<string, any>) => {
     try {
       const sessionId = getOrCreateSessionId();
+
+      // Validation du sessionId
+      if (!isValidSessionId(sessionId)) {
+        logger.warn('Invalid session ID format, regenerating', { sessionId });
+        sessionStorage.removeItem(SESSION_ID_KEY);
+        return;
+      }
+
       const timestamp = new Date().toISOString();
 
-      await supabase.from('preroll_selections').insert({
+      const { error } = await supabase.from('preroll_selections').insert({
         session_id: sessionId,
         selected_service: serviceId,
         user_agent: navigator.userAgent,
@@ -60,8 +69,17 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
         timestamp: timestamp,
         interaction_data: interactionData || null
       });
+
+      if (error) {
+        throw error;
+      }
+
+      logger.debug('Preroll selection logged', { serviceId, sessionId });
     } catch (error) {
-      console.error('Error logging preroll selection:', error);
+      logger.error('Error logging preroll selection', error, {
+        context: 'PrerollContext.logSelection',
+        serviceId,
+      });
     }
   };
 

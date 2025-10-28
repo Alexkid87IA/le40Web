@@ -1,17 +1,9 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import { validateCart, safeJsonParse, type CartItem } from '../utils/validation';
+import { logger } from '../utils/logger';
 
-// Types
-export interface CartItem {
-  id: string;
-  serviceType: 'coworking' | 'meeting-room' | 'studio' | 'private-office' | 'domiciliation';
-  serviceName: string;
-  date: string;
-  startTime?: string;
-  endTime?: string;
-  duration: 'hour' | 'half-day' | 'day' | 'week' | 'month';
-  price: number;
-  quantity: number;
-}
+// Re-export CartItem type for backward compatibility
+export type { CartItem };
 
 interface CartContextType {
   items: CartItem[];
@@ -31,11 +23,21 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Charger le panier depuis localStorage
+  // Charger le panier depuis localStorage avec validation
   useEffect(() => {
-    const savedCart = localStorage.getItem('le40-cart');
-    if (savedCart) {
-      setItems(JSON.parse(savedCart));
+    try {
+      const savedCart = localStorage.getItem('le40-cart');
+      const parsedData = safeJsonParse(savedCart);
+      const validatedCart = validateCart(parsedData);
+
+      if (validatedCart.length > 0) {
+        setItems(validatedCart);
+        logger.debug('Cart loaded from localStorage', { itemCount: validatedCart.length });
+      }
+    } catch (error) {
+      logger.error('Failed to load cart from localStorage', error, { context: 'CartContext.useEffect' });
+      // En cas d'erreur, on reset le localStorage
+      localStorage.removeItem('le40-cart');
     }
   }, []);
 
