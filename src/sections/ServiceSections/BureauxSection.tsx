@@ -106,7 +106,7 @@ export default function BureauxSection() {
                 size="md"
                 icon={ArrowRight}
                 iconPosition="right"
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white"
+                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white sm:min-w-[280px]"
               >
                 DÉCOUVRIR NOS BUREAUX
               </Button>
@@ -114,7 +114,7 @@ export default function BureauxSection() {
                 href="/contact"
                 variant="secondary"
                 size="md"
-                className="border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10"
+                className="border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10 sm:min-w-[280px]"
               >
                 Demander une visite
               </Button>
