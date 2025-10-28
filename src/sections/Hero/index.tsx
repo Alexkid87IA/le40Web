@@ -89,7 +89,7 @@ export default function Hero() {
               <div className="space-y-4">
                 <button
                   onClick={() => {
-                    const element = document.getElementById('services');
+                    const element = document.getElementById('coworking');
                     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
                   className={`block w-full text-left ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-cyan-500/30`}
@@ -103,13 +103,13 @@ export default function Hero() {
 
                 <button
                   onClick={() => {
-                    const element = document.getElementById('services');
+                    const element = document.getElementById('bureaux');
                     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
-                  className={`block w-full text-left ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-cyan-500/30`}
+                  className={`block w-full text-left ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-emerald-500/30`}
                 >
-                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-cyan-500/10 flex items-center justify-center mb-4`}>
-                    <Building2 className="w-6 h-6 text-cyan-400" />
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-emerald-500/10 flex items-center justify-center mb-4`}>
+                    <Building2 className="w-6 h-6 text-emerald-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Bureaux Privés</h3>
                   <p className="text-sm text-slate-400">Espaces dédiés équipés</p>
@@ -119,7 +119,7 @@ export default function Hero() {
               <div className="space-y-4 pt-8">
                 <button
                   onClick={() => {
-                    const element = document.getElementById('services');
+                    const element = document.getElementById('domiciliation');
                     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
                   className={`block w-full text-left ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-amber-500/30`}
@@ -133,13 +133,13 @@ export default function Hero() {
 
                 <button
                   onClick={() => {
-                    const element = document.getElementById('services');
+                    const element = document.getElementById('studios-pro');
                     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
-                  className={`block w-full text-left ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-emerald-500/30`}
+                  className={`block w-full text-left ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-blue-500/30`}
                 >
-                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-emerald-500/10 flex items-center justify-center mb-4`}>
-                    <Video className="w-6 h-6 text-emerald-400" />
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-blue-500/10 flex items-center justify-center mb-4`}>
+                    <Video className="w-6 h-6 text-blue-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Studios Pro</h3>
                   <p className="text-sm text-slate-400">Audio & vidéo équipés</p>
