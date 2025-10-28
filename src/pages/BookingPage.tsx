@@ -256,7 +256,7 @@ export default function BookingPage() {
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <h2 className="text-3xl font-montserrat font-bold text-white mb-8">
+                  <h2 className="text-3xl font-montserrat font-black text-white mb-8">
                     Choisissez votre espace
                   </h2>
                   
@@ -326,7 +326,7 @@ export default function BookingPage() {
                   transition={{ duration: 0.5 }}
                 >
                   <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-3xl font-montserrat font-bold text-white">
+                    <h2 className="text-3xl font-montserrat font-black text-white">
                       Choisissez date et durée
                     </h2>
                     <button
@@ -470,7 +470,7 @@ export default function BookingPage() {
                   transition={{ duration: 0.5 }}
                 >
                   <div className="flex items-center justify-between mb-8">
-                    <h2 className="text-3xl font-montserrat font-bold text-white">
+                    <h2 className="text-3xl font-montserrat font-black text-white">
                       Confirmez votre réservation
                     </h2>
                     <button
@@ -563,7 +563,7 @@ export default function BookingPage() {
               transition={{ duration: 0.6 }}
             >
               <Sparkles className="w-12 h-12 text-purple-400 mx-auto mb-6" />
-              <h2 className="text-3xl font-montserrat font-bold text-white mb-4">
+              <h2 className="text-3xl font-montserrat font-black text-white mb-4">
                 Besoin d'aide pour votre réservation ?
               </h2>
               <p className="text-white/60 font-inter mb-8">

@@ -493,7 +493,7 @@ export default function Community() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               Les Piliers de Notre
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
                 Communauté
@@ -521,7 +521,7 @@ export default function Community() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               Agenda
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
                 Premium
@@ -551,7 +551,7 @@ export default function Community() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               Ils Ont Rejoint
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
                 Le Cercle
@@ -607,7 +607,7 @@ export default function Community() {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-5xl md:text-6xl font-black mb-6">
               Devenir
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                 Membre
@@ -683,7 +683,7 @@ export default function Community() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-6xl md:text-7xl font-bold mb-6">
+            <h2 className="text-6xl md:text-7xl font-black mb-6">
               Prêt à Rejoindre
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400">
                 L'Élite ?

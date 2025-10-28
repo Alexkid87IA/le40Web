@@ -6,12 +6,12 @@ import MobileBurger from '../components/Nav/MobileBurger';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60 min-h-screen flex items-center justify-center">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-2xl mx-auto px-6 sm:px-8 lg:px-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export default function NotFound() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="space-y-4"
             >
-              <h1 className="text-3xl sm:text-4xl font-bold text-white">
+              <h1 className="text-3xl sm:text-4xl font-black text-white">
                 Page introuvable
               </h1>
               <p className="text-xl text-gray-300 max-w-lg mx-auto">

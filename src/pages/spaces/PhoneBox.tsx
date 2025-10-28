@@ -42,23 +42,23 @@ const testimonials = [
 
 export default function PhoneBox() {
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 overflow-hidden">
+        <section className="relative py-20 bg-gradient-to-b from-[#0A0A0A] to-slate-900 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1920"
               alt="Phone Box & Call Rooms"
               className="w-full h-full object-cover opacity-30 ken-burns"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/90 to-slate-900/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/90 to-slate-900/80"></div>
           </div>
           
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function PhoneBox() {
                 <span className="text-sm font-inter font-medium text-white/80 tracking-wide">ESPACE N°3</span>
               </motion.div>
 
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+              <h1 className="text-5xl sm:text-6xl font-black text-white mb-6">
                 Cabines Téléphoniques & <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">Salles d'Appel</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
@@ -120,7 +120,7 @@ export default function PhoneBox() {
 
         {/* Description détaillée */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -128,7 +128,7 @@ export default function PhoneBox() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold text-white mb-6">
+                <h2 className="text-3xl font-black text-white mb-6">
                   Confidentialité et <span className="text-green-400">professionnalisme</span>
                 </h2>
                 <p className="text-gray-300 text-lg leading-relaxed mb-8">
@@ -173,8 +173,8 @@ export default function PhoneBox() {
         </section>
 
         {/* Types d'espaces */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ export default function PhoneBox() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Deux types d'<span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">espaces</span>
               </h2>
             </motion.div>
@@ -263,7 +263,7 @@ export default function PhoneBox() {
 
         {/* Galerie */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -271,7 +271,7 @@ export default function PhoneBox() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Nos <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">installations</span>
               </h2>
             </motion.div>
@@ -300,8 +300,8 @@ export default function PhoneBox() {
         </section>
 
         {/* Équipements complets */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -309,7 +309,7 @@ export default function PhoneBox() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Équipements <span className="text-green-400">inclus</span>
               </h2>
             </motion.div>
@@ -334,7 +334,7 @@ export default function PhoneBox() {
 
         {/* Témoignages */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -342,7 +342,7 @@ export default function PhoneBox() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Retours <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">utilisateurs</span>
               </h2>
             </motion.div>
@@ -387,15 +387,15 @@ export default function PhoneBox() {
         </section>
 
         {/* CTA Final */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
                 Besoin d'un espace pour vos appels ?
               </h2>
               <p className="text-xl text-gray-300 mb-8">

@@ -79,7 +79,7 @@ export default function GallerySection() {
 
         {/* Floating particles with glow */}
         <div className="absolute inset-0 pointer-events-none">
-          {[...Array(60)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 rounded-full"

@@ -44,9 +44,9 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#0F172A] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Article non trouvé</h1>
+          <h1 className="text-2xl font-black text-white mb-4">Article non trouvé</h1>
           <a href="/blog" className="text-orange-400 hover:text-orange-300">
             Retour au blog
           </a>
@@ -56,14 +56,14 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-20 bg-gradient-to-b from-[#0A0A0A] to-slate-900">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function BlogPost() {
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight">
                 {post.title}
               </h1>
 
@@ -120,7 +120,7 @@ export default function BlogPost() {
 
         {/* Article Content */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
               {/* Main Content */}
               <motion.article
@@ -153,7 +153,7 @@ export default function BlogPost() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                       </p>
                       
-                      <h2 className="text-2xl font-bold text-white mt-8 mb-4">
+                      <h2 className="text-2xl font-black text-white mt-8 mb-4">
                         Les tendances actuelles
                       </h2>
                       
@@ -189,7 +189,7 @@ export default function BlogPost() {
                         </li>
                       </ul>
                       
-                      <h2 className="text-2xl font-bold text-white mt-8 mb-4">
+                      <h2 className="text-2xl font-black text-white mt-8 mb-4">
                         Conclusion
                       </h2>
                       
@@ -274,8 +274,8 @@ export default function BlogPost() {
         </section>
 
         {/* Related Articles */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -283,7 +283,7 @@ export default function BlogPost() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl font-bold text-white mb-6">
+              <h2 className="text-3xl font-black text-white mb-6">
                 Articles <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">similaires</span>
               </h2>
             </motion.div>

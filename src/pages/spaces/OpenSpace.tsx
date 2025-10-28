@@ -42,23 +42,23 @@ const testimonials = [
 
 export default function OpenSpace() {
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 overflow-hidden">
+        <section className="relative py-20 bg-gradient-to-b from-[#0A0A0A] to-slate-900 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=1920"
               alt="Open Space Lumineux"
               className="w-full h-full object-cover opacity-30 ken-burns"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/90 to-slate-900/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/90 to-slate-900/80"></div>
           </div>
           
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function OpenSpace() {
                 <span className="text-sm font-inter font-medium text-white/80 tracking-wide">ESPACE N°1</span>
               </motion.div>
 
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+              <h1 className="text-5xl sm:text-6xl font-black text-white mb-6">
                 Open Space <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Lumineux</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
@@ -120,7 +120,7 @@ export default function OpenSpace() {
 
         {/* Description détaillée */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -128,7 +128,7 @@ export default function OpenSpace() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold text-white mb-6">
+                <h2 className="text-3xl font-black text-white mb-6">
                   Un espace pensé pour votre <span className="text-orange-400">productivité</span>
                 </h2>
                 <p className="text-gray-300 text-lg leading-relaxed mb-8">
@@ -173,8 +173,8 @@ export default function OpenSpace() {
         </section>
 
         {/* Galerie */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ export default function OpenSpace() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Découvrez l'<span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">espace</span>
               </h2>
             </motion.div>
@@ -212,7 +212,7 @@ export default function OpenSpace() {
 
         {/* Équipements complets */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -220,7 +220,7 @@ export default function OpenSpace() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Équipements <span className="text-orange-400">inclus</span>
               </h2>
             </motion.div>
@@ -244,8 +244,8 @@ export default function OpenSpace() {
         </section>
 
         {/* Témoignages */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -253,7 +253,7 @@ export default function OpenSpace() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Avis des <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">utilisateurs</span>
               </h2>
             </motion.div>
@@ -299,14 +299,14 @@ export default function OpenSpace() {
 
         {/* CTA Final */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
                 Prêt à rejoindre l'open space ?
               </h2>
               <p className="text-xl text-gray-300 mb-8">

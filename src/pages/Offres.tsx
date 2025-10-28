@@ -47,21 +47,21 @@ const faqData = [
 
 export default function Offres() {
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-20 bg-gradient-to-b from-[#0A0A0A] to-slate-900">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+              <h1 className="text-5xl sm:text-6xl font-black text-white mb-6">
                 Toutes nos <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Offres</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -73,7 +73,7 @@ export default function Offres() {
 
         {/* Categories Overview */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {offerCategories.map((category, index) => (
                 <motion.div
@@ -108,8 +108,8 @@ export default function Offres() {
 
         {/* All Pricing Plans */}
         {Object.entries(pricingData).map(([categoryKey, plans], categoryIndex) => (
-          <section key={categoryKey} className={`py-20 ${categoryIndex % 2 === 0 ? 'bg-[#0F172A]' : 'bg-slate-900'}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section key={categoryKey} className={`py-20 ${categoryIndex % 2 === 0 ? 'bg-[#0A0A0A]' : 'bg-slate-900'}`}>
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -117,7 +117,7 @@ export default function Offres() {
                 transition={{ duration: 0.6 }}
                 className="text-center mb-12"
               >
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 capitalize">
+                <h2 className="text-3xl sm:text-4xl font-black text-white mb-4 capitalize">
                   Formules <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">{categoryKey}</span>
                 </h2>
               </motion.div>
@@ -176,7 +176,7 @@ export default function Offres() {
 
         {/* FAQ Section */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -184,7 +184,7 @@ export default function Offres() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
                 Questions <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Fréquentes</span>
               </h2>
             </motion.div>
@@ -208,15 +208,15 @@ export default function Offres() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
                 Prêt à nous rejoindre ?
               </h2>
               <p className="text-xl text-gray-300 mb-8">

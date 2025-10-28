@@ -42,23 +42,23 @@ const testimonials = [
 
 export default function LoungeCafe() {
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 overflow-hidden">
+        <section className="relative py-20 bg-gradient-to-b from-[#0A0A0A] to-slate-900 overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920"
               alt="Lounge & Café Connecté"
               className="w-full h-full object-cover opacity-30 ken-burns"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/90 to-slate-900/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/90 to-slate-900/80"></div>
           </div>
           
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function LoungeCafe() {
                 <span className="text-sm font-inter font-medium text-white/80 tracking-wide">ESPACE N°4</span>
               </motion.div>
 
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+              <h1 className="text-5xl sm:text-6xl font-black text-white mb-6">
                 Lounge & Café <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Connecté</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
@@ -120,7 +120,7 @@ export default function LoungeCafe() {
 
         {/* Description détaillée */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -128,7 +128,7 @@ export default function LoungeCafe() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold text-white mb-6">
+                <h2 className="text-3xl font-black text-white mb-6">
                   L'espace détente qui <span className="text-orange-400">inspire</span>
                 </h2>
                 <p className="text-gray-300 text-lg leading-relaxed mb-8">
@@ -173,8 +173,8 @@ export default function LoungeCafe() {
         </section>
 
         {/* Zones du lounge */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ export default function LoungeCafe() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Différentes <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">ambiances</span>
               </h2>
             </motion.div>
@@ -298,7 +298,7 @@ export default function LoungeCafe() {
 
         {/* Galerie */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -306,7 +306,7 @@ export default function LoungeCafe() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Ambiance <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">lounge</span>
               </h2>
             </motion.div>
@@ -335,8 +335,8 @@ export default function LoungeCafe() {
         </section>
 
         {/* Équipements complets */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -344,7 +344,7 @@ export default function LoungeCafe() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Tout pour votre <span className="text-orange-400">confort</span>
               </h2>
             </motion.div>
@@ -369,7 +369,7 @@ export default function LoungeCafe() {
 
         {/* Témoignages */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -377,7 +377,7 @@ export default function LoungeCafe() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-4xl font-black text-white mb-6">
                 Avis des <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">habitués</span>
               </h2>
             </motion.div>
@@ -422,15 +422,15 @@ export default function LoungeCafe() {
         </section>
 
         {/* CTA Final */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
                 Envie d'une pause créative ?
               </h2>
               <p className="text-xl text-gray-300 mb-8">

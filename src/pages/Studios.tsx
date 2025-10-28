@@ -1084,7 +1084,7 @@ export default function Studios() {
                   <div className="bg-zinc-900/90 backdrop-blur-xl rounded-3xl overflow-hidden">
                     {/* Header */}
                     <div className="flex items-center justify-between p-6 border-b border-white/10">
-                      <h2 className="text-3xl font-montserrat font-bold text-white">
+                      <h2 className="text-3xl font-montserrat font-black text-white">
                         {selectedStudioGallery.title}
                       </h2>
                       <motion.button

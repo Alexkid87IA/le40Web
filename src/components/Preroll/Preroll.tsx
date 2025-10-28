@@ -171,7 +171,7 @@ export default function Preroll({ onSelect, onSkip }: PrerollProps) {
 
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)]"></div>
 
-          <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 overflow-y-auto scrollbar-hide">
+          <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 sm:px-8 lg:px-16 py-12 overflow-y-auto scrollbar-hide">
             <motion.button
               onClick={handleSkip}
               initial={{ opacity: 0, scale: 0 }}

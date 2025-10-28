@@ -57,21 +57,21 @@ export default function Blog() {
   const currentPosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
 
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-20 bg-gradient-to-b from-[#0A0A0A] to-slate-900">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+              <h1 className="text-5xl sm:text-6xl font-black text-white mb-6">
                 Notre <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">Blog</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -83,7 +83,7 @@ export default function Blog() {
 
         {/* Filters */}
         <section className="py-12 bg-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
               {/* Search */}
               <motion.div
@@ -133,8 +133,8 @@ export default function Blog() {
         </section>
 
         {/* Blog Posts Grid */}
-        <section className="py-20 bg-[#0F172A]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-20 bg-[#0A0A0A]">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
             {currentPosts.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -262,14 +262,14 @@ export default function Blog() {
 
         {/* Newsletter CTA */}
         <section className="py-20 bg-slate-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
                 Restez informé de nos derniers articles
               </h2>
               <p className="text-xl text-gray-300 mb-8">

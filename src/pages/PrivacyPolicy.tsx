@@ -89,10 +89,10 @@ Vous pouvez gérer vos préférences de cookies à tout moment via la bannière 
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
       <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
           <div className="flex items-center gap-4 mb-4">
             <Shield className="w-12 h-12" />
-            <h1 className="text-4xl md:text-5xl font-montserrat font-bold">
+            <h1 className="text-4xl md:text-5xl font-montserrat font-black">
               Politique de confidentialité
             </h1>
           </div>
@@ -110,10 +110,10 @@ Vous pouvez gérer vos préférences de cookies à tout moment via la bannière 
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16 py-16">
         {/* Introduction */}
         <div className="bg-white rounded-3xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-montserrat font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-montserrat font-black text-gray-900 mb-4">
             Introduction
           </h2>
           <p className="text-gray-700 leading-relaxed mb-4">
@@ -141,7 +141,7 @@ Vous pouvez gérer vos préférences de cookies à tout moment via la bannière 
                     <Icon className="w-6 h-6 text-orange-600" />
                   </div>
                   <div className="flex-grow">
-                    <h2 className="text-xl font-montserrat font-bold text-gray-900 mb-4">
+                    <h2 className="text-xl font-montserrat font-black text-gray-900 mb-4">
                       {section.title}
                     </h2>
                     <div className="text-gray-700 leading-relaxed whitespace-pre-line">
@@ -156,7 +156,7 @@ Vous pouvez gérer vos préférences de cookies à tout moment via la bannière 
 
         {/* Contact */}
         <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-3xl shadow-lg p-8 mt-8 text-white">
-          <h2 className="text-2xl font-montserrat font-bold mb-4">
+          <h2 className="text-2xl font-montserrat font-black mb-4">
             Questions ou réclamations ?
           </h2>
           <p className="text-orange-100 leading-relaxed mb-6">

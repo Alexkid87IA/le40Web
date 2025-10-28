@@ -82,13 +82,13 @@ const testimonials = [
 
 export default function Experts() {
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0A0A0A]">
       <SidebarNav />
       <MobileBurger />
       
       <main className="lg:ml-60">
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 film-grain">
+        <section className="relative py-20 bg-gradient-to-b from-[#0A0A0A] to-slate-900 film-grain">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -153,7 +153,7 @@ export default function Experts() {
         </section>
 
         {/* Expert Categories */}
-        <section className="py-20 bg-[#0F172A] film-grain">
+        <section className="py-20 bg-[#0A0A0A] film-grain">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -256,7 +256,7 @@ export default function Experts() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-[#0F172A]">
+        <section className="py-20 bg-[#0A0A0A]">
           <div className="max-w-4xl mx-auto px-8 lg:px-16 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -264,7 +264,7 @@ export default function Experts() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-montserrat font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl font-montserrat font-black text-white mb-6">
                 Besoin d'un expert ?
               </h2>
               <p className="text-xl font-inter text-white/70 mb-8">
