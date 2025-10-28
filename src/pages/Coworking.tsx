@@ -22,7 +22,7 @@ const coworkingSpaces = [
       'Casiers sécurisés',
       'Zone silence'
     ],
-    gradient: 'from-violet-600 to-purple-600',
+    gradient: 'from-cyan-600 via-blue-600 to-teal-600',
     link: '/spaces/open-space'
   },
   {
@@ -56,7 +56,7 @@ const coworkingSpaces = [
       'Éclairage optimal',
       'Ventilation'
     ],
-    gradient: 'from-pink-600 to-rose-600',
+    gradient: 'from-cyan-500 via-teal-500 to-blue-500',
     link: '/spaces/phone-box'
   }
 ];
@@ -76,7 +76,7 @@ const pricingPlans = [
       'Impressions (20 pages)',
       'Salles de réunion (1h)'
     ],
-    gradient: 'from-blue-600 to-cyan-600',
+    gradient: 'from-cyan-600 via-blue-600 to-teal-600',
     popular: false
   },
   {
@@ -92,7 +92,7 @@ const pricingPlans = [
       'Impressions illimitées',
       'Invités (5/mois)'
     ],
-    gradient: 'from-violet-600 to-purple-600',
+    gradient: 'from-cyan-500 via-blue-500 to-teal-500',
     popular: true
   },
   {
@@ -108,7 +108,7 @@ const pricingPlans = [
       'Événements membres',
       'Parking (2 places)'
     ],
-    gradient: 'from-amber-600 to-orange-600',
+    gradient: 'from-blue-600 via-cyan-600 to-teal-600',
     popular: false
   }
 ];
@@ -165,7 +165,7 @@ export default function Coworking() {
               {[...Array(15)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1 h-1 bg-violet-400/30 rounded-full"
+                  className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
                   style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,
@@ -214,7 +214,7 @@ export default function Coworking() {
                   className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white mb-8 leading-[0.9]"
                 >
                   ESPACES DE
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">
                     COWORKING
                   </span>
                 </motion.h1>
@@ -236,11 +236,11 @@ export default function Coworking() {
                   className="flex flex-col sm:flex-row gap-6 justify-center"
                 >
                   <Link to="/contact" className="group relative inline-block">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="relative bg-black rounded-2xl px-8 py-4 border border-violet-500/50"
+                      className="relative bg-black rounded-2xl px-8 py-4 border border-cyan-500/50"
                     >
                       <span className="font-montserrat font-semibold text-white flex items-center gap-3">
                         Réserver une visite
@@ -275,7 +275,7 @@ export default function Coworking() {
                     { number: '4.9★', label: 'Note moyenne' }
                   ].map((stat, index) => (
                     <div key={index} className="text-center">
-                      <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
+                      <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">
                         {stat.number}
                       </div>
                       <div className="text-white/60 font-inter text-sm mt-2">{stat.label}</div>
@@ -298,7 +298,7 @@ export default function Coworking() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">ESPACES</span>
+                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">ESPACES</span>
               </h2>
               <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
                 Des espaces adaptés à tous vos besoins professionnels
@@ -318,7 +318,7 @@ export default function Coworking() {
                       {activeSpace === space.id && (
                         <motion.div
                           layoutId="activeTab"
-                          className="absolute inset-0 bg-gradient-to-r from-violet-600 to-purple-600 rounded-xl"
+                          className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600 rounded-xl"
                           transition={{ type: "spring", duration: 0.6 }}
                         />
                       )}
@@ -445,8 +445,8 @@ export default function Coworking() {
         {/* Pricing Section */}
         <section id="pricing" className="relative py-32 bg-black">
           <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
@@ -458,7 +458,7 @@ export default function Coworking() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">TARIFS</span>
+                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">TARIFS</span>
               </h2>
               <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
                 Des formules flexibles pour tous les besoins
@@ -477,7 +477,7 @@ export default function Coworking() {
                 >
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                      <div className="bg-gradient-to-r from-violet-600 to-purple-600 text-white text-xs font-medium px-4 py-1.5 rounded-full flex items-center gap-1">
+                      <div className="bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600 text-white text-xs font-medium px-4 py-1.5 rounded-full flex items-center gap-1">
                         <Star className="w-3 h-3" />
                         Plus populaire
                       </div>
@@ -487,7 +487,7 @@ export default function Coworking() {
                   <motion.div
                     whileHover={{ y: -5, scale: 1.02 }}
                     className={`relative h-full bg-white/5 backdrop-blur-xl rounded-3xl p-8 border transition-all duration-300 ${
-                      plan.popular ? 'border-violet-500/50' : 'border-white/10'
+                      plan.popular ? 'border-cyan-500/50' : 'border-white/10'
                     } hover:border-white/20`}
                   >
                     {/* Plan header */}
@@ -523,7 +523,7 @@ export default function Coworking() {
                         whileTap={{ scale: 0.98 }}
                         className={`w-full py-4 rounded-2xl font-montserrat font-semibold text-center transition-all duration-300 ${
                           plan.popular
-                            ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg hover:shadow-violet-600/20`
+                            ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg hover:shadow-cyan-600/20`
                             : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
                         }`}
                       >
@@ -548,7 +548,7 @@ export default function Coworking() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">INCLUS</span> DANS L'OFFRE
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">INCLUS</span> DANS L'OFFRE
               </h2>
             </motion.div>
 
@@ -573,7 +573,7 @@ export default function Coworking() {
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-16 h-16 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+                    className="w-16 h-16 bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
                   >
                     <feature.icon className="w-8 h-8 text-white" />
                   </motion.div>
@@ -596,7 +596,7 @@ export default function Coworking() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">TÉMOIGNAGES</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">TÉMOIGNAGES</span>
               </h2>
             </motion.div>
 
@@ -612,7 +612,7 @@ export default function Coworking() {
                 >
                   <div className="flex mb-6">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-violet-400 fill-current" />
+                      <Star key={i} className="w-5 h-5 text-cyan-400 fill-current" />
                     ))}
                   </div>
 
@@ -640,7 +640,7 @@ export default function Coworking() {
         {/* CTA Final */}
         <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
           <div className="absolute inset-0">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-600/10 rounded-full blur-[150px]"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-600/10 rounded-full blur-[150px]"></div>
           </div>
 
           <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
@@ -650,9 +650,9 @@ export default function Coworking() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Sparkles className="w-12 h-12 text-violet-400 mx-auto mb-6" />
+              <Sparkles className="w-12 h-12 text-cyan-400 mx-auto mb-6" />
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                PRÊT À <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">COMMENCER</span> ?
+                PRÊT À <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">COMMENCER</span> ?
               </h2>
               <p className="text-xl font-inter text-white/60 mb-12 max-w-2xl mx-auto">
                 Réservez votre visite et découvrez nos espaces de coworking
@@ -660,11 +660,11 @@ export default function Coworking() {
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link to="/contact" className="group relative inline-block">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="relative bg-black rounded-2xl px-10 py-5 border border-violet-500/50"
+                    className="relative bg-black rounded-2xl px-10 py-5 border border-cyan-500/50"
                   >
                     <span className="font-montserrat font-semibold text-white flex items-center gap-3">
                       Réserver une visite
