@@ -4,6 +4,7 @@ import Preroll from '../components/Preroll/Preroll';
 import SidebarNav from '../components/Nav/SidebarNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import SectionNavigator from '../components/Navigation/SectionNavigator';
+import Hero from '../sections/Hero';
 import CoworkingSection from '../sections/ServiceSections/CoworkingSection';
 import DomiciliationSection from '../sections/ServiceSections/DomiciliationSection';
 import BureauxSection from '../sections/ServiceSections/BureauxSection';
@@ -42,6 +43,7 @@ export default function HomeNew() {
       <SectionNavigator />
 
       <main className="lg:ml-60">
+        <Hero />
         <CoworkingSection />
         <DomiciliationSection />
         <BureauxSection />
