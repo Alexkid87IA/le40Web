@@ -92,23 +92,25 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
             className="relative z-10 w-full h-full max-w-[1600px] max-h-[90vh] m-4 md:m-8 bg-gradient-to-br from-zinc-900/95 to-black/95 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <motion.button
-              whileHover={{ scale: 1.1, rotate: 90 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={onClose}
-              className="absolute top-6 right-6 z-50 w-12 h-12 flex items-center justify-center bg-black/80 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-white/10 transition-all shadow-lg"
-            >
-              <X className="w-6 h-6" />
-            </motion.button>
+            <div className="absolute top-4 right-4 lg:top-6 lg:right-6 z-50 flex gap-2">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setIsFavorite(!isFavorite)}
+                className="w-10 h-10 flex items-center justify-center bg-black/90 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-red-500/20 hover:border-red-500/40 transition-all shadow-xl"
+              >
+                <Heart className={`w-5 h-5 ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
+              </motion.button>
 
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setIsFavorite(!isFavorite)}
-              className="absolute top-6 right-24 z-50 w-12 h-12 flex items-center justify-center bg-black/80 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-white/10 transition-all shadow-lg"
-            >
-              <Heart className={`w-6 h-6 ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={onClose}
+                className="w-10 h-10 flex items-center justify-center bg-black/90 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-red-500/20 hover:border-red-500/40 transition-all shadow-xl"
+              >
+                <X className="w-5 h-5" />
+              </motion.button>
+            </div>
 
             <div className="flex flex-col lg:flex-row h-full overflow-hidden">
               <div className="lg:w-[60%] relative bg-black flex flex-col">
