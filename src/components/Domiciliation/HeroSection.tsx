@@ -20,7 +20,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-red-600">
 
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
