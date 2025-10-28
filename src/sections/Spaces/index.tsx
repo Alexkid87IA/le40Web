@@ -311,14 +311,14 @@ export default function SpacesSection() {
                     <motion.div
                       onClick={() => setExpandedCard(isExpanded ? null : index)}
                       whileHover={{ y: -8 }}
-                      className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer h-full"
+                      className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer h-full flex flex-col"
                       style={{
                         borderColor: isExpanded ? currentCategory.accentColor : undefined,
                         boxShadow: isExpanded ? `0 0 40px ${currentCategory.accentColor}40` : undefined
                       }}
                     >
-                      {/* Badges */}
-                      <div className="absolute top-6 right-6 flex flex-col gap-2 z-10">
+                      {/* Badges - Fixed height zone */}
+                      <div className="absolute top-6 right-6 flex flex-col gap-2 z-10 h-8">
                         {space.popular && (
                           <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                             POPULAIRE
@@ -331,21 +331,23 @@ export default function SpacesSection() {
                         )}
                       </div>
 
-                      {/* Icon */}
-                      <motion.div
-                        whileHover={{ rotate: [0, -10, 10, 0] }}
-                        transition={{ duration: 0.5 }}
-                        className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${currentCategory.gradient} mb-6`}
-                      >
-                        <SpaceIcon className="w-8 h-8 text-white" />
-                      </motion.div>
+                      {/* Icon - Fixed height */}
+                      <div className="h-20 mb-6">
+                        <motion.div
+                          whileHover={{ rotate: [0, -10, 10, 0] }}
+                          transition={{ duration: 0.5 }}
+                          className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${currentCategory.gradient}`}
+                        >
+                          <SpaceIcon className="w-8 h-8 text-white" />
+                        </motion.div>
+                      </div>
 
-                      {/* Content */}
-                      <h4 className="text-2xl font-black text-white mb-2">
+                      {/* Content - Aligned titles */}
+                      <h4 className="text-2xl font-black text-white mb-2 min-h-[2rem]">
                         {space.name}
                       </h4>
 
-                      <p className="text-white/50 italic text-sm mb-6">
+                      <p className="text-white/50 italic text-sm mb-6 min-h-[2.5rem] line-clamp-2">
                         "{space.highlight}"
                       </p>
 
