@@ -103,6 +103,7 @@ export default function ServicesSection() {
 
   return (
     <motion.section
+      id="services"
       ref={containerRef}
       style={{ opacity, scale }}
       className="relative min-h-screen bg-[#0A0A0A] py-32 overflow-hidden"
