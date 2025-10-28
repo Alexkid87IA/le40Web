@@ -73,7 +73,7 @@ export default function BureauxSection() {
             </h2>
 
             <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
-              Des bureaux privés entièrement équipés pour accueillir votre équipe dans les meilleures conditions. Sécurité, confort et productivité garantis dans un environnement professionnel premium.
+              Louez un bureau privé fermé et sécurisé pour votre entreprise. Espaces exclusifs de 10m² à 100m² avec mobilier premium, ligne téléphonique dédiée et services professionnels inclus.
             </p>
 
             <div className="grid grid-cols-2 gap-4 mb-10">
@@ -102,13 +102,13 @@ export default function BureauxSection() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                href="/salles"
+                href="/bureaux-prives"
                 size="md"
                 icon={ArrowRight}
                 iconPosition="right"
                 className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white sm:min-w-[280px]"
               >
-                DÉCOUVRIR NOS BUREAUX
+                VOIR LES BUREAUX DISPONIBLES
               </Button>
               <Button
                 href="/contact"
@@ -132,7 +132,7 @@ export default function BureauxSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur-3xl opacity-30"></div>
               <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6">
                 <div>
-                  <div className="text-white/50 text-sm mb-3">Inclus dans votre bureau</div>
+                  <div className="text-white/50 text-sm mb-3">Services inclus dans la location</div>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
@@ -140,26 +140,26 @@ export default function BureauxSection() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Accès salles de réunion</span>
+                      <span className="text-white">Ligne téléphonique dédiée</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Espace détente & cuisine</span>
+                      <span className="text-white">Accès salles de réunion inclus</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Badges d'accès 24/7</span>
+                      <span className="text-white">Badges d'accès sécurisés 24/7</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Services de conciergerie</span>
+                      <span className="text-white">Ménage et conciergerie</span>
                     </div>
                   </div>
                 </div>
                 <div className="h-px bg-white/10"></div>
                 <div className="text-center p-4 bg-emerald-500/10 rounded-xl">
-                  <div className="text-emerald-400 text-sm font-medium mb-1">Configuration flexible</div>
-                  <div className="text-white/70 text-xs">De 10m² à 100m² selon vos besoins</div>
+                  <div className="text-emerald-400 text-sm font-medium mb-1">Location flexible</div>
+                  <div className="text-white/70 text-xs">Engagement 6 mois minimum • Option coworking disponible</div>
                 </div>
               </div>
             </div>

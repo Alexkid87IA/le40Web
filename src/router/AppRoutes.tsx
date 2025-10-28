@@ -4,9 +4,10 @@ import Home from '../pages/Home.new';
 import Offres from '../pages/Offres';
 import Tarifs from '../pages/Tarifs';
 import Coworking from '../pages/Coworking';
+import BureauxPrives from '../pages/BureauxPrives';
 import Domiciliation from '../pages/Domiciliation';
 import Salles from '../pages/Salles';
-import Studios from '../pages/Studios/Studios'; // <-- CHANGÉ ICI : pointe vers le fichier modulaire
+import Studios from '../pages/Studios/Studios';
 import Blog from '../pages/Blog';
 import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
@@ -27,6 +28,7 @@ export default function AppRoutes() {
         <Route path="/offres" element={<Offres />} />
         <Route path="/tarifs" element={<Tarifs />} />
         <Route path="/coworking" element={<Coworking />} />
+        <Route path="/bureaux-prives" element={<BureauxPrives />} />
         <Route path="/domiciliation" element={<Domiciliation />} />
         <Route path="/salles" element={<Salles />} />
         <Route path="/studios" element={<Studios />} />
