@@ -1,15 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MapPin, Users, Building2, Video } from 'lucide-react';
+import { designTokens } from '../../styles/designTokens';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <section className="relative min-h-screen flex items-center bg-gradient-to-br from-[#0A0A0A] via-[#0F0F0F] to-[#0A0A0A]">
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center opacity-10"></div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-slate-900"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]"></div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-20 lg:py-32">
+      <div className={`relative z-10 w-full max-w-7xl mx-auto ${designTokens.spacing.container} ${designTokens.spacing.section}`}>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <motion.div
@@ -23,14 +24,14 @@ export default function Hero() {
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+              <h1 className={`${designTokens.typography.h1.size} ${designTokens.typography.h1.weight} ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} text-white mb-6`}>
                 Le 40
                 <span className="block bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
                   Votre Espace Pro
                 </span>
               </h1>
 
-              <p className="text-xl text-slate-300 leading-relaxed">
+              <p className={`${designTokens.typography.body.size} ${designTokens.typography.body.leading} text-slate-300`}>
                 Coworking, bureaux privés, domiciliation, salles de réunion et studios créatifs. Tout pour développer votre activité.
               </p>
             </motion.div>
@@ -43,7 +44,7 @@ export default function Hero() {
             >
               <a
                 href="#coworking"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold rounded-xl transition-all shadow-lg shadow-orange-500/25"
+                className={`inline-flex items-center gap-2 ${designTokens.buttons.size.md} bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold ${designTokens.buttons.radius.base} ${designTokens.animations.transition.fast} shadow-lg shadow-orange-500/25`}
               >
                 Découvrir nos offres
                 <ArrowRight className="w-5 h-5" />
@@ -51,7 +52,7 @@ export default function Hero() {
 
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-xl border border-white/10 backdrop-blur-sm transition-all"
+                className={`inline-flex items-center gap-2 ${designTokens.buttons.size.md} bg-white/5 hover:bg-white/10 text-white font-semibold ${designTokens.buttons.radius.base} border border-white/10 backdrop-blur-sm ${designTokens.animations.transition.fast}`}
               >
                 Visite gratuite
               </a>
@@ -86,16 +87,16 @@ export default function Hero() {
           >
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4">
+                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-orange-500/10 flex items-center justify-center mb-4`}>
                     <Users className="w-6 h-6 text-orange-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Coworking</h3>
                   <p className="text-sm text-slate-400">Espaces partagés flexibles</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
+                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-blue-500/10 flex items-center justify-center mb-4`}>
                     <Building2 className="w-6 h-6 text-blue-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Bureaux Privés</h3>
@@ -104,16 +105,16 @@ export default function Hero() {
               </div>
 
               <div className="space-y-4 pt-8">
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4">
+                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-amber-500/10 flex items-center justify-center mb-4`}>
                     <MapPin className="w-6 h-6 text-amber-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Domiciliation</h3>
                   <p className="text-sm text-slate-400">Adresse prestigieuse</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
+                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-emerald-500/10 flex items-center justify-center mb-4`}>
                     <Video className="w-6 h-6 text-emerald-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Studios Pro</h3>
