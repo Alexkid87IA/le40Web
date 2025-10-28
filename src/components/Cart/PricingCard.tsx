@@ -21,7 +21,7 @@ interface PricingCardProps {
   index?: number;
 }
 
-export default function PricingCard({ plan, index = 0 }: PricingCardProps) {
+const PricingCard = React.memo(function PricingCard({ plan, index = 0 }: PricingCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -101,4 +101,6 @@ export default function PricingCard({ plan, index = 0 }: PricingCardProps) {
       </motion.div>
     </motion.div>
   );
-}
+});
+
+export default PricingCard;
