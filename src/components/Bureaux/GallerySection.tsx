@@ -116,10 +116,10 @@ export default function GallerySection() {
                       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500 z-10" />
 
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-20"
                     >
                       <motion.div
                         initial={{ opacity: 0, scale: 0.7, y: 10 }}
@@ -136,7 +136,7 @@ export default function GallerySection() {
                     </motion.div>
                   </div>
 
-                  <div className="absolute top-5 left-5 z-10">
+                  <div className="absolute top-5 left-5 z-20">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: [0, -2, 2, 0] }}
                       transition={{ duration: 0.3 }}
@@ -153,7 +153,7 @@ export default function GallerySection() {
                     initial={{ opacity: 0, x: 10 }}
                     whileHover={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute top-5 right-5 z-10"
+                    className="absolute top-5 right-5 z-20"
                   >
                     <div className="bg-black/90 backdrop-blur-xl px-4 py-2 rounded-full flex items-center gap-2 text-white text-xs font-bold border border-white/10 shadow-xl">
                       <span className="text-emerald-400">{item.images.length}</span>
@@ -161,7 +161,7 @@ export default function GallerySection() {
                     </div>
                   </motion.div>
 
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent z-30">
                     <div className="p-8 pt-20">
                       <div className="h-20 flex items-start mb-3">
                         <h3 className="text-white font-montserrat font-black text-2xl line-clamp-2 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 transition-all duration-300">
