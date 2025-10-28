@@ -18,13 +18,6 @@ import NotFound from '../pages/NotFound';
 import BookingPage from '../pages/BookingPage';
 import CartDrawer from '../components/Cart/CartDrawer';
 
-// Pages individuelles des espaces
-import OpenSpace from '../pages/spaces/OpenSpace';
-import BureauxPrives from '../pages/spaces/BureauxPrives';
-import PhoneBox from '../pages/spaces/PhoneBox';
-import LoungeCafe from '../pages/spaces/LoungeCafe';
-import TerrasseRooftop from '../pages/spaces/TerrasseRooftop';
-
 export default function AppRoutes() {
   return (
     <Router>
@@ -44,15 +37,6 @@ export default function AppRoutes() {
         <Route path="/experts" element={<Experts />} />
         <Route path="/events" element={<Events />} />
         <Route path="/services-plus" element={<ServicesPlus />} />
-        
-        {/* Routes des espaces individuels */}
-        <Route path="/spaces/open-space" element={<OpenSpace />} />
-        <Route path="/spaces/bureaux-prives" element={<BureauxPrives />} />
-        <Route path="/spaces/phone-box" element={<PhoneBox />} />
-        <Route path="/spaces/lounge-cafe" element={<LoungeCafe />} />
-        <Route path="/spaces/terrasse-rooftop" element={<TerrasseRooftop />} />
-        
-        {/* Route de réservation */}
         <Route path="/reservation" element={<BookingPage />} />
         
         {/* Route 404 - toujours en dernier */}
