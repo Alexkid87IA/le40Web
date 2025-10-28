@@ -7,7 +7,7 @@ const categories = [
   {
     id: 'domiciliation',
     title: 'Domiciliation',
-    subtitle: 'Adresse de prestige',
+    subtitle: 'Adresse professionnelle',
     icon: Building2,
     gradient: 'from-amber-600 via-orange-600 to-red-600',
     shadowColor: '#f59e0b',
@@ -33,7 +33,7 @@ const categories = [
 const globalFeatures = [
   { icon: Shield, title: 'Sans Engagement', desc: 'Flexibilité maximale', gradient: 'from-emerald-500 to-green-500' },
   { icon: TrendingUp, title: 'Évolutif', desc: 'Changez à tout moment', gradient: 'from-blue-500 to-cyan-500' },
-  { icon: Sparkles, title: 'Premium', desc: 'Services haut de gamme', gradient: 'from-purple-500 to-pink-500' },
+  { icon: Sparkles, title: 'Qualité', desc: 'Services professionnels', gradient: 'from-purple-500 to-pink-500' },
   { icon: Crown, title: 'Support Dédié', desc: 'Équipe à votre écoute', gradient: 'from-orange-500 to-amber-500' }
 ];
 

@@ -783,7 +783,7 @@ export default function Studios() {
                 className="mb-12 max-w-4xl mx-auto"
               >
                 <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light leading-relaxed">
-                  L'excellence créative à votre portée
+                  La qualité professionnelle à votre service
                 </p>
                 <motion.p
                   initial={{ opacity: 0 }}

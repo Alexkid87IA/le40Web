@@ -200,7 +200,7 @@ export default function HeroSection() {
             className="mb-8 sm:mb-10 max-w-3xl"
           >
             <p className="text-base sm:text-lg md:text-xl font-inter font-light text-white/60 leading-relaxed tracking-wide">
-              Excellence audiovisuelle et équipements professionnels au service de vos projets créatifs.
+              Qualité audiovisuelle professionnelle et équipements modernes au service de vos projets créatifs.
             </p>
           </motion.div>
 

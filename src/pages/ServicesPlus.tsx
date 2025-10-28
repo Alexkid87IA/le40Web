@@ -26,12 +26,12 @@ const premiumServices = [
   },
   {
     id: 3,
-    title: "Networking VIP",
-    description: "Accès exclusif à notre réseau premium d'entrepreneurs et d'investisseurs",
+    title: "Networking Avancé",
+    description: "Accès privilégié à notre réseau d'entrepreneurs et d'investisseurs actifs",
     icon: Users,
     color: "from-green-400 to-emerald-500",
-    features: ["Événements privés", "Introductions qualifiées", "Dîners d'affaires", "Accès investisseurs"],
-    price: "Sur invitation"
+    features: ["Événements membres", "Introductions qualifiées", "Dîners d'affaires", "Accès investisseurs"],
+    price: "Sur demande"
   },
   {
     id: 4,

@@ -105,7 +105,7 @@ const pricingPlans = [
       'Bureau privé disponible',
       'Salle de réunion privée',
       'Service conciergerie',
-      'Événements exclusifs',
+      'Événements membres',
       'Parking (2 places)'
     ],
     gradient: 'from-amber-600 to-orange-600',

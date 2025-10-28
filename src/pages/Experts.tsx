@@ -44,7 +44,7 @@ const networkBenefits = [
   {
     icon: Users,
     title: "Réseau Qualifié",
-    description: "Plus de 50 experts sélectionnés pour leur excellence"
+    description: "Plus de 50 experts qualifiés et recommandés par nos membres"
   },
   {
     icon: Star,

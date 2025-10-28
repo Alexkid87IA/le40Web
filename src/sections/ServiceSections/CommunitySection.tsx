@@ -6,9 +6,9 @@ import Button from '../../components/UI/Button';
 export default function CommunitySection() {
   const benefits = [
     { icon: Users, text: 'Networking Events Mensuels' },
-    { icon: Calendar, text: 'Workshops & Masterclass Exclusifs' },
-    { icon: Award, text: 'Mentors & Experts Reconnus' },
-    { icon: Sparkles, text: 'Deals & Opportunités Privilégiées' }
+    { icon: Calendar, text: 'Ateliers & Masterclass Membres' },
+    { icon: Award, text: 'Mentors & Experts Disponibles' },
+    { icon: Sparkles, text: 'Opportunités de Collaboration' }
   ];
 
   return (
@@ -62,7 +62,7 @@ export default function CommunitySection() {
           >
             <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-2 mb-8">
               <Network className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-300 text-sm font-medium uppercase tracking-wider">Communauté Exclusive</span>
+              <span className="text-cyan-300 text-sm font-medium uppercase tracking-wider">Communauté Active</span>
             </div>
 
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">

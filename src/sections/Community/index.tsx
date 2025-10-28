@@ -14,7 +14,7 @@ const communityPillars = [
     gradient: 'from-cyan-500 via-blue-500 to-teal-500',
     accentColor: '#06B6D4',
     benefits: [
-      { icon: Target, text: 'Speed networking mensuel exclusif', highlight: 'Mensuels' },
+      { icon: Target, text: 'Speed networking mensuel membres', highlight: 'Mensuels' },
       { icon: Users, text: 'Annuaire membres avec profils détaillés', highlight: 'Détaillés' },
       { icon: Trophy, text: 'Groupes par secteur d\'activité', highlight: 'Secteurs' },
       { icon: Sparkles, text: 'Mentorat personnalisé avec experts', highlight: 'Experts' }
@@ -34,7 +34,7 @@ const communityPillars = [
       { icon: Sparkles, text: 'Conférences d\'experts reconnus', highlight: 'Experts' },
       { icon: Target, text: 'Ateliers pratiques hebdomadaires', highlight: 'Pratiques' },
       { icon: TrendingUp, text: 'Afterworks thématiques networking', highlight: 'Networking' },
-      { icon: Trophy, text: 'Masterclass exclusives membres', highlight: 'Exclusives' }
+      { icon: Trophy, text: 'Masterclass réservées aux membres', highlight: 'Réservées' }
     ]
   },
   {
@@ -127,7 +127,7 @@ export default function Community() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
           >
             <Sparkles className="w-4 h-4 text-orange-400" />
-            <span className="text-sm text-white/70 font-medium">Communauté Exclusive</span>
+            <span className="text-sm text-white/70 font-medium">Communauté Active</span>
           </motion.div>
 
           <motion.h2
@@ -139,7 +139,7 @@ export default function Community() {
           >
             Rejoignez{' '}
             <span className={`text-transparent bg-clip-text bg-gradient-to-r ${currentPillar.gradient}`}>
-              L'Élite
+              la Communauté
             </span>
           </motion.h2>
 
@@ -150,7 +150,7 @@ export default function Community() {
             transition={{ delay: 0.2 }}
             className="text-xl text-white/60 max-w-2xl mx-auto"
           >
-            Un réseau d'entrepreneurs visionnaires • Opportunités illimitées • Croissance exponentielle
+            Un réseau actif d'entrepreneurs • Opportunités réelles • Croissance mutuelle
           </motion.p>
         </div>
 

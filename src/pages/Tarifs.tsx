@@ -56,7 +56,7 @@ const pricingData = {
       name: "Premium",
       price: "199",
       period: "/mois",
-      description: "Le prestige absolu pour votre entreprise",
+      description: "La solution complète pour votre entreprise",
       gradient: "from-amber-400 to-orange-400",
       features: [
         { text: "Adresse commerciale prestigieuse", included: true },

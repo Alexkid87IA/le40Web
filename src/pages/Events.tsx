@@ -148,7 +148,7 @@ export default function Events() {
                 Nos <span className="gradient-text">Événements</span>
               </h1>
               <p className="text-body-large font-inter text-white/70 max-w-4xl mx-auto">
-                Participez à nos ateliers, conférences et événements networking exclusifs pour développer votre réseau et vos compétences
+                Participez à nos ateliers, conférences et événements networking pour développer votre réseau et vos compétences
               </p>
             </motion.div>
           </div>

@@ -9,7 +9,7 @@ export const servicesData = [
   {
     id: 2,
     title: "Domiciliation",
-    description: "Adresse prestigieuse pour votre entreprise au cœur de la ville",
+    description: "Adresse professionnelle au cœur du quartier d'affaires",
     icon: "MapPin",
     color: "from-green-400 to-green-600"
   },

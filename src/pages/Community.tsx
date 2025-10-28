@@ -8,76 +8,76 @@ import Footer from '../components/Footer';
 
 // Données Premium
 const communityStats = [
-  { value: "150", suffix: "+", label: "Entrepreneurs", color: "from-violet-500 to-purple-500" },
-  { value: "30", suffix: "M€", label: "Levés ensemble", color: "from-emerald-500 to-teal-500" },
-  { value: "92", suffix: "%", label: "Taux de synergie", color: "from-amber-500 to-orange-500" },
+  { value: "120", suffix: "+", label: "Entrepreneurs actifs", color: "from-violet-500 to-purple-500" },
+  { value: "15", suffix: "+", label: "Events par mois", color: "from-emerald-500 to-teal-500" },
+  { value: "85", suffix: "%", label: "Taux de satisfaction", color: "from-amber-500 to-orange-500" },
 ];
 
 const communityBenefits = [
-  { 
-    icon: Network, 
-    title: "Capital Relationnel", 
-    description: "Accédez à un réseau trié sur le volet de décideurs, investisseurs et innovateurs.",
+  {
+    icon: Network,
+    title: "Réseau Actif",
+    description: "Développez votre réseau avec des entrepreneurs, consultants et créateurs engagés.",
     gradient: "from-violet-600 to-indigo-600",
-    stats: "500+ connexions/mois"
+    stats: "120+ membres actifs"
   },
-  { 
-    icon: Sparkles, 
-    title: "Intelligence Collective", 
-    description: "Bénéficiez de l'expertise croisée de 150+ entrepreneurs accomplis.",
+  {
+    icon: Sparkles,
+    title: "Entraide & Collaboration",
+    description: "Partagez vos expériences et bénéficiez des conseils d'entrepreneurs expérimentés.",
     gradient: "from-emerald-600 to-teal-600",
-    stats: "50+ experts"
+    stats: "Networking régulier"
   },
-  { 
-    icon: Rocket, 
-    title: "Accélération Business", 
-    description: "Trouvez vos futurs associés, clients stratégiques et partenaires de croissance.",
+  {
+    icon: Rocket,
+    title: "Opportunités Business",
+    description: "Trouvez vos futurs partenaires, clients et collaborateurs dans la communauté.",
     gradient: "from-orange-600 to-red-600",
-    stats: "3x croissance moyenne"
+    stats: "Synergies fréquentes"
   },
-  { 
-    icon: Crown, 
-    title: "Événements Exclusifs", 
-    description: "Masterclasses privées, soirées VIP et sessions de co-création premium.",
+  {
+    icon: Crown,
+    title: "Événements Membres",
+    description: "Masterclasses, ateliers pratiques et sessions de networking pour progresser ensemble.",
     gradient: "from-purple-600 to-pink-600",
-    stats: "2 events/semaine"
+    stats: "15+ events/mois"
   },
 ];
 
 const upcomingEvents = [
-  { 
-    id: 1, 
+  {
+    id: 1,
     category: "NETWORKING",
-    title: "Dîner des Décideurs", 
-    date: "28 JUIN 2025", 
+    title: "Apéro Entrepreneurs",
+    date: "28 JUIN 2025",
     time: "19:00",
-    description: "Rencontre exclusive avec 20 CEOs de la Tech marseillaise",
-    seats: "20 places",
-    level: "C-Level only",
+    description: "Rencontre conviviale entre entrepreneurs marseillais pour échanger et créer des synergies",
+    seats: "30 places",
+    level: "Ouvert à tous",
     image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-violet-600 to-indigo-600"
   },
-  { 
-    id: 2, 
-    category: "MASTERCLASS",
-    title: "Scale-Up Strategies", 
+  {
+    id: 2,
+    category: "ATELIER",
+    title: "Stratégies de Croissance",
     date: "12 JUILLET 2025",
-    time: "14:00", 
-    description: "Comment passer de 1 à 10M€ de CA avec Xavier Niel",
-    seats: "50 places",
-    level: "Founders",
+    time: "14:00",
+    description: "Atelier pratique sur le développement commercial avec des entrepreneurs expérimentés",
+    seats: "25 places",
+    level: "Tous niveaux",
     image: "https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-emerald-600 to-teal-600"
   },
-  { 
-    id: 3, 
-    category: "PITCH SESSION",
-    title: "Investors Day", 
+  {
+    id: 3,
+    category: "NETWORKING",
+    title: "Session de Partage",
     date: "25 JUILLET 2025",
-    time: "09:00", 
-    description: "Pitchez devant 15 VCs et Business Angels accrédités",
-    seats: "10 startups",
-    level: "Sur sélection",
+    time: "09:00",
+    description: "Partagez vos projets et recevez des retours constructifs de la communauté",
+    seats: "20 places",
+    level: "Membres",
     image: "https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-orange-600 to-red-600"
   },
@@ -88,48 +88,48 @@ const testimonials = [
     name: "Sophie Martin",
     role: "CEO, TechCorp",
     photo: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
-    quote: "En 6 mois au 40, j'ai levé 2M€ et trouvé mon CTO. L'écosystème est une vraie machine à opportunités.",
-    metric: "2M€ levés"
+    quote: "En rejoignant Le 40, j'ai pu développer mon réseau professionnel rapidement. Les événements réguliers et l'entraide entre membres m'ont permis de trouver mon CTO et d'accélérer mon développement commercial. La communauté est vraiment active et bienveillante.",
+    metric: "Partenariats clés"
   },
   {
     name: "Thomas Dubois",
     role: "Founder, GreenTech",
     photo: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=400",
-    quote: "La qualité du réseau est exceptionnelle. Chaque membre apporte une réelle valeur ajoutée.",
-    metric: "5 partenariats"
+    quote: "L'ambiance collaborative du 40 a changé ma façon de travailler. J'ai trouvé des partenaires commerciaux, des conseils précieux et surtout une vraie dynamique d'entraide. Les membres sont accessibles et toujours prêts à partager leur expérience.",
+    metric: "5 collaborations"
   },
   {
     name: "Marie Chen",
     role: "CPO, DataFlow",
     photo: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400",
-    quote: "Les masterclasses m'ont fait gagner 2 ans. J'ai évité toutes les erreurs classiques du scale-up.",
-    metric: "x3 croissance"
+    quote: "Les ateliers pratiques et les sessions de partage d'expérience m'ont permis d'éviter beaucoup d'erreurs. La communauté est diverse et chacun apporte son expertise. C'est un vrai accélérateur pour développer son activité sereinement.",
+    metric: "Progression rapide"
   }
 ];
 
 const admissionSteps = [
   {
     number: "01",
-    title: "Candidature",
-    description: "Soumettez votre profil et votre vision entrepreneuriale",
+    title: "Contact",
+    description: "Contactez-nous pour découvrir la communauté et les offres",
     icon: Mail
   },
   {
-    number: "02", 
-    title: "Sélection",
-    description: "Entretien avec notre comité d'admission",
+    number: "02",
+    title: "Visite",
+    description: "Visitez les espaces et rencontrez les membres",
     icon: Shield
   },
   {
     number: "03",
-    title: "Intégration", 
-    description: "Welcome pack et mentorat personnalisé",
+    title: "Inscription",
+    description: "Choisissez votre formule et rejoignez la communauté",
     icon: Heart
   },
   {
     number: "04",
-    title: "Activation",
-    description: "Accès illimité à tous les avantages membres",
+    title: "Bienvenue",
+    description: "Profitez de tous les services et événements membres",
     icon: Zap
   }
 ];
@@ -422,7 +422,7 @@ export default function Community() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-sm font-medium text-white/70">
               <Sparkles className="w-4 h-4" />
-              Réseau Premium
+              Communauté Active
             </span>
           </motion.div>
           
@@ -432,9 +432,9 @@ export default function Community() {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-7xl md:text-8xl lg:text-9xl font-black font-montserrat mb-6"
           >
-            <span className="text-white">LE</span>
+            <span className="text-white">LA</span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400">
-              CERCLE
+              COMMUNAUTÉ
             </span>
           </motion.h1>
           
@@ -444,7 +444,7 @@ export default function Community() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-12"
           >
-            Un réseau exclusif où l'excellence attire l'excellence
+            Un réseau actif d'entrepreneurs qui s'entraident et collaborent
           </motion.p>
           
           {/* Stats */}
@@ -500,7 +500,7 @@ export default function Community() {
               </span>
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Quatre fondamentaux qui font de notre réseau un accélérateur unique
+              Quatre valeurs qui font de notre communauté un lieu d'entraide et de croissance
             </p>
           </motion.div>
           
@@ -522,13 +522,13 @@ export default function Community() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Agenda
+              Nos
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
-                Premium
+                Événements
               </span>
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Des événements soigneusement conçus pour maximiser votre impact
+              Des événements réguliers pour développer votre réseau et vos compétences
             </p>
           </motion.div>
           
@@ -552,9 +552,9 @@ export default function Community() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Ils Ont Rejoint
+              Témoignages
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
-                Le Cercle
+                de Membres
               </span>
             </h2>
           </motion.div>
@@ -608,13 +608,13 @@ export default function Community() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Devenir
+              Rejoindre
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                Membre
+                la Communauté
               </span>
             </h2>
             <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              Un processus sélectif pour garantir l'excellence
+              Un processus simple en 4 étapes pour démarrer
             </p>
           </motion.div>
           
@@ -684,14 +684,14 @@ export default function Community() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-6xl md:text-7xl font-bold mb-6">
-              Prêt à Rejoindre
+              Prêt à Nous
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400">
-                L'Élite ?
+                Rejoindre ?
               </span>
             </h2>
-            
+
             <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
-              Candidatez maintenant et transformez votre trajectoire entrepreneuriale
+              Contactez-nous pour découvrir nos espaces et rejoindre la communauté
             </p>
             
             <motion.button
@@ -704,7 +704,7 @@ export default function Community() {
               
               {/* Button */}
               <div className="relative flex items-center gap-4 px-12 py-6 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full">
-                <span>Déposer Ma Candidature</span>
+                <span>Nous Contacter</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -715,7 +715,7 @@ export default function Community() {
             </motion.button>
             
             <p className="mt-8 text-sm text-white/40">
-              Adhésion sur dossier uniquement • 95% de taux de satisfaction membre
+              Sans engagement • Plus de 120 entrepreneurs actifs • Visite gratuite
             </p>
           </motion.div>
         </div>

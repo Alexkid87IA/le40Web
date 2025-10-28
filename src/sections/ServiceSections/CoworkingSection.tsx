@@ -68,7 +68,7 @@ export default function CoworkingSection() {
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
               Travaillez<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-indigo-400">
-                Entouré d'Excellence
+                Entouré d'Entrepreneurs
               </span>
             </h2>
 
