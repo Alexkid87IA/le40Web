@@ -141,19 +141,21 @@ export default function GallerySection() {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-white font-montserrat font-bold text-xl mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/80 font-inter text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-3">
-                      {item.description}
-                    </p>
-                    <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
-                      <span className="text-emerald-400 text-sm font-semibold">{item.capacity}</span>
-                      <span className="text-white/40">•</span>
-                      <span className="text-teal-400 text-sm font-semibold">{item.surface}</span>
-                      <span className="text-white/40">•</span>
-                      <span className="text-cyan-400 text-sm font-semibold">Dès {item.priceFrom}</span>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 transition-transform duration-300">
+                    <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-white font-montserrat font-bold text-xl mb-2 line-clamp-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-white/80 font-inter text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-3 line-clamp-2">
+                        {item.description}
+                      </p>
+                      <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+                        <span className="text-emerald-400 text-sm font-semibold">{item.capacity}</span>
+                        <span className="text-white/40">•</span>
+                        <span className="text-teal-400 text-sm font-semibold">{item.surface}</span>
+                        <span className="text-white/40">•</span>
+                        <span className="text-cyan-400 text-sm font-semibold">Dès {item.priceFrom}</span>
+                      </div>
                     </div>
                   </div>
 
