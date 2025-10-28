@@ -87,39 +87,51 @@ export default function Hero() {
           >
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
-                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-orange-500/10 flex items-center justify-center mb-4`}>
-                    <Users className="w-6 h-6 text-orange-400" />
+                <a
+                  href="#services"
+                  className={`block ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-cyan-500/30`}
+                >
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-cyan-500/10 flex items-center justify-center mb-4`}>
+                    <Users className="w-6 h-6 text-cyan-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Coworking</h3>
                   <p className="text-sm text-slate-400">Espaces partagés flexibles</p>
-                </div>
+                </a>
 
-                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
-                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-blue-500/10 flex items-center justify-center mb-4`}>
-                    <Building2 className="w-6 h-6 text-blue-400" />
+                <a
+                  href="#services"
+                  className={`block ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-cyan-500/30`}
+                >
+                  <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-cyan-500/10 flex items-center justify-center mb-4`}>
+                    <Building2 className="w-6 h-6 text-cyan-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Bureaux Privés</h3>
                   <p className="text-sm text-slate-400">Espaces dédiés équipés</p>
-                </div>
+                </a>
               </div>
 
               <div className="space-y-4 pt-8">
-                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
+                <a
+                  href="#services"
+                  className={`block ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-amber-500/30`}
+                >
                   <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-amber-500/10 flex items-center justify-center mb-4`}>
                     <MapPin className="w-6 h-6 text-amber-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Domiciliation</h3>
                   <p className="text-sm text-slate-400">Adresse prestigieuse</p>
-                </div>
+                </a>
 
-                <div className={`${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6`}>
+                <a
+                  href="#services"
+                  className={`block ${designTokens.cards.background} ${designTokens.cards.radius.large} ${designTokens.cards.border} p-6 ${designTokens.animations.transition.fast} ${designTokens.animations.hover.y.small} cursor-pointer hover:border-emerald-500/30`}
+                >
                   <div className={`w-12 h-12 ${designTokens.buttons.radius.base} bg-emerald-500/10 flex items-center justify-center mb-4`}>
                     <Video className="w-6 h-6 text-emerald-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Studios Pro</h3>
                   <p className="text-sm text-slate-400">Audio & vidéo équipés</p>
-                </div>
+                </a>
               </div>
             </div>
           </motion.div>
