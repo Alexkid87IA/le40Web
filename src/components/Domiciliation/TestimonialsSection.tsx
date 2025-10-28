@@ -58,7 +58,7 @@ export default function TestimonialsSection() {
             </div>
             <div className="text-left">
               <div className="text-white font-semibold font-montserrat">120+ entreprises</div>
-              <div className="text-white/40 text-sm font-inter">nous font confiance</div>
+              <div className="text-white/60 text-sm font-inter">nous font confiance</div>
             </div>
           </div>
         </motion.div>

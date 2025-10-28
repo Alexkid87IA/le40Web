@@ -134,7 +134,7 @@ export default function HeroSection() {
               <div className="flex items-center gap-1">
                 <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                 <span className="text-white/90 font-inter text-sm font-semibold">4.9/5</span>
-                <span className="text-white/50 text-xs">(127 avis)</span>
+                <span className="text-white/60 text-xs">(127 avis)</span>
               </div>
             </motion.div>
 
@@ -367,7 +367,7 @@ export default function HeroSection() {
                         <p className="text-white/90 font-inter text-sm leading-relaxed mb-1.5">
                           "{testimonial.text}"
                         </p>
-                        <p className="text-white/50 font-inter text-xs">
+                        <p className="text-white/60 font-inter text-xs">
                           <span className="font-semibold">{testimonial.name}</span> · {testimonial.role}
                         </p>
                       </div>

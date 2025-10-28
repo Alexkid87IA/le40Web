@@ -74,7 +74,7 @@ export default function GoogleReviewsSection() {
                     </div>
                     <div>
                       <div className="font-semibold text-white font-inter">{review.author}</div>
-                      <div className="text-xs text-white/40 font-inter">{review.date}</div>
+                      <div className="text-xs text-white/60 font-inter">{review.date}</div>
                     </div>
                   </div>
                   <div className="flex gap-0.5">
@@ -88,7 +88,7 @@ export default function GoogleReviewsSection() {
                   "{review.text}"
                 </p>
 
-                <div className="flex items-center gap-2 text-xs text-white/40 font-inter">
+                <div className="flex items-center gap-2 text-xs text-white/60 font-inter">
                   <Globe className="w-3 h-3" />
                   Publié sur Google
                 </div>

@@ -36,13 +36,13 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
 
       {isFirstService && (
         <div className="mb-6">
-          <div className="text-xs text-white/40 mb-3 font-montserrat tracking-wide">APERÇU DE L'INTERFACE :</div>
+          <div className="text-xs text-white/60 mb-3 font-montserrat tracking-wide">APERÇU DE L'INTERFACE :</div>
           <div className="grid grid-cols-2 gap-3">
             <div className="relative group overflow-hidden rounded-lg border border-white/10 bg-white/5 aspect-[4/3]">
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <Mail className="w-8 h-8 text-orange-400/50 mx-auto mb-2" />
-                  <div className="text-xs text-white/40 font-inter">Interface de scan</div>
+                  <div className="text-xs text-white/60 font-inter">Interface de scan</div>
                 </div>
               </div>
             </div>
@@ -51,7 +51,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <Phone className="w-8 h-8 text-blue-400/50 mx-auto mb-2" />
-                  <div className="text-xs text-white/40 font-inter">Notif push</div>
+                  <div className="text-xs text-white/60 font-inter">Notif push</div>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
         <p className="text-sm text-white/80 italic font-inter">
           "{service.testimonial.quote}"
         </p>
-        <p className="text-xs text-white/50 mt-2 font-inter">
+        <p className="text-xs text-white/60 mt-2 font-inter">
           — {service.testimonial.author}, {service.testimonial.role}
         </p>
       </div>

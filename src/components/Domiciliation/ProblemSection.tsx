@@ -13,7 +13,7 @@ export default function ProblemSection() {
           <h2 className="text-4xl md:text-5xl font-black text-white text-center mb-6">
             Une adresse ne suffit pas.
             <br />
-            <span className="text-white/40">Ce qui compte, c'est ce qui va avec.</span>
+            <span className="text-white/60">Ce qui compte, c'est ce qui va avec.</span>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8 mt-16">

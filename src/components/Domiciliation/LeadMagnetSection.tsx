@@ -63,7 +63,7 @@ export default function LeadMagnetSection() {
           </div>
 
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4 font-montserrat leading-tight">
-            📥 Checklist gratuite : Les 7 documents obligatoires
+            Checklist gratuite : Les 7 documents obligatoires
             <br />
             <span className="text-orange-400">pour domicilier votre entreprise</span>
           </h2>

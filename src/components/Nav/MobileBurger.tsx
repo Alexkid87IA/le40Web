@@ -22,7 +22,7 @@ export default function MobileBurger() {
   const location = useLocation();
 
   return (
-    <div className="lg:hidden">
+    <div className="md:hidden">
       <motion.header
         initial={{ y: -60 }}
         animate={{ y: 0 }}
@@ -65,7 +65,7 @@ export default function MobileBurger() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className={`fixed inset-0 ${designTokens.colors.background.primary}/90 backdrop-blur-md z-40 lg:hidden`}
+            className={`fixed inset-0 ${designTokens.colors.background.primary}/90 backdrop-blur-md z-40 md:hidden`}
             onClick={() => setIsOpen(false)}
           />
         )}

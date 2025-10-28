@@ -42,7 +42,7 @@ const FAQItem = memo<FAQItemProps>(function FAQItem({ item, index, isOpen, onTog
               className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border border-white/10"
             >
               <span className={`text-sm font-bold font-montserrat transition-colors ${
-                isOpen ? 'text-orange-400' : 'text-white/40 group-hover/button:text-white/60'
+                isOpen ? 'text-orange-400' : 'text-white/60 group-hover/button:text-white/60'
               }`}>
                 {(index + 1).toString().padStart(2, '0')}
               </span>
@@ -58,7 +58,7 @@ const FAQItem = memo<FAQItemProps>(function FAQItem({ item, index, isOpen, onTog
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="shrink-0"
           >
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 ${
+            <div className={`w-11 h-11 rounded-xl flex items-center justify-center border transition-all duration-300 ${
               isOpen
                 ? 'bg-orange-500/20 border-orange-500/30'
                 : 'bg-white/[0.03] border-white/10 group-hover/button:bg-white/[0.06]'

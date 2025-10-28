@@ -81,7 +81,7 @@ export default function FAQSection() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 aria-label="Rechercher dans les questions fréquentes"
-                className="w-full pl-14 pr-5 py-5 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl text-white placeholder-white/40 focus:outline-none focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 font-inter"
+                className="w-full pl-14 pr-5 py-5 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl text-white placeholder-white/40 focus:outline-none focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/50 transition-all duration-300 font-inter"
               />
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function FAQSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="mt-4 flex items-center gap-2 text-sm text-white/40 font-inter"
+            className="mt-4 flex items-center gap-2 text-sm text-white/60 font-inter"
           >
             <Sparkles className="w-4 h-4" />
             <span>
