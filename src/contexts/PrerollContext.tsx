@@ -35,22 +35,30 @@ function getOrCreateSessionId(): string {
 export function PrerollProvider({ children }: { children: React.ReactNode }) {
   const [showPreroll, setShowPreroll] = useState(false);
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [viewStartTime, setViewStartTime] = useState<number>(0);
 
   useEffect(() => {
     const hasSeenPreroll = sessionStorage.getItem(PREROLL_SESSION_KEY);
     if (!hasSeenPreroll) {
       setShowPreroll(true);
+      setViewStartTime(Date.now());
     }
   }, []);
 
-  const logSelection = async (serviceId: string) => {
+  const logSelection = async (serviceId: string, interactionData?: Record<string, any>) => {
     try {
       const sessionId = getOrCreateSessionId();
+      const timestamp = new Date().toISOString();
+
       await supabase.from('preroll_selections').insert({
         session_id: sessionId,
         selected_service: serviceId,
         user_agent: navigator.userAgent,
-        referrer: document.referrer || null
+        referrer: document.referrer || null,
+        screen_width: window.innerWidth,
+        screen_height: window.innerHeight,
+        timestamp: timestamp,
+        interaction_data: interactionData || null
       });
     } catch (error) {
       console.error('Error logging preroll selection:', error);
@@ -58,22 +66,35 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleServiceSelect = (serviceId: string) => {
+    const timeSpent = viewStartTime ? Date.now() - viewStartTime : 0;
+
     setSelectedService(serviceId);
     setShowPreroll(false);
     sessionStorage.setItem(PREROLL_SESSION_KEY, 'true');
-    logSelection(serviceId);
+
+    logSelection(serviceId, {
+      time_spent_ms: timeSpent,
+      interaction_type: 'selection'
+    });
   };
 
   const handleSkipPreroll = () => {
+    const timeSpent = viewStartTime ? Date.now() - viewStartTime : 0;
+
     setShowPreroll(false);
     sessionStorage.setItem(PREROLL_SESSION_KEY, 'true');
-    logSelection('skip');
+
+    logSelection('skip', {
+      time_spent_ms: timeSpent,
+      interaction_type: 'skip'
+    });
   };
 
   const resetPreroll = () => {
     sessionStorage.removeItem(PREROLL_SESSION_KEY);
     setShowPreroll(true);
     setSelectedService(null);
+    setViewStartTime(Date.now());
   };
 
   return (
