@@ -163,7 +163,7 @@ export default function GallerySection() {
 
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
                     <div className="p-8 pt-20">
-                      <div className="h-20 flex items-end mb-3">
+                      <div className="h-20 flex items-start mb-3">
                         <h3 className="text-white font-montserrat font-black text-2xl line-clamp-2 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 transition-all duration-300">
                           {item.title}
                         </h3>
