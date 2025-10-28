@@ -150,10 +150,10 @@ export default function SpacesSection() {
         <motion.div
           animate={{
             background: [
-              'radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 50%, rgba(245, 158, 11, 0.15) 0%, transparent 50%)',
-              'radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%)',
-              'radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.12) 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 50%, rgba(245, 158, 11, 0.12) 0%, transparent 50%)',
+              'radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.12) 0%, transparent 50%)',
             ]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -170,7 +170,7 @@ export default function SpacesSection() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
           >
-            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <Sparkles className="w-4 h-4 text-orange-400" />
             <span className="text-sm text-white/70 font-medium">Nos Espaces Premium</span>
           </motion.div>
 
@@ -309,7 +309,7 @@ export default function SpacesSection() {
                     <motion.div
                       onClick={() => setExpandedCard(isExpanded ? null : index)}
                       whileHover={{ y: -8 }}
-                      className="relative bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer h-full"
+                      className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-white/20 transition-all duration-500 cursor-pointer h-full"
                       style={{
                         borderColor: isExpanded ? currentCategory.accentColor : undefined,
                         boxShadow: isExpanded ? `0 0 40px ${currentCategory.accentColor}40` : undefined

@@ -12,7 +12,35 @@ export const designTokens = {
       accent: '#10B981',
       gradient: 'from-orange-500 via-amber-500 to-yellow-500',
       gradientAlt: 'from-cyan-500 via-blue-500 to-teal-500',
+      gradientAccent: 'from-emerald-500 via-teal-500 to-cyan-500',
       shadow: 'rgba(245, 158, 11, 0.3)',
+    },
+
+    palette: {
+      primary: {
+        light: '#FBBF24',
+        main: '#F59E0B',
+        dark: '#D97706',
+        gradient: 'from-orange-500 via-amber-500 to-yellow-500',
+        shadow: 'rgba(245, 158, 11, 0.3)',
+        glow: 'rgba(245, 158, 11, 0.15)',
+      },
+      secondary: {
+        light: '#22D3EE',
+        main: '#06B6D4',
+        dark: '#0891B2',
+        gradient: 'from-cyan-500 via-blue-500 to-teal-500',
+        shadow: 'rgba(6, 182, 212, 0.3)',
+        glow: 'rgba(6, 182, 212, 0.15)',
+      },
+      accent: {
+        light: '#34D399',
+        main: '#10B981',
+        dark: '#059669',
+        gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+        shadow: 'rgba(16, 185, 129, 0.3)',
+        glow: 'rgba(16, 185, 129, 0.15)',
+      },
     },
 
     services: {

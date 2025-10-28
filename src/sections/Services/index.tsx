@@ -129,7 +129,7 @@ export default function ServicesSection() {
                 ease: "easeInOut"
               }}
               className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[150px]"
-              style={{ backgroundColor: currentService.shadowColor, opacity: 0.12 }}
+              style={{ backgroundColor: currentService.shadowColor, opacity: 0.10 }}
             />
             <motion.div
               animate={{
@@ -142,7 +142,7 @@ export default function ServicesSection() {
                 delay: 2
               }}
               className="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] rounded-full blur-[180px]"
-              style={{ backgroundColor: currentService.shadowColor, opacity: 0.10 }}
+              style={{ backgroundColor: currentService.shadowColor, opacity: 0.08 }}
             />
           </motion.div>
         </AnimatePresence>
@@ -172,10 +172,10 @@ export default function ServicesSection() {
             className="inline-flex items-center gap-3 mb-8"
           >
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/50 to-orange-600/50 rounded-full blur-xl opacity-50" />
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600/50 to-amber-600/50 rounded-full blur-xl opacity-50" />
               <div className="relative bg-black/60 border border-white/20 rounded-full px-6 py-3 backdrop-blur-xl">
                 <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <Sparkles className="w-4 h-4 text-orange-400" />
                   <span className="text-white/90 font-medium text-sm uppercase tracking-wider">
                     Écosystème Premium
                   </span>
@@ -193,7 +193,7 @@ export default function ServicesSection() {
           >
             <span className="text-white">Nos Services</span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-orange-400 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
               d'Excellence
             </span>
           </motion.h2>

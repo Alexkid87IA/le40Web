@@ -43,28 +43,28 @@ export default function Contact() {
       title: "Adresse",
       content: "40 Rue de la République",
       subcontent: "13001 Marseille",
-      gradient: "from-orange-500 to-amber-600"
+      gradient: "from-orange-500 via-amber-500 to-yellow-500"
     },
     {
       icon: Phone,
       title: "Téléphone",
       content: "+33 4 91 23 45 67",
       subcontent: "Disponible 7j/7",
-      gradient: "from-amber-500 to-yellow-600"
+      gradient: "from-orange-500 via-amber-500 to-yellow-500"
     },
     {
       icon: Mail,
       title: "Email",
       content: "contact@le40.fr",
       subcontent: "Réponse sous 24h",
-      gradient: "from-orange-600 to-red-600"
+      gradient: "from-orange-500 via-amber-500 to-yellow-500"
     },
     {
       icon: Clock,
       title: "Horaires",
       content: "Lun - Ven : 8h - 20h",
       subcontent: "Sam - Dim : 9h - 18h",
-      gradient: "from-amber-600 to-orange-600"
+      gradient: "from-orange-500 via-amber-500 to-yellow-500"
     }
   ];
 
@@ -351,7 +351,7 @@ export default function Contact() {
                 href="tel:+33491234567"
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-6 py-5 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-center shadow-xl overflow-hidden"
+                className="group relative px-6 py-5 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white font-bold text-center shadow-xl overflow-hidden"
               >
                 <motion.div
                   className="absolute inset-0 bg-white/20"
@@ -386,7 +386,7 @@ export default function Contact() {
 
             <motion.div
               whileHover={{ y: -5 }}
-              className="bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 text-center"
+              className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 text-center"
             >
               <MapPin className="w-12 h-12 text-orange-400 mx-auto mb-4" />
               <h4 className="text-xl font-black text-white mb-3">
@@ -398,7 +398,7 @@ export default function Contact() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold shadow-xl"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white font-bold shadow-xl"
               >
                 <Calendar className="w-5 h-5" />
                 <span>Réserver une Visite</span>

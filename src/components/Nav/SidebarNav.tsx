@@ -10,35 +10,40 @@ const navItems = [
     name: 'Accueil',
     href: '/',
     icon: Home,
-    gradient: designTokens.colors.services.coworking.gradient,
+    gradient: designTokens.colors.palette.primary.gradient,
+    color: designTokens.colors.palette.primary.main,
     description: 'Découvrez Le 40'
   },
   {
     name: 'Bureaux',
     href: '/coworking',
     icon: Building2,
-    gradient: designTokens.colors.services.coworking.gradient,
+    gradient: designTokens.colors.palette.secondary.gradient,
+    color: designTokens.colors.palette.secondary.main,
     description: 'Espaces de travail'
   },
   {
     name: 'Domiciliation',
     href: '/domiciliation',
     icon: MapPin,
-    gradient: designTokens.colors.services.domiciliation.gradient,
+    gradient: designTokens.colors.palette.primary.gradient,
+    color: designTokens.colors.palette.primary.main,
     description: 'Adresse professionnelle'
   },
   {
     name: 'Salles',
     href: '/salles',
     icon: Presentation,
-    gradient: designTokens.colors.services.salles.gradient,
+    gradient: designTokens.colors.palette.primary.gradient,
+    color: designTokens.colors.palette.primary.main,
     description: 'Réunions & événements'
   },
   {
     name: 'Studio',
     href: '/studios',
     icon: Video,
-    gradient: designTokens.colors.services.studios.gradient,
+    gradient: designTokens.colors.palette.accent.gradient,
+    color: designTokens.colors.palette.accent.main,
     description: 'Production audiovisuelle'
   },
 ];
@@ -48,13 +53,15 @@ const secondaryItems = [
     name: 'Communauté',
     href: '/community',
     icon: Users,
-    gradient: designTokens.colors.services.community.gradient
+    gradient: designTokens.colors.palette.secondary.gradient,
+    color: designTokens.colors.palette.secondary.main
   },
   {
     name: 'Contact',
     href: '/contact',
     icon: Phone,
-    gradient: 'from-slate-400 to-slate-500'
+    gradient: designTokens.colors.palette.primary.gradient,
+    color: designTokens.colors.palette.primary.main
   },
 ];
 
@@ -117,9 +124,9 @@ const NavItem = ({ item, index, activePath }) => {
                 }`}
                 animate={isActive ? {
                   boxShadow: [
-                    `0 0 20px ${item.gradient.includes('blue') ? 'rgba(66, 153, 225, 0.4)' : item.gradient.includes('orange') ? 'rgba(245, 158, 11, 0.4)' : item.gradient.includes('purple') ? 'rgba(159, 122, 234, 0.4)' : 'rgba(72, 187, 120, 0.4)'}`,
-                    `0 0 30px ${item.gradient.includes('blue') ? 'rgba(66, 153, 225, 0.6)' : item.gradient.includes('orange') ? 'rgba(245, 158, 11, 0.6)' : item.gradient.includes('purple') ? 'rgba(159, 122, 234, 0.6)' : 'rgba(72, 187, 120, 0.6)'}`,
-                    `0 0 20px ${item.gradient.includes('blue') ? 'rgba(66, 153, 225, 0.4)' : item.gradient.includes('orange') ? 'rgba(245, 158, 11, 0.4)' : item.gradient.includes('purple') ? 'rgba(159, 122, 234, 0.4)' : 'rgba(72, 187, 120, 0.4)'}`,
+                    `0 0 20px ${item.color}66`,
+                    `0 0 30px ${item.color}99`,
+                    `0 0 20px ${item.color}66`,
                   ]
                 } : {}}
                 transition={{ duration: 2, repeat: Infinity }}
@@ -211,7 +218,7 @@ const CartItem = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
-                className={`absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r ${designTokens.colors.services.coworking.gradient} rounded-full flex items-center justify-center shadow-lg`}
+                className={`absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r ${designTokens.colors.palette.primary.gradient} rounded-full flex items-center justify-center shadow-lg`}
               >
                 <span className="text-white text-[10px] font-bold">{itemCount}</span>
               </motion.div>
@@ -257,7 +264,7 @@ export default function SidebarNav() {
               <motion.div
                 className="absolute inset-0 blur-xl opacity-0 hover:opacity-100 transition-opacity duration-500"
                 style={{
-                  background: 'radial-gradient(circle, rgba(66, 153, 225, 0.15) 0%, transparent 70%)'
+                  background: `radial-gradient(circle, ${designTokens.colors.palette.primary.glow} 0%, transparent 70%)`
                 }}
               />
               <img
@@ -274,8 +281,8 @@ export default function SidebarNav() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mt-4 text-center"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-white/[0.08]">
-              <Sparkles className="w-3 h-3 text-blue-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-white/[0.08]">
+              <Sparkles className="w-3 h-3 text-orange-400" />
               <span className="text-[11px] font-inter font-semibold text-white/70 tracking-wider uppercase">Premium Space</span>
             </div>
           </motion.div>
@@ -317,7 +324,7 @@ export default function SidebarNav() {
               className="group relative block overflow-hidden rounded-2xl"
             >
               <motion.div
-                className={`absolute inset-0 bg-gradient-to-r ${designTokens.colors.services.coworking.gradient}`}
+                className={`absolute inset-0 bg-gradient-to-r ${designTokens.colors.palette.primary.gradient}`}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.4 }}
               />

@@ -10,21 +10,21 @@ const serviceDetails = {
   "BUREAU": {
     tagline: "Espaces premium équipés",
     metric: "4000m²",
-    gradient: "from-cyan-400 via-blue-400 to-teal-400",
+    gradient: "from-cyan-500 via-blue-500 to-teal-500",
     shadowColor: "rgba(6, 182, 212, 0.3)",
     accentColor: "#06B6D4"
   },
   "STUDIO": {
     tagline: "Production audiovisuelle 4K/8K",
     metric: "3 studios",
-    gradient: "from-emerald-400 via-teal-400 to-cyan-400",
+    gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     shadowColor: "rgba(16, 185, 129, 0.3)",
     accentColor: "#10B981"
   },
   "DOMICILIATION": {
     tagline: "Adresse prestigieuse République",
     metric: "120+ entreprises",
-    gradient: "from-orange-400 via-amber-400 to-yellow-400",
+    gradient: "from-orange-500 via-amber-500 to-yellow-500",
     shadowColor: "rgba(245, 158, 11, 0.3)",
     accentColor: "#F59E0B"
   }
@@ -95,7 +95,7 @@ export default function Hero() {
           >
             <motion.div
               className="absolute top-1/4 -left-48 w-96 h-96 rounded-full blur-[120px]"
-              style={{ backgroundColor: currentService.accentColor, opacity: 0.08 }}
+              style={{ backgroundColor: currentService.accentColor, opacity: 0.10 }}
               animate={{
                 scale: [1, 1.2, 1],
                 x: [0, 50, 0],
@@ -105,7 +105,7 @@ export default function Hero() {
             />
             <motion.div
               className="absolute bottom-1/4 -right-48 w-[30rem] h-[30rem] rounded-full blur-[140px]"
-              style={{ backgroundColor: currentService.accentColor, opacity: 0.06 }}
+              style={{ backgroundColor: currentService.accentColor, opacity: 0.08 }}
               animate={{
                 scale: [1, 1.15, 1],
                 x: [0, -50, 0],
