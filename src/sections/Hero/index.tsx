@@ -26,12 +26,12 @@ export default function Hero() {
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
                 Le 40
                 <span className="block bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-                  Coworking & Plus
+                  Votre Espace Pro
                 </span>
               </h1>
 
               <p className="text-xl text-slate-300 leading-relaxed">
-                L'écosystème complet pour entrepreneurs : coworking premium, domiciliation, salles de réunion et studios créatifs.
+                Coworking, bureaux privés, domiciliation, salles de réunion et studios créatifs. Tout pour développer votre activité.
               </p>
             </motion.div>
 
@@ -91,15 +91,15 @@ export default function Hero() {
                     <Users className="w-6 h-6 text-orange-400" />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Coworking</h3>
-                  <p className="text-sm text-slate-400">Espaces flexibles et équipés</p>
+                  <p className="text-sm text-slate-400">Espaces partagés flexibles</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-white/10">
                   <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
                     <Building2 className="w-6 h-6 text-blue-400" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Salles</h3>
-                  <p className="text-sm text-slate-400">Réunions et événements</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">Bureaux Privés</h3>
+                  <p className="text-sm text-slate-400">Espaces dédiés équipés</p>
                 </div>
               </div>
 
@@ -116,8 +116,8 @@ export default function Hero() {
                   <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
                     <Video className="w-6 h-6 text-emerald-400" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Studios</h3>
-                  <p className="text-sm text-slate-400">Production audiovisuelle</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">Studios Pro</h3>
+                  <p className="text-sm text-slate-400">Audio & vidéo équipés</p>
                 </div>
               </div>
             </div>
