@@ -19,6 +19,7 @@ const Community = lazy(() => import('../pages/Community'));
 const Experts = lazy(() => import('../pages/Experts'));
 const Events = lazy(() => import('../pages/Events'));
 const ServicesPlus = lazy(() => import('../pages/ServicesPlus'));
+const PrivacyPolicy = lazy(() => import('../pages/PrivacyPolicy'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const BookingPage = lazy(() => import('../pages/BookingPage'));
 
@@ -71,6 +72,9 @@ export default function AppRoutes() {
 
           {/* Route de réservation */}
           <Route path="/reservation" element={<BookingPage />} />
+
+          {/* Route RGPD */}
+          <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
 
           {/* Route 404 - toujours en dernier */}
           <Route path="*" element={<NotFound />} />

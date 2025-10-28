@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { env } from '../utils/env';
 import { logger } from '../utils/logger';
@@ -46,7 +46,7 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const logSelection = async (serviceId: string, interactionData?: Record<string, any>) => {
+  const logSelection = useCallback(async (serviceId: string, interactionData?: Record<string, unknown>) => {
     try {
       const sessionId = getOrCreateSessionId();
 
@@ -81,9 +81,9 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
         serviceId,
       });
     }
-  };
+  }, []);
 
-  const handleServiceSelect = (serviceId: string) => {
+  const handleServiceSelect = useCallback((serviceId: string) => {
     const timeSpent = viewStartTime ? Date.now() - viewStartTime : 0;
 
     setSelectedService(serviceId);
@@ -94,9 +94,9 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
       time_spent_ms: timeSpent,
       interaction_type: 'selection'
     });
-  };
+  }, [viewStartTime, logSelection]);
 
-  const handleSkipPreroll = () => {
+  const handleSkipPreroll = useCallback(() => {
     const timeSpent = viewStartTime ? Date.now() - viewStartTime : 0;
 
     setShowPreroll(false);
@@ -106,25 +106,28 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
       time_spent_ms: timeSpent,
       interaction_type: 'skip'
     });
-  };
+  }, [viewStartTime, logSelection]);
 
-  const resetPreroll = () => {
+  const resetPreroll = useCallback(() => {
     sessionStorage.removeItem(PREROLL_SESSION_KEY);
     setShowPreroll(true);
     setSelectedService(null);
     setViewStartTime(Date.now());
-  };
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({
+      showPreroll,
+      selectedService,
+      handleServiceSelect,
+      handleSkipPreroll,
+      resetPreroll,
+    }),
+    [showPreroll, selectedService, handleServiceSelect, handleSkipPreroll, resetPreroll]
+  );
 
   return (
-    <PrerollContext.Provider
-      value={{
-        showPreroll,
-        selectedService,
-        handleServiceSelect,
-        handleSkipPreroll,
-        resetPreroll
-      }}
-    >
+    <PrerollContext.Provider value={contextValue}>
       {children}
     </PrerollContext.Provider>
   );
