@@ -9,40 +9,40 @@ const servicesData = [
     title: "Coworking",
     subtitle: "Espaces Collaboratifs",
     icon: Users,
-    description: "Rejoignez l'élite entrepreneuriale dans nos espaces pensés pour l'excellence",
-    features: ["Internet Très Haut Débit", "Réseaux Entrepreneurs Premium", "Services Sur Mesure"],
+    description: "Rejoignez une communauté de 120+ entrepreneurs dans un espace professionnel de 300m²",
+    features: ["Fibre 1Gb/s incluse", "Networking régulier", "Conciergerie disponible"],
     link: "/coworking",
     metric: "4000",
     metricLabel: "m² d'innovation",
-    tagline: "Où les idées prennent vie",
+    tagline: "Travaillez entouré d'entrepreneurs comme vous",
     gradient: designTokens.colors.services.coworking.gradient,
     shadowColor: designTokens.colors.services.coworking.primary,
   },
   {
     id: 2,
     title: "Domiciliation",
-    subtitle: "Adresse de Caractère",
+    subtitle: "Adresse professionnelle",
     icon: MapPin,
-    description: "Positionnez votre entreprise au sommet",
+    description: "Domiciliez votre société dans un quartier d'affaires stratégique de Marseille",
     features: ["Réception / Expédition Courrier", "Accès Coworking / Networking", "Events"],
     link: "/domiciliation",
     metric: "120",
     metricLabel: "entreprises",
-    tagline: "Votre prestige commence ici",
+    tagline: "Une adresse professionnelle pour votre développement",
     gradient: designTokens.colors.services.domiciliation.gradient,
     shadowColor: designTokens.colors.services.domiciliation.primary,
   },
   {
     id: 3,
-    title: "Salles Premium",
-    subtitle: "Réunions d'Exception",
+    title: "Salles de Réunion",
+    subtitle: "Équipement professionnel",
     icon: Monitor,
-    description: "Impressionnez dans nos écrins technologiques dernière génération",
-    features: ["Écrans OLED 8K", "IA Transcription", "Barista Privé"],
+    description: "Présentez vos projets dans des salles équipées pour vos réunions importantes",
+    features: ["Écrans 4K → Visibilité parfaite", "Transcription automatique", "Café premium inclus"],
     link: "/salles",
     metric: "5",
     metricLabel: "salles signature",
-    tagline: "Où les deals se concrétisent",
+    tagline: "Où vos projets avancent",
     gradient: designTokens.colors.services.salles.gradient,
     shadowColor: designTokens.colors.services.salles.primary,
   },
@@ -62,15 +62,15 @@ const servicesData = [
   },
   {
     id: 5,
-    title: "Cercle Privé",
-    subtitle: "Réseau Exclusif",
+    title: "Communauté",
+    subtitle: "Réseau d'entrepreneurs",
     icon: Network,
-    description: "Accédez à un réseau fermé de décideurs et visionnaires",
-    features: ["Mentors Fortune 500", "Events VIP", "Deals Exclusifs"],
+    description: "Développez votre réseau avec des entrepreneurs ambitieux et des experts du secteur",
+    features: ["Mentors expérimentés", "Événements réguliers", "Opportunités de collaboration"],
     link: "/experts",
-    metric: "Top 1%",
-    metricLabel: "entrepreneurs",
-    tagline: "L'excellence attire l'excellence",
+    metric: "120+",
+    metricLabel: "entrepreneurs actifs",
+    tagline: "Grandissez entouré des meilleurs",
     gradient: designTokens.colors.services.community.gradient,
     shadowColor: designTokens.colors.services.community.primary,
   },
@@ -177,7 +177,7 @@ export default function ServicesSection() {
                 <div className="flex items-center gap-3">
                   <Sparkles className="w-4 h-4 text-orange-400" />
                   <span className="text-white/90 font-medium text-sm uppercase tracking-wider">
-                    Écosystème Premium
+                    Notre Écosystème
                   </span>
                 </div>
               </div>
@@ -194,7 +194,7 @@ export default function ServicesSection() {
             <span className="text-white">Nos Services</span>
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
-              d'Excellence
+              Complets
             </span>
           </motion.h2>
 
@@ -205,7 +205,7 @@ export default function ServicesSection() {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-xl text-white/60 max-w-3xl mx-auto font-light"
           >
-            Un écosystème complet pensé pour propulser votre réussite vers des sommets inédits
+            Un écosystème complet pour développer votre activité et votre réseau professionnel
           </motion.p>
         </motion.div>
 
@@ -332,7 +332,7 @@ export default function ServicesSection() {
                     <div className="relative w-full">
                       <div className={`relative bg-gradient-to-r ${currentService.gradient} rounded-2xl px-8 py-5 flex items-center justify-between`}>
                         <span className="font-montserrat font-bold text-white text-lg tracking-wide">
-                          Découvrir le service
+                          En savoir plus
                         </span>
                         <motion.div
                           animate={{ x: [0, 5, 0] }}

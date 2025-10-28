@@ -76,7 +76,7 @@ export default function PhoneBox() {
               </motion.div>
 
               <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
-                Phone Box & <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">Call Rooms</span>
+                Cabines Téléphoniques & <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">Salles d'Appel</span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
                 Passez vos appels en toute confidentialité
@@ -111,7 +111,7 @@ export default function PhoneBox() {
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-400 to-green-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300"
               >
                 <Calendar className="w-5 h-5 mr-2" />
-                Bloquer un créneau
+                Réserver
                 <ArrowRight className="w-5 h-5 ml-2" />
               </motion.button>
             </motion.div>
@@ -200,7 +200,7 @@ export default function PhoneBox() {
                   <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-xl flex items-center justify-center mr-4">
                     <Phone className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Phone Box</h3>
+                  <h3 className="text-2xl font-bold text-white">Cabine Téléphonique</h3>
                 </div>
                 
                 <p className="text-gray-300 mb-6">
@@ -235,7 +235,7 @@ export default function PhoneBox() {
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mr-4">
                     <Video className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Call Room</h3>
+                  <h3 className="text-2xl font-bold text-white">Salle d'Appel</h3>
                 </div>
                 
                 <p className="text-gray-300 mb-6">
@@ -396,10 +396,10 @@ export default function PhoneBox() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Besoin d'un espace confidentiel ?
+                Besoin d'un espace pour vos appels ?
               </h2>
               <p className="text-xl text-gray-300 mb-8">
-                Réservez votre phone box ou call room dès maintenant via notre application
+                Réservez votre cabine ou salle d'appel dès maintenant
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.button
@@ -408,7 +408,7 @@ export default function PhoneBox() {
                   className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-400 to-green-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300"
                 >
                   <Calendar className="w-5 h-5 mr-2" />
-                  Réserver maintenant
+                  Réserver
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </motion.button>
                 <motion.a
@@ -417,7 +417,7 @@ export default function PhoneBox() {
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 hover:border-white/30 transition-all duration-300"
                 >
-                  Télécharger l'app
+                  Nous contacter
                 </motion.a>
               </div>
             </motion.div>

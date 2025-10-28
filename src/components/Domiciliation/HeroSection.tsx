@@ -143,8 +143,8 @@ export default function HeroSection() {
               transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-400/30 backdrop-blur-sm mb-8 shadow-lg shadow-amber-500/10"
             >
-              <Zap className="w-4 h-4 text-amber-400 fill-amber-400" />
-              <span className="text-amber-300 font-inter text-sm font-bold">Offre limitée</span>
+              <Shield className="w-4 h-4 text-amber-400" />
+              <span className="text-amber-300 font-inter text-sm font-bold">Agrément Préfecture</span>
               <div className="w-px h-4 bg-amber-400/30"></div>
               <div className="flex items-center gap-1">
                 <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
@@ -162,7 +162,7 @@ export default function HeroSection() {
             >
               <h1 className={`${designTokens.typography.h1.size} font-montserrat ${designTokens.typography.h1.weight} text-white ${designTokens.typography.h1.leading} ${designTokens.typography.h1.tracking} mb-6`}
                   style={{ textShadow: '0 8px 32px rgba(0,0,0,0.6)' }}>
-                Domiciliez votre entreprise en{' '}
+                Domiciliation d'entreprise en{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-gradient-to-br from-amber-300 via-amber-400 to-orange-500 bg-clip-text text-transparent">
                     24h
@@ -193,7 +193,7 @@ export default function HeroSection() {
                 </div>
               </div>
               <p className={`${designTokens.typography.body.size} text-white/80 font-inter font-medium ${designTokens.typography.body.leading}`}>
-                Adresse prestigieuse République + Scan courrier 2h + Standard téléphonique inclus
+                Adresse professionnelle République + Scan courrier 2h + Standard téléphonique inclus
               </p>
             </motion.div>
 
@@ -205,9 +205,9 @@ export default function HeroSection() {
               className="space-y-3 mb-10"
             >
               {[
-                { icon: Building2, text: 'Adresse Place de la République', highlight: 'Prestigieuse' },
+                { icon: Building2, text: 'Adresse Place de la République', highlight: 'Stratégique' },
                 { icon: Zap, text: 'Activation garantie sous 24h', highlight: 'Express' },
-                { icon: Shield, text: 'Agrément Préfecture + Conformité légale', highlight: '100% légal' },
+                { icon: Shield, text: 'Agrément Préfecture + Conformité légale', highlight: 'Certifié' },
                 { icon: Mail, text: 'Scan et transfert courrier en 2h', highlight: 'Ultra-rapide' }
               ].map((benefit, index) => (
                 <motion.div
@@ -261,7 +261,7 @@ export default function HeroSection() {
                     >
                       <div className="flex items-center justify-between w-full">
                         <div className="text-left">
-                          <p className="font-montserrat font-black text-base">Choisir ma formule</p>
+                          <p className="font-montserrat font-black text-base">Choisir cette offre</p>
                           <p className="text-white/90 text-xs font-inter">Dès 29€/mois • 3 forfaits</p>
                         </div>
                       </div>
@@ -278,7 +278,7 @@ export default function HeroSection() {
                 icon={Phone}
                 fullWidth
               >
-                Parler à un conseiller maintenant
+                Nous contacter
               </Button>
 
               {/* Trust Signals */}
@@ -290,7 +290,7 @@ export default function HeroSection() {
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <span className="text-white/70 font-inter text-sm">
-                    <span className="text-green-400 font-bold">2 places restantes</span> à ce tarif
+                    <span className="text-green-400 font-bold">Disponible immédiatement</span>
                   </span>
                 </div>
                 <div className="h-4 w-px bg-white/10"></div>
@@ -325,7 +325,7 @@ export default function HeroSection() {
                   <span className="ml-2 text-white/90 font-inter text-sm font-bold">5.0</span>
                 </div>
                 <p className="text-white/95 font-inter text-base leading-relaxed mb-6">
-                  "J'ai économisé <span className="font-bold text-amber-400">8 heures par semaine</span> grâce au scan courrier automatique. Le ROI est incroyable, mon assistant virtuel gère tout depuis l'app."
+                  "Le scan courrier automatique m'a fait gagner <span className="font-bold text-amber-400">8 heures par semaine</span>. Tout est géré efficacement et je peux me concentrer sur mon activité. Un vrai gain de temps et de productivité au quotidien."
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 via-orange-500 to-red-500 p-0.5">
@@ -357,8 +357,8 @@ export default function HeroSection() {
                   className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 text-center"
                 >
                   <Shield className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-                  <p className="text-4xl font-montserrat font-black text-white mb-1">100%</p>
-                  <p className="text-white/60 font-inter text-sm">Légal & Conforme</p>
+                  <p className="text-4xl font-montserrat font-black text-white mb-1">127</p>
+                  <p className="text-white/60 font-inter text-sm">Entreprises</p>
                 </motion.div>
               </div>
 

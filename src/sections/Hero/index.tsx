@@ -8,7 +8,7 @@ const animatedWords = ["BUREAU", "STUDIO", "DOMICILIATION"];
 
 const serviceDetails = {
   "BUREAU": {
-    tagline: "Espaces premium équipés",
+    tagline: "Espaces professionnels équipés",
     metric: "4000m²",
     gradient: "from-cyan-500 via-blue-500 to-teal-500",
     shadowColor: "rgba(6, 182, 212, 0.3)",
@@ -22,7 +22,7 @@ const serviceDetails = {
     accentColor: "#10B981"
   },
   "DOMICILIATION": {
-    tagline: "Adresse prestigieuse République",
+    tagline: "Adresse professionnelle République",
     metric: "120+ entreprises",
     gradient: "from-orange-500 via-amber-500 to-yellow-500",
     shadowColor: "rgba(245, 158, 11, 0.3)",
@@ -63,7 +63,7 @@ export default function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWordIndex((prev) => (prev + 1) % animatedWords.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -265,7 +265,7 @@ export default function Hero() {
             className="mb-8 sm:mb-10 max-w-3xl"
           >
             <p className={`${designTokens.typography.body.size} font-inter font-light text-white/60 ${designTokens.typography.body.leading} tracking-wide`}>
-              Un écosystème d'excellence où convergent innovation, créativité et ambition entrepreneuriale.
+              Un écosystème professionnel où innovation, créativité et ambition entrepreneuriale se rencontrent.
             </p>
           </motion.div>
 
@@ -290,7 +290,7 @@ export default function Hero() {
                 iconPosition="right"
                 className="relative bg-white text-black hover:bg-white/95 hover:shadow-none w-full sm:w-auto"
               >
-                RÉSERVER UNE VISITE
+                Réserver une visite
               </Button>
             </div>
 
@@ -307,7 +307,7 @@ export default function Hero() {
                 iconPosition="right"
                 className="w-full sm:w-auto relative"
               >
-                DÉCOUVRIR EN VIDÉO
+                Voir la vidéo
               </Button>
             </div>
           </motion.div>

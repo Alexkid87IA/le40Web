@@ -201,7 +201,7 @@ export default function Coworking() {
                 >
                   <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4"></div>
                   <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
-                    Espaces Premium
+                    Espaces Coworking
                   </span>
                   <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4"></div>
                 </motion.div>
@@ -225,7 +225,7 @@ export default function Coworking() {
                   transition={{ delay: 0.5, duration: 0.8 }}
                   className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto mb-12"
                 >
-                  Travaillez dans un environnement inspirant, entouré d'entrepreneurs ambitieux
+                  Rejoignez une communauté de 120+ entrepreneurs dans un espace professionnel de 300m²
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -243,7 +243,6 @@ export default function Coworking() {
                       className="relative bg-black rounded-2xl px-8 py-4 border border-violet-500/50"
                     >
                       <span className="font-montserrat font-semibold text-white flex items-center gap-3">
-                        <Calendar className="w-5 h-5" />
                         Réserver une visite
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </span>
@@ -271,9 +270,9 @@ export default function Coworking() {
                   className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-20"
                 >
                   {[
-                    { number: '500+', label: 'Membres actifs' },
-                    { number: '1200m²', label: 'D\'espaces' },
-                    { number: '4.9★', label: 'Satisfaction' }
+                    { number: '120+', label: 'Entrepreneurs' },
+                    { number: '300m²', label: 'Espace ouvert' },
+                    { number: '4.9★', label: 'Note moyenne' }
                   ].map((stat, index) => (
                     <div key={index} className="text-center">
                       <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">
@@ -302,7 +301,7 @@ export default function Coworking() {
                 NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">ESPACES</span>
               </h2>
               <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
-                Choisissez l'environnement qui correspond à votre style de travail
+                Des espaces adaptés à tous vos besoins professionnels
               </p>
             </motion.div>
 
@@ -459,10 +458,10 @@ export default function Coworking() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">FORMULES</span>
+                NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">TARIFS</span>
               </h2>
               <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
-                Des solutions flexibles adaptées à tous les besoins
+                Des formules flexibles pour tous les besoins
               </p>
             </motion.div>
 
@@ -528,7 +527,7 @@ export default function Coworking() {
                             : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
                         }`}
                       >
-                        Choisir cette formule
+                        Choisir cette offre
                       </motion.div>
                     </Link>
                   </motion.div>
@@ -549,18 +548,18 @@ export default function Coworking() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                TOUT EST <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">INCLUS</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">INCLUS</span> DANS L'OFFRE
               </h2>
             </motion.div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { icon: Wifi, title: 'Wi-Fi Fibré', desc: '1 Gb/s symétrique' },
-                { icon: Coffee, title: 'Café Premium', desc: 'Illimité' },
+                { icon: Wifi, title: 'Fibre optique', desc: '1 Gb/s inclus' },
+                { icon: Coffee, title: 'Café et thé', desc: 'Illimité' },
                 { icon: Clock, title: 'Accès 24/7', desc: 'Badge sécurisé' },
-                { icon: Users, title: 'Communauté', desc: '500+ membres' },
+                { icon: Users, title: 'Communauté', desc: '120+ entrepreneurs' },
                 { icon: Shield, title: 'Sécurité', desc: 'Surveillance 24h' },
-                { icon: Zap, title: 'Événements', desc: 'Chaque semaine' },
+                { icon: Zap, title: 'Networking', desc: 'Événements réguliers' },
                 { icon: Building2, title: 'Salles', desc: 'Sur réservation' },
                 { icon: MapPin, title: 'Localisation', desc: 'Centre-ville' }
               ].map((feature, index) => (
@@ -597,7 +596,7 @@ export default function Coworking() {
               className="text-center mb-16"
             >
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                ILS NOUS FONT <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">CONFIANCE</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">TÉMOIGNAGES</span>
               </h2>
             </motion.div>
 
@@ -653,10 +652,10 @@ export default function Coworking() {
             >
               <Sparkles className="w-12 h-12 text-violet-400 mx-auto mb-6" />
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-                PRÊT À NOUS <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">REJOINDRE</span> ?
+                PRÊT À <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-400">COMMENCER</span> ?
               </h2>
               <p className="text-xl font-inter text-white/60 mb-12 max-w-2xl mx-auto">
-                Réservez votre visite gratuite et découvrez l'espace de travail qui transformera votre quotidien
+                Réservez votre visite et découvrez nos espaces de coworking
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -668,7 +667,7 @@ export default function Coworking() {
                     className="relative bg-black rounded-2xl px-10 py-5 border border-violet-500/50"
                   >
                     <span className="font-montserrat font-semibold text-white flex items-center gap-3">
-                      Réserver ma visite gratuite
+                      Réserver une visite
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </motion.div>
