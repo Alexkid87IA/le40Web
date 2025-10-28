@@ -16,7 +16,7 @@ const navItems = [
   },
   {
     name: 'Bureaux',
-    href: '/coworking',
+    href: '/bureaux',
     icon: Building2,
     gradient: designTokens.colors.palette.secondary.gradient,
     color: designTokens.colors.palette.secondary.main,
