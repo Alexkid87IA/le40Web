@@ -161,23 +161,27 @@ export default function GallerySection() {
                     </div>
                   </motion.div>
 
-                  <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
-                    <div>
-                      <h3 className="text-white font-montserrat font-black text-2xl mb-3 line-clamp-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 transition-all duration-300">
-                        {item.title}
-                      </h3>
-                      <p className="text-white/85 font-inter text-sm mb-4 line-clamp-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {item.description}
-                      </p>
-                      <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span className="text-emerald-400 text-sm font-bold flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                          {item.capacity}
-                        </span>
-                        <span className="text-white/30">•</span>
-                        <span className="text-teal-400 text-sm font-bold">{item.surface}</span>
-                        <span className="text-white/30">•</span>
-                        <span className="text-cyan-400 text-sm font-bold">Dès {item.priceFrom}</span>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
+                    <div className="p-8 pt-20">
+                      <div className="h-20 flex items-end mb-3">
+                        <h3 className="text-white font-montserrat font-black text-2xl line-clamp-2 leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 transition-all duration-300">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <div className="transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <p className="text-white/85 font-inter text-sm mb-4 line-clamp-2 leading-relaxed">
+                          {item.description}
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <span className="text-emerald-400 text-sm font-bold flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            {item.capacity}
+                          </span>
+                          <span className="text-white/30">•</span>
+                          <span className="text-teal-400 text-sm font-bold">{item.surface}</span>
+                          <span className="text-white/30">•</span>
+                          <span className="text-cyan-400 text-sm font-bold">Dès {item.priceFrom}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
