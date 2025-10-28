@@ -20,7 +20,7 @@ export default function CoworkingSection() {
   return (
     <section id="coworking" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-950/20 via-[#0A0A0A] to-amber-950/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/20 via-[#0A0A0A] to-blue-950/10"></div>
       </div>
 
       <div className="absolute inset-0 z-0">
@@ -49,15 +49,15 @@ export default function CoworkingSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-2 mb-8">
-              <Users className="w-4 h-4 text-orange-400" />
-              <span className="text-orange-300 text-sm font-medium uppercase tracking-wider">Coworking Premium</span>
+            <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-2 mb-8">
+              <Users className="w-4 h-4 text-cyan-400" />
+              <span className="text-cyan-300 text-sm font-medium uppercase tracking-wider">Espaces Premium</span>
             </div>
 
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
               Travaillez
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">
                 Entouré d'Entrepreneurs
               </span>
             </h2>
@@ -78,8 +78,8 @@ export default function CoworkingSection() {
               <div key={index} className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-white/10 rounded-xl p-6">
                 <div className="flex items-center justify-between mb-3">
                   <div className="text-white/40 text-sm">{stat.label}</div>
-                  <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center">
-                    <stat.icon className="w-5 h-5 text-orange-400" />
+                  <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                    <stat.icon className="w-5 h-5 text-cyan-400" />
                   </div>
                 </div>
                 <div className="text-3xl font-bold text-white">{stat.value}</div>
@@ -96,8 +96,8 @@ export default function CoworkingSection() {
           >
             {features.map((feature, index) => (
               <div key={index} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg px-4 py-3">
-                <div className="p-2 bg-orange-500/10 rounded-lg flex-shrink-0">
-                  <feature.icon className="w-5 h-5 text-orange-400" />
+                <div className="p-2 bg-cyan-500/10 rounded-lg flex-shrink-0">
+                  <feature.icon className="w-5 h-5 text-cyan-400" />
                 </div>
                 <span className="text-white/80 text-sm">{feature.text}</span>
               </div>
@@ -122,7 +122,7 @@ export default function CoworkingSection() {
                 size="md"
                 icon={ArrowRight}
                 iconPosition="right"
-                className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white shadow-lg shadow-orange-500/25"
+                className="bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500 hover:from-cyan-600 hover:via-blue-600 hover:to-teal-600 text-white shadow-lg shadow-cyan-500/25"
               >
                 RÉSERVER MAINTENANT
               </Button>
