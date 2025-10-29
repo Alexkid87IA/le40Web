@@ -81,9 +81,9 @@ export default function HeroSection() {
               <span className="text-white font-inter text-sm font-bold">5.0/5</span>
               <span className="text-white/50 text-xs font-medium">(80+ productions)</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-500/10 to-violet-500/10 border border-purple-400/30 backdrop-blur-xl shadow-lg shadow-purple-500/10">
-              <TrendingUp className="w-4 h-4 text-purple-400" />
-              <span className="text-purple-300 font-inter text-sm font-bold">+120% qualité contenu</span>
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-teal-500/10 to-emerald-500/10 border border-teal-400/30 backdrop-blur-xl shadow-lg shadow-teal-500/10">
+              <TrendingUp className="w-4 h-4 text-teal-400" />
+              <span className="text-teal-300 font-inter text-sm font-bold">+120% qualité contenu</span>
             </div>
           </motion.div>
 
@@ -103,11 +103,11 @@ export default function HeroSection() {
                 Studio Vidéo
                 <br />
                 <span className="relative inline-block mt-4">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400">
                     Nouvelle Génération
                   </span>
                   <motion.div
-                    className="absolute -inset-6 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 blur-3xl -z-10"
+                    className="absolute -inset-6 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-teal-500/30 blur-3xl -z-10"
                     animate={{
                       opacity: [0.4, 0.7, 0.4],
                       scale: [1, 1.05, 1]
@@ -115,7 +115,7 @@ export default function HeroSection() {
                     transition={{ duration: 4, repeat: Infinity }}
                   />
                   <motion.div
-                    className="absolute -bottom-4 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-full"
+                    className="absolute -bottom-4 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500 rounded-full"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 1.2, delay: 0.8 }}
@@ -149,11 +149,11 @@ export default function HeroSection() {
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.9, type: "spring" }}
                   >
-                    119€
+                    79€
                   </motion.span>
                   <div className="flex flex-col">
                     <span className="text-2xl font-montserrat text-white/70 font-bold">/heure</span>
-                    <span className="text-xs text-white/50 font-inter">Technicien inclus</span>
+                    <span className="text-xs text-white/50 font-inter">Selon le studio</span>
                   </div>
                 </div>
               </div>
@@ -169,8 +169,8 @@ export default function HeroSection() {
             {[
               { icon: Video, text: '8 setups différents', subtext: 'Tous usages', color: 'from-blue-500 to-cyan-500', iconColor: 'text-blue-400' },
               { icon: Zap, text: 'Livraison 2h', subtext: 'Rushs prêts', color: 'from-cyan-500 to-teal-500', iconColor: 'text-cyan-400' },
-              { icon: Shield, text: 'Technicien inclus', subtext: 'Expert sur place', color: 'from-purple-500 to-violet-500', iconColor: 'text-purple-400' },
-              { icon: Clock, text: 'Dispo 7j/7', subtext: 'Résa flexible', color: 'from-violet-500 to-purple-500', iconColor: 'text-violet-400' }
+              { icon: Shield, text: 'Technicien inclus', subtext: 'Expert sur place', color: 'from-emerald-500 to-teal-500', iconColor: 'text-emerald-400' },
+              { icon: Clock, text: 'Dispo 7j/7', subtext: 'Résa flexible', color: 'from-teal-500 to-cyan-500', iconColor: 'text-teal-400' }
             ].map((benefit, index) => (
               <motion.div
                 key={index}
@@ -211,14 +211,14 @@ export default function HeroSection() {
               className="group relative"
             >
               <motion.div
-                className="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-2xl blur-xl group-hover:blur-2xl"
+                className="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500 rounded-2xl blur-xl group-hover:blur-2xl"
                 animate={{
                   opacity: [0.6, 0.8, 0.6],
                   scale: [1, 1.05, 1]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 text-white rounded-xl font-montserrat font-black text-lg shadow-2xl">
+              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500 text-white rounded-xl font-montserrat font-black text-lg shadow-2xl">
                 <Play className="w-6 h-6 fill-white" />
                 <span>Découvrir les 8 Studios</span>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
@@ -258,7 +258,7 @@ export default function HeroSection() {
             </div>
             <div className="w-px h-5 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
             <div className="flex items-center gap-2.5 text-white/80 font-inter font-medium">
-              <Check className="w-5 h-5 text-purple-400" />
+              <Check className="w-5 h-5 text-emerald-400" />
               <span>Sans engagement</span>
             </div>
           </motion.div>
@@ -271,7 +271,7 @@ export default function HeroSection() {
           >
             <div className="relative group">
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-3xl opacity-30 group-hover:opacity-50 blur-2xl transition-all duration-500"
+                className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 rounded-3xl opacity-30 group-hover:opacity-50 blur-2xl transition-all duration-500"
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
@@ -301,7 +301,7 @@ export default function HeroSection() {
                       animate={{ rotate: 360 }}
                       transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                     />
-                    <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-500 flex items-center justify-center text-white font-black text-xl shadow-xl">
+                    <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-teal-500 flex items-center justify-center text-white font-black text-xl shadow-xl">
                       LD
                     </div>
                   </div>

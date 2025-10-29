@@ -64,7 +64,7 @@ export default function SetupsCatalogSection() {
             <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
               8 STUDIOS
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400">
                 ULTRA-ÉQUIPÉS
               </span>
             </h2>

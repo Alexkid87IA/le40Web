@@ -65,7 +65,7 @@ export default function OptionsUpsellSection() {
     <section className="py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-black relative overflow-hidden">
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[150px]"
+          className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px]"
           animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
@@ -74,7 +74,7 @@ export default function OptionsUpsellSection() {
           transition={{ duration: 20, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-fuchsia-500/10 rounded-full blur-[140px]"
+          className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px]"
           animate={{
             x: [0, -80, 0],
             y: [0, 60, 0],
@@ -91,15 +91,15 @@ export default function OptionsUpsellSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 rounded-full bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 border border-violet-400/30 backdrop-blur-xl">
-            <Sparkles className="w-4 h-4 text-violet-400" />
-            <span className="text-violet-300 font-inter text-sm font-bold">Maximisez votre production</span>
+          <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-400/30 backdrop-blur-xl">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-cyan-300 font-inter text-sm font-bold">Maximisez votre production</span>
           </div>
 
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             OPTIONS PREMIUM
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
               POUR ALLER PLUS LOIN
             </span>
           </h2>
@@ -122,16 +122,16 @@ export default function OptionsUpsellSection() {
             </div>
             <div className="flex-1">
               <h3 className="text-2xl font-montserrat font-black text-white mb-3">
-                Pack Réussite : +42% de qualité perçue
+                Services complémentaires : Optimisez votre production
               </h3>
               <p className="text-white/80 font-inter leading-relaxed mb-4">
-                Nos clients qui ajoutent au moins 2 options premium constatent une augmentation moyenne de <span className="font-bold text-emerald-400">+120% d'engagement</span> sur leurs contenus.
-                Le téléprompteur et le color grading sont les plus demandés.
+                Ajoutez des services professionnels pour un résultat encore plus impactant.
+                Le téléprompteur et le color grading sont les options les plus demandées.
               </p>
               <div className="flex flex-wrap gap-3">
                 <div className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2">
                   <Check className="w-4 h-4 text-emerald-400" />
-                  <span className="text-white/90 text-sm font-inter font-medium">80% de nos clients ajoutent des options</span>
+                  <span className="text-white/90 text-sm font-inter font-medium">Services à la carte</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 rounded-lg px-4 py-2">
                   <Check className="w-4 h-4 text-emerald-400" />
@@ -159,12 +159,12 @@ export default function OptionsUpsellSection() {
                 className="group relative"
               >
                 <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl opacity-0 blur-xl transition-all duration-500 group-hover:opacity-30"
+                  className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl opacity-0 blur-xl transition-all duration-500 group-hover:opacity-30"
                   animate={isSelected ? { opacity: 0.4 } : {}}
                 />
 
                 <div className={`relative bg-slate-900/80 backdrop-blur-2xl rounded-2xl p-6 border-2 transition-all duration-500 h-full ${
-                  isSelected ? 'border-violet-500' : 'border-white/10 group-hover:border-white/20'
+                  isSelected ? 'border-blue-500' : 'border-white/10 group-hover:border-white/20'
                 }`}>
                   {(option.recommended || option.popular) && (
                     <div className="absolute -top-3 -right-3">
@@ -183,8 +183,8 @@ export default function OptionsUpsellSection() {
                   <div className="flex items-start gap-4 mb-4">
                     <div className={`p-3 rounded-xl ${
                       isSelected
-                        ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500'
-                        : 'bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20'
+                        ? 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                        : 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20'
                     }`}>
                       <Icon className="w-6 h-6 text-white" />
                     </div>
@@ -200,7 +200,7 @@ export default function OptionsUpsellSection() {
 
                   <div className="mb-4">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
+                      <span className="text-3xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                         {option.price}€
                       </span>
                       <span className="text-white/50 text-sm font-inter">
@@ -219,7 +219,7 @@ export default function OptionsUpsellSection() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => toggleOption(optionId)}
-                        className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white py-3 rounded-xl font-montserrat font-bold flex items-center justify-center gap-2 transition-all"
+                        className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white py-3 rounded-xl font-montserrat font-bold flex items-center justify-center gap-2 transition-all"
                       >
                         <Plus className="w-5 h-5" />
                         Ajouter
@@ -252,7 +252,7 @@ export default function OptionsUpsellSection() {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={() => updateQuantity(optionId, 1)}
-                          className="w-10 h-10 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 rounded-lg flex items-center justify-center text-white transition-all"
+                          className="w-10 h-10 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg flex items-center justify-center text-white transition-all"
                         >
                           <Plus className="w-5 h-5" />
                         </motion.button>
@@ -292,13 +292,13 @@ export default function OptionsUpsellSection() {
               exit={{ opacity: 0, y: 50 }}
               className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 w-full max-w-2xl px-4"
             >
-              <div className="bg-slate-900/95 backdrop-blur-2xl border-2 border-violet-500/50 rounded-2xl p-6 shadow-2xl">
+              <div className="bg-slate-900/95 backdrop-blur-2xl border-2 border-blue-500/50 rounded-2xl p-6 shadow-2xl">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <div className="text-white/60 text-sm font-inter mb-1">
                       {totalSelected} option{totalSelected > 1 ? 's' : ''} sélectionnée{totalSelected > 1 ? 's' : ''}
                     </div>
-                    <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">
+                    <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                       {totalPrice}€
                     </div>
                   </div>
@@ -306,7 +306,7 @@ export default function OptionsUpsellSection() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={addToCart}
-                    className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white px-8 py-4 rounded-xl font-montserrat font-bold flex items-center gap-3 shadow-xl"
+                    className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-4 rounded-xl font-montserrat font-bold flex items-center gap-3 shadow-xl"
                   >
                     <ShoppingCart className="w-5 h-5" />
                     Ajouter au panier
@@ -314,7 +314,7 @@ export default function OptionsUpsellSection() {
                 </div>
                 <div className="flex items-center gap-2 text-emerald-400 text-sm font-inter">
                   <Check className="w-4 h-4" />
-                  <span>Vous économisez en achetant plusieurs options ensemble</span>
+                  <span>Options ajoutables à votre réservation</span>
                 </div>
               </div>
             </motion.div>

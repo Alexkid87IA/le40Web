@@ -4,12 +4,14 @@ import { Calculator, Check, Info, Download, ArrowRight } from 'lucide-react';
 import { studioSetups } from '../../data/studios/setups';
 import { formulas, durations } from '../../data/studios/formulas';
 import { optionsCatalog } from '../../data/studios/options';
+import BookingModal from './BookingModal';
 
 export default function PriceCalculator() {
   const [selectedStudio, setSelectedStudio] = useState(studioSetups[0].id);
   const [selectedFormula, setSelectedFormula] = useState(formulas[1].id);
   const [selectedDuration, setSelectedDuration] = useState(durations[0].id);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   const studio = studioSetups.find(s => s.id === selectedStudio);
   const formula = formulas.find(f => f.id === selectedFormula);
@@ -354,6 +356,7 @@ export default function PriceCalculator() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => setIsBookingModalOpen(true)}
                   className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white py-4 rounded-xl font-montserrat font-bold flex items-center justify-center gap-3 shadow-xl"
                 >
                   Réserver maintenant
@@ -363,10 +366,11 @@ export default function PriceCalculator() {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => window.print()}
                   className="w-full bg-white/10 hover:bg-white/15 text-white py-4 rounded-xl font-montserrat font-bold flex items-center justify-center gap-3 border border-white/20"
                 >
                   <Download className="w-5 h-5" />
-                  Télécharger le devis PDF
+                  Imprimer le devis
                 </motion.button>
               </div>
 
@@ -377,6 +381,12 @@ export default function PriceCalculator() {
           </motion.div>
         </div>
       </div>
+
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        preselectedStudio={selectedStudio}
+      />
     </section>
   );
 }

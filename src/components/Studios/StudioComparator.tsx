@@ -192,7 +192,7 @@ export default function StudioComparator() {
                   <div className="col-span-full h-px bg-white/10"></div>
 
                   <div className="flex items-center gap-3 py-4">
-                    <Clock className="w-5 h-5 text-purple-400" />
+                    <Clock className="w-5 h-5 text-teal-400" />
                     <span className="text-white font-inter font-medium">Durée recommandée</span>
                   </div>
                   {selectedStudioData.map((studio) => (

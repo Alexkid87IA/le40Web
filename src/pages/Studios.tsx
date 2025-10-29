@@ -6,11 +6,10 @@ import SocialProofSection from '../components/Studios/SocialProofSection';
 import SetupsCatalogSection from '../components/Studios/SetupsCatalogSection';
 import StudioComparator from '../components/Studios/StudioComparator';
 import EnhancedGallerySection from '../components/Studios/EnhancedGallerySection';
-import PriceCalculator from '../components/Studios/PriceCalculator';
 import ProcessSection from '../components/Studios/ProcessSection';
 import PricingSection from '../components/Studios/PricingSection';
+import PriceCalculator from '../components/Studios/PriceCalculator';
 import OptionsUpsellSection from '../components/Studios/OptionsUpsellSection';
-import TestimonialsSection from '../components/Studios/TestimonialsSection';
 import FAQSection from '../components/Studios/FAQSection';
 import FinalCTASection from '../components/Studios/FinalCTASection';
 import QuickBookingWidget from '../components/Studios/QuickBookingWidget';
@@ -27,11 +26,10 @@ export default function Studios() {
         <SetupsCatalogSection />
         <EnhancedGallerySection />
         <StudioComparator />
-        <PriceCalculator />
         <ProcessSection />
         <PricingSection />
+        <PriceCalculator />
         <OptionsUpsellSection />
-        <TestimonialsSection />
         <FAQSection />
         <FinalCTASection />
       </main>
