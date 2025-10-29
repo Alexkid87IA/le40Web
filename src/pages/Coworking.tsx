@@ -556,7 +556,7 @@ export default function Coworking() {
               {[
                 { icon: Wifi, title: 'Fibre optique', desc: '1 Gb/s inclus' },
                 { icon: Coffee, title: 'Café et thé', desc: 'Illimité' },
-                { icon: Clock, title: 'Accès 24/7', desc: 'Badge sécurisé' },
+                { icon: Clock, title: 'Accès 24/7', desc: 'Contrôle sécurisé' },
                 { icon: Users, title: 'Communauté', desc: '120+ entrepreneurs' },
                 { icon: Shield, title: 'Sécurité', desc: 'Surveillance 24h' },
                 { icon: Zap, title: 'Networking', desc: 'Événements réguliers' },

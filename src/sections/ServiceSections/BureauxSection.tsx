@@ -148,7 +148,7 @@ export default function BureauxSection() {
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Badges d'accès sécurisés 24/7</span>
+                      <span className="text-white">Accès sécurisé 24/7</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-emerald-400"></div>

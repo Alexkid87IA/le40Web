@@ -7,7 +7,7 @@ export default function CoworkingSection() {
   const features = [
     { icon: Wifi, text: 'Internet Très Haut Débit Fibre' },
     { icon: Coffee, text: 'Café & Thé Premium Illimités' },
-    { icon: Calendar, text: 'Accès 24/7 avec Badge' },
+    { icon: Calendar, text: 'Accès 24/7' },
     { icon: Zap, text: 'Salles de Réunion Incluses' }
   ];
 

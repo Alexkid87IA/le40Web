@@ -93,7 +93,7 @@ export default function BureauHeroSection() {
                 {[
                   { icon: Building2, text: '15-100m² selon la taille de votre équipe', highlight: '2 à 20 personnes' },
                   { icon: MapPin, text: 'Adresse prestigieuse Place de la République', highlight: 'Centre Marseille' },
-                  { icon: Shield, text: 'Accès sécurisé 24/7 avec badge nominatif', highlight: 'Sans contraintes' },
+                  { icon: Shield, text: 'Accès sécurisé 24/7', highlight: 'Sans contraintes' },
                 ].map((benefit, index) => (
                   <motion.div
                     key={index}

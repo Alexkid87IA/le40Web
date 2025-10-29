@@ -29,7 +29,7 @@ const guarantees = [
   {
     icon: Lock,
     title: 'Sécurité certifiée',
-    description: 'Vidéosurveillance 24/7, contrôle d\'accès par badge, assurance tous risques. Vos données et matériel en sécurité.',
+    description: 'Vidéosurveillance 24/7, contrôle d\'accès sécurisé, assurance tous risques. Vos données et matériel en sécurité.',
     color: 'from-emerald-600 to-teal-600'
   },
   {

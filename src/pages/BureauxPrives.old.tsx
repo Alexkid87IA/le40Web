@@ -549,7 +549,7 @@ export default function BureauxPrives() {
               {[
                 { icon: Wifi, title: 'Fibre dédiée', desc: '1 Gb/s garantie' },
                 { icon: Phone, title: 'Téléphonie', desc: 'Ligne fixe incluse' },
-                { icon: Lock, title: 'Sécurité', desc: 'Badges 24/7' },
+                { icon: Lock, title: 'Sécurité', desc: 'Accès 24/7' },
                 { icon: Users, title: 'Salles réunion', desc: 'Heures incluses' },
                 { icon: Shield, title: 'Assurance', desc: 'Locaux sécurisés' },
                 { icon: Briefcase, title: 'Conciergerie', desc: 'Services pros' },

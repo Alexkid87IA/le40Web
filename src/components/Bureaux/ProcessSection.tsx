@@ -29,8 +29,8 @@ const processSteps = [
   {
     id: 4,
     icon: Key,
-    title: 'Recevez vos badges',
-    description: 'Badges nominatifs pour toute l\'équipe. Accès 24/7 activé immédiatement.',
+    title: 'Recevez vos accès',
+    description: 'Accès sécurisés pour toute l\'équipe. Contrôle d\'accès 24/7 activé immédiatement.',
     duration: '48h',
     color: 'from-blue-600 to-indigo-600'
   },

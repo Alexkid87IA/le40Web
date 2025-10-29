@@ -138,7 +138,7 @@ export default function Hero() {
                 <Sparkles className="w-5 h-5 text-amber-400" />
               </motion.div>
               <span className="text-sm font-semibold text-white/90 tracking-wide uppercase">
-                Au cœur du quartier République
+                Au cœur de Marseille
               </span>
               <motion.div
                 className="w-2 h-2 rounded-full bg-amber-400"
@@ -200,7 +200,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Un lieu d'exception au caractère industriel unique. 4000m² d'espaces premium où bois brut, métal et design contemporain créent l'environnement parfait pour votre réussite.
+              Rejoignez 120+ entrepreneurs dynamiques dans 4000m² d'excellence. Un écosystème complet avec espaces de coworking, bureaux privés, salles de réunion équipées et événements professionnels réguliers pour accélérer votre croissance.
             </motion.p>
 
             <motion.div

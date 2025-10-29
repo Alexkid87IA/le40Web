@@ -78,10 +78,10 @@ const features = [
     desc: "Boissons chaudes et froides",
     gradient: "from-orange-500 to-amber-500"
   },
-  { 
-    icon: Shield, 
-    title: "Accès Sécurisé", 
-    desc: "Badge personnel 24/7",
+  {
+    icon: Shield,
+    title: "Accès Sécurisé",
+    desc: "Contrôle d'accès 24/7",
     gradient: "from-emerald-500 to-green-500"
   },
   { 
