@@ -5,7 +5,7 @@ export default function FinalCTASection() {
   return (
     <section className="relative py-32 bg-gradient-to-b from-black to-slate-950 overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-orange-600/10 via-amber-600/10 to-orange-600/10 rounded-full blur-[150px]"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-600/10 via-blue-600/10 to-purple-600/10 rounded-full blur-[150px]"></div>
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-8 text-center">
@@ -18,7 +18,7 @@ export default function FinalCTASection() {
           <motion.div
             animate={{ rotate: [0, 5, 0] }}
             transition={{ duration: 3, repeat: Infinity }}
-            className="w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl flex items-center justify-center"
+            className="w-20 h-20 mx-auto mb-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-3xl flex items-center justify-center"
           >
             <Video className="w-10 h-10 text-white" />
           </motion.div>
@@ -26,7 +26,7 @@ export default function FinalCTASection() {
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             PRÊT À CRÉER VOTRE
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
               CONTENU PROFESSIONNEL ?
             </span>
           </h2>
@@ -43,8 +43,8 @@ export default function FinalCTASection() {
               whileTap={{ scale: 0.95 }}
               className="group relative"
             >
-              <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 via-amber-600 to-orange-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl px-10 py-5 flex items-center gap-3">
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 rounded-2xl blur-lg opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-2xl px-10 py-5 flex items-center gap-3">
                 <Calendar className="w-5 h-5 text-white" />
                 <span className="font-montserrat font-bold text-white">
                   Réserver un créneau

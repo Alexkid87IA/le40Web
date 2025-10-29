@@ -1,4 +1,4 @@
-import { Camera, Mic, Radio, Zap, Headphones, Image } from 'lucide-react';
+import { Camera, Mic, Radio, Zap, Headphones, Image, Clapperboard, Monitor } from 'lucide-react';
 
 export const studioSetups = [
   {
@@ -11,7 +11,7 @@ export const studioSetups = [
     basePrice: 119,
     recommendedDuration: '3h',
     popular: true,
-    gradient: 'from-orange-600 via-amber-500 to-orange-600',
+    gradient: 'from-blue-600 via-cyan-500 to-blue-600',
     image: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1600',
     icon: Radio,
     equipment: {
@@ -52,7 +52,7 @@ export const studioSetups = [
     basePrice: 119,
     recommendedDuration: '1h',
     popular: true,
-    gradient: 'from-orange-600 via-amber-500 to-orange-600',
+    gradient: 'from-purple-600 via-violet-500 to-purple-600',
     image: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1600',
     icon: Camera,
     equipment: {
@@ -72,7 +72,7 @@ export const studioSetups = [
     usage: 'TikTok, Reels, Shorts',
     basePrice: 119,
     recommendedDuration: '1h',
-    gradient: 'from-orange-600 via-amber-500 to-orange-600',
+    gradient: 'from-cyan-600 via-blue-500 to-cyan-600',
     image: 'https://images.pexels.com/photos/9786304/pexels-photo-9786304.jpeg?auto=compress&cs=tinysrgb&w=1600',
     icon: Zap,
     equipment: {
@@ -112,7 +112,7 @@ export const studioSetups = [
     usage: 'Twitch, webinaire, live YouTube',
     basePrice: 119,
     recommendedDuration: '1h',
-    gradient: 'from-orange-600 via-amber-500 to-orange-600',
+    gradient: 'from-violet-600 via-purple-500 to-violet-600',
     image: 'https://images.pexels.com/photos/7129713/pexels-photo-7129713.jpeg?auto=compress&cs=tinysrgb&w=1600',
     icon: Radio,
     equipment: {
@@ -132,7 +132,7 @@ export const studioSetups = [
     usage: 'Portrait, packshot e-commerce, lookbook',
     basePrice: 119,
     recommendedDuration: '1h',
-    gradient: 'from-amber-600 via-orange-500 to-amber-600',
+    gradient: 'from-blue-600 via-indigo-500 to-blue-600',
     image: 'https://images.pexels.com/photos/3379934/pexels-photo-3379934.jpeg?auto=compress&cs=tinysrgb&w=1600',
     icon: Image,
     equipment: {
@@ -142,5 +142,26 @@ export const studioSetups = [
       extras: 'Cyclo blanc/gris/vert'
     },
     relevantOptions: ['extra-backdrop', 'retouching', 'transport-gare']
+  },
+  {
+    id: 'green-screen',
+    name: 'Green Screen',
+    subtitle: 'VFX & effets spéciaux',
+    capacity: '1-4 personnes',
+    description: 'Fond vert professionnel avec éclairage uniforme pour incrustation',
+    usage: 'VFX, météo, formation, télévision',
+    basePrice: 119,
+    recommendedDuration: '2h',
+    popular: true,
+    gradient: 'from-emerald-600 via-green-500 to-emerald-600',
+    image: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    icon: Clapperboard,
+    equipment: {
+      cameras: '2-3 caméras Sony FX3',
+      audio: 'Micros HF + perche',
+      light: 'Éclairage uniforme fond + sujet',
+      extras: 'Cyclo vert 6x4m, prompteur'
+    },
+    relevantOptions: ['teleprompter', 'extra-cameras', 'color-grading', 'transport-gare']
   }
 ];

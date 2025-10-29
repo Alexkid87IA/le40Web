@@ -22,7 +22,7 @@ export default function PricingSection() {
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             CHOISISSEZ VOTRE
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
               NIVEAU DE SERVICE
             </span>
           </h2>
@@ -45,18 +45,18 @@ export default function PricingSection() {
               }`}
             >
               {formula.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-1 rounded-full text-white text-sm font-bold flex items-center gap-1 z-10">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-1 rounded-full text-white text-sm font-bold flex items-center gap-1 z-10">
                   <Star className="w-3 h-3" />
                   LE PLUS CHOISI
                 </div>
               )}
 
               <div className={`relative bg-white/5 backdrop-blur-xl rounded-3xl overflow-hidden border ${
-                formula.popular ? 'border-orange-500/50' : 'border-white/10'
+                formula.popular ? 'border-cyan-500/50' : 'border-white/10'
               } group-hover:border-white/20 transition-all duration-500 h-full`}>
                 <div className="p-8">
                   <div className="mb-6">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center mb-4`}>
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mb-4`}>
                       <formula.icon className="w-7 h-7 text-white" />
                     </div>
                     <h3 className="text-2xl font-montserrat font-black text-white mb-2">
@@ -66,7 +66,7 @@ export default function PricingSection() {
                       {formula.description}
                     </p>
                     <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
+                      <span className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                         {formula.displayPrice}
                       </span>
                     </div>
@@ -89,7 +89,7 @@ export default function PricingSection() {
                     whileTap={{ scale: 0.98 }}
                     className={`w-full py-4 rounded-xl font-montserrat font-bold transition-all ${
                       formula.popular
-                        ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white'
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white'
                         : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
                     }`}
                   >

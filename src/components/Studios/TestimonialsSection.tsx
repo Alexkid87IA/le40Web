@@ -22,7 +22,7 @@ export default function TestimonialsSection() {
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             ILS ONT CRÉÉ LEUR
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
               CONTENU AVEC NOUS
             </span>
           </h2>
@@ -55,7 +55,7 @@ export default function TestimonialsSection() {
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold">
                       {testimonial.avatar}
                     </div>
                     <div>
@@ -63,7 +63,7 @@ export default function TestimonialsSection() {
                       <p className="text-white/60 font-inter text-sm">{testimonial.role}</p>
                     </div>
                   </div>
-                  <div className="bg-orange-500/20 text-orange-400 text-xs font-semibold px-3 py-1.5 rounded-full">
+                  <div className="bg-cyan-500/20 text-cyan-400 text-xs font-semibold px-3 py-1.5 rounded-full">
                     {testimonial.videoType}
                   </div>
                 </div>
