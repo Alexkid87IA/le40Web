@@ -88,12 +88,11 @@ export default function Footer() {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="mb-8 relative inline-block"
               >
-                <div className="relative text-6xl font-black tracking-tight text-white">
-                  <span className="inline-block">le</span>
-                  <span className="inline-flex items-center justify-center w-16 h-16 mx-2 rounded-full bg-white text-black text-3xl align-middle">
-                    40
-                  </span>
-                </div>
+                <img
+                  src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                  alt="Le 40"
+                  className="h-20 w-auto brightness-0 invert"
+                />
               </motion.div>
 
               <motion.p
