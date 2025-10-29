@@ -5,10 +5,10 @@ import Button from '../../components/UI/Button';
 
 export default function DomiciliationSection() {
   const benefits = [
-    { icon: Building2, text: 'Adresse Prestigieuse Place de la République' },
-    { icon: Mail, text: 'Réception & Expédition Courrier' },
-    { icon: Shield, text: 'Conformité Juridique Garantie' },
-    { icon: CheckCircle2, text: 'Accès Coworking & Événements Inclus' }
+    { icon: Building2, text: 'Adresse professionnelle au centre de Marseille' },
+    { icon: Mail, text: 'Scan courrier en 2h + Réexpédition express' },
+    { icon: Shield, text: 'Configuration en 24h + Agrément préfecture' },
+    { icon: CheckCircle2, text: 'Accès coworking & networking inclus' }
   ];
 
   return (
@@ -67,14 +67,14 @@ export default function DomiciliationSection() {
             </div>
 
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
-              Votre Adresse<br />
+              Domiciliation<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-red-400">
-                Prestigieuse
+                En 24h
               </span>
             </h2>
 
             <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
-              Domiciliez votre entreprise au cœur de Marseille, Place de la République. Une adresse de prestige qui inspire confiance auprès de vos clients et partenaires, avec tous les services inclus.
+              Domiciliez votre entreprise au cœur de Marseille. Configuration rapide en 24h, gestion courrier automatisée et services professionnels inclus. Une solution complète et flexible pour démarrer sereinement.
             </p>
 
             <div className="space-y-4 mb-10">
@@ -97,7 +97,7 @@ export default function DomiciliationSection() {
 
             <div className="flex items-center gap-3 mb-8">
               <div className="text-white/50 text-sm">À partir de</div>
-              <div className="text-5xl font-montserrat font-black text-white">49€</div>
+              <div className="text-5xl font-montserrat font-black text-white">29€</div>
               <div className="text-white/50 text-sm">/mois</div>
             </div>
 
@@ -144,9 +144,11 @@ export default function DomiciliationSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-30"></div>
               <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
                 <div className="text-center mb-6">
-                  <div className="text-8xl mb-4">📍</div>
-                  <div className="text-2xl font-bold text-white mb-2">Place de la République</div>
-                  <div className="text-white/50">13002 Marseille</div>
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-400/30 flex items-center justify-center">
+                    <Building2 className="w-12 h-12 text-amber-400" />
+                  </div>
+                  <div className="text-2xl font-bold text-white mb-2">40 Rue de la République</div>
+                  <div className="text-white/50">13001 Marseille</div>
                 </div>
                 <div className="h-px bg-white/10 my-6"></div>
                 <div className="space-y-4">

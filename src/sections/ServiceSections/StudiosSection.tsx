@@ -132,7 +132,9 @@ export default function StudiosSection() {
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-3xl opacity-30"></div>
                 <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
                   <div className="text-center mb-6">
-                    <div className="text-8xl mb-4">🎬</div>
+                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center">
+                      <Video className="w-12 h-12 text-blue-400" />
+                    </div>
                     <div className="text-2xl font-bold text-white mb-2">3 Studios Disponibles</div>
                     <div className="text-white/50">50m² à 120m²</div>
                   </div>
@@ -275,7 +277,9 @@ export default function StudiosSection() {
                 <div className="absolute -inset-4 bg-gradient-to-r from-rose-600 to-pink-600 rounded-3xl blur-3xl opacity-30"></div>
                 <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
                   <div className="text-center mb-6">
-                    <div className="text-8xl mb-4">📱</div>
+                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 border border-rose-400/30 flex items-center justify-center">
+                      <Camera className="w-12 h-12 text-rose-400" />
+                    </div>
                     <div className="text-2xl font-bold text-white mb-2">Studio Créateurs</div>
                     <div className="text-white/50">Parfait pour YouTube & TikTok</div>
                   </div>

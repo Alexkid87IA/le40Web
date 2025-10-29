@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Monitor, Lock, Wifi, Coffee, ArrowRight, Users } from 'lucide-react';
+import { Monitor, Lock, Wifi, Coffee, ArrowRight, Users, Building2 } from 'lucide-react';
 import Button from '../../components/UI/Button';
 
 export default function BureauxSection() {
@@ -61,7 +61,7 @@ export default function BureauxSection() {
             viewport={{ once: true }}
           >
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
-              <Monitor className="w-4 h-4 text-emerald-400" />
+              <Building2 className="w-4 h-4 text-emerald-400" />
               <span className="text-emerald-300 text-sm font-medium uppercase tracking-wider">Bureaux Privés</span>
             </div>
 

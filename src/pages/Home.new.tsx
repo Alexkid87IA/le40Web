@@ -44,9 +44,9 @@ export default function HomeNew() {
 
       <main className="pt-24">
         <Hero />
-        <CoworkingSection />
         <DomiciliationSection />
         <BureauxSection />
+        <CoworkingSection />
         <StudiosSection />
         <CommunitySection />
         <Contact />
