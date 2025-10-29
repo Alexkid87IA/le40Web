@@ -25,7 +25,7 @@ export default function FAQSection() {
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             TOUT CE QUE VOUS
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400">
               DEVEZ SAVOIR
             </span>
           </h2>
@@ -48,7 +48,7 @@ export default function FAQSection() {
                 <span className="text-lg font-montserrat font-bold text-white pr-8">
                   {faq.question}
                 </span>
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
                   {openIndex === index ? (
                     <Minus className="w-5 h-5 text-white" />
                   ) : (

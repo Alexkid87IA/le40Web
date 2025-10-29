@@ -47,7 +47,7 @@ export default function GallerySection() {
             <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
               VISITE VIRTUELLE
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400">
                 DU STUDIO
               </span>
             </h2>
@@ -80,7 +80,7 @@ export default function GallerySection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 
                   <div className="absolute top-4 right-4">
-                    <div className="bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                    <div className="bg-cyan-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
                       {studio.tag}
                     </div>
                   </div>
@@ -94,7 +94,7 @@ export default function GallerySection() {
                     </div>
                   </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500/0 to-amber-500/0 group-hover:from-orange-500/10 group-hover:to-amber-500/10 transition-all duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 to-blue-500/0 group-hover:from-cyan-500/10 group-hover:to-blue-500/10 transition-all duration-500"></div>
                 </div>
               </motion.div>
             ))}
@@ -151,7 +151,7 @@ export default function GallerySection() {
                           onClick={() => setCurrentImageIndex(idx)}
                           className={`w-2 h-2 rounded-full transition-all ${
                             idx === currentImageIndex
-                              ? 'bg-orange-500 w-8'
+                              ? 'bg-cyan-500 w-8'
                               : 'bg-white/30 hover:bg-white/50'
                           }`}
                         />
@@ -172,7 +172,7 @@ export default function GallerySection() {
                   animate={{ opacity: 1, x: 0 }}
                   className="text-white"
                 >
-                  <div className="bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full inline-block mb-4">
+                  <div className="bg-cyan-500 text-white text-xs font-bold px-3 py-1.5 rounded-full inline-block mb-4">
                     {selectedStudioData.tag}
                   </div>
                   <h2 className="text-4xl font-montserrat font-black mb-4">
@@ -183,7 +183,7 @@ export default function GallerySection() {
                   </p>
 
                   <div className="space-y-3">
-                    <h3 className="text-xl font-montserrat font-bold mb-4 text-orange-400">
+                    <h3 className="text-xl font-montserrat font-bold mb-4 text-cyan-400">
                       Équipements inclus :
                     </h3>
                     {selectedStudioData.features.map((feature, idx) => (
@@ -197,7 +197,7 @@ export default function GallerySection() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mt-8 w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-bold py-4 rounded-xl"
+                    className="mt-8 w-full bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-montserrat font-bold py-4 rounded-xl"
                   >
                     Réserver cet espace
                   </motion.button>

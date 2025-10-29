@@ -7,28 +7,28 @@ const processSteps = [
     icon: Calendar,
     title: 'Choisissez votre setup',
     description: 'Sélectionnez le studio adapté à votre projet : podcast, interview, Full Show, ou TikTok. Réservez votre créneau en ligne.',
-    color: 'from-orange-500 to-amber-500'
+    color: 'from-cyan-500 to-blue-500'
   },
   {
     number: '02',
     icon: Video,
     title: 'Tournage assisté',
     description: 'Notre technicien configure tout le matériel, gère l\'éclairage et le son. Vous vous concentrez sur votre contenu.',
-    color: 'from-amber-500 to-orange-500'
+    color: 'from-blue-500 to-cyan-500'
   },
   {
     number: '03',
     icon: Clapperboard,
     title: 'Post-production (optionnel)',
     description: 'Ajoutez montage, colorimétrie, et exports optimisés. Formule Post-Prod avec 1 révision incluse.',
-    color: 'from-orange-500 to-amber-500'
+    color: 'from-cyan-500 to-blue-500'
   },
   {
     number: '04',
     icon: Download,
     title: 'Livraison rapide',
     description: 'Récupérez vos fichiers en 2h via WeTransfer. Format 4K MP4 ou ProRes selon vos besoins.',
-    color: 'from-amber-500 to-orange-500'
+    color: 'from-blue-500 to-cyan-500'
   }
 ];
 
@@ -36,8 +36,8 @@ export default function ProcessSection() {
   return (
     <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8">
@@ -57,7 +57,7 @@ export default function ProcessSection() {
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             COMMENT ÇA
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400">
               FONCTIONNE ?
             </span>
           </h2>
