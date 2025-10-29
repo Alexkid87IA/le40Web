@@ -47,7 +47,7 @@ export const comparisonData = {
       criterion: 'Adresse professionnelle',
       classique: 'Oui (mais long terme)',
       teletravail: 'Domicile (peu crédible)',
-      le40: 'Place République incluse',
+      le40: 'Marseille 15e incluse',
       le40Highlight: true
     },
     {

@@ -391,7 +391,7 @@ export default function Contact() {
                     {
                       icon: MapPin,
                       title: "Adresse",
-                      content: "40 Rue de la République\n13001 Marseille",
+                      content: "40 Avenue de Saint Antoine\n13015 Marseille",
                       color: "from-purple-600 to-pink-600",
                       action: "Voir sur Maps",
                       link: "https://maps.google.com"

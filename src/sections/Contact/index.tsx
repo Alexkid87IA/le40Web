@@ -41,8 +41,8 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Adresse",
-      content: "40 Rue de la République",
-      subcontent: "13001 Marseille",
+      content: "40 Avenue de Saint Antoine",
+      subcontent: "13015 Marseille",
       gradient: "from-orange-500 via-amber-500 to-yellow-500"
     },
     {

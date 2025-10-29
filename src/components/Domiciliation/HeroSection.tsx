@@ -178,7 +178,7 @@ export default function HeroSection() {
                 </div>
               </div>
               <p className={`${designTokens.typography.body.size} text-white/80 font-inter font-medium ${designTokens.typography.body.leading}`}>
-                Adresse professionnelle République + Scan courrier 2h + Standard téléphonique inclus
+                Adresse professionnelle Marseille 15e + Scan courrier 2h + Standard téléphonique inclus
               </p>
             </motion.div>
 
@@ -190,7 +190,7 @@ export default function HeroSection() {
               className="space-y-3 mb-10"
             >
               {[
-                { icon: Building2, text: 'Adresse Place de la République', highlight: 'Stratégique' },
+                { icon: Building2, text: 'Adresse professionnelle Marseille 15e', highlight: 'Opérationnel' },
                 { icon: Zap, text: 'Activation garantie sous 24h', highlight: 'Express' },
                 { icon: Shield, text: 'Agrément Préfecture + Conformité légale', highlight: 'Certifié' },
                 { icon: Mail, text: 'Scan et transfert courrier en 2h', highlight: 'Ultra-rapide' }

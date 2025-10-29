@@ -92,7 +92,7 @@ export default function BureauHeroSection() {
               >
                 {[
                   { icon: Building2, text: '15-100m² selon la taille de votre équipe', highlight: '2 à 20 personnes' },
-                  { icon: MapPin, text: 'Adresse prestigieuse Place de la République', highlight: 'Centre Marseille' },
+                  { icon: MapPin, text: 'Adresse professionnelle 40 avenue de Saint Antoine', highlight: 'Marseille 15e' },
                   { icon: Shield, text: 'Accès sécurisé 24/7', highlight: 'Sans contraintes' },
                 ].map((benefit, index) => (
                   <motion.div

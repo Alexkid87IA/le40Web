@@ -21,7 +21,7 @@ export const bureauTestimonials = [
     industry: 'Conseil Stratégie',
     teamSize: '12 personnes',
     duration: '3 ans au Le 40',
-    comment: 'La flexibilité du contrat et la qualité des services nous ont convaincus. Plus besoin de gérer la maintenance, le ménage, la fibre internet... on se concentre à 100% sur notre activité. L\'adresse prestigieuse Place de la République renforce notre crédibilité auprès des clients.',
+    comment: 'La flexibilité du contrat et la qualité des services nous ont convaincus. Plus besoin de gérer la maintenance, le ménage, la fibre internet... on se concentre à 100% sur notre activité. L\'adresse professionnelle à Marseille et les services inclus renforcent notre crédibilité auprès des clients.',
     rating: 5,
     image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=300',
     officeType: 'Bureau 10-20 personnes',

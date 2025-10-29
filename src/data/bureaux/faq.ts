@@ -105,6 +105,6 @@ export const bureauFAQ = [
     id: 18,
     category: 'Visite & Démarrage',
     question: 'Puis-je domicilier mon entreprise au Le 40 ?',
-    answer: 'Oui, la domiciliation d\'entreprise est incluse dans tous les forfaits de bureaux privés. Vous pouvez utiliser notre adresse prestigieuse Place de la République pour votre siège social. Scan courrier et standard téléphonique disponibles en option.'
+    answer: 'Oui, la domiciliation d\'entreprise est incluse dans tous les forfaits de bureaux privés. Vous pouvez utiliser notre adresse professionnelle au 40 avenue de Saint Antoine, 13015 Marseille pour votre siège social. Scan courrier et standard téléphonique disponibles en option.'
   }
 ];

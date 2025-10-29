@@ -169,7 +169,7 @@ export default function Footer() {
                 {[
                   {
                     icon: MapPin,
-                    text: '40 Rue de la République\n13001 Marseille',
+                    text: '40 Avenue de Saint Antoine\n13015 Marseille',
                     link: 'https://maps.google.com'
                   },
                   {
@@ -380,7 +380,7 @@ export default function Footer() {
           <div className="max-w-7xl mx-auto px-8 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="text-white/40 text-sm text-center md:text-left">
-                © 2025 Le 40 République Marseille. Tous droits réservés.
+                © 2025 Le 40 Marseille. Tous droits réservés.
                 <span className="inline-flex items-center ml-2">
                   Made with <Heart className="w-4 h-4 text-orange-500 mx-1 fill-orange-500" /> in Marseille
                 </span>

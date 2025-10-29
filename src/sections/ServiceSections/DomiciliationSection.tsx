@@ -147,8 +147,8 @@ export default function DomiciliationSection() {
                   <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-400/30 flex items-center justify-center">
                     <Building2 className="w-12 h-12 text-amber-400" />
                   </div>
-                  <div className="text-2xl font-bold text-white mb-2">40 Rue de la République</div>
-                  <div className="text-white/50">13001 Marseille</div>
+                  <div className="text-2xl font-bold text-white mb-2">40 Avenue de Saint Antoine</div>
+                  <div className="text-white/50">13015 Marseille</div>
                 </div>
                 <div className="h-px bg-white/10 my-6"></div>
                 <div className="space-y-4">
