@@ -10,7 +10,6 @@ import DomiciliationSection from '../sections/ServiceSections/DomiciliationSecti
 import BureauxSection from '../sections/ServiceSections/BureauxSection';
 import StudiosSection from '../sections/ServiceSections/StudiosSection';
 import CommunitySection from '../sections/ServiceSections/CommunitySection';
-import Contact from '../sections/Contact';
 import Footer from '../components/Footer';
 
 export default function HomeNew() {
@@ -49,7 +48,6 @@ export default function HomeNew() {
         <CoworkingSection />
         <StudiosSection />
         <CommunitySection />
-        <Contact />
       </main>
 
       <Footer />
