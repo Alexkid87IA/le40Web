@@ -31,6 +31,11 @@ const navItems = [
     href: '/studios',
     icon: Video,
   },
+  {
+    name: 'Nos Events',
+    href: '/events',
+    icon: Calendar,
+  },
 ];
 
 const secondaryItems = [

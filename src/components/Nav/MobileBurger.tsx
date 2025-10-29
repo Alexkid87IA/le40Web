@@ -12,6 +12,7 @@ const navItems = [
   { name: 'Domiciliation', href: '/domiciliation', icon: MapPin, gradient: designTokens.colors.services.domiciliation.gradient },
   { name: 'Salles', href: '/salles', icon: Phone, gradient: designTokens.colors.services.salles.gradient },
   { name: 'Studio', href: '/studios', icon: Video, gradient: designTokens.colors.services.studios.gradient },
+  { name: 'Nos Events', href: '/events', icon: Calendar, gradient: 'from-orange-500/20 to-amber-500/20' },
   { name: 'Communauté', href: '/community', icon: Users, gradient: designTokens.colors.services.community.gradient },
   { name: 'Blog', href: '/blog', icon: BookOpen, gradient: 'from-white/10 to-white/5' },
   { name: 'Contact', href: '/contact', icon: Phone, gradient: 'from-white/10 to-white/5' },
