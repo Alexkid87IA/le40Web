@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Sparkles, MessageCircle, Calendar, ArrowRight, User, Briefcase, Zap } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Calendar, ArrowRight } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -373,77 +373,6 @@ export default function Contact() {
             </motion.div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="text-center"
-        >
-          <div className="bg-gradient-to-br from-white/10 to-white/[0.02] backdrop-blur-xl rounded-3xl p-16 border border-white/10 relative overflow-hidden">
-            <motion.div
-              animate={{
-                background: [
-                  'radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 70%)',
-                  'radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 70%)',
-                  'radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 70%)',
-                ]
-              }}
-              transition={{ duration: 10, repeat: Infinity }}
-              className="absolute inset-0"
-            />
-
-            <div className="relative">
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 5, repeat: Infinity }}
-                className="inline-block mb-8"
-              >
-                <Sparkles className="w-20 h-20 text-white/60" />
-              </motion.div>
-
-              <h3 className="text-4xl md:text-5xl font-black text-white mb-6">
-                Prêt à Démarrer ?
-              </h3>
-
-              <p className="text-xl text-white/60 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Rejoignez une communauté d'entrepreneurs ambitieux et transformez votre façon de travailler.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative px-10 py-5 rounded-2xl bg-white text-black font-black text-lg shadow-2xl overflow-hidden"
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%' }}
-                    transition={{ duration: 0.5 }}
-                  />
-                  <div className="relative flex items-center gap-3">
-                    <User className="w-6 h-6" />
-                    <span>Devenir Membre</span>
-                    <ArrowRight className="w-6 h-6" />
-                  </div>
-                </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-10 py-5 rounded-2xl bg-white/10 backdrop-blur-xl text-white font-bold text-lg border border-white/20 hover:bg-white/20 transition-all"
-                >
-                  <div className="flex items-center gap-3">
-                    <Briefcase className="w-6 h-6" />
-                    <span>Nos Services</span>
-                  </div>
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
