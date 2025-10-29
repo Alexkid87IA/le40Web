@@ -14,10 +14,10 @@ export default function CommunitySection() {
   return (
     <section id="community" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-rose-950/30 via-[#0A0A0A] to-fuchsia-950/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-950/30 via-[#0A0A0A] to-violet-950/20"></div>
 
         <motion.div
-          className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-rose-600/20 rounded-full blur-[150px]"
+          className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[150px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2]
@@ -25,7 +25,7 @@ export default function CommunitySection() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-fuchsia-600/15 rounded-full blur-[140px]"
+          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/15 rounded-full blur-[140px]"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.15, 0.25, 0.15]
@@ -60,14 +60,14 @@ export default function CommunitySection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 rounded-full px-4 py-2 mb-6">
-              <Users className="w-4 h-4 text-rose-400" />
-              <span className="text-rose-300 text-sm font-medium uppercase tracking-wider">Communauté Active</span>
+            <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-2 mb-6">
+              <Users className="w-4 h-4 text-purple-400" />
+              <span className="text-purple-300 text-sm font-medium uppercase tracking-wider">Communauté Active</span>
             </div>
 
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
               Rejoignez le Réseau<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-400 to-fuchsia-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400">
                 Des Entrepreneurs
               </span>
             </h2>
@@ -86,8 +86,8 @@ export default function CommunitySection() {
                   viewport={{ once: true }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-10 h-10 bg-rose-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <benefit.icon className="w-5 h-5 text-rose-400" />
+                  <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <benefit.icon className="w-5 h-5 text-purple-400" />
                   </div>
                   <span className="text-white/80 text-sm font-medium">{benefit.text}</span>
                 </motion.div>
@@ -106,7 +106,7 @@ export default function CommunitySection() {
                 size="md"
                 icon={ArrowRight}
                 iconPosition="right"
-                className="bg-gradient-to-r from-rose-600 to-fuchsia-600 hover:from-rose-500 hover:to-fuchsia-500 text-white"
+                className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white"
               >
                 REJOINDRE LA COMMUNAUTÉ
               </Button>
@@ -114,7 +114,7 @@ export default function CommunitySection() {
                 href="/events"
                 variant="secondary"
                 size="md"
-                className="border-rose-500/30 text-rose-300 hover:bg-rose-500/10"
+                className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10"
               >
                 Voir les événements
               </Button>
@@ -129,12 +129,12 @@ export default function CommunitySection() {
             className="hidden lg:block"
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-rose-600 to-fuchsia-600 rounded-3xl blur-3xl opacity-30"></div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl blur-3xl opacity-30"></div>
               <div className="relative space-y-6">
                 <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
                   <div className="text-center mb-6">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/20 to-fuchsia-500/20 border border-rose-400/30 flex items-center justify-center">
-                      <PartyPopper className="w-12 h-12 text-rose-400" />
+                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-500/20 border border-purple-400/30 flex items-center justify-center">
+                      <PartyPopper className="w-12 h-12 text-purple-400" />
                     </div>
                     <div className="text-2xl font-bold text-white mb-2">Événements & Networking</div>
                     <div className="text-white/50">15+ événements par mois</div>
@@ -177,10 +177,10 @@ export default function CommunitySection() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-rose-500/10 to-fuchsia-500/10 border border-rose-500/20 rounded-2xl p-6 text-center">
+                <div className="bg-gradient-to-r from-purple-500/10 to-violet-500/10 border border-purple-500/20 rounded-2xl p-6 text-center">
                   <div className="flex items-center justify-center gap-2 mb-2">
-                    <Calendar className="w-5 h-5 text-rose-400" />
-                    <span className="text-rose-300 font-semibold text-sm">Prochain événement</span>
+                    <Calendar className="w-5 h-5 text-purple-400" />
+                    <span className="text-purple-300 font-semibold text-sm">Prochain événement</span>
                   </div>
                   <p className="text-white text-sm">
                     Afterwork Networking<br />
