@@ -84,9 +84,9 @@ export default function HeaderNav() {
       <div className="absolute inset-0 bg-gradient-to-r from-orange-500/[0.01] via-transparent to-amber-500/[0.01] pointer-events-none" />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center justify-start flex-shrink-0 w-40">
+      <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center justify-between w-full gap-4">
+          <div className="flex items-center justify-start flex-shrink-0 w-28">
             <Link to="/" className="flex items-center gap-3 group">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -103,7 +103,7 @@ export default function HeaderNav() {
                   src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
                   alt="Le 40"
                   className={`relative h-auto brightness-0 invert drop-shadow-2xl transition-all duration-500 ${
-                    isScrolled ? 'w-24' : 'w-28'
+                    isScrolled ? 'w-20' : 'w-24'
                   }`}
                 />
               </motion.div>
@@ -111,7 +111,7 @@ export default function HeaderNav() {
           </div>
 
           <nav className="flex items-center justify-center flex-1">
-            <ul className="flex items-center gap-1">
+            <ul className="flex items-center gap-0.5">
             {navItems.map((item) => {
               const isActive = location.pathname === item.href;
               const Icon = item.icon;
@@ -120,7 +120,7 @@ export default function HeaderNav() {
                 <li key={item.name}>
                   <Link to={item.href}>
                     <motion.div
-                      className={`relative px-4 py-2.5 rounded-xl flex items-center gap-2.5 ${designTokens.animations.transition.fast} ${
+                      className={`relative px-3 py-2.5 rounded-xl flex items-center gap-2 ${designTokens.animations.transition.fast} ${
                         isActive
                           ? 'bg-white/[0.1] text-white shadow-lg shadow-orange-500/10'
                           : 'text-white/65 hover:text-white hover:bg-white/[0.05]'
@@ -156,7 +156,7 @@ export default function HeaderNav() {
           </ul>
         </nav>
 
-        <div className="flex items-center justify-end gap-2 flex-shrink-0 w-40">
+        <div className="flex items-center justify-end gap-2 flex-shrink-0 w-52">
           {secondaryItems.map((item) => {
             const isActive = location.pathname === item.href;
             const Icon = item.icon;
