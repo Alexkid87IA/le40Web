@@ -5,6 +5,7 @@ import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import SectionNavigator from '../components/Navigation/SectionNavigator';
 import Hero from '../sections/Hero';
+import GallerySection from '../components/Bureaux/GallerySection';
 import CoworkingSection from '../sections/ServiceSections/CoworkingSection';
 import DomiciliationSection from '../sections/ServiceSections/DomiciliationSection';
 import BureauxSection from '../sections/ServiceSections/BureauxSection';
@@ -43,6 +44,7 @@ export default function HomeNew() {
 
       <main className="pt-24">
         <Hero />
+        <GallerySection />
         <DomiciliationSection />
         <BureauxSection />
         <CoworkingSection />
