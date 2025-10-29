@@ -96,40 +96,6 @@ export default function Contact() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
-          >
-            <MessageCircle className="w-4 h-4 text-orange-400" />
-            <span className="text-sm text-white/70 font-medium">Parlons de Votre Projet</span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black text-white mb-6"
-          >
-            Contactez{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500">
-              Nous
-            </span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-white/60 max-w-2xl mx-auto"
-          >
-            Une question ? Un projet ? Notre équipe est là pour vous accompagner.
-          </motion.p>
-        </div>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-20">
           <motion.div
