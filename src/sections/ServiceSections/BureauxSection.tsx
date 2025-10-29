@@ -130,36 +130,32 @@ export default function BureauxSection() {
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur-3xl opacity-30"></div>
-              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6">
-                <div>
-                  <div className="text-white/50 text-sm mb-3">Services inclus dans la location</div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Mobilier ergonomique premium</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Ligne téléphonique dédiée</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Accès salles de réunion inclus</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Accès sécurisé 24/7</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400"></div>
-                      <span className="text-white">Ménage et conciergerie</span>
-                    </div>
+              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-400/30 flex items-center justify-center">
+                    <Building2 className="w-12 h-12 text-emerald-400" />
                   </div>
+                  <div className="text-2xl font-bold text-white mb-2">Bureaux Privés</div>
+                  <div className="text-white/50">De 10m² à 100m²</div>
                 </div>
-                <div className="h-px bg-white/10"></div>
-                <div className="text-center p-4 bg-emerald-500/10 rounded-xl">
-                  <div className="text-emerald-400 text-sm font-medium mb-1">Location flexible</div>
-                  <div className="text-white/70 text-xs">Engagement 6 mois minimum • Option coworking disponible</div>
+                <div className="h-px bg-white/10 my-6"></div>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Mobilier premium</span>
+                    <span className="text-white font-semibold">Inclus</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Ligne téléphonique</span>
+                    <span className="text-white font-semibold">Dédiée</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Salles de réunion</span>
+                    <span className="text-white font-semibold">10-20h/mois</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/60">Accès</span>
+                    <span className="text-white font-semibold">24/7</span>
+                  </div>
                 </div>
               </div>
             </div>
