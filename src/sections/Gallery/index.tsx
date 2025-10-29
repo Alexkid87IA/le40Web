@@ -236,11 +236,7 @@ export default function Gallery() {
     }),
   };
 
-  const currentImage = filteredImages[currentIndex];
-
-  if (!currentImage) {
-    return null;
-  }
+  const currentImage = filteredImages[currentIndex] || images[0];
 
   return (
     <section className="relative bg-black py-32 overflow-hidden">
