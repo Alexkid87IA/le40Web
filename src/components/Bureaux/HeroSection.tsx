@@ -1,8 +1,20 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Shield, Building2, Users, TrendingUp, Check, MapPin } from 'lucide-react';
+import { ArrowRight, Star, Shield, Building2, Users, TrendingUp, Check, MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function BureauHeroSection() {
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', company: '' });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    setTimeout(() => {
+      window.location.href = '/contact';
+    }, 1500);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0">
@@ -57,10 +69,20 @@ export default function BureauHeroSection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-400/30 backdrop-blur-sm mb-8"
+                className="flex items-center gap-4 mb-8"
               >
-                <Shield className="w-4 h-4 text-emerald-400" />
-                <span className="text-emerald-300 font-inter text-sm font-bold">Bureaux Disponibles</span>
+                <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-400/30 backdrop-blur-sm">
+                  <Shield className="w-4 h-4 text-emerald-400" />
+                  <span className="text-emerald-300 font-inter text-sm font-bold">Bureaux Disponibles</span>
+                </div>
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/20 border border-red-400/30 backdrop-blur-sm"
+                >
+                  <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                  <span className="text-red-300 font-inter text-xs font-bold">Seulement 3 bureaux restants</span>
+                </motion.div>
               </motion.div>
 
               <motion.h1
@@ -172,7 +194,7 @@ export default function BureauHeroSection() {
               </motion.div>
             </motion.div>
 
-            <div className="hidden lg:block">
+            <div className="lg:block">
               <motion.div
                 initial={{ opacity: 0, x: 60 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -184,24 +206,85 @@ export default function BureauHeroSection() {
                   transition={{ duration: 0.3 }}
                   className="backdrop-blur-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-3xl p-8 shadow-2xl"
                 >
-                  <div className="flex items-center gap-1.5 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-emerald-400 fill-emerald-400" />
-                    ))}
-                    <span className="ml-2 text-white/90 font-inter text-sm font-bold">5.0</span>
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
+                      Réservez Votre <span className="text-emerald-400">Visite Gratuite</span>
+                    </h3>
+                    <p className="text-white/60 font-inter text-sm">
+                      Remplissez le formulaire pour être contacté sous 2h
+                    </p>
                   </div>
-                  <p className="text-white/95 font-inter text-base leading-relaxed mb-6">
-                    "Notre équipe a trouvé le cadre parfait pour se développer. Le bureau privé nous offre la <span className="font-bold text-emerald-400">confidentialité nécessaire</span> tout en profitant de l'écosystème du Le 40. Un vrai game-changer pour notre productivité."
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500 p-0.5">
-                      <div className="w-full h-full rounded-full bg-slate-900"></div>
-                    </div>
-                    <div>
-                      <p className="text-white font-inter text-base font-bold">Marie Lefebvre</p>
-                      <p className="text-white/60 font-inter text-sm">CEO @ TechFlow</p>
-                    </div>
-                  </div>
+
+                  {!isSubmitted ? (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Votre nom complet"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:border-emerald-400 focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="email"
+                          placeholder="Email professionnel"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:border-emerald-400 focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="tel"
+                          placeholder="Téléphone"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:border-emerald-400 focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Nom de votre société"
+                          value={formData.company}
+                          onChange={(e) => setFormData({...formData, company: e.target.value})}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:border-emerald-400 focus:outline-none transition-colors"
+                        />
+                      </div>
+                      <motion.button
+                        type="submit"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-montserrat font-semibold py-4 rounded-xl hover:shadow-lg hover:shadow-emerald-600/30 transition-all flex items-center justify-center gap-2"
+                      >
+                        <span>Réserver ma visite gratuite</span>
+                        <ArrowRight className="w-5 h-5" />
+                      </motion.button>
+                      <div className="flex items-center gap-2 text-xs text-white/50 justify-center">
+                        <Shield className="w-3 h-3" />
+                        <span>Vos données sont protégées et confidentielles</span>
+                      </div>
+                    </form>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="text-center py-8"
+                    >
+                      <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Check className="w-8 h-8 text-green-400" />
+                      </div>
+                      <h4 className="text-xl font-montserrat font-bold text-white mb-2">Merci !</h4>
+                      <p className="text-white/60 font-inter">
+                        Nous vous contactons sous 2h
+                      </p>
+                    </motion.div>
+                  )}
                 </motion.div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -224,33 +307,28 @@ export default function BureauHeroSection() {
                   </motion.div>
                 </div>
 
-                <div className="space-y-3">
-                  {[
-                    { name: 'Thomas D.', role: 'CTO Cybersécurité', text: 'Sécurité maximale et fibre dédiée parfaite' },
-                    { name: 'Sophie B.', role: 'Studio Design', text: '3 nouveaux clients via le networking du Le 40' }
-                  ].map((testimonial, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 1 + index * 0.15 }}
-                      whileHover={{ x: 4 }}
-                      className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 cursor-pointer group"
-                    >
-                      <div className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
-                        <div className="flex-1">
-                          <p className="text-white/90 font-inter text-sm leading-relaxed mb-1.5">
-                            "{testimonial.text}"
-                          </p>
-                          <p className="text-white/60 font-inter text-xs">
-                            <span className="font-semibold">{testimonial.name}</span> · {testimonial.role}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                  className="backdrop-blur-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-3xl p-6 shadow-2xl"
+                >
+                  <div className="flex items-center gap-1.5 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-emerald-400 fill-emerald-400" />
+                    ))}
+                    <span className="ml-2 text-white/90 font-inter text-sm font-bold">5.0</span>
+                  </div>
+                  <p className="text-white/95 font-inter text-sm leading-relaxed mb-4">
+                    "Le bureau privé nous offre la <span className="font-bold text-emerald-400">confidentialité nécessaire</span> tout en profitant de l'écosystème du Le 40."
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500"></div>
+                    <div>
+                      <p className="text-white font-inter text-sm font-bold">Marie L.</p>
+                      <p className="text-white/60 font-inter text-xs">CEO @ TechFlow</p>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             </div>
 

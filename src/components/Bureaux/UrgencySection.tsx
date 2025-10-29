@@ -1,8 +1,28 @@
 import { motion } from 'framer-motion';
-import { Flame, Users, TrendingUp, Clock, ArrowRight } from 'lucide-react';
+import { Flame, Users, TrendingUp, Clock, ArrowRight, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function UrgencySection() {
+  const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 45, seconds: 30 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { hours: prev.hours, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        }
+        return prev;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0">
@@ -11,6 +31,47 @@ export default function UrgencySection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-red-950/50 to-orange-950/50 border border-red-500/30 rounded-3xl p-8 mb-12 text-center"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <AlertCircle className="w-6 h-6 text-red-400" />
+            <h3 className="text-2xl font-montserrat font-black text-white">
+              OFFRE SPÉCIALE - EXPIRE DANS:
+            </h3>
+          </div>
+
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 min-w-[100px]">
+              <div className="text-4xl font-montserrat font-black text-red-400">
+                {String(timeLeft.hours).padStart(2, '0')}
+              </div>
+              <div className="text-white/60 text-sm font-inter mt-1">Heures</div>
+            </div>
+            <div className="text-3xl font-black text-red-400">:</div>
+            <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 min-w-[100px]">
+              <div className="text-4xl font-montserrat font-black text-red-400">
+                {String(timeLeft.minutes).padStart(2, '0')}
+              </div>
+              <div className="text-white/60 text-sm font-inter mt-1">Minutes</div>
+            </div>
+            <div className="text-3xl font-black text-red-400">:</div>
+            <div className="bg-black/40 backdrop-blur-sm rounded-xl p-4 min-w-[100px]">
+              <div className="text-4xl font-montserrat font-black text-red-400">
+                {String(timeLeft.seconds).padStart(2, '0')}
+              </div>
+              <div className="text-white/60 text-sm font-inter mt-1">Secondes</div>
+            </div>
+          </div>
+
+          <p className="text-white/80 font-inter">
+            <span className="font-bold text-emerald-400">1 mois offert</span> pour toute réservation avant la fin du compte à rebours
+          </p>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
