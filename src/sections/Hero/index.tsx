@@ -126,16 +126,6 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-amber-500/20 mb-8"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            >
-              <span className="text-sm font-semibold text-white/90 tracking-wide uppercase">
-                Au cœur de Marseille
-              </span>
-            </motion.div>
-
             <h1 className="relative">
               <motion.div
                 className="text-[clamp(3.5rem,10vw,8rem)] font-black leading-[0.9] tracking-[-0.04em] mb-8"
