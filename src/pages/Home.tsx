@@ -3,7 +3,6 @@ import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Hero from '../sections/Hero';
 import Services from '../sections/Services';
-import Spaces from '../sections/Spaces'; // Nouvelle section fusionnée
 import Community from '../sections/Community';
 import Contact from '../sections/Contact';
 import Footer from '../components/Footer';
@@ -17,7 +16,6 @@ export default function Home() {
       <main className="pt-24">
         <Hero />
         <Services />
-        <Spaces /> {/* Fusion de Coworking + Meeting + Studio */}
         <Community />
         <Contact />
       </main>
