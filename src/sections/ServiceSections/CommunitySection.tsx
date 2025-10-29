@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Network, Users, Calendar, Award, ArrowRight, Sparkles } from 'lucide-react';
+import { Users, Calendar, Award, Sparkles, ArrowRight, PartyPopper, Lightbulb, Coffee } from 'lucide-react';
 import Button from '../../components/UI/Button';
 
 export default function CommunitySection() {
   const benefits = [
-    { icon: Users, text: 'Networking Events Mensuels' },
-    { icon: Calendar, text: 'Ateliers & Masterclass Membres' },
+    { icon: Calendar, text: 'Networking Events Mensuels' },
+    { icon: Lightbulb, text: 'Ateliers & Masterclass Membres' },
     { icon: Award, text: 'Mentors & Experts Disponibles' },
     { icon: Sparkles, text: 'Opportunités de Collaboration' }
   ];
@@ -14,10 +14,10 @@ export default function CommunitySection() {
   return (
     <section id="community" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/30 via-[#0A0A0A] to-sky-950/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-rose-950/30 via-[#0A0A0A] to-fuchsia-950/20"></div>
 
         <motion.div
-          className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-cyan-600/20 rounded-full blur-[150px]"
+          className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-rose-600/20 rounded-full blur-[150px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2]
@@ -25,7 +25,7 @@ export default function CommunitySection() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-sky-600/15 rounded-full blur-[140px]"
+          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-fuchsia-600/15 rounded-full blur-[140px]"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.15, 0.25, 0.15]
@@ -53,113 +53,141 @@ export default function CommunitySection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20">
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-2 mb-8">
-              <Network className="w-4 h-4 text-cyan-400" />
-              <span className="text-cyan-300 text-sm font-medium uppercase tracking-wider">Communauté Active</span>
+            <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 rounded-full px-4 py-2 mb-6">
+              <Users className="w-4 h-4 text-rose-400" />
+              <span className="text-rose-300 text-sm font-medium uppercase tracking-wider">Communauté Active</span>
             </div>
 
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
               Rejoignez le Réseau<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-400 to-fuchsia-400">
                 Des Entrepreneurs
               </span>
             </h2>
 
-            <p className="text-xl text-white/70 mb-12 leading-relaxed font-light max-w-3xl mx-auto">
+            <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
               Plus qu'un espace de travail, Le 40 est une communauté vibrante où se rencontrent les esprits les plus brillants de Marseille. Échangez, collaborez et grandissez ensemble.
             </p>
+
+            <div className="grid grid-cols-2 gap-4 mb-10">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-10 h-10 bg-rose-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <benefit.icon className="w-5 h-5 text-rose-400" />
+                  </div>
+                  <span className="text-white/80 text-sm font-medium">{benefit.text}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Button
+                href="/community"
+                size="md"
+                icon={ArrowRight}
+                iconPosition="right"
+                className="bg-gradient-to-r from-rose-600 to-fuchsia-600 hover:from-rose-500 hover:to-fuchsia-500 text-white"
+              >
+                REJOINDRE LA COMMUNAUTÉ
+              </Button>
+              <Button
+                href="/events"
+                variant="secondary"
+                size="md"
+                className="border-rose-500/30 text-rose-300 hover:bg-rose-500/10"
+              >
+                Voir les événements
+              </Button>
+            </motion.div>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-sky-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity"></div>
-                <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center group-hover:border-cyan-500/30 transition-all">
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-cyan-500/10 rounded-xl mb-4">
-                    <benefit.icon className="w-7 h-7 text-cyan-400" />
-                  </div>
-                  <p className="text-white/80 text-sm font-medium">{benefit.text}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="hidden lg:block"
           >
-            <div className="inline-block bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 max-w-3xl">
-              <div className="grid grid-cols-3 gap-8">
-                <div>
-                  <div className="text-5xl font-montserrat font-black text-white mb-2">120+</div>
-                  <div className="text-white/50 text-sm">Membres actifs</div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-rose-600 to-fuchsia-600 rounded-3xl blur-3xl opacity-30"></div>
+              <div className="relative space-y-6">
+                <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
+                  <div className="text-center mb-6">
+                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/20 to-fuchsia-500/20 border border-rose-400/30 flex items-center justify-center">
+                      <PartyPopper className="w-12 h-12 text-rose-400" />
+                    </div>
+                    <div className="text-2xl font-bold text-white mb-2">Événements & Networking</div>
+                    <div className="text-white/50">15+ événements par mois</div>
+                  </div>
+                  <div className="h-px bg-white/10 my-6"></div>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/60">Afterwork Networking</span>
+                      <span className="text-white font-semibold">Hebdo</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/60">Ateliers Thématiques</span>
+                      <span className="text-white font-semibold">Mensuel</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/60">Pitch Sessions</span>
+                      <span className="text-white font-semibold">Mensuel</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/60">Petit Déj Business</span>
+                      <span className="text-white font-semibold">Bi-mensuel</span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-5xl font-montserrat font-black text-white mb-2">15+</div>
-                  <div className="text-white/50 text-sm">Events par mois</div>
+
+                <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
+                  <div className="grid grid-cols-3 gap-6 text-center">
+                    <div>
+                      <div className="text-4xl font-montserrat font-black text-white mb-1">120+</div>
+                      <div className="text-white/50 text-xs">Membres actifs</div>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-montserrat font-black text-white mb-1">15+</div>
+                      <div className="text-white/50 text-xs">Events/mois</div>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-montserrat font-black text-white mb-1">30+</div>
+                      <div className="text-white/50 text-xs">Secteurs</div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-5xl font-montserrat font-black text-white mb-2">30+</div>
-                  <div className="text-white/50 text-sm">Secteurs représentés</div>
+
+                <div className="bg-gradient-to-r from-rose-500/10 to-fuchsia-500/10 border border-rose-500/20 rounded-2xl p-6 text-center">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Calendar className="w-5 h-5 text-rose-400" />
+                    <span className="text-rose-300 font-semibold text-sm">Prochain événement</span>
+                  </div>
+                  <p className="text-white text-sm">
+                    Afterwork Networking<br />
+                    <span className="text-white/60">Jeudi 7 Nov à 18h</span>
+                  </p>
                 </div>
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Button
-              href="/community"
-              size="md"
-              icon={ArrowRight}
-              iconPosition="right"
-              className="bg-gradient-to-r from-cyan-600 to-sky-600 hover:from-cyan-500 hover:to-sky-500 text-white"
-            >
-              REJOINDRE LA COMMUNAUTÉ
-            </Button>
-            <Button
-              href="/events"
-              variant="secondary"
-              size="md"
-              className="border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10"
-            >
-              Voir les événements
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
-            viewport={{ once: true }}
-            className="mt-12"
-          >
-            <div className="inline-block bg-gradient-to-r from-cyan-500/10 to-sky-500/10 border border-cyan-500/20 rounded-2xl px-6 py-4">
-              <p className="text-cyan-300 text-sm">
-                <span className="font-semibold">Prochain événement:</span> Afterwork Networking - Jeudi 7 Nov à 18h
-              </p>
             </div>
           </motion.div>
         </div>
