@@ -131,20 +131,9 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              >
-                <Sparkles className="w-5 h-5 text-amber-400" />
-              </motion.div>
               <span className="text-sm font-semibold text-white/90 tracking-wide uppercase">
                 Au cœur de Marseille
               </span>
-              <motion.div
-                className="w-2 h-2 rounded-full bg-amber-400"
-                animate={{ scale: [1, 1.3, 1], opacity: [1, 0.5, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
             </motion.div>
 
             <h1 className="relative">
@@ -162,7 +151,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  L'Excellence
+                  Votre Espace
                 </motion.span>
                 <motion.span
                   className="block relative"
@@ -171,7 +160,7 @@ export default function Hero() {
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
                   <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
-                    Industrielle
+                    Professionnel
                   </span>
                 </motion.span>
                 <motion.span
@@ -180,7 +169,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Moderne
+                  à Marseille
                 </motion.span>
               </motion.div>
 
