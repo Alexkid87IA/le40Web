@@ -151,7 +151,7 @@ const images: GalleryImage[] = [
     category: 'podcast'
   },
   {
-    url: 'https://cdn.discordapp.com/attachments/1432824903513538773/1433137458320773151/alexorigines_71937_broadcast_control_room_ATEM_video_switcher_w_1b3a2986-8f2d-436c-a104-185817c4b94e.png?ex=690398c4&is=69024744&hm=a4735c786092f4e5cf1109abb1e35c389ab5d3eebd2a04eae0072ea6f08e002498f6296&',
+    url: 'https://cdn.discordapp.com/attachments/1432824903513538773/1433137458320773151/alexorigines_71937_broadcast_control_room_ATEM_video_switcher_w_1b3a2986-8f2d-436c-a104-185817c4b94e.png?ex=690398c4&is=69024744&hm=a4735c786092f4e4a57852cb8117e35c389ab5d3eebd2a04eae0072ea6f08e002498f6296&',
     caption: 'Régie Broadcast',
     category: 'broadcast'
   },
@@ -193,7 +193,7 @@ export default function Gallery() {
   }, [selectedCategory]);
 
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || filteredImages.length === 0) return;
 
     const timer = setInterval(() => {
       setDirection(1);
@@ -235,6 +235,12 @@ export default function Gallery() {
       opacity: 0,
     }),
   };
+
+  const currentImage = filteredImages[currentIndex];
+
+  if (!currentImage) {
+    return null;
+  }
 
   return (
     <section className="relative bg-black py-32 overflow-hidden">
@@ -309,8 +315,8 @@ export default function Gallery() {
                 className="absolute inset-0"
               >
                 <img
-                  src={filteredImages[currentIndex]?.url}
-                  alt={filteredImages[currentIndex]?.caption}
+                  src={currentImage.url}
+                  alt={currentImage.caption}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -324,7 +330,7 @@ export default function Gallery() {
                     className="flex items-center gap-4"
                   >
                     <span className="px-4 py-2 rounded-lg bg-amber-500/90 text-white font-semibold text-sm backdrop-blur-sm">
-                      {filteredImages[currentIndex]?.caption}
+                      {currentImage.caption}
                     </span>
                     <span className="text-white/60 text-sm">
                       {currentIndex + 1} / {filteredImages.length}
@@ -392,7 +398,7 @@ export default function Gallery() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
-          {filteredImages.slice(0, 8).map((image, index) => (
+          {filteredImages.slice(0, Math.min(8, filteredImages.length)).map((image, index) => (
             <motion.button
               key={index}
               onClick={() => goToSlide(index)}
