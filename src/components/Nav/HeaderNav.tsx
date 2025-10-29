@@ -85,29 +85,31 @@ export default function HeaderNav() {
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAyKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
-        <div className="flex items-center justify-center gap-8">
-          <Link to="/" className="absolute left-6 sm:left-8 lg:left-12 flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative"
-            >
+        <div className="grid grid-cols-3 items-center gap-4">
+          <div className="flex items-center justify-start">
+            <Link to="/" className="flex items-center gap-3 group">
               <motion.div
-                className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `radial-gradient(circle, ${designTokens.colors.palette.primary.glow} 0%, transparent 70%)`
-                }}
-              />
-              <img
-                src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
-                alt="Le 40"
-                className="relative h-auto w-32 brightness-0 invert drop-shadow-2xl"
-              />
-            </motion.div>
-          </Link>
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative"
+              >
+                <motion.div
+                  className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `radial-gradient(circle, ${designTokens.colors.palette.primary.glow} 0%, transparent 70%)`
+                  }}
+                />
+                <img
+                  src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                  alt="Le 40"
+                  className="relative h-auto w-28 brightness-0 invert drop-shadow-2xl"
+                />
+              </motion.div>
+            </Link>
+          </div>
 
           <nav className="flex items-center justify-center">
-            <ul className="flex items-center gap-1">
+            <ul className="flex items-center gap-0.5">
             {navItems.map((item) => {
               const isActive = location.pathname === item.href;
               const Icon = item.icon;
@@ -116,7 +118,7 @@ export default function HeaderNav() {
                 <li key={item.name}>
                   <Link to={item.href}>
                     <motion.div
-                      className={`relative px-4 py-2.5 rounded-xl flex items-center gap-2.5 ${designTokens.animations.transition.fast} ${
+                      className={`relative px-3 py-2 rounded-xl flex items-center gap-2 ${designTokens.animations.transition.fast} ${
                         isActive
                           ? 'bg-white/[0.08] text-white'
                           : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
@@ -132,8 +134,8 @@ export default function HeaderNav() {
                         />
                       )}
 
-                      <Icon className={`relative w-4 h-4 ${designTokens.animations.transition.fast}`} />
-                      <span className={`relative font-inter font-semibold text-sm whitespace-nowrap ${designTokens.animations.transition.fast}`}>
+                      <Icon className={`relative w-3.5 h-3.5 ${designTokens.animations.transition.fast}`} />
+                      <span className={`relative font-inter font-semibold text-xs whitespace-nowrap ${designTokens.animations.transition.fast}`}>
                         {item.name}
                       </span>
 
@@ -152,7 +154,7 @@ export default function HeaderNav() {
           </ul>
         </nav>
 
-        <div className="absolute right-6 sm:right-8 lg:right-12 flex items-center gap-2">
+        <div className="flex items-center justify-end gap-1.5">
           {secondaryItems.map((item) => {
             const isActive = location.pathname === item.href;
             const Icon = item.icon;
@@ -160,7 +162,7 @@ export default function HeaderNav() {
             return (
               <Link key={item.name} to={item.href}>
                 <motion.div
-                  className={`p-2.5 rounded-xl ${designTokens.animations.transition.fast} ${
+                  className={`p-2 rounded-xl ${designTokens.animations.transition.fast} ${
                     isActive
                       ? 'bg-white/[0.08] text-white'
                       : 'text-white/50 hover:text-white hover:bg-white/[0.04]'
@@ -169,7 +171,7 @@ export default function HeaderNav() {
                   whileTap={{ scale: 0.95 }}
                   title={item.name}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-4 h-4" />
                 </motion.div>
               </Link>
             );
@@ -177,12 +179,12 @@ export default function HeaderNav() {
 
           <motion.button
             onClick={() => setIsOpen(true)}
-            className="relative p-2.5 rounded-xl text-white/50 hover:text-white hover:bg-white/[0.04] transition-all duration-300"
+            className="relative p-2 rounded-xl text-white/50 hover:text-white hover:bg-white/[0.04] transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             title="Panier"
           >
-            <ShoppingCart className="w-5 h-5" />
+            <ShoppingCart className="w-4 h-4" />
 
             <AnimatePresence>
               {itemCount > 0 && (
@@ -198,10 +200,10 @@ export default function HeaderNav() {
             </AnimatePresence>
           </motion.button>
 
-          <div className="ml-2 pl-2 border-l border-white/[0.08]">
+          <div className="ml-1.5 pl-1.5 border-l border-white/[0.08]">
             <Link to="/reservation">
               <motion.div
-                className="relative overflow-hidden rounded-xl px-5 py-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 group"
+                className="relative overflow-hidden rounded-xl px-4 py-2 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -217,9 +219,9 @@ export default function HeaderNav() {
                   }}
                 />
 
-                <div className="relative flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-white" />
-                  <span className="font-inter font-bold text-sm text-white whitespace-nowrap">
+                <div className="relative flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-white" />
+                  <span className="font-inter font-bold text-xs text-white whitespace-nowrap">
                     Réserver
                   </span>
                 </div>
