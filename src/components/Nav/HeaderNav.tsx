@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, ArrowRight, Sparkles } from 'lucide-react';
+import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, ArrowRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { designTokens } from '../../styles/designTokens';
@@ -90,17 +90,9 @@ export default function HeaderNav() {
             <img
               src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
               alt="Le 40"
-              className={`relative h-auto brightness-0 invert drop-shadow-2xl ${designTokens.animations.transition.normal} ${
-                isScrolled ? 'w-24' : 'w-32'
-              }`}
+              className="relative h-auto w-32 brightness-0 invert drop-shadow-2xl"
             />
           </motion.div>
-          <div className={`${designTokens.animations.transition.normal} ${isScrolled ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-white/[0.08]">
-              <Sparkles className="w-3 h-3 text-orange-400" />
-              <span className="text-[11px] font-inter font-semibold text-white/70 tracking-wider uppercase whitespace-nowrap">Premium Space</span>
-            </div>
-          </div>
         </Link>
 
         <nav className="flex-1 flex items-center justify-center">
