@@ -103,7 +103,7 @@ export default function GalleryVisualSection() {
 
           <div className="inline-flex items-center gap-3 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3">
             <MapPin className="w-5 h-5 text-orange-400" />
-            <span className="text-white font-inter font-semibold">40 Rue Sainte, 13015 Marseille</span>
+            <span className="text-white font-inter font-semibold">40 Avenue de Saint Antoine, 13015 Marseille</span>
           </div>
         </motion.div>
 
@@ -178,7 +178,7 @@ export default function GalleryVisualSection() {
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2">
-                  850m²
+                  4000m²
                 </div>
                 <p className="text-white/60 font-inter text-sm">d'espaces</p>
               </div>

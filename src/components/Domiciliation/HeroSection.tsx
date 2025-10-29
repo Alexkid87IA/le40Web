@@ -20,7 +20,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-red-600">
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-black">
 
       {/* Advanced Background Effects */}
       <div className="absolute inset-0">
@@ -134,7 +134,7 @@ export default function HeroSection() {
               <div className="flex items-center gap-1">
                 <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                 <span className="text-white/90 font-inter text-sm font-semibold">4.9/5</span>
-                <span className="text-white/60 text-xs">(127 avis)</span>
+                <span className="text-white/60 text-xs">(120+ avis)</span>
               </div>
             </motion.div>
 
@@ -170,15 +170,12 @@ export default function HeroSection() {
             >
               <div className="flex items-baseline gap-3 mb-4">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-6xl sm:text-7xl font-montserrat font-black text-white">29€</span>
+                  <span className="text-6xl sm:text-7xl font-montserrat font-black text-white">49€</span>
                   <span className="text-2xl font-montserrat font-medium text-white/60">/mois</span>
-                </div>
-                <div className="px-3 py-1 rounded-lg bg-green-500/20 border border-green-400/40">
-                  <span className="text-green-400 font-inter text-sm font-bold">-40%</span>
                 </div>
               </div>
               <p className={`${designTokens.typography.body.size} text-white/80 font-inter font-medium ${designTokens.typography.body.leading}`}>
-                Adresse professionnelle Marseille 15e + Scan courrier 2h + Standard téléphonique inclus
+                Adresse professionnelle Marseille 15e + Scan courrier 2h + Gestion courrier incluse
               </p>
             </motion.div>
 
@@ -247,7 +244,7 @@ export default function HeroSection() {
                       <div className="flex items-center justify-between w-full">
                         <div className="text-left">
                           <p className="font-montserrat font-black text-base">Choisir cette offre</p>
-                          <p className="text-white/90 text-xs font-inter">Dès 29€/mois • 3 forfaits</p>
+                          <p className="text-white/90 text-xs font-inter">Dès 49€/mois • 3 forfaits</p>
                         </div>
                       </div>
                     </Button>
@@ -281,7 +278,7 @@ export default function HeroSection() {
                 <div className="h-4 w-px bg-white/10"></div>
                 <div className="flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-amber-400" />
-                  <span className="text-white/70 font-inter text-sm">127 entrepreneurs nous font confiance</span>
+                  <span className="text-white/70 font-inter text-sm">120+ entrepreneurs nous font confiance</span>
                 </div>
               </div>
             </motion.div>
@@ -342,7 +339,7 @@ export default function HeroSection() {
                   className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 text-center"
                 >
                   <Shield className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-                  <p className="text-4xl font-montserrat font-black text-white mb-1">127</p>
+                  <p className="text-4xl font-montserrat font-black text-white mb-1">120+</p>
                   <p className="text-white/60 font-inter text-sm">Entreprises</p>
                 </motion.div>
               </div>

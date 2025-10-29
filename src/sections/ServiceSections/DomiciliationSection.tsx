@@ -97,7 +97,7 @@ export default function DomiciliationSection() {
 
             <div className="flex items-center gap-3 mb-8">
               <div className="text-white/50 text-sm">À partir de</div>
-              <div className="text-5xl font-montserrat font-black text-white">29€</div>
+              <div className="text-5xl font-montserrat font-black text-white">49€</div>
               <div className="text-white/50 text-sm">/mois</div>
             </div>
 
@@ -154,7 +154,7 @@ export default function DomiciliationSection() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-white/60">Configuration</span>
-                    <span className="text-white font-semibold">En 48h</span>
+                    <span className="text-white font-semibold">En 24h</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-white/60">Gestion courrier</span>
