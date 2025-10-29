@@ -77,11 +77,11 @@ export default function HeaderNav() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`hidden md:block fixed top-0 left-0 right-0 z-50 ${designTokens.animations.transition.normal} ${
         isScrolled
-          ? 'bg-black/97 backdrop-blur-3xl border-b border-white/[0.1] py-3 shadow-xl shadow-black/20'
-          : 'bg-black/85 backdrop-blur-2xl py-4'
+          ? 'bg-black/97 backdrop-blur-3xl border-b border-white/[0.08] py-3 shadow-xl shadow-black/30'
+          : 'bg-black/90 backdrop-blur-2xl py-4'
       }`}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/[0.01] via-transparent to-amber-500/[0.01] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white/[0.01] via-transparent to-white/[0.01] pointer-events-none" />
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30 pointer-events-none" />
 
       <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -96,7 +96,7 @@ export default function HeaderNav() {
                 <motion.div
                   className="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                   style={{
-                    background: `radial-gradient(circle, ${designTokens.colors.palette.primary.glow} 0%, transparent 70%)`
+                    background: `radial-gradient(circle, ${designTokens.colors.neutral.glow} 0%, transparent 70%)`
                   }}
                 />
                 <img
@@ -122,8 +122,8 @@ export default function HeaderNav() {
                     <motion.div
                       className={`relative px-3 py-2.5 rounded-xl flex items-center gap-2 ${designTokens.animations.transition.fast} ${
                         isActive
-                          ? 'bg-white/[0.1] text-white shadow-lg shadow-orange-500/10'
-                          : 'text-white/65 hover:text-white hover:bg-white/[0.05]'
+                          ? 'bg-white/[0.12] text-white shadow-lg shadow-white/[0.05]'
+                          : 'text-white/65 hover:text-white hover:bg-white/[0.06]'
                       }`}
                       whileHover={{ y: -2, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -131,7 +131,7 @@ export default function HeaderNav() {
                       {isActive && (
                         <motion.div
                           layoutId="headerActiveBackground"
-                          className="absolute inset-0 bg-gradient-to-r from-orange-500/15 via-amber-500/15 to-yellow-500/15 rounded-xl"
+                          className="absolute inset-0 bg-white/[0.08] rounded-xl"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -144,7 +144,7 @@ export default function HeaderNav() {
                       {isActive && (
                         <motion.div
                           layoutId="headerActiveIndicator"
-                          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/5 h-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 rounded-full shadow-lg shadow-orange-500/50"
+                          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/5 h-0.5 bg-white rounded-full shadow-lg shadow-white/30"
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -166,7 +166,7 @@ export default function HeaderNav() {
                 <motion.div
                   className={`p-2.5 rounded-xl ${designTokens.animations.transition.fast} ${
                     isActive
-                      ? 'bg-white/[0.1] text-white shadow-md shadow-orange-500/10'
+                      ? 'bg-white/[0.12] text-white shadow-md shadow-white/[0.05]'
                       : 'text-white/55 hover:text-white hover:bg-white/[0.06]'
                   }`}
                   whileHover={{ scale: 1.08, y: -2 }}
@@ -195,9 +195,9 @@ export default function HeaderNav() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 rounded-full flex items-center justify-center shadow-lg shadow-orange-500/50"
+                  className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-lg shadow-white/30"
                 >
-                  <span className="text-white text-[10px] font-bold">{itemCount}</span>
+                  <span className="text-black text-[10px] font-bold">{itemCount}</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -206,22 +206,10 @@ export default function HeaderNav() {
           <div className="ml-2 pl-2 border-l border-white/[0.1]">
             <Link to="/reservation">
               <motion.div
-                className="relative overflow-hidden rounded-xl px-5 py-2.5 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 group shadow-lg shadow-orange-500/25"
-                whileHover={{ scale: 1.05, y: -2, boxShadow: "0 20px 25px -5px rgba(245, 158, 11, 0.3)" }}
+                className="relative overflow-hidden rounded-xl px-5 py-2.5 bg-white/[0.1] backdrop-blur-xl border border-white/20 group shadow-lg shadow-white/[0.05]"
+                whileHover={{ scale: 1.05, y: -2, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                 whileTap={{ scale: 0.98 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  animate={{
-                    x: [-200, 200],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
-
                 <div className="relative flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-white" />
                   <span className="font-inter font-bold text-[13px] text-white whitespace-nowrap">

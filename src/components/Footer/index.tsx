@@ -1,25 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Calendar, Linkedin, Instagram, Facebook, ArrowRight, Heart, Users, Award, Sparkles, Zap, Crown, Globe, ChevronRight, Building2, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Linkedin, Instagram, Facebook, ArrowRight, Building2, Users, Clock, Award, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const footerLinks = {
   services: [
     { name: 'Coworking', href: '/coworking' },
-    { name: 'Bureaux Privés', href: '/coworking' },
+    { name: 'Bureaux Privés', href: '/bureaux' },
     { name: 'Salles de Réunion', href: '/salles' },
     { name: 'Studios Audio/Vidéo', href: '/studios' },
     { name: 'Domiciliation', href: '/domiciliation' }
   ],
-  espaces: [
-    { name: 'Open Space', href: '/spaces/open-space' },
-    { name: 'Phone Box', href: '/spaces/phone-box' },
-    { name: 'Lounge & Café', href: '/spaces/lounge-cafe' },
-    { name: 'Terrasse Rooftop', href: '/spaces/terrasse-rooftop' }
-  ],
   company: [
     { name: 'Communauté', href: '/community' },
     { name: 'Événements', href: '/events' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Le Club', href: '/experts' },
     { name: 'Contact', href: '/contact' }
   ],
   legal: [
@@ -30,9 +25,9 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: 'LinkedIn', icon: Linkedin, href: '#', color: 'from-orange-500 to-amber-500' },
-  { name: 'Instagram', icon: Instagram, href: '#', color: 'from-amber-500 to-yellow-500' },
-  { name: 'Facebook', icon: Facebook, href: '#', color: 'from-orange-600 to-red-600' }
+  { name: 'LinkedIn', icon: Linkedin, href: '#' },
+  { name: 'Instagram', icon: Instagram, href: '#' },
+  { name: 'Facebook', icon: Facebook, href: '#' }
 ];
 
 const footerStats = [
@@ -42,33 +37,39 @@ const footerStats = [
   { number: "100", suffix: "%", label: "satisfaction", icon: Award }
 ];
 
+const contactInfo = [
+  {
+    icon: MapPin,
+    text: '40 Avenue de Saint Antoine\n13015 Marseille',
+    link: 'https://maps.google.com'
+  },
+  {
+    icon: Phone,
+    text: '+33 4 91 23 45 67',
+    link: 'tel:+33491234567'
+  },
+  {
+    icon: Mail,
+    text: 'contact@le40.fr',
+    link: 'mailto:contact@le40.fr'
+  }
+];
+
 export default function Footer() {
   return (
     <footer className="relative bg-black overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-950 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-black" />
 
-        <motion.div
-          animate={{
-            background: [
-              'radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%)',
-              'radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)',
-            ]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0"
-        />
-      </div>
-
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
-          }}
-        />
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+              backgroundSize: '50px 50px'
+            }}
+          />
+        </div>
       </div>
 
       <div className="relative z-10">
@@ -87,19 +88,6 @@ export default function Footer() {
                 transition={{ delay: 0.2, duration: 0.8 }}
                 className="mb-8 relative inline-block"
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20 blur-3xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-
                 <div className="relative text-6xl font-black tracking-tight text-white">
                   <span className="inline-block">le</span>
                   <span className="inline-flex items-center justify-center w-16 h-16 mx-2 rounded-full bg-white text-black text-3xl align-middle">
@@ -129,18 +117,18 @@ export default function Footer() {
                   whileHover={{ y: -5 }}
                   className="group"
                 >
-                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-orange-500/30 transition-all duration-500">
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-white/[0.07] transition-all duration-500">
                     <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.8 }}
-                      className="inline-flex p-3 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 mb-4"
+                      className="inline-flex p-3 rounded-xl bg-white/10 mb-4"
                     >
                       <stat.icon className="w-6 h-6 text-white" />
                     </motion.div>
 
                     <div className="text-3xl font-black text-white mb-1">
                       {stat.number}
-                      <span className="text-xl text-orange-400">{stat.suffix}</span>
+                      <span className="text-xl text-white/70">{stat.suffix}</span>
                     </div>
 
                     <div className="text-sm text-white/60">
@@ -152,37 +140,20 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="lg:col-span-2"
+              className="lg:col-span-1"
             >
-              <h4 className="text-lg font-black text-white mb-6 flex items-center">
-                <Globe className="w-5 h-5 text-orange-400 mr-2" />
+              <h4 className="text-lg font-black text-white mb-6">
                 Contact
               </h4>
 
               <div className="space-y-4 mb-8">
-                {[
-                  {
-                    icon: MapPin,
-                    text: '40 Avenue de Saint Antoine\n13015 Marseille',
-                    link: 'https://maps.google.com'
-                  },
-                  {
-                    icon: Phone,
-                    text: '+33 4 91 23 45 67',
-                    link: 'tel:+33491234567'
-                  },
-                  {
-                    icon: Mail,
-                    text: 'contact@le40.fr',
-                    link: 'mailto:contact@le40.fr'
-                  }
-                ].map((contact, index) => (
+                {contactInfo.map((contact, index) => (
                   <motion.a
                     key={index}
                     href={contact.link}
@@ -193,8 +164,8 @@ export default function Footer() {
                     whileHover={{ x: 5 }}
                     className="flex items-start gap-4 group"
                   >
-                    <div className="p-2 rounded-xl bg-orange-500/10 group-hover:bg-orange-500/20 transition-all duration-300">
-                      <contact.icon className="w-5 h-5 text-orange-400" />
+                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-300">
+                      <contact.icon className="w-5 h-5 text-white/70" />
                     </div>
                     <span className="text-white/70 group-hover:text-white transition-colors whitespace-pre-line text-sm">
                       {contact.text}
@@ -217,8 +188,8 @@ export default function Footer() {
                       whileHover={{ y: -3, scale: 1.1 }}
                       className="group relative"
                     >
-                      <div className={`w-11 h-11 bg-gradient-to-br ${social.color} rounded-xl flex items-center justify-center shadow-lg`}>
-                        <social.icon className="w-5 h-5 text-white" />
+                      <div className="w-11 h-11 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg">
+                        <social.icon className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
                       </div>
                     </motion.a>
                   ))}
@@ -242,13 +213,13 @@ export default function Footer() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.05 * index }}
                   >
-                    <a
-                      href={link.href}
-                      className="text-white/70 hover:text-orange-400 transition-colors text-sm group flex items-center"
+                    <Link
+                      to={link.href}
+                      className="text-white/70 hover:text-white transition-colors text-sm group flex items-center"
                     >
                       <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
-                    </a>
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -260,9 +231,9 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <h4 className="text-lg font-black text-white mb-6">Espaces</h4>
+              <h4 className="text-lg font-black text-white mb-6">À propos</h4>
               <ul className="space-y-3">
-                {footerLinks.espaces.map((link, index) => (
+                {footerLinks.company.map((link, index) => (
                   <motion.li
                     key={link.name}
                     initial={{ opacity: 0, x: -20 }}
@@ -270,13 +241,13 @@ export default function Footer() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.05 * index }}
                   >
-                    <a
-                      href={link.href}
-                      className="text-white/70 hover:text-orange-400 transition-colors text-sm group flex items-center"
+                    <Link
+                      to={link.href}
+                      className="text-white/70 hover:text-white transition-colors text-sm group flex items-center"
                     >
                       <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
-                    </a>
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -288,9 +259,9 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              <h4 className="text-lg font-black text-white mb-6">À propos</h4>
-              <ul className="space-y-3 mb-8">
-                {footerLinks.company.map((link, index) => (
+              <h4 className="text-lg font-black text-white mb-6">Légal</h4>
+              <ul className="space-y-3">
+                {footerLinks.legal.map((link, index) => (
                   <motion.li
                     key={link.name}
                     initial={{ opacity: 0, x: -20 }}
@@ -298,28 +269,15 @@ export default function Footer() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.05 * index }}
                   >
-                    <a
-                      href={link.href}
-                      className="text-white/70 hover:text-orange-400 transition-colors text-sm group flex items-center"
+                    <Link
+                      to={link.href}
+                      className="text-white/40 hover:text-white/70 transition-colors text-xs"
                     >
-                      <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                      <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
-                    </a>
+                      {link.name}
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
-
-              <div className="space-y-2">
-                {footerLinks.legal.map((link, index) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="block text-white/40 hover:text-white/70 transition-colors text-xs"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </div>
             </motion.div>
           </div>
 
@@ -330,7 +288,7 @@ export default function Footer() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-orange-500/10 to-amber-500/10 backdrop-blur-xl border border-orange-500/20 p-12">
+            <div className="relative overflow-hidden rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-12 hover:border-white/20 transition-all duration-500">
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0" style={{
                   backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 1px)',
@@ -339,21 +297,6 @@ export default function Footer() {
               </div>
 
               <div className="relative text-center max-w-2xl mx-auto">
-                <motion.div
-                  animate={{
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="inline-block mb-6"
-                >
-                  <Sparkles className="w-12 h-12 text-orange-400" />
-                </motion.div>
-
                 <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
                   Prêt à Rejoindre Le 40 ?
                 </h3>
@@ -361,16 +304,16 @@ export default function Footer() {
                   Visitez nos espaces et découvrez votre futur lieu de travail
                 </p>
 
-                <motion.a
-                  href="/contact"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-black rounded-2xl shadow-2xl shadow-orange-500/20 group"
-                >
-                  <Calendar className="w-6 h-6" />
-                  <span>Réserver une Visite</span>
-                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                </motion.a>
+                <Link to="/contact">
+                  <motion.div
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-xl border border-white/20 text-white font-black rounded-2xl shadow-2xl shadow-white/[0.05] group transition-all duration-300"
+                  >
+                    <span>Réserver une Visite</span>
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  </motion.div>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -381,19 +324,10 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="text-white/40 text-sm text-center md:text-left">
                 © 2025 Le 40 Marseille. Tous droits réservés.
-                <span className="inline-flex items-center ml-2">
-                  Made with <Heart className="w-4 h-4 text-orange-500 mx-1 fill-orange-500" /> in Marseille
-                </span>
               </div>
 
               <div className="flex items-center gap-2 text-xs text-white/30">
-                <span>Propulsé par l'innovation</span>
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                >
-                  <Zap className="w-4 h-4 text-orange-400" />
-                </motion.div>
+                <span>Made with precision in Marseille</span>
               </div>
             </div>
           </div>

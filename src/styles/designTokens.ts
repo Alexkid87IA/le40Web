@@ -16,6 +16,26 @@ export const designTokens = {
       shadow: 'rgba(245, 158, 11, 0.3)',
     },
 
+    neutral: {
+      white: '#FFFFFF',
+      gray: {
+        50: '#FAFAFA',
+        100: '#F5F5F5',
+        200: '#E5E5E5',
+        300: '#D4D4D4',
+        400: '#A3A3A3',
+        500: '#737373',
+        600: '#525252',
+        700: '#404040',
+        800: '#262626',
+        900: '#171717',
+      },
+      gradient: 'from-white via-zinc-100 to-zinc-200',
+      gradientDark: 'from-zinc-800 via-zinc-900 to-black',
+      shadow: 'rgba(255, 255, 255, 0.1)',
+      glow: 'rgba(255, 255, 255, 0.05)',
+    },
+
     palette: {
       primary: {
         light: '#FBBF24',
