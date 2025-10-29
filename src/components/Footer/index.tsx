@@ -44,16 +44,16 @@ const footerStats = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gray-50 overflow-hidden">
+    <footer className="relative bg-black overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100" />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950 to-black" />
 
         <motion.div
           animate={{
             background: [
-              'radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 50%)',
-              'radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)',
+              'radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)',
             ]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -61,11 +61,11 @@ export default function Footer() {
         />
       </div>
 
-      <div className="absolute inset-0 opacity-[0.03]">
+      <div className="absolute inset-0 opacity-[0.02]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'linear-gradient(rgb(0,0,0) 1px, transparent 1px), linear-gradient(90deg, rgb(0,0,0) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
             backgroundSize: '50px 50px'
           }}
         />
@@ -88,10 +88,10 @@ export default function Footer() {
                 className="mb-8 relative inline-block"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-gray-300/20 to-gray-400/20 blur-3xl"
+                  className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-500/20 blur-3xl"
                   animate={{
                     scale: [1, 1.2, 1],
-                    opacity: [0.2, 0.4, 0.2],
+                    opacity: [0.3, 0.6, 0.3],
                   }}
                   transition={{
                     duration: 4,
@@ -100,9 +100,9 @@ export default function Footer() {
                   }}
                 />
 
-                <div className="relative text-6xl font-black tracking-tight text-gray-900">
+                <div className="relative text-6xl font-black tracking-tight text-white">
                   <span className="inline-block">le</span>
-                  <span className="inline-flex items-center justify-center w-16 h-16 mx-2 rounded-full bg-gray-900 text-white text-3xl align-middle">
+                  <span className="inline-flex items-center justify-center w-16 h-16 mx-2 rounded-full bg-white text-black text-3xl align-middle">
                     40
                   </span>
                 </div>
@@ -112,7 +112,7 @@ export default function Footer() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-lg text-gray-600 max-w-2xl mx-auto"
+                className="text-lg text-white/60 max-w-2xl mx-auto"
               >
                 Votre espace de travail premium au cœur de Marseille
               </motion.p>
@@ -129,21 +129,21 @@ export default function Footer() {
                   whileHover={{ y: -5 }}
                   className="group"
                 >
-                  <div className="relative bg-white backdrop-blur-xl border border-gray-200 rounded-2xl p-6 hover:border-gray-300 hover:shadow-lg transition-all duration-500">
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-orange-500/30 transition-all duration-500">
                     <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.8 }}
-                      className="inline-flex p-3 rounded-xl bg-gray-900 mb-4"
+                      className="inline-flex p-3 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 mb-4"
                     >
                       <stat.icon className="w-6 h-6 text-white" />
                     </motion.div>
 
-                    <div className="text-3xl font-black text-gray-900 mb-1">
+                    <div className="text-3xl font-black text-white mb-1">
                       {stat.number}
-                      <span className="text-xl text-gray-600">{stat.suffix}</span>
+                      <span className="text-xl text-orange-400">{stat.suffix}</span>
                     </div>
 
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-white/60">
                       {stat.label}
                     </div>
                   </div>
@@ -160,8 +160,8 @@ export default function Footer() {
               transition={{ delay: 0.2 }}
               className="lg:col-span-2"
             >
-              <h4 className="text-lg font-black text-gray-900 mb-6 flex items-center">
-                <Globe className="w-5 h-5 text-gray-900 mr-2" />
+              <h4 className="text-lg font-black text-white mb-6 flex items-center">
+                <Globe className="w-5 h-5 text-orange-400 mr-2" />
                 Contact
               </h4>
 
@@ -193,10 +193,10 @@ export default function Footer() {
                     whileHover={{ x: 5 }}
                     className="flex items-start gap-4 group"
                   >
-                    <div className="p-2 rounded-xl bg-gray-200 group-hover:bg-gray-300 transition-all duration-300">
-                      <contact.icon className="w-5 h-5 text-gray-900" />
+                    <div className="p-2 rounded-xl bg-orange-500/10 group-hover:bg-orange-500/20 transition-all duration-300">
+                      <contact.icon className="w-5 h-5 text-orange-400" />
                     </div>
-                    <span className="text-gray-600 group-hover:text-gray-900 transition-colors whitespace-pre-line text-sm">
+                    <span className="text-white/70 group-hover:text-white transition-colors whitespace-pre-line text-sm">
                       {contact.text}
                     </span>
                   </motion.a>
@@ -204,7 +204,7 @@ export default function Footer() {
               </div>
 
               <div>
-                <h5 className="text-sm font-bold text-gray-600 mb-4">Suivez-nous</h5>
+                <h5 className="text-sm font-bold text-white/60 mb-4">Suivez-nous</h5>
                 <div className="flex gap-3">
                   {socialLinks.map((social, index) => (
                     <motion.a
@@ -217,7 +217,7 @@ export default function Footer() {
                       whileHover={{ y: -3, scale: 1.1 }}
                       className="group relative"
                     >
-                      <div className="w-11 h-11 bg-gray-900 rounded-xl flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+                      <div className={`w-11 h-11 bg-gradient-to-br ${social.color} rounded-xl flex items-center justify-center shadow-lg`}>
                         <social.icon className="w-5 h-5 text-white" />
                       </div>
                     </motion.a>
@@ -232,7 +232,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <h4 className="text-lg font-black text-gray-900 mb-6">Services</h4>
+              <h4 className="text-lg font-black text-white mb-6">Services</h4>
               <ul className="space-y-3">
                 {footerLinks.services.map((link, index) => (
                   <motion.li
@@ -244,7 +244,7 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
-                      className="text-gray-600 hover:text-gray-900 transition-colors text-sm group flex items-center"
+                      className="text-white/70 hover:text-orange-400 transition-colors text-sm group flex items-center"
                     >
                       <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
@@ -260,7 +260,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <h4 className="text-lg font-black text-gray-900 mb-6">Espaces</h4>
+              <h4 className="text-lg font-black text-white mb-6">Espaces</h4>
               <ul className="space-y-3">
                 {footerLinks.espaces.map((link, index) => (
                   <motion.li
@@ -272,7 +272,7 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
-                      className="text-gray-600 hover:text-gray-900 transition-colors text-sm group flex items-center"
+                      className="text-white/70 hover:text-orange-400 transition-colors text-sm group flex items-center"
                     >
                       <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
@@ -288,7 +288,7 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              <h4 className="text-lg font-black text-gray-900 mb-6">À propos</h4>
+              <h4 className="text-lg font-black text-white mb-6">À propos</h4>
               <ul className="space-y-3 mb-8">
                 {footerLinks.company.map((link, index) => (
                   <motion.li
@@ -300,7 +300,7 @@ export default function Footer() {
                   >
                     <a
                       href={link.href}
-                      className="text-gray-600 hover:text-gray-900 transition-colors text-sm group flex items-center"
+                      className="text-white/70 hover:text-orange-400 transition-colors text-sm group flex items-center"
                     >
                       <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
@@ -314,7 +314,7 @@ export default function Footer() {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="block text-gray-500 hover:text-gray-700 transition-colors text-xs"
+                    className="block text-white/40 hover:text-white/70 transition-colors text-xs"
                   >
                     {link.name}
                   </a>
@@ -330,10 +330,10 @@ export default function Footer() {
             transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <div className="relative overflow-hidden rounded-3xl bg-white backdrop-blur-xl border border-gray-200 p-12 shadow-xl">
-              <div className="absolute inset-0 opacity-[0.03]">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-orange-500/10 to-amber-500/10 backdrop-blur-xl border border-orange-500/20 p-12">
+              <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0" style={{
-                  backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 1px)',
+                  backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 1px)',
                   backgroundSize: '24px 24px'
                 }} />
               </div>
@@ -351,13 +351,13 @@ export default function Footer() {
                   }}
                   className="inline-block mb-6"
                 >
-                  <Sparkles className="w-12 h-12 text-gray-900" />
+                  <Sparkles className="w-12 h-12 text-orange-400" />
                 </motion.div>
 
-                <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
+                <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
                   Prêt à Rejoindre Le 40 ?
                 </h3>
-                <p className="text-gray-600 mb-8 text-lg">
+                <p className="text-white/70 mb-8 text-lg">
                   Visitez nos espaces et découvrez votre futur lieu de travail
                 </p>
 
@@ -365,7 +365,7 @@ export default function Footer() {
                   href="/contact"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-3 px-10 py-5 bg-gray-900 text-white font-black rounded-2xl shadow-xl hover:shadow-2xl transition-shadow group"
+                  className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-black rounded-2xl shadow-2xl shadow-orange-500/20 group"
                 >
                   <Calendar className="w-6 h-6" />
                   <span>Réserver une Visite</span>
@@ -376,23 +376,23 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        <div className="border-t border-gray-200">
+        <div className="border-t border-white/10">
           <div className="max-w-7xl mx-auto px-8 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-gray-500 text-sm text-center md:text-left">
+              <div className="text-white/40 text-sm text-center md:text-left">
                 © 2025 Le 40 Marseille. Tous droits réservés.
                 <span className="inline-flex items-center ml-2">
-                  Made with <Heart className="w-4 h-4 text-gray-900 mx-1 fill-gray-900" /> in Marseille
+                  Made with <Heart className="w-4 h-4 text-orange-500 mx-1 fill-orange-500" /> in Marseille
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-gray-400">
+              <div className="flex items-center gap-2 text-xs text-white/30">
                 <span>Propulsé par l'innovation</span>
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 >
-                  <Zap className="w-4 h-4 text-gray-900" />
+                  <Zap className="w-4 h-4 text-orange-400" />
                 </motion.div>
               </div>
             </div>
@@ -400,7 +400,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="absolute inset-0 opacity-[0.01] pointer-events-none mix-blend-overlay">
+      <div className="absolute inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay">
         <svg width="100%" height="100%">
           <filter id="noiseFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" />
