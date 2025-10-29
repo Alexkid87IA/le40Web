@@ -1,7 +1,43 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle, ArrowRight, Clock, Users, Zap } from 'lucide-react';
+import { AlertCircle, ArrowRight, Clock, Users, Zap, TrendingUp, CheckCircle } from 'lucide-react';
 
 export default function UrgencySection() {
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 23,
+    minutes: 47,
+    seconds: 32
+  });
+
+  const [recentSignups, setRecentSignups] = useState([
+    { name: 'Sophie M.', plan: 'Business', time: '3 min' },
+    { name: 'Marc D.', plan: 'Starter', time: '12 min' },
+    { name: 'Julie R.', plan: 'Scale-Up', time: '28 min' }
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        let { hours, minutes, seconds } = prev;
+        seconds--;
+        if (seconds < 0) {
+          seconds = 59;
+          minutes--;
+        }
+        if (minutes < 0) {
+          minutes = 59;
+          hours--;
+        }
+        if (hours < 0) {
+          hours = 23;
+        }
+        return { hours, minutes, seconds };
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative py-32 bg-gradient-to-br from-orange-600 via-orange-500 to-red-600 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.08]">
@@ -122,12 +158,66 @@ export default function UrgencySection() {
           </div>
 
           <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-3xl p-8 mb-12 max-w-2xl mx-auto"
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Clock className="w-6 h-6 text-white" />
+              <span className="text-white font-montserrat font-bold text-lg">Offre limitée - Se termine dans:</span>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                { value: timeLeft.hours, label: 'Heures' },
+                { value: timeLeft.minutes, label: 'Minutes' },
+                { value: timeLeft.seconds, label: 'Secondes' }
+              ].map((item, index) => (
+                <div key={index} className="bg-white/20 backdrop-blur-xl rounded-2xl p-6 border border-white/30">
+                  <div className="text-5xl font-montserrat font-black text-white mb-2">
+                    {String(item.value).padStart(2, '0')}
+                  </div>
+                  <div className="text-white/90 font-inter text-sm font-medium">{item.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="mb-8"
+            className="mb-12"
           >
+            <div className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-6 max-w-md mx-auto mb-8">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <TrendingUp className="w-5 h-5 text-white" />
+                <span className="text-white font-montserrat font-bold">Inscriptions récentes</span>
+              </div>
+              <div className="space-y-3">
+                {recentSignups.map((signup, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.2 }}
+                    className="flex items-center justify-between bg-white/10 rounded-xl p-3"
+                  >
+                    <div className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-400" />
+                      <div>
+                        <div className="text-white font-inter font-semibold text-sm">{signup.name}</div>
+                        <div className="text-white/70 text-xs">Formule {signup.plan}</div>
+                      </div>
+                    </div>
+                    <div className="text-white/60 text-xs font-inter">Il y a {signup.time}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
             <motion.a
               href="#pricing"
               whileHover={{ scale: 1.05, y: -2 }}
@@ -166,8 +256,8 @@ export default function UrgencySection() {
             </div>
             <div className="hidden sm:block w-1 h-1 rounded-full bg-white/40"></div>
             <div className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              <span>Sans CB</span>
+              <CheckCircle className="w-4 h-4" />
+              <span>Garantie satisfait ou remboursé</span>
             </div>
           </motion.div>
         </motion.div>
