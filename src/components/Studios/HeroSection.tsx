@@ -1,9 +1,18 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Check, Video, Star, Zap, Shield, Clock, Play, TrendingUp, Users, Award } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
+
+const backgroundImages = [
+  'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1920',
+  'https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?auto=compress&cs=tinysrgb&w=1920',
+];
 
 export default function HeroSection() {
   const containerRef = useRef(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -13,10 +22,35 @@ export default function HeroSection() {
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-slate-950">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-slate-950 to-purple-950/20"></div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentImageIndex}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${backgroundImages[currentImageIndex]})`,
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950/95"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-transparent to-slate-950/80"></div>
+          </motion.div>
+        </AnimatePresence>
         <div className="absolute inset-0 opacity-[0.02]"
              style={{
                backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
@@ -27,7 +61,7 @@ export default function HeroSection() {
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-40 left-1/4 w-[800px] h-[800px] rounded-full bg-blue-500/20 blur-[150px]"
+          className="absolute -top-40 left-1/4 w-[800px] h-[800px] rounded-full bg-cyan-500/15 blur-[150px]"
           animate={{
             x: [0, 100, 0],
             y: [0, 50, 0],
@@ -37,7 +71,7 @@ export default function HeroSection() {
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute top-1/3 -right-40 w-[700px] h-[700px] rounded-full bg-cyan-500/15 blur-[140px]"
+          className="absolute top-1/3 -right-40 w-[700px] h-[700px] rounded-full bg-blue-500/15 blur-[140px]"
           animate={{
             x: [0, -80, 0],
             y: [0, 80, 0],
@@ -47,7 +81,7 @@ export default function HeroSection() {
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
         <motion.div
-          className="absolute bottom-20 left-1/3 w-[600px] h-[600px] rounded-full bg-purple-500/20 blur-[130px]"
+          className="absolute bottom-20 left-1/3 w-[600px] h-[600px] rounded-full bg-teal-500/15 blur-[130px]"
           animate={{
             x: [0, -60, 0],
             scale: [1, 1.15, 1],
@@ -318,8 +352,24 @@ export default function HeroSection() {
 
       <motion.div
         style={{ opacity }}
-        className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-slate-950/50 to-transparent pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent pointer-events-none"
       />
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {backgroundImages.map((_, index) => (
+          <motion.button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              currentImageIndex === index
+                ? 'bg-cyan-400 w-8'
+                : 'bg-white/30 hover:bg-white/50'
+            }`}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.9 }}
+          />
+        ))}
+      </div>
     </section>
   );
 }

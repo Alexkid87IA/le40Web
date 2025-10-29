@@ -4,7 +4,7 @@ import { Star, TrendingUp, Users, Video, Award, Clock, CheckCircle, Play } from 
 export default function SocialProofSection() {
   const stats = [
     { value: '380+', label: 'Productions réalisées', icon: Video, gradient: 'from-blue-500 to-cyan-500' },
-    { value: '4.9/5', label: 'Satisfaction client', icon: Star, gradient: 'from-amber-500 to-orange-500' },
+    { value: '4.9/5', label: 'Satisfaction client', icon: Star, gradient: 'from-cyan-500 to-blue-500' },
     { value: '2h', label: 'Délai de livraison', icon: Clock, gradient: 'from-emerald-500 to-teal-500' },
     { value: '95%', label: 'Clients réguliers', icon: Award, gradient: 'from-purple-500 to-violet-500' },
   ];
@@ -52,7 +52,7 @@ export default function SocialProofSection() {
     <section className="py-32 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-20 right-1/4 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[150px]"
+          className="absolute top-20 right-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px]"
           animate={{
             x: [0, -100, 0],
             y: [0, 80, 0],
@@ -69,15 +69,15 @@ export default function SocialProofSection() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-400/30 backdrop-blur-xl">
-            <Award className="w-4 h-4 text-amber-400" />
-            <span className="text-amber-300 font-inter text-sm font-bold">Excellence reconnue</span>
+          <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 backdrop-blur-xl">
+            <Award className="w-4 h-4 text-cyan-400" />
+            <span className="text-cyan-300 font-inter text-sm font-bold">Excellence reconnue</span>
           </div>
 
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             ILS CRÉENT AVEC
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-red-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400">
               NOS STUDIOS
             </span>
           </h2>
@@ -148,8 +148,8 @@ export default function SocialProofSection() {
                 whileHover={{ y: -8 }}
                 className="group relative"
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"></div>
-                <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-white/10 group-hover:border-amber-500/50 rounded-2xl overflow-hidden transition-all">
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"></div>
+                <div className="relative bg-slate-900/80 backdrop-blur-2xl border border-white/10 group-hover:border-cyan-500/50 rounded-2xl overflow-hidden transition-all">
                   <div className="relative h-48 overflow-hidden cursor-pointer">
                     <img
                       src={testimonial.videoThumbnail}
@@ -165,7 +165,7 @@ export default function SocialProofSection() {
                         <Play className="w-6 h-6 text-white ml-1" />
                       </motion.div>
                     </div>
-                    <div className="absolute top-4 right-4 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                    <div className="absolute top-4 right-4 bg-cyan-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
                       {testimonial.result}
                     </div>
                   </div>
@@ -173,7 +173,7 @@ export default function SocialProofSection() {
                   <div className="p-6">
                     <div className="flex items-center gap-1 mb-3">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                        <Star key={i} className="w-4 h-4 text-cyan-400 fill-cyan-400" />
                       ))}
                     </div>
 
@@ -182,7 +182,7 @@ export default function SocialProofSection() {
                     </p>
 
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center text-white font-montserrat font-black text-sm">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white font-montserrat font-black text-sm">
                         {testimonial.avatar}
                       </div>
                       <div>
@@ -223,7 +223,7 @@ export default function SocialProofSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
                 whileHover={{ scale: 1.05 }}
-                className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/30 rounded-xl p-6 flex items-center justify-center transition-all cursor-pointer"
+                className="group bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/30 rounded-xl p-6 flex items-center justify-center transition-all cursor-pointer"
               >
                 <div className="text-3xl font-montserrat font-black text-white/40 group-hover:text-white/80 transition-colors">
                   {client.logo}
