@@ -14,6 +14,7 @@ import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
 import Community from '../pages/Community';
 import Experts from '../pages/Experts';
+import Club from '../pages/Club';
 import Events from '../pages/Events';
 import ServicesPlus from '../pages/ServicesPlus';
 import NotFound from '../pages/NotFound';
@@ -39,7 +40,8 @@ export default function AppRoutes() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/community" element={<Community />} />
-        <Route path="/experts" element={<Experts />} />
+        <Route path="/experts" element={<Club />} />
+        <Route path="/club" element={<Club />} />
         <Route path="/events" element={<Events />} />
         <Route path="/services-plus" element={<ServicesPlus />} />
         <Route path="/reservation" element={<BookingPage />} />
