@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Calendar, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -349,28 +349,6 @@ export default function Contact() {
                 </div>
               </motion.a>
             </div>
-
-            <motion.div
-              whileHover={{ y: -5 }}
-              className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 text-center"
-            >
-              <MapPin className="w-12 h-12 text-orange-400 mx-auto mb-4" />
-              <h4 className="text-xl font-black text-white mb-3">
-                Visitez-Nous
-              </h4>
-              <p className="text-white/70 mb-6">
-                Venez découvrir nos espaces et rencontrer l'équipe
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white font-bold shadow-xl"
-              >
-                <Calendar className="w-5 h-5" />
-                <span>Réserver une Visite</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
-            </motion.div>
           </motion.div>
         </div>
       </div>
