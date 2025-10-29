@@ -62,9 +62,11 @@ export default function StudioJourney({
   const scrollToStep = (step: number) => {
     const element = stepRefs.current[step];
     if (element) {
-      const offset = 120;
+      const headerHeight = 96;
+      const stepIndicatorHeight = 120;
+      const totalOffset = headerHeight + stepIndicatorHeight + 20;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - offset;
+      const offsetPosition = elementPosition - totalOffset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -76,7 +78,7 @@ export default function StudioJourney({
   const handleStepClick = (step: number) => {
     if (completedSteps.includes(step) || step <= currentStep) {
       setCurrentStep(step);
-      setTimeout(() => scrollToStep(step), 100);
+      setTimeout(() => scrollToStep(step), 300);
     }
   };
 
@@ -85,11 +87,14 @@ export default function StudioJourney({
   };
 
   const handleContinueFromStep1 = () => {
-    if (!completedSteps.includes(1)) {
-      setCompletedSteps([...completedSteps, 1]);
-    }
+    setCompletedSteps(prev => {
+      if (!prev.includes(1)) {
+        return [...prev, 1];
+      }
+      return prev;
+    });
     setCurrentStep(2);
-    setTimeout(() => scrollToStep(2), 100);
+    setTimeout(() => scrollToStep(2), 300);
   };
 
   const handleFormulaSelect = (formulaId: string) => {
@@ -97,11 +102,14 @@ export default function StudioJourney({
   };
 
   const handleContinueFromStep2 = () => {
-    if (!completedSteps.includes(2)) {
-      setCompletedSteps([...completedSteps, 2]);
-    }
+    setCompletedSteps(prev => {
+      if (!prev.includes(2)) {
+        return [...prev, 2];
+      }
+      return prev;
+    });
     setCurrentStep(3);
-    setTimeout(() => scrollToStep(3), 100);
+    setTimeout(() => scrollToStep(3), 300);
   };
 
   const handleDurationSelect = (durationId: string) => {
@@ -109,11 +117,14 @@ export default function StudioJourney({
   };
 
   const handleContinueFromStep3 = () => {
-    if (!completedSteps.includes(3)) {
-      setCompletedSteps([...completedSteps, 3]);
-    }
+    setCompletedSteps(prev => {
+      if (!prev.includes(3)) {
+        return [...prev, 3];
+      }
+      return prev;
+    });
     setCurrentStep(4);
-    setTimeout(() => scrollToStep(4), 100);
+    setTimeout(() => scrollToStep(4), 300);
   };
 
   const handleOptionsChange = (options: Record<string, number>) => {
@@ -121,16 +132,19 @@ export default function StudioJourney({
   };
 
   const handleContinueFromStep4 = () => {
-    if (!completedSteps.includes(4)) {
-      setCompletedSteps([...completedSteps, 4]);
-    }
+    setCompletedSteps(prev => {
+      if (!prev.includes(4)) {
+        return [...prev, 4];
+      }
+      return prev;
+    });
     setCurrentStep(5);
-    setTimeout(() => scrollToStep(5), 100);
+    setTimeout(() => scrollToStep(5), 300);
   };
 
   const handleEditFromSummary = (step: number) => {
     setCurrentStep(step);
-    setTimeout(() => scrollToStep(step), 100);
+    setTimeout(() => scrollToStep(step), 300);
   };
 
   const duration = selectedDurationId ? durations.find(d => d.id === selectedDurationId) : null;
@@ -143,7 +157,7 @@ export default function StudioJourney({
       }
     : null;
 
-  const showPriceSummary = currentStep >= 1 && selectedStudioId !== null;
+  const showPriceSummary = currentStep >= 1 && currentStep <= 4 && selectedStudioId !== null;
 
   return (
     <div className="relative">

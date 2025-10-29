@@ -29,13 +29,13 @@ export default function Step3DurationSelection({
     const duration = durations.find(d => d.id === durationId);
     if (!duration) return { total: 0, perHour: 0, savings: 0, originalTotal: 0 };
 
-    const hourlyRate = studio.basePrice * formula.priceMultiplier;
+    const hourlyRate = Math.round(studio.basePrice * formula.priceMultiplier);
     const originalTotal = hourlyRate * duration.hours;
-    const total = hourlyRate * duration.multiplier;
-    const perHour = total / duration.hours;
+    const total = Math.round(hourlyRate * duration.hours * duration.multiplier);
+    const perHour = Math.round(total / duration.hours);
     const savings = originalTotal - total;
 
-    return { total: Math.round(total), perHour: Math.round(perHour), savings: Math.round(savings), originalTotal: Math.round(originalTotal) };
+    return { total, perHour, savings: Math.max(0, savings), originalTotal };
   };
 
   return (

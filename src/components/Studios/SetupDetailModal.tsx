@@ -158,7 +158,7 @@ export default function SetupDetailModal({ setup, isOpen, onClose }: SetupDetail
                           </div>
                         </div>
                         <div className="flex items-start gap-3 bg-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10">
-                          <Lightbulb className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                          <Lightbulb className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="text-white/60 text-xs font-inter font-semibold mb-1">ÉCLAIRAGE</p>
                             <p className="text-white font-inter font-medium">{setup.equipment.light}</p>
@@ -269,7 +269,7 @@ export default function SetupDetailModal({ setup, isOpen, onClose }: SetupDetail
                         href="/contact"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 text-white rounded-xl font-montserrat font-bold shadow-2xl hover:shadow-cyan-500/50 transition-shadow"
+                        className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 text-white rounded-xl font-montserrat font-bold shadow-2xl hover:shadow-cyan-500/50 transition-shadow"
                       >
                         <span>Réserver maintenant</span>
                         <ArrowRight className="w-5 h-5" />

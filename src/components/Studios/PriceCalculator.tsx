@@ -220,7 +220,7 @@ export default function PriceCalculator() {
             {displayedOptions.length > 0 && (
               <div className="bg-slate-900/80 backdrop-blur-2xl border border-white/10 rounded-2xl p-8">
                 <h3 className="text-2xl font-montserrat font-black text-white mb-6 flex items-center gap-3">
-                  <span className="w-8 h-8 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center text-sm font-bold">
+                  <span className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-sm font-bold">
                     3
                   </span>
                   Options recommandées
@@ -239,12 +239,12 @@ export default function PriceCalculator() {
                         onClick={() => toggleOption(optionId)}
                         className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
                           isSelected
-                            ? 'border-violet-500 bg-violet-500/10'
+                            ? 'border-blue-500 bg-blue-500/10'
                             : 'border-white/10 bg-white/5 hover:border-white/20'
                         }`}
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0">
                             <Icon className="w-5 h-5 text-white" />
                           </div>
                           <div className="flex-1">
@@ -256,7 +256,7 @@ export default function PriceCalculator() {
                             </div>
                           </div>
                           {isSelected && (
-                            <Check className="w-5 h-5 text-violet-400 flex-shrink-0" />
+                            <Check className="w-5 h-5 text-blue-400 flex-shrink-0" />
                           )}
                         </div>
                       </motion.button>

@@ -6,7 +6,7 @@ export default function SocialProofSection() {
     { value: '380+', label: 'Productions réalisées', icon: Video, gradient: 'from-blue-500 to-cyan-500' },
     { value: '4.9/5', label: 'Satisfaction client', icon: Star, gradient: 'from-cyan-500 to-blue-500' },
     { value: '2h', label: 'Délai de livraison', icon: Clock, gradient: 'from-emerald-500 to-teal-500' },
-    { value: '95%', label: 'Clients réguliers', icon: Award, gradient: 'from-purple-500 to-violet-500' },
+    { value: '95%', label: 'Clients réguliers', icon: Award, gradient: 'from-cyan-500 to-blue-500' },
   ];
 
   const testimonials = [

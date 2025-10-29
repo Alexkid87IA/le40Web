@@ -161,7 +161,7 @@ export default function EnhancedStudioCard({ studio, onClick, index }: StudioCar
               <span className="text-white/80 text-xs font-inter">{studio.equipment.audio}</span>
             </div>
             <div className="flex items-start gap-2">
-              <Check className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+              <Check className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
               <span className="text-white/80 text-xs font-inter">{studio.equipment.light}</span>
             </div>
           </div>

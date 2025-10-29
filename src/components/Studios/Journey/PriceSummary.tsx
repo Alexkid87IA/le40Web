@@ -25,16 +25,17 @@ export default function PriceSummary({
 
   const calculateBase = () => {
     if (!studio || !formula || !duration) return 0;
-    return Math.round(studio.basePrice * formula.priceMultiplier * duration.multiplier);
+    const hourlyRate = Math.round(studio.basePrice * formula.priceMultiplier);
+    return Math.round(hourlyRate * duration.hours * duration.multiplier);
   };
 
   const calculateOptions = () => {
     if (!duration) return 0;
-    return Object.entries(selectedOptions).reduce((total, [optionId, quantity]) => {
+    return Math.round(Object.entries(selectedOptions).reduce((total, [optionId, quantity]) => {
       const option = optionsCatalog[optionId as keyof typeof optionsCatalog];
       const price = option.unit === '/h' ? option.price * duration.hours : option.price;
       return total + (price * quantity);
-    }, 0);
+    }, 0));
   };
 
   const basePrice = calculateBase();
@@ -106,7 +107,7 @@ export default function PriceSummary({
                     return (
                       <div key={optionId} className="flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2 flex-1">
-                          <Check className="w-3 h-3 text-violet-400 flex-shrink-0" />
+                          <Check className="w-3 h-3 text-orange-400 flex-shrink-0" />
                           <span className="text-white/80 font-inter truncate">
                             {option.name} {quantity > 1 ? `(×${quantity})` : ''}
                           </span>

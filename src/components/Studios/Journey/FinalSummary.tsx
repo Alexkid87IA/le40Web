@@ -29,12 +29,13 @@ export default function FinalSummary({
 
   if (!studio || !formula || !duration) return null;
 
-  const basePrice = Math.round(studio.basePrice * formula.priceMultiplier * duration.multiplier);
+  const hourlyRate = Math.round(studio.basePrice * formula.priceMultiplier);
+  const basePrice = Math.round(hourlyRate * duration.hours * duration.multiplier);
 
   const optionsPrice = Object.entries(selectedOptions).reduce((total, [optionId, quantity]) => {
     const option = optionsCatalog[optionId as keyof typeof optionsCatalog];
     const price = option.unit === '/h' ? option.price * duration.hours : option.price;
-    return total + (price * quantity);
+    return Math.round(total + (price * quantity));
   }, 0);
 
   const totalPrice = basePrice + optionsPrice;
@@ -224,7 +225,7 @@ export default function FinalSummary({
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => onEdit(4)}
-                    className="text-violet-400 hover:text-violet-300 text-xs font-inter font-bold flex items-center gap-1"
+                    className="text-orange-400 hover:text-orange-300 text-xs font-inter font-bold flex items-center gap-1"
                   >
                     <Edit className="w-3 h-3" />
                     Modifier
@@ -237,7 +238,7 @@ export default function FinalSummary({
                     const price = option.unit === '/h' ? option.price * duration.hours * quantity : option.price * quantity;
                     return (
                       <div key={optionId} className="flex items-center gap-3 bg-white/5 rounded-xl p-3">
-                        <div className="w-8 h-8 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-amber-500 rounded-lg flex items-center justify-center flex-shrink-0">
                           <OptionIcon className="w-4 h-4 text-white" />
                         </div>
                         <div className="flex-1 min-w-0">

@@ -118,17 +118,17 @@ export default function EnhancedGallerySection() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center mb-6">
-              <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-purple-500 to-transparent mr-4"></div>
-              <span className="text-xs font-montserrat font-medium text-purple-400 tracking-[0.3em] uppercase">
+              <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mr-4"></div>
+              <span className="text-xs font-montserrat font-medium text-cyan-400 tracking-[0.3em] uppercase">
                 Galerie immersive
               </span>
-              <div className="h-[1px] w-16 bg-gradient-to-l from-transparent via-purple-500 to-transparent ml-4"></div>
+              <div className="h-[1px] w-16 bg-gradient-to-l from-transparent via-cyan-500 to-transparent ml-4"></div>
             </div>
 
             <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
               VISUALISEZ VOS
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-400 to-pink-400">
                 FUTURS TOURNAGES
               </span>
             </h2>
@@ -226,7 +226,7 @@ export default function EnhancedGallerySection() {
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <div className="text-2xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-400">
+                        <div className="text-2xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-400">
                           {studio.basePrice}€/h
                         </div>
                         <motion.div
@@ -281,7 +281,7 @@ export default function EnhancedGallerySection() {
                       }}
                       className={`px-4 py-2 rounded-lg font-inter font-bold text-sm transition-all ${
                         filter === 'all'
-                          ? 'bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white'
+                          ? 'bg-gradient-to-r from-cyan-600 to-cyan-600 text-white'
                           : 'bg-white/10 text-white/60 hover:bg-white/20'
                       }`}
                     >
@@ -296,7 +296,7 @@ export default function EnhancedGallerySection() {
                       }}
                       className={`px-4 py-2 rounded-lg font-inter font-bold text-sm transition-all flex items-center gap-2 ${
                         filter === 'photo'
-                          ? 'bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white'
+                          ? 'bg-gradient-to-r from-cyan-600 to-cyan-600 text-white'
                           : 'bg-white/10 text-white/60 hover:bg-white/20'
                       }`}
                     >
@@ -312,7 +312,7 @@ export default function EnhancedGallerySection() {
                       }}
                       className={`px-4 py-2 rounded-lg font-inter font-bold text-sm transition-all flex items-center gap-2 ${
                         filter === 'video'
-                          ? 'bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white'
+                          ? 'bg-gradient-to-r from-cyan-600 to-cyan-600 text-white'
                           : 'bg-white/10 text-white/60 hover:bg-white/20'
                       }`}
                     >
@@ -373,7 +373,7 @@ export default function EnhancedGallerySection() {
                           }}
                           className={`h-2 rounded-full transition-all ${
                             idx === currentMediaIndex
-                              ? 'bg-purple-500 w-8'
+                              ? 'bg-cyan-500 w-8'
                               : 'bg-white/30 hover:bg-white/50 w-2'
                           }`}
                         />
@@ -403,7 +403,7 @@ export default function EnhancedGallerySection() {
                         }}
                         className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
                           idx === currentMediaIndex
-                            ? 'border-purple-500'
+                            ? 'border-cyan-500'
                             : 'border-white/10 hover:border-white/30'
                         }`}
                       >
