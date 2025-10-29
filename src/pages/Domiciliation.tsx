@@ -1,4 +1,4 @@
-import SidebarNav from '../components/Nav/SidebarNav';
+import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import HeroSection from '../components/Domiciliation/HeroSection';
@@ -20,11 +20,11 @@ import StickyHeader from '../components/Domiciliation/StickyHeader';
 export default function Domiciliation() {
   return (
     <div className="min-h-screen bg-black">
-      <SidebarNav />
+      <HeaderNav />
       <MobileBurger />
       <StickyHeader />
 
-      <main className="lg:ml-60">
+      <main className="pt-24">
         <HeroSection />
         <TrustBannerSection />
         <ProblemSection />
