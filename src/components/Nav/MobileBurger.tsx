@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, Grid3X3, Building2, MapPin, Video, BookOpen, Phone, Calendar, Users } from 'lucide-react';
+import { Menu, X, Home, Grid3X3, Building2, MapPin, Video, BookOpen, Phone, Calendar, Users, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { designTokens } from '../../styles/designTokens';
 import Button from '../UI/Button';
@@ -13,6 +13,7 @@ const navItems = [
   { name: 'Salles', href: '/salles', icon: Phone, gradient: designTokens.colors.services.salles.gradient },
   { name: 'Studio', href: '/studios', icon: Video, gradient: designTokens.colors.services.studios.gradient },
   { name: 'Nos Events', href: '/events', icon: Calendar, gradient: 'from-orange-500/20 to-amber-500/20' },
+  { name: 'Le Club', href: '/experts', icon: Sparkles, gradient: 'from-purple-500/20 to-pink-500/20' },
   { name: 'Communauté', href: '/community', icon: Users, gradient: designTokens.colors.services.community.gradient },
   { name: 'Blog', href: '/blog', icon: BookOpen, gradient: 'from-white/10 to-white/5' },
   { name: 'Contact', href: '/contact', icon: Phone, gradient: 'from-white/10 to-white/5' },

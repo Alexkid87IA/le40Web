@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, ArrowRight } from 'lucide-react';
+import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, ArrowRight, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { designTokens } from '../../styles/designTokens';
@@ -35,6 +35,11 @@ const navItems = [
     name: 'Nos Events',
     href: '/events',
     icon: Calendar,
+  },
+  {
+    name: 'Le Club',
+    href: '/experts',
+    icon: Sparkles,
   },
 ];
 
