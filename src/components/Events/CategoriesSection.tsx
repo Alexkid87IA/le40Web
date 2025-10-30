@@ -69,7 +69,7 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
           {eventCategories.map((category, index) => {
             const Icon = iconMap[category.iconName] || Users;
             const isSelected = selectedCategory === category.slug;
@@ -82,28 +82,27 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 onClick={() => onCategorySelect(category.slug)}
-                className="group relative text-left"
+                className="group relative text-left flex"
               >
-                <div className={`absolute -inset-[1px] bg-gradient-to-r ${category.colorGradient} rounded-3xl ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'} blur-xl transition-all duration-500`} />
-
-                <div className={`relative h-full bg-black/50 backdrop-blur-xl border ${isSelected ? 'border-white/30' : 'border-white/10 group-hover:border-white/20'} rounded-3xl p-8 transition-all duration-500`}>
+                <div className={`relative h-full w-full bg-slate-950/50 backdrop-blur-xl border ${isSelected ? 'border-white/30' : 'border-white/10 group-hover:border-white/20'} rounded-3xl p-8 transition-all duration-500 flex flex-col`}>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.colorGradient.replace(/from-(\w+)-(\d+) to-(\w+)-(\d+)/, 'from-$1-$2/5 via-transparent to-$3-$4/5')} rounded-3xl ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-500`} />
                   <motion.div
                     animate={{ rotate: isSelected ? 360 : 0 }}
                     transition={{ duration: 0.8 }}
-                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${category.colorGradient} mb-6 ${isSelected ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`}
+                    className={`relative z-10 inline-flex p-4 rounded-2xl bg-gradient-to-br ${category.colorGradient} mb-6 ${isSelected ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`}
                   >
                     <Icon className="w-8 h-8 text-white" />
                   </motion.div>
 
-                  <h3 className={`text-2xl font-montserrat font-bold mb-3 ${isSelected ? 'text-white' : 'text-white/90 group-hover:text-white'} transition-colors duration-300`}>
+                  <h3 className={`relative z-10 text-2xl font-montserrat font-bold mb-3 ${isSelected ? 'text-white' : 'text-white/90 group-hover:text-white'} transition-colors duration-300`}>
                     {category.name}
                   </h3>
 
-                  <p className="text-white/60 mb-6 leading-relaxed font-inter text-sm">
+                  <p className="relative z-10 text-white/60 mb-6 leading-relaxed font-inter text-sm flex-1 line-clamp-3">
                     {category.description}
                   </p>
 
-                  <div className="flex items-center gap-2 text-sm font-semibold">
+                  <div className="flex items-center gap-2 text-sm font-semibold mt-auto relative z-10">
                     <span className={`${isSelected ? 'text-white' : 'text-white/40 group-hover:text-white/60'} transition-colors duration-300`}>
                       Explorer
                     </span>

@@ -24,7 +24,7 @@ export const eventCategories: EventCategory[] = [
     slug: 'formation',
     description: 'Formations pratiques et ateliers intensifs pour développer vos compétences entrepreneuriales',
     iconName: 'GraduationCap',
-    colorGradient: 'from-emerald-600 to-teal-600',
+    colorGradient: 'from-blue-600 to-indigo-600',
     displayOrder: 2
   },
   {
@@ -33,7 +33,7 @@ export const eventCategories: EventCategory[] = [
     slug: 'conference',
     description: 'Conférences inspirantes avec des experts et leaders d\'opinion de votre industrie',
     iconName: 'Mic2',
-    colorGradient: 'from-violet-600 to-purple-600',
+    colorGradient: 'from-cyan-600 to-teal-600',
     displayOrder: 3
   },
   {
