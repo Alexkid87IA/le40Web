@@ -131,7 +131,7 @@ export default function StudioComparatorSection() {
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[150px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16 lg:pr-[280px]">
+      <div className="relative z-10 max-w-[1800px] mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -161,13 +161,17 @@ export default function StudioComparatorSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="overflow-x-auto pb-4"
+          className="overflow-x-auto pb-8 scrollbar-custom"
+          style={{
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#d946ef20 transparent'
+          }}
         >
-          <div className="min-w-[1400px]">
+          <div className="min-w-[1600px]">
             <div className="bg-zinc-900/30 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
 
               <div className="grid grid-cols-7 border-b border-white/10">
-                <div className="bg-zinc-950/80 p-8 flex items-end">
+                <div className="bg-zinc-950/80 p-6 flex items-center">
                   <span className="text-white/40 font-inter font-medium text-xs uppercase tracking-wider">
                     Caractéristiques
                   </span>
@@ -181,26 +185,26 @@ export default function StudioComparatorSection() {
                     transition={{ delay: index * 0.08, duration: 0.5 }}
                     onMouseEnter={() => setHoveredStudio(studio.id)}
                     onMouseLeave={() => setHoveredStudio(null)}
-                    className={`relative bg-zinc-950/80 p-6 transition-all duration-300 ${
+                    className={`relative bg-zinc-950/80 p-5 transition-all duration-300 ${
                       hoveredStudio === studio.id ? 'bg-zinc-900/80' : ''
                     }`}
                   >
-                    <div className="flex flex-col items-center gap-4">
+                    <div className="flex flex-col items-center gap-3">
                       <motion.div
                         animate={{
                           scale: hoveredStudio === studio.id ? 1.1 : 1,
                           rotate: hoveredStudio === studio.id ? 5 : 0
                         }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                        className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
+                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
                       >
-                        <studio.icon className="w-8 h-8 text-white" />
+                        <studio.icon className="w-7 h-7 text-white" />
                       </motion.div>
                       <div className="text-center">
-                        <h3 className="text-white font-montserrat font-bold text-sm mb-1">
+                        <h3 className="text-white font-montserrat font-bold text-xs mb-0.5 leading-tight">
                           {studio.name}
                         </h3>
-                        <p className="text-white/50 text-xs font-inter">
+                        <p className="text-white/50 text-[10px] font-inter leading-tight">
                           {studio.subtitle.split('•')[0].trim()}
                         </p>
                       </div>
@@ -228,8 +232,8 @@ export default function StudioComparatorSection() {
                     feature.type === 'highlight' ? 'bg-white/5' : ''
                   }`}
                 >
-                  <div className="bg-zinc-950/80 p-6 flex items-center">
-                    <span className={`font-inter text-sm ${
+                  <div className="bg-zinc-950/80 p-4 flex items-center">
+                    <span className={`font-inter text-xs ${
                       feature.type === 'highlight'
                         ? 'text-white font-semibold'
                         : 'text-white/80 font-medium'
@@ -242,7 +246,7 @@ export default function StudioComparatorSection() {
                     return (
                       <div
                         key={studio.id}
-                        className={`bg-zinc-950/60 p-6 flex items-center justify-center transition-all ${
+                        className={`bg-zinc-950/60 p-4 flex items-center justify-center transition-all ${
                           hoveredStudio === studio.id ? 'bg-zinc-900/60' : ''
                         }`}
                       >
@@ -250,20 +254,20 @@ export default function StudioComparatorSection() {
                           value ? (
                             <motion.div
                               whileHover={{ scale: 1.2, rotate: 360 }}
-                              className={`w-9 h-9 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
+                              className={`w-8 h-8 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
                             >
-                              <Check className="w-5 h-5 text-white" strokeWidth={3} />
+                              <Check className="w-4 h-4 text-white" strokeWidth={3} />
                             </motion.div>
                           ) : (
-                            <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center">
-                              <X className="w-5 h-5 text-white/20" strokeWidth={2} />
+                            <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center">
+                              <X className="w-4 h-4 text-white/20" strokeWidth={2} />
                             </div>
                           )
                         ) : (
-                          <span className={`font-inter text-center ${
+                          <span className={`font-inter text-center leading-tight ${
                             feature.type === 'highlight'
-                              ? 'text-white font-bold text-base'
-                              : 'text-white/90 font-medium text-sm'
+                              ? 'text-white font-bold text-sm'
+                              : 'text-white/90 font-medium text-xs'
                           }`}>
                             {value}
                           </span>
@@ -275,7 +279,7 @@ export default function StudioComparatorSection() {
               ))}
 
               <div className="grid grid-cols-7 bg-zinc-950/60">
-                <div className="p-6"></div>
+                <div className="p-4"></div>
                 {studios.map((studio, index) => (
                   <motion.div
                     key={studio.id}
@@ -283,17 +287,17 @@ export default function StudioComparatorSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.08, duration: 0.5 }}
-                    className="p-6 flex items-center justify-center"
+                    className="p-4 flex items-center justify-center"
                   >
                     <motion.button
                       onClick={() => scrollToConfigurator(studio.id)}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`w-full px-6 py-3.5 bg-gradient-to-r ${studio.gradient} text-white rounded-xl font-montserrat font-bold text-sm shadow-xl flex items-center justify-center gap-2 group relative overflow-hidden`}
+                      className={`w-full px-4 py-3 bg-gradient-to-r ${studio.gradient} text-white rounded-xl font-montserrat font-bold text-xs shadow-xl flex items-center justify-center gap-2 group relative overflow-hidden`}
                     >
                       <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                      <span className="relative">Configurer</span>
-                      <ArrowRight className="w-4 h-4 relative group-hover:translate-x-1 transition-transform" />
+                      <span className="relative">Config</span>
+                      <ArrowRight className="w-3.5 h-3.5 relative group-hover:translate-x-1 transition-transform" />
                     </motion.button>
                   </motion.div>
                 ))}
@@ -307,19 +311,19 @@ export default function StudioComparatorSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-12 flex flex-col items-center gap-4"
+          className="mt-10 flex flex-col items-center gap-3"
         >
-          <div className="flex items-center gap-6 text-white/50 text-sm font-inter">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded bg-gradient-to-r from-rose-500 to-fuchsia-500"></div>
-              <span>Inclus dans toutes les formules</span>
+          <div className="flex items-center gap-4 text-white/50 text-xs font-inter">
+            <div className="flex items-center gap-1.5">
+              <div className="w-3 h-3 rounded bg-gradient-to-r from-rose-500 to-fuchsia-500"></div>
+              <span>Inclus</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-fuchsia-400" />
+            <div className="flex items-center gap-1.5">
+              <Check className="w-3 h-3 text-fuchsia-400" />
               <span>Disponible</span>
             </div>
-            <div className="flex items-center gap-2">
-              <X className="w-4 h-4 text-white/20" />
+            <div className="flex items-center gap-1.5">
+              <X className="w-3 h-3 text-white/20" />
               <span>Non disponible</span>
             </div>
           </div>
