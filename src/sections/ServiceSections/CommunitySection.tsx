@@ -59,6 +59,7 @@ export default function CommunitySection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
+            className="lg:order-2"
           >
             <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-2 mb-6">
               <Users className="w-4 h-4 text-purple-400" />
@@ -101,23 +102,31 @@ export default function CommunitySection() {
               viewport={{ once: true }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button
+              <motion.a
                 href="/community"
-                size="md"
-                icon={ArrowRight}
-                iconPosition="right"
-                className="bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative"
               >
-                REJOINDRE LA COMMUNAUTÉ
-              </Button>
-              <Button
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                  animate={{ opacity: [0.5, 0.75, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <div className="relative flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500 text-white rounded-2xl font-montserrat font-black shadow-2xl">
+                  <span>REJOINDRE LA COMMUNAUTÉ</span>
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </motion.a>
+
+              <motion.a
                 href="/events"
-                variant="secondary"
-                size="md"
-                className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-2xl font-montserrat font-black transition-all duration-300 text-center"
               >
                 Voir les événements
-              </Button>
+              </motion.a>
             </motion.div>
           </motion.div>
 
@@ -126,7 +135,7 @@ export default function CommunitySection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="hidden lg:block"
+            className="hidden lg:block lg:order-1"
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl blur-3xl opacity-30"></div>
