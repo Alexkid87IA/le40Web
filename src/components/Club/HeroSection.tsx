@@ -32,7 +32,7 @@ export default function HeroSection() {
             }}
           >
             <source
-              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4#t=0.1"
+              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761808607/8fc51ed3-de40-42f7-ac18-7dd2da634556_yxt3cm.mp4"
               type="video/mp4"
             />
           </video>
