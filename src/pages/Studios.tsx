@@ -52,6 +52,10 @@ export default function Studios() {
       <StudioDetailModal
         studio={detailModalStudio}
         onClose={() => setDetailModalStudio(null)}
+        onSelect={(studioId) => {
+          setSelectedStudioId(studioId);
+          setDetailModalStudio(null);
+        }}
       />
     </div>
   );
