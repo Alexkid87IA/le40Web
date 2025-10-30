@@ -66,7 +66,7 @@ export default function Community() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="lg:order-1"
+            className="lg:order-2"
           >
             <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-5 py-3 mb-8">
               <Users className="w-5 h-5 text-purple-400" />
@@ -121,16 +121,16 @@ export default function Community() {
                 href="/community"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative"
+                className="group relative flex-1"
               >
                 <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-violet-500 to-fuchsia-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
                   animate={{ opacity: [0.5, 0.75, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <div className="relative flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-purple-500 via-violet-500 to-fuchsia-500 text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm">
+                <div className="relative flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500 text-white rounded-2xl font-montserrat font-black shadow-2xl text-lg">
                   <span>REJOINDRE LA COMMUNAUTÉ</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </motion.a>
 
@@ -138,7 +138,7 @@ export default function Community() {
                 href="/community"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-purple-500/30 hover:border-purple-500/50 text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center text-sm"
+                className="px-8 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-2xl font-montserrat font-black transition-all duration-300 text-center text-lg"
               >
                 Voir les événements
               </motion.a>
@@ -150,7 +150,7 @@ export default function Community() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="lg:order-2 space-y-6"
+            className="lg:order-1 space-y-6"
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl blur-3xl opacity-20"></div>
