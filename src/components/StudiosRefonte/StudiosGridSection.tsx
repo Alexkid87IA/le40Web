@@ -20,18 +20,42 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
 
   const handleStudioSelectFromCard = (studioId: string) => {
     onStudioSelect(studioId);
-    const element = document.getElementById('configurator');
-    if (element) {
-      const headerHeight = 96;
-      const offset = 20;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - headerHeight - offset;
+    setSelectedStudio(null);
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    setTimeout(() => {
+      const element = document.getElementById('configurator');
+      if (element) {
+        const headerHeight = 96;
+        const offset = 20;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
+  };
+
+  const handleQuickSelect = (studio: Studio, event: React.MouseEvent) => {
+    event.stopPropagation();
+    onStudioSelect(studio.id);
+
+    setTimeout(() => {
+      const element = document.getElementById('configurator');
+      if (element) {
+        const headerHeight = 96;
+        const offset = 20;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100);
   };
 
   return (
@@ -166,10 +190,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       </div>
 
                       <motion.button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleStudioClick(studio);
-                        }}
+                        onClick={(e) => handleQuickSelect(studio, e)}
                         animate={{
                           scale: hoveredCard === studio.id ? 1.1 : 1,
                           rotate: hoveredCard === studio.id ? 90 : 0
@@ -177,6 +198,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                         whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.9 }}
                         className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20"
+                        title="Sélectionner ce studio"
                       >
                         <Plus className="w-6 h-6 text-white" />
                       </motion.button>
@@ -292,10 +314,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       </div>
 
                       <motion.button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleStudioClick(studio);
-                        }}
+                        onClick={(e) => handleQuickSelect(studio, e)}
                         animate={{
                           scale: hoveredCard === studio.id ? 1.1 : 1,
                           rotate: hoveredCard === studio.id ? 90 : 0
@@ -303,6 +322,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                         whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.9 }}
                         className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20"
+                        title="Sélectionner ce studio"
                       >
                         <Plus className="w-6 h-6 text-white" />
                       </motion.button>

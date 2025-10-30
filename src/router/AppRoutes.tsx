@@ -12,6 +12,7 @@ import Studios from '../pages/Studios';
 import StudiosNew from '../pages/StudiosNew';
 import StudiosLaunch from '../pages/StudiosLaunch';
 import StudiosLaunchV2 from '../pages/StudiosLaunchV2';
+import StudiosBooking from '../pages/StudiosBooking';
 import Blog from '../pages/Blog';
 import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
@@ -42,6 +43,7 @@ export default function AppRoutes() {
         <Route path="/studios-v2" element={<StudiosLaunchV2 />} />
         <Route path="/studios-launch" element={<StudiosLaunch />} />
         <Route path="/studios-new" element={<StudiosNew />} />
+        <Route path="/studios-booking" element={<StudiosBooking />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
