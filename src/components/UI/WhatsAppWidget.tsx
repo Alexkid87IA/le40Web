@@ -85,8 +85,8 @@ export default function WhatsAppWidget() {
     }
 
     return {
-      bg: 'bg-gradient-to-r from-emerald-600 to-teal-600',
-      bgHover: 'hover:from-emerald-700 hover:to-teal-700',
+      bg: 'bg-gradient-to-r from-orange-500 to-orange-600',
+      bgHover: 'hover:from-orange-600 hover:to-orange-700',
       text: 'text-white'
     };
   };
