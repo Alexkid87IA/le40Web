@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Sparkles } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Sparkles, Calendar, Clock, ShoppingCart } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Space } from '../../data/salles/spaces';
-import AddToCartButton from '../Cart/AddToCartButton';
+import { useCart } from '../../hooks/useCart';
 
 interface SpaceDetailModalProps {
   space: Space | null;
@@ -11,14 +11,86 @@ interface SpaceDetailModalProps {
 
 export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
+  const [selectedDuration, setSelectedDuration] = useState<string | null>(null);
+  const { addItem } = useCart();
 
   useEffect(() => {
     if (space) {
       setCurrentImageIndex(0);
+      setSelectedDate('');
+      setSelectedTime('');
+      setSelectedDuration(null);
     }
   }, [space]);
 
   if (!space) return null;
+
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
+  const timeSlots = [
+    '08:00', '08:30', '09:00', '09:30', '10:00', '10:30',
+    '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+    '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+    '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'
+  ];
+
+  const handleAddToCart = (duree: string, price: number) => {
+    if (!selectedDate || !selectedTime) {
+      alert('Veuillez sélectionner une date et une heure avant de réserver.');
+      return;
+    }
+
+    addItem({
+      id: `salle-${space.id}-${duree.toLowerCase().replace(/\s/g, '-')}-${selectedDate}-${selectedTime}`,
+      serviceType: 'meeting-room',
+      serviceName: `${space.title} - ${duree}`,
+      date: selectedDate,
+      startTime: selectedTime,
+      endTime: calculateEndTime(selectedTime, duree),
+      duration: durationMap[duree] || 'hour',
+      price: price,
+      quantity: 1
+    });
+
+    setSelectedDuration(duree);
+    setTimeout(() => {
+      setSelectedDuration(null);
+    }, 2000);
+  };
+
+  const calculateEndTime = (startTime: string, duration: string): string => {
+    const [hours, minutes] = startTime.split(':').map(Number);
+    let addHours = 1;
+
+    switch (duration) {
+      case '2 heures':
+        addHours = 2;
+        break;
+      case '4 heures':
+        addHours = 4;
+        break;
+      case 'Demi-journée':
+        addHours = 4;
+        break;
+      case 'Journée':
+        addHours = 8;
+        break;
+      case 'Soirée complète':
+      case 'Soirée':
+        addHours = 6;
+        break;
+      default:
+        addHours = 1;
+    }
+
+    const endHours = hours + addHours;
+    return `${endHours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  };
 
   const calculatePrice = (duration: string) => {
     let basePrice = space.price;
@@ -196,39 +268,121 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
               </div>
 
               <div className="space-y-6">
-                <h4 className="text-base font-montserrat font-semibold text-white">
-                  Choisissez votre durée
-                </h4>
+                <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-2xl p-6 border border-emerald-500/20">
+                  <h4 className="text-base font-montserrat font-semibold text-white mb-4 flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-emerald-400" />
+                    Sélectionnez date et heure
+                  </h4>
 
-                <div className="grid grid-cols-1 gap-3">
-                  {space.disponibilites.map((duree, idx) => {
-                    const price = calculatePrice(duree);
+                  <div className="grid grid-cols-1 gap-4">
+                    <div>
+                      <label htmlFor="date" className="block text-sm text-white/80 mb-2">
+                        Date de réservation
+                      </label>
+                      <input
+                        id="date"
+                        type="date"
+                        min={getTodayDate()}
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white
+                                 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                                 [color-scheme:dark]"
+                      />
+                    </div>
 
-                    return (
-                      <motion.div
-                        key={duree}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="flex items-center justify-between p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors"
+                    <div>
+                      <label htmlFor="time" className="block text-sm text-white/80 mb-2">
+                        Heure de début
+                      </label>
+                      <select
+                        id="time"
+                        value={selectedTime}
+                        onChange={(e) => setSelectedTime(e.target.value)}
+                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white
+                                 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
+                                 cursor-pointer"
                       >
-                        <div>
-                          <p className="text-white font-medium">{space.title} - {duree}</p>
-                          <p className="text-zinc-400 text-sm">{price}€ TTC</p>
-                        </div>
-                        <AddToCartButton
-                          item={{
-                            id: `salle-${space.id}-${duree.toLowerCase().replace(/\s/g, '-')}`,
-                            name: `${space.title} - ${duree}`,
-                            price: price,
-                            type: 'meeting-room',
-                            duration: durationMap[duree] || 'hour'
-                          }}
-                          variant={idx === 0 ? 'primary' : 'secondary'}
-                        />
-                      </motion.div>
-                    );
-                  })}
+                        <option value="" className="bg-zinc-900">Sélectionner une heure</option>
+                        {timeSlots.map((time) => (
+                          <option key={time} value={time} className="bg-zinc-900">{time}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {(!selectedDate || !selectedTime) && (
+                    <p className="text-emerald-400/80 text-xs mt-3 flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      Veuillez choisir une date et une heure pour continuer
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <h4 className="text-base font-montserrat font-semibold text-white mb-4">
+                    Choisissez votre durée
+                  </h4>
+
+                  <div className="grid grid-cols-1 gap-3">
+                    {space.disponibilites.map((duree, idx) => {
+                      const price = calculatePrice(duree);
+                      const isSelected = selectedDuration === duree;
+
+                      return (
+                        <motion.div
+                          key={duree}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.1 }}
+                          className={`flex items-center justify-between p-4 rounded-xl transition-all ${
+                            isSelected
+                              ? 'bg-emerald-500/20 border-2 border-emerald-400'
+                              : 'bg-white/5 border-2 border-transparent hover:bg-white/10'
+                          }`}
+                        >
+                          <div>
+                            <p className="text-white font-medium">{space.title} - {duree}</p>
+                            <p className="text-zinc-400 text-sm">
+                              {price}€ TTC
+                              {selectedTime && (
+                                <span className="ml-2 text-emerald-400">
+                                  • {selectedTime} - {calculateEndTime(selectedTime, duree)}
+                                </span>
+                              )}
+                            </p>
+                          </div>
+                          <motion.button
+                            whileHover={selectedDate && selectedTime ? { scale: 1.05 } : {}}
+                            whileTap={selectedDate && selectedTime ? { scale: 0.95 } : {}}
+                            onClick={() => handleAddToCart(duree, price)}
+                            disabled={!selectedDate || !selectedTime}
+                            className={`px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition-all ${
+                              !selectedDate || !selectedTime
+                                ? 'bg-white/10 text-white/40 cursor-not-allowed'
+                                : isSelected
+                                ? 'bg-emerald-500 text-white'
+                                : idx === 0
+                                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white'
+                                : 'bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30'
+                            }`}
+                          >
+                            {isSelected ? (
+                              <>
+                                <Check className="w-4 h-4" />
+                                Ajouté
+                              </>
+                            ) : (
+                              <>
+                                <ShoppingCart className="w-4 h-4" />
+                                Réserver
+                              </>
+                            )}
+                          </motion.button>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <p className="text-center text-zinc-500 text-xs mt-4">
