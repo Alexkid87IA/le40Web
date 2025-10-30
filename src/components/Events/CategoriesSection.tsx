@@ -19,6 +19,32 @@ interface CategoriesSectionProps {
 export default function CategoriesSection({ selectedCategory, onCategorySelect }: CategoriesSectionProps) {
   return (
     <section className="py-24 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            transform: 'scaleY(-1)',
+            filter: 'brightness(0.4)',
+            playbackRate: 0.5
+          }}
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          ref={(video) => {
+            if (video) {
+              video.playbackRate = 0.5;
+            }
+          }}
+        >
+          <source
+            src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4#t=0.1"
+            type="video/mp4"
+          />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-slate-950/70 to-black/80" />
+      </div>
+
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
         backgroundSize: '40px 40px'
