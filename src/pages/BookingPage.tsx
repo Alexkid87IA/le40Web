@@ -1,13 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Clock, Users, MapPin, ArrowRight, Check, Sparkles, Building2, Presentation, Video, Coffee, Wifi, Monitor, Phone, ChevronRight } from 'lucide-react';
+import { 
+  Calendar, Clock, Users, MapPin, ArrowRight, Check, Sparkles, 
+  Building2, Presentation, Video, Coffee, Wifi, Monitor, Phone, 
+  ChevronRight, CheckCircle, AlertCircle, X, Info
+} from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import { useCart } from '../hooks/useCart';
 
-// Types de services
-const serviceTypes = [
+// ============================================
+// TYPES ET INTERFACES
+// ============================================
+interface ServiceType {
+  id: string;
+  name: string;
+  icon: any;
+  description: string;
+  price: Record<string, number>;
+  capacity: string;
+  gradient: string;
+  features: string[];
+}
+
+interface Duration {
+  id: string;
+  label: string;
+  multiplier: number;
+}
+
+// ============================================
+// DONNÉES DES SERVICES
+// ============================================
+const serviceTypes: ServiceType[] = [
   {
     id: 'hot-desk',
     name: 'Hot Desk',
@@ -56,8 +82,8 @@ const timeSlots = [
   '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
 ];
 
-// Durées disponibles
-const durations = {
+// Durées disponibles par type de service
+const durations: Record<string, Duration[]> = {
   'hot-desk': [
     { id: 'hour', label: '1 heure', multiplier: 1 },
     { id: 'day', label: '1 jour', multiplier: 1 },
@@ -72,6 +98,7 @@ const durations = {
   'meeting-room': [
     { id: 'hour', label: '1 heure', multiplier: 1 },
     { id: 'hour', label: '2 heures', multiplier: 2 },
+    { id: 'hour', label: '3 heures', multiplier: 3 },
     { id: 'halfDay', label: 'Demi-journée', multiplier: 1 },
     { id: 'day', label: 'Journée', multiplier: 1 }
   ],
@@ -81,13 +108,75 @@ const durations = {
   ]
 };
 
+// ============================================
+// COMPOSANT DE NOTIFICATION
+// ============================================
+interface NotificationProps {
+  type: 'success' | 'error' | 'info';
+  message: string;
+  onClose: () => void;
+}
+
+const Notification: React.FC<NotificationProps> = ({ type, message, onClose }) => {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 5000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  const styles = {
+    success: 'from-green-600 to-emerald-600',
+    error: 'from-red-600 to-rose-600',
+    info: 'from-blue-600 to-cyan-600'
+  };
+
+  const icons = {
+    success: CheckCircle,
+    error: AlertCircle,
+    info: Info
+  };
+
+  const Icon = icons[type];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -50, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: -50, scale: 0.95 }}
+      className="fixed top-24 right-8 z-50 max-w-md"
+    >
+      <div className={`bg-gradient-to-r ${styles[type]} rounded-2xl p-6 shadow-2xl border border-white/20`}>
+        <div className="flex items-start gap-4">
+          <Icon className="w-6 h-6 text-white flex-shrink-0 mt-0.5" />
+          <p className="text-white font-inter flex-1">{message}</p>
+          <button
+            onClick={onClose}
+            className="text-white/80 hover:text-white transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// ============================================
+// COMPOSANT PRINCIPAL
+// ============================================
 export default function BookingPage() {
-  const [selectedService, setSelectedService] = useState(null);
+  // États
+  const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
-  const [selectedDuration, setSelectedDuration] = useState(null);
+  const [selectedDuration, setSelectedDuration] = useState<Duration | null>(null);
   const [step, setStep] = useState(1);
+  const [notification, setNotification] = useState<NotificationProps | null>(null);
+  const [isAdding, setIsAdding] = useState(false);
   const { addItem } = useCart();
+
+  // ============================================
+  // FONCTIONS UTILITAIRES
+  // ============================================
 
   // Générer les dates des 30 prochains jours
   const generateDates = () => {
@@ -103,36 +192,48 @@ export default function BookingPage() {
 
   const dates = generateDates();
 
-  // Calculer le prix total
-  const calculatePrice = () => {
+  // Calculer le prix total avec validation
+  const calculatePrice = (): number => {
     if (!selectedService || !selectedDuration) return 0;
-    const service = serviceTypes.find(s => s.id === selectedService);
-    const duration = durations[selectedService].find(d => 
-      d.id === selectedDuration.id && d.multiplier === selectedDuration.multiplier
-    );
-    return service.price[selectedDuration.id] * selectedDuration.multiplier;
+    
+    try {
+      const service = serviceTypes.find(s => s.id === selectedService);
+      if (!service) return 0;
+
+      const pricePerUnit = service.price[selectedDuration.id];
+      if (typeof pricePerUnit !== 'number') return 0;
+
+      return pricePerUnit * selectedDuration.multiplier;
+    } catch (error) {
+      console.error('Erreur calcul prix:', error);
+      return 0;
+    }
   };
 
-  // Ajouter au panier
-  const handleAddToCart = () => {
-    if (!selectedService || !selectedDate || !selectedDuration) return;
+  // Calculer l'heure de fin (AMÉLIORÉ - gère les cas limites)
+  const calculateEndTime = (startTime: string, durationHours: number): string => {
+    const [hours, minutes] = startTime.split(':').map(Number);
+    const endHour = (hours + durationHours) % 24;
+    return `${endHour.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  };
 
-    const service = serviceTypes.find(s => s.id === selectedService);
-    const price = calculatePrice();
+  // Valider que tous les champs requis sont remplis
+  const isBookingValid = (): boolean => {
+    if (!selectedService || !selectedDate || !selectedDuration) {
+      return false;
+    }
 
-    addItem({
-      id: `${selectedService}-${Date.now()}`,
-      serviceType: selectedService as any,
-      serviceName: service.name,
-      date: selectedDate,
-      startTime: selectedTime || undefined,
-      endTime: selectedTime ? `${parseInt(selectedTime.split(':')[0]) + 1}:00` : undefined,
-      duration: selectedDuration.id as any,
-      price: price,
-      quantity: 1
-    });
+    // Si c'est une réservation à l'heure, vérifier qu'une heure est sélectionnée
+    if ((selectedService === 'meeting-room' || selectedService === 'hot-desk') && 
+        selectedDuration.id === 'hour' && !selectedTime) {
+      return false;
+    }
 
-    // Reset
+    return true;
+  };
+
+  // Réinitialiser le formulaire
+  const resetForm = () => {
     setSelectedService(null);
     setSelectedDate('');
     setSelectedTime('');
@@ -140,10 +241,104 @@ export default function BookingPage() {
     setStep(1);
   };
 
+  // ============================================
+  // GESTION DU PANIER
+  // ============================================
+  const handleAddToCart = async () => {
+    if (!isBookingValid()) {
+      setNotification({
+        type: 'error',
+        message: 'Veuillez remplir tous les champs requis',
+        onClose: () => setNotification(null)
+      });
+      return;
+    }
+
+    setIsAdding(true);
+
+    try {
+      const service = serviceTypes.find(s => s.id === selectedService);
+      if (!service) throw new Error('Service non trouvé');
+
+      const price = calculatePrice();
+      if (price <= 0) throw new Error('Prix invalide');
+
+      // Calculer l'heure de fin si nécessaire
+      let endTime: string | undefined;
+      if (selectedTime && selectedDuration) {
+        endTime = calculateEndTime(selectedTime, selectedDuration.multiplier);
+      }
+
+      addItem({
+        id: `${selectedService}-${Date.now()}`,
+        serviceType: selectedService as any,
+        serviceName: service.name,
+        date: selectedDate,
+        startTime: selectedTime || undefined,
+        endTime: endTime,
+        duration: selectedDuration!.id as any,
+        price: price,
+        quantity: 1
+      });
+
+      // Notification de succès
+      setNotification({
+        type: 'success',
+        message: `${service.name} ajouté au panier avec succès ! 🎉`,
+        onClose: () => setNotification(null)
+      });
+
+      // Réinitialiser le formulaire après un court délai
+      setTimeout(resetForm, 1500);
+    } catch (error) {
+      console.error('Erreur ajout panier:', error);
+      setNotification({
+        type: 'error',
+        message: 'Une erreur est survenue. Veuillez réessayer.',
+        onClose: () => setNotification(null)
+      });
+    } finally {
+      setIsAdding(false);
+    }
+  };
+
+  // ============================================
+  // GESTION DES CHANGEMENTS D'ÉTAT
+  // ============================================
+
+  // Quand on change de service, réinitialiser les sélections
+  const handleServiceChange = (serviceId: string) => {
+    setSelectedService(serviceId);
+    setSelectedDuration(null);
+    setSelectedTime('');
+    setStep(2);
+    // Scroll automatique vers le haut
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Quand on passe à l'étape suivante, scroll automatique
+  const handleNextStep = (nextStep: number) => {
+    setStep(nextStep);
+    window.scrollTo({ top: 400, behavior: 'smooth' });
+  };
+
+  // Obtenir le service actuellement sélectionné
+  const currentService = selectedService ? serviceTypes.find(s => s.id === selectedService) : null;
+
+  // ============================================
+  // RENDU
+  // ============================================
   return (
     <div className="min-h-screen bg-black">
       <HeaderNav />
       <MobileBurger />
+      
+      {/* Notification */}
+      <AnimatePresence>
+        {notification && (
+          <Notification {...notification} />
+        )}
+      </AnimatePresence>
       
       <main className="pt-24">
         {/* Hero Section */}
@@ -186,137 +381,156 @@ export default function BookingPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.8 }}
-                  className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white mb-8 leading-[0.9]"
+                  className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-bold text-white mb-6"
                 >
-                  RÉSERVEZ VOTRE
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                    ESPACE
+                  Réservez votre
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
+                    espace idéal
                   </span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto"
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="text-white/60 font-inter text-lg max-w-2xl mx-auto"
                 >
-                  Bureaux, salles de réunion et studios disponibles immédiatement
+                  Choisissez votre espace de travail parfait en quelques clics. Simple, rapide et flexible.
                 </motion.p>
+
+                {/* Indicateur de progression amélioré */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                  className="flex items-center justify-center gap-4 mt-12"
+                >
+                  {[1, 2, 3].map((stepNum) => (
+                    <React.Fragment key={stepNum}>
+                      <div className="flex items-center gap-3">
+                        <motion.div
+                          animate={{
+                            scale: step === stepNum ? 1.1 : 1,
+                            backgroundColor: step >= stepNum 
+                              ? 'rgb(168, 85, 247)' 
+                              : 'rgba(255, 255, 255, 0.1)'
+                          }}
+                          transition={{ duration: 0.3 }}
+                          className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-white/20"
+                        >
+                          {step > stepNum ? (
+                            <Check className="w-5 h-5 text-white" />
+                          ) : (
+                            <span className="text-white font-montserrat font-semibold">
+                              {stepNum}
+                            </span>
+                          )}
+                        </motion.div>
+                        <span className={`text-sm font-inter hidden sm:block ${
+                          step >= stepNum ? 'text-white' : 'text-white/40'
+                        }`}>
+                          {stepNum === 1 && 'Service'}
+                          {stepNum === 2 && 'Date & Durée'}
+                          {stepNum === 3 && 'Confirmation'}
+                        </span>
+                      </div>
+                      {stepNum < 3 && (
+                        <motion.div
+                          animate={{
+                            backgroundColor: step > stepNum 
+                              ? 'rgb(168, 85, 247)' 
+                              : 'rgba(255, 255, 255, 0.1)'
+                          }}
+                          className="w-12 h-1 rounded-full"
+                        />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* Progress Steps */}
-        <section className="py-8 border-y border-white/10">
-          <div className="max-w-7xl mx-auto px-8 lg:px-16">
-            <div className="flex items-center justify-center space-x-8">
-              {[1, 2, 3].map((s) => (
-                <div key={s} className="flex items-center">
-                  <motion.div
-                    animate={{
-                      scale: step >= s ? 1 : 0.9,
-                      opacity: step >= s ? 1 : 0.5
-                    }}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-montserrat font-bold
-                      ${step >= s ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : 'bg-white/10 text-white/50'}`}
-                  >
-                    {step > s ? <Check className="w-5 h-5" /> : s}
-                  </motion.div>
-                  {s < 3 && (
-                    <div className={`w-20 h-[2px] ml-4 ${step > s ? 'bg-purple-600' : 'bg-white/10'}`} />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center justify-center space-x-8 mt-4">
-              <span className={`text-sm font-inter ${step >= 1 ? 'text-white' : 'text-white/50'}`}>
-                Service
-              </span>
-              <span className={`text-sm font-inter ${step >= 2 ? 'text-white' : 'text-white/50'}`}>
-                Date & Durée
-              </span>
-              <span className={`text-sm font-inter ${step >= 3 ? 'text-white' : 'text-white/50'}`}>
-                Confirmation
-              </span>
-            </div>
-          </div>
-        </section>
-
-        {/* Content Section */}
+        {/* Section de réservation */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <AnimatePresence mode="wait">
-              {/* Step 1: Service Selection */}
+              {/* Step 1: Sélection du service */}
               {step === 1 && (
                 <motion.div
                   key="step1"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <h2 className="text-3xl font-montserrat font-bold text-white mb-8">
+                  <h2 className="text-3xl font-montserrat font-bold text-white mb-8 text-center">
                     Choisissez votre espace
                   </h2>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {serviceTypes.map((service) => (
-                      <motion.div
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {serviceTypes.map((service, index) => (
+                      <motion.button
                         key={service.id}
-                        whileHover={{ y: -5, scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => {
-                          setSelectedService(service.id);
-                          setStep(2);
-                        }}
-                        className={`relative overflow-hidden bg-white/5 backdrop-blur-xl rounded-3xl p-8 border cursor-pointer transition-all duration-300
-                          ${selectedService === service.id ? 'border-purple-500' : 'border-white/10 hover:border-white/20'}`}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.5 }}
+                        whileHover={{ scale: 1.05, y: -10 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => handleServiceChange(service.id)}
+                        className={`group relative bg-white/5 backdrop-blur-xl rounded-3xl p-8 border-2 transition-all duration-300 text-left overflow-hidden ${
+                          selectedService === service.id
+                            ? 'border-purple-500 bg-white/10'
+                            : 'border-white/10 hover:border-white/30'
+                        }`}
                       >
-                        {/* Gradient background */}
-                        <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full blur-3xl`} />
+                        {/* Background gradient */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                         
-                        <div className="relative z-10">
-                          <div className="flex items-start justify-between mb-6">
-                            <div className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center`}>
-                              <service.icon className="w-8 h-8 text-white" />
-                            </div>
-                            <span className="text-white/60 text-sm font-inter">{service.capacity}</span>
-                          </div>
-                          
-                          <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
+                        {/* Icône */}
+                        <div className={`relative w-16 h-16 mb-6 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300`}>
+                          {React.createElement(service.icon, { className: "w-8 h-8 text-white" })}
+                        </div>
+
+                        {/* Contenu */}
+                        <div className="relative">
+                          <h3 className="text-xl font-montserrat font-bold text-white mb-2">
                             {service.name}
                           </h3>
-                          <p className="text-white/60 font-inter mb-6">
+                          <p className="text-white/60 font-inter text-sm mb-4">
                             {service.description}
                           </p>
-                          
-                          <div className="grid grid-cols-2 gap-3 mb-6">
-                            {service.features.map((feature, index) => (
-                              <div key={index} className="flex items-center gap-2">
-                                <Check className="w-4 h-4 text-green-400" />
-                                <span className="text-white/80 text-sm">{feature}</span>
-                              </div>
-                            ))}
+
+                          {/* Capacité */}
+                          <div className="flex items-center gap-2 mb-4">
+                            <Users className="w-4 h-4 text-white/40" />
+                            <span className="text-white/60 text-sm font-inter">
+                              {service.capacity}
+                            </span>
                           </div>
-                          
-                          <div className="flex items-baseline justify-between">
-                            <div>
-                              <span className="text-white/60 text-sm">À partir de</span>
-                              <div className="text-3xl font-montserrat font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                                {Object.values(service.price)[0]}€
-                              </div>
-                            </div>
-                            <ChevronRight className="w-6 h-6 text-white/60" />
+
+                          {/* Prix à partir de */}
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-2xl font-montserrat font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                              {Math.min(...Object.values(service.price))}€
+                            </span>
+                            <span className="text-white/40 text-sm">/ heure</span>
+                          </div>
+
+                          {/* Arrow */}
+                          <div className="absolute top-0 right-0 transform translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
+                            <ArrowRight className="w-6 h-6 text-purple-400" />
                           </div>
                         </div>
-                      </motion.div>
+                      </motion.button>
                     ))}
                   </div>
                 </motion.div>
               )}
 
-              {/* Step 2: Date & Duration Selection */}
+              {/* Step 2: Date et durée */}
               {step === 2 && selectedService && (
                 <motion.div
                   key="step2"
@@ -327,32 +541,36 @@ export default function BookingPage() {
                 >
                   <div className="flex items-center justify-between mb-8">
                     <h2 className="text-3xl font-montserrat font-bold text-white">
-                      Choisissez date et durée
+                      Choisissez votre créneau
                     </h2>
                     <button
                       onClick={() => setStep(1)}
-                      className="text-white/60 hover:text-white transition-colors"
+                      className="text-white/60 hover:text-white transition-colors flex items-center gap-2"
                     >
                       ← Retour
                     </button>
                   </div>
 
-                  {/* Service sélectionné */}
-                  <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 mb-8">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 bg-gradient-to-br ${serviceTypes.find(s => s.id === selectedService).gradient} rounded-xl flex items-center justify-center`}>
-                        {React.createElement(serviceTypes.find(s => s.id === selectedService).icon, { className: "w-6 h-6 text-white" })}
+                  {/* Service sélectionné - recap */}
+                  {currentService && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 mb-8 flex items-center gap-6"
+                    >
+                      <div className={`w-16 h-16 bg-gradient-to-br ${currentService.gradient} rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                        {React.createElement(currentService.icon, { className: "w-8 h-8 text-white" })}
                       </div>
                       <div>
-                        <h3 className="text-xl font-montserrat font-bold text-white">
-                          {serviceTypes.find(s => s.id === selectedService).name}
+                        <h3 className="text-xl font-montserrat font-bold text-white mb-1">
+                          {currentService.name}
                         </h3>
-                        <p className="text-white/60 text-sm">
-                          {serviceTypes.find(s => s.id === selectedService).description}
+                        <p className="text-white/60 font-inter text-sm">
+                          {currentService.description}
                         </p>
                       </div>
-                    </div>
-                  </div>
+                    </motion.div>
+                  )}
 
                   {/* Durée */}
                   <div className="mb-8">
@@ -360,49 +578,57 @@ export default function BookingPage() {
                       Durée de réservation
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {durations[selectedService].map((duration) => (
+                      {durations[selectedService]?.map((duration, index) => (
                         <motion.button
-                          key={`${duration.id}-${duration.multiplier}`}
+                          key={`${duration.id}-${duration.multiplier}-${index}`}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setSelectedDuration(duration)}
-                          className={`p-4 rounded-xl font-inter font-medium transition-all duration-300 ${
-                            selectedDuration?.id === duration.id && selectedDuration?.multiplier === duration.multiplier
-                              ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
-                              : 'bg-white/10 text-white/80 hover:bg-white/20'
+                          className={`p-6 rounded-2xl font-inter transition-all duration-300 ${
+                            selectedDuration?.id === duration.id && 
+                            selectedDuration?.multiplier === duration.multiplier
+                              ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-2 border-purple-400'
+                              : 'bg-white/10 text-white/80 hover:bg-white/20 border-2 border-transparent'
                           }`}
                         >
-                          {duration.label}
+                          <div className="text-lg font-semibold mb-1">{duration.label}</div>
+                          {currentService && (
+                            <div className="text-sm opacity-80">
+                              {currentService.price[duration.id] * duration.multiplier}€
+                            </div>
+                          )}
                         </motion.button>
                       ))}
                     </div>
                   </div>
 
-                  {/* Calendrier */}
+                  {/* Date */}
                   <div className="mb-8">
                     <h3 className="text-xl font-montserrat font-semibold text-white mb-4">
-                      Sélectionnez une date
+                      Date de réservation
                     </h3>
-                    <div className="grid grid-cols-7 gap-2">
-                      {dates.slice(0, 14).map((date) => {
-                        const dateStr = date.toISOString().split('T')[0];
-                        const isSelected = selectedDate === dateStr;
-                        const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+                    <div className="grid grid-cols-5 md:grid-cols-10 gap-3 max-h-[300px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                      {dates.map((date) => {
+                        const isSelected = selectedDate === date.toISOString().split('T')[0];
+                        const isToday = date.toDateString() === new Date().toDateString();
                         
                         return (
                           <motion.button
-                            key={dateStr}
-                            whileHover={{ scale: 1.05 }}
+                            key={date.toISOString()}
+                            whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => setSelectedDate(dateStr)}
-                            className={`p-4 rounded-xl text-center transition-all duration-300 ${
+                            onClick={() => setSelectedDate(date.toISOString().split('T')[0])}
+                            className={`p-4 rounded-xl font-inter transition-all duration-300 relative ${
                               isSelected
                                 ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
-                                : isWeekend
-                                ? 'bg-white/5 text-white/50 hover:bg-white/10'
+                                : isToday
+                                ? 'bg-white/20 text-white border-2 border-purple-400/50'
                                 : 'bg-white/10 text-white/80 hover:bg-white/20'
                             }`}
                           >
+                            {isToday && (
+                              <div className="absolute -top-2 -right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-black"></div>
+                            )}
                             <div className="text-xs font-inter mb-1">
                               {date.toLocaleDateString('fr-FR', { weekday: 'short' })}
                             </div>
@@ -416,10 +642,14 @@ export default function BookingPage() {
                   </div>
 
                   {/* Horaires (si nécessaire) */}
-                  {(selectedService === 'meeting-room' || selectedService === 'hot-desk') && selectedDuration?.id === 'hour' && (
+                  {(selectedService === 'meeting-room' || selectedService === 'hot-desk') && 
+                   selectedDuration?.id === 'hour' && (
                     <div className="mb-8">
-                      <h3 className="text-xl font-montserrat font-semibold text-white mb-4">
+                      <h3 className="text-xl font-montserrat font-semibold text-white mb-4 flex items-center gap-2">
                         Heure de début
+                        <span className="text-sm text-white/60 font-normal">
+                          (durée: {selectedDuration.multiplier}h)
+                        </span>
                       </h3>
                       <div className="grid grid-cols-4 md:grid-cols-6 gap-3">
                         {timeSlots.map((time) => (
@@ -428,40 +658,78 @@ export default function BookingPage() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setSelectedTime(time)}
-                            className={`p-3 rounded-lg font-inter transition-all duration-300 ${
+                            className={`p-4 rounded-lg font-inter transition-all duration-300 ${
                               selectedTime === time
                                 ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
                                 : 'bg-white/10 text-white/80 hover:bg-white/20'
                             }`}
                           >
-                            {time}
+                            <div className="font-semibold">{time}</div>
+                            {selectedTime === time && selectedDuration && (
+                              <div className="text-xs mt-1 opacity-80">
+                                → {calculateEndTime(time, selectedDuration.multiplier)}
+                              </div>
+                            )}
                           </motion.button>
                         ))}
                       </div>
                     </div>
                   )}
 
+                  {/* Prix estimé */}
+                  {selectedDuration && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/30 mb-8"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="text-white/60 text-sm mb-1">Prix estimé</div>
+                          <div className="text-3xl font-montserrat font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                            {calculatePrice()}€
+                          </div>
+                        </div>
+                        <Sparkles className="w-8 h-8 text-purple-400" />
+                      </div>
+                    </motion.div>
+                  )}
+
                   {/* Bouton continuer */}
-                  <div className="flex justify-end">
+                  <div className="flex justify-end gap-4">
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => selectedDate && selectedDuration && setStep(3)}
-                      disabled={!selectedDate || !selectedDuration}
-                      className={`px-8 py-4 rounded-2xl font-montserrat font-semibold transition-all duration-300 ${
-                        selectedDate && selectedDuration
-                          ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                      onClick={() => handleNextStep(3)}
+                      disabled={!isBookingValid()}
+                      className={`px-8 py-4 rounded-2xl font-montserrat font-semibold transition-all duration-300 flex items-center gap-3 ${
+                        isBookingValid()
+                          ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-lg hover:shadow-purple-500/50'
                           : 'bg-white/10 text-white/30 cursor-not-allowed'
                       }`}
                     >
-                      Continuer
+                      <span>Continuer</span>
+                      <ArrowRight className="w-5 h-5" />
                     </motion.button>
                   </div>
+
+                  {/* Message d'aide si incomplet */}
+                  {!isBookingValid() && selectedDuration && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="mt-4 text-center text-white/60 text-sm font-inter"
+                    >
+                      {!selectedDate && '← Sélectionnez une date'}
+                      {selectedDate && !selectedTime && (selectedService === 'meeting-room' || selectedService === 'hot-desk') && 
+                       selectedDuration.id === 'hour' && '← Sélectionnez une heure'}
+                    </motion.div>
+                  )}
                 </motion.div>
               )}
 
               {/* Step 3: Confirmation */}
-              {step === 3 && selectedService && selectedDate && selectedDuration && (
+              {step === 3 && selectedService && selectedDate && selectedDuration && currentService && (
                 <motion.div
                   key="step3"
                   initial={{ opacity: 0, x: 50 }}
@@ -475,36 +743,51 @@ export default function BookingPage() {
                     </h2>
                     <button
                       onClick={() => setStep(2)}
-                      className="text-white/60 hover:text-white transition-colors"
+                      className="text-white/60 hover:text-white transition-colors flex items-center gap-2"
                     >
-                      ← Retour
+                      ← Modifier
                     </button>
                   </div>
 
                   {/* Résumé de la réservation */}
-                  <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+                  <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 mb-8">
                     <div className="flex items-start gap-6 mb-8">
-                      <div className={`w-20 h-20 bg-gradient-to-br ${serviceTypes.find(s => s.id === selectedService).gradient} rounded-2xl flex items-center justify-center`}>
-                        {React.createElement(serviceTypes.find(s => s.id === selectedService).icon, { className: "w-10 h-10 text-white" })}
+                      <div className={`w-20 h-20 bg-gradient-to-br ${currentService.gradient} rounded-2xl flex items-center justify-center flex-shrink-0`}>
+                        {React.createElement(currentService.icon, { className: "w-10 h-10 text-white" })}
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
-                          {serviceTypes.find(s => s.id === selectedService).name}
+                        <h3 className="text-2xl font-montserrat font-bold text-white mb-4">
+                          {currentService.name}
                         </h3>
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2 text-white/80">
-                            <Calendar className="w-4 h-4" />
-                            <span>{new Date(selectedDate).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3 text-white/80">
+                            <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+                              <Calendar className="w-4 h-4" />
+                            </div>
+                            <span className="font-inter">
+                              {new Date(selectedDate).toLocaleDateString('fr-FR', { 
+                                weekday: 'long', 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                              })}
+                            </span>
                           </div>
                           {selectedTime && (
-                            <div className="flex items-center gap-2 text-white/80">
-                              <Clock className="w-4 h-4" />
-                              <span>{selectedTime}</span>
+                            <div className="flex items-center gap-3 text-white/80">
+                              <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+                                <Clock className="w-4 h-4" />
+                              </div>
+                              <span className="font-inter">
+                                {selectedTime} → {calculateEndTime(selectedTime, selectedDuration.multiplier)}
+                              </span>
                             </div>
                           )}
-                          <div className="flex items-center gap-2 text-white/80">
-                            <Users className="w-4 h-4" />
-                            <span>{selectedDuration.label}</span>
+                          <div className="flex items-center gap-3 text-white/80">
+                            <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+                              <Users className="w-4 h-4" />
+                            </div>
+                            <span className="font-inter">{selectedDuration.label}</span>
                           </div>
                         </div>
                       </div>
@@ -512,8 +795,8 @@ export default function BookingPage() {
 
                     <div className="border-t border-white/10 pt-6">
                       <div className="flex items-center justify-between mb-6">
-                        <span className="text-white/60 text-lg">Total</span>
-                        <span className="text-4xl font-montserrat font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                        <span className="text-white/60 text-lg font-inter">Total</span>
+                        <span className="text-5xl font-montserrat font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                           {calculatePrice()}€
                         </span>
                       </div>
@@ -522,31 +805,72 @@ export default function BookingPage() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={handleAddToCart}
-                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-2xl font-montserrat font-semibold flex items-center justify-center gap-3"
+                        disabled={isAdding}
+                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-5 rounded-2xl font-montserrat font-semibold flex items-center justify-center gap-3 hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <span>Ajouter au panier</span>
-                        <ArrowRight className="w-5 h-5" />
+                        {isAdding ? (
+                          <>
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                            />
+                            <span>Ajout en cours...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Ajouter au panier</span>
+                            <ArrowRight className="w-5 h-5" />
+                          </>
+                        )}
                       </motion.button>
                     </div>
                   </div>
 
                   {/* Features incluses */}
-                  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {serviceTypes.find(s => s.id === selectedService).features.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-center gap-3 bg-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10"
-                      >
-                        <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                          <Check className="w-4 h-4 text-green-400" />
-                        </div>
-                        <span className="text-white/80 font-inter">{feature}</span>
-                      </motion.div>
-                    ))}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-montserrat font-semibold text-white mb-4">
+                      Inclus dans votre réservation
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {currentService.features.map((feature, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                          className="flex items-center gap-4 bg-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10"
+                        >
+                          <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Check className="w-5 h-5 text-green-400" />
+                          </div>
+                          <span className="text-white/80 font-inter">{feature}</span>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Informations supplémentaires */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="bg-blue-600/10 backdrop-blur-xl rounded-2xl p-6 border border-blue-500/20"
+                  >
+                    <div className="flex items-start gap-4">
+                      <Info className="w-6 h-6 text-blue-400 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="text-white font-montserrat font-semibold mb-2">
+                          Bon à savoir
+                        </h4>
+                        <ul className="text-white/60 font-inter text-sm space-y-2">
+                          <li>• Annulation gratuite jusqu'à 24h avant</li>
+                          <li>• Modification possible jusqu'à 2h avant</li>
+                          <li>• Confirmation immédiate par email</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -572,8 +896,8 @@ export default function BookingPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.a
                   href="tel:0123456789"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-2xl px-8 py-4 border border-white/20 hover:bg-white/20 transition-all"
                 >
                   <Phone className="w-5 h-5 text-white" />

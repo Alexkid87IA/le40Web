@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pause, Play, Maximize2, X, Grid3x3 } from 'lucide-react';
 import { designTokens } from '../../styles/designTokens';
 
 interface GalleryImage {
@@ -129,189 +129,460 @@ const images: GalleryImage[] = [
     url: 'https://cdn.discordapp.com/attachments/1432824903513538773/1433136877786894336/alexorigines_71937_people_collaborating_around_rough_wood_table_d4943d14-05be-4f50-a7a0-a2d27285e9ca.png?ex=6903983a&is=690246ba&hm=afc46f3541aaacabae6ce8fe8d19829df648047e9e2e3495ddb0e13cb2152c7b&',
     caption: 'Collaboration en Équipe'
   },
-  {
-    url: 'https://cdn.discordapp.com/attachments/1432824903513538773/1433136820392300705/alexorigines_71937_converted_warehouse_coworking_workspace_thic_8438cad7-37a0-4155-959a-ac9dde701fbe.png?ex=6903982c&is=690246ac&hm=5cd00ffe23cad28a13632ed945d68bbb23f6ec53ab801aa32ced9a294859399b&',
-    caption: 'Espace de Coworking'
-  }
 ];
 
 export default function Gallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [direction, setDirection] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showThumbnails, setShowThumbnails] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (!isPlaying || images.length === 0) return;
-
-    const timer = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, [isPlaying]);
-
-  const goToPrevious = () => {
-    setDirection(-1);
-    setIsPlaying(false);
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const goToNext = () => {
-    setDirection(1);
-    setIsPlaying(false);
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const goToSlide = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setIsPlaying(false);
-    setCurrentIndex(index);
-  };
-
+  // Variantes d'animation améliorées
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
+      scale: 0.8,
+      rotateY: direction > 0 ? 45 : -45,
     }),
     center: {
       x: 0,
       opacity: 1,
+      scale: 1,
+      rotateY: 0,
     },
     exit: (direction: number) => ({
       x: direction < 0 ? 1000 : -1000,
       opacity: 0,
+      scale: 0.8,
+      rotateY: direction < 0 ? 45 : -45,
     }),
   };
+
+  // Navigation améliorée
+  const goToNext = useCallback(() => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, []);
+
+  const goToPrevious = useCallback(() => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  }, []);
+
+  const goToSlide = useCallback((index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  }, [currentIndex]);
+
+  // Autoplay amélioré
+  useEffect(() => {
+    if (isPlaying && !isFullscreen) {
+      intervalRef.current = setInterval(goToNext, 5000);
+    }
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPlaying, goToNext, isFullscreen]);
+
+  // Support clavier
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') goToPrevious();
+      if (e.key === 'ArrowRight') goToNext();
+      if (e.key === 'Escape' && isFullscreen) setIsFullscreen(false);
+      if (e.key === ' ') {
+        e.preventDefault();
+        setIsPlaying(!isPlaying);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [goToPrevious, goToNext, isPlaying, isFullscreen]);
+
+  // Support touch/swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) goToNext();
+    if (isRightSwipe) goToPrevious();
+
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  // Preload des images adjacentes
+  useEffect(() => {
+    const preloadImages = [
+      images[(currentIndex + 1) % images.length].url,
+      images[(currentIndex - 1 + images.length) % images.length].url,
+    ];
+
+    preloadImages.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+  }, [currentIndex]);
 
   const currentImage = images[currentIndex];
 
   return (
-    <section className="relative bg-black py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black" />
-
-      <motion.div
-        className="absolute top-20 right-20 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.15, 0.1],
-        }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-
-      <div className={`relative z-10 w-full max-w-[1600px] mx-auto ${designTokens.spacing.container}`}>
+    <>
+      <section className="relative bg-black py-32 overflow-hidden">
+        {/* Arrière-plan amélioré avec plusieurs couches */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black" />
+        
+        {/* Effets de lumière animés multiples */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-6xl md:text-7xl font-black text-white mb-6 tracking-tight">
-            Découvrez Nos{' '}
-            <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
-              Espaces
-            </span>
-          </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            4000m² d'infrastructures professionnelles au cœur de Marseille
-          </p>
-        </motion.div>
+          className="absolute top-20 right-20 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.15, 0.1],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-40 left-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+        />
 
-        <div className="relative mt-16">
-          <div className="relative aspect-[16/9] rounded-3xl overflow-hidden bg-zinc-900 shadow-2xl">
-            <AnimatePresence initial={false} custom={direction} mode="wait">
+        <div className={`relative z-10 w-full max-w-[1600px] mx-auto ${designTokens.spacing.container}`}>
+          {/* En-tête amélioré */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight">
+              Découvrez Nos{' '}
+              <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
+                Espaces
+              </span>
+            </h2>
+          </motion.div>
+
+          {/* Galerie principale améliorée */}
+          <div className="relative mt-16">
+            {/* Barre de progression */}
+            <div className="absolute -top-8 left-0 right-0 h-1 bg-white/10 rounded-full overflow-hidden z-20">
               <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: 'spring', stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.3 },
+                className="h-full bg-gradient-to-r from-amber-500 to-orange-500"
+                initial={{ width: '0%' }}
+                animate={{ width: `${((currentIndex + 1) / images.length) * 100}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+
+            <div 
+              className="relative aspect-[16/9] rounded-3xl overflow-hidden bg-zinc-900 shadow-2xl"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <AnimatePresence initial={false} custom={direction} mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: 'spring', stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.4 },
+                    scale: { duration: 0.4 },
+                    rotateY: { duration: 0.4 },
+                  }}
+                  className="absolute inset-0"
+                  style={{ perspective: 1000 }}
+                >
+                  <img
+                    src={currentImage.url}
+                    alt={currentImage.caption}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  
+                  {/* Superposition de dégradé améliorée */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                  
+                  {/* Effet de vignette */}
+                  <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.5)]" />
+
+                  {/* Informations améliorées */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="space-y-4"
+                    >
+                      <div className="flex items-center gap-4 flex-wrap">
+                        <motion.span
+                          whileHover={{ scale: 1.05 }}
+                          className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-lg backdrop-blur-sm shadow-lg"
+                        >
+                          {currentImage.caption}
+                        </motion.span>
+                        <span className="px-4 py-2 rounded-lg bg-black/50 backdrop-blur-sm text-white/90 text-sm font-medium border border-white/10">
+                          {currentIndex + 1} / {images.length}
+                        </span>
+                      </div>
+                      
+                      {/* Barre de progression de l'image */}
+                      {isPlaying && (
+                        <motion.div
+                          className="h-1 bg-white/20 rounded-full overflow-hidden"
+                          initial={{ width: 0 }}
+                        >
+                          <motion.div
+                            className="h-full bg-gradient-to-r from-amber-400 to-orange-400"
+                            initial={{ width: '0%' }}
+                            animate={{ width: '100%' }}
+                            transition={{ duration: 5, ease: 'linear' }}
+                          />
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Bordure lumineuse */}
+              <div className="absolute inset-0 pointer-events-none rounded-3xl ring-1 ring-white/10" />
+              <motion.div
+                className="absolute inset-0 pointer-events-none rounded-3xl"
+                animate={{
+                  boxShadow: [
+                    '0 0 20px rgba(251, 191, 36, 0.1)',
+                    '0 0 40px rgba(251, 191, 36, 0.2)',
+                    '0 0 20px rgba(251, 191, 36, 0.1)',
+                  ],
                 }}
-                className="absolute inset-0"
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+            </div>
+
+            {/* Boutons de contrôle améliorés */}
+            <motion.button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+              whileHover={{ scale: 1.1, x: -5 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Image précédente"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
+
+            <motion.button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+              whileHover={{ scale: 1.1, x: 5 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Image suivante"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
+
+            {/* Contrôles supérieurs améliorés */}
+            <div className="absolute top-4 right-4 flex gap-2">
+              <motion.button
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={isPlaying ? 'Pause' : 'Lecture'}
               >
-                <img
-                  src={currentImage.url}
-                  alt={currentImage.caption}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+              </motion.button>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="flex items-center gap-4"
-                  >
-                    <span className="px-4 py-2 rounded-lg bg-amber-500/90 text-white font-semibold text-sm backdrop-blur-sm">
-                      {currentImage.caption}
-                    </span>
-                    <span className="text-white/60 text-sm">
-                      {currentIndex + 1} / {images.length}
-                    </span>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+              <motion.button
+                onClick={() => setShowThumbnails(!showThumbnails)}
+                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Afficher miniatures"
+              >
+                <Grid3x3 className="w-5 h-5" />
+              </motion.button>
 
-            <div className="absolute inset-0 pointer-events-none rounded-3xl ring-1 ring-white/10" />
+              <motion.button
+                onClick={() => setIsFullscreen(!isFullscreen)}
+                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Plein écran"
+              >
+                <Maximize2 className="w-5 h-5" />
+              </motion.button>
+            </div>
           </div>
 
-          <motion.button
-            onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 text-white hover:bg-black/70 hover:border-amber-500/50 transition-all"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Image précédente"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </motion.button>
+          {/* Indicateurs améliorés avec miniatures */}
+          <AnimatePresence>
+            {showThumbnails ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: 'auto' }}
+                exit={{ opacity: 0, y: 20, height: 0 }}
+                className="mt-8 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 px-4"
+              >
+                {images.map((image, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`relative aspect-video rounded-lg overflow-hidden transition-all ${
+                      index === currentIndex
+                        ? 'ring-4 ring-amber-500 scale-105'
+                        : 'ring-1 ring-white/20 hover:ring-amber-500/50 hover:scale-105'
+                    }`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.caption}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <span className="text-white text-xs font-semibold">
+                        {index + 1}
+                      </span>
+                    </div>
+                    {index === currentIndex && (
+                      <motion.div
+                        layoutId="activeThumb"
+                        className="absolute inset-0 bg-gradient-to-t from-amber-500/50 to-transparent"
+                      />
+                    )}
+                  </motion.button>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-8 flex justify-center gap-2 flex-wrap px-4"
+              >
+                {images.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`relative transition-all ${
+                      index === currentIndex
+                        ? 'w-12 h-3 bg-gradient-to-r from-amber-500 to-orange-500'
+                        : 'w-3 h-3 bg-white/20 hover:bg-white/40'
+                    } rounded-full overflow-hidden`}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label={`Aller à l'image ${index + 1}`}
+                  >
+                    {index === currentIndex && isPlaying && (
+                      <motion.div
+                        className="absolute inset-0 bg-white/30"
+                        initial={{ width: '0%' }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 5, ease: 'linear' }}
+                      />
+                    )}
+                  </motion.button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          <motion.button
-            onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 text-white hover:bg-black/70 hover:border-amber-500/50 transition-all"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Image suivante"
+          {/* Instructions clavier */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="mt-8 text-center text-white/40 text-sm"
           >
-            <ChevronRight className="w-6 h-6" />
-          </motion.button>
-
-          <motion.button
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="absolute top-4 right-4 p-3 rounded-full bg-black/50 backdrop-blur-xl border border-white/10 text-white hover:bg-black/70 hover:border-amber-500/50 transition-all"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label={isPlaying ? 'Pause' : 'Lecture'}
-          >
-            {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-          </motion.button>
+            <p>Utilisez les flèches ← → ou glissez pour naviguer • Espace pour pause</p>
+          </motion.div>
         </div>
+      </section>
 
-        <div className="mt-8 flex justify-center gap-2 flex-wrap px-4">
-          {images.map((_, index) => (
-            <motion.button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`transition-all ${
-                index === currentIndex
-                  ? 'w-12 bg-gradient-to-r from-amber-500 to-orange-500'
-                  : 'w-3 bg-white/20 hover:bg-white/40'
-              } h-3 rounded-full`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={`Aller à l'image ${index + 1}`}
+      {/* Mode plein écran */}
+      <AnimatePresence>
+        {isFullscreen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black flex items-center justify-center"
+            onClick={() => setIsFullscreen(false)}
+          >
+            <button
+              onClick={() => setIsFullscreen(false)}
+              className="absolute top-4 right-4 p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all z-10"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <motion.img
+              key={currentIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              src={currentImage.url}
+              alt={currentImage.caption}
+              className="max-w-[95vw] max-h-[95vh] object-contain"
             />
-          ))}
-        </div>
 
-      </div>
-    </section>
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-xl bg-black/70 backdrop-blur-xl border border-white/20 text-white">
+              <p className="font-semibold">{currentImage.caption}</p>
+              <p className="text-sm text-white/60 mt-1">
+                {currentIndex + 1} / {images.length}
+              </p>
+            </div>
+
+            {/* Navigation en plein écran */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                goToPrevious();
+              }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all"
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                goToNext();
+              }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all"
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
