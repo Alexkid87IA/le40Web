@@ -111,7 +111,7 @@ export default function FeaturedEventsSection({ selectedCategory }: FeaturedEven
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-fr">
           {filteredEvents.map((event, index) => {
             const capacityPercentage = getCapacityPercentage(event.currentAttendees, event.maxAttendees);
             const capacityStatus = getCapacityStatus(capacityPercentage);
@@ -127,7 +127,7 @@ export default function FeaturedEventsSection({ selectedCategory }: FeaturedEven
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 onHoverStart={() => setHoveredCard(event.id)}
                 onHoverEnd={() => setHoveredCard(null)}
-                className="group relative"
+                className="group relative flex"
               >
                 {event.isFeatured && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
@@ -138,10 +138,10 @@ export default function FeaturedEventsSection({ selectedCategory }: FeaturedEven
                   </div>
                 )}
 
-                <div className="relative overflow-hidden rounded-3xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full">
+                <div className="relative overflow-hidden rounded-3xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-500 flex flex-col w-full">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-64 overflow-hidden shrink-0">
                     <motion.img
                       src={event.imageUrl}
                       alt={event.title}
@@ -171,16 +171,16 @@ export default function FeaturedEventsSection({ selectedCategory }: FeaturedEven
                     )}
                   </div>
 
-                  <div className="relative p-8">
+                  <div className="relative p-8 flex flex-col flex-1">
                     <h3 className="text-2xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-400 transition-all duration-500">
                       {event.title}
                     </h3>
 
-                    <p className="text-white/70 mb-6 leading-relaxed font-inter line-clamp-2">
+                    <p className="text-white/70 mb-6 leading-relaxed font-inter line-clamp-2 h-12">
                       {event.shortDescription}
                     </p>
 
-                    <div className="space-y-3 mb-6">
+                    <div className="space-y-3 mb-6 flex-1">
                       <div className="flex items-center gap-3 text-white/70">
                         <Calendar className="w-5 h-5 text-cyan-400 shrink-0" />
                         <span className="text-sm font-inter">{formatDate(event.eventDate)}</span>
@@ -213,42 +213,44 @@ export default function FeaturedEventsSection({ selectedCategory }: FeaturedEven
                       </div>
                     </div>
 
-                    {speakers.length > 0 && (
-                      <div className="mb-6 pb-6 border-b border-white/10">
-                        <div className="text-sm text-white/50 mb-3 font-inter">Intervenant{speakers.length > 1 ? 's' : ''}</div>
-                        <div className="flex items-center gap-3">
-                          {speakers.map((speaker) => (
-                            <div key={speaker.id} className="flex items-center gap-2">
-                              <img
-                                src={speaker.photoUrl}
-                                alt={speaker.name}
-                                className="w-10 h-10 rounded-full object-cover border-2 border-white/20"
-                              />
-                              <div>
-                                <div className="text-sm font-semibold text-white">{speaker.name}</div>
-                                <div className="text-xs text-white/50">{speaker.title}</div>
+                    <div className="mt-auto">
+                      {speakers.length > 0 && (
+                        <div className="mb-6 pb-6 border-b border-white/10">
+                          <div className="text-sm text-white/50 mb-3 font-inter">Intervenant{speakers.length > 1 ? 's' : ''}</div>
+                          <div className="flex items-center gap-3 flex-wrap">
+                            {speakers.slice(0, 2).map((speaker) => (
+                              <div key={speaker.id} className="flex items-center gap-2 min-w-0">
+                                <img
+                                  src={speaker.photoUrl}
+                                  alt={speaker.name}
+                                  className="w-10 h-10 rounded-full object-cover border-2 border-white/20 shrink-0"
+                                />
+                                <div className="min-w-0">
+                                  <div className="text-sm font-semibold text-white truncate">{speaker.name}</div>
+                                  <div className="text-xs text-white/50 truncate">{speaker.title}</div>
+                                </div>
                               </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="flex items-center gap-3">
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-montserrat font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
-                      >
-                        <span>S'inscrire</span>
-                        <ArrowRight className="w-5 h-5" />
-                      </motion.button>
-
-                      {event.difficultyLevel && (
-                        <div className="px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl text-white/60 text-xs font-semibold whitespace-nowrap">
-                          {event.difficultyLevel}
+                            ))}
+                          </div>
                         </div>
                       )}
+
+                      <div className="flex items-center gap-3">
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-montserrat font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
+                        >
+                          <span>S'inscrire</span>
+                          <ArrowRight className="w-5 h-5" />
+                        </motion.button>
+
+                        {event.difficultyLevel && (
+                          <div className="px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl text-white/60 text-xs font-semibold whitespace-nowrap">
+                            {event.difficultyLevel}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
