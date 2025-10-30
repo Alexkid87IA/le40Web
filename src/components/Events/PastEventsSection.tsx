@@ -8,6 +8,31 @@ export default function PastEventsSection() {
 
   return (
     <section className="py-32 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            transform: 'scaleY(-1)',
+            filter: 'brightness(0.6)',
+            playbackRate: 0.5
+          }}
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          ref={(video) => {
+            if (video) {
+              video.playbackRate = 0.5;
+            }
+          }}
+        >
+          <source
+            src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4#t=0.1"
+            type="video/mp4"
+          />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-slate-950/30 to-black/40" />
+      </div>
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
         backgroundSize: '40px 40px'
