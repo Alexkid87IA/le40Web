@@ -120,7 +120,11 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
                       <Icon className="w-8 h-8 text-white" />
                     </motion.div>
 
-                    <h3 className={`text-2xl font-montserrat font-bold mb-3 transition-all duration-500 ${isSelected ? 'text-transparent bg-clip-text bg-gradient-to-r ' + category.colorGradient : 'text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:' + category.colorGradient}`}>
+                    <h3 className={`text-2xl font-montserrat font-bold mb-3 transition-all duration-500 ${
+                      isSelected
+                        ? `text-transparent bg-clip-text bg-gradient-to-r ${category.colorGradient}`
+                        : 'text-white group-hover:text-cyan-400'
+                    }`}>
                       {category.name}
                     </h3>
 
