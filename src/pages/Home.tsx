@@ -4,7 +4,6 @@ import { organizationSchema } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Hero from '../sections/Hero';
-import Gallery from '../sections/Gallery';
 import CoworkingSection from '../sections/ServiceSections/CoworkingSection';
 import DomiciliationSection from '../sections/ServiceSections/DomiciliationSection';
 import BureauxSection from '../sections/ServiceSections/BureauxSection';
@@ -26,7 +25,6 @@ export default function HomeNew() {
 
       <main className="pt-24">
         <Hero />
-        <Gallery />
 
         <div className="relative">
           <div className="sticky top-0 h-screen">
