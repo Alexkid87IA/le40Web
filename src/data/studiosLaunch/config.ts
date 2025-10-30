@@ -43,6 +43,12 @@ export interface Option {
   price: number;
   unit: string;
   minimum?: number;
+  category?: 'equipment' | 'postprod' | 'expert' | 'distribution';
+  popular?: boolean;
+  badge?: string;
+  icon?: string;
+  savings?: string;
+  example?: string;
 }
 
 export interface Profile {
@@ -247,35 +253,45 @@ export const options: Option[] = [
     name: "Caméra supplémentaire",
     description: "Multi-angles pour montage dynamique",
     price: 39,
-    unit: "/h"
+    unit: "/h",
+    category: 'equipment',
+    icon: "📹"
   },
   {
     id: "teleprompter",
     name: "Prompteur + iPad",
     description: "Texte qui défile pour discours fluide",
     price: 19,
-    unit: "/h"
+    unit: "/h",
+    category: 'equipment',
+    icon: "📱"
   },
   {
     id: "rgb-lighting",
     name: "Éclairage RGB additionnel",
     description: "Ambiances colorées pour contenus créatifs",
     price: 15,
-    unit: "/h"
+    unit: "/h",
+    category: 'equipment',
+    icon: "💡"
   },
   {
     id: "green-screen-extra",
     name: "Fond vert supplémentaire",
     description: "Pour incrustation & effets spéciaux",
     price: 29,
-    unit: "/h"
+    unit: "/h",
+    category: 'equipment',
+    icon: "🟢"
   },
   {
     id: "assistant",
     name: "Assistant production",
     description: "2ème technicien pour projets complexes",
     price: 35,
-    unit: "/h"
+    unit: "/h",
+    category: 'equipment',
+    icon: "👨‍💼"
   },
   {
     id: "catering",
@@ -283,7 +299,215 @@ export const options: Option[] = [
     description: "Pause déjeuner pour équipe (plats, boissons)",
     price: 15,
     unit: "/personne",
-    minimum: 4
+    minimum: 4,
+    category: 'equipment',
+    icon: "🍽️"
+  },
+
+  {
+    id: "thumbnail-pro",
+    name: "Miniature YouTube Pro",
+    description: "Design professionnel click-bait optimisé + 3 variantes A/B testing",
+    price: 79,
+    unit: "fixe",
+    category: 'postprod',
+    popular: true,
+    badge: "Best-seller",
+    icon: "🎨",
+    savings: "Augmente le CTR de +40% en moyenne",
+    example: "Exemples : 15K+ vues grâce aux miniatures"
+  },
+  {
+    id: "shorts-pack",
+    name: "Pack 3 Shorts Optimisés",
+    description: "3 formats courts (9:16) montés depuis vos rushs + hooks accrocheurs",
+    price: 129,
+    unit: "fixe",
+    category: 'postprod',
+    popular: true,
+    badge: "Viral",
+    icon: "📱",
+    savings: "300% plus de reach que vidéo longue seule"
+  },
+  {
+    id: "shorts-pack-5",
+    name: "Pack 5 Shorts Optimisés",
+    description: "5 formats courts (9:16) pour saturer tous vos réseaux",
+    price: 199,
+    unit: "fixe",
+    category: 'postprod',
+    badge: "Meilleure valeur",
+    icon: "📱",
+    savings: "Économisez 46€ vs pack de 3"
+  },
+  {
+    id: "subtitles-animated",
+    name: "Sous-titres Animés Pro",
+    description: "Sous-titres style MrBeast/Ali Abdaal avec mots-clés surlignés",
+    price: 49,
+    unit: "fixe",
+    category: 'postprod',
+    icon: "💬",
+    savings: "+60% rétention moyenne"
+  },
+  {
+    id: "motion-graphics",
+    name: "Motion Graphics & Animations",
+    description: "Intro/outro animé + éléments graphiques dynamiques (logos, stats, graphiques)",
+    price: 149,
+    unit: "fixe",
+    category: 'postprod',
+    icon: "✨"
+  },
+  {
+    id: "color-grading-cinema",
+    name: "Étalonnage Cinéma Avancé",
+    description: "Look cinématographique premium (style Netflix/Hollywood)",
+    price: 99,
+    unit: "fixe",
+    category: 'postprod',
+    icon: "🎬",
+    example: "Transforme votre vidéo en production premium"
+  },
+  {
+    id: "sound-design",
+    name: "Sound Design Professionnel",
+    description: "Effets sonores, musique sur-mesure, mixage spatial",
+    price: 89,
+    unit: "fixe",
+    category: 'postprod',
+    icon: "🔊"
+  },
+  {
+    id: "multi-format-export",
+    name: "Export Multi-Formats",
+    description: "Adaptations pour tous réseaux : YouTube (16:9), TikTok/Reels (9:16), LinkedIn (1:1)",
+    price: 59,
+    unit: "fixe",
+    category: 'postprod',
+    icon: "📦"
+  },
+
+  {
+    id: "content-strategy",
+    name: "Stratégie de Contenu",
+    description: "Audit de votre chaîne + plan éditorial 30 jours + angles de tournage",
+    price: 299,
+    unit: "fixe",
+    category: 'expert',
+    badge: "ROI garanti",
+    icon: "🎯",
+    savings: "Clients gagnent 2.5x plus d'abonnés"
+  },
+  {
+    id: "script-writing",
+    name: "Écriture de Scripts Pro",
+    description: "Rédaction de scripts accrocheurs par copywriter YouTube certifié",
+    price: 149,
+    unit: "fixe",
+    category: 'expert',
+    popular: true,
+    icon: "✍️",
+    example: "Hook + structure + CTA optimisés"
+  },
+  {
+    id: "script-review",
+    name: "Relecture & Optimisation Script",
+    description: "Analyse + amélioration de votre script existant",
+    price: 79,
+    unit: "fixe",
+    category: 'expert',
+    icon: "📝"
+  },
+  {
+    id: "seo-optimization",
+    name: "Optimisation SEO YouTube",
+    description: "Titre, description, tags, chapitres optimisés pour le référencement",
+    price: 49,
+    unit: "fixe",
+    category: 'expert',
+    popular: true,
+    badge: "Essential",
+    icon: "🔍",
+    savings: "+120% découvrabilité moyenne"
+  },
+  {
+    id: "coaching-on-camera",
+    name: "Coaching Présence Caméra",
+    description: "1h de coaching avec expert pour améliorer votre présence à l'écran",
+    price: 199,
+    unit: "fixe",
+    category: 'expert',
+    icon: "🎭",
+    example: "Posture, élocution, énergie, authenticité"
+  },
+  {
+    id: "viral-analysis",
+    name: "Analyse Viralité",
+    description: "Rapport détaillé sur le potentiel viral + recommandations d'amélioration",
+    price: 129,
+    unit: "fixe",
+    category: 'expert',
+    icon: "🚀"
+  },
+
+  {
+    id: "distribution-basic",
+    name: "Diffusion Basique",
+    description: "Publication sur 3 plateformes (YouTube, Instagram, TikTok) avec copies optimisées",
+    price: 99,
+    unit: "fixe",
+    category: 'distribution',
+    icon: "📤"
+  },
+  {
+    id: "distribution-pro",
+    name: "Diffusion Pro Multi-Canal",
+    description: "Publication + adaptation sur 6 plateformes + community management 48h",
+    price: 249,
+    unit: "fixe",
+    category: 'distribution',
+    popular: true,
+    badge: "Recommandé",
+    icon: "🌐",
+    savings: "Touchez 5x plus d'audience"
+  },
+  {
+    id: "ads-campaign",
+    name: "Campagne Pub Meta/Google",
+    description: "Setup + gestion campagne publicitaire 7 jours (budget pub non inclus)",
+    price: 399,
+    unit: "fixe",
+    category: 'distribution',
+    badge: "Premium",
+    icon: "💰"
+  },
+  {
+    id: "influencer-outreach",
+    name: "Outreach Influenceurs",
+    description: "Contact + négociation avec 10 micro-influenceurs de votre niche",
+    price: 299,
+    unit: "fixe",
+    category: 'distribution',
+    icon: "🤝"
+  },
+  {
+    id: "email-campaign",
+    name: "Campagne Email",
+    description: "Email de lancement + 2 relances à votre liste (design + copy inclus)",
+    price: 149,
+    unit: "fixe",
+    category: 'distribution',
+    icon: "📧"
+  },
+  {
+    id: "press-release",
+    name: "Communiqué de Presse",
+    description: "Rédaction + diffusion à 50 médias spécialisés",
+    price: 199,
+    unit: "fixe",
+    category: 'distribution',
+    icon: "📰"
   }
 ];
 

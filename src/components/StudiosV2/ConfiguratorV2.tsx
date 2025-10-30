@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { studios, durations, formulas, options, Studio, Duration, Formula } from '../../data/studiosLaunch/config';
 import { calculatePrice, ConfigurationState, formatPrice } from '../../utils/pricingCalculations';
+import { Package } from '../../data/studiosLaunch/packages';
 import StepIndicator from './StepIndicator';
 import StudioSelectionStep from './StudioSelectionStep';
 import DurationSelectionStep from './DurationSelectionStep';
-import OptionsSelectionStep from './OptionsSelectionStep';
+import EnhancedOptionsSelection from './EnhancedOptionsSelection';
 import StickyPriceSummary from './StickyPriceSummary';
+import PackageBundles from './PackageBundles';
 
 interface ConfiguratorV2Props {
   selectedProfile?: string;
@@ -57,6 +59,31 @@ export default function ConfiguratorV2({ selectedProfile }: ConfiguratorV2Props)
       }
       return { ...prev, selectedOptions: newOptions };
     });
+  };
+
+  const handlePackageSelect = (pkg: Package) => {
+    const relatedFormula = pkg.includedServices.find(id =>
+      formulas.some(f => f.id === id)
+    );
+
+    if (relatedFormula) {
+      const formula = formulas.find(f => f.id === relatedFormula);
+      if (formula) {
+        setConfiguration(prev => ({ ...prev, formula }));
+      }
+    }
+
+    const newOptions = new Map<string, number>();
+    pkg.includedServices.forEach(serviceId => {
+      if (!formulas.some(f => f.id === serviceId)) {
+        newOptions.set(serviceId, 1);
+      }
+    });
+
+    setConfiguration(prev => ({
+      ...prev,
+      selectedOptions: newOptions
+    }));
   };
 
   const handleBack = () => {
@@ -118,16 +145,23 @@ export default function ConfiguratorV2({ selectedProfile }: ConfiguratorV2Props)
               )}
 
               {currentStep === 3 && (
-                <OptionsSelectionStep
-                  formulas={formulas}
-                  options={options}
-                  selectedFormula={configuration.formula}
-                  selectedOptions={configuration.selectedOptions}
-                  duration={configuration.duration!}
-                  onFormulaSelect={handleFormulaSelect}
-                  onOptionToggle={handleOptionToggle}
-                  onBack={handleBack}
-                />
+                <>
+                  <PackageBundles
+                    recommendedFor={selectedProfile}
+                    onSelectPackage={handlePackageSelect}
+                  />
+
+                  <EnhancedOptionsSelection
+                    formulas={formulas}
+                    options={options}
+                    selectedFormula={configuration.formula}
+                    selectedOptions={configuration.selectedOptions}
+                    duration={configuration.duration!}
+                    onFormulaSelect={handleFormulaSelect}
+                    onOptionToggle={handleOptionToggle}
+                    onBack={handleBack}
+                  />
+                </>
               )}
             </AnimatePresence>
           </div>
