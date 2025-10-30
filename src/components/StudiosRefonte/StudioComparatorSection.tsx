@@ -185,14 +185,6 @@ export default function StudioComparatorSection() {
                       hoveredStudio === studio.id ? 'bg-zinc-900/80' : ''
                     }`}
                   >
-                    {studio.popular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                        <div className="bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-                          Le plus réservé
-                        </div>
-                      </div>
-                    )}
-
                     <div className="flex flex-col items-center gap-4">
                       <motion.div
                         animate={{
