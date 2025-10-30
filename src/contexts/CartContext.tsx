@@ -18,7 +18,7 @@ export interface StudioConfiguration {
 
 export interface CartItem {
   id: string;
-  serviceType: 'coworking' | 'meeting-room' | 'studio' | 'private-office' | 'domiciliation';
+  serviceType: 'coworking' | 'meeting-room' | 'studio' | 'private-office' | 'domiciliation' | 'event';
   serviceName: string;
   date: string;
   startTime?: string;

@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Users, MapPin, ArrowRight, Star, Zap, X } from 'lucide-react';
-import { upcomingEvents } from '../../data/events/upcomingEvents';
+import { Calendar, Clock, Users, MapPin, ArrowRight, Star } from 'lucide-react';
+import { upcomingEvents, UpcomingEvent } from '../../data/events/upcomingEvents';
 import { eventSpeakers } from '../../data/events/speakers';
-import { eventCategories } from '../../data/events/categories';
 import { useState } from 'react';
+import EventDetailModal from './EventDetailModal';
 
 export default function FeaturedEventsSection() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<UpcomingEvent | null>(null);
 
   const filteredEvents = upcomingEvents;
 
@@ -235,6 +236,7 @@ export default function FeaturedEventsSection() {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
+                          onClick={() => setSelectedEvent(event)}
                           className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-montserrat font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
                         >
                           <span>S'inscrire</span>
@@ -285,6 +287,8 @@ export default function FeaturedEventsSection() {
           <rect width="100%" height="100%" filter="url(#noiseFeaturedEvents)" />
         </svg>
       </div>
+
+      <EventDetailModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
     </section>
   );
 }
