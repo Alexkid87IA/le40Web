@@ -125,21 +125,21 @@ export default function Hero() {
             className="grid grid-cols-3 gap-3 md:gap-4 pt-3 md:pt-4 border-t border-white/30 mt-3 md:mt-4"
           >
             <div>
-              <MapPin 
-                className="w-3 md:w-3.5 h-3 md:h-3.5 text-amber-400 mb-1" 
-                style={{ filter: 'drop-shadow(0 3px 12px rgba(251, 191, 36, 0.9))' }} 
+              <MapPin
+                className="w-3 md:w-3.5 h-3 md:h-3.5 text-amber-400 mb-1"
+                style={{ filter: 'drop-shadow(0 3px 12px rgba(251, 191, 36, 0.9))' }}
               />
-              <div 
+              <div
                 className="text-base md:text-lg lg:text-xl font-black text-white mb-0"
                 style={{ textShadow: '0 4px 20px rgba(0,0,0,1), 0 2px 12px rgba(0,0,0,1), 0 1px 8px rgba(0,0,0,0.9)' }}
               >
-                4000<span className="text-amber-400">m²</span>
+                50<span className="text-amber-400">+</span>
               </div>
-              <div 
+              <div
                 className="text-[9px] md:text-[10px] text-white font-semibold"
                 style={{ textShadow: '0 3px 15px rgba(0,0,0,1), 0 2px 10px rgba(0,0,0,0.9)' }}
               >
-                Surface Premium
+                Espaces Différents
               </div>
             </div>
 
