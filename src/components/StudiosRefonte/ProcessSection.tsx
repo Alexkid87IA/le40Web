@@ -34,7 +34,7 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="relative py-32 bg-black">
+    <section className="relative py-32">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
       </div>

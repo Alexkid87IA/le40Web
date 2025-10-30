@@ -4,7 +4,7 @@ import { Check, Star, ArrowRight, Target } from 'lucide-react';
 
 export default function FormulasComparisonSection() {
   return (
-    <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
+    <section className="relative py-32">
       <div className="absolute inset-0">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]"></div>

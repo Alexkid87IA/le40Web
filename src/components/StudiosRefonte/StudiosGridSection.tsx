@@ -13,7 +13,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section id="studios" className="relative py-32 bg-black">
+    <section id="studios" className="relative py-32">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute top-0 left-1/2 h-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>

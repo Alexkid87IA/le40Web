@@ -129,7 +129,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
   };
 
   return (
-    <section id="configurator" className="relative py-32 bg-gradient-to-b from-zinc-900 to-black">
+    <section id="configurator" className="relative py-32">
       <div className="absolute inset-0">
         <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-rose-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]"></div>

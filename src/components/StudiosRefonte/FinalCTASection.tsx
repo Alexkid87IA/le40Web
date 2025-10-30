@@ -6,7 +6,7 @@ export default function FinalCTASection() {
   const totalSlots = 50;
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-zinc-900 to-black overflow-hidden">
+    <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0">
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-600/20 rounded-full blur-[150px]"

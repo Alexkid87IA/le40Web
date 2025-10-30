@@ -125,7 +125,7 @@ export default function StudioComparatorSection() {
   };
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-black via-zinc-950 to-black overflow-hidden">
+    <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-rose-600/10 rounded-full blur-[150px]"></div>
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[150px]"></div>
