@@ -1,9 +1,27 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Mail, Building2, Shield, ArrowRight, Clock } from 'lucide-react';
-import Button from '../../components/UI/Button';
+import { useScrollParallax } from '../../hooks/useScrollParallax';
+import { useMagneticHover } from '../../hooks/useMagneticHover';
+import { elegantFadeIn, staggerContainer, staggerItem } from '../../utils/animationVariants';
 
 export default function DomiciliationSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const { y: videoY } = useScrollParallax(videoRef, { speed: 0.3 });
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.95, 1, 1, 0.98]);
+  const gradientOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.8, 0.6]);
+
+  const btnMagnetic = useMagneticHover({ strength: 0.15 });
+
   const features = [
     { icon: Building2, text: 'Adresse professionnelle au centre de Marseille' },
     { icon: Mail, text: 'Scan courrier en 2h + Réexpédition express' },
@@ -12,8 +30,17 @@ export default function DomiciliationSection() {
   ];
 
   return (
-    <section id="domiciliation" className="relative min-h-screen flex items-center bg-black overflow-hidden">
-      <div className="absolute inset-0">
+    <motion.section
+      ref={sectionRef}
+      id="domiciliation"
+      style={{ opacity, scale }}
+      className="relative min-h-screen flex items-center bg-black overflow-hidden"
+    >
+      <motion.div
+        ref={videoRef}
+        style={{ y: videoY }}
+        className="absolute inset-0"
+      >
         <video
           autoPlay
           loop
@@ -23,8 +50,11 @@ export default function DomiciliationSection() {
         >
           <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761805289/e3c2235d-6478-42d0-85b3-6266f2227367_iazq5a.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-950/60 via-black/80 to-orange-950/60"></div>
-      </div>
+        <motion.div
+          style={{ opacity: gradientOpacity }}
+          className="absolute inset-0 bg-gradient-to-br from-amber-950/60 via-black/80 to-orange-950/60"
+        />
+      </motion.div>
 
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
@@ -40,8 +70,22 @@ export default function DomiciliationSection() {
             viewport={{ once: true }}
             className="lg:order-2"
           >
-            <div className="relative h-[600px] rounded-3xl overflow-hidden">
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-20"></div>
+            <motion.div
+              className="relative h-[600px] rounded-3xl overflow-hidden"
+              style={{ perspective: 1000 }}
+            >
+              <motion.div
+                className="absolute -inset-4 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-20"
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.2, 0.3, 0.2]
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              />
               <div className="relative h-full">
                 {[
                   'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg',
@@ -51,8 +95,11 @@ export default function DomiciliationSection() {
                 ].map((src, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1.05
+                    }}
                     transition={{
                       duration: 1,
                       delay: index * 4,
@@ -65,65 +112,114 @@ export default function DomiciliationSection() {
                       animation: `fadeInOut 16s infinite ${index * 4}s`
                     }}
                   >
-                    <img
+                    <motion.img
                       src={src}
                       alt={`Domiciliation ${index + 1}`}
                       className="w-full h-full object-cover"
+                      animate={{
+                        scale: [1, 1.08, 1],
+                        x: [0, -10, 0],
+                        y: [0, -5, 0]
+                      }}
+                      transition={{
+                        duration: 16,
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
+            ref={contentRef}
+            variants={elegantFadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
             className="lg:order-1"
           >
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-5 py-3 mb-8">
+            <motion.div
+              className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-5 py-3 mb-8"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+              viewport={{ once: true }}
+            >
               <MapPin className="w-5 h-5 text-amber-400" />
               <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">Domiciliation</span>
-            </div>
+            </motion.div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
-              Domiciliation<br />
+            <motion.h2
+              className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              viewport={{ once: true }}
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                Domiciliation
+              </motion.span>
+              <br />
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
                   En 24h
                 </span>
                 <motion.div
                   className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-3xl -z-10"
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                 />
               </span>
-            </h2>
+            </motion.h2>
 
             <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed font-inter">
               Domiciliez votre entreprise au cœur de Marseille. Configuration rapide en 24h, gestion courrier automatisée et services professionnels inclus. Une solution complète et flexible pour démarrer sereinement.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-amber-500/20 transition-colors duration-300"
+                  variants={staggerItem}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                    borderColor: 'rgba(251, 146, 60, 0.3)',
+                    boxShadow: '0 20px 40px rgba(251, 146, 60, 0.1)'
+                  }}
+                  transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                  className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 cursor-pointer"
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <div className="p-2 bg-amber-500/10 rounded-xl shrink-0">
+                  <motion.div
+                    className="p-2 bg-amber-500/10 rounded-xl shrink-0"
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6, ease: 'easeInOut' }}
+                  >
                     <feature.icon className="w-5 h-5 text-amber-400" />
-                  </div>
+                  </motion.div>
                   <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{feature.text}</span>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -145,7 +241,9 @@ export default function DomiciliationSection() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
+                ref={btnMagnetic.ref as any}
                 href="/domiciliation"
+                style={{ x: btnMagnetic.x, y: btnMagnetic.y }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative"
@@ -193,6 +291,6 @@ export default function DomiciliationSection() {
           <rect width="100%" height="100%" filter="url(#noiseDomiciliation)" />
         </svg>
       </div>
-    </section>
+    </motion.section>
   );
 }

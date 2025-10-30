@@ -1,11 +1,65 @@
-import React, { useRef } from 'react';
+import React, { useRef, ReactNode } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Users, Wifi, Coffee, Clock, ArrowRight } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import { useScrollParallax } from '../../hooks/useScrollParallax';
 import { useMagneticHover } from '../../hooks/useMagneticHover';
 import { elegantFadeIn, staggerContainer, staggerItem } from '../../utils/animationVariants';
 
-export default function CoworkingSection() {
+interface Feature {
+  icon: LucideIcon;
+  text: string;
+}
+
+interface AnimatedServiceSectionProps {
+  id: string;
+  videoSrc: string;
+  gradientClasses: string;
+  badge: {
+    icon: LucideIcon;
+    text: string;
+    colorClasses: string;
+  };
+  title: ReactNode;
+  description: string;
+  features: Feature[];
+  price: {
+    amount: string;
+    period: string;
+    gradientClasses: string;
+  };
+  cta: {
+    primary: {
+      text: string;
+      href: string;
+      gradientClasses: string;
+    };
+    secondary: {
+      text: string;
+      href: string;
+      borderColorClasses: string;
+    };
+  };
+  images: string[];
+  noiseFilterId: string;
+  noiseSeed: string;
+  order?: 'left' | 'right';
+}
+
+export default function AnimatedServiceSection({
+  id,
+  videoSrc,
+  gradientClasses,
+  badge,
+  title,
+  description,
+  features,
+  price,
+  cta,
+  images,
+  noiseFilterId,
+  noiseSeed,
+  order = 'left'
+}: AnimatedServiceSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
 
@@ -21,17 +75,12 @@ export default function CoworkingSection() {
 
   const btnMagnetic = useMagneticHover({ strength: 0.15 });
 
-  const benefits = [
-    { icon: Users, text: 'Communauté de 120+ entrepreneurs actifs' },
-    { icon: Wifi, text: 'Fibre optique dédiée 1 Gb/s' },
-    { icon: Coffee, text: 'Café, thé et snacks illimités' },
-    { icon: Clock, text: 'Accès 24/7 avec contrôle sécurisé' }
-  ];
+  const BadgeIcon = badge.icon;
 
   return (
     <motion.section
       ref={sectionRef}
-      id="coworking"
+      id={id}
       style={{ opacity, scale }}
       className="relative min-h-screen flex items-center bg-black overflow-hidden"
     >
@@ -47,11 +96,11 @@ export default function CoworkingSection() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         >
-          <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4" type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
         </video>
         <motion.div
           style={{ opacity: gradientOpacity }}
-          className="absolute inset-0 bg-gradient-to-br from-cyan-950/60 via-black/80 to-blue-950/60"
+          className={`absolute inset-0 ${gradientClasses}`}
         />
       </motion.div>
 
@@ -67,44 +116,30 @@ export default function CoworkingSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="lg:order-1"
+            className={order === 'left' ? 'lg:order-1' : 'lg:order-2'}
           >
             <motion.div
-              className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-5 py-3 mb-8"
+              className={`inline-flex items-center gap-2 ${badge.colorClasses} rounded-full px-5 py-3 mb-8`}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
               viewport={{ once: true }}
             >
-              <Users className="w-5 h-5 text-cyan-400" />
-              <span className="text-cyan-300 text-sm font-bold uppercase tracking-wider">Coworking</span>
+              <BadgeIcon className="w-5 h-5" />
+              <span className="text-sm font-bold uppercase tracking-wider">{badge.text}</span>
             </motion.div>
 
-            <motion.h2
-              className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight"
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
               viewport={{ once: true }}
             >
-              Travaillez<br />
-              <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">
-                  Entouré d'Entrepreneurs
-                </span>
-                <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-teal-500/20 blur-3xl -z-10"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                />
-              </span>
-            </motion.h2>
+              {title}
+            </motion.div>
 
             <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed font-inter">
-              Rejoignez une communauté dynamique d'entrepreneurs, freelances et innovateurs dans nos espaces de travail haut de gamme. Flexibilité totale, équipements premium et networking au quotidien.
+              {description}
             </p>
 
             <motion.div
@@ -114,30 +149,32 @@ export default function CoworkingSection() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              {benefits.map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  variants={staggerItem}
-                  whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                    borderColor: 'rgba(34, 211, 238, 0.3)',
-                    boxShadow: '0 20px 40px rgba(34, 211, 238, 0.1)'
-                  }}
-                  transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-                  className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 cursor-pointer"
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
+              {features.map((feature, index) => {
+                const FeatureIcon = feature.icon;
+                return (
                   <motion.div
-                    className="p-2 bg-cyan-500/10 rounded-xl shrink-0"
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.6, ease: 'easeInOut' }}
+                    key={index}
+                    variants={staggerItem}
+                    whileHover={{
+                      y: -8,
+                      scale: 1.02,
+                      boxShadow: '0 20px 40px rgba(255, 255, 255, 0.05)'
+                    }}
+                    transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                    className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 cursor-pointer"
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
-                    <benefit.icon className="w-5 h-5 text-cyan-400" />
+                    <motion.div
+                      className={`p-2 ${badge.colorClasses.replace('border', 'bg')} rounded-xl shrink-0`}
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.6, ease: 'easeInOut' }}
+                    >
+                      <FeatureIcon className="w-5 h-5" />
+                    </motion.div>
+                    <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{feature.text}</span>
                   </motion.div>
-                  <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{benefit.text}</span>
-                </motion.div>
-              ))}
+                );
+              })}
             </motion.div>
 
             <motion.div
@@ -148,8 +185,8 @@ export default function CoworkingSection() {
               className="flex items-center gap-4 mb-10"
             >
               <div className="text-white/50 text-sm font-inter">À partir de</div>
-              <div className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">199€</div>
-              <div className="text-white/50 text-sm font-inter">/mois</div>
+              <div className={`text-5xl font-montserrat font-black text-transparent bg-clip-text ${price.gradientClasses}`}>{price.amount}</div>
+              <div className="text-white/50 text-sm font-inter">{price.period}</div>
             </motion.div>
 
             <motion.div
@@ -161,47 +198,46 @@ export default function CoworkingSection() {
             >
               <motion.a
                 ref={btnMagnetic.ref as any}
-                href="/coworking"
+                href={cta.primary.href}
                 style={{ x: btnMagnetic.x, y: btnMagnetic.y }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative"
               >
                 <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                  className={`absolute -inset-1 ${cta.primary.gradientClasses} rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300`}
                   animate={{ opacity: [0.5, 0.75, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <div className="relative flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500 text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm">
-                  <span>RÉSERVER MAINTENANT</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <div className={`relative flex items-center justify-center gap-3 px-6 py-4 ${cta.primary.gradientClasses} text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm`}>
+                  <span>{cta.primary.text}</span>
                 </div>
               </motion.a>
 
               <motion.a
-                href="/contact"
+                href={cta.secondary.href}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-500/50 text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center text-sm"
+                className={`px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border ${cta.secondary.borderColorClasses} text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center text-sm`}
               >
-                Demander une visite
+                {cta.secondary.text}
               </motion.a>
             </motion.div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
+            initial={{ opacity: 0, x: order === 'left' ? 60 : -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="lg:order-2"
+            className={order === 'left' ? 'lg:order-2' : 'lg:order-1'}
           >
             <motion.div
               className="relative h-[600px] rounded-3xl overflow-hidden"
               style={{ perspective: 1000 }}
             >
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-3xl blur-3xl opacity-20"
+                className={`absolute -inset-4 ${price.gradientClasses.replace('bg-gradient-to-r', 'bg-gradient-to-r')} rounded-3xl blur-3xl opacity-20`}
                 animate={{
                   scale: [1, 1.1, 1],
                   opacity: [0.2, 0.3, 0.2]
@@ -213,12 +249,7 @@ export default function CoworkingSection() {
                 }}
               />
               <div className="relative h-full">
-                {[
-                  'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg',
-                  'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg',
-                  'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg',
-                  'https://images.pexels.com/photos/1181622/pexels-photo-1181622.jpeg'
-                ].map((src, index) => (
+                {images.map((src, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, scale: 1.1 }}
@@ -240,7 +271,7 @@ export default function CoworkingSection() {
                   >
                     <motion.img
                       src={src}
-                      alt={`Coworking ${index + 1}`}
+                      alt={`${id} ${index + 1}`}
                       className="w-full h-full object-cover"
                       animate={{
                         scale: [1, 1.08, 1],
@@ -264,11 +295,11 @@ export default function CoworkingSection() {
 
       <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
         <svg width="100%" height="100%">
-          <filter id="noiseCoworking">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" />
+          <filter id={noiseFilterId}>
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed={noiseSeed} />
             <feColorMatrix type="saturate" values="0" />
           </filter>
-          <rect width="100%" height="100%" filter="url(#noiseCoworking)" />
+          <rect width="100%" height="100%" filter={`url(#${noiseFilterId})`} />
         </svg>
       </div>
     </motion.section>
