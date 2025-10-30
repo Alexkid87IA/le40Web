@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import SEOHead from '../components/SEO/SEOHead';
+import { serviceSchemas } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -23,6 +25,12 @@ export default function Studios() {
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
+      <SEOHead
+        title="Studios Créatifs & Production Audio-Visuelle Marseille"
+        description="Louez nos studios créatifs équipés à Marseille. Fond vert, éclairage professionnel, matériel audio/vidéo. Parfait pour créateurs de contenu, podcasters et vidéastes. Réservation en ligne."
+        keywords="studio créatif Marseille, studio podcast Marseille, fond vert Marseille, location studio vidéo Marseille, production audiovisuelle Marseille, studio tournage Marseille"
+        schema={serviceSchemas.studios}
+      />
       <HeaderNav />
       <MobileBurger />
 

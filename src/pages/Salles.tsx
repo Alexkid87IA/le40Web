@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import SEOHead from '../components/SEO/SEOHead';
+import { serviceSchemas } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -24,6 +26,12 @@ export default function Salles() {
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
+      <SEOHead
+        title="Salles de Réunion Marseille | Location Espace Événementiel Professionnel"
+        description="Louez une salle de réunion équipée à Marseille. Écran 4K, visioconférence, tableau blanc. De 4 à 50 personnes. Réservation en ligne facile. Dès 50€/heure."
+        keywords="salle de réunion Marseille, location salle Marseille, espace événementiel Marseille, salle de conférence Marseille, salle séminaire Marseille, salle formation Marseille"
+        schema={serviceSchemas.salles}
+      />
       <HeaderNav />
       <MobileBurger />
 

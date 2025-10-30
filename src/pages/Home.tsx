@@ -1,4 +1,6 @@
 import React from 'react';
+import SEOHead from '../components/SEO/SEOHead';
+import { organizationSchema } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Hero from '../sections/Hero';
@@ -13,6 +15,12 @@ import Footer from '../components/Footer';
 export default function HomeNew() {
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
+      <SEOHead
+        title="Coworking Premium Marseille | Domiciliation & Salles de Réunion"
+        description="Espace de coworking premium au cœur de Marseille. Domiciliation d'entreprise, bureaux privés, salles de réunion équipées, studios créatifs et communauté d'entrepreneurs. Réservez votre visite gratuite."
+        keywords="coworking Marseille, espace de travail Marseille, domiciliation entreprise Marseille, salle de réunion Marseille, bureau privé Marseille, coworking premium, studio créatif Marseille, communauté entrepreneurs"
+        schema={organizationSchema}
+      />
       <HeaderNav />
       <MobileBurger />
 

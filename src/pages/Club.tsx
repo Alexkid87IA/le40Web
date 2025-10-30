@@ -1,4 +1,5 @@
 import React from 'react';
+import SEOHead from '../components/SEO/SEOHead';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -15,6 +16,11 @@ import FinalCTASection from '../components/Club/FinalCTASection';
 export default function Club() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
+      <SEOHead
+        title="Club Le 40 | Réseau d'Entrepreneurs & Événements Business Marseille"
+        description="Rejoignez le Club Le 40, la communauté d'entrepreneurs à Marseille. Workshops exclusifs, networking, mentorat, événements business. Développez votre réseau professionnel."
+        keywords="club entrepreneurs Marseille, réseau entrepreneurs Marseille, networking Marseille, communauté business Marseille, événements networking Marseille, workshops entrepreneurs"
+      />
       <HeaderNav />
       <MobileBurger />
 

@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /checkout
+Disallow: /confirmation/
+
+# Sitemap
+Sitemap: https://le40coworking.fr/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

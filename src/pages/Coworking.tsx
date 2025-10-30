@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Wifi, Coffee, Clock, Check, ArrowRight, Star, Shield, Building2, Sparkles, ChevronRight, MapPin, Zap, Calendar, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEOHead from '../components/SEO/SEOHead';
+import { serviceSchemas } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -138,6 +140,12 @@ export default function Coworking() {
 
   return (
     <div className="min-h-screen bg-black">
+      <SEOHead
+        title="Coworking Marseille | Espaces de Travail Flexibles & Bureaux Privés"
+        description="Découvrez nos espaces de coworking à Marseille : open space lumineux, bureaux privés, hot desks. WiFi ultra-rapide, café illimité, communauté dynamique. Dès 29€/jour."
+        keywords="coworking Marseille, espace de travail Marseille, bureau flexible Marseille, hot desk Marseille, bureau privé Marseille, coworking 13001, open space Marseille"
+        schema={serviceSchemas.coworking}
+      />
       <HeaderNav />
       <MobileBurger />
       
