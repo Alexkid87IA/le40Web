@@ -19,6 +19,45 @@ const secondaryItems = [
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
+// Couleurs des traits indicateurs selon la rubrique
+const indicatorColors = {
+  '/': 'bg-amber-400', // Accueil - Orange/Ambre
+  '/bureaux': 'bg-blue-400', // Bureaux - Bleu
+  '/domiciliation': 'bg-emerald-400', // Domiciliation - Vert
+  '/salles': 'bg-purple-400', // Salles - Violet
+  '/studios': 'bg-red-400', // Studio - Rouge
+  '/events': 'bg-cyan-400', // Events - Cyan/Turquoise
+  '/experts': 'bg-yellow-400', // Le Club - Jaune
+};
+
+// Couleurs du bouton Réserver selon la page
+const reserveButtonColors = {
+  '/': 'from-amber-600 via-orange-600 to-amber-600', // Accueil - Orange/Ambre
+  '/bureaux': 'from-blue-600 via-indigo-600 to-blue-600', // Bureaux - Bleu
+  '/domiciliation': 'from-emerald-600 via-green-600 to-emerald-600', // Domiciliation - Vert
+  '/salles': 'from-purple-600 via-violet-600 to-purple-600', // Salles - Violet
+  '/studios': 'from-red-600 via-rose-600 to-red-600', // Studio - Rouge
+  '/events': 'from-cyan-600 via-sky-600 to-cyan-600', // Events - Cyan/Turquoise
+  '/experts': 'from-amber-600 via-yellow-600 to-amber-600', // Le Club - Jaune/Ambre
+  '/community': 'from-teal-600 via-cyan-600 to-teal-600', // Communauté - Teal
+  '/contact': 'from-slate-600 via-gray-600 to-slate-600', // Contact - Gris
+  'default': 'from-amber-600 via-orange-600 to-amber-600', // Par défaut
+};
+
+// Couleurs du glow effect selon la page
+const reserveButtonGlow = {
+  '/': 'bg-amber-500/40',
+  '/bureaux': 'bg-blue-500/40',
+  '/domiciliation': 'bg-emerald-500/40',
+  '/salles': 'bg-purple-500/40',
+  '/studios': 'bg-red-500/40',
+  '/events': 'bg-cyan-500/40',
+  '/experts': 'bg-amber-500/40',
+  '/community': 'bg-teal-500/40',
+  '/contact': 'bg-slate-500/40',
+  'default': 'bg-amber-500/40',
+};
+
 export default function HeaderNav() {
   const location = useLocation();
   const { itemCount, setIsOpen } = useCart();
@@ -27,6 +66,10 @@ export default function HeaderNav() {
   
   const headerOpacity = useTransform(scrollY, [0, 100], [0.95, 1]);
   const headerBlur = useTransform(scrollY, [0, 100], [20, 30]);
+
+  // Récupérer la couleur du bouton selon la page actuelle
+  const currentButtonColor = reserveButtonColors[location.pathname] || reserveButtonColors.default;
+  const currentButtonGlow = reserveButtonGlow[location.pathname] || reserveButtonGlow.default;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -149,18 +192,24 @@ export default function HeaderNav() {
                           </span>
                         </div>
 
-                        {/* Indicateur actif - ligne dorée */}
+                        {/* Indicateur actif - ligne colorée PARFAITEMENT CENTRÉE */}
                         {isActive && (
                           <motion.div
                             layoutId="activeIndicator"
-                            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent"
-                            style={{ width: '60%' }}
+                            className="absolute -bottom-1 left-0 right-0 flex justify-center"
                             transition={{ 
                               type: "spring", 
                               stiffness: 400, 
                               damping: 35 
                             }}
-                          />
+                          >
+                            <div 
+                              className={`w-[45px] h-[3px] ${indicatorColors[item.href] || 'bg-amber-400'} rounded-full`}
+                              style={{
+                                boxShadow: '0 0 10px currentColor',
+                              }}
+                            />
+                          </motion.div>
                         )}
                       </motion.div>
                     </Link>
@@ -228,15 +277,15 @@ export default function HeaderNav() {
             {/* Séparateur élégant */}
             <div className="w-px h-6 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
 
-            {/* BOUTON RÉSERVER - Design premium avec gradient */}
+            {/* BOUTON RÉSERVER - Couleur qui change selon la page ! */}
             <Link to="/reservation">
               <motion.div
                 className="relative group overflow-hidden rounded-lg"
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
               >
-                {/* Background avec gradient animé */}
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600 opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Background avec gradient animé - CHANGE SELON LA PAGE */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${currentButtonColor} opacity-90 group-hover:opacity-100 transition-all duration-300`} />
                 
                 {/* Shine effect au hover */}
                 <motion.div
@@ -246,9 +295,9 @@ export default function HeaderNav() {
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                 />
 
-                {/* Glow effect */}
+                {/* Glow effect - CHANGE SELON LA PAGE */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute inset-0 blur-xl bg-amber-500/40" />
+                  <div className={`absolute inset-0 blur-xl ${currentButtonGlow}`} />
                 </div>
 
                 <div className="relative px-6 py-2.5 flex items-center gap-2.5">
