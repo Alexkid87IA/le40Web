@@ -15,7 +15,7 @@ export const workshops = [
       "Ambiance conviviale",
       "Échanges informels"
     ],
-    gradient: "from-orange-500 via-amber-500 to-yellow-500"
+    gradient: "from-red-500 via-rose-500 to-pink-500"
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ export const workshops = [
       "Brainstorming collectif",
       "Retours d'expérience"
     ],
-    gradient: "from-cyan-500 via-blue-500 to-teal-500"
+    gradient: "from-rose-500 via-pink-500 to-red-500"
   },
   {
     id: 3,
@@ -51,7 +51,7 @@ export const workshops = [
       "Supports fournis",
       "Q&A approfondi"
     ],
-    gradient: "from-emerald-500 via-teal-500 to-cyan-500"
+    gradient: "from-pink-500 via-rose-500 to-red-500"
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ export const workshops = [
       "Cas d'usage réels",
       "Support personnalisé"
     ],
-    gradient: "from-violet-500 via-purple-500 to-fuchsia-500"
+    gradient: "from-red-400 via-rose-400 to-pink-400"
   },
   {
     id: 5,
@@ -105,6 +105,6 @@ export const workshops = [
       "Productivité boostée",
       "Espaces premium"
     ],
-    gradient: "from-amber-500 via-orange-500 to-red-500"
+    gradient: "from-red-500 via-rose-400 to-pink-500"
   }
 ];

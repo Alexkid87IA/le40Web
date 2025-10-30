@@ -64,7 +64,7 @@ const WorkshopCard = ({ workshop, index }) => {
           <div className="space-y-2 mb-6">
             {workshop.benefits.slice(0, 3).map((benefit, idx) => (
               <div key={idx} className="flex items-center gap-2 text-white/70 text-sm">
-                <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <CheckCircle className="w-4 h-4 text-red-400 flex-shrink-0" />
                 <span>{benefit}</span>
               </div>
             ))}
