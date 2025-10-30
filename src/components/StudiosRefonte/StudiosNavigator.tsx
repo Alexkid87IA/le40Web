@@ -12,6 +12,8 @@ const sections: Section[] = [
   { id: 'studios', label: 'Studios', icon: Camera },
   { id: 'formulas', label: 'Formules', icon: Zap },
   { id: 'equipment', label: 'Équipement', icon: Sparkles },
+  { id: 'configurator', label: 'Configurateur', icon: Calculator },
+  { id: 'additional-services', label: 'Options', icon: Plus },
   { id: 'testimonials', label: 'Avis', icon: MessageSquare },
   { id: 'faq', label: 'FAQ', icon: HelpCircle }
 ];
