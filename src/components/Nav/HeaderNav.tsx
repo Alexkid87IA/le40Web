@@ -1,218 +1,259 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, ArrowRight, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
-import { designTokens } from '../../styles/designTokens';
 
 const navItems = [
-  {
-    name: 'Accueil',
-    href: '/',
-    icon: Home,
-  },
-  {
-    name: 'Bureaux',
-    href: '/bureaux',
-    icon: Building2,
-  },
-  {
-    name: 'Domiciliation',
-    href: '/domiciliation',
-    icon: MapPin,
-  },
-  {
-    name: 'Salles',
-    href: '/salles',
-    icon: Presentation,
-  },
-  {
-    name: 'Studio',
-    href: '/studios',
-    icon: Video,
-  },
-  {
-    name: 'Nos Events',
-    href: '/events',
-    icon: Calendar,
-  },
-  {
-    name: 'Le Club',
-    href: '/experts',
-    icon: Sparkles,
-  },
+  { name: 'Accueil', href: '/', icon: Home },
+  { name: 'Bureaux', href: '/bureaux', icon: Building2 },
+  { name: 'Domiciliation', href: '/domiciliation', icon: MapPin },
+  { name: 'Salles', href: '/salles', icon: Presentation },
+  { name: 'Studio', href: '/studios', icon: Video },
+  { name: 'Nos Events', href: '/events', icon: Calendar },
+  { name: 'Le Club', href: '/experts', icon: Sparkles },
 ];
 
 const secondaryItems = [
-  {
-    name: 'Communauté',
-    href: '/community',
-    icon: Users,
-  },
-  {
-    name: 'Contact',
-    href: '/contact',
-    icon: Phone,
-  },
+  { name: 'Communauté', href: '/community', icon: Users },
+  { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
 export default function HeaderNav() {
   const location = useLocation();
   const { itemCount, setIsOpen } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  
+  const headerOpacity = useTransform(scrollY, [0, 100], [0.95, 1]);
+  const headerBlur = useTransform(scrollY, [0, 100], [20, 30]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <motion.header
+      style={{ 
+        opacity: headerOpacity,
+        backdropFilter: `blur(${headerBlur}px)`,
+      }}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`hidden md:block fixed top-0 left-0 right-0 z-50 ${designTokens.animations.transition.normal} ${
+      transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+      className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-black/97 backdrop-blur-3xl border-b border-white/[0.08] py-3 shadow-xl shadow-black/30'
-          : 'bg-black/90 backdrop-blur-2xl py-4'
+          ? 'bg-black/98 border-b border-white/5 shadow-2xl shadow-black/50'
+          : 'bg-black/90 border-b border-white/[0.02]'
       }`}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-white/[0.01] via-transparent to-white/[0.01] pointer-events-none" />
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30 pointer-events-none" />
+      {/* Effet de lumière subtil en haut */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      
+      {/* Grille subtile en background */}
+      <div 
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.15) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px',
+        }}
+      />
 
-      <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex items-center justify-between w-full gap-4">
-          <div className="flex items-center justify-start flex-shrink-0 w-28">
-            <Link to="/" className="flex items-center gap-3 group">
+      <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-500 ${
+        isScrolled ? 'py-3' : 'py-4'
+      }`}>
+        <div className="flex items-center justify-between gap-8">
+          
+          {/* LOGO - Design premium */}
+          <Link to="/" className="flex-shrink-0 group">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="relative"
+            >
+              {/* Glow effect au hover */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative"
-              >
-                <motion.div
-                  className="absolute inset-0 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                  style={{
-                    background: `radial-gradient(circle, ${designTokens.colors.neutral.glow} 0%, transparent 70%)`
-                  }}
-                />
-                <img
-                  src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
-                  alt="Le 40"
-                  className={`relative h-auto brightness-0 invert drop-shadow-2xl transition-all duration-500 ${
-                    isScrolled ? 'w-20' : 'w-24'
-                  }`}
-                />
-              </motion.div>
-            </Link>
-          </div>
+                className="absolute -inset-4 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                style={{
+                  background: 'radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%)',
+                  filter: 'blur(20px)',
+                }}
+              />
+              
+              <img
+                src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                alt="Le 40"
+                className={`relative brightness-0 invert transition-all duration-500 ${
+                  isScrolled ? 'w-20' : 'w-24'
+                }`}
+              />
+            </motion.div>
+          </Link>
 
-          <nav className="flex items-center justify-center flex-1">
-            <ul className="flex items-center gap-0.5">
-            {navItems.map((item) => {
-              const isActive = location.pathname === item.href;
-              const Icon = item.icon;
+          {/* NAVIGATION PRINCIPALE - Design épuré */}
+          <nav className="flex-1">
+            <ul className="flex items-center justify-center gap-1">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.href;
+                const Icon = item.icon;
 
-              return (
-                <li key={item.name}>
-                  <Link to={item.href}>
+                return (
+                  <li key={item.name}>
+                    <Link to={item.href}>
+                      <motion.div
+                        className="relative group px-4 py-2.5 rounded-lg"
+                        whileHover={{ y: -1 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {/* Background actif avec animation fluide */}
+                        {isActive && (
+                          <motion.div
+                            layoutId="activeNav"
+                            className="absolute inset-0 bg-white/[0.08] rounded-lg"
+                            transition={{ 
+                              type: "spring", 
+                              stiffness: 400, 
+                              damping: 35,
+                              mass: 0.8,
+                            }}
+                          />
+                        )}
+
+                        {/* Background hover */}
+                        <div className={`absolute inset-0 rounded-lg transition-opacity duration-300 ${
+                          isActive 
+                            ? 'opacity-0' 
+                            : 'opacity-0 group-hover:opacity-100 bg-white/[0.04]'
+                        }`} />
+
+                        <div className="relative flex items-center gap-2.5">
+                          <Icon 
+                            className={`w-[15px] h-[15px] transition-all duration-300 ${
+                              isActive 
+                                ? 'text-white' 
+                                : 'text-white/50 group-hover:text-white/90'
+                            }`} 
+                          />
+                          <span 
+                            className={`font-medium text-[13px] tracking-wide transition-all duration-300 ${
+                              isActive 
+                                ? 'text-white font-semibold' 
+                                : 'text-white/60 group-hover:text-white/95'
+                            }`}
+                          >
+                            {item.name}
+                          </span>
+                        </div>
+
+                        {/* Indicateur actif - ligne dorée */}
+                        {isActive && (
+                          <motion.div
+                            layoutId="activeIndicator"
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent"
+                            style={{ width: '60%' }}
+                            transition={{ 
+                              type: "spring", 
+                              stiffness: 400, 
+                              damping: 35 
+                            }}
+                          />
+                        )}
+                      </motion.div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* ACTIONS SECONDAIRES */}
+          <div className="flex items-center gap-3 flex-shrink-0">
+            
+            {/* Icônes secondaires */}
+            <div className="flex items-center gap-2">
+              {secondaryItems.map((item) => {
+                const isActive = location.pathname === item.href;
+                const Icon = item.icon;
+
+                return (
+                  <Link key={item.name} to={item.href}>
                     <motion.div
-                      className={`relative px-3 py-2.5 rounded-xl flex items-center gap-2 ${designTokens.animations.transition.fast} ${
+                      className={`relative p-2.5 rounded-lg transition-all duration-300 ${
                         isActive
-                          ? 'bg-white/[0.12] text-white shadow-lg shadow-white/[0.05]'
-                          : 'text-white/65 hover:text-white hover:bg-white/[0.06]'
+                          ? 'bg-white/[0.08] text-white'
+                          : 'text-white/50 hover:text-white hover:bg-white/[0.04]'
                       }`}
-                      whileHover={{ y: -2, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: 1.05, y: -1 }}
+                      whileTap={{ scale: 0.95 }}
+                      title={item.name}
                     >
-                      {isActive && (
-                        <motion.div
-                          layoutId="headerActiveBackground"
-                          className="absolute inset-0 bg-white/[0.08] rounded-xl"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
-
-                      <Icon className={`relative w-4 h-4 ${designTokens.animations.transition.fast}`} />
-                      <span className={`relative font-inter font-semibold text-[13px] whitespace-nowrap ${designTokens.animations.transition.fast}`}>
-                        {item.name}
-                      </span>
-
-                      {isActive && (
-                        <motion.div
-                          layoutId="headerActiveIndicator"
-                          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/5 h-0.5 bg-white rounded-full shadow-lg shadow-white/30"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                        />
-                      )}
+                      <Icon className="w-[17px] h-[17px]" />
                     </motion.div>
                   </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+                );
+              })}
 
-        <div className="flex items-center justify-end gap-2 flex-shrink-0 w-52">
-          {secondaryItems.map((item) => {
-            const isActive = location.pathname === item.href;
-            const Icon = item.icon;
+              {/* Panier */}
+              <motion.button
+                onClick={() => setIsOpen(true)}
+                className="relative p-2.5 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.04] transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -1 }}
+                whileTap={{ scale: 0.95 }}
+                title="Panier"
+              >
+                <ShoppingCart className="w-[17px] h-[17px]" />
+                
+                <AnimatePresence>
+                  {itemCount > 0 && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                      className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg shadow-amber-500/30"
+                    >
+                      <span className="text-black text-[10px] font-black">
+                        {itemCount}
+                      </span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
 
-            return (
-              <Link key={item.name} to={item.href}>
-                <motion.div
-                  className={`p-2.5 rounded-xl ${designTokens.animations.transition.fast} ${
-                    isActive
-                      ? 'bg-white/[0.12] text-white shadow-md shadow-white/[0.05]'
-                      : 'text-white/55 hover:text-white hover:bg-white/[0.06]'
-                  }`}
-                  whileHover={{ scale: 1.08, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  title={item.name}
-                >
-                  <Icon className="w-[18px] h-[18px]" />
-                </motion.div>
-              </Link>
-            );
-          })}
+            {/* Séparateur élégant */}
+            <div className="w-px h-6 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
 
-          <motion.button
-            onClick={() => setIsOpen(true)}
-            className="relative p-2.5 rounded-xl text-white/55 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
-            whileHover={{ scale: 1.08, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            title="Panier"
-          >
-            <ShoppingCart className="w-[18px] h-[18px]" />
-
-            <AnimatePresence>
-              {itemCount > 0 && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-lg shadow-white/30"
-                >
-                  <span className="text-black text-[10px] font-bold">{itemCount}</span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
-
-          <div className="ml-2 pl-2 border-l border-white/[0.1]">
+            {/* BOUTON RÉSERVER - Design premium avec gradient */}
             <Link to="/reservation">
               <motion.div
-                className="relative overflow-hidden rounded-xl px-5 py-2.5 bg-white/[0.1] backdrop-blur-xl border border-white/20 group shadow-lg shadow-white/[0.05]"
-                whileHover={{ scale: 1.05, y: -2, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
-                whileTap={{ scale: 0.98 }}
+                className="relative group overflow-hidden rounded-lg"
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
               >
-                <div className="relative flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-white" />
-                  <span className="font-inter font-bold text-[13px] text-white whitespace-nowrap">
+                {/* Background avec gradient animé */}
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600 opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Shine effect au hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  initial={{ x: '-100%', skewX: -20 }}
+                  whileHover={{ x: '200%' }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                />
+
+                {/* Glow effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 blur-xl bg-amber-500/40" />
+                </div>
+
+                <div className="relative px-6 py-2.5 flex items-center gap-2.5">
+                  <Calendar className="w-[15px] h-[15px] text-white" />
+                  <span className="font-bold text-[13px] text-white tracking-wide">
                     Réserver
                   </span>
                 </div>
@@ -220,8 +261,12 @@ export default function HeaderNav() {
             </Link>
           </div>
         </div>
-        </div>
       </div>
+
+      {/* Ombre portée en bas du header */}
+      <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent transition-opacity duration-500 ${
+        isScrolled ? 'opacity-100' : 'opacity-0'
+      }`} />
     </motion.header>
   );
 }
