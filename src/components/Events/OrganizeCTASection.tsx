@@ -35,37 +35,25 @@ export default function OrganizeCTASection() {
           />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-slate-950/30 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-950/20 via-orange-950/20 to-red-950/20" />
+
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+          backgroundSize: '30px 30px'
+        }} />
 
         <motion.div
-          className="absolute inset-0 opacity-20"
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-            backgroundSize: '50px 50px'
-          }}
-        />
-
-        <motion.div
-          className="absolute top-1/2 left-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-[150px]"
+          className="absolute top-1/2 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[150px]"
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [0.2, 0.3, 0.2]
+            opacity: [0.1, 0.2, 0.1]
           }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute top-1/2 right-1/4 w-96 h-96 bg-orange-600/20 rounded-full blur-[150px]"
+          className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[150px]"
           animate={{
             scale: [1.3, 1, 1.3],
-            opacity: [0.15, 0.25, 0.15]
+            opacity: [0.1, 0.15, 0.1]
           }}
           transition={{ duration: 10, repeat: Infinity }}
         />
@@ -84,11 +72,9 @@ export default function OrganizeCTASection() {
             viewport={{ once: true }}
             className="mb-8"
           >
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500/10 to-orange-500/10 backdrop-blur-xl border border-amber-500/20 rounded-full px-6 py-3">
-              <Sparkles className="w-5 h-5 text-amber-400" />
-              <span className="text-amber-300 font-inter font-medium uppercase tracking-wider text-sm">
-                Organisez votre événement
-              </span>
+            <div className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3">
+              <Sparkles className="w-5 h-5 text-cyan-400" />
+              <span className="text-white/80 font-inter font-medium">Organisez votre événement</span>
             </div>
           </motion.div>
 
@@ -100,15 +86,8 @@ export default function OrganizeCTASection() {
             className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-8 leading-tight"
           >
             Créez Votre{' '}
-            <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-red-400">
-                Événement
-              </span>
-              <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-orange-500/20 blur-3xl -z-10"
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
+              Événement
             </span>
           </motion.h2>
 
@@ -137,12 +116,13 @@ export default function OrganizeCTASection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-start gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-left group hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                className="flex items-start gap-4 bg-slate-950/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-left group hover:border-white/20 transition-all duration-300 relative overflow-hidden"
               >
-                <div className="p-3 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <benefit.icon className="w-6 h-6 text-amber-400" />
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10 p-3 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <benefit.icon className="w-6 h-6 text-cyan-400" />
                 </div>
-                <span className="text-white/80 font-inter pt-2">{benefit.text}</span>
+                <span className="relative z-10 text-white/80 font-inter pt-2">{benefit.text}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -158,24 +138,17 @@ export default function OrganizeCTASection() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-amber-500 hover:from-cyan-400 hover:via-blue-400 hover:to-amber-400 text-white rounded-xl font-montserrat font-bold text-lg transition-all duration-300 shadow-lg"
             >
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
-                animate={{ opacity: [0.5, 0.75, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl">
-                <span>Proposer mon événement</span>
-                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
+              <span>Proposer mon événement</span>
+              <ArrowRight className="w-6 h-6" />
             </motion.a>
 
             <motion.a
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-lg transition-all duration-300"
+              className="px-10 py-5 bg-slate-950/50 hover:bg-slate-900/50 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-xl font-montserrat font-bold text-lg transition-all duration-300"
             >
               Demander des informations
             </motion.a>
