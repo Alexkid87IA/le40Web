@@ -57,7 +57,7 @@ export default function FAQSection() {
 
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             Vous Avez des{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
               Questions ?
             </span>
           </h2>
@@ -83,7 +83,7 @@ export default function FAQSection() {
                   onClick={() => toggleFAQ(faq.id)}
                   className="w-full text-left relative bg-slate-950/50 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300 overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="flex items-center justify-between gap-4 relative z-10">
                     <h3 className="text-lg font-montserrat font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
                       {faq.question}
@@ -127,19 +127,22 @@ export default function FAQSection() {
           transition={{ delay: 0.5 }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-br from-cyan-950/50 to-blue-950/50 backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8">
-            <h3 className="text-2xl font-bold text-white mb-3">Vous ne trouvez pas votre réponse ?</h3>
-            <p className="text-white/70 mb-6 font-inter">
-              Notre équipe est là pour vous aider. Contactez-nous directement !
-            </p>
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white rounded-xl font-montserrat font-bold transition-all duration-300"
-            >
-              Nous contacter
-            </motion.a>
+          <div className="bg-slate-950/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-amber-500/5" />
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-white mb-3">Vous ne trouvez pas votre réponse ?</h3>
+              <p className="text-white/70 mb-6 font-inter">
+                Notre équipe est là pour vous aider. Contactez-nous directement !
+              </p>
+              <motion.a
+                href="/contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-amber-500 hover:from-cyan-400 hover:via-blue-400 hover:to-amber-400 text-white rounded-xl font-montserrat font-bold transition-all duration-300 shadow-lg"
+              >
+                Nous contacter
+              </motion.a>
+            </div>
           </div>
         </motion.div>
       </div>
