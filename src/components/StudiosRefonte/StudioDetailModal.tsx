@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Studio } from '../../data/studios/studiosData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface StudioDetailModalProps {
   studio: Studio | null;
@@ -11,6 +11,10 @@ interface StudioDetailModalProps {
 
 export default function StudioDetailModal({ studio, onClose, onSelect }: StudioDetailModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [studio?.id]);
 
   if (!studio) return null;
 
@@ -37,7 +41,7 @@ export default function StudioDetailModal({ studio, onClose, onSelect }: StudioD
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-center justify-center p-4 overflow-y-auto"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
