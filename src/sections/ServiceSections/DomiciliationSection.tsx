@@ -1,176 +1,201 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Mail, Building2, Shield, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { MapPin, Mail, Building2, Shield, ArrowRight, Clock } from 'lucide-react';
 import Button from '../../components/UI/Button';
 
 export default function DomiciliationSection() {
-  const benefits = [
+  const features = [
     { icon: Building2, text: 'Adresse professionnelle au centre de Marseille' },
     { icon: Mail, text: 'Scan courrier en 2h + Réexpédition express' },
     { icon: Shield, text: 'Configuration en 24h + Agrément préfecture' },
-    { icon: CheckCircle2, text: 'Accès coworking & networking inclus' }
+    { icon: Clock, text: 'Accès coworking & networking inclus' }
   ];
 
   return (
-    <section id="domiciliation" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
+    <section id="domiciliation" className="relative min-h-screen flex items-center bg-black overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-950/30 via-[#0A0A0A] to-orange-950/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-950/30 via-black to-orange-950/20"></div>
 
         <motion.div
-          className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-amber-600/20 rounded-full blur-[150px]"
+          className="absolute top-1/4 right-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-[150px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2]
           }}
-          transition={{ duration: 8, repeat: Infinity }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-orange-600/15 rounded-full blur-[140px]"
+          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-orange-600/15 rounded-full blur-[150px]"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.15, 0.25, 0.15]
           }}
-          transition={{ duration: 10, repeat: Infinity }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-[150px]"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="absolute inset-0 z-0">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.4 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="absolute inset-0"
-        >
-          <img
-            src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="Domiciliation Le 40"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/90 via-transparent to-[#0A0A0A]"></div>
-        </motion.div>
-      </div>
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 w-full">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+          >
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-20"></div>
+              <div className="relative bg-gradient-to-br from-amber-950/40 to-orange-950/30 backdrop-blur-xl border border-amber-500/20 rounded-3xl p-10">
+                <div className="text-center mb-8">
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-400/30 flex items-center justify-center">
+                    <Building2 className="w-14 h-14 text-amber-400" />
+                  </div>
+                  <div className="text-3xl font-montserrat font-black text-white mb-3">40 Avenue de Saint Antoine</div>
+                  <div className="text-amber-400/70 font-medium text-lg">13015 Marseille</div>
+                </div>
+
+                <div className="h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent my-8"></div>
+
+                <div className="space-y-5">
+                  {[
+                    { label: 'Configuration', value: 'En 24h', highlight: true },
+                    { label: 'Gestion courrier', value: 'Incluse', highlight: false },
+                    { label: 'Scan documents', value: 'En option', highlight: false },
+                    { label: 'Accès coworking', value: 'Inclus', highlight: false }
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                      viewport={{ once: true }}
+                      className="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/5 hover:border-amber-500/20 transition-colors duration-300"
+                    >
+                      <span className="text-white/60 font-medium">{item.label}</span>
+                      <span className={`font-bold ${item.highlight ? 'text-amber-400' : 'text-white'}`}>
+                        {item.value}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="lg:order-2"
           >
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2 mb-6">
-              <MapPin className="w-4 h-4 text-amber-400" />
-              <span className="text-amber-300 text-sm font-medium uppercase tracking-wider">Domiciliation</span>
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-5 py-3 mb-8">
+              <MapPin className="w-5 h-5 text-amber-400" />
+              <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">Domiciliation</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white mb-6 leading-tight">
               Domiciliation<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-red-400">
-                En 24h
+              <span className="relative inline-block">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
+                  En 24h
+                </span>
+                <motion.div
+                  className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-3xl -z-10"
+                  animate={{ opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
               </span>
             </h2>
 
-            <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
+            <p className="text-xl md:text-2xl text-white/70 mb-10 leading-relaxed font-inter">
               Domiciliez votre entreprise au cœur de Marseille. Configuration rapide en 24h, gestion courrier automatisée et services professionnels inclus. Une solution complète et flexible pour démarrer sereinement.
             </p>
 
-            <div className="space-y-4 mb-10">
-              {benefits.map((benefit, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+              {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4"
+                  className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-amber-500/20 transition-colors duration-300"
                 >
-                  <div className="p-2 bg-amber-500/10 rounded-lg shrink-0">
-                    <benefit.icon className="w-5 h-5 text-amber-400" />
+                  <div className="p-2 bg-amber-500/10 rounded-xl shrink-0">
+                    <feature.icon className="w-5 h-5 text-amber-400" />
                   </div>
-                  <span className="text-white/80 leading-tight pt-2">{benefit.text}</span>
+                  <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{feature.text}</span>
                 </motion.div>
               ))}
             </div>
 
-            <div className="flex items-center gap-3 mb-8">
-              <div className="text-white/50 text-sm">À partir de</div>
-              <div className="text-5xl font-montserrat font-black text-white">49€</div>
-              <div className="text-white/50 text-sm">/mois</div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-4 mb-10"
+            >
+              <div className="text-white/50 text-base font-inter">À partir de</div>
+              <div className="text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400">49€</div>
+              <div className="text-white/50 text-base font-inter">/mois</div>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <motion.a
                 href="/domiciliation"
-                size="md"
-                icon={ArrowRight}
-                iconPosition="right"
-                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative"
               >
-                OBTENIR UNE ADRESSE
-              </Button>
-              <Button
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                  animate={{ opacity: [0.5, 0.75, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
+                  <span>OBTENIR UNE ADRESSE</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </motion.a>
+
+              <motion.a
                 href="/contact"
-                variant="secondary"
-                size="md"
-                className="border-amber-500/30 text-amber-300 hover:bg-amber-500/10"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-amber-500/30 hover:border-amber-500/50 text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center"
               >
                 Nous contacter
-              </Button>
-            </div>
+              </motion.a>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
               viewport={{ once: true }}
-              className="mt-8 flex items-center gap-3 text-sm text-white/50"
+              className="mt-8 text-sm text-amber-400/60 font-inter"
             >
-              <CheckCircle2 className="w-5 h-5 text-green-400" />
-              <span>120+ entreprises nous font déjà confiance</span>
+              ⭐ 120+ entreprises nous font déjà confiance
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
-            className="lg:order-1"
-          >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-30"></div>
-              <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
-                <div className="text-center mb-6">
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-400/30 flex items-center justify-center">
-                    <Building2 className="w-12 h-12 text-amber-400" />
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-2">40 Avenue de Saint Antoine</div>
-                  <div className="text-white/50">13015 Marseille</div>
-                </div>
-                <div className="h-px bg-white/10 my-6"></div>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">Configuration</span>
-                    <span className="text-white font-semibold">En 24h</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">Gestion courrier</span>
-                    <span className="text-white font-semibold">Incluse</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">Scan documents</span>
-                    <span className="text-white font-semibold">En option</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/60">Accès coworking</span>
-                    <span className="text-white font-semibold">Inclus</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
