@@ -13,7 +13,7 @@ export default function FinalCTASection() {
   return (
     <section className="py-40 relative overflow-hidden bg-gradient-to-b from-slate-950 to-black">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-900/20 via-black to-amber-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-900/20 via-black to-rose-900/20" />
         <motion.div
           className="absolute inset-0 opacity-20"
           animate={{
@@ -43,14 +43,14 @@ export default function FinalCTASection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-500/30 text-sm font-semibold text-orange-400 mb-8"
+            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-red-500/20 to-rose-500/20 border border-red-500/30 text-sm font-semibold text-red-400 mb-8"
           >
             PRÊT À NOUS REJOINDRE ?
           </motion.span>
 
           <h2 className="text-6xl md:text-7xl lg:text-8xl font-black mb-8">
             <span className="text-white">Faites le Pas</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-pink-400">
               Aujourd'hui
             </span>
           </h2>
@@ -75,7 +75,7 @@ export default function FinalCTASection() {
                 transition={{ delay: 0.4 + index * 0.1 }}
                 className="flex items-center gap-3 text-white/80"
               >
-                <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
+                <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-red-500 to-rose-500 rounded-full flex items-center justify-center">
                   <Check className="w-4 h-4 text-white" />
                 </div>
                 <span className="text-sm font-medium text-left">{feature}</span>
@@ -89,8 +89,8 @@ export default function FinalCTASection() {
               whileTap={{ scale: 0.95 }}
               className="group relative"
             >
-              <div className="absolute -inset-2 bg-gradient-to-r from-orange-600 to-amber-600 rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-opacity" />
-              <div className="relative flex items-center gap-3 px-12 py-6 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 rounded-2xl text-white font-bold text-lg shadow-xl">
+              <div className="absolute -inset-2 bg-gradient-to-r from-red-600 to-rose-600 rounded-3xl blur-2xl opacity-70 group-hover:opacity-100 transition-opacity" />
+              <div className="relative flex items-center gap-3 px-12 py-6 bg-gradient-to-r from-red-500 via-rose-500 to-pink-500 rounded-2xl text-white font-bold text-lg shadow-xl">
                 <Calendar className="w-6 h-6" />
                 <span>Rejoindre Le Club</span>
                 <motion.div
@@ -120,21 +120,21 @@ export default function FinalCTASection() {
           >
             <div className="flex items-center justify-center gap-8">
               <div className="text-center">
-                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
+                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
                   50€
                 </div>
                 <div className="text-sm text-white/60">par mois</div>
               </div>
               <div className="w-px h-12 bg-white/20" />
               <div className="text-center">
-                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-pink-400">
                   15+
                 </div>
                 <div className="text-sm text-white/60">événements</div>
               </div>
               <div className="w-px h-12 bg-white/20" />
               <div className="text-center">
-                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
                   120+
                 </div>
                 <div className="text-sm text-white/60">membres</div>
