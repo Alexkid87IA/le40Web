@@ -185,11 +185,6 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                             : 'border-white/10 bg-white/5 hover:border-white/20'
                         }`}
                       >
-                        {duration.popular && (
-                          <div className="absolute -top-2 -right-2 bg-gradient-to-r from-rose-600 to-fuchsia-600 text-white text-[10px] px-2 py-0.5 rounded-full">
-                            Recommandé
-                          </div>
-                        )}
                         <span className={`font-inter font-medium block ${selectedDurationId === duration.id ? 'text-white' : 'text-white/70'}`}>
                           {duration.label}
                         </span>

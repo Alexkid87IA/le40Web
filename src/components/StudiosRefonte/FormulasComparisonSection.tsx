@@ -39,19 +39,6 @@ export default function FormulasComparisonSection() {
               transition={{ delay: index * 0.15, duration: 0.6 }}
               className="relative group"
             >
-              {formula.popular && (
-                <motion.div
-                  initial={{ y: -10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10"
-                >
-                  <div className="bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
-                    <Star className="w-3.5 h-3.5 fill-white" />
-                    Recommandée
-                  </div>
-                </motion.div>
-              )}
-
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
