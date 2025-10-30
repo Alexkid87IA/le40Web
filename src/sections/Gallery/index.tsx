@@ -180,11 +180,11 @@ export default function Gallery() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
         >
           <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-zinc-950/90 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-zinc-950/40 to-black/50" />
       </div>
 
       <div className={`relative z-10 w-full max-w-7xl mx-auto ${designTokens.spacing.container}`}>
