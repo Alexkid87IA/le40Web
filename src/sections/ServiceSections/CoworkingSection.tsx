@@ -150,41 +150,39 @@ export default function CoworkingSection() {
             viewport={{ once: true }}
             className="lg:order-1"
           >
-            <div className="relative">
+            <div className="relative h-[600px] rounded-3xl overflow-hidden">
               <div className="absolute -inset-4 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-3xl blur-3xl opacity-20"></div>
-              <div className="relative bg-gradient-to-br from-cyan-950/40 to-blue-950/30 backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-10">
-                <div className="text-center mb-8">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 flex items-center justify-center">
-                    <Users className="w-14 h-14 text-cyan-400" />
-                  </div>
-                  <div className="text-3xl font-montserrat font-black text-white mb-3">Espace Premium</div>
-                  <div className="text-cyan-400/70 font-medium text-lg">300m² au cœur de Marseille</div>
-                </div>
-
-                <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent my-8"></div>
-
-                <div className="space-y-5">
-                  {[
-                    { label: 'Postes disponibles', value: '30+', highlight: true },
-                    { label: 'Fibre dédiée', value: '1 Gb/s', highlight: true },
-                    { label: 'Accès', value: '24/7', highlight: true },
-                    { label: 'Membres', value: '120+', highlight: true }
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.5 }}
-                      viewport={{ once: true }}
-                      className="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/5 hover:border-cyan-500/20 transition-colors duration-300"
-                    >
-                      <span className="text-white/60 font-medium">{item.label}</span>
-                      <span className={`font-bold ${item.highlight ? 'text-cyan-400' : 'text-white'}`}>
-                        {item.value}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+              <div className="relative h-full">
+                {[
+                  'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg',
+                  'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg',
+                  'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg',
+                  'https://images.pexels.com/photos/1181622/pexels-photo-1181622.jpeg'
+                ].map((src, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 1,
+                      delay: index * 4,
+                      repeat: Infinity,
+                      repeatDelay: 12
+                    }}
+                    className="absolute inset-0"
+                    style={{
+                      opacity: 0,
+                      animation: `fadeInOut 16s infinite ${index * 4}s`
+                    }}
+                  >
+                    <img
+                      src={src}
+                      alt={`Coworking ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>

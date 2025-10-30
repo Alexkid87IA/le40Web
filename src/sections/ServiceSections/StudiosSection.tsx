@@ -79,34 +79,9 @@ export default function StudiosSection() {
                         alt={`Studio pro ${index + 1}`}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                     </motion.div>
                   ))}
-
-                  <div className="absolute bottom-0 left-0 right-0 p-10 z-10">
-                    <div className="text-center mb-8">
-                      <div className="text-3xl font-montserrat font-black text-white mb-3">3 Studios Disponibles</div>
-                      <div className="text-blue-400/70 font-medium text-lg">50m² à 120m²</div>
-                    </div>
-
-                    <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent my-6"></div>
-
-                    <div className="space-y-4">
-                      {[
-                        { label: 'Fond vert/blanc', value: 'Inclus' },
-                        { label: 'Régie technique', value: 'Disponible' },
-                        { label: 'Technicien sur demande', value: '+80€/h' }
-                      ].map((item, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-sm border border-blue-500/20"
-                        >
-                          <span className="text-white/80 font-medium">{item.label}</span>
-                          <span className="font-bold text-blue-400">{item.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>
@@ -399,34 +374,9 @@ export default function StudiosSection() {
                         alt={`Studio créateurs ${index + 1}`}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                     </motion.div>
                   ))}
-
-                  <div className="absolute bottom-0 left-0 right-0 p-10 z-10">
-                    <div className="text-center mb-8">
-                      <div className="text-3xl font-montserrat font-black text-white mb-3">Studio Créateurs</div>
-                      <div className="text-red-400/70 font-medium text-lg">Parfait pour YouTube & TikTok</div>
-                    </div>
-
-                    <div className="h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent my-6"></div>
-
-                    <div className="space-y-4">
-                      {[
-                        { label: 'Décors modulables', value: '5 ambiances' },
-                        { label: 'Connexion live', value: 'Fibre 1 Gbps' },
-                        { label: 'Forfaits mensuels', value: 'Dès 400€' }
-                      ].map((item, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-sm border border-red-500/20"
-                        >
-                          <span className="text-white/80 font-medium">{item.label}</span>
-                          <span className="font-bold text-red-400">{item.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>

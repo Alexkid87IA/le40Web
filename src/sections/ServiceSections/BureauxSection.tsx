@@ -148,41 +148,39 @@ export default function BureauxSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
           >
-            <div className="relative">
+            <div className="relative h-[600px] rounded-3xl overflow-hidden">
               <div className="absolute -inset-4 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-3xl blur-3xl opacity-20"></div>
-              <div className="relative bg-gradient-to-br from-emerald-950/40 to-teal-950/30 backdrop-blur-xl border border-emerald-500/20 rounded-3xl p-10">
-                <div className="text-center mb-8">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-400/30 flex items-center justify-center">
-                    <Building2 className="w-14 h-14 text-emerald-400" />
-                  </div>
-                  <div className="text-3xl font-montserrat font-black text-white mb-3">Bureaux Privés</div>
-                  <div className="text-emerald-400/70 font-medium text-lg">De 10m² à 100m²</div>
-                </div>
-
-                <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent my-8"></div>
-
-                <div className="space-y-5">
-                  {[
-                    { label: 'Mobilier premium', value: 'Inclus', highlight: false },
-                    { label: 'Ligne téléphonique', value: 'Dédiée', highlight: true },
-                    { label: 'Salles de réunion', value: '10-20h/mois', highlight: false },
-                    { label: 'Accès', value: '24/7', highlight: true }
-                  ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.5 }}
-                      viewport={{ once: true }}
-                      className="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/5 hover:border-emerald-500/20 transition-colors duration-300"
-                    >
-                      <span className="text-white/60 font-medium">{item.label}</span>
-                      <span className={`font-bold ${item.highlight ? 'text-emerald-400' : 'text-white'}`}>
-                        {item.value}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+              <div className="relative h-full">
+                {[
+                  'https://images.pexels.com/photos/2747446/pexels-photo-2747446.jpeg',
+                  'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg',
+                  'https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg',
+                  'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg'
+                ].map((src, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 1,
+                      delay: index * 4,
+                      repeat: Infinity,
+                      repeatDelay: 12
+                    }}
+                    className="absolute inset-0"
+                    style={{
+                      opacity: 0,
+                      animation: `fadeInOut 16s infinite ${index * 4}s`
+                    }}
+                  >
+                    <img
+                      src={src}
+                      alt={`Bureau privé ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>

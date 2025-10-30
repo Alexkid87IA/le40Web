@@ -137,65 +137,39 @@ export default function CommunitySection() {
             viewport={{ once: true }}
             className="hidden lg:block lg:order-1"
           >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl blur-3xl opacity-30"></div>
-              <div className="relative space-y-6">
-                <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
-                  <div className="text-center mb-6">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-500/20 border border-purple-400/30 flex items-center justify-center">
-                      <PartyPopper className="w-12 h-12 text-purple-400" />
-                    </div>
-                    <div className="text-2xl font-bold text-white mb-2">Événements & Networking</div>
-                    <div className="text-white/50">15+ événements par mois</div>
-                  </div>
-                  <div className="h-px bg-white/10 my-6"></div>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Afterwork Networking</span>
-                      <span className="text-white font-semibold">Hebdo</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Ateliers Thématiques</span>
-                      <span className="text-white font-semibold">Mensuel</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Pitch Sessions</span>
-                      <span className="text-white font-semibold">Mensuel</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Petit Déj Business</span>
-                      <span className="text-white font-semibold">Bi-mensuel</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
-                  <div className="grid grid-cols-3 gap-6 text-center">
-                    <div>
-                      <div className="text-4xl font-montserrat font-black text-white mb-1">120+</div>
-                      <div className="text-white/50 text-xs">Membres actifs</div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-montserrat font-black text-white mb-1">15+</div>
-                      <div className="text-white/50 text-xs">Events/mois</div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-montserrat font-black text-white mb-1">30+</div>
-                      <div className="text-white/50 text-xs">Secteurs</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-r from-purple-500/10 to-violet-500/10 border border-purple-500/20 rounded-2xl p-6 text-center">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Calendar className="w-5 h-5 text-purple-400" />
-                    <span className="text-purple-300 font-semibold text-sm">Prochain événement</span>
-                  </div>
-                  <p className="text-white text-sm">
-                    Afterwork Networking<br />
-                    <span className="text-white/60">Jeudi 7 Nov à 18h</span>
-                  </p>
-                </div>
+            <div className="relative h-[600px] rounded-3xl overflow-hidden">
+              <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-violet-600 rounded-3xl blur-3xl opacity-20"></div>
+              <div className="relative h-full">
+                {[
+                  'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg',
+                  'https://images.pexels.com/photos/1181622/pexels-photo-1181622.jpeg',
+                  'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg',
+                  'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg'
+                ].map((src, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{
+                      duration: 1,
+                      delay: index * 4,
+                      repeat: Infinity,
+                      repeatDelay: 12
+                    }}
+                    className="absolute inset-0"
+                    style={{
+                      opacity: 0,
+                      animation: `fadeInOut 16s infinite ${index * 4}s`
+                    }}
+                  >
+                    <img
+                      src={src}
+                      alt={`Communauté ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
