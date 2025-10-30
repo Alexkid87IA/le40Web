@@ -37,7 +37,7 @@ export default function HeroSection() {
             />
           </video>
 
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/65 to-black/80" />
 
           <motion.div
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/15 rounded-full blur-[150px]"
