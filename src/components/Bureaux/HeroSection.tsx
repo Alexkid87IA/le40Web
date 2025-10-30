@@ -32,7 +32,7 @@ export default function BureauHeroSection() {
             }}
           >
             <source
-              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761793838/9cc01971-7e57-46bd-8b62-2371cda76e82_h68lfm.mp4#t=0.1"
+              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4#t=0.1"
               type="video/mp4"
             />
           </video>
@@ -154,7 +154,7 @@ export default function BureauHeroSection() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16"
           >
             {[
-              { value: '15-100', suffix: 'm²', label: 'Surface modulable', color: 'from-blue-500 via-indigo-600 to-blue-500' },
+              { value: '100', suffix: 'm²', label: 'Surface max', color: 'from-blue-500 via-indigo-600 to-blue-500' },
               { value: '127', suffix: '+', label: 'Entreprises hébergées', color: 'from-indigo-500 via-blue-600 to-indigo-500' },
               { value: '24/7', suffix: '', label: 'Accès sécurisé', color: 'from-blue-600 via-indigo-500 to-blue-600' },
             ].map((stat, index) => (
