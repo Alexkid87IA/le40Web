@@ -9,10 +9,6 @@ import BureauxPrives from '../pages/BureauxPrives';
 import Domiciliation from '../pages/Domiciliation';
 import Salles from '../pages/Salles';
 import Studios from '../pages/Studios';
-import StudiosNew from '../pages/StudiosNew';
-import StudiosLaunch from '../pages/StudiosLaunch';
-import StudiosLaunchV2 from '../pages/StudiosLaunchV2';
-import StudiosBooking from '../pages/StudiosBooking';
 import Blog from '../pages/Blog';
 import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
@@ -40,10 +36,6 @@ export default function AppRoutes() {
         <Route path="/domiciliation" element={<Domiciliation />} />
         <Route path="/salles" element={<Salles />} />
         <Route path="/studios" element={<Studios />} />
-        <Route path="/studios-v2" element={<StudiosLaunchV2 />} />
-        <Route path="/studios-launch" element={<StudiosLaunch />} />
-        <Route path="/studios-new" element={<StudiosNew />} />
-        <Route path="/studios-booking" element={<StudiosBooking />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
