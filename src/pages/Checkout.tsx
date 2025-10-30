@@ -43,6 +43,10 @@ export default function Checkout() {
   const [orderError, setOrderError] = useState<string | null>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (items.length === 0) {
       navigate('/');
     }
