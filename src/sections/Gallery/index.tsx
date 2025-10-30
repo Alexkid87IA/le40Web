@@ -174,25 +174,18 @@ export default function Gallery() {
   return (
     <section className="relative bg-black py-32 overflow-hidden">
       {/* Arrière-plan */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black" />
-      
-      {/* Effets de lumière argentée */}
-      <motion.div
-        className="absolute top-40 right-1/4 w-96 h-96 bg-slate-400/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-40 left-1/4 w-80 h-80 bg-zinc-300/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1.3, 1, 1.3],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{ duration: 12, repeat: Infinity, delay: 3 }}
-      />
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        >
+          <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-zinc-950/90 to-black/80" />
+      </div>
 
       <div className={`relative z-10 w-full max-w-7xl mx-auto ${designTokens.spacing.container}`}>
         
