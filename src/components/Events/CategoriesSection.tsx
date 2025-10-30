@@ -27,10 +27,10 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
           playsInline
           style={{
             transform: 'scaleY(-1)',
-            filter: 'brightness(0.4)',
+            filter: 'brightness(0.6)',
             playbackRate: 0.5
           }}
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
           ref={(video) => {
             if (video) {
               video.playbackRate = 0.5;
@@ -42,7 +42,7 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-slate-950/70 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-slate-950/30 to-black/40" />
       </div>
 
       <div className="absolute inset-0 opacity-[0.02]" style={{
