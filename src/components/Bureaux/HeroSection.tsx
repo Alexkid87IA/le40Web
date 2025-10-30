@@ -1,9 +1,11 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Star, Building2, Shield, MapPin, Users } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import VisitBookingModal from './VisitBookingModal';
 
 export default function BureauHeroSection() {
   const containerRef = useRef(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -137,16 +139,14 @@ export default function BureauHeroSection() {
               </div>
             </motion.a>
 
-            <motion.a
-              href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite réserver une visite pour découvrir vos bureaux privés.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button
+              onClick={() => setIsBookingModalOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold transition-all duration-300"
             >
               Réserver une visite
-            </motion.a>
+            </motion.button>
           </motion.div>
 
           <motion.div
@@ -221,6 +221,10 @@ export default function BureauHeroSection() {
         </svg>
       </div>
 
+      <VisitBookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </section>
   );
 }

@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone, Calendar, MessageSquare } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import VisitBookingModal from './VisitBookingModal';
 
 export default function FinalCTASection() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
   return (
     <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0">
@@ -37,7 +40,7 @@ export default function FinalCTASection() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <a href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite réserver une visite pour découvrir vos bureaux privés.')}`} target="_blank" rel="noopener noreferrer" className="group">
+            <button onClick={() => setIsBookingModalOpen(true)} className="group">
               <motion.div
                 whileHover={{ y: -8, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -56,12 +59,12 @@ export default function FinalCTASection() {
                     Découvrez nos bureaux disponibles avec un membre de l'équipe
                   </p>
                   <div className="inline-flex items-center gap-2 text-emerald-400 font-semibold text-sm group-hover:gap-3 transition-all">
-                    Contacter sur WhatsApp
+                    Réserver un créneau
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </motion.div>
-            </a>
+            </button>
 
             <a href="tel:+33614315214" className="group">
               <motion.div
@@ -89,7 +92,7 @@ export default function FinalCTASection() {
               </motion.div>
             </a>
 
-            <a href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite recevoir un devis personnalisé pour un bureau privé.')}`} target="_blank" rel="noopener noreferrer" className="group">
+            <button onClick={() => setIsBookingModalOpen(true)} className="group">
               <motion.div
                 whileHover={{ y: -8, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -108,12 +111,12 @@ export default function FinalCTASection() {
                     Recevez une proposition personnalisée sous 24h
                   </p>
                   <div className="inline-flex items-center gap-2 text-cyan-400 font-semibold text-sm group-hover:gap-3 transition-all">
-                    Contacter sur WhatsApp
+                    Prendre rendez-vous
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </motion.div>
-            </a>
+            </button>
           </div>
 
           <div className="p-8 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-2xl">
@@ -140,6 +143,11 @@ export default function FinalCTASection() {
           </p>
         </motion.div>
       </div>
+
+      <VisitBookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </section>
   );
 }

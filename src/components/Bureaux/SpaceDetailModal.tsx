@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Users, Maximize2, MapPin, CheckCircle, Star, Clock, ArrowRight, Zap, Shield, Heart } from 'lucide-react';
+import VisitBookingModal from './VisitBookingModal';
 
 interface SpaceImage {
   url: string;
@@ -31,6 +32,7 @@ interface SpaceDetailModalProps {
 
 export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetailModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
 
@@ -330,27 +332,27 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.8 }}
                     className="flex flex-col gap-3"
                   >
-                    <motion.a
-                      href={`https://wa.me/33614315214?text=${encodeURIComponent(`Bonjour, je souhaite réserver une visite pour le bureau "${space.title}" (${space.capacity}).`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <motion.button
+                      onClick={() => {
+                        setIsBookingModalOpen(true);
+                      }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold font-montserrat rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2"
                     >
                       <span>Réserver une visite</span>
                       <ArrowRight className="w-5 h-5" />
-                    </motion.a>
-                    <motion.a
-                      href={`https://wa.me/33614315214?text=${encodeURIComponent(`Bonjour, je souhaite recevoir un devis pour le bureau "${space.title}" (${space.capacity}) à ${space.price}.`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    </motion.button>
+                    <motion.button
+                      onClick={() => {
+                        setIsBookingModalOpen(true);
+                      }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="w-full py-4 bg-white/10 backdrop-blur-xl text-white font-semibold font-montserrat rounded-xl border border-white/20 hover:bg-white/20 transition-all"
                     >
                       Demander un devis
-                    </motion.a>
+                    </motion.button>
                   </motion.div>
                 </div>
               </div>
@@ -358,6 +360,13 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
           </motion.div>
         </div>
       )}
+
+      <VisitBookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        officeTitle={space?.title}
+        officePrice={space?.price}
+      />
     </AnimatePresence>
   );
 }

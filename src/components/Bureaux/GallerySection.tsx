@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Eye, ArrowRight } from 'lucide-react';
 import { enrichedGalleryData, galleryCategories, EnrichedSpaceDetail } from '../../data/bureaux/galleryEnriched';
 import SpaceDetailModal from './SpaceDetailModal';
+import VisitBookingModal from './VisitBookingModal';
 
 export default function GallerySection() {
   const [activeCategory, setActiveCategory] = useState('Tous');
   const [selectedSpace, setSelectedSpace] = useState<EnrichedSpaceDetail | null>(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   const filteredGallery = activeCategory === 'Tous'
     ? enrichedGalleryData
@@ -174,17 +176,15 @@ export default function GallerySection() {
           <p className="text-white/60 font-inter mb-6">
             Les photos valent mieux que mille mots, mais rien ne remplace une visite en personne
           </p>
-          <motion.a
-            href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite réserver une visite guidée gratuite pour découvrir vos bureaux privés.')}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={() => setIsBookingModalOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-montserrat font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-600/30 transition-all"
           >
             Réserver une visite guidée gratuite
             <ArrowRight className="w-5 h-5" />
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
 
@@ -195,6 +195,11 @@ export default function GallerySection() {
           onClose={() => setSelectedSpace(null)}
         />
       )}
+
+      <VisitBookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </section>
   );
 }
