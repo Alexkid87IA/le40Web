@@ -152,7 +152,7 @@ export default function HeroSection() {
             className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-16"
           >
             {[
-              { value: '49€', suffix: '/mois', label: 'À partir de', color: 'from-orange-500 via-amber-600 to-orange-500' },
+              { value: '49€', suffix: '/m', label: 'À partir de', color: 'from-orange-500 via-amber-600 to-orange-500' },
               { value: '24h', suffix: '', label: 'Activation', color: 'from-amber-500 via-orange-600 to-amber-500' },
               { value: '2h', suffix: '', label: 'Scan courrier', color: 'from-orange-600 via-amber-500 to-orange-600' },
               { value: '100%', suffix: '', label: 'Conformité', color: 'from-amber-600 via-orange-500 to-amber-600' },
