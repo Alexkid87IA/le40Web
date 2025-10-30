@@ -48,7 +48,7 @@ export default function PastEventsSection() {
         >
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             Événements{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
               Passés
             </span>
           </h2>
@@ -70,7 +70,7 @@ export default function PastEventsSection() {
               className="group relative flex"
             >
               <div className="relative overflow-hidden rounded-3xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-500 flex flex-col w-full">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative h-56 overflow-hidden shrink-0">
                   <motion.img
@@ -83,7 +83,7 @@ export default function PastEventsSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
 
                   <div className="absolute top-6 left-6 flex items-center gap-3">
-                    <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg">
+                    <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg">
                       {event.categoryName}
                     </div>
                     <div className="flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl px-3 py-1.5">
@@ -94,7 +94,7 @@ export default function PastEventsSection() {
 
                   <div className="absolute top-6 right-6">
                     <div className="flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl px-3 py-1.5">
-                      <Users className="w-4 h-4 text-emerald-400" />
+                      <Users className="w-4 h-4 text-cyan-400" />
                       <span className="text-white text-sm font-bold">{event.attendees}</span>
                     </div>
                   </div>
@@ -106,14 +106,14 @@ export default function PastEventsSection() {
                     <span>{event.date}</span>
                   </div>
 
-                  <h3 className="text-xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-500 line-clamp-2">
+                  <h3 className="text-xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-400 transition-all duration-500 line-clamp-2">
                     {event.title}
                   </h3>
 
                   <div className="space-y-2 mb-6 flex-1">
                     {event.highlights.slice(0, 3).map((highlight, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-white/70 text-sm">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 shrink-0" />
                         <span className="font-inter line-clamp-1">{highlight}</span>
                       </div>
                     ))}
@@ -141,9 +141,9 @@ export default function PastEventsSection() {
           transition={{ delay: 0.5 }}
           className="mt-20 text-center"
         >
-          <div className="inline-flex items-center gap-8 bg-gradient-to-r from-emerald-950/50 to-teal-950/50 backdrop-blur-xl border border-emerald-500/20 rounded-3xl p-8">
+          <div className="inline-flex items-center gap-8 bg-gradient-to-r from-cyan-950/50 to-blue-950/50 backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8">
             <div className="text-center">
-              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-2">
+              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
                 150+
               </div>
               <div className="text-sm text-white/60 font-inter">Événements réalisés</div>
