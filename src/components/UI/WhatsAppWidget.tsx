@@ -14,140 +14,80 @@ export default function WhatsAppWidget() {
 
     if (path.includes('/domiciliation')) {
       return {
-        gradient: 'from-amber-500 to-orange-500',
-        shadow: 'shadow-orange-500/50',
-        hoverShadow: 'hover:shadow-orange-500/50',
-        border: 'border-orange-400/30',
-        iconBg: 'text-orange-500',
-        messageBg: 'bg-orange-500/10',
-        textAccent: 'text-orange-100',
-        ping: 'bg-orange-500',
-        glow: 'group-hover:shadow-orange-500/40'
+        bg: 'bg-gradient-to-r from-amber-500 to-orange-500',
+        bgHover: 'hover:from-amber-600 hover:to-orange-600',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/bureaux')) {
       return {
-        gradient: 'from-emerald-500 to-teal-500',
-        shadow: 'shadow-emerald-500/50',
-        hoverShadow: 'hover:shadow-emerald-500/50',
-        border: 'border-emerald-400/30',
-        iconBg: 'text-emerald-500',
-        messageBg: 'bg-emerald-500/10',
-        textAccent: 'text-emerald-100',
-        ping: 'bg-emerald-500',
-        glow: 'group-hover:shadow-emerald-500/40'
+        bg: 'bg-gradient-to-r from-emerald-600 to-teal-600',
+        bgHover: 'hover:from-emerald-700 hover:to-teal-700',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/coworking')) {
       return {
-        gradient: 'from-cyan-500 via-blue-500 to-teal-500',
-        shadow: 'shadow-cyan-500/50',
-        hoverShadow: 'hover:shadow-cyan-500/50',
-        border: 'border-cyan-400/30',
-        iconBg: 'text-cyan-500',
-        messageBg: 'bg-cyan-500/10',
-        textAccent: 'text-cyan-100',
-        ping: 'bg-cyan-500',
-        glow: 'group-hover:shadow-cyan-500/40'
+        bg: 'bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600',
+        bgHover: 'hover:from-cyan-700 hover:via-blue-700 hover:to-teal-700',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/studios')) {
       return {
-        gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
-        shadow: 'shadow-emerald-500/50',
-        hoverShadow: 'hover:shadow-emerald-500/50',
-        border: 'border-emerald-400/30',
-        iconBg: 'text-emerald-500',
-        messageBg: 'bg-emerald-500/10',
-        textAccent: 'text-emerald-100',
-        ping: 'bg-emerald-500',
-        glow: 'group-hover:shadow-emerald-500/40'
+        bg: 'bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600',
+        bgHover: 'hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/salles')) {
       return {
-        gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
-        shadow: 'shadow-emerald-500/50',
-        hoverShadow: 'hover:shadow-teal-500/50',
-        border: 'border-teal-400/30',
-        iconBg: 'text-teal-500',
-        messageBg: 'bg-teal-500/10',
-        textAccent: 'text-teal-100',
-        ping: 'bg-teal-500',
-        glow: 'group-hover:shadow-teal-500/40'
+        bg: 'bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600',
+        bgHover: 'hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/club')) {
       return {
-        gradient: 'from-red-500 to-rose-500',
-        shadow: 'shadow-red-500/50',
-        hoverShadow: 'hover:shadow-rose-500/50',
-        border: 'border-rose-400/30',
-        iconBg: 'text-rose-500',
-        messageBg: 'bg-rose-500/10',
-        textAccent: 'text-rose-100',
-        ping: 'bg-rose-500',
-        glow: 'group-hover:shadow-rose-500/40'
+        bg: 'bg-gradient-to-r from-red-600 to-rose-600',
+        bgHover: 'hover:from-red-700 hover:to-rose-700',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/events') || path.includes('/evenements')) {
       return {
-        gradient: 'from-cyan-500 to-blue-500',
-        shadow: 'shadow-cyan-500/50',
-        hoverShadow: 'hover:shadow-blue-500/50',
-        border: 'border-blue-400/30',
-        iconBg: 'text-blue-500',
-        messageBg: 'bg-blue-500/10',
-        textAccent: 'text-blue-100',
-        ping: 'bg-blue-500',
-        glow: 'group-hover:shadow-blue-500/40'
+        bg: 'bg-gradient-to-r from-cyan-600 to-blue-600',
+        bgHover: 'hover:from-cyan-700 hover:to-blue-700',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/contact')) {
       return {
-        gradient: 'from-purple-500 to-pink-500',
-        shadow: 'shadow-purple-500/50',
-        hoverShadow: 'hover:shadow-pink-500/50',
-        border: 'border-purple-400/30',
-        iconBg: 'text-purple-500',
-        messageBg: 'bg-purple-500/10',
-        textAccent: 'text-purple-100',
-        ping: 'bg-purple-500',
-        glow: 'group-hover:shadow-purple-500/40'
+        bg: 'bg-gradient-to-r from-purple-600 to-pink-600',
+        bgHover: 'hover:from-purple-700 hover:to-pink-700',
+        text: 'text-white'
       };
     }
 
     if (path.includes('/offres') || path.includes('/tarifs') || path.includes('/pricing')) {
       return {
-        gradient: 'from-amber-500 to-orange-500',
-        shadow: 'shadow-orange-500/50',
-        hoverShadow: 'hover:shadow-orange-500/50',
-        border: 'border-orange-400/30',
-        iconBg: 'text-orange-500',
-        messageBg: 'bg-orange-500/10',
-        textAccent: 'text-orange-100',
-        ping: 'bg-orange-500',
-        glow: 'group-hover:shadow-orange-500/40'
+        bg: 'bg-gradient-to-r from-orange-400 to-orange-600',
+        bgHover: 'hover:from-orange-500 hover:to-orange-700',
+        text: 'text-white'
       };
     }
 
     return {
-      gradient: 'from-emerald-500 to-teal-500',
-      shadow: 'shadow-emerald-500/50',
-      hoverShadow: 'hover:shadow-teal-500/50',
-      border: 'border-emerald-400/30',
-      iconBg: 'text-emerald-500',
-      messageBg: 'bg-emerald-500/10',
-      textAccent: 'text-emerald-100',
-      ping: 'bg-emerald-500',
-      glow: 'group-hover:shadow-emerald-500/40'
+      bg: 'bg-gradient-to-r from-emerald-600 to-teal-600',
+      bgHover: 'hover:from-emerald-700 hover:to-teal-700',
+      text: 'text-white'
     };
   };
 
@@ -167,36 +107,26 @@ export default function WhatsAppWidget() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-20 right-6 z-[9998] w-72"
+            className="fixed bottom-20 right-6 z-[9998] w-64"
           >
-            <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-white/20 overflow-hidden">
-              <div className="p-4 border-b border-gray-100">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-[#25D366] rounded-full flex items-center justify-center">
-                      <MessageCircle className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="text-sm font-medium text-gray-900">WhatsApp</span>
-                  </div>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="p-1 hover:bg-gray-100 rounded transition-colors"
-                  >
-                    <X className="w-4 h-4 text-gray-500" />
-                  </button>
-                </div>
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 overflow-hidden">
+              <div className="p-3 flex items-center justify-between border-b border-gray-100">
+                <span className="text-sm font-medium text-gray-900">Contactez-nous</span>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1 hover:bg-gray-100 rounded transition-colors"
+                >
+                  <X className="w-4 h-4 text-gray-500" />
+                </button>
               </div>
 
-              <div className="p-4">
-                <p className="text-sm text-gray-700 mb-4">
-                  Une question ? Contactez-nous sur WhatsApp
-                </p>
+              <div className="p-3">
                 <button
                   onClick={handleClick}
-                  className="w-full py-2.5 bg-[#25D366] hover:bg-[#20BA5A] text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+                  className={`w-full py-2.5 ${colors.bg} ${colors.bgHover} ${colors.text} text-sm font-medium rounded-lg transition-all flex items-center justify-center gap-2`}
                 >
                   <MessageCircle className="w-4 h-4" />
-                  Démarrer la conversation
+                  WhatsApp
                 </button>
               </div>
             </div>
@@ -208,7 +138,7 @@ export default function WhatsAppWidget() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-[9999] w-14 h-14 bg-[#25D366] hover:bg-[#20BA5A] rounded-full shadow-lg flex items-center justify-center transition-colors group"
+        className={`fixed bottom-6 right-6 z-[9999] w-12 h-12 ${colors.bg} ${colors.bgHover} rounded-full shadow-lg flex items-center justify-center transition-all`}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
@@ -219,7 +149,7 @@ export default function WhatsAppWidget() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
-              <X className="w-6 h-6 text-white" />
+              <X className="w-5 h-5 text-white" />
             </motion.div>
           ) : (
             <motion.div
@@ -229,7 +159,7 @@ export default function WhatsAppWidget() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
-              <MessageCircle className="w-6 h-6 text-white" />
+              <MessageCircle className="w-5 h-5 text-white" />
             </motion.div>
           )}
         </AnimatePresence>
