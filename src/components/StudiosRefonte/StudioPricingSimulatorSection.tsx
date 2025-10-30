@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { studios } from '../../data/studios/studiosData';
 import { formulas, durations } from '../../data/studios/formulas';
 import { studioAdditionalServices } from '../../data/studios/studioAdditionalServices';
@@ -16,17 +16,6 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
   const [selectedDurationId, setSelectedDurationId] = useState('3h');
   const [selectedOptions, setSelectedOptions] = useState<Record<string, boolean>>({});
   const { addItem } = useCart();
-
-  const optionsRef = useRef<HTMLDivElement>(null);
-  const summaryRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: optionsRef,
-    offset: ["start end", "end start"]
-  });
-
-  const summaryY = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -100]);
-  const summaryOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0.5]);
 
   const currentStudio = studios.find(s => s.id === selectedStudioId) || studios[0];
   const currentFormula = formulas.find(f => f.id === selectedFormulaId) || formulas[0];
@@ -301,7 +290,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                   </div>
                 </div>
 
-                <div ref={optionsRef} className="pt-8 border-t border-white/10">
+                <div className="pt-8 border-t border-white/10">
                   <label className="flex items-center gap-3 text-white font-inter font-semibold mb-6 text-lg">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center">
                       <span className="text-white font-bold text-sm">4</span>
@@ -385,11 +374,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             transition={{ duration: 0.6 }}
           >
             <div className="sticky top-8">
-              <motion.div
-                ref={summaryRef}
-                style={{ y: summaryY, opacity: summaryOpacity }}
-                className="relative bg-gradient-to-br from-zinc-900 via-black to-zinc-950 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl overflow-hidden"
-              >
+              <div className="relative bg-gradient-to-br from-zinc-900 via-black to-zinc-950 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-fuchsia-600/5 via-transparent to-transparent"></div>
 
                 <div className="relative z-10">
@@ -569,7 +554,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                   <p>Configuration sauvegardée • Aucun engagement</p>
                 </div>
               </div>
-              </motion.div>
+            </div>
             </div>
           </motion.div>
         </div>
