@@ -805,6 +805,8 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                           duration: 'hour',
                           price: currentStudio.launchPrice,
                           quantity: 1,
+                          image: currentStudio.gallery?.[0] || currentStudio.image,
+                          gradient: currentStudio.gradient || 'from-emerald-600 to-cyan-600',
                           studioConfig: {
                             studioId: currentStudio.id,
                             formulaId: currentFormula.id,
@@ -813,9 +815,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                             durationLabel: currentDuration.label,
                             durationHours: currentDuration.hours,
                             options: selectedOptionsArray
-                          },
-                          image: currentStudio.image,
-                          gradient: currentStudio.gradient
+                          }
                         });
                       }}
                       whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(236, 72, 153, 0.4)" }}

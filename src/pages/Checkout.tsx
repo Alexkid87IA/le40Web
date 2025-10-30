@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   CreditCard, Lock, ArrowLeft, Check, AlertCircle,
-  ShoppingCart, Mail, Phone, User, Building2, Loader2
+  ShoppingCart, Mail, Phone, User, Building2, Loader2, Edit2, Trash2, Calendar, Clock
 } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
@@ -28,7 +28,7 @@ interface FormErrors {
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const { items, totalPrice, calculateStudioTotal, clearCart } = useCart();
+  const { items, totalPrice, calculateStudioTotal, clearCart, removeItem } = useCart();
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -384,15 +384,81 @@ export default function Checkout() {
                         : item.price * item.quantity;
 
                       return (
-                        <div key={item.id} className="pb-4 border-b border-white/10">
-                          <div className="flex justify-between items-start mb-1">
-                            <span className="text-white font-medium text-sm">{item.serviceName}</span>
-                            <span className="text-white font-bold">{itemTotal.toFixed(0)}€</span>
+                        <motion.div
+                          key={item.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-white/20 transition-colors"
+                        >
+                          <div className="flex gap-4">
+                            {item.image && (
+                              <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+                                <img
+                                  src={item.image}
+                                  alt={item.serviceName}
+                                  className="w-full h-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                              </div>
+                            )}
+
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between gap-2 mb-2">
+                                <h4 className="text-white font-semibold text-sm leading-tight">
+                                  {item.serviceName}
+                                </h4>
+                                <span className="text-white font-bold text-lg whitespace-nowrap">
+                                  {itemTotal.toFixed(0)}€
+                                </span>
+                              </div>
+
+                              {item.date && (
+                                <div className="flex items-center gap-1 text-white/60 text-xs mb-1">
+                                  <Calendar className="w-3 h-3" />
+                                  <span>{new Date(item.date).toLocaleDateString('fr-FR', {
+                                    day: 'numeric',
+                                    month: 'long',
+                                    year: 'numeric'
+                                  })}</span>
+                                </div>
+                              )}
+
+                              {item.startTime && item.endTime && (
+                                <div className="flex items-center gap-1 text-white/60 text-xs mb-2">
+                                  <Clock className="w-3 h-3" />
+                                  <span>{item.startTime} - {item.endTime}</span>
+                                </div>
+                              )}
+
+                              {item.studioConfig && (
+                                <div className="text-white/50 text-xs mb-2">
+                                  <div>{item.studioConfig.formulaName} • {item.studioConfig.durationLabel}</div>
+                                  {item.studioConfig.options.length > 0 && (
+                                    <div className="mt-1">
+                                      Options: {item.studioConfig.options.map(opt => opt.name).join(', ')}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+
+                              <div className="flex items-center gap-2 mt-2">
+                                <button
+                                  onClick={() => {
+                                    removeItem(item.id);
+                                    if (items.length === 1) {
+                                      navigate('/');
+                                    }
+                                  }}
+                                  className="flex items-center gap-1 px-3 py-1.5 text-xs bg-white/5 hover:bg-red-500/20
+                                           text-white/60 hover:text-red-400 rounded-lg transition-all"
+                                >
+                                  <Trash2 className="w-3 h-3" />
+                                  Supprimer
+                                </button>
+                              </div>
+                            </div>
                           </div>
-                          <div className="text-white/50 text-xs">
-                            Quantité: {item.quantity}
-                          </div>
-                        </div>
+                        </motion.div>
                       );
                     })}
                   </div>

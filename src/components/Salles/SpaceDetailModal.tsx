@@ -54,7 +54,9 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
       endTime: calculateEndTime(selectedTime, duree),
       duration: durationMap[duree] || 'hour',
       price: price,
-      quantity: 1
+      quantity: 1,
+      image: space.images[0],
+      gradient: space.gradient
     });
 
     setSelectedDuration(duree);
