@@ -161,147 +161,141 @@ export default function StudioComparatorSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="overflow-x-auto pb-8 scrollbar-custom"
-          style={{
-            scrollbarWidth: 'thin',
-            scrollbarColor: '#d946ef20 transparent'
-          }}
+          className="w-full"
         >
-          <div className="min-w-[1600px]">
-            <div className="bg-zinc-900/30 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+          <div className="bg-zinc-900/30 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
 
-              <div className="grid grid-cols-7 border-b border-white/10">
-                <div className="bg-zinc-950/80 p-6 flex items-center">
-                  <span className="text-white/40 font-inter font-medium text-xs uppercase tracking-wider">
-                    Caractéristiques
-                  </span>
-                </div>
-                {studios.map((studio, index) => (
-                  <motion.div
-                    key={studio.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.08, duration: 0.5 }}
-                    onMouseEnter={() => setHoveredStudio(studio.id)}
-                    onMouseLeave={() => setHoveredStudio(null)}
-                    className={`relative bg-zinc-950/80 p-5 transition-all duration-300 ${
-                      hoveredStudio === studio.id ? 'bg-zinc-900/80' : ''
-                    }`}
-                  >
-                    <div className="flex flex-col items-center gap-3">
-                      <motion.div
-                        animate={{
-                          scale: hoveredStudio === studio.id ? 1.1 : 1,
-                          rotate: hoveredStudio === studio.id ? 5 : 0
-                        }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
-                      >
-                        <studio.icon className="w-7 h-7 text-white" />
-                      </motion.div>
-                      <div className="text-center">
-                        <h3 className="text-white font-montserrat font-bold text-xs mb-0.5 leading-tight">
-                          {studio.name}
-                        </h3>
-                        <p className="text-white/50 text-[10px] font-inter leading-tight">
-                          {studio.subtitle.split('•')[0].trim()}
-                        </p>
-                      </div>
-                    </div>
-
-                    {hoveredStudio === studio.id && (
-                      <motion.div
-                        initial={{ opacity: 0, scaleX: 0 }}
-                        animate={{ opacity: 1, scaleX: 1 }}
-                        className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${studio.gradient}`}
-                      />
-                    )}
-                  </motion.div>
-                ))}
+            <div className="grid grid-cols-[200px_repeat(6,1fr)] border-b border-white/10">
+              <div className="bg-zinc-950/80 p-4 flex items-center sticky left-0 z-20">
+                <span className="text-white/40 font-inter font-medium text-xs uppercase tracking-wider">
+                  Caractéristiques
+                </span>
               </div>
-
-              {features.map((feature, featureIndex) => (
+              {studios.map((studio, index) => (
                 <motion.div
-                  key={feature.key}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  key={studio.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: featureIndex * 0.03, duration: 0.4 }}
-                  className={`grid grid-cols-7 border-b border-white/5 hover:bg-white/5 transition-colors group ${
-                    feature.type === 'highlight' ? 'bg-white/5' : ''
+                  transition={{ delay: index * 0.08, duration: 0.5 }}
+                  onMouseEnter={() => setHoveredStudio(studio.id)}
+                  onMouseLeave={() => setHoveredStudio(null)}
+                  className={`relative bg-zinc-950/80 p-3 transition-all duration-300 ${
+                    hoveredStudio === studio.id ? 'bg-zinc-900/80' : ''
                   }`}
                 >
-                  <div className="bg-zinc-950/80 p-4 flex items-center">
-                    <span className={`font-inter text-xs ${
-                      feature.type === 'highlight'
-                        ? 'text-white font-semibold'
-                        : 'text-white/80 font-medium'
-                    }`}>
-                      {feature.label}
-                    </span>
+                  <div className="flex flex-col items-center gap-2">
+                    <motion.div
+                      animate={{
+                        scale: hoveredStudio === studio.id ? 1.1 : 1,
+                        rotate: hoveredStudio === studio.id ? 5 : 0
+                      }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      className={`w-10 h-10 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
+                    >
+                      <studio.icon className="w-5 h-5 text-white" />
+                    </motion.div>
+                    <div className="text-center">
+                      <h3 className="text-white font-montserrat font-bold text-[10px] mb-0.5 leading-tight">
+                        {studio.name}
+                      </h3>
+                      <p className="text-white/50 text-[9px] font-inter leading-tight">
+                        {studio.subtitle.split('•')[0].trim()}
+                      </p>
+                    </div>
                   </div>
-                  {studios.map((studio) => {
-                    const value = comparisonData[studio.id as keyof typeof comparisonData]?.[feature.key];
-                    return (
-                      <div
-                        key={studio.id}
-                        className={`bg-zinc-950/60 p-4 flex items-center justify-center transition-all ${
-                          hoveredStudio === studio.id ? 'bg-zinc-900/60' : ''
-                        }`}
-                      >
-                        {typeof value === 'boolean' ? (
-                          value ? (
-                            <motion.div
-                              whileHover={{ scale: 1.2, rotate: 360 }}
-                              className={`w-8 h-8 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
-                            >
-                              <Check className="w-4 h-4 text-white" strokeWidth={3} />
-                            </motion.div>
-                          ) : (
-                            <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center">
-                              <X className="w-4 h-4 text-white/20" strokeWidth={2} />
-                            </div>
-                          )
-                        ) : (
-                          <span className={`font-inter text-center leading-tight ${
-                            feature.type === 'highlight'
-                              ? 'text-white font-bold text-sm'
-                              : 'text-white/90 font-medium text-xs'
-                          }`}>
-                            {value}
-                          </span>
-                        )}
-                      </div>
-                    );
-                  })}
+
+                  {hoveredStudio === studio.id && (
+                    <motion.div
+                      initial={{ opacity: 0, scaleX: 0 }}
+                      animate={{ opacity: 1, scaleX: 1 }}
+                      className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${studio.gradient}`}
+                    />
+                  )}
                 </motion.div>
               ))}
+            </div>
 
-              <div className="grid grid-cols-7 bg-zinc-950/60">
-                <div className="p-4"></div>
-                {studios.map((studio, index) => (
-                  <motion.div
-                    key={studio.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.08, duration: 0.5 }}
-                    className="p-4 flex items-center justify-center"
-                  >
-                    <motion.button
-                      onClick={() => scrollToConfigurator(studio.id)}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`w-full px-4 py-3 bg-gradient-to-r ${studio.gradient} text-white rounded-xl font-montserrat font-bold text-xs shadow-xl flex items-center justify-center gap-2 group relative overflow-hidden`}
+            {features.map((feature, featureIndex) => (
+              <motion.div
+                key={feature.key}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: featureIndex * 0.03, duration: 0.4 }}
+                className={`grid grid-cols-[200px_repeat(6,1fr)] border-b border-white/5 hover:bg-white/5 transition-colors group ${
+                  feature.type === 'highlight' ? 'bg-white/5' : ''
+                }`}
+              >
+                <div className="bg-zinc-950/80 p-3 flex items-center sticky left-0 z-20">
+                  <span className={`font-inter text-[11px] ${
+                    feature.type === 'highlight'
+                      ? 'text-white font-semibold'
+                      : 'text-white/80 font-medium'
+                  }`}>
+                    {feature.label}
+                  </span>
+                </div>
+                {studios.map((studio) => {
+                  const value = comparisonData[studio.id as keyof typeof comparisonData]?.[feature.key];
+                  return (
+                    <div
+                      key={studio.id}
+                      className={`bg-zinc-950/60 p-3 flex items-center justify-center transition-all ${
+                        hoveredStudio === studio.id ? 'bg-zinc-900/60' : ''
+                      }`}
                     >
-                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                      <span className="relative">Config</span>
-                      <ArrowRight className="w-3.5 h-3.5 relative group-hover:translate-x-1 transition-transform" />
-                    </motion.button>
-                  </motion.div>
-                ))}
-              </div>
+                      {typeof value === 'boolean' ? (
+                        value ? (
+                          <motion.div
+                            whileHover={{ scale: 1.2, rotate: 360 }}
+                            className={`w-7 h-7 rounded-lg bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}
+                          >
+                            <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                          </motion.div>
+                        ) : (
+                          <div className="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center">
+                            <X className="w-3.5 h-3.5 text-white/20" strokeWidth={2} />
+                          </div>
+                        )
+                      ) : (
+                        <span className={`font-inter text-center leading-tight ${
+                          feature.type === 'highlight'
+                            ? 'text-white font-bold text-xs'
+                            : 'text-white/90 font-medium text-[10px]'
+                        }`}>
+                          {value}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </motion.div>
+            ))}
+
+            <div className="grid grid-cols-[200px_repeat(6,1fr)] bg-zinc-950/60">
+              <div className="p-3 sticky left-0 z-20 bg-zinc-950/60"></div>
+              {studios.map((studio, index) => (
+                <motion.div
+                  key={studio.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08, duration: 0.5 }}
+                  className="p-3 flex items-center justify-center"
+                >
+                  <motion.button
+                    onClick={() => scrollToConfigurator(studio.id)}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`w-full px-3 py-2 bg-gradient-to-r ${studio.gradient} text-white rounded-lg font-montserrat font-bold text-[10px] shadow-xl flex items-center justify-center gap-1.5 group relative overflow-hidden`}
+                  >
+                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    <span className="relative">Configurer</span>
+                    <ArrowRight className="w-3 h-3 relative group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
