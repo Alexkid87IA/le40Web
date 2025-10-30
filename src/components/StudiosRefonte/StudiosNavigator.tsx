@@ -62,48 +62,46 @@ export default function StudiosNavigator() {
 
   return (
     <motion.nav
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ x: 100, opacity: 0 }}
       animate={{
-        y: isVisible ? 0 : -100,
+        x: isVisible ? 0 : 100,
         opacity: isVisible ? 1 : 0
       }}
       transition={{ duration: 0.3 }}
-      className="fixed top-24 left-0 right-0 z-50 px-8 lg:px-16"
+      className="fixed top-32 right-8 z-50 hidden lg:block"
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-black/90 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl">
-          <div className="flex items-center justify-between overflow-x-auto no-scrollbar py-3 px-4">
-            {sections.map((section) => {
-              const Icon = section.icon;
-              const isActive = activeSection === section.id;
+      <div className="bg-black/90 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl py-4 px-3 max-w-[200px]">
+        <div className="flex flex-col gap-2">
+          {sections.map((section) => {
+            const Icon = section.icon;
+            const isActive = activeSection === section.id;
 
-              return (
-                <motion.button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all whitespace-nowrap ${
-                    isActive
-                      ? 'text-white'
-                      : 'text-white/60 hover:text-white/90'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeStudioSection"
-                      className="absolute inset-0 bg-gradient-to-r from-rose-500/20 via-fuchsia-500/20 to-violet-500/20 rounded-xl border border-fuchsia-500/30"
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <Icon className={`w-4 h-4 relative z-10 ${isActive ? 'text-fuchsia-400' : ''}`} />
-                  <span className="relative z-10 font-inter font-medium text-sm">
-                    {section.label}
-                  </span>
-                </motion.button>
-              );
-            })}
-          </div>
+            return (
+              <motion.button
+                key={section.id}
+                onClick={() => scrollToSection(section.id)}
+                whileHover={{ scale: 1.05, x: -4 }}
+                whileTap={{ scale: 0.95 }}
+                className={`relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  isActive
+                    ? 'text-white'
+                    : 'text-white/60 hover:text-white/90'
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeStudioSection"
+                    className="absolute inset-0 bg-gradient-to-r from-rose-500/20 via-fuchsia-500/20 to-violet-500/20 rounded-xl border border-fuchsia-500/30"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <Icon className={`w-5 h-5 relative z-10 flex-shrink-0 ${isActive ? 'text-fuchsia-400' : ''}`} />
+                <span className="relative z-10 font-inter font-medium text-sm text-left">
+                  {section.label}
+                </span>
+              </motion.button>
+            );
+          })}
         </div>
       </div>
     </motion.nav>
