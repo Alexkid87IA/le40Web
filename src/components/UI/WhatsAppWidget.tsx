@@ -163,59 +163,41 @@ export default function WhatsAppWidget() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.85, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.85, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed bottom-24 right-6 z-[9998] w-80"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-20 right-6 z-[9998] w-72"
           >
-            <div className={`absolute -inset-1 bg-gradient-to-r ${colors.gradient} rounded-2xl blur-xl opacity-40`}></div>
-            <div className={`relative bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl border-2 ${colors.border} rounded-2xl shadow-2xl overflow-hidden`}>
-              <div className={`bg-gradient-to-r ${colors.gradient} p-4 flex items-center justify-between relative`}>
-                <div className="absolute inset-0 bg-black/10"></div>
-                <div className="flex items-center gap-3 relative z-10">
-                  <div className="relative">
-                    <div className={`absolute inset-0 bg-gradient-to-r ${colors.gradient} rounded-full blur-md opacity-50`}></div>
-                    <div className="relative w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                      <MessageCircle className={`w-6 h-6 ${colors.iconBg}`} />
+            <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-white/20 overflow-hidden">
+              <div className="p-4 border-b border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-[#25D366] rounded-full flex items-center justify-center">
+                      <MessageCircle className="w-4 h-4 text-white" />
                     </div>
+                    <span className="text-sm font-medium text-gray-900">WhatsApp</span>
                   </div>
-                  <div>
-                    <h3 className="text-white font-montserrat font-bold text-sm">Le 40 Coworking</h3>
-                    <div className="flex items-center gap-1.5">
-                      <div className={`w-2 h-2 ${colors.ping} rounded-full animate-pulse`}></div>
-                      <p className="text-white/90 text-xs">En ligne</p>
-                    </div>
-                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-1 hover:bg-gray-100 rounded transition-colors"
+                  >
+                    <X className="w-4 h-4 text-gray-500" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="relative z-10 p-1.5 hover:bg-white/20 rounded-lg transition-all duration-200"
-                >
-                  <X className="w-5 h-5 text-white" />
-                </button>
               </div>
 
-              <div className="p-6 relative">
-                <div className={`${colors.messageBg} backdrop-blur-sm rounded-xl p-4 mb-4 border ${colors.border}`}>
-                  <p className="text-white text-sm font-inter mb-3">
-                    👋 Bonjour ! Comment pouvons-nous vous aider aujourd'hui ?
-                  </p>
-                  <p className="text-white/60 text-xs">
-                    Nous répondons généralement en quelques minutes
-                  </p>
-                </div>
-
-                <motion.button
+              <div className="p-4">
+                <p className="text-sm text-gray-700 mb-4">
+                  Une question ? Contactez-nous sur WhatsApp
+                </p>
+                <button
                   onClick={handleClick}
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  className={`relative w-full py-3.5 bg-gradient-to-r ${colors.gradient} text-white font-montserrat font-semibold rounded-xl shadow-lg hover:shadow-xl ${colors.hoverShadow} transition-all flex items-center justify-center gap-2 overflow-hidden group`}
+                  className="w-full py-2.5 bg-[#25D366] hover:bg-[#20BA5A] text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300"></div>
-                  <MessageCircle className="w-5 h-5 relative z-10" />
-                  <span className="relative z-10">Démarrer la conversation</span>
-                </motion.button>
+                  <MessageCircle className="w-4 h-4" />
+                  Démarrer la conversation
+                </button>
               </div>
             </div>
           </motion.div>
@@ -224,45 +206,33 @@ export default function WhatsAppWidget() {
 
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.15, rotate: isOpen ? 90 : 0 }}
-        whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 z-[9999] w-16 h-16 group"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-6 right-6 z-[9999] w-14 h-14 bg-[#25D366] hover:bg-[#20BA5A] rounded-full shadow-lg flex items-center justify-center transition-colors group"
       >
-        <div className={`absolute -inset-2 bg-gradient-to-r ${colors.gradient} rounded-full blur-xl opacity-60 group-hover:opacity-80 ${colors.glow} transition-all duration-300`}></div>
-
-        <div className={`absolute inset-0 bg-gradient-to-r ${colors.gradient} rounded-full animate-ping opacity-20`}></div>
-
-        <div className={`relative w-full h-full bg-gradient-to-br ${colors.gradient} rounded-full shadow-2xl ${colors.shadow} flex items-center justify-center overflow-hidden`}>
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-          <AnimatePresence mode="wait">
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
-                animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="relative z-10"
-              >
-                <X className="w-7 h-7 text-white drop-shadow-lg" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="open"
-                initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
-                animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="relative z-10"
-              >
-                <MessageCircle className="w-7 h-7 text-white drop-shadow-lg" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div
+              key="close"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <X className="w-6 h-6 text-white" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="open"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <MessageCircle className="w-6 h-6 text-white" />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.button>
     </>
   );
