@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, Sparkles } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 
 const navItems = [
@@ -59,6 +59,7 @@ const reserveButtonGlow = {
 
 export default function HeaderNav() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { itemCount, setIsOpen } = useCart();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -66,6 +67,13 @@ export default function HeaderNav() {
 
   const currentButtonColor = reserveButtonColors[location.pathname] || reserveButtonColors.default;
   const currentButtonGlow = reserveButtonGlow[location.pathname] || reserveButtonGlow.default;
+
+  const handleNavigation = (href: string) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      navigate(href);
+    }, 300);
+  };
 
   useEffect(() => {
     let inactivityTimeout: NodeJS.Timeout;
@@ -156,7 +164,7 @@ export default function HeaderNav() {
         <div className="flex items-center justify-between gap-8">
           
           {/* LOGO */}
-          <Link to="/" className="flex-shrink-0 group">
+          <div onClick={() => handleNavigation('/')} className="flex-shrink-0 group cursor-pointer">
             <motion.div
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -169,7 +177,7 @@ export default function HeaderNav() {
                   filter: 'blur(20px)',
                 }}
               />
-              
+
               <img
                 src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
                 alt="Le 40"
@@ -178,7 +186,7 @@ export default function HeaderNav() {
                 }`}
               />
             </motion.div>
-          </Link>
+          </div>
 
           {/* NAVIGATION PRINCIPALE */}
           <nav className="flex-1">
@@ -189,12 +197,12 @@ export default function HeaderNav() {
 
                 return (
                   <li key={item.name}>
-                    <Link to={item.href}>
-                      <motion.div
-                        className="relative group px-4 py-2.5 rounded-lg"
-                        whileHover={{ y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
+                    <motion.div
+                      onClick={() => handleNavigation(item.href)}
+                      className="relative group px-4 py-2.5 rounded-lg cursor-pointer"
+                      whileHover={{ y: -1 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
                         {isActive && (
                           <motion.div
                             layoutId="activeNav"
@@ -251,8 +259,7 @@ export default function HeaderNav() {
                             />
                           </motion.div>
                         )}
-                      </motion.div>
-                    </Link>
+                    </motion.div>
                   </li>
                 );
               })}
@@ -269,20 +276,20 @@ export default function HeaderNav() {
                 const Icon = item.icon;
 
                 return (
-                  <Link key={item.name} to={item.href}>
-                    <motion.div
-                      className={`relative p-2.5 rounded-lg transition-all duration-300 ${
-                        isActive
-                          ? 'bg-white/[0.08] text-white'
-                          : 'text-white/50 hover:text-white hover:bg-white/[0.04]'
-                      }`}
-                      whileHover={{ scale: 1.05, y: -1 }}
-                      whileTap={{ scale: 0.95 }}
-                      title={item.name}
-                    >
-                      <Icon className="w-[17px] h-[17px]" />
-                    </motion.div>
-                  </Link>
+                  <motion.div
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href)}
+                    className={`relative p-2.5 rounded-lg transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? 'bg-white/[0.08] text-white'
+                        : 'text-white/50 hover:text-white hover:bg-white/[0.04]'
+                    }`}
+                    whileHover={{ scale: 1.05, y: -1 }}
+                    whileTap={{ scale: 0.95 }}
+                    title={item.name}
+                  >
+                    <Icon className="w-[17px] h-[17px]" />
+                  </motion.div>
                 );
               })}
 
@@ -318,12 +325,12 @@ export default function HeaderNav() {
             <div className="w-px h-6 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
 
             {/* BOUTON RÉSERVER */}
-            <Link to="/reservation">
-              <motion.div
-                className="relative group overflow-hidden rounded-lg"
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.97 }}
-              >
+            <motion.div
+              onClick={() => handleNavigation('/reservation')}
+              className="relative group overflow-hidden rounded-lg cursor-pointer"
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+            >
                 <div className={`absolute inset-0 bg-gradient-to-r ${currentButtonColor} opacity-90 group-hover:opacity-100 transition-opacity duration-300`} />
                 
                 <motion.div
@@ -343,8 +350,7 @@ export default function HeaderNav() {
                     Réserver
                   </span>
                 </div>
-              </motion.div>
-            </Link>
+            </motion.div>
           </div>
         </div>
       </div>
