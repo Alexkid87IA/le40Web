@@ -106,14 +106,14 @@ export default function CommunitySection() {
                 href="/community"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative"
+                className="group relative flex-1"
               >
                 <motion.div
                   className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
                   animate={{ opacity: [0.5, 0.75, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <div className="relative flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500 text-white rounded-2xl font-montserrat font-black shadow-2xl">
+                <div className="relative flex items-center justify-center gap-3 px-8 py-5 bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500 text-white rounded-2xl font-montserrat font-black shadow-2xl whitespace-nowrap text-base sm:text-lg">
                   <span>REJOINDRE LA COMMUNAUTÉ</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
@@ -123,7 +123,7 @@ export default function CommunitySection() {
                 href="/events"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-2xl font-montserrat font-black transition-all duration-300 text-center"
+                className="flex-1 px-8 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-2xl font-montserrat font-black transition-all duration-300 text-center whitespace-nowrap text-base sm:text-lg"
               >
                 Voir les événements
               </motion.a>
