@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, MapPin, Monitor, Video, Camera, Network, RotateCcw } from 'lucide-react';
-import { usePreroll } from '../../contexts/PrerollContext';
 
 interface Section {
   id: string;
@@ -22,7 +21,6 @@ const sections: Section[] = [
 export default function SectionNavigator() {
   const [activeSection, setActiveSection] = useState('domiciliation');
   const [isVisible, setIsVisible] = useState(false);
-  const { resetPreroll } = usePreroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,11 +138,11 @@ export default function SectionNavigator() {
               className="mt-2 pt-2 border-t border-white/5"
             >
               <motion.button
-                onClick={resetPreroll}
-                whileHover={{ scale: 1.1, rotate: 90 }}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                whileHover={{ scale: 1.1, rotate: -90 }}
                 whileTap={{ scale: 0.9 }}
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-colors group relative"
-                title="Modifier mes préférences"
+                title="Retour en haut"
               >
                 <RotateCcw className="w-3.5 h-3.5 text-white/50 group-hover:text-white/90 transition-colors" />
 
@@ -156,7 +154,7 @@ export default function SectionNavigator() {
                 >
                   <div className="relative">
                     <div className="relative bg-black/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg">
-                      <span className="text-xs text-white/90 font-medium tracking-wide">Préférences</span>
+                      <span className="text-xs text-white/90 font-medium tracking-wide">Retour en haut</span>
                     </div>
                   </div>
                 </motion.div>
@@ -215,8 +213,8 @@ export default function SectionNavigator() {
                 <div className="w-px h-4 bg-white/10" />
 
                 <motion.button
-                  onClick={resetPreroll}
-                  whileTap={{ scale: 0.85, rotate: 90 }}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  whileTap={{ scale: 0.85, rotate: -90 }}
                   className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center"
                 >
                   <RotateCcw className="w-3 h-3 text-white/60" />
