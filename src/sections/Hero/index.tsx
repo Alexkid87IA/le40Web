@@ -10,7 +10,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-[75vh] w-full overflow-hidden bg-black">
+    <section className="relative h-screen w-full overflow-hidden bg-black">
       {/* Image de fond */}
       <div className="absolute inset-0">
         <div
@@ -183,9 +183,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Transition douce vers la section suivante */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-black/60 pointer-events-none z-20" />
     </section>
   );
 }
