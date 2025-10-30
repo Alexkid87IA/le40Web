@@ -81,7 +81,7 @@ export default function BureauHeroSection() {
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8">
               <Building2 className="w-5 h-5 text-blue-400" />
-              <span className="text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Bureaux Privatifs Premium</span>
+              <span className="text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Tout Inclus · Prêt à Travailler</span>
             </div>
           </motion.div>
 
