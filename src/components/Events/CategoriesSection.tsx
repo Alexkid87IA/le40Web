@@ -155,25 +155,27 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
           })}
         </div>
 
-        {selectedCategory !== 'all' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="text-center mt-16"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="text-center mt-16"
+        >
+          <motion.button
+            onClick={() => handleCategoryClick('all')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`inline-flex items-center gap-2 px-8 py-4 backdrop-blur-xl border text-white rounded-xl font-montserrat font-semibold transition-all duration-300 shadow-lg ${
+              selectedCategory === 'all'
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-500 border-transparent'
+                : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20'
+            }`}
           >
-            <motion.button
-              onClick={() => handleCategoryClick('all')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-xl font-montserrat font-semibold transition-all duration-300 shadow-lg"
-            >
-              Voir tous les événements
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
-          </motion.div>
-        )}
+            {selectedCategory === 'all' ? 'Tous les événements' : 'Voir tous les événements'}
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+        </motion.div>
       </div>
 
       <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
