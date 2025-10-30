@@ -105,7 +105,7 @@ export default function DomiciliationSection() {
               <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">Domiciliation</span>
             </div>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
               Domiciliation<br />
               <span className="relative inline-block">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
@@ -119,7 +119,7 @@ export default function DomiciliationSection() {
               </span>
             </h2>
 
-            <p className="text-xl md:text-2xl text-white/70 mb-10 leading-relaxed font-inter">
+            <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed font-inter">
               Domiciliez votre entreprise au cœur de Marseille. Configuration rapide en 24h, gestion courrier automatisée et services professionnels inclus. Une solution complète et flexible pour démarrer sereinement.
             </p>
 
@@ -148,9 +148,9 @@ export default function DomiciliationSection() {
               viewport={{ once: true }}
               className="flex items-center gap-4 mb-10"
             >
-              <div className="text-white/50 text-base font-inter">À partir de</div>
-              <div className="text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400">49€</div>
-              <div className="text-white/50 text-base font-inter">/mois</div>
+              <div className="text-white/50 text-sm font-inter">À partir de</div>
+              <div className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400">49€</div>
+              <div className="text-white/50 text-sm font-inter">/mois</div>
             </motion.div>
 
             <motion.div
