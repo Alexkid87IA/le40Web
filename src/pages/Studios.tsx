@@ -28,33 +28,51 @@ export default function Studios() {
 
       <main className="pt-24">
         <HeroSection />
-        <ProcessSection />
-        <StudiosGridSection
-          studios={studios}
-          onStudioSelect={setDetailModalStudio}
-          selectedStudioId={selectedStudioId}
-        />
-        <section id="formulas">
-          <FormulasComparisonSection />
-        </section>
-        <StudioComparatorSection />
-        <section id="equipment">
-          <StudioEquipmentSection />
-        </section>
-        <StudioPricingSimulatorSection
-          selectedStudioId={selectedStudioId}
-          onStudioSelect={setSelectedStudioId}
-        />
-        <section id="additional-services">
-          <StudioAdditionalServicesSection />
-        </section>
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
-        <section id="faq">
-          <FAQSection />
-        </section>
-        <FinalCTASection />
+
+        <div className="relative">
+          <div className="fixed inset-0 z-0 pointer-events-none">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803653/d928c6b7-f494-4466-81f2-040f32b9eadc_nqynim.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+          </div>
+
+          <div className="relative z-10">
+            <ProcessSection />
+            <StudiosGridSection
+              studios={studios}
+              onStudioSelect={setDetailModalStudio}
+              selectedStudioId={selectedStudioId}
+            />
+            <section id="formulas">
+              <FormulasComparisonSection />
+            </section>
+            <StudioComparatorSection />
+            <section id="equipment">
+              <StudioEquipmentSection />
+            </section>
+            <StudioPricingSimulatorSection
+              selectedStudioId={selectedStudioId}
+              onStudioSelect={setSelectedStudioId}
+            />
+            <section id="additional-services">
+              <StudioAdditionalServicesSection />
+            </section>
+            <section id="testimonials">
+              <TestimonialsSection />
+            </section>
+            <section id="faq">
+              <FAQSection />
+            </section>
+            <FinalCTASection />
+          </div>
+        </div>
       </main>
 
       <Footer />
