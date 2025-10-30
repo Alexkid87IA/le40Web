@@ -42,7 +42,7 @@ const WorkshopCard = ({ workshop, index }) => {
         </div>
 
         <div className="p-8">
-          <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all">
+          <h3 className="text-2xl font-montserrat font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-red-400 group-hover:to-rose-400 transition-all">
             {workshop.title}
           </h3>
 
@@ -71,7 +71,7 @@ const WorkshopCard = ({ workshop, index }) => {
           </div>
 
           <div className="flex items-center justify-between pt-4 border-t border-white/10">
-            <span className="text-sm font-semibold text-orange-400">
+            <span className="text-sm font-semibold text-red-400">
               {workshop.frequency}
             </span>
             <motion.button
@@ -109,14 +109,14 @@ export default function WorkshopsSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-500/20 text-sm font-semibold text-orange-400 mb-6"
+            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-semibold text-red-400 mb-6"
           >
             NOS ATELIERS & ÉVÉNEMENTS
           </motion.span>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
             Des Événements
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">
               pour Progresser
             </span>
           </h2>
@@ -138,26 +138,26 @@ export default function WorkshopsSection() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-8 px-8 py-6 bg-gradient-to-r from-orange-500/10 to-amber-500/10 backdrop-blur-xl border border-orange-500/20 rounded-2xl">
+          <div className="inline-flex items-center gap-8 px-8 py-6 bg-gradient-to-r from-red-500/10 to-rose-500/10 backdrop-blur-xl border border-red-500/20 rounded-2xl">
             <div className="text-center">
-              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
+              <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
                 15+
               </div>
-              <div className="text-sm text-white/60 font-semibold">Événements/mois</div>
+              <div className="text-sm text-white/60 font-inter font-semibold">Événements/mois</div>
             </div>
             <div className="w-px h-12 bg-white/20" />
             <div className="text-center">
-              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+              <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-400">
                 100%
               </div>
-              <div className="text-sm text-white/60 font-semibold">Inclus</div>
+              <div className="text-sm text-white/60 font-inter font-semibold">Inclus</div>
             </div>
             <div className="w-px h-12 bg-white/20" />
             <div className="text-center">
-              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+              <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
                 ∞
               </div>
-              <div className="text-sm text-white/60 font-semibold">Sans limite</div>
+              <div className="text-sm text-white/60 font-inter font-semibold">Sans limite</div>
             </div>
           </div>
         </motion.div>
