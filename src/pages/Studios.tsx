@@ -14,6 +14,7 @@ import StudioAdditionalServicesSection from '../components/StudiosRefonte/Studio
 import TestimonialsSection from '../components/StudiosRefonte/TestimonialsSection';
 import FAQSection from '../components/StudiosRefonte/FAQSection';
 import FinalCTASection from '../components/StudiosRefonte/FinalCTASection';
+import StudiosNavigator from '../components/StudiosRefonte/StudiosNavigator';
 import { studios } from '../data/studios/studiosData';
 import { Studio } from '../data/studios/studiosData';
 
@@ -25,6 +26,7 @@ export default function Studios() {
     <div className="min-h-screen bg-black overflow-hidden">
       <HeaderNav />
       <MobileBurger />
+      <StudiosNavigator />
 
       <main className="pt-24">
         <HeroSection />
@@ -34,16 +36,26 @@ export default function Studios() {
           onStudioSelect={setDetailModalStudio}
           selectedStudioId={selectedStudioId}
         />
-        <FormulasComparisonSection />
+        <section id="formulas">
+          <FormulasComparisonSection />
+        </section>
         <StudioComparatorSection />
-        <StudioEquipmentSection />
+        <section id="equipment">
+          <StudioEquipmentSection />
+        </section>
         <StudioPricingSimulatorSection
           selectedStudioId={selectedStudioId}
           onStudioSelect={setSelectedStudioId}
         />
-        <StudioAdditionalServicesSection />
-        <TestimonialsSection />
-        <FAQSection />
+        <section id="additional-services">
+          <StudioAdditionalServicesSection />
+        </section>
+        <section id="testimonials">
+          <TestimonialsSection />
+        </section>
+        <section id="faq">
+          <FAQSection />
+        </section>
         <FinalCTASection />
       </main>
 

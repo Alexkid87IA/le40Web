@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { studios } from '../../data/studios/studiosData';
 import { formulas, durations } from '../../data/studios/formulas';
 import { studioAdditionalServices } from '../../data/studios/studioAdditionalServices';
-import { Calculator, Clock, Sparkles, Check } from 'lucide-react';
+import { Calculator, Clock, Sparkles, ShoppingCart } from 'lucide-react';
+import { useCart } from '../../hooks/useCart';
 
 interface StudioPricingSimulatorSectionProps {
   selectedStudioId: string | null;
@@ -14,6 +15,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
   const [selectedFormulaId, setSelectedFormulaId] = useState('postprod');
   const [selectedDurationId, setSelectedDurationId] = useState('3h');
   const [selectedOptions, setSelectedOptions] = useState<Record<string, boolean>>({});
+  const { addItem } = useCart();
 
   const currentStudio = studios.find(s => s.id === selectedStudioId) || studios[0];
   const currentFormula = formulas.find(f => f.id === selectedFormulaId) || formulas[0];
@@ -341,15 +343,50 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                 </div>
 
                 <motion.button
+                  onClick={() => {
+                    const selectedOptionsArray = Object.keys(selectedOptions)
+                      .filter(key => selectedOptions[key])
+                      .map(optionId => {
+                        const option = studioAdditionalServices.find(o => o.id === optionId);
+                        return option ? {
+                          id: option.id,
+                          name: option.name,
+                          price: option.unit === '/h' ? option.price * currentDuration.hours : option.price
+                        } : null;
+                      })
+                      .filter(Boolean) as Array<{ id: string; name: string; price: number }>;
+
+                    addItem({
+                      id: `studio-${currentStudio.id}-${Date.now()}`,
+                      serviceType: 'studio',
+                      serviceName: currentStudio.name,
+                      date: new Date().toISOString().split('T')[0],
+                      duration: 'hour',
+                      price: currentStudio.launchPrice,
+                      quantity: 1,
+                      studioConfig: {
+                        studioId: currentStudio.id,
+                        formulaId: currentFormula.id,
+                        formulaName: currentFormula.name,
+                        durationId: currentDuration.id,
+                        durationLabel: currentDuration.label,
+                        durationHours: currentDuration.hours,
+                        options: selectedOptionsArray
+                      },
+                      image: currentStudio.image,
+                      gradient: currentStudio.gradient
+                    });
+                  }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-5 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-2xl font-montserrat font-bold text-lg shadow-2xl mb-4"
+                  className="w-full py-5 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-2xl font-montserrat font-bold text-lg shadow-2xl mb-4 flex items-center justify-center gap-3 group"
                 >
-                  Réserver maintenant
+                  <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <span>Ajouter au panier</span>
                 </motion.button>
 
-                <p className="text-white/50 text-center text-sm font-inter">
-                  Paiement sécurisé • Confirmation immédiate
+                <p className="text-white/50 text-center text-xs font-inter">
+                  Configuration enregistrée dans votre panier
                 </p>
               </div>
             </div>
