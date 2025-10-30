@@ -10,10 +10,10 @@ const PricingCard = ({ plan, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.2, duration: 0.6 }}
-      className="relative group flex"
+      className="relative group flex pt-6"
     >
       {plan.isMostPopular && (
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap">
+        <div className="absolute -top-0 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-inter font-bold shadow-lg">
             <Crown className="w-4 h-4" />
             LE PLUS POPULAIRE
@@ -126,7 +126,7 @@ export default function PricingSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-16 pt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-16">
           {pricingPlans.map((plan, index) => (
             <PricingCard key={plan.id} plan={plan} index={index} />
           ))}
