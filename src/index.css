@@ -60,6 +60,12 @@
   50% { opacity: 0.25; }
 }
 
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  6.25%, 18.75% { opacity: 1; }
+  25%, 100% { opacity: 0; }
+}
+
 /* Utility classes */
 .ken-burns {
   animation: ken-burns 25s ease-in-out infinite;

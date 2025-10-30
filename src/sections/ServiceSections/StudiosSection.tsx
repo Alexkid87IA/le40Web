@@ -49,39 +49,63 @@ export default function StudiosSection() {
               viewport={{ once: true }}
               className="lg:order-1"
             >
-              <div className="relative">
+              <div className="relative h-[600px] rounded-3xl overflow-hidden">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-3xl opacity-20"></div>
-                <div className="relative bg-gradient-to-br from-blue-950/40 to-indigo-950/30 backdrop-blur-xl border border-blue-500/20 rounded-3xl p-10">
-                  <div className="text-center mb-8">
-                    <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center">
-                      <Video className="w-14 h-14 text-blue-400" />
+                <div className="relative h-full">
+                  {[
+                    'https://images.pexels.com/photos/7991162/pexels-photo-7991162.jpeg',
+                    'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg',
+                    'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg',
+                    'https://images.pexels.com/photos/7991206/pexels-photo-7991206.jpeg'
+                  ].map((src, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{
+                        duration: 1,
+                        delay: index * 4,
+                        repeat: Infinity,
+                        repeatDelay: 12
+                      }}
+                      className="absolute inset-0"
+                      style={{
+                        opacity: 0,
+                        animation: `fadeInOut 16s infinite ${index * 4}s`
+                      }}
+                    >
+                      <img
+                        src={src}
+                        alt={`Studio pro ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    </motion.div>
+                  ))}
+
+                  <div className="absolute bottom-0 left-0 right-0 p-10 z-10">
+                    <div className="text-center mb-8">
+                      <div className="text-3xl font-montserrat font-black text-white mb-3">3 Studios Disponibles</div>
+                      <div className="text-blue-400/70 font-medium text-lg">50m² à 120m²</div>
                     </div>
-                    <div className="text-3xl font-montserrat font-black text-white mb-3">3 Studios Disponibles</div>
-                    <div className="text-blue-400/70 font-medium text-lg">50m² à 120m²</div>
-                  </div>
 
-                  <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent my-8"></div>
+                    <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent my-6"></div>
 
-                  <div className="space-y-5">
-                    {[
-                      { label: 'Fond vert/blanc', value: 'Inclus', highlight: true },
-                      { label: 'Régie technique', value: 'Disponible', highlight: true },
-                      { label: 'Technicien sur demande', value: '+80€/h', highlight: true }
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/5 hover:border-blue-500/20 transition-colors duration-300"
-                      >
-                        <span className="text-white/60 font-medium">{item.label}</span>
-                        <span className={`font-bold ${item.highlight ? 'text-blue-400' : 'text-white'}`}>
-                          {item.value}
-                        </span>
-                      </motion.div>
-                    ))}
+                    <div className="space-y-4">
+                      {[
+                        { label: 'Fond vert/blanc', value: 'Inclus' },
+                        { label: 'Régie technique', value: 'Disponible' },
+                        { label: 'Technicien sur demande', value: '+80€/h' }
+                      ].map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-sm border border-blue-500/20"
+                        >
+                          <span className="text-white/80 font-medium">{item.label}</span>
+                          <span className="font-bold text-blue-400">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -345,39 +369,63 @@ export default function StudiosSection() {
               viewport={{ once: true }}
               className="lg:order-2"
             >
-              <div className="relative">
+              <div className="relative h-[600px] rounded-3xl overflow-hidden">
                 <div className="absolute -inset-4 bg-gradient-to-r from-red-600 to-rose-600 rounded-3xl blur-3xl opacity-20"></div>
-                <div className="relative bg-gradient-to-br from-red-950/40 to-rose-950/30 backdrop-blur-xl border border-red-500/20 rounded-3xl p-10">
-                  <div className="text-center mb-8">
-                    <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-red-500/20 to-rose-500/20 border border-red-400/30 flex items-center justify-center">
-                      <Camera className="w-14 h-14 text-red-400" />
+                <div className="relative h-full">
+                  {[
+                    'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg',
+                    'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg',
+                    'https://images.pexels.com/photos/7224705/pexels-photo-7224705.jpeg',
+                    'https://images.pexels.com/photos/6954174/pexels-photo-6954174.jpeg'
+                  ].map((src, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{
+                        duration: 1,
+                        delay: index * 4,
+                        repeat: Infinity,
+                        repeatDelay: 12
+                      }}
+                      className="absolute inset-0"
+                      style={{
+                        opacity: 0,
+                        animation: `fadeInOut 16s infinite ${index * 4}s`
+                      }}
+                    >
+                      <img
+                        src={src}
+                        alt={`Studio créateurs ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    </motion.div>
+                  ))}
+
+                  <div className="absolute bottom-0 left-0 right-0 p-10 z-10">
+                    <div className="text-center mb-8">
+                      <div className="text-3xl font-montserrat font-black text-white mb-3">Studio Créateurs</div>
+                      <div className="text-red-400/70 font-medium text-lg">Parfait pour YouTube & TikTok</div>
                     </div>
-                    <div className="text-3xl font-montserrat font-black text-white mb-3">Studio Créateurs</div>
-                    <div className="text-red-400/70 font-medium text-lg">Parfait pour YouTube & TikTok</div>
-                  </div>
 
-                  <div className="h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent my-8"></div>
+                    <div className="h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent my-6"></div>
 
-                  <div className="space-y-5">
-                    {[
-                      { label: 'Décors modulables', value: '5 ambiances', highlight: true },
-                      { label: 'Connexion live', value: 'Fibre 1 Gbps', highlight: true },
-                      { label: 'Forfaits mensuels', value: 'Dès 400€', highlight: true }
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        viewport={{ once: true }}
-                        className="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/5 hover:border-red-500/20 transition-colors duration-300"
-                      >
-                        <span className="text-white/60 font-medium">{item.label}</span>
-                        <span className={`font-bold ${item.highlight ? 'text-red-400' : 'text-white'}`}>
-                          {item.value}
-                        </span>
-                      </motion.div>
-                    ))}
+                    <div className="space-y-4">
+                      {[
+                        { label: 'Décors modulables', value: '5 ambiances' },
+                        { label: 'Connexion live', value: 'Fibre 1 Gbps' },
+                        { label: 'Forfaits mensuels', value: 'Dès 400€' }
+                      ].map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-between p-3 rounded-xl bg-black/60 backdrop-blur-sm border border-red-500/20"
+                        >
+                          <span className="text-white/80 font-medium">{item.label}</span>
+                          <span className="font-bold text-red-400">{item.value}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
