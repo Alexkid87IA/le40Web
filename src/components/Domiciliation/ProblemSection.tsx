@@ -163,7 +163,7 @@ export default function ProblemSection() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="relative group h-full"
             >
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-green-500 rounded-3xl opacity-50 group-hover:opacity-70 blur-xl transition-all duration-500"></div>
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 rounded-3xl opacity-50 group-hover:opacity-70 blur-xl transition-all duration-500"></div>
 
               <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-orange-500/40 rounded-3xl p-10 h-full">
                 <div className="flex items-center gap-3 mb-8">
@@ -193,32 +193,32 @@ export default function ProblemSection() {
 
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3.5 h-3.5 text-green-400" />
+                    <div className="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-orange-400" />
                     </div>
                     <span className="text-white font-inter font-medium">Adresse + écosystème complet inclus</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3.5 h-3.5 text-green-400" />
+                    <div className="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-orange-400" />
                     </div>
                     <span className="text-white font-inter font-medium">Scan sous 2h + cloud sécurisé RGPD</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3.5 h-3.5 text-green-400" />
+                    <div className="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-orange-400" />
                     </div>
                     <span className="text-white font-inter font-medium">Conseiller dédié qui connaît votre dossier</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3.5 h-3.5 text-green-400" />
+                    <div className="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-orange-400" />
                     </div>
                     <span className="text-white font-inter font-medium">Accueil téléphonique personnalisé</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-3.5 h-3.5 text-green-400" />
+                    <div className="w-5 h-5 rounded-full bg-orange-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-3.5 h-3.5 text-orange-400" />
                     </div>
                     <span className="text-white font-inter font-medium">
                       <span className="text-amber-400">2h-8h/mois</span> de salles INCLUSES
@@ -242,7 +242,7 @@ export default function ProblemSection() {
           <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-3xl p-12 text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
               <Clock className="w-12 h-12 text-orange-400" />
-              <TrendingUp className="w-12 h-12 text-green-400" />
+              <TrendingUp className="w-12 h-12 text-orange-400" />
             </div>
             <div className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 mb-6">
               5h/mois économisées
@@ -250,8 +250,8 @@ export default function ProblemSection() {
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4 font-inter leading-relaxed">
               C'est le temps que perdent les entrepreneurs à gérer courrier et paperasse
             </p>
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30">
-              <Zap className="w-5 h-5 text-green-400" />
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-400/30">
+              <Zap className="w-5 h-5 text-orange-400" />
               <span className="text-white font-inter font-bold text-lg">Avec nous ? 0 minute. On s'occupe de tout.</span>
             </div>
           </div>

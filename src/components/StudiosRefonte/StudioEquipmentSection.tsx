@@ -20,7 +20,7 @@ export default function StudioEquipmentSection() {
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             ÉQUIPEMENT
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               PROFESSIONNEL
             </span>
           </h2>
@@ -110,16 +110,16 @@ export default function StudioEquipmentSection() {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 px-10 py-6 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-2xl">
             <div className="flex items-center gap-3">
-              <div className="w-3 h-3 rounded-full bg-fuchsia-400 animate-pulse"></div>
+              <div className="w-3 h-3 rounded-full bg-teal-400 animate-pulse"></div>
               <span className="text-white font-inter text-lg">
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">100%</span> inclus dans votre réservation
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">100%</span> inclus dans votre réservation
               </span>
             </div>
             <div className="w-px h-8 bg-white/20"></div>
             <div className="flex items-center gap-3">
-              <Sparkles className="w-5 h-5 text-fuchsia-400" />
+              <Sparkles className="w-5 h-5 text-teal-400" />
               <span className="text-white font-inter text-lg">
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">+40K€</span> de matériel disponible
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">+40K€</span> de matériel disponible
               </span>
             </div>
           </div>

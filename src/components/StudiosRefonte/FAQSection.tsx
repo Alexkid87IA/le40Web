@@ -22,14 +22,14 @@ export default function FAQSection() {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-3 mb-6">
-            <HelpCircle className="w-8 h-8 text-fuchsia-400" />
-            <span className="text-fuchsia-400 font-montserrat font-medium text-sm tracking-wider uppercase">
+            <HelpCircle className="w-8 h-8 text-teal-400" />
+            <span className="text-teal-400 font-montserrat font-medium text-sm tracking-wider uppercase">
               Questions fréquentes
             </span>
           </div>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             VOUS AVEZ DES
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               QUESTIONS ?
             </span>
           </h2>
@@ -49,7 +49,7 @@ export default function FAQSection() {
               className="relative group"
             >
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"
+                className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"
               />
 
               <div className="relative bg-zinc-900/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden">
@@ -65,7 +65,7 @@ export default function FAQSection() {
                     transition={{ duration: 0.3 }}
                     className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
                       openIndex === index
-                        ? 'bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500'
+                        ? 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500'
                         : 'bg-white/10'
                     }`}
                   >
@@ -108,7 +108,7 @@ export default function FAQSection() {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 px-10 py-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-600 via-fuchsia-600 to-violet-600 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center">
                 <HelpCircle className="w-8 h-8 text-white" />
               </div>
               <div className="text-left">
@@ -124,7 +124,7 @@ export default function FAQSection() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white rounded-xl font-inter font-medium shadow-xl whitespace-nowrap"
+              className="px-8 py-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white rounded-xl font-inter font-medium shadow-xl whitespace-nowrap"
             >
               Nous contacter
             </motion.a>

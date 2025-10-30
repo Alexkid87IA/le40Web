@@ -60,13 +60,13 @@ export default function StickyHeader() {
                   >
                     <div className="flex items-center gap-4 text-sm text-white/70">
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                        <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></div>
                         <span>Activation 24h</span>
                       </div>
                       <div className="w-px h-4 bg-white/20"></div>
                       <span>Sans engagement</span>
                       <div className="w-px h-4 bg-white/20"></div>
-                      <span className="text-green-400 font-semibold">127 clients actifs</span>
+                      <span className="text-orange-400 font-semibold">127 clients actifs</span>
                     </div>
                   </motion.div>
                 )}

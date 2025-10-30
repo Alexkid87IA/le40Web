@@ -28,7 +28,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
           className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
-            NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">STUDIOS</span>
+            NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">STUDIOS</span>
           </h2>
           <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
             6 configurations professionnelles pour tous vos projets audiovisuels
@@ -54,7 +54,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   animate={{ y: 0, opacity: 1 }}
                   className="absolute -top-4 right-6 z-10"
                 >
-                  <div className="bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
+                  <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
                     <Star className="w-3.5 h-3.5 fill-white" />
                     {studio.badge}
                   </div>
@@ -67,7 +67,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   animate={{ y: 0, opacity: 1 }}
                   className="absolute -top-4 right-6 z-10"
                 >
-                  <div className="bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
+                  <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
                     {studio.badge}
                   </div>
                 </motion.div>
@@ -80,7 +80,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className={`relative h-[400px] rounded-2xl overflow-hidden bg-zinc-900/50 backdrop-blur-sm border-2 ${
-                  selectedStudioId === studio.id ? 'border-fuchsia-500' : 'border-white/5'
+                  selectedStudioId === studio.id ? 'border-teal-500' : 'border-white/5'
                 }`}
               >
                 <motion.div
@@ -138,7 +138,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       </div>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="text-white/40 text-sm line-through">{studio.basePrice}€</span>
-                        <span className="text-rose-400 text-xs font-bold">-{studio.savings}€</span>
+                        <span className="text-emerald-400 text-xs font-bold">-{studio.savings}€</span>
                       </div>
                     </div>
 
@@ -189,7 +189,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   animate={{ y: 0, opacity: 1 }}
                   className="absolute -top-4 right-6 z-10"
                 >
-                  <div className="bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
+                  <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
                     {studio.badge}
                   </div>
                 </motion.div>
@@ -202,7 +202,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className={`relative h-[400px] rounded-2xl overflow-hidden bg-zinc-900/50 backdrop-blur-sm border-2 ${
-                  selectedStudioId === studio.id ? 'border-fuchsia-500' : 'border-white/5'
+                  selectedStudioId === studio.id ? 'border-teal-500' : 'border-white/5'
                 }`}
               >
                 <motion.div
@@ -260,7 +260,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       </div>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="text-white/40 text-sm line-through">{studio.basePrice}€</span>
-                        <span className="text-rose-400 text-xs font-bold">-{studio.savings}€</span>
+                        <span className="text-emerald-400 text-xs font-bold">-{studio.savings}€</span>
                       </div>
                     </div>
 

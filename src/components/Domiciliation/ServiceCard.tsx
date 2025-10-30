@@ -28,7 +28,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className="relative h-full"
       >
-        <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-orange-500/15 via-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-orange-500/15 via-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
         <motion.div
           className="absolute -inset-[2px] rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-700"
@@ -62,7 +62,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
               </div>
             </motion.div>
 
-            <h3 className="text-3xl font-bold text-white mb-3 font-montserrat group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-emerald-400 transition-all duration-500">
+            <h3 className="text-3xl font-bold text-white mb-3 font-montserrat group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-500">
               {service.title}
             </h3>
 
@@ -120,22 +120,22 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
 
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="relative p-6 bg-gradient-to-br from-emerald-950/40 via-emerald-950/20 to-transparent rounded-2xl border border-emerald-500/20 overflow-hidden group/testimonial"
+              className="relative p-6 bg-gradient-to-br from-orange-950/40 via-orange-950/20 to-transparent rounded-2xl border border-orange-500/20 overflow-hidden group/testimonial"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/[0.06] to-transparent opacity-0 group-hover/testimonial:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500/[0.06] to-transparent opacity-0 group-hover/testimonial:opacity-100 transition-opacity duration-500"></div>
 
-              <Quote className="absolute top-4 right-4 w-12 h-12 text-emerald-400/10 group-hover/testimonial:text-emerald-400/20 transition-colors" />
+              <Quote className="absolute top-4 right-4 w-12 h-12 text-orange-400/10 group-hover/testimonial:text-orange-400/20 transition-colors" />
 
               <div className="relative">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
-                  <div className="text-[10px] text-emerald-400 font-bold font-montserrat tracking-widest uppercase">Témoignage</div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></div>
+                  <div className="text-[10px] text-orange-400 font-bold font-montserrat tracking-widest uppercase">Témoignage</div>
                 </div>
                 <p className="text-base text-white/85 italic font-inter leading-relaxed mb-4">
                   "{service.testimonial.quote}"
                 </p>
                 <p className="text-xs text-white/50 font-inter font-medium">
-                  — {service.testimonial.author}, <span className="text-emerald-400/70">{service.testimonial.role}</span>
+                  — {service.testimonial.author}, <span className="text-orange-400/70">{service.testimonial.role}</span>
                 </p>
               </div>
             </motion.div>

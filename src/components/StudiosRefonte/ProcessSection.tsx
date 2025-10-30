@@ -8,28 +8,28 @@ export default function ProcessSection() {
       title: 'Choisissez votre studio',
       description: '6 configurations professionnelles adaptées à tous vos projets audiovisuels',
       icon: Video,
-      gradient: 'from-rose-500 via-fuchsia-500 to-violet-500'
+      gradient: 'from-emerald-500 via-teal-500 to-cyan-500'
     },
     {
       number: '02',
       title: 'Sélectionnez formule & durée',
       description: 'Studio simple, Post-Prod ou Expert. Tarifs dégressifs selon la durée',
       icon: Sliders,
-      gradient: 'from-fuchsia-500 via-purple-500 to-violet-600'
+      gradient: 'from-teal-500 via-cyan-500 to-emerald-600'
     },
     {
       number: '03',
       title: 'Ajoutez vos options',
       description: 'Montage, téléprompter, caméras supplémentaires, streaming live',
       icon: Plus,
-      gradient: 'from-purple-500 via-violet-500 to-fuchsia-500'
+      gradient: 'from-cyan-500 via-teal-500 to-emerald-500'
     },
     {
       number: '04',
       title: 'Confirmez votre réservation',
       description: 'Paiement sécurisé, confirmation immédiate, annulation flexible',
       icon: CheckCircle,
-      gradient: 'from-violet-500 via-fuchsia-500 to-rose-500'
+      gradient: 'from-teal-500 via-emerald-500 to-cyan-500'
     }
   ];
 
@@ -49,7 +49,7 @@ export default function ProcessSection() {
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             COMMENT ÇA
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               FONCTIONNE
             </span>
           </h2>
@@ -125,7 +125,7 @@ export default function ProcessSection() {
             href="#configurator"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-2xl font-montserrat font-bold text-lg shadow-2xl"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-2xl font-montserrat font-bold text-lg shadow-2xl"
           >
             <span>Commencer maintenant</span>
             <motion.div

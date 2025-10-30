@@ -41,7 +41,7 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
 
           <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-600/20 rounded-full blur-[150px]"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-600/20 rounded-full blur-[150px]"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.2, 0.3, 0.2]
@@ -49,7 +49,7 @@ export default function HeroSection() {
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full blur-[150px]"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-600/20 rounded-full blur-[150px]"
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.15, 0.25, 0.15]
@@ -57,7 +57,7 @@ export default function HeroSection() {
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute top-1/2 left-1/2 w-96 h-96 bg-violet-600/15 rounded-full blur-[150px]"
+            className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-600/15 rounded-full blur-[150px]"
             animate={{
               scale: [1, 1.3, 1],
               opacity: [0.1, 0.2, 0.1]
@@ -81,7 +81,7 @@ export default function HeroSection() {
             className="mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8">
-              <Video className="w-5 h-5 text-fuchsia-400" />
+              <Video className="w-5 h-5 text-emerald-400" />
               <span className="text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Studios Premium 4K</span>
             </div>
           </motion.div>
@@ -94,11 +94,11 @@ export default function HeroSection() {
           >
             STUDIOS DE{' '}
             <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
                 PRODUCTION
               </span>
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-rose-500/20 via-fuchsia-500/20 to-violet-500/20 blur-3xl -z-10"
+                className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 blur-3xl -z-10"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
@@ -127,11 +127,11 @@ export default function HeroSection() {
               className="group relative"
             >
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
                 animate={{ opacity: [0.5, 0.75, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
+              <div className="relative flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
                 <Video className="w-5 h-5" />
                 <span>Découvrir nos studios</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -155,9 +155,9 @@ export default function HeroSection() {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16"
           >
             {[
-              { value: '6', suffix: '', label: 'Studios équipés', color: 'from-rose-500 via-fuchsia-500 to-violet-500' },
-              { value: '1000', suffix: '+', label: 'Vidéos produites', color: 'from-fuchsia-500 via-purple-500 to-violet-600' },
-              { value: '4.9', suffix: '/5', label: 'Note moyenne', color: 'from-violet-500 via-fuchsia-500 to-rose-500' },
+              { value: '6', suffix: '', label: 'Studios équipés', color: 'from-emerald-500 via-teal-500 to-cyan-500' },
+              { value: '1000', suffix: '+', label: 'Vidéos produites', color: 'from-teal-500 via-cyan-500 to-emerald-600' },
+              { value: '4.9', suffix: '/5', label: 'Note moyenne', color: 'from-cyan-500 via-teal-500 to-emerald-500' },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -188,7 +188,7 @@ export default function HeroSection() {
             <div className="flex items-center gap-2">
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 via-fuchsia-500 to-violet-500 border-2 border-black flex items-center justify-center text-white font-bold text-xs">
+                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 border-2 border-black flex items-center justify-center text-white font-bold text-xs">
                     {String.fromCharCode(64 + i)}
                   </div>
                 ))}

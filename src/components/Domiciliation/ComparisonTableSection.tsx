@@ -124,9 +124,9 @@ export default function ComparisonTableSection() {
                           {row.le40.type === 'highlight' && (
                             <motion.div
                               whileHover={{ scale: 1.1, rotate: 360 }}
-                              className="flex items-center gap-2 text-green-400 font-semibold font-montserrat"
+                              className="flex items-center gap-2 text-orange-400 font-semibold font-montserrat"
                             >
-                              <div className="w-6 h-6 rounded-lg bg-green-400/20 flex items-center justify-center">
+                              <div className="w-6 h-6 rounded-lg bg-orange-400/20 flex items-center justify-center">
                                 <row.le40.icon className="w-4 h-4" />
                               </div>
                               {row.le40.value}
@@ -135,9 +135,9 @@ export default function ComparisonTableSection() {
                           {row.le40.type === 'positive' && (
                             <motion.div
                               whileHover={{ scale: 1.2, rotate: 360 }}
-                              className="w-8 h-8 rounded-lg bg-green-400/20 flex items-center justify-center"
+                              className="w-8 h-8 rounded-lg bg-orange-400/20 flex items-center justify-center"
                             >
-                              <Check className="w-5 h-5 text-green-400" />
+                              <Check className="w-5 h-5 text-orange-400" />
                             </motion.div>
                           )}
                         </div>
@@ -147,7 +147,7 @@ export default function ComparisonTableSection() {
                         <div className="inline-flex items-center justify-center gap-2">
                           {row.competitorA.icon && (
                             <row.competitorA.icon className={`w-4 h-4 ${
-                              row.competitorA.type === 'positive' ? 'text-green-400' :
+                              row.competitorA.type === 'positive' ? 'text-orange-400' :
                               row.competitorA.type === 'warning' ? 'text-orange-400' :
                               'text-red-400'
                             }`} />
@@ -160,7 +160,7 @@ export default function ComparisonTableSection() {
                         <div className="inline-flex items-center justify-center gap-2">
                           {row.competitorB.icon && (
                             <row.competitorB.icon className={`w-4 h-4 ${
-                              row.competitorB.type === 'positive' ? 'text-green-400' :
+                              row.competitorB.type === 'positive' ? 'text-orange-400' :
                               row.competitorB.type === 'warning' ? 'text-orange-400' :
                               'text-red-400'
                             }`} />

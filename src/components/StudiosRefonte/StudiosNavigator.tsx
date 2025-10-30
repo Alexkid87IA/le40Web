@@ -91,11 +91,11 @@ export default function StudiosNavigator() {
                 {isActive && (
                   <motion.div
                     layoutId="activeStudioSection"
-                    className="absolute inset-0 bg-gradient-to-r from-rose-500/20 via-fuchsia-500/20 to-violet-500/20 rounded-xl border border-fuchsia-500/30"
+                    className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 rounded-xl border border-teal-500/30"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
-                <Icon className={`w-5 h-5 relative z-10 flex-shrink-0 ${isActive ? 'text-fuchsia-400' : ''}`} />
+                <Icon className={`w-5 h-5 relative z-10 flex-shrink-0 ${isActive ? 'text-teal-400' : ''}`} />
                 <span className="relative z-10 font-inter font-medium text-sm text-left">
                   {section.label}
                 </span>

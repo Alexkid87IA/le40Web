@@ -92,14 +92,14 @@ export default function FinalCTASection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl rounded-xl border border-white/[0.08] hover:border-green-500/30 transition-all group"
+                className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl rounded-xl border border-white/[0.08] hover:border-orange-500/30 transition-all group"
               >
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.2 }}
                   transition={{ duration: 0.4 }}
-                  className="w-6 h-6 rounded-lg bg-green-400/20 flex items-center justify-center group-hover:bg-green-400/30 transition-colors"
+                  className="w-6 h-6 rounded-lg bg-orange-400/20 flex items-center justify-center group-hover:bg-orange-400/30 transition-colors"
                 >
-                  <Check className="w-4 h-4 text-green-400" />
+                  <Check className="w-4 h-4 text-orange-400" />
                 </motion.div>
                 <span className="text-white/80 font-inter group-hover:text-white transition-colors">{benefit.text}</span>
               </motion.div>

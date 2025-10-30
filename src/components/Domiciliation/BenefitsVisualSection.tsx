@@ -17,7 +17,7 @@ export default function BenefitsVisualSection() {
       description: 'Accueil professionnel à votre nom, gestion des appels et messages',
       image: 'https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800',
       stats: { value: '24/7', label: 'Disponibilité' },
-      gradient: 'from-green-500 to-emerald-500'
+      gradient: 'from-orange-500 to-amber-500'
     },
     {
       icon: Building2,

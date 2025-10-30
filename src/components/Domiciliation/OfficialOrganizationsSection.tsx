@@ -4,7 +4,7 @@ import { Shield, FileText, Building2, Globe, Check, ArrowRight } from 'lucide-re
 export default function OfficialOrganizationsSection() {
   const organizations = [
     { name: 'URSSAF', icon: Shield, color: 'text-blue-400' },
-    { name: 'Infogreffe', icon: FileText, color: 'text-green-400' },
+    { name: 'Infogreffe', icon: FileText, color: 'text-orange-400' },
     { name: 'Impôts', icon: Building2, color: 'text-purple-400' },
     { name: 'Banques', icon: Globe, color: 'text-orange-400' },
     { name: 'Préfecture', icon: Shield, color: 'text-red-400' }
@@ -42,13 +42,13 @@ export default function OfficialOrganizationsSection() {
             ))}
           </div>
 
-          <div className="max-w-2xl mx-auto p-6 bg-gradient-to-br from-green-950/40 to-green-900/20 border border-green-900/30 rounded-2xl">
+          <div className="max-w-2xl mx-auto p-6 bg-gradient-to-br from-orange-950/40 to-orange-900/20 border border-orange-900/30 rounded-2xl">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center shrink-0">
-                <Check className="w-6 h-6 text-green-400" />
+              <div className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center shrink-0">
+                <Check className="w-6 h-6 text-orange-400" />
               </div>
               <div>
-                <div className="text-green-400 font-bold mb-2 flex items-center gap-2 font-montserrat">
+                <div className="text-orange-400 font-bold mb-2 flex items-center gap-2 font-montserrat">
                   <Shield className="w-4 h-4" />
                   Agrément Préfectoral N° [NUMERO]
                 </div>
@@ -57,7 +57,7 @@ export default function OfficialOrganizationsSection() {
                   des Bouches-du-Rhône. Cet agrément garantit la conformité totale de votre domiciliation
                   et son acceptation par tous les organismes administratifs et financiers.
                 </p>
-                <button className="mt-4 text-green-400 text-sm font-semibold hover:text-green-300 transition-colors flex items-center gap-2 font-montserrat">
+                <button className="mt-4 text-orange-400 text-sm font-semibold hover:text-orange-300 transition-colors flex items-center gap-2 font-montserrat">
                   Voir l'attestation d'agrément
                   <ArrowRight className="w-4 h-4" />
                 </button>

@@ -26,14 +26,14 @@ const TestimonialCard = memo<TestimonialCardProps>(function TestimonialCard({ te
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="relative h-full"
       >
-        <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-orange-400/20 via-emerald-400/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-orange-400/20 via-amber-400/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
         <motion.div
-          className="absolute -inset-[3px] rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-700 bg-gradient-to-br from-orange-500/25 to-emerald-500/20"
+          className="absolute -inset-[3px] rounded-3xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-700 bg-gradient-to-br from-orange-500/25 to-amber-500/20"
         />
 
         <div className="relative p-10 lg:p-12 bg-gradient-to-br from-zinc-900/95 via-zinc-900/92 to-zinc-950/98 backdrop-blur-2xl rounded-3xl border border-white/[0.06] group-hover:border-orange-400/25 transition-all duration-500 h-full overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-orange-500/[0.12] via-emerald-500/[0.08] to-transparent rounded-bl-[120px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-orange-500/[0.12] via-amber-500/[0.08] to-transparent rounded-bl-[120px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
           <div className="absolute inset-0 opacity-[0.02]">
             <div className="absolute inset-0" style={{
@@ -62,7 +62,7 @@ const TestimonialCard = memo<TestimonialCardProps>(function TestimonialCard({ te
               </div>
             </motion.div>
             <div>
-              <div className="font-bold text-white font-montserrat text-xl mb-1.5 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-emerald-400 transition-all duration-300">
+              <div className="font-bold text-white font-montserrat text-xl mb-1.5 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-300">
                 {testimonial.name}
               </div>
               <div className="text-sm text-zinc-400 font-inter font-medium">{testimonial.role}</div>
@@ -94,13 +94,13 @@ const TestimonialCard = memo<TestimonialCardProps>(function TestimonialCard({ te
             </ul>
           </div>
 
-          <div className="relative mb-10 p-6 rounded-2xl bg-gradient-to-br from-emerald-950/40 via-green-950/30 to-zinc-900/30 border border-emerald-500/25 overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div className="relative mb-10 p-6 rounded-2xl bg-gradient-to-br from-orange-950/40 via-amber-950/30 to-zinc-900/30 border border-orange-500/25 overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-orange-400/50 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <div className="relative">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                <div className="text-[11px] font-montserrat font-bold tracking-widest text-emerald-400 uppercase">
+                <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></div>
+                <div className="text-[11px] font-montserrat font-bold tracking-widest text-orange-400 uppercase">
                   Après 6 mois
                 </div>
               </div>
@@ -120,13 +120,13 @@ const TestimonialCard = memo<TestimonialCardProps>(function TestimonialCard({ te
                       className="shrink-0 mt-0.5"
                     >
                       {item.metric.includes('+') ? (
-                        <TrendingUp className="w-6 h-6 text-emerald-400" />
+                        <TrendingUp className="w-6 h-6 text-orange-400" />
                       ) : (
-                        <Check className="w-6 h-6 text-emerald-400" />
+                        <Check className="w-6 h-6 text-orange-400" />
                       )}
                     </motion.div>
                     <span className="text-white/90 group-hover/item:text-white transition-colors">
-                      {item.label} : <strong className="text-emerald-400 font-bold text-base">{item.metric}</strong>
+                      {item.label} : <strong className="text-orange-400 font-bold text-base">{item.metric}</strong>
                     </span>
                   </motion.li>
                 ))}
@@ -138,8 +138,8 @@ const TestimonialCard = memo<TestimonialCardProps>(function TestimonialCard({ te
             whileHover={{ scale: 1.01 }}
             className="relative p-7 bg-gradient-to-br from-orange-950/40 via-orange-900/20 to-transparent rounded-2xl border border-orange-500/25 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/[0.08] via-emerald-500/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <div className="absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-orange-500 to-emerald-500"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500/[0.08] via-amber-500/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div className="absolute top-0 left-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-orange-500 to-amber-500"></div>
             <Quote className="absolute top-4 left-4 w-10 h-10 text-orange-400/[0.15]" />
             <p className="relative text-base text-white/85 italic font-inter leading-relaxed pl-10">
               {testimonial.quote}

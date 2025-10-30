@@ -20,8 +20,8 @@ export default function StudioAdditionalServicesSection() {
   return (
     <section className="relative py-32">
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-rose-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
@@ -34,7 +34,7 @@ export default function StudioAdditionalServicesSection() {
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             OPTIONS
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               ADDITIONNELLES
             </span>
           </h2>
@@ -61,7 +61,7 @@ export default function StudioAdditionalServicesSection() {
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 rounded-xl font-inter font-medium transition-all flex items-center gap-2 ${
                   isActive
-                    ? 'bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white shadow-lg'
                     : 'bg-white/5 text-white/70 border border-white/10 hover:border-white/30'
                 }`}
               >
@@ -88,7 +88,7 @@ export default function StudioAdditionalServicesSection() {
                   animate={{ y: 0, opacity: 1 }}
                   className="absolute -top-4 right-6 z-10"
                 >
-                  <div className="bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
+                  <div className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white text-xs font-medium px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
                     <Star className="w-3.5 h-3.5 fill-white" />
                     Populaire
                   </div>
@@ -173,7 +173,7 @@ export default function StudioAdditionalServicesSection() {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 px-10 py-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-600 via-fuchsia-600 to-violet-600 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <div className="text-left">
@@ -189,7 +189,7 @@ export default function StudioAdditionalServicesSection() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white rounded-xl font-inter font-medium shadow-xl whitespace-nowrap"
+              className="px-8 py-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white rounded-xl font-inter font-medium shadow-xl whitespace-nowrap"
             >
               Nous contacter
             </motion.a>

@@ -123,7 +123,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12"
           >
-            <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-400/20 backdrop-blur-sm">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
@@ -135,12 +135,12 @@ export default function HeroSection() {
 
             <div className="flex items-center gap-2">
               <motion.div
-                className="w-2 h-2 rounded-full bg-green-400"
+                className="w-2 h-2 rounded-full bg-orange-400"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
               <span className="text-white/70 font-inter text-sm">
-                <span className="text-green-400 font-semibold">120+ entreprises</span> nous font confiance
+                <span className="text-orange-400 font-semibold">120+ entreprises</span> nous font confiance
               </span>
             </div>
           </motion.div>
@@ -219,7 +219,7 @@ export default function HeroSection() {
             {[
               { icon: Zap, text: 'Activation en 24h', color: 'text-orange-400' },
               { icon: Mail, text: 'Scan courrier 2h', color: 'text-blue-400' },
-              { icon: Shield, text: 'Conformité totale', color: 'text-emerald-400' },
+              { icon: Shield, text: 'Conformité totale', color: 'text-orange-400' },
               { icon: MapPin, text: 'Marseille centre', color: 'text-amber-400' }
             ].map((benefit, index) => (
               <motion.div

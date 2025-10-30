@@ -57,7 +57,7 @@ export default function PricingSection() {
                   : 'text-white/60 hover:text-white'
               }`}
             >
-              Annuel <span className="text-green-400 text-sm ml-1">(-20%)</span>
+              Annuel <span className="text-orange-400 text-sm ml-1">(-20%)</span>
             </button>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function PricingSection() {
                 <ul className="space-y-3">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-white/80">
-                      <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -149,15 +149,15 @@ export default function PricingSection() {
         <div className="text-center">
           <p className="text-white/60 flex items-center justify-center gap-6 flex-wrap">
             <span className="flex items-center gap-2">
-              <Check className="w-5 h-5 text-green-400" />
+              <Check className="w-5 h-5 text-orange-400" />
               Sans engagement
             </span>
             <span className="flex items-center gap-2">
-              <Check className="w-5 h-5 text-green-400" />
+              <Check className="w-5 h-5 text-orange-400" />
               Résiliable en 1 clic
             </span>
             <span className="flex items-center gap-2">
-              <Check className="w-5 h-5 text-green-400" />
+              <Check className="w-5 h-5 text-orange-400" />
               Satisfait ou remboursé 30j
             </span>
           </p>

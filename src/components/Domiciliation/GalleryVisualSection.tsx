@@ -183,7 +183,7 @@ export default function GalleryVisualSection() {
                 <p className="text-white/60 font-inter text-sm">d'espaces</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 mb-2">
+                <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2">
                   12
                 </div>
                 <p className="text-white/60 font-inter text-sm">salles équipées</p>

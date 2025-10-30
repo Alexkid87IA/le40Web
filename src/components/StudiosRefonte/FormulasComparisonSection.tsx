@@ -6,8 +6,8 @@ export default function FormulasComparisonSection() {
   return (
     <section className="relative py-32">
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
@@ -20,7 +20,7 @@ export default function FormulasComparisonSection() {
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             CHOISISSEZ VOTRE
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               FORMULE
             </span>
           </h2>
@@ -45,15 +45,15 @@ export default function FormulasComparisonSection() {
                 className="relative h-full"
               >
                 <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"
+                  className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500"
                 />
 
                 <div className={`relative bg-zinc-900/80 backdrop-blur-xl rounded-3xl p-8 border ${
-                  formula.popular ? 'border-fuchsia-400/50' : 'border-white/10'
+                  formula.popular ? 'border-teal-400/50' : 'border-white/10'
                 } group-hover:border-white/30 transition-all duration-500 h-full flex flex-col`}>
                   <div className="mb-6">
                     <motion.div
-                      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 via-fuchsia-500 to-violet-500 flex items-center justify-center mb-6"
+                      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 flex items-center justify-center mb-6"
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
@@ -68,12 +68,12 @@ export default function FormulasComparisonSection() {
                       {formula.longDescription}
                     </p>
 
-                    <p className="text-sm text-fuchsia-400 font-inter font-medium mb-6">
+                    <p className="text-sm text-teal-400 font-inter font-medium mb-6">
                       {formula.tagline}
                     </p>
 
-                    <div className="inline-flex items-baseline gap-2 px-4 py-2 bg-gradient-to-r from-rose-600/20 via-fuchsia-600/20 to-violet-600/20 border border-fuchsia-400/30 rounded-xl mb-6">
-                      <span className="text-2xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+                    <div className="inline-flex items-baseline gap-2 px-4 py-2 bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 border border-teal-400/30 rounded-xl mb-6">
+                      <span className="text-2xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
                         {formula.displayPrice}
                       </span>
                       <span className="text-white/60 font-inter text-sm">
@@ -84,13 +84,13 @@ export default function FormulasComparisonSection() {
 
                   <div className="mb-6 p-4 bg-white/5 border border-white/10 rounded-xl">
                     <div className="flex items-center gap-2 mb-3">
-                      <Target className="w-4 h-4 text-fuchsia-400" />
+                      <Target className="w-4 h-4 text-teal-400" />
                       <span className="text-sm font-inter font-semibold text-white">Cas d'usage</span>
                     </div>
                     <ul className="space-y-2">
                       {formula.useCases.map((useCase: string, idx: number) => (
                         <li key={idx} className="text-sm text-white/70 font-inter flex items-start gap-2">
-                          <span className="text-fuchsia-400 mt-0.5">→</span>
+                          <span className="text-teal-400 mt-0.5">→</span>
                           {useCase}
                         </li>
                       ))}
@@ -113,7 +113,7 @@ export default function FormulasComparisonSection() {
                         transition={{ delay: (index * 0.15) + (idx * 0.05), duration: 0.4 }}
                         className="flex items-start gap-3"
                       >
-                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-rose-500 via-fuchsia-500 to-violet-500 flex items-center justify-center mt-0.5">
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 flex items-center justify-center mt-0.5">
                           <Check className="w-3 h-3 text-white" />
                         </div>
                         <span className="text-white/80 font-inter leading-relaxed">
@@ -129,7 +129,7 @@ export default function FormulasComparisonSection() {
                     whileTap={{ scale: 0.98 }}
                     className={`w-full py-4 ${
                       formula.popular
-                        ? 'bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500'
+                        ? 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500'
                         : 'bg-white/10 hover:bg-white/20'
                     } text-white rounded-xl font-inter font-medium shadow-lg flex items-center justify-center gap-2 group/btn transition-all`}
                   >
@@ -151,7 +151,7 @@ export default function FormulasComparisonSection() {
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 px-10 py-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-600 via-fuchsia-600 to-violet-600 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <div className="text-left">
@@ -167,7 +167,7 @@ export default function FormulasComparisonSection() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white rounded-xl font-inter font-medium shadow-xl whitespace-nowrap"
+              className="px-8 py-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white rounded-xl font-inter font-medium shadow-xl whitespace-nowrap"
             >
               Nous contacter
             </motion.a>

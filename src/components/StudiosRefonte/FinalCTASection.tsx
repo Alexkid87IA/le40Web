@@ -9,7 +9,7 @@ export default function FinalCTASection() {
     <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-600/20 rounded-full blur-[150px]"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-600/20 rounded-full blur-[150px]"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.4, 0.2]
@@ -17,7 +17,7 @@ export default function FinalCTASection() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full blur-[150px]"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-600/20 rounded-full blur-[150px]"
           animate={{
             scale: [1.3, 1, 1.3],
             opacity: [0.15, 0.3, 0.15]
@@ -25,7 +25,7 @@ export default function FinalCTASection() {
           transition={{ duration: 10, repeat: Infinity }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 w-96 h-96 bg-violet-600/20 rounded-full blur-[150px]"
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-600/20 rounded-full blur-[150px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.1, 0.25, 0.1]
@@ -47,13 +47,13 @@ export default function FinalCTASection() {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-rose-600/20 via-fuchsia-600/20 to-violet-600/20 backdrop-blur-xl border border-fuchsia-400/30 mb-8"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 backdrop-blur-xl border border-teal-400/30 mb-8"
           >
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Zap className="w-5 h-5 text-fuchsia-400" />
+              <Zap className="w-5 h-5 text-teal-400" />
             </motion.div>
             <span className="text-sm font-inter font-medium text-white tracking-wide uppercase">
               Offre de lancement limitée
@@ -69,7 +69,7 @@ export default function FinalCTASection() {
           >
             PRÊT À CRÉER DU
             <span className="block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
                 CONTENU PRO
               </span>
               <span className="text-white"> ?</span>
@@ -95,9 +95,9 @@ export default function FinalCTASection() {
           >
             <div className="inline-flex flex-col items-center gap-4 px-8 py-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl">
               <div className="flex items-center gap-3">
-                <Clock className="w-6 h-6 text-rose-400" />
+                <Clock className="w-6 h-6 text-emerald-400" />
                 <span className="text-white font-inter text-lg">
-                  Plus que <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">{remainingSlots}</span> places sur {totalSlots}
+                  Plus que <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">{remainingSlots}</span> places sur {totalSlots}
                 </span>
               </div>
               <div className="w-full max-w-xs">
@@ -107,7 +107,7 @@ export default function FinalCTASection() {
                     whileInView={{ width: `${((totalSlots - remainingSlots) / totalSlots) * 100}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500"
+                    className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"
                   />
                 </div>
               </div>
@@ -128,11 +128,11 @@ export default function FinalCTASection() {
               className="group relative"
             >
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
                 animate={{ opacity: [0.5, 0.75, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl">
+              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl">
                 <span>Réserver maintenant</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
@@ -168,7 +168,7 @@ export default function FinalCTASection() {
                 transition={{ delay: 1.2 + (index * 0.1), duration: 0.4 }}
                 className="flex items-center justify-center gap-3 px-6 py-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl"
               >
-                <item.icon className="w-5 h-5 text-fuchsia-400" />
+                <item.icon className="w-5 h-5 text-teal-400" />
                 <span className="text-white/80 font-inter">{item.text}</span>
               </motion.div>
             ))}

@@ -19,7 +19,7 @@ export default function TrustBannerSection() {
       icon: CheckCircle,
       title: 'Conformité RGPD',
       subtitle: 'Données sécurisées',
-      color: 'from-green-500 to-green-600'
+      color: 'from-orange-500 to-orange-600'
     },
     {
       icon: Star,
@@ -111,7 +111,7 @@ export default function TrustBannerSection() {
             <p className="text-white/70 font-inter text-sm">Entreprises nous font confiance</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 mb-2">
+            <div className="text-4xl md:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2">
               100%
             </div>
             <p className="text-white/70 font-inter text-sm">Dossiers acceptés en Préfecture</p>

@@ -8,8 +8,8 @@ export default function GuaranteesSection() {
       icon: RefreshCw,
       title: 'Satisfait ou remboursé',
       description: '30 jours pour tester. Si nos services ne tiennent pas leurs promesses, on vous rembourse. Sans justification.',
-      gradient: 'from-green-500 to-green-600',
-      glowColor: 'rgba(34, 197, 94, 0.2)'
+      gradient: 'from-orange-500 to-orange-600',
+      glowColor: 'rgba(249, 115, 22, 0.2)'
     },
     {
       icon: Zap,

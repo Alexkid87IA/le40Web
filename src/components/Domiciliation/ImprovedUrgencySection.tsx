@@ -4,7 +4,7 @@ import { AlertCircle, ArrowRight, Clock, Users } from 'lucide-react';
 export default function ImprovedUrgencySection() {
   const activityStats = [
     {
-      icon: <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>,
+      icon: <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>,
       label: 'Activité',
       value: '8',
       description: 'personnes regardent cette page'

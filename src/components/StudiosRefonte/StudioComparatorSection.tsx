@@ -127,8 +127,8 @@ export default function StudioComparatorSection() {
   return (
     <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-rose-600/10 rounded-full blur-[150px]"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[150px]"></div>
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[150px]"></div>
       </div>
 
       <div className="relative z-10 max-w-[1800px] mx-auto px-4 lg:px-8">
@@ -140,14 +140,14 @@ export default function StudioComparatorSection() {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8 text-fuchsia-400" />
-            <span className="text-fuchsia-400 font-montserrat font-medium text-sm tracking-wider uppercase">
+            <Sparkles className="w-8 h-8 text-teal-400" />
+            <span className="text-teal-400 font-montserrat font-medium text-sm tracking-wider uppercase">
               Tableau comparatif
             </span>
           </div>
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             COMPAREZ
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               NOS STUDIOS
             </span>
           </h2>
@@ -309,11 +309,11 @@ export default function StudioComparatorSection() {
         >
           <div className="flex items-center gap-4 text-white/50 text-xs font-inter">
             <div className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded bg-gradient-to-r from-rose-500 to-fuchsia-500"></div>
+              <div className="w-3 h-3 rounded bg-gradient-to-r from-emerald-500 to-teal-500"></div>
               <span>Inclus</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Check className="w-3 h-3 text-fuchsia-400" />
+              <Check className="w-3 h-3 text-teal-400" />
               <span>Disponible</span>
             </div>
             <div className="flex items-center gap-1.5">

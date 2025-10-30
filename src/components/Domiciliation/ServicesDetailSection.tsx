@@ -86,7 +86,7 @@ export default function ServicesDetailSection() {
                 <ul className="space-y-2 mb-6">
                   {service.features.slice(0, 4).map((feature, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-white/70 font-inter">
-                      <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                      <Check className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}

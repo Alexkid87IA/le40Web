@@ -46,7 +46,7 @@ export default function ProcessSection() {
       description: 'Tout est prêt',
       items: ['Adresse opérationnelle', 'Courrier réceptionné dès J+1', 'Téléphone activé', 'Attestation envoyée'],
       color: 'green',
-      gradient: 'from-green-500 to-green-600',
+      gradient: 'from-orange-500 to-orange-600',
       glowColor: 'rgba(34, 197, 94, 0.3)'
     }
   ];
@@ -135,7 +135,7 @@ export default function ProcessSection() {
 
                           <div>
                             <div className={`text-xs font-montserrat font-bold tracking-wider mb-1 ${
-                              step.color === 'green' ? 'text-green-400' : 'text-orange-400'
+                              step.color === 'green' ? 'text-orange-400' : 'text-orange-400'
                             }`}>
                               {step.duration.toUpperCase()}
                             </div>
@@ -174,7 +174,7 @@ export default function ProcessSection() {
                                 whileHover={{ scale: 1.2, rotate: 360 }}
                                 transition={{ duration: 0.3 }}
                                 className={`shrink-0 mt-0.5 ${
-                                  step.color === 'green' ? 'text-green-400' : 'text-orange-400'
+                                  step.color === 'green' ? 'text-orange-400' : 'text-orange-400'
                                 }`}
                               >
                                 <Check className="w-5 h-5" />

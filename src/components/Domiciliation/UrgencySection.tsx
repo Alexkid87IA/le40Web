@@ -206,7 +206,7 @@ export default function UrgencySection() {
                     className="flex items-center justify-between bg-white/10 rounded-xl p-3"
                   >
                     <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-400" />
+                      <CheckCircle className="w-5 h-5 text-orange-400" />
                       <div>
                         <div className="text-white font-inter font-semibold text-sm">{signup.name}</div>
                         <div className="text-white/70 text-xs">Formule {signup.plan}</div>

@@ -22,8 +22,8 @@ export default function TestimonialsSection() {
   return (
     <section className="relative py-32">
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
@@ -36,7 +36,7 @@ export default function TestimonialsSection() {
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             ILS NOUS FONT
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               CONFIANCE
             </span>
           </h2>
@@ -119,7 +119,7 @@ export default function TestimonialsSection() {
                   onClick={() => setCurrentIndex(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? 'w-12 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500'
+                      ? 'w-12 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500'
                       : 'w-2 bg-white/20 hover:bg-white/40'
                   }`}
                 />

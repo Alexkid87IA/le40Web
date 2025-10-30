@@ -127,7 +127,7 @@ export default function StudioDetailModal({ studio, onClose, onSelect }: StudioD
                           whileTap={{ scale: 0.95 }}
                           className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
                             index === currentImageIndex
-                              ? 'border-fuchsia-400 scale-110'
+                              ? 'border-teal-400 scale-110'
                               : 'border-white/20 hover:border-white/40 opacity-70 hover:opacity-100'
                           }`}
                         >
@@ -158,7 +158,7 @@ export default function StudioDetailModal({ studio, onClose, onSelect }: StudioD
                     </span>
                     <span className="text-white/80 text-lg">{studio.priceUnit}</span>
                     <span className="text-white/40 text-xl line-through ml-2">{studio.basePrice}€</span>
-                    <span className="px-3 py-1 bg-rose-500/20 border border-rose-500/40 text-rose-300 text-sm font-bold rounded-full">
+                    <span className="px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm font-bold rounded-full">
                       -{studio.savings}€
                     </span>
                   </div>

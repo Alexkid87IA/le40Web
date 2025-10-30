@@ -131,8 +131,8 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
   return (
     <section id="configurator" className="relative py-32">
       <div className="absolute inset-0">
-        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-rose-600/10 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
@@ -147,10 +147,10 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-gradient-to-r from-fuchsia-600/20 via-rose-600/20 to-violet-600/20 backdrop-blur-xl rounded-full border border-fuchsia-400/30"
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 backdrop-blur-xl rounded-full border border-emerald-400/30"
           >
-            <Calculator className="w-6 h-6 text-fuchsia-400" />
-            <span className="text-fuchsia-400 font-montserrat font-bold text-sm tracking-wider uppercase">
+            <Calculator className="w-6 h-6 text-emerald-400" />
+            <span className="text-emerald-400 font-montserrat font-bold text-sm tracking-wider uppercase">
               Configurateur de prix
             </span>
           </motion.div>
@@ -163,7 +163,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
           >
             <span className="inline-block">CONFIGUREZ</span>{' '}
             <span className="inline-block">VOTRE</span>
-            <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400 animate-gradient">
+            <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400 animate-gradient">
               SESSION
             </span>
           </motion.h2>
@@ -184,15 +184,15 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-inter"
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-rose-500 to-fuchsia-500"></div>
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"></div>
               <span>Tarifs transparents</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-fuchsia-500 to-violet-500"></div>
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500"></div>
               <span>Sans frais cachés</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-violet-500 to-rose-500"></div>
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
               <span>Devis instantané</span>
             </div>
           </motion.div>
@@ -215,7 +215,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                   >
                     <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all ${
                       isActive
-                        ? 'bg-gradient-to-br from-rose-500 via-fuchsia-500 to-violet-500 shadow-lg shadow-fuchsia-500/50'
+                        ? 'bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 shadow-lg shadow-emerald-500/50'
                         : isCompleted
                         ? 'bg-gradient-to-br from-emerald-500 to-teal-500'
                         : 'bg-white/10 border border-white/20'
@@ -253,7 +253,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             transition={{ duration: 0.6 }}
           >
             <div className="relative bg-gradient-to-br from-zinc-900/90 to-black/90 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-fuchsia-600/10 to-transparent rounded-full blur-3xl"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-600/10 to-transparent rounded-full blur-3xl"></div>
 
               <div className="relative z-10">
                 <AnimatePresence mode="wait">
@@ -266,7 +266,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                       transition={{ duration: 0.3 }}
                     >
                       <div className="flex items-center gap-3 mb-8">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-600 to-fuchsia-600 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
                           <Sparkles className="w-6 h-6 text-white" />
                         </div>
                         <div>
@@ -289,7 +289,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                             whileTap={{ scale: 0.98 }}
                             className={`relative p-5 rounded-2xl border-2 transition-all group overflow-hidden text-left ${
                               selectedStudioId === studio.id
-                                ? `border-fuchsia-400 shadow-lg shadow-fuchsia-500/30 bg-gradient-to-r from-fuchsia-500/10 to-violet-500/10`
+                                ? `border-emerald-400 shadow-lg shadow-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10`
                                 : 'border-white/10 bg-white/5 hover:border-white/30'
                             }`}
                           >
@@ -303,7 +303,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                                     {studio.name}
                                   </span>
                                   {studio.popular && (
-                                    <span className="text-[10px] px-2 py-0.5 bg-gradient-to-r from-rose-600 to-fuchsia-600 text-white rounded-full font-bold">
+                                    <span className="text-[10px] px-2 py-0.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold">
                                       ⭐ Populaire
                                     </span>
                                   )}
@@ -311,21 +311,21 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                                 <p className="text-white/60 text-sm mb-2">{studio.subtitle}</p>
                                 <div className="flex items-center gap-4">
                                   <div>
-                                    <span className={`text-3xl font-montserrat font-black ${selectedStudioId === studio.id ? 'text-fuchsia-400' : 'text-white/60'}`}>
+                                    <span className={`text-3xl font-montserrat font-black ${selectedStudioId === studio.id ? 'text-emerald-400' : 'text-white/60'}`}>
                                       {studio.launchPrice}€
                                     </span>
                                     <span className="text-white/40 text-xs ml-1">/h</span>
                                   </div>
                                   {studio.savings > 0 && (
-                                    <div className="px-2 py-1 bg-rose-500/20 rounded-lg border border-rose-400/30">
-                                      <span className="text-rose-400 text-xs font-bold">-{studio.savings}€</span>
+                                    <div className="px-2 py-1 bg-emerald-500/20 rounded-lg border border-emerald-400/30">
+                                      <span className="text-emerald-400 text-xs font-bold">-{studio.savings}€</span>
                                     </div>
                                   )}
                                 </div>
                               </div>
                               {selectedStudioId === studio.id && (
                                 <div className="flex-shrink-0">
-                                  <div className="w-8 h-8 rounded-full bg-fuchsia-500 flex items-center justify-center">
+                                  <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
                                     <Check className="w-5 h-5 text-white" />
                                   </div>
                                 </div>
@@ -339,7 +339,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         onClick={() => setCurrentStep(2)}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full mt-8 py-4 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-xl font-inter font-bold text-lg shadow-lg flex items-center justify-center gap-2"
+                        className="w-full mt-8 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-inter font-bold text-lg shadow-lg flex items-center justify-center gap-2"
                       >
                         Continuer
                         <ChevronRight className="w-5 h-5" />
@@ -358,7 +358,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                     >
                       <div>
                         <div className="flex items-center gap-3 mb-6">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-rose-600 to-fuchsia-600 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
                             <span className="text-white font-bold">1</span>
                           </div>
                           <h3 className="text-xl font-inter font-bold text-white">Formule</h3>
@@ -375,20 +375,20 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                               whileTap={{ scale: 0.98 }}
                               className={`relative p-5 rounded-2xl border-2 transition-all overflow-hidden ${
                                 selectedFormulaId === formula.id
-                                  ? 'border-rose-400 bg-rose-500/10 shadow-lg shadow-rose-500/30'
+                                  ? 'border-emerald-400 bg-emerald-500/10 shadow-lg shadow-emerald-500/30'
                                   : 'border-white/10 bg-white/5 hover:border-white/30'
                               }`}
                             >
                               {formula.popular && (
-                                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-rose-600 to-fuchsia-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold shadow-lg">
+                                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold shadow-lg">
                                   ⭐
                                 </div>
                               )}
-                              <formula.icon className={`w-7 h-7 mx-auto mb-3 ${selectedFormulaId === formula.id ? 'text-rose-400' : 'text-white/60'}`} />
+                              <formula.icon className={`w-7 h-7 mx-auto mb-3 ${selectedFormulaId === formula.id ? 'text-emerald-400' : 'text-white/60'}`} />
                               <span className={`font-inter font-bold text-sm block mb-1 ${selectedFormulaId === formula.id ? 'text-white' : 'text-white/70'}`}>
                                 {formula.name}
                               </span>
-                              <span className={`text-xs font-medium ${selectedFormulaId === formula.id ? 'text-rose-400' : 'text-white/40'}`}>
+                              <span className={`text-xs font-medium ${selectedFormulaId === formula.id ? 'text-emerald-400' : 'text-white/40'}`}>
                                 {formula.displayPrice}
                               </span>
                             </motion.button>
@@ -398,7 +398,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
 
                       <div>
                         <div className="flex items-center gap-3 mb-6">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-600 to-teal-600 flex items-center justify-center">
                             <span className="text-white font-bold">2</span>
                           </div>
                           <h3 className="text-xl font-inter font-bold text-white">Durée</h3>
@@ -415,14 +415,14 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                               whileTap={{ scale: 0.98 }}
                               className={`relative p-5 rounded-2xl border-2 transition-all overflow-hidden ${
                                 selectedDurationId === duration.id
-                                  ? 'border-violet-400 bg-violet-500/10 shadow-lg shadow-violet-500/30'
+                                  ? 'border-cyan-400 bg-cyan-500/10 shadow-lg shadow-cyan-500/30'
                                   : 'border-white/10 bg-white/5 hover:border-white/30'
                               }`}
                             >
                               <div className="flex items-center justify-between mb-2">
-                                <Clock className={`w-5 h-5 ${selectedDurationId === duration.id ? 'text-violet-400' : 'text-white/60'}`} />
+                                <Clock className={`w-5 h-5 ${selectedDurationId === duration.id ? 'text-cyan-400' : 'text-white/60'}`} />
                                 {duration.discount && (
-                                  <span className="text-[10px] px-2 py-0.5 bg-gradient-to-r from-rose-600 to-fuchsia-600 text-white rounded-full font-bold">
+                                  <span className="text-[10px] px-2 py-0.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full font-bold">
                                     {duration.discount}
                                   </span>
                                 )}
@@ -448,7 +448,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                           onClick={() => setCurrentStep(3)}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="flex-1 py-4 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-xl font-inter font-bold shadow-lg flex items-center justify-center gap-2"
+                          className="flex-1 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-inter font-bold shadow-lg flex items-center justify-center gap-2"
                         >
                           Continuer
                           <ChevronRight className="w-5 h-5" />
@@ -491,7 +491,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                               whileTap={{ scale: 0.95 }}
                               className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-inter font-bold text-sm transition-all ${
                                 isActive
-                                  ? 'bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white shadow-lg'
+                                  ? 'bg-gradient-to-r from-emerald-600 to-cyan-600 text-white shadow-lg'
                                   : 'bg-white/5 text-white/60 border border-white/10 hover:border-white/30'
                               }`}
                             >
@@ -507,7 +507,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         })}
                       </div>
 
-                      <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-fuchsia-600/30 scrollbar-track-white/5">
+                      <div className="space-y-3 max-h-[500px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-emerald-600/30 scrollbar-track-white/5">
                         <AnimatePresence mode="wait">
                           {categorizedOptions[activeCategory].map((option, idx) => (
                             <motion.label
@@ -519,7 +519,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                               whileHover={{ x: 5, scale: 1.01 }}
                               className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
                                 selectedOptions[option.id]
-                                  ? 'bg-gradient-to-r from-fuchsia-600/10 to-violet-600/10 border-fuchsia-400'
+                                  ? 'bg-gradient-to-r from-emerald-600/10 to-cyan-600/10 border-emerald-400'
                                   : 'bg-white/5 border-white/10 hover:border-white/30'
                               }`}
                             >
@@ -527,7 +527,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                                 type="checkbox"
                                 checked={selectedOptions[option.id] || false}
                                 onChange={(e) => setSelectedOptions({...selectedOptions, [option.id]: e.target.checked})}
-                                className="w-5 h-5 accent-fuchsia-400 cursor-pointer"
+                                className="w-5 h-5 accent-emerald-400 cursor-pointer"
                               />
                               <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${option.gradient} flex items-center justify-center flex-shrink-0`}>
                                 <option.icon className="w-6 h-6 text-white" />
@@ -538,12 +538,12 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                                     {option.name}
                                   </span>
                                   {option.popular && (
-                                    <Star className="w-4 h-4 text-fuchsia-400 fill-fuchsia-400" />
+                                    <Star className="w-4 h-4 text-emerald-400 fill-emerald-400" />
                                   )}
                                 </div>
                                 <span className="text-white/50 text-xs">{option.description}</span>
                               </div>
-                              <span className={`font-montserrat font-black text-lg ${selectedOptions[option.id] ? 'text-fuchsia-400' : 'text-white/60'}`}>
+                              <span className={`font-montserrat font-black text-lg ${selectedOptions[option.id] ? 'text-emerald-400' : 'text-white/60'}`}>
                                 {option.unit === 'fixe' && `+${option.price}€`}
                                 {option.unit === '/h' && `+${option.price * currentDuration.hours}€`}
                                 {option.unit === '/h de vidéo' && `+${option.price}€`}
@@ -572,7 +572,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                           onClick={() => setCurrentStep(4)}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="flex-1 py-4 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-xl font-inter font-bold shadow-lg flex items-center justify-center gap-2"
+                          className="flex-1 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-inter font-bold shadow-lg flex items-center justify-center gap-2"
                         >
                           Voir le récapitulatif
                           <ChevronRight className="w-5 h-5" />
@@ -613,7 +613,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                             </div>
                             <button
                               onClick={() => setCurrentStep(1)}
-                              className="text-fuchsia-400 text-sm hover:underline"
+                              className="text-emerald-400 text-sm hover:underline"
                             >
                               Modifier
                             </button>
@@ -628,7 +628,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                               </span>
                               <button
                                 onClick={() => setCurrentStep(3)}
-                                className="text-fuchsia-400 text-sm hover:underline"
+                                className="text-emerald-400 text-sm hover:underline"
                               >
                                 Modifier
                               </button>
@@ -673,11 +673,11 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
           >
             <div className="sticky top-8">
               <div className="relative bg-gradient-to-br from-zinc-900 via-black to-zinc-950 backdrop-blur-xl rounded-3xl p-6 border border-white/20 shadow-2xl overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-fuchsia-600/5 via-transparent to-transparent"></div>
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-600/5 via-transparent to-transparent"></div>
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-600 to-violet-600 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center">
                       <Calculator className="w-5 h-5 text-white" />
                     </div>
                     <div>
@@ -722,10 +722,10 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                       <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="flex items-center justify-between py-2 border-b border-white/10 bg-fuchsia-500/10 -mx-2 px-2 rounded-lg"
+                        className="flex items-center justify-between py-2 border-b border-white/10 bg-emerald-500/10 -mx-2 px-2 rounded-lg"
                       >
-                        <span className="text-fuchsia-400 font-inter text-sm">Réduction pack</span>
-                        <span className="text-fuchsia-400 font-montserrat font-bold text-sm">
+                        <span className="text-emerald-400 font-inter text-sm">Réduction pack</span>
+                        <span className="text-emerald-400 font-montserrat font-bold text-sm">
                           -{packageDiscount.toFixed(0)}€
                         </span>
                       </motion.div>
@@ -735,10 +735,10 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                       <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="flex items-center justify-between py-2 border-b border-white/10 bg-rose-500/10 -mx-2 px-2 rounded-lg"
+                        className="flex items-center justify-between py-2 border-b border-white/10 bg-emerald-500/10 -mx-2 px-2 rounded-lg"
                       >
-                        <span className="text-rose-400 font-inter text-sm">Offre de lancement</span>
-                        <span className="text-rose-400 font-montserrat font-bold text-sm">
+                        <span className="text-emerald-400 font-inter text-sm">Offre de lancement</span>
+                        <span className="text-emerald-400 font-montserrat font-bold text-sm">
                           -{savings.toFixed(0)}€
                         </span>
                       </motion.div>
@@ -755,7 +755,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         ]
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="bg-gradient-to-r from-rose-600/20 via-fuchsia-600/20 to-violet-600/20 rounded-xl p-6 border-2 border-fuchsia-400/50"
+                      className="bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 rounded-xl p-6 border-2 border-emerald-400/50"
                     >
                       <div className="flex items-baseline justify-between mb-3">
                         <span className="text-white/60 font-inter text-xs">Total estimé HT</span>
@@ -763,7 +763,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                           key={finalPrice}
                           initial={{ scale: 1.3, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
-                          className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400"
+                          className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400"
                         >
                           {finalPrice.toFixed(0)}€
                         </motion.span>
@@ -820,7 +820,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                       }}
                       whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(236, 72, 153, 0.4)" }}
                       whileTap={{ scale: 0.97 }}
-                      className="relative w-full py-5 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl flex items-center justify-center gap-3 group overflow-hidden"
+                      className="relative w-full py-5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl flex items-center justify-center gap-3 group overflow-hidden"
                     >
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
