@@ -1,53 +1,92 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Video, Camera, Mic, Lightbulb, ArrowRight, Zap } from 'lucide-react';
-import Button from '../../components/UI/Button';
 
 export default function StudiosSection() {
   return (
     <>
-      <section id="studios-pro" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
+      <section id="studios-pro" className="relative min-h-screen flex items-center bg-black overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-[#0A0A0A] to-indigo-950/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-black to-indigo-950/20"></div>
 
           <motion.div
-            className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px]"
+            className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[150px]"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.2, 0.3, 0.2]
             }}
-            transition={{ duration: 8, repeat: Infinity }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[140px]"
+            className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-[150px]"
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.15, 0.25, 0.15]
             }}
-            transition={{ duration: 10, repeat: Infinity }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-1/2 right-1/3 w-96 h-96 bg-purple-600/10 rounded-full blur-[150px]"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
-        <div className="absolute inset-0 z-0">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.4 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="absolute inset-0"
-          >
-            <img
-              src="https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=1920"
-              alt="Studio professionnel Le 40"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/80"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/90 via-transparent to-[#0A0A0A]"></div>
-          </motion.div>
-        </div>
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 w-full">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="lg:order-1"
+            >
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-3xl opacity-20"></div>
+                <div className="relative bg-gradient-to-br from-blue-950/40 to-indigo-950/30 backdrop-blur-xl border border-blue-500/20 rounded-3xl p-10">
+                  <div className="text-center mb-8">
+                    <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center">
+                      <Video className="w-14 h-14 text-blue-400" />
+                    </div>
+                    <div className="text-3xl font-montserrat font-black text-white mb-3">3 Studios Disponibles</div>
+                    <div className="text-blue-400/70 font-medium text-lg">50m² à 120m²</div>
+                  </div>
+
+                  <div className="h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent my-8"></div>
+
+                  <div className="space-y-5">
+                    {[
+                      { label: 'Fond vert/blanc', value: 'Inclus', highlight: true },
+                      { label: 'Régie technique', value: 'Disponible', highlight: true },
+                      { label: 'Technicien sur demande', value: '+80€/h', highlight: true }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.5 }}
+                        viewport={{ once: true }}
+                        className="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/5 hover:border-blue-500/20 transition-colors duration-300"
+                      >
+                        <span className="text-white/60 font-medium">{item.label}</span>
+                        <span className={`font-bold ${item.highlight ? 'text-blue-400' : 'text-white'}`}>
+                          {item.value}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -55,23 +94,30 @@ export default function StudiosSection() {
               viewport={{ once: true }}
               className="lg:order-2"
             >
-              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-6">
-                <Video className="w-4 h-4 text-blue-400" />
-                <span className="text-blue-300 text-sm font-medium uppercase tracking-wider">Studio Pro</span>
+              <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-5 py-3 mb-8">
+                <Video className="w-5 h-5 text-blue-400" />
+                <span className="text-blue-300 text-sm font-bold uppercase tracking-wider">Studio Pro</span>
               </div>
 
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
                 Production<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
-                  8K Ultra HD
+                <span className="relative inline-block">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
+                    8K Ultra HD
+                  </span>
+                  <motion.div
+                    className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 blur-3xl -z-10"
+                    animate={{ opacity: [0.3, 0.6, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
                 </span>
               </h2>
 
-              <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
+              <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed font-inter">
                 Studios photo et vidéo professionnels équipés des dernières technologies. Parfait pour vos shootings produits, interviews, publicités et contenus corporate haut de gamme.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mb-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                 {[
                   { icon: Camera, text: 'Caméras 8K RED & Sony' },
                   { icon: Mic, text: 'Son Dolby Atmos' },
@@ -84,78 +130,63 @@ export default function StudiosSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="flex items-start gap-3"
+                    className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-blue-500/20 transition-colors duration-300"
                   >
-                    <div className="p-2 bg-blue-500/10 rounded-lg">
+                    <div className="p-2 bg-blue-500/10 rounded-xl shrink-0">
                       <feature.icon className="w-5 h-5 text-blue-400" />
                     </div>
-                    <span className="text-white/80 text-sm leading-tight pt-1">{feature.text}</span>
+                    <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{feature.text}</span>
                   </motion.div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-3 mb-8">
-                <div className="text-white/50 text-sm">À partir de</div>
-                <div className="text-5xl font-montserrat font-black text-white">150€</div>
-                <div className="text-white/50 text-sm">/demi-journée</div>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 mb-10"
+              >
+                <div className="text-white/50 text-sm font-inter">À partir de</div>
+                <div className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">150€</div>
+                <div className="text-white/50 text-sm font-inter">/demi-journée</div>
+              </motion.div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <motion.a
                   href="/studios"
-                  size="md"
-                  icon={ArrowRight}
-                  iconPosition="right"
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative"
                 >
-                  RÉSERVER UN STUDIO
-                </Button>
-                <Button
+                  <motion.div
+                    className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ opacity: [0.5, 0.75, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <div className="relative flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm">
+                    <span>RÉSERVER UN STUDIO</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </motion.a>
+
+                <motion.a
                   href="/studios"
-                  variant="secondary"
-                  size="md"
-                  className="border-blue-500/30 text-blue-300 hover:bg-blue-500/10"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-blue-500/30 hover:border-blue-500/50 text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center text-sm"
                 >
                   Voir l'équipement
-                </Button>
-              </div>
+                </motion.a>
+              </motion.div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="lg:order-1"
-            >
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur-3xl opacity-30"></div>
-                <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
-                  <div className="text-center mb-6">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-400/30 flex items-center justify-center">
-                      <Video className="w-12 h-12 text-blue-400" />
-                    </div>
-                    <div className="text-2xl font-bold text-white mb-2">3 Studios Disponibles</div>
-                    <div className="text-white/50">50m² à 120m²</div>
-                  </div>
-                  <div className="h-px bg-white/10 my-6"></div>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Fond vert/blanc</span>
-                      <span className="text-white font-semibold">Inclus</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Régie technique</span>
-                      <span className="text-white font-semibold">Disponible</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Technicien sur demande</span>
-                      <span className="text-white font-semibold">+80€/h</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
 
@@ -170,53 +201,74 @@ export default function StudiosSection() {
         </div>
       </section>
 
-      <section id="studios-content" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
+      <section id="studios-content" className="relative min-h-screen flex items-center bg-black overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-950/30 via-[#0A0A0A] to-pink-950/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-950/30 via-black to-amber-950/20"></div>
 
           <motion.div
-            className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-rose-600/20 rounded-full blur-[150px]"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-600/20 rounded-full blur-[150px]"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.2, 0.3, 0.2]
             }}
-            transition={{ duration: 8, repeat: Infinity }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-pink-600/15 rounded-full blur-[140px]"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/15 rounded-full blur-[150px]"
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.15, 0.25, 0.15]
             }}
-            transition={{ duration: 10, repeat: Infinity }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-96 h-96 bg-yellow-600/10 rounded-full blur-[150px]"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 w-full">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -60 }}
+              initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
+              className="lg:order-2"
             >
-              <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 rounded-full px-4 py-2 mb-6">
-                <Camera className="w-4 h-4 text-rose-400" />
-                <span className="text-rose-300 text-sm font-medium uppercase tracking-wider">Studio Créateurs</span>
+              <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-5 py-3 mb-8">
+                <Camera className="w-5 h-5 text-orange-400" />
+                <span className="text-orange-300 text-sm font-bold uppercase tracking-wider">Studio Créateurs</span>
               </div>
 
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
                 Créez Vos<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-400 to-fuchsia-400">
-                  Contenus Viraux
+                <span className="relative inline-block">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
+                    Contenus Viraux
+                  </span>
+                  <motion.div
+                    className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-yellow-500/20 blur-3xl -z-10"
+                    animate={{ opacity: [0.3, 0.6, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
                 </span>
               </h2>
 
-              <p className="text-xl text-white/70 mb-8 leading-relaxed font-light">
+              <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed font-inter">
                 Un espace pensé pour les créateurs de contenu, YouTubeurs, TikTokeurs et influenceurs. Setup rapide, équipement plug-and-play et ambiances modulables pour vos vidéos, podcasts et lives.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mb-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                 {[
                   { icon: Video, text: 'Setup Prêt en 5 min' },
                   { icon: Mic, text: 'Micro & Podcast Kit' },
@@ -229,74 +281,103 @@ export default function StudiosSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="flex items-start gap-3"
+                    className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-orange-500/20 transition-colors duration-300"
                   >
-                    <div className="p-2 bg-rose-500/10 rounded-lg">
-                      <feature.icon className="w-5 h-5 text-rose-400" />
+                    <div className="p-2 bg-orange-500/10 rounded-xl shrink-0">
+                      <feature.icon className="w-5 h-5 text-orange-400" />
                     </div>
-                    <span className="text-white/80 text-sm leading-tight pt-1">{feature.text}</span>
+                    <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{feature.text}</span>
                   </motion.div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-3 mb-8">
-                <div className="text-white/50 text-sm">À partir de</div>
-                <div className="text-5xl font-montserrat font-black text-white">50€</div>
-                <div className="text-white/50 text-sm">/heure</div>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 mb-10"
+              >
+                <div className="text-white/50 text-sm font-inter">À partir de</div>
+                <div className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">50€</div>
+                <div className="text-white/50 text-sm font-inter">/heure</div>
+              </motion.div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <motion.a
                   href="/studios"
-                  size="md"
-                  icon={ArrowRight}
-                  iconPosition="right"
-                  className="bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative"
                 >
-                  RÉSERVER MAINTENANT
-                </Button>
-                <Button
+                  <motion.div
+                    className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ opacity: [0.5, 0.75, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <div className="relative flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm">
+                    <span>RÉSERVER MAINTENANT</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </motion.a>
+
+                <motion.a
                   href="/studios"
-                  variant="secondary"
-                  size="md"
-                  className="border-rose-500/30 text-rose-300 hover:bg-rose-500/10"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-orange-500/30 hover:border-orange-500/50 text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center text-sm"
                 >
                   Voir les formules
-                </Button>
-              </div>
+                </motion.a>
+              </motion.div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
+              initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="hidden lg:block"
+              className="lg:order-1"
             >
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-rose-600 to-pink-600 rounded-3xl blur-3xl opacity-30"></div>
-                <div className="relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8">
-                  <div className="text-center mb-6">
-                    <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 border border-rose-400/30 flex items-center justify-center">
-                      <Camera className="w-12 h-12 text-rose-400" />
+                <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 to-amber-600 rounded-3xl blur-3xl opacity-20"></div>
+                <div className="relative bg-gradient-to-br from-orange-950/40 to-amber-950/30 backdrop-blur-xl border border-orange-500/20 rounded-3xl p-10">
+                  <div className="text-center mb-8">
+                    <div className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-400/30 flex items-center justify-center">
+                      <Camera className="w-14 h-14 text-orange-400" />
                     </div>
-                    <div className="text-2xl font-bold text-white mb-2">Studio Créateurs</div>
-                    <div className="text-white/50">Parfait pour YouTube & TikTok</div>
+                    <div className="text-3xl font-montserrat font-black text-white mb-3">Studio Créateurs</div>
+                    <div className="text-orange-400/70 font-medium text-lg">Parfait pour YouTube & TikTok</div>
                   </div>
-                  <div className="h-px bg-white/10 my-6"></div>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Décors modulables</span>
-                      <span className="text-white font-semibold">5 ambiances</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Connexion live</span>
-                      <span className="text-white font-semibold">Fibre 1 Gbps</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60">Forfaits mensuels</span>
-                      <span className="text-white font-semibold">Dès 400€</span>
-                    </div>
+
+                  <div className="h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent my-8"></div>
+
+                  <div className="space-y-5">
+                    {[
+                      { label: 'Décors modulables', value: '5 ambiances', highlight: true },
+                      { label: 'Connexion live', value: 'Fibre 1 Gbps', highlight: true },
+                      { label: 'Forfaits mensuels', value: 'Dès 400€', highlight: true }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.5 }}
+                        viewport={{ once: true }}
+                        className="flex items-center justify-between p-3 rounded-xl bg-black/30 border border-white/5 hover:border-orange-500/20 transition-colors duration-300"
+                      >
+                        <span className="text-white/60 font-medium">{item.label}</span>
+                        <span className={`font-bold ${item.highlight ? 'text-orange-400' : 'text-white'}`}>
+                          {item.value}
+                        </span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </div>
