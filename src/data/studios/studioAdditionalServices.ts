@@ -1,4 +1,4 @@
-import { Film, Monitor, Camera, Radio, Car, LucideIcon } from 'lucide-react';
+import { Film, Monitor, Camera, Radio, Car, Scissors, Image, FileVideo, Subtitles, Palette, Wand2, Sparkles, Video, LucideIcon } from 'lucide-react';
 
 export interface StudioAdditionalService {
   id: string;
@@ -12,30 +12,206 @@ export interface StudioAdditionalService {
   gradient: string;
   features: string[];
   popular?: boolean;
+  category: 'post-production' | 'equipement' | 'services';
 }
 
 export const studioAdditionalServices: StudioAdditionalService[] = [
   {
-    id: 'montage-pro',
-    name: 'Montage Pro',
-    description: 'Livraison sous 5 jours',
-    details: 'Montage professionnel avec cuts, transitions, titres, colorimétrie basique. 1 révision incluse.',
-    price: 39,
-    unit: 'fixe',
-    displayPrice: '39€',
-    icon: Film,
-    gradient: 'from-rose-600 to-fuchsia-600',
+    id: 'montage-basique',
+    name: 'Montage Basique',
+    description: 'Simple et efficace',
+    details: 'Cuts simples, exports standards. Idéal pour contenu simple sans effets.',
+    price: 49,
+    unit: '/h de rush',
+    displayPrice: '49€/h de rush',
+    icon: Scissors,
+    gradient: 'from-zinc-600 to-gray-600',
     features: [
-      'Montage professionnel',
+      'Cuts simples',
+      'Assemblage de séquences',
+      'Export standard HD/4K',
+      'Livraison 5-7 jours',
+      'Format au choix',
+      '1 révision mineure'
+    ],
+    category: 'post-production'
+  },
+  {
+    id: 'montage-standard',
+    name: 'Montage Standard',
+    description: 'Pour YouTube/Podcast',
+    details: 'Montage pro avec transitions, titres, ajustements audio basiques. Parfait pour contenu régulier.',
+    price: 79,
+    unit: '/h de rush',
+    displayPrice: '79€/h de rush',
+    icon: Film,
+    gradient: 'from-blue-600 to-cyan-600',
+    features: [
       'Cuts et transitions',
       'Titres et sous-titres',
-      'Colorimétrie basique',
-      '1 révision incluse',
-      'Livraison sous 5 jours',
-      'Formats optimisés',
-      'Miniatures incluses'
+      'Correction audio basique',
+      'Color grading léger',
+      '2 révisions incluses',
+      'Livraison 5 jours',
+      'Formats optimisés réseaux',
+      'Miniature YouTube incluse'
     ],
-    popular: true
+    popular: true,
+    category: 'post-production'
+  },
+  {
+    id: 'montage-premium',
+    name: 'Montage Premium',
+    description: 'Qualité cinématique',
+    details: 'Montage avancé avec effets visuels, motion design, color grading pro, mixage audio complet.',
+    price: 120,
+    unit: '/h de rush',
+    displayPrice: '120€/h de rush',
+    icon: Sparkles,
+    gradient: 'from-rose-600 to-fuchsia-600',
+    features: [
+      'Montage avancé multi-caméras',
+      'Motion design et animations',
+      'Color grading professionnel',
+      'Mixage audio complet',
+      'Effets visuels sur mesure',
+      '3 révisions incluses',
+      'Livraison 3-5 jours',
+      'Formats multiples + miniatures'
+    ],
+    popular: true,
+    category: 'post-production'
+  },
+  {
+    id: 'derushage',
+    name: 'Dérushage',
+    description: 'Sélection des meilleurs moments',
+    details: 'Visionnage complet et sélection des meilleures prises. Export des séquences retenues.',
+    price: 35,
+    unit: '/h de rush',
+    displayPrice: '35€/h de rush',
+    icon: FileVideo,
+    gradient: 'from-amber-600 to-orange-600',
+    features: [
+      'Visionnage complet',
+      'Sélection des meilleurs plans',
+      'Marquage des timecodes',
+      'Notes et commentaires',
+      'Export séquences sélectionnées',
+      'Gain de temps montage',
+      'Livraison 48h'
+    ],
+    category: 'post-production'
+  },
+  {
+    id: 'editorialisation',
+    name: 'Éditorialisation',
+    description: 'Structure et storytelling',
+    details: 'Restructuration narrative, storytelling, rythme optimisé pour engagement maximal.',
+    price: 89,
+    unit: '/vidéo',
+    displayPrice: '89€/vidéo',
+    icon: Wand2,
+    gradient: 'from-violet-600 to-purple-600',
+    features: [
+      'Analyse du contenu brut',
+      'Restructuration narrative',
+      'Optimisation du rythme',
+      'Hooks et accroches',
+      'Storytelling optimisé',
+      'Conseils éditoriaux',
+      'Livraison 3 jours'
+    ],
+    category: 'post-production'
+  },
+  {
+    id: 'sous-titrage',
+    name: 'Sous-titrage (SST)',
+    description: 'Français ou Anglais',
+    details: 'Sous-titres synchronisés professionnels. Formats SRT, VTT ou burn-in.',
+    price: 45,
+    unit: '/10min',
+    displayPrice: '45€/10min',
+    icon: Subtitles,
+    gradient: 'from-green-600 to-emerald-600',
+    features: [
+      'Transcription complète',
+      'Synchronisation précise',
+      'Corrections orthographiques',
+      'Format SRT/VTT/Burn-in',
+      'Français ou Anglais',
+      '1 révision incluse',
+      'Livraison 48-72h'
+    ],
+    category: 'post-production'
+  },
+  {
+    id: 'miniatures',
+    name: 'Pack Miniatures',
+    description: '3 propositions créatives',
+    details: 'Design de miniatures YouTube professionnelles. 3 variations créatives avec révisions.',
+    price: 39,
+    unit: '/pack de 3',
+    displayPrice: '39€/pack',
+    icon: Image,
+    gradient: 'from-pink-600 to-rose-600',
+    features: [
+      '3 miniatures créatives',
+      'Design professionnel',
+      'Formats YouTube optimisés',
+      'Typographie impactante',
+      'Couleurs accrocheuses',
+      '2 révisions par miniature',
+      'Livraison 24-48h',
+      'Fichiers sources inclus'
+    ],
+    popular: true,
+    category: 'post-production'
+  },
+  {
+    id: 'clipping-shorts',
+    name: 'Pack Clipping Shorts',
+    description: 'Contenu court optimisé',
+    details: 'Extraction et optimisation de 5-10 clips courts pour TikTok/Reels/Shorts depuis votre contenu long.',
+    price: 149,
+    unit: '/pack',
+    displayPrice: '149€/pack',
+    icon: Video,
+    gradient: 'from-fuchsia-600 to-pink-600',
+    features: [
+      '5-10 clips courts (30-60s)',
+      'Sélection des meilleurs moments',
+      'Format vertical 9:16',
+      'Sous-titres auto inclus',
+      'Hooks optimisés',
+      'Transitions dynamiques',
+      'Miniatures pour chaque clip',
+      'Livraison 3-5 jours'
+    ],
+    popular: true,
+    category: 'post-production'
+  },
+  {
+    id: 'incrustation-graphics',
+    name: 'Incrustations Graphiques',
+    description: 'Lower thirds, logos, etc.',
+    details: 'Création et intégration de packages graphiques sur mesure. Lower thirds, logos, transitions.',
+    price: 79,
+    unit: '/package',
+    displayPrice: '79€/package',
+    icon: Palette,
+    gradient: 'from-cyan-600 to-blue-600',
+    features: [
+      'Lower thirds animés',
+      'Logo et watermark',
+      'Transitions graphiques',
+      'Templates réutilisables',
+      'Charte graphique respectée',
+      'Animations fluides',
+      '2 révisions incluses',
+      'Livraison 48h'
+    ],
+    category: 'post-production'
   },
   {
     id: 'teleprompter',
@@ -56,7 +232,8 @@ export const studioAdditionalServices: StudioAdditionalService[] = [
       'Placement optimal',
       'Support technique',
       'Script pré-chargé'
-    ]
+    ],
+    category: 'equipement'
   },
   {
     id: 'camera-extra',
@@ -77,7 +254,8 @@ export const studioAdditionalServices: StudioAdditionalService[] = [
       'Objectif adapté',
       'Enregistrement simultané',
       'Post-production facilitée'
-    ]
+    ],
+    category: 'equipement'
   },
   {
     id: 'live-switch',
@@ -99,7 +277,8 @@ export const studioAdditionalServices: StudioAdditionalService[] = [
       'Technicien dédié',
       'Bande passante garantie'
     ],
-    popular: true
+    popular: true,
+    category: 'equipement'
   },
   {
     id: 'transport-gare',
@@ -120,6 +299,7 @@ export const studioAdditionalServices: StudioAdditionalService[] = [
       'Aide bagages/matériel',
       'Climatisation',
       'Réservation flexible'
-    ]
+    ],
+    category: 'services'
   }
 ];

@@ -1,8 +1,22 @@
 import { motion } from 'framer-motion';
 import { studioAdditionalServices } from '../../data/studios/studioAdditionalServices';
-import { Star, ArrowRight, Check } from 'lucide-react';
+import { Star, ArrowRight, Check, Film, Settings, Users } from 'lucide-react';
+import { useState } from 'react';
 
 export default function StudioAdditionalServicesSection() {
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'post-production' | 'equipement' | 'services'>('all');
+
+  const categories = [
+    { id: 'all' as const, name: 'Tous', icon: Star },
+    { id: 'post-production' as const, name: 'Post-Production', icon: Film },
+    { id: 'equipement' as const, name: 'Équipement', icon: Settings },
+    { id: 'services' as const, name: 'Services', icon: Users }
+  ];
+
+  const filteredServices = selectedCategory === 'all'
+    ? studioAdditionalServices
+    : studioAdditionalServices.filter(s => s.category === selectedCategory);
+
   return (
     <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
       <div className="absolute inset-0">
@@ -16,7 +30,7 @@ export default function StudioAdditionalServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
             OPTIONS
@@ -29,8 +43,37 @@ export default function StudioAdditionalServicesSection() {
           </p>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-16"
+        >
+          {categories.map((cat) => {
+            const Icon = cat.icon;
+            const isActive = selectedCategory === cat.id;
+            return (
+              <motion.button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-6 py-3 rounded-xl font-inter font-medium transition-all flex items-center gap-2 ${
+                  isActive
+                    ? 'bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 text-white shadow-lg'
+                    : 'bg-white/5 text-white/70 border border-white/10 hover:border-white/30'
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+                {cat.name}
+              </motion.button>
+            );
+          })}
+        </motion.div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {studioAdditionalServices.map((service, index) => (
+          {filteredServices.map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 60 }}
