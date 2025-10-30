@@ -1,59 +1,56 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
-import HeroSection from '../components/Studios/HeroSection';
-import StudioJourney from '../components/Studios/Journey/StudioJourney';
-import SocialProofSection from '../components/Studios/SocialProofSection';
-import EnhancedGallerySection from '../components/Studios/EnhancedGallerySection';
-import TestimonialsSection from '../components/Studios/TestimonialsSection';
-import FAQSection from '../components/Studios/FAQSection';
-import FinalCTASection from '../components/Studios/FinalCTASection';
-import { useStudioConfiguration, generateSessionId } from '../hooks/useStudioConfiguration';
+import HeroSection from '../components/StudiosRefonte/HeroSection';
+import StudiosGridSection from '../components/StudiosRefonte/StudiosGridSection';
+import StudioPricingSimulatorSection from '../components/StudiosRefonte/StudioPricingSimulatorSection';
+import StudioComparatorSection from '../components/StudiosRefonte/StudioComparatorSection';
+import FormulasComparisonSection from '../components/StudiosRefonte/FormulasComparisonSection';
+import StudioEquipmentSection from '../components/StudiosRefonte/StudioEquipmentSection';
+import StudioAdditionalServicesSection from '../components/StudiosRefonte/StudioAdditionalServicesSection';
+import ProcessSection from '../components/StudiosRefonte/ProcessSection';
+import TestimonialsSection from '../components/StudiosRefonte/TestimonialsSection';
+import FAQSection from '../components/StudiosRefonte/FAQSection';
+import FinalCTASection from '../components/StudiosRefonte/FinalCTASection';
+import { studios } from '../data/studios/studiosData';
 
 export default function Studios() {
-  const { loadSharedConfiguration, trackInteraction } = useStudioConfiguration();
-  const [sessionId] = useState(() => generateSessionId());
-  const [initialStudioId, setInitialStudioId] = useState<string | undefined>(undefined);
-  const [initialFormulaId, setInitialFormulaId] = useState<string | undefined>(undefined);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const configToken = params.get('config');
-
-    if (configToken) {
-      loadSharedConfiguration(configToken).then(config => {
-        if (config) {
-          setInitialStudioId(config.studioId);
-          setInitialFormulaId(config.formulaId);
-        }
-      });
-    }
-
-    trackInteraction({
-      sessionId,
-      actionType: 'page_view',
-      timeSpentSeconds: 0
-    });
-  }, []);
+  const [selectedStudioId, setSelectedStudioId] = useState<string | null>(studios[0].id);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-hidden">
       <HeaderNav />
       <MobileBurger />
 
       <main className="pt-24">
         <HeroSection />
 
-        <StudioJourney
-          initialStudioId={initialStudioId}
-          initialFormulaId={initialFormulaId}
+        <StudiosGridSection
+          studios={studios}
+          onStudioSelect={setSelectedStudioId}
+          selectedStudioId={selectedStudioId}
         />
 
-        <SocialProofSection />
-        <EnhancedGallerySection />
+        <StudioPricingSimulatorSection
+          selectedStudioId={selectedStudioId}
+          onStudioSelect={setSelectedStudioId}
+        />
+
+        <StudioComparatorSection />
+
+        <FormulasComparisonSection />
+
+        <StudioEquipmentSection />
+
+        <StudioAdditionalServicesSection />
+
+        <ProcessSection />
+
         <TestimonialsSection />
+
         <FAQSection />
+
         <FinalCTASection />
       </main>
 
