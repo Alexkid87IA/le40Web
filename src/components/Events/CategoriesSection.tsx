@@ -17,6 +17,16 @@ interface CategoriesSectionProps {
 }
 
 export default function CategoriesSection({ selectedCategory, onCategorySelect }: CategoriesSectionProps) {
+  const handleCategoryClick = (slug: string) => {
+    onCategorySelect(slug);
+    setTimeout(() => {
+      const eventsSection = document.getElementById('upcoming-events');
+      if (eventsSection) {
+        eventsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   return (
     <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0">
@@ -92,7 +102,7 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                onClick={() => onCategorySelect(category.slug)}
+                onClick={() => handleCategoryClick(category.slug)}
                 className="group relative text-left flex"
               >
                 <div className={`relative h-full w-full bg-slate-950/50 backdrop-blur-xl border ${isSelected ? 'border-white/20' : 'border-white/10 group-hover:border-white/20'} rounded-3xl p-8 transition-all duration-500 flex flex-col`}>
@@ -154,7 +164,7 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
             className="text-center mt-16"
           >
             <motion.button
-              onClick={() => onCategorySelect('all')}
+              onClick={() => handleCategoryClick('all')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-xl font-montserrat font-semibold transition-all duration-300 shadow-lg"
