@@ -14,42 +14,16 @@ export default function CommunitySection() {
   return (
     <section id="community" className="relative min-h-screen flex items-center bg-[#0A0A0A] overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-950/30 via-[#0A0A0A] to-violet-950/20"></div>
-
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[150px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-violet-600/15 rounded-full blur-[140px]"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.15, 0.25, 0.15]
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
-      </div>
-
-      <div className="absolute inset-0 z-0">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.3 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="absolute inset-0"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
         >
-          <img
-            src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="Communauté Le 40"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/95 to-[#0A0A0A]/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/90 via-transparent to-[#0A0A0A]"></div>
-        </motion.div>
+          <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-950/60 via-[#0A0A0A]/80 to-amber-950/60"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20">
