@@ -9,7 +9,7 @@ const navItems = [
   { name: 'Bureaux', href: '/bureaux', icon: Building2 },
   { name: 'Domiciliation', href: '/domiciliation', icon: MapPin },
   { name: 'Salles', href: '/salles', icon: Presentation },
-  { name: 'Studio', href: '/studios', icon: Video },
+  { name: 'Studio', href: '/studios-booking', icon: Video },
   { name: 'Nos Events', href: '/events', icon: Calendar },
   { name: 'Le Club', href: '/experts', icon: Sparkles },
 ];
@@ -26,6 +26,7 @@ const indicatorColors = {
   '/domiciliation': 'bg-emerald-400', // Domiciliation - Vert
   '/salles': 'bg-purple-400', // Salles - Violet
   '/studios': 'bg-red-400', // Studio - Rouge
+  '/studios-booking': 'bg-red-400', // Studio Booking - Rouge
   '/events': 'bg-cyan-400', // Events - Cyan/Turquoise
   '/experts': 'bg-yellow-400', // Le Club - Jaune
 };
@@ -37,6 +38,7 @@ const reserveButtonColors = {
   '/domiciliation': 'from-emerald-600 via-green-600 to-emerald-600', // Domiciliation - Vert
   '/salles': 'from-purple-600 via-violet-600 to-purple-600', // Salles - Violet
   '/studios': 'from-red-600 via-rose-600 to-red-600', // Studio - Rouge
+  '/studios-booking': 'from-red-600 via-rose-600 to-red-600', // Studio Booking - Rouge
   '/events': 'from-cyan-600 via-sky-600 to-cyan-600', // Events - Cyan/Turquoise
   '/experts': 'from-amber-600 via-yellow-600 to-amber-600', // Le Club - Jaune/Ambre
   '/community': 'from-teal-600 via-cyan-600 to-teal-600', // Communauté - Teal
@@ -51,6 +53,7 @@ const reserveButtonGlow = {
   '/domiciliation': 'bg-emerald-500/40',
   '/salles': 'bg-purple-500/40',
   '/studios': 'bg-red-500/40',
+  '/studios-booking': 'bg-red-500/40',
   '/events': 'bg-cyan-500/40',
   '/experts': 'bg-amber-500/40',
   '/community': 'bg-teal-500/40',
