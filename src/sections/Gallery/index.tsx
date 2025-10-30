@@ -250,7 +250,7 @@ export default function Gallery() {
         
         {/* Effets de lumière animés multiples */}
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-96 h-96 bg-slate-400/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.1, 0.15, 0.1],
@@ -258,7 +258,7 @@ export default function Gallery() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-40 left-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl"
+          className="absolute bottom-40 left-20 w-80 h-80 bg-zinc-300/10 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.1, 0.2, 0.1],
@@ -277,7 +277,7 @@ export default function Gallery() {
           >
             <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight">
               Découvrez Nos{' '}
-              <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-slate-300 via-zinc-100 to-slate-300 bg-clip-text text-transparent">
                 Espaces
               </span>
             </h2>
@@ -288,7 +288,7 @@ export default function Gallery() {
             {/* Barre de progression */}
             <div className="absolute -top-8 left-0 right-0 h-1 bg-white/10 rounded-full overflow-hidden z-20">
               <motion.div
-                className="h-full bg-gradient-to-r from-amber-500 to-orange-500"
+                className="h-full bg-gradient-to-r from-slate-300 via-zinc-100 to-slate-300"
                 initial={{ width: '0%' }}
                 animate={{ width: `${((currentIndex + 1) / images.length) * 100}%` }}
                 transition={{ duration: 0.3 }}
@@ -342,7 +342,7 @@ export default function Gallery() {
                       <div className="flex items-center gap-4 flex-wrap">
                         <motion.span
                           whileHover={{ scale: 1.05 }}
-                          className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-lg backdrop-blur-sm shadow-lg"
+                          className="px-6 py-3 rounded-xl bg-gradient-to-r from-slate-300 to-zinc-200 text-black font-bold text-lg backdrop-blur-sm shadow-lg"
                         >
                           {currentImage.caption}
                         </motion.span>
@@ -358,7 +358,7 @@ export default function Gallery() {
                           initial={{ width: 0 }}
                         >
                           <motion.div
-                            className="h-full bg-gradient-to-r from-amber-400 to-orange-400"
+                            className="h-full bg-gradient-to-r from-slate-300 to-zinc-100"
                             initial={{ width: '0%' }}
                             animate={{ width: '100%' }}
                             transition={{ duration: 5, ease: 'linear' }}
@@ -376,9 +376,9 @@ export default function Gallery() {
                 className="absolute inset-0 pointer-events-none rounded-3xl"
                 animate={{
                   boxShadow: [
-                    '0 0 20px rgba(251, 191, 36, 0.1)',
-                    '0 0 40px rgba(251, 191, 36, 0.2)',
-                    '0 0 20px rgba(251, 191, 36, 0.1)',
+                    '0 0 20px rgba(203, 213, 225, 0.1)',
+                    '0 0 40px rgba(203, 213, 225, 0.2)',
+                    '0 0 20px rgba(203, 213, 225, 0.1)',
                   ],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
@@ -388,7 +388,7 @@ export default function Gallery() {
             {/* Boutons de contrôle améliorés */}
             <motion.button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-slate-300 hover:to-zinc-200 hover:text-black hover:border-transparent transition-all duration-300 shadow-xl"
               whileHover={{ scale: 1.1, x: -5 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Image précédente"
@@ -398,7 +398,7 @@ export default function Gallery() {
 
             <motion.button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-slate-300 hover:to-zinc-200 hover:text-black hover:border-transparent transition-all duration-300 shadow-xl"
               whileHover={{ scale: 1.1, x: 5 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Image suivante"
@@ -410,7 +410,7 @@ export default function Gallery() {
             <div className="absolute top-4 right-4 flex gap-2">
               <motion.button
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-slate-300 hover:to-zinc-200 hover:text-black hover:border-transparent transition-all duration-300 shadow-xl"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label={isPlaying ? 'Pause' : 'Lecture'}
@@ -420,7 +420,7 @@ export default function Gallery() {
 
               <motion.button
                 onClick={() => setShowThumbnails(!showThumbnails)}
-                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-slate-300 hover:to-zinc-200 hover:text-black hover:border-transparent transition-all duration-300 shadow-xl"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Afficher miniatures"
@@ -430,7 +430,7 @@ export default function Gallery() {
 
               <motion.button
                 onClick={() => setIsFullscreen(!isFullscreen)}
-                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent transition-all duration-300 shadow-xl"
+                className="p-3 rounded-full bg-black/70 backdrop-blur-xl border border-white/20 text-white hover:bg-gradient-to-r hover:from-slate-300 hover:to-zinc-200 hover:text-black hover:border-transparent transition-all duration-300 shadow-xl"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Plein écran"
@@ -455,8 +455,8 @@ export default function Gallery() {
                     onClick={() => goToSlide(index)}
                     className={`relative aspect-video rounded-lg overflow-hidden transition-all ${
                       index === currentIndex
-                        ? 'ring-4 ring-amber-500 scale-105'
-                        : 'ring-1 ring-white/20 hover:ring-amber-500/50 hover:scale-105'
+                        ? 'ring-4 ring-slate-300 scale-105'
+                        : 'ring-1 ring-white/20 hover:ring-slate-300/50 hover:scale-105'
                     }`}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
@@ -475,7 +475,7 @@ export default function Gallery() {
                     {index === currentIndex && (
                       <motion.div
                         layoutId="activeThumb"
-                        className="absolute inset-0 bg-gradient-to-t from-amber-500/50 to-transparent"
+                        className="absolute inset-0 bg-gradient-to-t from-slate-300/50 to-transparent"
                       />
                     )}
                   </motion.button>
@@ -493,7 +493,7 @@ export default function Gallery() {
                     onClick={() => goToSlide(index)}
                     className={`relative transition-all ${
                       index === currentIndex
-                        ? 'w-12 h-3 bg-gradient-to-r from-amber-500 to-orange-500'
+                        ? 'w-12 h-3 bg-gradient-to-r from-slate-300 to-zinc-200'
                         : 'w-3 h-3 bg-white/20 hover:bg-white/40'
                     } rounded-full overflow-hidden`}
                     whileHover={{ scale: 1.2 }}
