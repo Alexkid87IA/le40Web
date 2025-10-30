@@ -15,7 +15,7 @@ export const pricingPlans = [
       "Réseau d'experts qualifiés",
       "Sans engagement"
     ],
-    gradient: "from-orange-500 via-amber-500 to-yellow-500"
+    gradient: "from-red-500 via-rose-500 to-pink-500"
   },
   {
     id: "quarterly",
@@ -57,7 +57,7 @@ export const pricingPlans = [
       "Participation aux décisions du Club",
       "Badge membre fondateur"
     ],
-    gradient: "from-violet-500 via-purple-500 to-fuchsia-500"
+    gradient: "from-rose-500 via-pink-500 to-red-500"
   }
 ];
 
