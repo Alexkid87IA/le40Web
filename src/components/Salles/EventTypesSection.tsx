@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { eventTypes } from '../../data/salles/eventTypes';
 import { ArrowRight, Check } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function EventTypesSection() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -34,22 +35,26 @@ export default function EventTypesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {eventTypes.map((event, index) => (
-            <motion.div
+            <Link
               key={index}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              onHoverStart={() => setHoveredCard(index)}
-              onHoverEnd={() => setHoveredCard(null)}
-              className="relative group cursor-pointer"
+              to="#spaces"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('spaces')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="block"
             >
               <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                onHoverStart={() => setHoveredCard(index)}
+                onHoverEnd={() => setHoveredCard(null)}
                 animate={{
                   y: hoveredCard === index ? -10 : 0
                 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative h-full"
+                className="relative group cursor-pointer h-full"
               >
                 <motion.div
                   className={`absolute -inset-1 bg-gradient-to-r ${event.gradient} rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500`}
@@ -136,7 +141,7 @@ export default function EventTypesSection() {
                   </div>
                 </div>
               </motion.div>
-            </motion.div>
+            </Link>
           ))}
         </div>
       </div>
