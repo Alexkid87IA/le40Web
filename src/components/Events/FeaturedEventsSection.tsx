@@ -102,22 +102,9 @@ export default function FeaturedEventsSection() {
               </span>
             </h2>
           </div>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <p className="text-xl text-white/60 font-inter">
-              {filteredEvents.length} événement{filteredEvents.length > 1 ? 's' : ''} disponible{filteredEvents.length > 1 ? 's' : ''}
-            </p>
-            {selectedCategory !== 'all' && (
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                onClick={() => onCategorySelect('all')}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white/80 hover:text-white rounded-lg text-sm font-montserrat font-medium transition-all duration-300"
-              >
-                <X className="w-4 h-4" />
-                Voir tous les événements
-              </motion.button>
-            )}
-          </div>
+          <p className="text-xl text-white/60 font-inter">
+            {filteredEvents.length} événement{filteredEvents.length > 1 ? 's' : ''} disponible{filteredEvents.length > 1 ? 's' : ''}
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-fr">
