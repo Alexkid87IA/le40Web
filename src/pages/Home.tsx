@@ -21,11 +21,24 @@ export default function HomeNew() {
       <main className="pt-24">
         <Hero />
         <Gallery />
-        <DomiciliationSection />
-        <BureauxSection />
-        <CoworkingSection />
-        <StudiosSection />
-        <CommunitySection />
+
+        <div className="relative">
+          <div className="sticky top-0 h-screen">
+            <DomiciliationSection />
+          </div>
+          <div className="sticky top-0 h-screen">
+            <BureauxSection />
+          </div>
+          <div className="sticky top-0 h-screen">
+            <CoworkingSection />
+          </div>
+          <div className="sticky top-0 h-screen">
+            <StudiosSection />
+          </div>
+          <div className="relative z-10">
+            <CommunitySection />
+          </div>
+        </div>
       </main>
 
       <Footer />

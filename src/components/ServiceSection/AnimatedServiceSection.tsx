@@ -82,7 +82,7 @@ export default function AnimatedServiceSection({
       ref={sectionRef}
       id={id}
       style={{ opacity, scale }}
-      className="relative min-h-screen flex items-center bg-black overflow-hidden"
+      className="relative h-full flex items-center bg-black overflow-hidden"
     >
       <motion.div
         ref={videoRef}
