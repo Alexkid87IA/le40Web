@@ -23,7 +23,7 @@ const secondaryItems = [
 const indicatorColors = {
   '/': 'bg-amber-400',
   '/bureaux': 'bg-blue-400',
-  '/domiciliation': 'bg-emerald-400',
+  '/domiciliation': 'bg-orange-400',
   '/salles': 'bg-purple-400',
   '/studios': 'bg-pink-400',
   '/events': 'bg-cyan-400',
@@ -34,7 +34,7 @@ const indicatorColors = {
 const reserveButtonColors = {
   '/': 'from-amber-600 via-orange-600 to-amber-600',
   '/bureaux': 'from-blue-600 via-indigo-600 to-blue-600',
-  '/domiciliation': 'from-emerald-600 via-green-600 to-emerald-600',
+  '/domiciliation': 'from-orange-600 via-amber-600 to-orange-600',
   '/salles': 'from-purple-600 via-violet-600 to-purple-600',
   '/studios': 'from-pink-600 via-fuchsia-600 to-pink-600',
   '/events': 'from-cyan-600 via-sky-600 to-cyan-600',
@@ -47,7 +47,7 @@ const reserveButtonColors = {
 const reserveButtonGlow = {
   '/': 'bg-amber-500/40',
   '/bureaux': 'bg-blue-500/40',
-  '/domiciliation': 'bg-emerald-500/40',
+  '/domiciliation': 'bg-orange-500/40',
   '/salles': 'bg-purple-500/40',
   '/studios': 'bg-pink-500/40',
   '/events': 'bg-cyan-500/40',
