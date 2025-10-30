@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -11,8 +10,6 @@ import FAQSection from '../components/Events/FAQSection';
 import OrganizeCTASection from '../components/Events/OrganizeCTASection';
 
 export default function Events() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   return (
     <div className="min-h-screen bg-black">
       <HeaderNav />
@@ -20,14 +17,8 @@ export default function Events() {
 
       <main className="pt-24">
         <HeroSection />
-        <CategoriesSection
-          selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        />
-        <FeaturedEventsSection
-          selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        />
+        <CategoriesSection />
+        <FeaturedEventsSection />
         <PastEventsSection />
         <SpeakersSection />
         <FAQSection />

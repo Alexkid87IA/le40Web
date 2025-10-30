@@ -5,18 +5,10 @@ import { eventSpeakers } from '../../data/events/speakers';
 import { eventCategories } from '../../data/events/categories';
 import { useState } from 'react';
 
-interface FeaturedEventsSectionProps {
-  selectedCategory: string;
-  onCategorySelect: (slug: string) => void;
-}
-
-export default function FeaturedEventsSection({ selectedCategory, onCategorySelect }: FeaturedEventsSectionProps) {
+export default function FeaturedEventsSection() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-  const filteredEvents = upcomingEvents.filter(event => {
-    if (selectedCategory === 'all') return true;
-    return event.categoryId === eventCategories.find(c => c.slug === selectedCategory)?.id;
-  });
+  const filteredEvents = upcomingEvents;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
