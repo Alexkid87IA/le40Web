@@ -4,9 +4,11 @@ export interface StudioConfiguration {
   studioId: string;
   formulaId: string;
   formulaName: string;
+  formulaMultiplier: number;
   durationId: string;
   durationLabel: string;
   durationHours: number;
+  durationMultiplier: number;
   options: Array<{
     id: string;
     name: string;
@@ -125,11 +127,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
 
     const config = item.studioConfig;
-    let total = item.price * config.durationHours;
+    const basePrice = item.price * config.durationHours * config.formulaMultiplier * config.durationMultiplier;
 
+    let optionsTotal = 0;
     config.options.forEach(option => {
-      total += option.price;
+      optionsTotal += option.price;
     });
+
+    const total = basePrice + optionsTotal;
 
     return total * item.quantity;
   };

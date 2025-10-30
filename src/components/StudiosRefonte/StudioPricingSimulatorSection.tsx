@@ -811,9 +811,11 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                             studioId: currentStudio.id,
                             formulaId: currentFormula.id,
                             formulaName: currentFormula.name,
+                            formulaMultiplier: currentFormula.priceMultiplier,
                             durationId: currentDuration.id,
                             durationLabel: currentDuration.label,
                             durationHours: currentDuration.hours,
+                            durationMultiplier: currentDuration.multiplier,
                             options: selectedOptionsArray
                           }
                         });
