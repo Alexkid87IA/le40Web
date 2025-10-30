@@ -57,7 +57,7 @@ export default function PastEventsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
           {pastEvents.map((event, index) => (
             <motion.div
               key={event.id}
@@ -67,12 +67,12 @@ export default function PastEventsSection() {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               onHoverStart={() => setSelectedEvent(event.id)}
               onHoverEnd={() => setSelectedEvent(null)}
-              className="group relative"
+              className="group relative flex"
             >
-              <div className="relative overflow-hidden rounded-3xl bg-black/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-500">
+              <div className="relative overflow-hidden rounded-3xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-500 flex flex-col w-full">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-56 overflow-hidden shrink-0">
                   <motion.img
                     src={event.imageUrl}
                     alt={event.title}
@@ -80,20 +80,19 @@ export default function PastEventsSection() {
                     animate={{ scale: selectedEvent === event.id ? 1.1 : 1 }}
                     transition={{ duration: 0.5 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
 
-                  <div className="absolute top-6 left-6">
-                    <div className="bg-emerald-500/90 text-white px-4 py-2 rounded-xl text-sm font-bold backdrop-blur-sm">
+                  <div className="absolute top-6 left-6 flex items-center gap-3">
+                    <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg">
                       {event.categoryName}
                     </div>
-                  </div>
-
-                  <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
                     <div className="flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl px-3 py-1.5">
                       <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
                       <span className="text-white text-sm font-bold">{event.rating}</span>
                     </div>
+                  </div>
 
+                  <div className="absolute top-6 right-6">
                     <div className="flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl px-3 py-1.5">
                       <Users className="w-4 h-4 text-emerald-400" />
                       <span className="text-white text-sm font-bold">{event.attendees}</span>
@@ -101,27 +100,27 @@ export default function PastEventsSection() {
                   </div>
                 </div>
 
-                <div className="relative p-6">
+                <div className="relative p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 text-white/50 text-sm mb-3 font-inter">
                     <Calendar className="w-4 h-4" />
                     <span>{event.date}</span>
                   </div>
 
-                  <h3 className="text-xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-500">
+                  <h3 className="text-xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-500 line-clamp-2">
                     {event.title}
                   </h3>
 
-                  <div className="space-y-2 mb-6">
+                  <div className="space-y-2 mb-6 flex-1">
                     {event.highlights.slice(0, 3).map((highlight, idx) => (
                       <div key={idx} className="flex items-start gap-2 text-white/70 text-sm">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
-                        <span className="font-inter">{highlight}</span>
+                        <span className="font-inter line-clamp-1">{highlight}</span>
                       </div>
                     ))}
                   </div>
 
                   {event.testimonials.length > 0 && (
-                    <div className="border-t border-white/10 pt-4">
+                    <div className="border-t border-white/10 pt-4 mt-auto">
                       <div className="text-xs text-white/50 mb-2 font-inter">Témoignage</div>
                       <p className="text-sm text-white/70 italic line-clamp-2 font-inter">
                         "{event.testimonials[0].text}"
