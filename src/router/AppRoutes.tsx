@@ -38,11 +38,10 @@ export default function AppRoutes() {
         <Route path="/bureaux-comparaison" element={<BureauxComparison />} />
         <Route path="/domiciliation" element={<Domiciliation />} />
         <Route path="/salles" element={<Salles />} />
-        <Route path="/studios" element={<StudiosLaunchV2 />} />
+        <Route path="/studios" element={<Studios />} />
         <Route path="/studios-v2" element={<StudiosLaunchV2 />} />
         <Route path="/studios-launch" element={<StudiosLaunch />} />
         <Route path="/studios-new" element={<StudiosNew />} />
-        <Route path="/studios-old" element={<Studios />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
