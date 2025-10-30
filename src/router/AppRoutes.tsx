@@ -10,6 +10,7 @@ import Domiciliation from '../pages/Domiciliation';
 import Salles from '../pages/Salles';
 import Studios from '../pages/Studios';
 import StudiosNew from '../pages/StudiosNew';
+import StudiosLaunch from '../pages/StudiosLaunch';
 import Blog from '../pages/Blog';
 import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
@@ -36,7 +37,8 @@ export default function AppRoutes() {
         <Route path="/bureaux-comparaison" element={<BureauxComparison />} />
         <Route path="/domiciliation" element={<Domiciliation />} />
         <Route path="/salles" element={<Salles />} />
-        <Route path="/studios" element={<StudiosNew />} />
+        <Route path="/studios" element={<StudiosLaunch />} />
+        <Route path="/studios-new" element={<StudiosNew />} />
         <Route path="/studios-old" element={<Studios />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
