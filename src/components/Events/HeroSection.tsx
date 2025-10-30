@@ -64,7 +64,20 @@ export default function HeroSection() {
           style={{ y: backgroundY, opacity }}
           className="absolute inset-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/30 via-black to-amber-950/30" />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source
+              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4"
+              type="video/mp4"
+            />
+          </video>
+
+          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
 
           <motion.div
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[150px]"
