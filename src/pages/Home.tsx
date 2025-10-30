@@ -9,6 +9,7 @@ import DomiciliationSection from '../sections/ServiceSections/DomiciliationSecti
 import BureauxSection from '../sections/ServiceSections/BureauxSection';
 import StudiosSection from '../sections/ServiceSections/StudiosSection';
 import CommunitySection from '../sections/ServiceSections/CommunitySection';
+import StickySection from '../components/ServiceSection/StickySection';
 import Footer from '../components/Footer';
 
 export default function HomeNew() {
@@ -22,20 +23,20 @@ export default function HomeNew() {
         <Hero />
         <Gallery />
 
-        <div className="relative">
-          <div className="sticky top-0 h-screen">
+        <div className="relative bg-black" style={{ perspective: '1000px' }}>
+          <StickySection index={0} totalSections={4}>
             <DomiciliationSection />
-          </div>
-          <div className="sticky top-0 h-screen">
+          </StickySection>
+          <StickySection index={1} totalSections={4}>
             <BureauxSection />
-          </div>
-          <div className="sticky top-0 h-screen">
+          </StickySection>
+          <StickySection index={2} totalSections={4}>
             <CoworkingSection />
-          </div>
-          <div className="sticky top-0 h-screen">
+          </StickySection>
+          <StickySection index={3} totalSections={4}>
             <StudiosSection />
-          </div>
-          <div className="relative z-10">
+          </StickySection>
+          <div className="relative z-[5] min-h-screen">
             <CommunitySection />
           </div>
         </div>
