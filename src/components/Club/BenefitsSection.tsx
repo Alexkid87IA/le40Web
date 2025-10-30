@@ -63,11 +63,11 @@ const BenefitCard = ({ benefit, index }) => {
             <Icon className="w-8 h-8 text-white" />
           </motion.div>
 
-          <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all">
+          <h3 className="text-2xl font-montserrat font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-red-400 group-hover:to-rose-400 transition-all">
             {benefit.title}
           </h3>
 
-          <p className="text-white/70 mb-6 leading-relaxed">
+          <p className="text-white/70 mb-6 leading-relaxed font-inter">
             {benefit.description}
           </p>
 
@@ -97,7 +97,7 @@ export default function BenefitsSection() {
     <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0">
         <motion.div
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-[128px]"
+          className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[128px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -109,7 +109,7 @@ export default function BenefitsSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-[128px]"
+          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-rose-600/10 rounded-full blur-[128px]"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -133,19 +133,19 @@ export default function BenefitsSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-sm font-semibold text-emerald-400 mb-6"
+            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-semibold text-red-400 mb-6"
           >
             AVANTAGES EXCLUSIFS
           </motion.span>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
             Tout ce dont vous avez
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-yellow-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">
               besoin pour réussir
             </span>
           </h2>
 
-          <p className="text-xl text-white/60 max-w-3xl mx-auto">
+          <p className="text-xl text-white/60 max-w-3xl mx-auto font-inter">
             10 avantages puissants inclus dans votre abonnement pour accélérer votre croissance
           </p>
         </motion.div>
@@ -168,11 +168,11 @@ export default function BenefitsSection() {
           viewport={{ once: true }}
           className="mt-20 text-center"
         >
-          <div className="inline-flex flex-col gap-4 p-8 bg-gradient-to-r from-orange-500/10 to-amber-500/10 backdrop-blur-xl border border-orange-500/20 rounded-3xl">
-            <p className="text-2xl font-bold text-white">
-              Tout ça pour seulement <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">50€ par mois</span>
+          <div className="inline-flex flex-col gap-4 p-8 bg-gradient-to-r from-red-500/10 to-rose-500/10 backdrop-blur-xl border border-red-500/20 rounded-3xl">
+            <p className="text-2xl font-montserrat font-bold text-white">
+              Tout ça pour seulement <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">50€ par mois</span>
             </p>
-            <p className="text-white/60">
+            <p className="text-white/60 font-inter">
               Sans engagement • Résiliation à tout moment • Essai avec visite découverte gratuite
             </p>
           </div>
