@@ -16,6 +16,7 @@ export interface Studio {
   badge?: string;
   gradient: string;
   image: string;
+  gallery?: string[];
   icon: LucideIcon;
   equipment: {
     cameras: string;
@@ -45,6 +46,13 @@ export const studios: Studio[] = [
     badge: 'Le plus réservé',
     gradient: 'from-rose-500 via-fuchsia-500 to-violet-500',
     image: 'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/6954174/pexels-photo-6954174.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/8134848/pexels-photo-8134848.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    ],
     icon: Camera,
     equipment: {
       cameras: '1 caméra Sony FX3 4K 120fps',
@@ -79,6 +87,12 @@ export const studios: Studio[] = [
     recommendedDuration: '2h',
     gradient: 'from-pink-500 via-purple-500 to-violet-600',
     image: 'https://images.pexels.com/photos/3784324/pexels-photo-3784324.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/3784324/pexels-photo-3784324.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/6953876/pexels-photo-6953876.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/7191985/pexels-photo-7191985.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/7869092/pexels-photo-7869092.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    ],
     icon: Mic,
     equipment: {
       cameras: 'Vidéo optionnelle (+2 FX3)',
@@ -113,6 +127,12 @@ export const studios: Studio[] = [
     badge: 'Multi-plateformes',
     gradient: 'from-fuchsia-600 via-pink-600 to-rose-600',
     image: 'https://images.pexels.com/photos/7129713/pexels-photo-7129713.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/7129713/pexels-photo-7129713.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/8297538/pexels-photo-8297538.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/5940831/pexels-photo-5940831.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    ],
     icon: Radio,
     equipment: {
       cameras: '2 Sony FX3 + 1 PTZ robotisée',
@@ -147,6 +167,13 @@ export const studios: Studio[] = [
     recommendedDuration: '3h',
     gradient: 'from-rose-600 via-fuchsia-600 to-purple-600',
     image: 'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/8134848/pexels-photo-8134848.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/7991140/pexels-photo-7991140.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/3184430/pexels-photo-3184430.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    ],
     icon: Tv,
     equipment: {
       cameras: '4-6 caméras Sony FX3',
@@ -181,6 +208,12 @@ export const studios: Studio[] = [
     recommendedDuration: '2h',
     gradient: 'from-purple-500 via-violet-500 to-fuchsia-500',
     image: 'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/6953876/pexels-photo-6953876.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/5940721/pexels-photo-5940721.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    ],
     icon: Users,
     equipment: {
       cameras: '2 caméras Sony FX3',
@@ -216,6 +249,12 @@ export const studios: Studio[] = [
     recommendedDuration: '1h',
     gradient: 'from-fuchsia-500 via-rose-500 to-pink-500',
     image: 'https://images.pexels.com/photos/9786304/pexels-photo-9786304.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    gallery: [
+      'https://images.pexels.com/photos/9786304/pexels-photo-9786304.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/8297538/pexels-photo-8297538.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/7991225/pexels-photo-7991225.jpeg?auto=compress&cs=tinysrgb&w=1600',
+      'https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    ],
     icon: Smartphone,
     equipment: {
       cameras: '1 Sony FX3 montée verticale',

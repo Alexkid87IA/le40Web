@@ -168,7 +168,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       <motion.button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleStudioSelectFromCard(studio.id);
+                          handleStudioClick(studio);
                         }}
                         animate={{
                           scale: hoveredCard === studio.id ? 1.1 : 1,
@@ -294,7 +294,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       <motion.button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleStudioSelectFromCard(studio.id);
+                          handleStudioClick(studio);
                         }}
                         animate={{
                           scale: hoveredCard === studio.id ? 1.1 : 1,
