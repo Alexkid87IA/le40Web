@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { designTokens } from '../../styles/designTokens';
 
 interface GalleryImage {
@@ -214,7 +214,6 @@ export default function Gallery() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-slate-300/10 to-zinc-200/10 border border-slate-300/20 backdrop-blur-sm"
             >
-              <Sparkles className="w-4 h-4 text-slate-300" />
               <span className="text-sm text-slate-300 font-semibold tracking-wide">Nos Espaces</span>
             </motion.div>
 
