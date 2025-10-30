@@ -18,7 +18,7 @@ interface CategoriesSectionProps {
 
 export default function CategoriesSection({ selectedCategory, onCategorySelect }: CategoriesSectionProps) {
   return (
-    <section className="py-24 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
+    <section className="py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0">
         <video
           autoPlay
@@ -43,12 +43,23 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
           />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-slate-950/30 to-black/40" />
+        <motion.div
+          className="absolute top-40 left-20 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-40 right-20 w-96 h-96 bg-amber-600/10 rounded-full blur-[120px]"
+          animate={{
+            scale: [1.3, 1, 1.3],
+            opacity: [0.15, 0.25, 0.15]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
-
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-        backgroundSize: '40px 40px'
-      }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
         <motion.div
@@ -56,11 +67,11 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             Catégories{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
               d'Événements
             </span>
           </h2>
@@ -84,38 +95,48 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
                 onClick={() => onCategorySelect(category.slug)}
                 className="group relative text-left flex"
               >
-                <div className={`relative h-full w-full bg-slate-950/50 backdrop-blur-xl border ${isSelected ? 'border-white/30' : 'border-white/10 group-hover:border-white/20'} rounded-3xl p-8 transition-all duration-500 flex flex-col`}>
+                <div className={`relative h-full w-full bg-slate-950/50 backdrop-blur-xl border ${isSelected ? 'border-white/20' : 'border-white/10 group-hover:border-white/20'} rounded-3xl p-8 transition-all duration-500 flex flex-col`}>
                   <div className={`absolute inset-0 bg-gradient-to-br ${category.colorGradient.replace(/from-(\w+)-(\d+) to-(\w+)-(\d+)/, 'from-$1-$2/5 via-transparent to-$3-$4/5')} rounded-3xl ${isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-500`} />
-                  <motion.div
-                    animate={{ rotate: isSelected ? 360 : 0 }}
-                    transition={{ duration: 0.8 }}
-                    className={`relative z-10 inline-flex p-4 rounded-2xl bg-gradient-to-br ${category.colorGradient} mb-6 ${isSelected ? 'scale-110' : 'group-hover:scale-110'} transition-transform duration-300`}
-                  >
-                    <Icon className="w-8 h-8 text-white" />
-                  </motion.div>
 
-                  <h3 className={`relative z-10 text-2xl font-montserrat font-bold mb-3 ${isSelected ? 'text-white' : 'text-white/90 group-hover:text-white'} transition-colors duration-300`}>
-                    {category.name}
-                  </h3>
+                  <div className="relative z-10 flex-1 flex flex-col">
+                    <motion.div
+                      animate={{
+                        rotate: isSelected ? 360 : 0,
+                        scale: isSelected ? 1.05 : 1
+                      }}
+                      transition={{ duration: 0.8 }}
+                      className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${category.colorGradient} mb-6 self-start transition-transform duration-300 shadow-lg`}
+                    >
+                      <Icon className="w-8 h-8 text-white" />
+                    </motion.div>
 
-                  <p className="relative z-10 text-white/60 mb-6 leading-relaxed font-inter text-sm flex-1 line-clamp-3">
-                    {category.description}
-                  </p>
+                    <h3 className={`text-2xl font-montserrat font-bold mb-3 transition-all duration-500 ${isSelected ? 'text-transparent bg-clip-text bg-gradient-to-r ' + category.colorGradient : 'text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:' + category.colorGradient}`}>
+                      {category.name}
+                    </h3>
 
-                  <div className="flex items-center gap-2 text-sm font-semibold mt-auto relative z-10">
-                    <span className={`${isSelected ? 'text-white' : 'text-white/40 group-hover:text-white/60'} transition-colors duration-300`}>
-                      Explorer
-                    </span>
-                    <ArrowRight className={`w-4 h-4 ${isSelected ? 'translate-x-1 text-white' : 'text-white/40 group-hover:translate-x-1 group-hover:text-white/60'} transition-all duration-300`} />
+                    <p className="text-white/70 mb-6 leading-relaxed font-inter text-sm flex-1">
+                      {category.description}
+                    </p>
+
+                    <motion.div
+                      className="flex items-center gap-2 text-sm font-semibold mt-auto"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <span className={`${isSelected ? 'text-white' : 'text-white/60 group-hover:text-white'} transition-colors duration-300`}>
+                        Explorer
+                      </span>
+                      <ArrowRight className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-white/60 group-hover:text-white'} transition-all duration-300`} />
+                    </motion.div>
                   </div>
 
                   {isSelected && (
                     <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      className="absolute top-4 right-4"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="absolute top-4 right-4 z-20"
                     >
-                      <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${category.colorGradient}`} />
+                      <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${category.colorGradient} shadow-lg`} />
                     </motion.div>
                   )}
                 </div>
@@ -124,22 +145,35 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
           })}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="text-center mt-12"
-        >
-          {selectedCategory !== 'all' && (
-            <button
+        {selectedCategory !== 'all' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="text-center mt-16"
+          >
+            <motion.button
               onClick={() => onCategorySelect('all')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-xl font-inter font-semibold transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-xl font-montserrat font-semibold transition-all duration-300 shadow-lg"
             >
               Voir tous les événements
-            </button>
-          )}
-        </motion.div>
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </motion.div>
+        )}
+      </div>
+
+      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
+        <svg width="100%" height="100%">
+          <filter id="noiseCategories">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noiseCategories)" />
+        </svg>
       </div>
     </section>
   );
