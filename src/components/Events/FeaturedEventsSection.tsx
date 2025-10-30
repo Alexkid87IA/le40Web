@@ -1,14 +1,16 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Users, MapPin, ArrowRight, Star, Zap } from 'lucide-react';
+import { Calendar, Clock, Users, MapPin, ArrowRight, Star, Zap, X } from 'lucide-react';
 import { upcomingEvents } from '../../data/events/upcomingEvents';
 import { eventSpeakers } from '../../data/events/speakers';
+import { eventCategories } from '../../data/events/categories';
 import { useState } from 'react';
 
 interface FeaturedEventsSectionProps {
   selectedCategory: string;
+  onCategorySelect: (slug: string) => void;
 }
 
-export default function FeaturedEventsSection({ selectedCategory }: FeaturedEventsSectionProps) {
+export default function FeaturedEventsSection({ selectedCategory, onCategorySelect }: FeaturedEventsSectionProps) {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const filteredEvents = upcomingEvents.filter(event => {
@@ -100,15 +102,30 @@ export default function FeaturedEventsSection({ selectedCategory }: FeaturedEven
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
-            Événements à{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
-              Venir
-            </span>
-          </h2>
-          <p className="text-xl text-white/60 max-w-3xl mx-auto font-inter">
-            {filteredEvents.length} événement{filteredEvents.length > 1 ? 's' : ''} disponible{filteredEvents.length > 1 ? 's' : ''}
-          </p>
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white">
+              Événements à{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
+                Venir
+              </span>
+            </h2>
+          </div>
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <p className="text-xl text-white/60 font-inter">
+              {filteredEvents.length} événement{filteredEvents.length > 1 ? 's' : ''} disponible{filteredEvents.length > 1 ? 's' : ''}
+            </p>
+            {selectedCategory !== 'all' && (
+              <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                onClick={() => onCategorySelect('all')}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white/80 hover:text-white rounded-lg text-sm font-montserrat font-medium transition-all duration-300"
+              >
+                <X className="w-4 h-4" />
+                Voir tous les événements
+              </motion.button>
+            )}
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-fr">
@@ -293,11 +310,3 @@ export default function FeaturedEventsSection({ selectedCategory }: FeaturedEven
   );
 }
 
-const eventCategories = [
-  { id: '1', slug: 'networking' },
-  { id: '2', slug: 'formation' },
-  { id: '3', slug: 'conference' },
-  { id: '4', slug: 'atelier' },
-  { id: '5', slug: 'afterwork' },
-  { id: '6', slug: 'masterclass' }
-];

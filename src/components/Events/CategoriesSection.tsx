@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Users, GraduationCap, Mic2, Wrench, Wine, Award, ArrowRight, Sparkles } from 'lucide-react';
+import { Users, GraduationCap, Mic2, Wrench, Wine, Award, ArrowRight } from 'lucide-react';
 import { eventCategories } from '../../data/events/categories';
 
 const iconMap: Record<string, typeof Users> = {
@@ -8,8 +8,7 @@ const iconMap: Record<string, typeof Users> = {
   Mic2,
   Wrench,
   Wine,
-  Award,
-  Sparkles
+  Award
 };
 
 interface CategoriesSectionProps {
@@ -92,61 +91,6 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
-          <motion.button
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            onClick={() => handleCategoryClick('all')}
-            className="group relative text-left flex"
-          >
-            <div className={`relative h-full w-full bg-slate-950/50 backdrop-blur-xl border ${selectedCategory === 'all' ? 'border-white/20' : 'border-white/10 group-hover:border-white/20'} rounded-3xl p-8 transition-all duration-500 flex flex-col`}>
-              <div className={`absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-amber-500/5 rounded-3xl ${selectedCategory === 'all' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-500`} />
-
-              <div className="relative z-10 flex-1 flex flex-col">
-                <motion.div
-                  animate={{
-                    rotate: selectedCategory === 'all' ? 360 : 0,
-                    scale: selectedCategory === 'all' ? 1.05 : 1
-                  }}
-                  transition={{ duration: 0.8 }}
-                  className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-cyan-500 via-blue-500 to-amber-500 mb-6 self-start transition-transform duration-300 shadow-lg"
-                >
-                  <Sparkles className="w-8 h-8 text-white" />
-                </motion.div>
-
-                <h3 className={`text-2xl font-montserrat font-bold mb-3 transition-all duration-500 ${selectedCategory === 'all' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-blue-500 to-amber-500' : 'text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:via-blue-500 group-hover:to-amber-500'}`}>
-                  Tous les événements
-                </h3>
-
-                <p className="text-white/70 mb-6 leading-relaxed font-inter text-sm flex-1">
-                  Découvrez l'ensemble de notre programmation événementielle
-                </p>
-
-                <motion.div
-                  className="flex items-center gap-2 text-sm font-semibold mt-auto"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className={`${selectedCategory === 'all' ? 'text-white' : 'text-white/60 group-hover:text-white'} transition-colors duration-300`}>
-                    Explorer
-                  </span>
-                  <ArrowRight className={`w-4 h-4 ${selectedCategory === 'all' ? 'text-white' : 'text-white/60 group-hover:text-white'} transition-all duration-300`} />
-                </motion.div>
-              </div>
-
-              {selectedCategory === 'all' && (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="absolute top-4 right-4 z-20"
-                >
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-amber-500 shadow-lg" />
-                </motion.div>
-              )}
-            </div>
-          </motion.button>
-
           {eventCategories.map((category, index) => {
             const Icon = iconMap[category.iconName] || Users;
             const isSelected = selectedCategory === category.slug;
@@ -157,7 +101,7 @@ export default function CategoriesSection({ selectedCategory, onCategorySelect }
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: (index + 1) * 0.1, duration: 0.6 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
                 onClick={() => handleCategoryClick(category.slug)}
                 className="group relative text-left flex"
               >

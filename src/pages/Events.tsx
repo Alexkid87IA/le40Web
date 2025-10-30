@@ -24,7 +24,10 @@ export default function Events() {
           selectedCategory={selectedCategory}
           onCategorySelect={setSelectedCategory}
         />
-        <FeaturedEventsSection selectedCategory={selectedCategory} />
+        <FeaturedEventsSection
+          selectedCategory={selectedCategory}
+          onCategorySelect={setSelectedCategory}
+        />
         <PastEventsSection />
         <SpeakersSection />
         <FAQSection />
