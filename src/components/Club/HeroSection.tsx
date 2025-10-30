@@ -40,7 +40,7 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
 
           <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-600/15 rounded-full blur-[150px]"
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/15 rounded-full blur-[150px]"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.15, 0.25, 0.15]
@@ -48,7 +48,7 @@ export default function HeroSection() {
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-600/15 rounded-full blur-[150px]"
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-rose-600/15 rounded-full blur-[150px]"
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.1, 0.2, 0.1]
@@ -56,7 +56,7 @@ export default function HeroSection() {
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/10 rounded-full blur-[150px]"
+            className="absolute top-1/2 left-1/2 w-96 h-96 bg-red-500/10 rounded-full blur-[150px]"
             animate={{
               scale: [1, 1.3, 1],
               opacity: [0.1, 0.15, 0.1]
@@ -80,7 +80,7 @@ export default function HeroSection() {
             className="mb-8"
           >
             <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8">
-              <Sparkles className="w-5 h-5 text-amber-400" />
+              <Sparkles className="w-5 h-5 text-red-400" />
               <span className="text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Communauté Premium · 120+ Entrepreneurs</span>
             </div>
           </motion.div>
@@ -93,11 +93,11 @@ export default function HeroSection() {
           >
             REJOIGNEZ{' '}
             <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-500 to-red-400">
                 LE CLUB
               </span>
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-yellow-500/20 to-amber-500/20 blur-3xl -z-10"
+                className="absolute -inset-4 bg-gradient-to-r from-red-500/20 via-rose-500/20 to-red-500/20 blur-3xl -z-10"
                 animate={{
                   opacity: [0.5, 0.8, 0.5],
                   scale: [1, 1.05, 1]
@@ -123,10 +123,10 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12"
           >
-            <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-400/20 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-red-500/10 border border-red-400/20 backdrop-blur-sm">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  <Star key={i} className="w-3.5 h-3.5 text-red-400 fill-red-400" />
                 ))}
               </div>
               <span className="text-white/90 font-inter text-sm font-semibold">4.9/5</span>
@@ -135,12 +135,12 @@ export default function HeroSection() {
 
             <div className="flex items-center gap-2">
               <motion.div
-                className="w-2 h-2 rounded-full bg-amber-400"
+                className="w-2 h-2 rounded-full bg-red-400"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
               <span className="text-white/70 font-inter text-sm">
-                <span className="text-amber-400 font-semibold">120+ membres actifs</span>
+                <span className="text-red-400 font-semibold">120+ membres actifs</span>
               </span>
             </div>
           </motion.div>
@@ -152,10 +152,10 @@ export default function HeroSection() {
             className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-16"
           >
             {[
-              { value: '50€', suffix: '/m', label: 'Sans engagement', color: 'from-amber-500 via-yellow-600 to-amber-500' },
-              { value: '15+', suffix: '', label: 'Events/mois', color: 'from-yellow-500 via-amber-600 to-yellow-500' },
-              { value: '120+', suffix: '', label: 'Entrepreneurs', color: 'from-amber-600 via-yellow-500 to-amber-600' },
-              { value: '100%', suffix: '', label: 'Networking', color: 'from-yellow-600 via-amber-500 to-yellow-600' },
+              { value: '50€', suffix: '/m', label: 'Sans engagement', color: 'from-red-500 via-rose-600 to-red-500' },
+              { value: '15+', suffix: '', label: 'Events/mois', color: 'from-rose-500 via-red-600 to-rose-500' },
+              { value: '120+', suffix: '', label: 'Entrepreneurs', color: 'from-red-600 via-rose-500 to-red-600' },
+              { value: '100%', suffix: '', label: 'Networking', color: 'from-rose-600 via-red-500 to-rose-600' },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -190,11 +190,11 @@ export default function HeroSection() {
               className="group relative"
             >
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute -inset-1 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
                 animate={{ opacity: [0.5, 0.75, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl">
+              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl">
                 <span>Rejoindre le Club</span>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
@@ -217,10 +217,10 @@ export default function HeroSection() {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
           >
             {[
-              { icon: Calendar, text: 'Accès illimité events', color: 'text-amber-400' },
-              { icon: Users, text: 'Réseau entrepreneurs', color: 'text-yellow-400' },
-              { icon: TrendingUp, text: 'Ateliers croissance', color: 'text-amber-400' },
-              { icon: Sparkles, text: 'Sans engagement', color: 'text-yellow-400' }
+              { icon: Calendar, text: 'Accès illimité events', color: 'text-red-400' },
+              { icon: Users, text: 'Réseau entrepreneurs', color: 'text-rose-400' },
+              { icon: TrendingUp, text: 'Ateliers croissance', color: 'text-red-400' },
+              { icon: Sparkles, text: 'Sans engagement', color: 'text-rose-400' }
             ].map((benefit, index) => (
               <motion.div
                 key={index}
