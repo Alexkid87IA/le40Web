@@ -24,7 +24,7 @@ export const eventCategories: EventCategory[] = [
     slug: 'formation',
     description: 'Formations pratiques et ateliers intensifs pour développer vos compétences entrepreneuriales',
     iconName: 'GraduationCap',
-    colorGradient: 'from-blue-600 to-indigo-600',
+    colorGradient: 'from-blue-600 to-cyan-600',
     displayOrder: 2
   },
   {
