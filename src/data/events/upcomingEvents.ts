@@ -191,5 +191,27 @@ export const upcomingEvents: UpcomingEvent[] = [
     difficultyLevel: 'Tous niveaux',
     tags: ['Entrepreneuriat', 'Inspiration', 'Diversité'],
     speakerIds: ['1', '3', '5']
+  },
+  {
+    id: '9',
+    title: 'Bootcamp: Product Management',
+    slug: 'bootcamp-product-management',
+    description: 'Formation intensive de 2 jours pour maîtriser le product management. De la définition de la vision produit au lancement, en passant par la priorisation, les méthodologies agiles et la mesure du succès. Cas pratiques, exercices en groupe et retours d\'expérience de product managers chevronnés.',
+    shortDescription: 'Formation intensive sur tous les aspects du product management',
+    categoryId: '2',
+    categoryName: 'Formation',
+    eventDate: '2026-02-21T09:00:00',
+    duration: 480,
+    location: 'Le 40 - Marseille',
+    imageUrl: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
+    maxAttendees: 15,
+    currentAttendees: 7,
+    priceMember: 199,
+    priceNonMember: 299,
+    isFeatured: false,
+    difficultyLevel: 'Intermédiaire',
+    tags: ['Product', 'Management', 'Stratégie'],
+    speakerIds: ['4'],
+    prerequisites: 'Avoir une première expérience en startup ou tech'
   }
 ];
