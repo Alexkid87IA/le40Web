@@ -1,57 +1,129 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Check, MapPin, Star, Zap, Shield, Mail, Clock } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Star, Mail, Shield, MapPin, Zap, Check, Clock } from 'lucide-react';
+import { useRef } from 'react';
 
 export default function HeroSection() {
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950">
-
-      {/* Background Effects */}
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-black">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-950/20 via-slate-950 to-slate-950"></div>
-        <div className="absolute inset-0 opacity-[0.03]"
-             style={{
-               backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-               backgroundSize: '32px 32px'
-             }}>
-        </div>
-      </div>
-
-      {/* Animated Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 -left-40 w-[600px] h-[600px] rounded-full bg-orange-500/10 blur-[120px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.15, 0.1]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-20 -right-40 w-[500px] h-[500px] rounded-full bg-amber-500/10 blur-[120px]"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.08, 0.12, 0.08]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-24 w-full">
-        <div className="max-w-5xl mx-auto">
-
-          {/* Trust Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-wrap items-center justify-center gap-4 mb-8"
+          style={{ opacity }}
+          className="absolute inset-0"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            ref={(video) => {
+              if (video) {
+                video.playbackRate = 0.7;
+              }
+            }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-sm">
-              <Shield className="w-4 h-4 text-emerald-400" />
-              <span className="text-emerald-300 font-inter text-sm font-semibold">Agrément Préfecture</span>
+            <source
+              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4#t=0.1"
+              type="video/mp4"
+            />
+          </video>
+
+          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
+
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-600/15 rounded-full blur-[150px]"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.15, 0.25, 0.15]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/15 rounded-full blur-[150px]"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-96 h-96 bg-orange-500/10 rounded-full blur-[150px]"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.15, 0.1]
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
+
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 w-full">
+        <div className="text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-8"
+          >
+            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8">
+              <Shield className="w-5 h-5 text-orange-400" />
+              <span className="text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Agréé Préfecture · Conformité Totale</span>
             </div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-montserrat font-black text-white mb-6 leading-tight"
+          >
+            DOMICILIATION{' '}
+            <span className="relative inline-block">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-500 to-orange-400">
+                MARSEILLE
+              </span>
+              <motion.div
+                className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20 blur-3xl -z-10"
+                animate={{
+                  opacity: [0.5, 0.8, 0.5],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl sm:text-2xl text-white/70 font-inter max-w-4xl mx-auto mb-12 leading-relaxed"
+          >
+            Adresse professionnelle prestigieuse à Marseille 15e. Scan courrier en 2h, activation en 24h.
+            <span className="text-white font-semibold"> Conformité légale garantie.</span>
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12"
+          >
+            <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/20 backdrop-blur-sm">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
@@ -60,53 +132,89 @@ export default function HeroSection() {
               <span className="text-white/90 font-inter text-sm font-semibold">4.9/5</span>
               <span className="text-white/50 text-xs">(120+ avis)</span>
             </div>
-          </motion.div>
 
-          {/* Main Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center mb-8"
-          >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
-              Domiciliez votre entreprise
-              <br />
-              <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500">
-                  en 24 heures
-                </span>
-                <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 to-amber-500/20 blur-3xl -z-10"
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
+            <div className="flex items-center gap-2">
+              <motion.div
+                className="w-2 h-2 rounded-full bg-green-400"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <span className="text-white/70 font-inter text-sm">
+                <span className="text-green-400 font-semibold">120+ entreprises</span> nous font confiance
               </span>
-            </h1>
-
-            <p className="text-xl text-white/70 font-inter max-w-3xl mx-auto mb-8 leading-relaxed">
-              Adresse professionnelle à Marseille 15e, scan courrier en 2h, conformité légale garantie.
-              Lancez votre activité en toute sérénité.
-            </p>
-
-            {/* Price Banner */}
-            <div className="inline-flex items-center gap-4 mb-10">
-              <div className="text-left">
-                <div className="text-white/60 text-sm font-inter mb-1">À partir de</div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-6xl font-montserrat font-black text-white">49€</span>
-                  <span className="text-2xl font-montserrat text-white/60">/mois</span>
-                </div>
-              </div>
             </div>
           </motion.div>
 
-          {/* Key Benefits Grid */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-16"
+          >
+            {[
+              { value: '49€', suffix: '/mois', label: 'À partir de', color: 'from-orange-500 via-amber-600 to-orange-500' },
+              { value: '24h', suffix: '', label: 'Activation', color: 'from-amber-500 via-orange-600 to-amber-500' },
+              { value: '2h', suffix: '', label: 'Scan courrier', color: 'from-orange-600 via-amber-500 to-orange-600' },
+              { value: '100%', suffix: '', label: 'Conformité', color: 'from-amber-600 via-orange-500 to-amber-600' },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 + index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="relative group"
+              >
+                <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500`} />
+
+                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 group-hover:border-white/20 transition-all duration-500">
+                  <div className={`text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2`}>
+                    {stat.value}{stat.suffix}
+                  </div>
+                  <p className="text-sm text-white/60 uppercase tracking-wider font-inter">{stat.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12"
+          >
+            <motion.a
+              href="#pricing"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative"
+            >
+              <motion.div
+                className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                animate={{ opacity: [0.5, 0.75, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <div className="relative flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl">
+                <span>Voir les forfaits</span>
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </motion.a>
+
+            <motion.a
+              href="/contact"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-10 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-lg transition-all duration-300"
+            >
+              Nous contacter
+            </motion.a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
           >
             {[
               { icon: Zap, text: 'Activation en 24h', color: 'text-orange-400' },
@@ -118,7 +226,7 @@ export default function HeroSection() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                transition={{ duration: 0.6, delay: 1.5 + index * 0.1 }}
                 whileHover={{ y: -4 }}
                 className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center group hover:bg-white/10 hover:border-white/20 transition-all duration-300"
               >
@@ -127,105 +235,10 @@ export default function HeroSection() {
               </motion.div>
             ))}
           </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
-          >
-            <motion.a
-              href="#pricing"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative"
-            >
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
-                animate={{ opacity: [0.5, 0.75, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <div className="relative flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
-                <span>Voir les forfaits</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
-            </motion.a>
-
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold transition-all duration-300"
-            >
-              Nous contacter
-            </motion.a>
-          </motion.div>
-
-          {/* Trust Signals */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="flex flex-wrap items-center justify-center gap-6 text-sm"
-          >
-            <div className="flex items-center gap-2">
-              <motion.div
-                className="w-2 h-2 rounded-full bg-green-400"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <span className="text-white/70 font-inter">
-                <span className="text-green-400 font-semibold">Disponible immédiatement</span>
-              </span>
-            </div>
-            <div className="w-px h-4 bg-white/20"></div>
-            <div className="flex items-center gap-2 text-white/70 font-inter">
-              <Check className="w-4 h-4 text-amber-400" />
-              <span>120+ entreprises nous font confiance</span>
-            </div>
-            <div className="w-px h-4 bg-white/20"></div>
-            <div className="flex items-center gap-2 text-white/70 font-inter">
-              <Clock className="w-4 h-4 text-amber-400" />
-              <span>Sans engagement</span>
-            </div>
-          </motion.div>
-
-          {/* Featured Testimonial */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-16 max-w-3xl mx-auto"
-          >
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 shadow-2xl">
-              <div className="flex items-center gap-1.5 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
-                ))}
-              </div>
-              <p className="text-white/95 font-inter text-lg leading-relaxed mb-6">
-                "Le scan courrier automatique m'a fait gagner <span className="font-bold text-amber-400">8 heures par semaine</span>.
-                Tout est géré efficacement et je peux me concentrer sur mon activité. Un vrai gain de temps et de productivité."
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold">
-                  SM
-                </div>
-                <div>
-                  <p className="text-white font-inter font-bold">Sophie Martinez</p>
-                  <p className="text-white/60 font-inter text-sm">CEO @ TechFlow SaaS</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
         </div>
       </div>
 
-      {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"></div>
-
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
     </section>
   );
 }
