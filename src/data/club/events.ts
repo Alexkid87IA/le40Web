@@ -13,7 +13,7 @@ export const upcomingEvents = [
     isMembersOnly: false,
     status: "scheduled",
     image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800",
-    gradient: "from-orange-500 via-amber-500 to-yellow-500"
+    gradient: "from-red-500 via-rose-500 to-pink-500"
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export const upcomingEvents = [
     isMembersOnly: true,
     status: "scheduled",
     image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
-    gradient: "from-cyan-500 via-blue-500 to-teal-500"
+    gradient: "from-rose-500 via-pink-500 to-red-500"
   },
   {
     id: 3,
@@ -45,7 +45,7 @@ export const upcomingEvents = [
     isMembersOnly: true,
     status: "scheduled",
     image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
-    gradient: "from-emerald-500 via-teal-500 to-cyan-500"
+    gradient: "from-pink-500 via-rose-500 to-red-500"
   },
   {
     id: 4,
@@ -61,7 +61,7 @@ export const upcomingEvents = [
     isMembersOnly: true,
     status: "scheduled",
     image: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800",
-    gradient: "from-violet-500 via-purple-500 to-fuchsia-500"
+    gradient: "from-red-400 via-rose-400 to-pink-400"
   },
   {
     id: 5,
@@ -93,7 +93,7 @@ export const upcomingEvents = [
     isMembersOnly: true,
     status: "scheduled",
     image: "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=800",
-    gradient: "from-amber-500 via-orange-500 to-red-500"
+    gradient: "from-red-500 via-rose-400 to-pink-500"
   },
   {
     id: 7,
@@ -109,7 +109,7 @@ export const upcomingEvents = [
     isMembersOnly: true,
     status: "scheduled",
     image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
-    gradient: "from-cyan-500 via-blue-500 to-teal-500"
+    gradient: "from-rose-500 via-pink-500 to-red-500"
   },
   {
     id: 8,
@@ -125,7 +125,7 @@ export const upcomingEvents = [
     isMembersOnly: false,
     status: "scheduled",
     image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800",
-    gradient: "from-orange-500 via-amber-500 to-yellow-500"
+    gradient: "from-red-500 via-rose-500 to-pink-500"
   }
 ];
 
