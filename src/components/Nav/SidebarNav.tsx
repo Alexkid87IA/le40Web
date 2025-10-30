@@ -238,8 +238,22 @@ const CartItem = () => {
   );
 };
 
+const reserveButtonColors = {
+  '/': designTokens.colors.palette.primary.gradient,
+  '/bureaux': 'from-blue-600 via-indigo-600 to-blue-600',
+  '/domiciliation': 'from-emerald-600 via-green-600 to-emerald-600',
+  '/salles': 'from-purple-600 via-violet-600 to-purple-600',
+  '/studios': 'from-rose-500 via-fuchsia-500 to-violet-500',
+  '/events': 'from-cyan-600 via-sky-600 to-cyan-600',
+  '/experts': 'from-amber-600 via-yellow-600 to-amber-600',
+  '/community': 'from-teal-600 via-cyan-600 to-teal-600',
+  '/contact': 'from-slate-600 via-gray-600 to-slate-600',
+  'default': designTokens.colors.palette.primary.gradient,
+};
+
 export default function SidebarNav() {
   const location = useLocation();
+  const currentButtonColor = reserveButtonColors[location.pathname] || reserveButtonColors.default;
 
   return (
     <>
@@ -324,7 +338,7 @@ export default function SidebarNav() {
               className="group relative block overflow-hidden rounded-2xl"
             >
               <motion.div
-                className={`absolute inset-0 bg-gradient-to-r ${designTokens.colors.palette.primary.gradient}`}
+                className={`absolute inset-0 bg-gradient-to-r ${currentButtonColor}`}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.4 }}
               />
