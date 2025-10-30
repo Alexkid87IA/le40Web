@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MapPin, Users, Wifi, Sparkles, Building2, Zap } from 'lucide-react';
+import { ArrowRight, MapPin, Users, Wifi, Building2, Zap } from 'lucide-react';
 
 export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -96,15 +96,6 @@ export default function Hero() {
             />
             
             <div className="relative flex items-center gap-2 px-5 md:px-6 py-2 md:py-2.5 bg-black/80 backdrop-blur-2xl border border-amber-500/40 rounded-full shadow-2xl">
-              <motion.div
-                className="w-2 h-2 bg-amber-400 rounded-full shadow-lg shadow-amber-400/80"
-                animate={{ 
-                  scale: [1, 1.3, 1],
-                  opacity: [1, 0.7, 1]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <Sparkles className="w-3.5 md:w-4 h-3.5 md:h-4 text-amber-400" />
               <span className="text-white text-xs md:text-sm font-bold tracking-wider">
                 Espace Premium à Marseille
               </span>
