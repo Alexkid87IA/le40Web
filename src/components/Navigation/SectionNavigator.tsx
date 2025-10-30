@@ -11,16 +11,16 @@ interface Section {
 }
 
 const sections: Section[] = [
-  { id: 'coworking', label: 'Coworking', icon: Users, color: '#8b5cf6' },
   { id: 'domiciliation', label: 'Domiciliation', icon: MapPin, color: '#f59e0b' },
   { id: 'bureaux', label: 'Bureaux', icon: Monitor, color: '#10b981' },
+  { id: 'coworking', label: 'Coworking', icon: Users, color: '#8b5cf6' },
   { id: 'studios-pro', label: 'Studios Pro', icon: Video, color: '#3b82f6' },
   { id: 'studios-content', label: 'Créateurs', icon: Camera, color: '#ec4899' },
   { id: 'community', label: 'Communauté', icon: Network, color: '#06b6d4' }
 ];
 
 export default function SectionNavigator() {
-  const [activeSection, setActiveSection] = useState('coworking');
+  const [activeSection, setActiveSection] = useState('domiciliation');
   const [isVisible, setIsVisible] = useState(false);
   const { resetPreroll } = usePreroll();
 
