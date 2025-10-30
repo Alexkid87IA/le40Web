@@ -19,6 +19,9 @@ import Events from '../pages/Events';
 import ServicesPlus from '../pages/ServicesPlus';
 import NotFound from '../pages/NotFound';
 import BookingPage from '../pages/BookingPage';
+import Checkout from '../pages/Checkout';
+import OrderConfirmation from '../pages/OrderConfirmation';
+import CGV from '../pages/CGV';
 import CartDrawer from '../components/Cart/CartDrawer';
 
 export default function AppRoutes() {
@@ -45,6 +48,10 @@ export default function AppRoutes() {
         <Route path="/events" element={<Events />} />
         <Route path="/services-plus" element={<ServicesPlus />} />
         <Route path="/reservation" element={<BookingPage />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/confirmation/:orderNumber" element={<OrderConfirmation />} />
+        <Route path="/cgv" element={<CGV />} />
+        <Route path="/politique-confidentialite" element={<CGV />} />
 
         {/* Route 404 - toujours en dernier */}
         <Route path="*" element={<NotFound />} />
