@@ -330,21 +330,27 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.8 }}
                     className="flex flex-col gap-3"
                   >
-                    <motion.button
+                    <motion.a
+                      href={`https://wa.me/33614315214?text=${encodeURIComponent(`Bonjour, je souhaite réserver une visite pour le bureau "${space.title}" (${space.capacity}).`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold font-montserrat rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2"
                     >
                       <span>Réserver une visite</span>
                       <ArrowRight className="w-5 h-5" />
-                    </motion.button>
-                    <motion.button
+                    </motion.a>
+                    <motion.a
+                      href={`https://wa.me/33614315214?text=${encodeURIComponent(`Bonjour, je souhaite recevoir un devis pour le bureau "${space.title}" (${space.capacity}) à ${space.price}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="w-full py-4 bg-white/10 backdrop-blur-xl text-white font-semibold font-montserrat rounded-xl border border-white/20 hover:bg-white/20 transition-all"
                     >
                       Demander un devis
-                    </motion.button>
+                    </motion.a>
                   </motion.div>
                 </div>
               </div>

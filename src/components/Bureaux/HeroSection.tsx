@@ -138,7 +138,9 @@ export default function BureauHeroSection() {
             </motion.a>
 
             <motion.a
-              href="/contact"
+              href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite réserver une visite pour découvrir vos bureaux privés.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold transition-all duration-300"

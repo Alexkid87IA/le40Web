@@ -37,7 +37,7 @@ export default function FinalCTASection() {
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <Link to="/contact" className="group">
+            <a href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite réserver une visite pour découvrir vos bureaux privés.')}`} target="_blank" rel="noopener noreferrer" className="group">
               <motion.div
                 whileHover={{ y: -8, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -56,14 +56,14 @@ export default function FinalCTASection() {
                     Découvrez nos bureaux disponibles avec un membre de l'équipe
                   </p>
                   <div className="inline-flex items-center gap-2 text-emerald-400 font-semibold text-sm group-hover:gap-3 transition-all">
-                    Choisir un créneau
+                    Contacter sur WhatsApp
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </motion.div>
-            </Link>
+            </a>
 
-            <a href="tel:+33XXXXXXXXX" className="group">
+            <a href="tel:+33614315214" className="group">
               <motion.div
                 whileHover={{ y: -8, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -82,14 +82,14 @@ export default function FinalCTASection() {
                     Posez vos questions directement à notre équipe
                   </p>
                   <div className="inline-flex items-center gap-2 text-teal-400 font-semibold text-sm group-hover:gap-3 transition-all">
-                    04 XX XX XX XX
+                    06 14 31 52 14
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </motion.div>
             </a>
 
-            <Link to="/contact" className="group">
+            <a href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite recevoir un devis personnalisé pour un bureau privé.')}`} target="_blank" rel="noopener noreferrer" className="group">
               <motion.div
                 whileHover={{ y: -8, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -108,12 +108,12 @@ export default function FinalCTASection() {
                     Recevez une proposition personnalisée sous 24h
                   </p>
                   <div className="inline-flex items-center gap-2 text-cyan-400 font-semibold text-sm group-hover:gap-3 transition-all">
-                    Formulaire express
+                    Contacter sur WhatsApp
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </motion.div>
-            </Link>
+            </a>
           </div>
 
           <div className="p-8 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-2xl">

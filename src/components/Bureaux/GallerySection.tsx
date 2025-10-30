@@ -175,7 +175,9 @@ export default function GallerySection() {
             Les photos valent mieux que mille mots, mais rien ne remplace une visite en personne
           </p>
           <motion.a
-            href="/contact"
+            href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite réserver une visite guidée gratuite pour découvrir vos bureaux privés.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-montserrat font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-600/30 transition-all"

@@ -219,18 +219,19 @@ export default function PricingSection() {
                     ))}
                   </div>
 
-                  <Link to="/contact" className="block mt-auto">
-                    <motion.div
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`w-full bg-gradient-to-r ${plan.gradient} rounded-2xl px-6 py-4 flex items-center justify-center gap-3 group/btn shadow-lg`}
-                    >
-                      <span className="font-montserrat font-semibold text-white">
-                        Réserver une visite
-                      </span>
-                      <ArrowRight className="w-5 h-5 text-white group-hover/btn:translate-x-1 transition-transform" />
-                    </motion.div>
-                  </Link>
+                  <motion.a
+                    href={`https://wa.me/33614315214?text=${encodeURIComponent(`Bonjour, je souhaite réserver une visite pour le ${plan.title} à ${plan.price}.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`block mt-auto w-full bg-gradient-to-r ${plan.gradient} rounded-2xl px-6 py-4 flex items-center justify-center gap-3 group/btn shadow-lg`}
+                  >
+                    <span className="font-montserrat font-semibold text-white">
+                      Réserver une visite
+                    </span>
+                    <ArrowRight className="w-5 h-5 text-white group-hover/btn:translate-x-1 transition-transform" />
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
@@ -249,16 +250,17 @@ export default function PricingSection() {
           <p className="text-white/70 font-inter mb-6 max-w-2xl mx-auto">
             Nous proposons des bureaux jusqu'à 200m² et pouvons créer des configurations sur-mesure pour votre entreprise.
           </p>
-          <Link to="/contact">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-montserrat font-semibold rounded-xl transition-all"
-            >
-              Demander un devis personnalisé
-              <ArrowRight className="w-5 h-5" />
-            </motion.button>
-          </Link>
+          <motion.a
+            href={`https://wa.me/33614315214?text=${encodeURIComponent('Bonjour, je souhaite un devis personnalisé pour un bureau de grande taille.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-montserrat font-semibold rounded-xl transition-all"
+          >
+            Demander un devis personnalisé
+            <ArrowRight className="w-5 h-5" />
+          </motion.a>
         </motion.div>
       </div>
     </section>
