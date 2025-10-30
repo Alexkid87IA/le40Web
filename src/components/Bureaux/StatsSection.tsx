@@ -100,7 +100,7 @@ export default function StatsSection() {
                   <stat.icon className="w-8 h-8 text-emerald-400" />
                 </motion.div>
 
-                <div className="text-4xl md:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-2">
+                <div className="text-4xl md:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-2 leading-none h-[3rem] md:h-[3.5rem] flex items-center justify-center">
                   {stat.value}
                 </div>
 
