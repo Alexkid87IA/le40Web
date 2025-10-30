@@ -1,4 +1,4 @@
-import { Film, Monitor, Camera, Radio, Car, Scissors, Image, FileVideo, Subtitles, Palette, Wand2, Sparkles, Video, LucideIcon } from 'lucide-react';
+import { Film, Monitor, Camera, Radio, Car, Scissors, Image, FileVideo, Subtitles, Palette, Wand2, Sparkles, Video, Headphones, Zap, LucideIcon } from 'lucide-react';
 
 export interface StudioAdditionalService {
   id: string;
@@ -130,8 +130,8 @@ export const studioAdditionalServices: StudioAdditionalService[] = [
     description: 'Français ou Anglais',
     details: 'Sous-titres synchronisés professionnels. Formats SRT, VTT ou burn-in.',
     price: 45,
-    unit: '/10min',
-    displayPrice: '45€/10min',
+    unit: '/h de vidéo',
+    displayPrice: '45€/h',
     icon: Subtitles,
     gradient: 'from-green-600 to-emerald-600',
     features: [
@@ -210,6 +210,50 @@ export const studioAdditionalServices: StudioAdditionalService[] = [
       'Animations fluides',
       '2 révisions incluses',
       'Livraison 48h'
+    ],
+    category: 'post-production'
+  },
+  {
+    id: 'mixage-audio',
+    name: 'Mixage Audio Pro',
+    description: 'Son professionnel',
+    details: 'Nettoyage audio, égalisation, compression, réduction de bruit, mixage stéréo/5.1.',
+    price: 55,
+    unit: '/h de vidéo',
+    displayPrice: '55€/h',
+    icon: Headphones,
+    gradient: 'from-indigo-600 to-purple-600',
+    features: [
+      'Nettoyage et réduction bruit',
+      'Égalisation professionnelle',
+      'Compression dynamique',
+      'Normalisation des niveaux',
+      'Mixage stéréo ou 5.1',
+      'Mastering final',
+      '1 révision incluse',
+      'Livraison 48h'
+    ],
+    category: 'post-production'
+  },
+  {
+    id: 'stabilisation-tracking',
+    name: 'Stabilisation & Tracking',
+    description: 'Vidéos ultra-stables',
+    details: 'Stabilisation avancée des plans tremblants, tracking d\'objets et caméra pour effets spéciaux.',
+    price: 65,
+    unit: '/h de rush',
+    displayPrice: '65€/h',
+    icon: Zap,
+    gradient: 'from-yellow-600 to-orange-600',
+    features: [
+      'Stabilisation warp avancée',
+      'Tracking de points précis',
+      'Correction de perspectives',
+      'Suppression de rolling shutter',
+      'Masquage intelligent',
+      'Export haute qualité',
+      '1 révision incluse',
+      'Livraison 3-5 jours'
     ],
     category: 'post-production'
   },
