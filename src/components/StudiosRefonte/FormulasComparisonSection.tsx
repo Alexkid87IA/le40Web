@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { formulas } from '../../data/studios/formulas';
-import { Check, Star, ArrowRight } from 'lucide-react';
+import { Check, Star, ArrowRight, Target } from 'lucide-react';
 
 export default function FormulasComparisonSection() {
   return (
@@ -64,11 +64,15 @@ export default function FormulasComparisonSection() {
                       {formula.name}
                     </h3>
 
-                    <p className="text-white/70 font-inter mb-6">
+                    <p className="text-lg text-white/70 font-inter mb-2">
                       {formula.longDescription}
                     </p>
 
-                    <div className="inline-flex items-baseline gap-2 px-4 py-2 bg-gradient-to-r from-rose-600/20 via-fuchsia-600/20 to-violet-600/20 border border-fuchsia-400/30 rounded-xl">
+                    <p className="text-sm text-fuchsia-400 font-inter font-medium mb-6">
+                      {formula.tagline}
+                    </p>
+
+                    <div className="inline-flex items-baseline gap-2 px-4 py-2 bg-gradient-to-r from-rose-600/20 via-fuchsia-600/20 to-violet-600/20 border border-fuchsia-400/30 rounded-xl mb-6">
                       <span className="text-2xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-violet-400">
                         {formula.displayPrice}
                       </span>
@@ -76,6 +80,27 @@ export default function FormulasComparisonSection() {
                         {formula.id === 'studio' ? 'du tarif studio' : 'vs Studio'}
                       </span>
                     </div>
+                  </div>
+
+                  <div className="mb-6 p-4 bg-white/5 border border-white/10 rounded-xl">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Target className="w-4 h-4 text-fuchsia-400" />
+                      <span className="text-sm font-inter font-semibold text-white">Cas d'usage</span>
+                    </div>
+                    <ul className="space-y-2">
+                      {formula.useCases.map((useCase: string, idx: number) => (
+                        <li key={idx} className="text-sm text-white/70 font-inter flex items-start gap-2">
+                          <span className="text-fuchsia-400 mt-0.5">→</span>
+                          {useCase}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mb-6 p-4 bg-gradient-to-br from-white/5 to-transparent border border-white/10 rounded-xl">
+                    <p className="text-sm text-white/80 font-inter leading-relaxed italic">
+                      {formula.detailedDescription}
+                    </p>
                   </div>
 
                   <div className="space-y-3 mb-8 flex-1">
