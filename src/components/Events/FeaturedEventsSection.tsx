@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Users, MapPin, ArrowRight, Star } from 'lucide-react';
+import { Calendar, Clock, Users } from 'lucide-react';
 import { upcomingEvents, UpcomingEvent } from '../../data/events/upcomingEvents';
 import { eventSpeakers } from '../../data/events/speakers';
 import { useState } from 'react';
@@ -108,7 +108,7 @@ export default function FeaturedEventsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredEvents.map((event, index) => {
             const capacityPercentage = getCapacityPercentage(event.currentAttendees, event.maxAttendees);
             const capacityStatus = getCapacityStatus(capacityPercentage);
@@ -124,128 +124,83 @@ export default function FeaturedEventsSection() {
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 onHoverStart={() => setHoveredCard(event.id)}
                 onHoverEnd={() => setHoveredCard(null)}
-                className="group relative flex"
+                onClick={() => setSelectedEvent(event)}
+                className="group relative flex cursor-pointer"
               >
-                {event.isFeatured && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-1 rounded-full text-xs font-montserrat font-bold shadow-lg">
-                      <Star className="w-3 h-3" />
-                      ÉVÉNEMENT PHARE
-                    </div>
-                  </div>
-                )}
+                <div className="relative overflow-hidden rounded-2xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-cyan-500/30 transition-all duration-300 flex flex-col w-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <div className="relative overflow-hidden rounded-3xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-500 flex flex-col w-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  <div className="relative h-64 overflow-hidden shrink-0">
+                  <div className="relative h-48 overflow-hidden shrink-0">
                     <motion.img
                       src={event.imageUrl}
                       alt={event.title}
                       className="w-full h-full object-cover"
-                      animate={{ scale: isHovered ? 1.1 : 1 }}
-                      transition={{ duration: 0.5 }}
+                      animate={{ scale: isHovered ? 1.05 : 1 }}
+                      transition={{ duration: 0.4 }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
 
-                    <div className="absolute top-6 left-6 flex items-center gap-3">
-                      <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg">
+                    <div className="absolute top-3 left-3">
+                      <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-lg text-xs font-bold shadow-lg">
                         {event.categoryName}
-                      </div>
-                      <div className={`${capacityStatus.bg} ${capacityStatus.color} px-3 py-1 rounded-lg text-xs font-bold backdrop-blur-sm`}>
-                        {capacityStatus.text}
                       </div>
                     </div>
 
                     {event.priceMember === 0 && event.priceNonMember === 0 ? (
-                      <div className="absolute top-6 right-6 bg-emerald-500/90 text-white px-4 py-2 rounded-xl text-sm font-bold backdrop-blur-sm">
+                      <div className="absolute top-3 right-3 bg-emerald-500 text-white px-3 py-1 rounded-lg text-xs font-bold">
                         GRATUIT
                       </div>
                     ) : (
-                      <div className="absolute top-6 right-6 bg-white/10 backdrop-blur-xl border border-white/20 text-white px-4 py-2 rounded-xl text-sm font-bold">
+                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur text-slate-900 px-3 py-1 rounded-lg text-xs font-bold">
                         dès {Math.min(event.priceMember, event.priceNonMember)}€
+                      </div>
+                    )}
+
+                    {capacityPercentage >= 70 && (
+                      <div className="absolute bottom-3 left-3">
+                        <div className={`${capacityStatus.bg} ${capacityStatus.color} px-2 py-1 rounded-lg text-xs font-bold backdrop-blur-sm`}>
+                          {capacityStatus.text}
+                        </div>
                       </div>
                     )}
                   </div>
 
-                  <div className="relative p-8 flex flex-col flex-1">
-                    <h3 className="text-2xl font-montserrat font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-blue-400 transition-all duration-500">
+                  <div className="relative p-5 flex flex-col flex-1">
+                    <h3 className="text-lg font-montserrat font-bold text-white mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors duration-300">
                       {event.title}
                     </h3>
 
-                    <p className="text-white/70 mb-6 leading-relaxed font-inter line-clamp-2 h-12">
+                    <p className="text-white/60 text-sm mb-4 leading-relaxed font-inter line-clamp-2">
                       {event.shortDescription}
                     </p>
 
-                    <div className="space-y-3 mb-6 flex-1">
-                      <div className="flex items-center gap-3 text-white/70">
-                        <Calendar className="w-5 h-5 text-cyan-400 shrink-0" />
-                        <span className="text-sm font-inter">{formatDate(event.eventDate)}</span>
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-white/70">
+                        <Calendar className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span className="text-xs font-inter">{formatDate(event.eventDate)}</span>
                       </div>
-                      <div className="flex items-center gap-3 text-white/70">
-                        <Clock className="w-5 h-5 text-blue-400 shrink-0" />
-                        <span className="text-sm font-inter">{formatTime(event.eventDate)} • {event.duration} min</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-white/70">
-                        <MapPin className="w-5 h-5 text-amber-400 shrink-0" />
-                        <span className="text-sm font-inter">{event.location}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-white/70">
-                        <Users className="w-5 h-5 text-emerald-400 shrink-0" />
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between text-sm font-inter mb-2">
-                            <span>{event.currentAttendees}/{event.maxAttendees} participants</span>
-                            <span className="text-white/50">{Math.round(capacityPercentage)}%</span>
-                          </div>
-                          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${capacityPercentage}%` }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 1, delay: 0.5 }}
-                              className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"
-                            />
-                          </div>
-                        </div>
+                      <div className="flex items-center gap-2 text-white/70">
+                        <Clock className="w-4 h-4 text-blue-400 shrink-0" />
+                        <span className="text-xs font-inter">{formatTime(event.eventDate)} • {event.duration} min</span>
                       </div>
                     </div>
 
-                    <div className="mt-auto">
-                      {speakers.length > 0 && (
-                        <div className="mb-6 pb-6 border-b border-white/10">
-                          <div className="text-sm text-white/50 mb-3 font-inter">Intervenant{speakers.length > 1 ? 's' : ''}</div>
-                          <div className="flex items-center gap-3 flex-wrap">
-                            {speakers.slice(0, 2).map((speaker) => (
-                              <div key={speaker.id} className="flex items-center gap-2 min-w-0">
-                                <img
-                                  src={speaker.photoUrl}
-                                  alt={speaker.name}
-                                  className="w-10 h-10 rounded-full object-cover border-2 border-white/20 shrink-0"
-                                />
-                                <div className="min-w-0">
-                                  <div className="text-sm font-semibold text-white truncate">{speaker.name}</div>
-                                  <div className="text-xs text-white/50 truncate">{speaker.title}</div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
+                    <div className="mt-auto pt-4 border-t border-white/10">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Users className="w-4 h-4 text-emerald-400" />
+                          <span className="text-xs text-white/60">{event.currentAttendees}/{event.maxAttendees}</span>
                         </div>
-                      )}
-
-                      <div className="flex items-center gap-3">
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          onClick={() => setSelectedEvent(event)}
-                          className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-montserrat font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
-                        >
-                          <span>S'inscrire</span>
-                          <ArrowRight className="w-5 h-5" />
-                        </motion.button>
-
-                        {event.difficultyLevel && (
-                          <div className="px-4 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl text-white/60 text-xs font-semibold whitespace-nowrap">
-                            {event.difficultyLevel}
+                        {speakers.length > 0 && (
+                          <div className="flex -space-x-2">
+                            {speakers.slice(0, 2).map((speaker) => (
+                              <img
+                                key={speaker.id}
+                                src={speaker.photoUrl}
+                                alt={speaker.name}
+                                className="w-7 h-7 rounded-full object-cover border-2 border-slate-950"
+                              />
+                            ))}
                           </div>
                         )}
                       </div>
