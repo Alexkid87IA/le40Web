@@ -81,9 +81,10 @@ export default function FAQSection() {
               >
                 <button
                   onClick={() => toggleFAQ(faq.id)}
-                  className="w-full text-left bg-black/50 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300"
+                  className="w-full text-left relative bg-slate-950/50 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300 overflow-hidden"
                 >
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="flex items-center justify-between gap-4 relative z-10">
                     <h3 className="text-lg font-montserrat font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
                       {faq.question}
                     </h3>
@@ -103,7 +104,7 @@ export default function FAQSection() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
+                        className="overflow-hidden relative z-10"
                       >
                         <div className="pt-4 border-t border-white/10 mt-4">
                           <p className="text-white/70 leading-relaxed font-inter">
