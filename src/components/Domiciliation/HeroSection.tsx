@@ -113,8 +113,8 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl sm:text-2xl text-white/70 font-inter max-w-4xl mx-auto mb-12 leading-relaxed"
           >
-            Adresse professionnelle prestigieuse à Marseille 15e. Scan courrier en 2h, activation en 24h.
-            <span className="text-white font-semibold"> Conformité légale garantie.</span>
+            Domiciliez votre entreprise en toute simplicité. Scan courrier en 2h, activation en 24h.
+            <span className="text-white font-semibold"> Service flexible et réactif.</span>
           </motion.p>
 
           <motion.div
