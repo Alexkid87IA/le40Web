@@ -138,12 +138,12 @@ export default function AnimatedServiceSection({
               {title}
             </motion.div>
 
-            <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed font-inter">
+            <p className="text-sm md:text-lg lg:text-xl text-white/70 mb-6 md:mb-10 leading-relaxed font-inter">
               {description}
             </p>
 
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-10"
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -161,7 +161,7 @@ export default function AnimatedServiceSection({
                       boxShadow: '0 20px 40px rgba(255, 255, 255, 0.05)'
                     }}
                     transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-                    className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 cursor-pointer"
+                    className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-4 cursor-pointer"
                     style={{ transformStyle: 'preserve-3d' }}
                   >
                     <motion.div
@@ -182,11 +182,11 @@ export default function AnimatedServiceSection({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex items-center gap-4 mb-10"
+              className="flex flex-wrap items-center gap-2 md:gap-4 mb-6 md:mb-10"
             >
-              <div className="text-white/50 text-sm font-inter">À partir de</div>
-              <div className={`text-5xl font-montserrat font-black text-transparent bg-clip-text ${price.gradientClasses}`}>{price.amount}</div>
-              <div className="text-white/50 text-sm font-inter">{price.period}</div>
+              <div className="text-white/50 text-xs md:text-sm font-inter">À partir de</div>
+              <div className={`text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-transparent bg-clip-text ${price.gradientClasses}`}>{price.amount}</div>
+              <div className="text-white/50 text-xs md:text-sm font-inter">{price.period}</div>
             </motion.div>
 
             <motion.div
@@ -209,7 +209,7 @@ export default function AnimatedServiceSection({
                   animate={{ opacity: [0.5, 0.75, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <div className={`relative flex items-center justify-center gap-3 px-6 py-4 ${cta.primary.gradientClasses} text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm`}>
+                <div className={`relative flex items-center justify-center gap-2 md:gap-3 px-5 md:px-6 py-3 md:py-4 ${cta.primary.gradientClasses} text-white rounded-xl font-montserrat font-bold shadow-2xl text-xs md:text-sm`}>
                   <span>{cta.primary.text}</span>
                 </div>
               </motion.a>
@@ -218,7 +218,7 @@ export default function AnimatedServiceSection({
                 href={cta.secondary.href}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border ${cta.secondary.borderColorClasses} text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center text-sm`}
+                className={`px-5 md:px-6 py-3 md:py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border ${cta.secondary.borderColorClasses} text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-center text-xs md:text-sm`}
               >
                 {cta.secondary.text}
               </motion.a>
