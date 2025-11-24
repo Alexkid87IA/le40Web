@@ -12,6 +12,7 @@ interface EventDetailModalProps {
 
 export default function EventDetailModal({ event, onClose }: EventDetailModalProps) {
   const [selectedTicketType, setSelectedTicketType] = useState<'member' | 'non-member'>('non-member');
+  const [dragY, setDragY] = useState(0);
   const { addItem } = useCart();
 
   useEffect(() => {
@@ -75,9 +76,16 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
     onClose();
   };
 
+  const handleDragEnd = (_: any, info: any) => {
+    if (info.offset.y > 100) {
+      onClose();
+    }
+    setDragY(0);
+  };
+
   return (
     <AnimatePresence mode="wait">
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-[9999] flex items-start md:items-center justify-center overflow-y-auto" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -87,25 +95,41 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
         />
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          exit={{ opacity: 0, scale: 0.95, y: 50 }}
+          drag="y"
+          dragConstraints={{ top: 0, bottom: 0 }}
+          dragElastic={0.2}
+          onDragEnd={handleDragEnd}
           transition={{ type: "spring", damping: 30, stiffness: 300 }}
-          className="relative w-full max-w-3xl max-h-[85vh]"
+          className="relative w-full max-w-3xl mt-auto md:my-8 touch-pan-y"
+          style={{ maxHeight: 'calc(100vh - env(safe-area-inset-top) - 20px)' }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="relative bg-slate-950/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl overflow-hidden">
+          <div className="relative bg-slate-950/95 backdrop-blur-xl border border-white/20 rounded-t-3xl md:rounded-2xl shadow-2xl overflow-hidden">
+            <div className="lg:hidden sticky top-0 z-30 bg-slate-950/95 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex items-center justify-between">
+              <div className="w-12 h-1 bg-white/30 rounded-full mx-auto absolute left-1/2 -translate-x-1/2 top-2"></div>
+              <h3 className="text-white font-montserrat font-bold text-base pt-4 truncate">{event.title}</h3>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/20 transition-all group"
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
+            </div>
+
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-20 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+              className="hidden lg:flex absolute top-4 right-4 z-20 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
               aria-label="Fermer"
             >
               <X className="w-5 h-5 text-white" />
             </button>
 
-            <div className="overflow-y-auto max-h-[85vh]">
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="relative h-full min-h-[400px] md:min-h-full">
+            <div className="overflow-y-auto lg:max-h-[85vh]">
+              <div className="grid lg:grid-cols-2 gap-0">
+                <div className="relative h-full min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-full">
                   <img
                     src={event.imageUrl}
                     alt={event.title}

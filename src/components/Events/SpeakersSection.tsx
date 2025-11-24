@@ -7,7 +7,7 @@ export default function SpeakersSection() {
   const [hoveredSpeaker, setHoveredSpeaker] = useState<string | null>(null);
 
   return (
-    <section className="py-32 bg-black relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-32 bg-black relative overflow-hidden">
       <div className="absolute inset-0">
         <video
           autoPlay
@@ -42,26 +42,26 @@ export default function SpeakersSection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6">
             Nos{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
               Intervenants
             </span>
           </h2>
-          <p className="text-xl text-white/60 max-w-3xl mx-auto font-inter">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 max-w-3xl mx-auto font-inter px-4">
             Des experts reconnus qui partagent leur savoir-faire et leur expérience
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 auto-rows-fr">
           {eventSpeakers.map((speaker, index) => {
             const isHovered = hoveredSpeaker === speaker.id;
 
@@ -76,9 +76,9 @@ export default function SpeakersSection() {
                 onHoverEnd={() => setHoveredSpeaker(null)}
                 className="group relative flex"
               >
-                <div className="relative h-full bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 rounded-3xl overflow-hidden transition-all duration-500 flex flex-col w-full">
+                <div className="relative h-full bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 rounded-2xl md:rounded-3xl overflow-hidden transition-all duration-500 flex flex-col w-full">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative h-64 overflow-hidden shrink-0">
+                  <div className="relative h-52 md:h-64 overflow-hidden shrink-0">
                     <motion.img
                       src={speaker.photoUrl}
                       alt={speaker.name}
@@ -103,25 +103,25 @@ export default function SpeakersSection() {
                     </div>
                   </div>
 
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-2xl font-montserrat font-bold text-white mb-2">
+                  <div className="p-4 md:p-5 lg:p-6 flex flex-col flex-1">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-montserrat font-bold text-white mb-2">
                       {speaker.name}
                     </h3>
-                    <div className="text-cyan-400 text-sm font-semibold mb-4 font-inter">
+                    <div className="text-cyan-400 text-xs md:text-sm font-semibold mb-3 md:mb-4 font-inter">
                       {speaker.title}
                     </div>
 
-                    <p className="text-white/70 mb-6 leading-relaxed text-sm font-inter line-clamp-3 h-[60px]">
+                    <p className="text-white/70 mb-4 md:mb-6 leading-relaxed text-xs md:text-sm font-inter line-clamp-3">
                       {speaker.bio}
                     </p>
 
                     <div className="mb-6 flex-1">
-                      <div className="text-xs text-white/50 mb-3 font-inter">Domaines d'expertise</div>
+                      <div className="text-[10px] md:text-xs text-white/50 mb-2 md:mb-3 font-inter">Domaines d'expertise</div>
                       <div className="flex flex-wrap gap-2">
                         {speaker.expertiseAreas.slice(0, 3).map((area, idx) => (
                           <div
                             key={idx}
-                            className="px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-lg text-cyan-300 text-xs font-semibold"
+                            className="px-2 py-1 md:px-3 md:py-1.5 bg-cyan-500/10 border border-cyan-500/20 rounded-md md:rounded-lg text-cyan-300 text-[10px] md:text-xs font-semibold"
                           >
                             {area}
                           </div>
@@ -137,7 +137,7 @@ export default function SpeakersSection() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="flex items-center justify-center gap-2 w-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white py-3 rounded-xl font-semibold transition-all duration-300"
+                          className="flex items-center justify-center gap-2 w-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white py-2.5 md:py-3 rounded-xl font-semibold transition-all duration-300 text-sm md:text-base"
                         >
                           <Linkedin className="w-5 h-5" />
                           <span className="font-inter">Voir le profil</span>
@@ -157,11 +157,11 @@ export default function SpeakersSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="mt-16 text-center"
+          className="mt-12 md:mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-950/50 to-blue-950/50 backdrop-blur-xl border border-cyan-500/20 rounded-2xl px-6 py-4">
+          <div className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-cyan-950/50 to-blue-950/50 backdrop-blur-xl border border-cyan-500/20 rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 mx-4">
             <Award className="w-6 h-6 text-cyan-400" />
-            <span className="text-white font-inter">
+            <span className="text-white font-inter text-sm md:text-base">
               Vous souhaitez intervenir ?{' '}
               <a href="#organize-event" className="text-cyan-400 hover:text-cyan-300 font-bold underline">
                 Proposez votre expertise
