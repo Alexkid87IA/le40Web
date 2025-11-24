@@ -23,13 +23,11 @@ import Checkout from '../pages/Checkout';
 import OrderConfirmation from '../pages/OrderConfirmation';
 import CGV from '../pages/CGV';
 import CartDrawer from '../components/Cart/CartDrawer';
-import WhatsAppWidget from '../components/UI/WhatsAppWidget';
 
 export default function AppRoutes() {
   return (
     <Router>
       <CartDrawer />
-      <WhatsAppWidget />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/offres" element={<Offres />} />
