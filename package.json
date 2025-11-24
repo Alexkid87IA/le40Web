@@ -21,7 +21,10 @@
     "shopify:list-webhooks": "tsx scripts/configure-webhooks.ts list",
     "shopify:create-collections": "tsx scripts/create-shopify-collections.ts",
     "shopify:create-domiciliation": "tsx scripts/create-domiciliation-products.ts",
-    "shopify:create-events": "tsx scripts/create-events-products.ts"
+    "shopify:create-events": "tsx scripts/create-events-products.ts",
+    "shopify:create-bundles": "tsx scripts/create-bundles.ts",
+    "shopify:create-club": "tsx scripts/create-club-subscriptions.ts",
+    "shopify:create-additional": "tsx scripts/create-additional-services.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1",

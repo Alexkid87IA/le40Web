@@ -215,6 +215,73 @@ const COLLECTIONS: CollectionConfig[] = [
     ],
     sort_order: 'price-asc',
   },
+  {
+    title: 'Bundles & Packs',
+    handle: 'bundles-packs',
+    body_html: `<p><strong>Économisez jusqu'à 30% avec nos packs tout inclus</strong></p>
+    <p>Studio + Montage + Services : tout ce dont vous avez besoin en un seul pack à prix réduit.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Bundle',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Abonnements Le 40 Club',
+    handle: 'le-40-club',
+    body_html: `<p><strong>Abonnements mensuels sans engagement pour créateurs et entreprises</strong></p>
+    <p>Accès récurrent à nos espaces, services et avantages membres. Économisez jusqu'à 700€/mois.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Abonnement',
+      },
+    ],
+    sort_order: 'price-asc',
+  },
+  {
+    title: 'Services Additionnels',
+    handle: 'services-additionnels',
+    body_html: `<p>Services complémentaires pour perfectionner vos contenus : color grading, mixage audio, sous-titrage, coaching et shooting photo.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Service Additionnel',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Nouveautés',
+    handle: 'nouveautes',
+    body_html: `<p>Découvrez nos derniers produits et services fraîchement ajoutés.</p>`,
+    rules: [
+      {
+        column: 'tag',
+        relation: 'equals',
+        condition: 'nouveau',
+      },
+    ],
+    sort_order: 'created-desc',
+  },
+  {
+    title: 'Économisez Plus de 50€',
+    handle: 'grandes-economies',
+    body_html: `<p>Tous nos produits avec plus de 50€ d'économie par rapport au prix normal.</p>`,
+    rules: [
+      {
+        column: 'tag',
+        relation: 'equals',
+        condition: 'economie',
+      },
+    ],
+    sort_order: 'best-selling',
+  },
 ];
 
 async function createSmartCollection(collection: CollectionConfig) {
