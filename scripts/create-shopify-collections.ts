@@ -45,35 +45,9 @@ const COLLECTIONS: CollectionConfig[] = [
     sort_order: 'manual',
   },
   {
-    title: 'Espaces Événementiels',
-    handle: 'espaces-evenementiels',
-    body_html: `<p>Terrasse panoramique, lounge café et salles de conférence pour vos événements d'entreprise.</p>`,
-    rules: [
-      {
-        column: 'type',
-        relation: 'equals',
-        condition: 'Espace Événementiel',
-      },
-    ],
-    sort_order: 'manual',
-  },
-  {
-    title: 'Salles de Conférence',
-    handle: 'salles-de-conference',
-    body_html: `<p>Grande salle équipée pour conférences, séminaires et événements jusqu'à 80 personnes.</p>`,
-    rules: [
-      {
-        column: 'type',
-        relation: 'equals',
-        condition: 'Salle de Conférence',
-      },
-    ],
-    sort_order: 'manual',
-  },
-  {
     title: 'Services de Post-Production',
     handle: 'post-production',
-    body_html: `<p>Montage vidéo, clipping, et services professionnels pour finaliser vos contenus.</p>`,
+    body_html: `<p>Montage vidéo, clipping, color grading et services professionnels pour finaliser vos contenus.</p>`,
     rules: [
       {
         column: 'type',
@@ -84,31 +58,109 @@ const COLLECTIONS: CollectionConfig[] = [
     sort_order: 'manual',
   },
   {
-    title: 'Location Équipement',
-    handle: 'location-equipement',
-    body_html: `<p>Équipements additionnels : téléprompter, caméras extras, régie live et plus.</p>`,
+    title: 'Services Expert',
+    handle: 'services-expert',
+    body_html: `<p>Services professionnels pour créateurs : scripts, stratégie contenu, SEO YouTube, gestion ads, branding et distribution multi-plateforme.</p>`,
     rules: [
       {
         column: 'type',
         relation: 'equals',
-        condition: 'Location Équipement',
+        condition: 'Service Expert',
       },
     ],
     sort_order: 'manual',
   },
   {
-    title: 'Offres de Lancement',
-    handle: 'offres-de-lancement',
-    body_html: `<p><strong>🎉 Jusqu'à -40% sur nos studios créatifs !</strong></p>
-    <p>Profitez de nos prix de lancement exceptionnels pour tester nos équipements professionnels.</p>`,
+    title: 'Services Beauty & Style',
+    handle: 'services-beauty',
+    body_html: `<p>Maquillage professionnel et stylisme pour vos tournages et événements.</p>`,
     rules: [
       {
-        column: 'tag',
+        column: 'type',
         relation: 'equals',
-        condition: 'offre-lancement',
+        condition: 'Service Beauty',
       },
     ],
-    sort_order: 'best-selling',
+    sort_order: 'manual',
+  },
+  {
+    title: 'Décoration & Scénographie',
+    handle: 'decoration-scenographie',
+    body_html: `<p>Setup thématique et décoration personnalisée pour vos tournages : e-commerce, interview, gaming, custom.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Service Décoration',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Catering & Restauration',
+    handle: 'catering-restauration',
+    body_html: `<p>Service traiteur complet pour vos tournages et événements : coffee break, déjeuner, snacks.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Service Catering',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Support Technique Premium',
+    handle: 'support-technique',
+    body_html: `<p>Techniciens dédiés pour vos tournages : régie vidéo live, ingénieur son, photographe plateau, drone.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Service Technique',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Location Équipement Premium',
+    handle: 'location-equipement',
+    body_html: `<p>Matériel professionnel haute gamme : gimbal, LED RGB, slider motorisé, kit cinéma RED/ARRI.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Location',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Domiciliation d\'Entreprise',
+    handle: 'domiciliation',
+    body_html: `<p>Adresse professionnelle prestigieuse à Marseille avec scan courrier, réexpédition et attestations administratives.</p>
+    <p><strong>Sans engagement - Résiliable en 1 clic</strong></p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Domiciliation',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Événements & Formations',
+    handle: 'evenements-formations',
+    body_html: `<p>Afterworks networking, masterclass créateurs, conférences et ateliers pour développer vos compétences et votre réseau.</p>`,
+    rules: [
+      {
+        column: 'type',
+        relation: 'equals',
+        condition: 'Événement',
+      },
+    ],
+    sort_order: 'manual',
   },
   {
     title: 'Les Plus Populaires',
@@ -122,6 +174,46 @@ const COLLECTIONS: CollectionConfig[] = [
       },
     ],
     sort_order: 'best-selling',
+  },
+  {
+    title: 'Offres de Lancement',
+    handle: 'offres-de-lancement',
+    body_html: `<p><strong>Jusqu'à -40% sur nos studios créatifs !</strong></p>
+    <p>Profitez de nos prix de lancement exceptionnels pour tester nos équipements professionnels.</p>`,
+    rules: [
+      {
+        column: 'tag',
+        relation: 'equals',
+        condition: 'offre-lancement',
+      },
+    ],
+    sort_order: 'best-selling',
+  },
+  {
+    title: 'Pour Créateurs de Contenu',
+    handle: 'pour-createurs',
+    body_html: `<p>Tous nos espaces et services dédiés aux créateurs : YouTube, podcast, streaming, TikTok.</p>`,
+    rules: [
+      {
+        column: 'tag',
+        relation: 'equals',
+        condition: 'youtube',
+      },
+    ],
+    sort_order: 'manual',
+  },
+  {
+    title: 'Pack Abonnement',
+    handle: 'pack-abonnement',
+    body_html: `<p>Formules mensuelles et annuelles pour domiciliation et services récurrents. Économisez jusqu'à 20% avec nos packs annuels.</p>`,
+    rules: [
+      {
+        column: 'tag',
+        relation: 'equals',
+        condition: 'domiciliation',
+      },
+    ],
+    sort_order: 'price-asc',
   },
 ];
 
