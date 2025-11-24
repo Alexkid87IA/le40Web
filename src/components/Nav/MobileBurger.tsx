@@ -12,7 +12,6 @@ const navItems = [
   { name: 'Studios', href: '/studios', icon: Video },
   { name: 'Events', href: '/events', icon: Calendar },
   { name: 'Le Club', href: '/experts', icon: Sparkles },
-  { name: 'Communauté', href: '/community', icon: Users },
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 

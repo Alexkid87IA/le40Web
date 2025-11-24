@@ -15,7 +15,6 @@ const navItems = [
 ];
 
 const secondaryItems = [
-  { name: 'Communauté', href: '/community', icon: Users },
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
@@ -39,7 +38,6 @@ const reserveButtonColors = {
   '/studios': 'from-emerald-600 via-teal-600 to-emerald-600',
   '/events': 'from-cyan-600 via-sky-600 to-cyan-600',
   '/experts': 'from-red-600 via-rose-600 to-red-600',
-  '/community': 'from-teal-600 via-cyan-600 to-teal-600',
   '/contact': 'from-slate-600 via-gray-600 to-slate-600',
   'default': 'from-amber-600 via-orange-600 to-amber-600',
 };
@@ -52,7 +50,6 @@ const reserveButtonGlow = {
   '/studios': 'bg-emerald-500/40',
   '/events': 'bg-cyan-500/40',
   '/experts': 'bg-red-500/40',
-  '/community': 'bg-teal-500/40',
   '/contact': 'bg-slate-500/40',
   'default': 'bg-amber-500/40',
 };

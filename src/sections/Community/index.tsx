@@ -118,7 +118,7 @@ export default function Community() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
-                href="/community"
+                href="/club"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative flex-1"
@@ -135,7 +135,7 @@ export default function Community() {
               </motion.a>
 
               <motion.a
-                href="/community"
+                href="/club"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-2xl font-montserrat font-black transition-all duration-300 text-center text-lg"

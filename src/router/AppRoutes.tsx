@@ -12,7 +12,6 @@ import Studios from '../pages/Studios';
 import Blog from '../pages/Blog';
 import BlogPost from '../pages/BlogPost';
 import Contact from '../pages/Contact';
-import Community from '../pages/Community';
 import Experts from '../pages/Experts';
 import Club from '../pages/Club';
 import Events from '../pages/Events';
@@ -42,7 +41,7 @@ export default function AppRoutes() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/community" element={<Community />} />
+        <Route path="/community" element={<Club />} />
         <Route path="/experts" element={<Club />} />
         <Route path="/club" element={<Club />} />
         <Route path="/events" element={<Events />} />

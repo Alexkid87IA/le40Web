@@ -47,7 +47,7 @@ export default function CommunitySection() {
       cta={{
         primary: {
           text: 'REJOINDRE LA COMMUNAUTÉ',
-          href: '/community',
+          href: '/club',
           gradientClasses: 'bg-gradient-to-r from-purple-500 via-violet-500 to-orange-500'
         },
         secondary: {

@@ -12,9 +12,8 @@ const footerLinks = {
     { name: 'Domiciliation', href: '/domiciliation' }
   ],
   company: [
-    { name: 'Communauté', href: '/community' },
     { name: 'Événements', href: '/events' },
-    { name: 'Le Club', href: '/experts' },
+    { name: 'Le Club', href: '/club' },
     { name: 'Contact', href: '/contact' }
   ],
   legal: [
