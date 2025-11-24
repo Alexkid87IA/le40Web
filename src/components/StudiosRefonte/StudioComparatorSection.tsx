@@ -125,33 +125,33 @@ export default function StudioComparatorSection() {
   };
 
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[150px]"></div>
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[150px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-[1800px] mx-auto px-4 lg:px-8">
+      <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8 text-teal-400" />
-            <span className="text-teal-400 font-montserrat font-medium text-sm tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+            <Sparkles className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-teal-400" />
+            <span className="text-teal-400 font-montserrat font-medium text-xs md:text-sm tracking-wider uppercase">
               Tableau comparatif
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-4 md:mb-6">
             COMPAREZ
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               NOS STUDIOS
             </span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto px-4">
             Trouvez le studio parfait pour votre projet en un coup d'œil
           </p>
         </motion.div>
@@ -163,9 +163,9 @@ export default function StudioComparatorSection() {
           transition={{ duration: 0.6 }}
           className="w-full"
         >
-          <div className="bg-zinc-900/30 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+          <div className="bg-zinc-900/30 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
 
-            <div className="grid grid-cols-[200px_repeat(6,1fr)] border-b border-white/10">
+            <div className="hidden lg:grid grid-cols-[200px_repeat(6,1fr)] border-b border-white/10">
               <div className="bg-zinc-950/80 p-4 flex items-center sticky left-0 z-20">
                 <span className="text-white/40 font-inter font-medium text-xs uppercase tracking-wider">
                   Caractéristiques
@@ -216,6 +216,84 @@ export default function StudioComparatorSection() {
               ))}
             </div>
 
+            <div className="lg:hidden">
+              {studios.map((studio, studioIndex) => (
+                <motion.div
+                  key={studio.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: studioIndex * 0.1, duration: 0.5 }}
+                  className="border-b border-white/10 last:border-b-0"
+                >
+                  <div className="bg-zinc-950/80 p-4 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg flex-shrink-0`}>
+                        <studio.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-montserrat font-bold text-sm mb-0.5">
+                          {studio.name}
+                        </h3>
+                        <p className="text-white/50 text-xs font-inter">
+                          {studio.subtitle.split('•')[0].trim()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-zinc-950/60 p-4 space-y-3">
+                    {features.map((feature) => {
+                      const value = comparisonData[studio.id as keyof typeof comparisonData]?.[feature.key];
+                      return (
+                        <div key={feature.key} className="flex items-center justify-between gap-3 py-2 border-b border-white/5 last:border-b-0">
+                          <span className={`font-inter text-xs flex-1 ${
+                            feature.type === 'highlight'
+                              ? 'text-white font-semibold'
+                              : 'text-white/70 font-medium'
+                          }`}>
+                            {feature.label}
+                          </span>
+                          <div className="flex-shrink-0">
+                            {typeof value === 'boolean' ? (
+                              value ? (
+                                <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg`}>
+                                  <Check className="w-4 h-4 text-white" strokeWidth={3} />
+                                </div>
+                              ) : (
+                                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                                  <X className="w-4 h-4 text-white/20" strokeWidth={2} />
+                                </div>
+                              )
+                            ) : (
+                              <span className={`font-inter text-right ${
+                                feature.type === 'highlight'
+                                  ? 'text-white font-bold text-sm'
+                                  : 'text-white/90 font-medium text-xs'
+                              }`}>
+                                {value}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="bg-zinc-950/80 p-4">
+                    <motion.button
+                      onClick={() => scrollToConfigurator(studio.id)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`w-full px-4 py-3 bg-gradient-to-r ${studio.gradient} text-white rounded-xl font-montserrat font-bold text-sm shadow-xl flex items-center justify-center gap-2 group relative overflow-hidden`}
+                    >
+                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                      <span className="relative">Configurer ce studio</span>
+                      <ArrowRight className="w-4 h-4 relative group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
             {features.map((feature, featureIndex) => (
               <motion.div
                 key={feature.key}
@@ -223,7 +301,7 @@ export default function StudioComparatorSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: featureIndex * 0.03, duration: 0.4 }}
-                className={`grid grid-cols-[200px_repeat(6,1fr)] border-b border-white/5 hover:bg-white/5 transition-colors group ${
+                className={`hidden lg:grid grid-cols-[200px_repeat(6,1fr)] border-b border-white/5 hover:bg-white/5 transition-colors group ${
                   feature.type === 'highlight' ? 'bg-white/5' : ''
                 }`}
               >
@@ -273,7 +351,7 @@ export default function StudioComparatorSection() {
               </motion.div>
             ))}
 
-            <div className="grid grid-cols-[200px_repeat(6,1fr)] bg-zinc-950/60">
+            <div className="hidden lg:grid grid-cols-[200px_repeat(6,1fr)] bg-zinc-950/60">
               <div className="p-3 sticky left-0 z-20 bg-zinc-950/60"></div>
               {studios.map((studio, index) => (
                 <motion.div
@@ -305,9 +383,9 @@ export default function StudioComparatorSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="mt-10 flex flex-col items-center gap-3"
+          className="mt-6 md:mt-8 lg:mt-10 flex flex-col items-center gap-2 md:gap-3 px-4"
         >
-          <div className="flex items-center gap-4 text-white/50 text-xs font-inter">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 text-white/50 text-xs font-inter">
             <div className="flex items-center gap-1.5">
               <div className="w-3 h-3 rounded bg-gradient-to-r from-emerald-500 to-teal-500"></div>
               <span>Inclus</span>
@@ -321,7 +399,7 @@ export default function StudioComparatorSection() {
               <span>Non disponible</span>
             </div>
           </div>
-          <p className="text-white/40 font-inter text-xs text-center">
+          <p className="text-white/40 font-inter text-[10px] md:text-xs text-center">
             Tarifs de lancement HT • Limités aux 50 premières réservations • TVA 20% en sus
           </p>
         </motion.div>
