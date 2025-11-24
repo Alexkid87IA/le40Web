@@ -1,4 +1,4 @@
-import { Film, Monitor, Camera, Radio, Car, Scissors, Image, FileVideo, Subtitles, Palette, Wand2, Sparkles, Video, Headphones, Zap, LucideIcon } from 'lucide-react';
+import { Film, Monitor, Camera, Radio, Car, Scissors, Image, FileVideo, Subtitles, Palette, Wand2, Sparkles, Video, Headphones, Zap, FileText, TrendingUp, Target, LineChart, Megaphone, PenTool, Lightbulb, Users, Award, Crown, LucideIcon } from 'lucide-react';
 
 export interface StudioAdditionalService {
   id: string;
@@ -12,7 +12,7 @@ export interface StudioAdditionalService {
   gradient: string;
   features: string[];
   popular?: boolean;
-  category: 'post-production' | 'equipement' | 'services';
+  category: 'post-production' | 'equipement' | 'services' | 'expert';
 }
 
 export const studioAdditionalServices: StudioAdditionalService[] = [
@@ -345,5 +345,363 @@ export const studioAdditionalServices: StudioAdditionalService[] = [
       'Réservation flexible'
     ],
     category: 'services'
+  },
+  {
+    id: 'script-writing',
+    name: 'Rédaction Script Vidéo',
+    description: 'Script professionnel optimisé',
+    details: 'Script structuré avec hooks, storytelling et CTAs optimisés pour téléprompter',
+    price: 149,
+    unit: '/script',
+    displayPrice: '149€/script',
+    icon: FileText,
+    gradient: 'from-cyan-600 to-blue-600',
+    features: [
+      'Structure narrative complète (intro, corps, outro)',
+      'Hooks accrocheurs',
+      'CTAs optimisés',
+      'Format téléprompter inclus',
+      '2 révisions incluses',
+      'Conseils de présentation',
+      'Livraison 48h',
+      'Templates réutilisables'
+    ],
+    popular: true,
+    category: 'expert'
+  },
+  {
+    id: 'copywriting-youtube',
+    name: 'Copywriting Description YouTube',
+    description: 'Description SEO optimisée',
+    details: 'Description complète optimisée pour le référencement YouTube avec CTAs stratégiques',
+    price: 79,
+    unit: '/vidéo',
+    displayPrice: '79€/vidéo',
+    icon: PenTool,
+    gradient: 'from-red-600 to-pink-600',
+    features: [
+      'Description optimisée SEO',
+      'Timestamps structurés',
+      'Liens et CTAs stratégiques',
+      'Hashtags pertinents',
+      'Checklist optimisation',
+      'Keywords intégrés',
+      'Format complet',
+      'Livraison 24h'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'titles-pack',
+    name: 'Pack Titres Optimisés',
+    description: '10 variations testées',
+    details: 'Pack de 10 variations de titres optimisés pour maximiser le CTR',
+    price: 49,
+    unit: '/pack de 10',
+    displayPrice: '49€/pack',
+    icon: Sparkles,
+    gradient: 'from-yellow-600 to-orange-600',
+    features: [
+      '10 variations de titres',
+      'A/B testing recommandé',
+      'Optimisation CTR',
+      'Emojis stratégiques',
+      'Analyse mots-clés',
+      'Psychologie persuasive',
+      'Format court et long',
+      'Livraison immédiate'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'content-strategy',
+    name: 'Consultation Stratégie Contenu',
+    description: 'Session stratégique 2h',
+    details: 'Audit complet et plan stratégique personnalisé avec un expert contenu',
+    price: 299,
+    unit: '/session 2h',
+    displayPrice: '299€/session',
+    icon: Target,
+    gradient: 'from-violet-600 to-purple-600',
+    features: [
+      'Audit de votre chaîne/contenu',
+      'Analyse de la concurrence',
+      'Plan éditorial 30 jours',
+      'Recommandations personnalisées',
+      'Calendrier de publication',
+      'Objectifs SMART définis',
+      'Session Zoom/présentiel',
+      'Support 7 jours post-session'
+    ],
+    popular: true,
+    category: 'expert'
+  },
+  {
+    id: 'editorial-calendar',
+    name: 'Calendrier Éditorial 90 jours',
+    description: 'Plan de contenu complet',
+    details: '90 jours de contenu planifié avec thèmes, sujets et briefings détaillés',
+    price: 499,
+    unit: '/90 jours',
+    displayPrice: '499€',
+    icon: Lightbulb,
+    gradient: 'from-amber-600 to-yellow-600',
+    features: [
+      '90 jours de contenu planifié',
+      'Thèmes et sujets définis',
+      'Saisonnalité intégrée',
+      'Trending topics identifiés',
+      'Format Notion/Trello/Asana',
+      'Briefing pour chaque contenu',
+      'Calendrier visuel',
+      'Mises à jour mensuelles'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'performance-analysis',
+    name: 'Analyse de Performance',
+    description: 'Rapport mensuel détaillé',
+    details: 'Dashboard analytics personnalisé avec KPIs, insights et recommandations actionnables',
+    price: 199,
+    unit: '/mois',
+    displayPrice: '199€/mois',
+    icon: LineChart,
+    gradient: 'from-green-600 to-emerald-600',
+    features: [
+      'Dashboard analytics personnalisé',
+      'Rapport mensuel détaillé',
+      'Recommandations d\'optimisation',
+      'Tracking KPIs clés',
+      'Insights actionnables',
+      'Comparatifs période',
+      'Réunion mensuelle 1h',
+      'Alertes opportunités'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'seo-youtube',
+    name: 'Optimisation SEO YouTube',
+    description: 'Référencement complet',
+    details: 'Optimisation complète de votre vidéo pour maximiser sa visibilité sur YouTube',
+    price: 179,
+    unit: '/vidéo',
+    displayPrice: '179€/vidéo',
+    icon: TrendingUp,
+    gradient: 'from-red-600 to-orange-600',
+    features: [
+      'Recherche mots-clés avancée',
+      'Titre optimisé SEO',
+      'Description complète',
+      'Tags stratégiques (30+)',
+      'Miniature A/B testée',
+      'Cards & End screens',
+      'Chapitres optimisés',
+      'Playlist recommendations'
+    ],
+    popular: true,
+    category: 'expert'
+  },
+  {
+    id: 'multi-platform-distribution',
+    name: 'Distribution Multi-Plateforme',
+    description: 'Présence maximale',
+    details: 'Adaptation et distribution de votre contenu sur 5+ plateformes avec optimisations natives',
+    price: 149,
+    unit: '/contenu',
+    displayPrice: '149€/contenu',
+    icon: Megaphone,
+    gradient: 'from-fuchsia-600 to-pink-600',
+    features: [
+      'Adaptation TikTok, Reels, Shorts, LinkedIn',
+      'Textes personnalisés par plateforme',
+      'Hashtags optimisés',
+      'Programmation automatique',
+      'Formats adaptés (9:16, 1:1, 16:9)',
+      '5+ plateformes',
+      'Analytics centralisés',
+      'Best times to post'
+    ],
+    popular: true,
+    category: 'expert'
+  },
+  {
+    id: 'cross-promotion',
+    name: 'Campagne Cross-Promotion',
+    description: 'Amplification virale',
+    details: 'Stratégie complète de cross-promotion pour maximiser la portée de votre contenu',
+    price: 299,
+    unit: '/campagne',
+    displayPrice: '299€/campagne',
+    icon: Users,
+    gradient: 'from-blue-600 to-cyan-600',
+    features: [
+      'Stratégie cross-promo',
+      'Posts engageants (5+)',
+      'Stories/Reels de teasing',
+      'Community management',
+      'Réponses aux commentaires 48h',
+      'Newsletter si applicable',
+      'Collaboration influenceurs',
+      'Reporting détaillé'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'youtube-ads-setup',
+    name: 'Setup Campagne YouTube Ads',
+    description: 'Lancement publicitaire',
+    details: 'Configuration complète de votre première campagne YouTube Ads avec audience targeting',
+    price: 399,
+    unit: 'one-time',
+    displayPrice: '399€',
+    icon: Target,
+    gradient: 'from-red-600 to-rose-600',
+    features: [
+      'Création compte publicitaire',
+      'Audience targeting avancé',
+      '3 variations créatives',
+      'Budget optimization',
+      'Tracking & pixels',
+      'Formation 1h incluse',
+      'Guide complet',
+      'Support 30 jours'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'ads-management',
+    name: 'Gestion Ads Mensuelle',
+    description: 'Expert dédié',
+    details: 'Gestion complète de vos campagnes publicitaires avec optimisation quotidienne',
+    price: 499,
+    unit: '/mois + budget ads',
+    displayPrice: '499€/mois',
+    icon: Crown,
+    gradient: 'from-purple-600 to-fuchsia-600',
+    features: [
+      'Gestion complète multi-plateformes',
+      'Tests A/B continus',
+      'Optimisation quotidienne',
+      'Rapport hebdomadaire',
+      'Scaling stratégique',
+      'ROI tracking transparent',
+      'Réunion mensuelle',
+      'Expert dédié'
+    ],
+    popular: true,
+    category: 'expert'
+  },
+  {
+    id: 'tiktok-meta-ads',
+    name: 'Campagne TikTok/Meta Ads',
+    description: 'Multi-plateformes',
+    details: 'Setup et gestion de campagnes sur TikTok et Meta (Facebook/Instagram)',
+    price: 599,
+    unit: 'setup + 399€/mois',
+    displayPrice: '599€ + 399€/mois',
+    icon: Sparkles,
+    gradient: 'from-pink-600 to-rose-600',
+    features: [
+      'Setup multi-plateformes',
+      'Audiences lookalike',
+      'Retargeting pixels',
+      'Créatives adaptées',
+      'Budget allocation smart',
+      'Reporting transparent',
+      'Tests créatifs',
+      'Scaling automatique'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'camera-coaching',
+    name: 'Coaching Caméra & Présence',
+    description: 'Confiance face caméra',
+    details: 'Session intensive pour développer votre aisance et votre présence à l\'écran',
+    price: 249,
+    unit: '/session 2h',
+    displayPrice: '249€/session',
+    icon: Video,
+    gradient: 'from-indigo-600 to-purple-600',
+    features: [
+      'Techniques de présentation',
+      'Langage corporel',
+      'Confiance face caméra',
+      'Élocution et rythme',
+      'Exercices pratiques',
+      'Enregistrement feedback',
+      'Plan d\'amélioration personnalisé',
+      'Support 14 jours'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'brand-identity',
+    name: 'Brand Identity Package',
+    description: 'Identité visuelle complète',
+    details: 'Package complet d\'identité de marque pour votre chaîne/business',
+    price: 799,
+    unit: '/package',
+    displayPrice: '799€',
+    icon: Award,
+    gradient: 'from-rose-600 to-pink-600',
+    features: [
+      'Logo professionnel',
+      'Charte graphique complète',
+      'Templates réseaux sociaux (20+)',
+      'Intro/Outro vidéo animée',
+      'Lower thirds brandés',
+      'Style guide complet',
+      'Fichiers sources',
+      '3 révisions majeures'
+    ],
+    popular: true,
+    category: 'expert'
+  },
+  {
+    id: 'ghostwriting-newsletter',
+    name: 'Ghostwriting Newsletter',
+    description: 'Rédaction hebdomadaire',
+    details: 'Rédaction professionnelle de votre newsletter hebdomadaire avec storytelling',
+    price: 299,
+    unit: '/mois (4 newsletters)',
+    displayPrice: '299€/mois',
+    icon: FileText,
+    gradient: 'from-blue-600 to-indigo-600',
+    features: [
+      'Rédaction hebdomadaire',
+      'Storytelling engageant',
+      'CTAs optimisés',
+      'Design template',
+      'Intégration Beehiiv/Substack',
+      'Gestion communauté',
+      'Analytics mensuel',
+      'Stratégie growth'
+    ],
+    category: 'expert'
+  },
+  {
+    id: 'podcast-to-blog',
+    name: 'Podcast-to-Blog Conversion',
+    description: 'Contenu réutilisé',
+    details: 'Transformation de votre podcast en article de blog optimisé SEO',
+    price: 149,
+    unit: '/épisode',
+    displayPrice: '149€/épisode',
+    icon: FileVideo,
+    gradient: 'from-purple-600 to-violet-600',
+    features: [
+      'Transcription complète',
+      'Article de blog SEO (1500+ mots)',
+      'Citations extraites',
+      'Images illustratives (3+)',
+      'Meta descriptions',
+      'Partage social ready',
+      'Internal linking',
+      'CTA intégrés'
+    ],
+    category: 'expert'
   }
 ];
