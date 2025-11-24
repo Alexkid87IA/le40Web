@@ -7,38 +7,38 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative py-32">
+    <section className="relative py-16 md:py-24 lg:py-32">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute top-0 left-1/2 h-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-3 mb-6">
-            <HelpCircle className="w-8 h-8 text-teal-400" />
+            <HelpCircle className="w-6 h-6 md:w-8 md:h-8 text-teal-400" />
             <span className="text-teal-400 font-montserrat font-medium text-sm tracking-wider uppercase">
               Questions fréquentes
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-4 md:mb-6">
             VOUS AVEZ DES
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               QUESTIONS ?
             </span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto px-4">
             Trouvez toutes les réponses sur nos studios et services
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {studioFAQ.map((faq, index) => (
             <motion.div
               key={index}
@@ -55,24 +55,24 @@ export default function FAQSection() {
               <div className="relative bg-zinc-900/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
+                  className="w-full px-4 md:px-6 lg:px-8 py-4 md:py-5 lg:py-6 flex items-start md:items-center justify-between gap-3 text-left hover:bg-white/5 transition-colors"
                 >
-                  <span className="text-lg md:text-xl font-montserrat font-bold text-white pr-8">
+                  <span className="text-sm md:text-base lg:text-lg xl:text-xl font-montserrat font-bold text-white flex-1">
                     {faq.question}
                   </span>
                   <motion.div
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
+                    className={`flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
                       openIndex === index
                         ? 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500'
                         : 'bg-white/10'
                     }`}
                   >
                     {openIndex === index ? (
-                      <Minus className="w-5 h-5 text-white" />
+                      <Minus className="w-4 h-4 md:w-5 md:h-5 text-white" />
                     ) : (
-                      <Plus className="w-5 h-5 text-white" />
+                      <Plus className="w-4 h-4 md:w-5 md:h-5 text-white" />
                     )}
                   </motion.div>
                 </button>
@@ -86,8 +86,8 @@ export default function FAQSection() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-8 pb-6 pt-2">
-                        <p className="text-white/70 font-inter leading-relaxed">
+                      <div className="px-4 md:px-6 lg:px-8 pb-4 md:pb-5 lg:pb-6 pt-2">
+                        <p className="text-sm md:text-base text-white/70 font-inter leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>

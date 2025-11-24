@@ -13,29 +13,29 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section id="studios" className="relative py-32">
+    <section id="studios" className="relative py-16 md:py-24 lg:py-32">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute top-0 left-1/2 h-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-4 md:mb-6">
             NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">STUDIOS</span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto px-4">
             6 configurations professionnelles pour tous vos projets audiovisuels
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
           {studios.slice(0, 3).map((studio, index) => (
             <motion.div
               key={studio.id}
@@ -79,7 +79,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   y: hoveredCard === studio.id ? -5 : 0
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className={`relative h-[400px] rounded-2xl overflow-hidden bg-zinc-900/50 backdrop-blur-sm border-2 ${
+                className={`relative h-[320px] md:h-[360px] lg:h-[400px] rounded-xl md:rounded-2xl overflow-hidden bg-zinc-900/50 backdrop-blur-sm border-2 ${
                   selectedStudioId === studio.id ? 'border-teal-500' : 'border-white/5'
                 }`}
               >
@@ -113,11 +113,11 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   className="absolute top-6 right-6"
                 >
                   <div className={`w-12 h-12 bg-gradient-to-br ${studio.gradient} rounded-xl flex items-center justify-center backdrop-blur-sm`}>
-                    <studio.icon className="w-6 h-6 text-white" />
+                    <studio.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                 </motion.div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 lg:p-8">
                   <motion.h3
                     animate={{
                       x: hoveredCard === studio.id ? 5 : 0
@@ -126,18 +126,18 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   >
                     {studio.name}
                   </motion.h3>
-                  <p className="text-white/60 text-sm mb-4">{studio.subtitle}</p>
+                  <p className="text-white/60 text-xs md:text-sm mb-3 md:mb-4">{studio.subtitle}</p>
 
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-montserrat font-black text-white">
+                        <span className="text-2xl md:text-3xl font-montserrat font-black text-white">
                           {studio.launchPrice}€
                         </span>
-                        <span className="text-white/40 text-sm">{studio.priceUnit}</span>
+                        <span className="text-white/40 text-xs md:text-sm">{studio.priceUnit}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-white/40 text-sm line-through">{studio.basePrice}€</span>
+                        <span className="text-white/40 text-xs md:text-sm line-through">{studio.basePrice}€</span>
                         <span className="text-emerald-400 text-xs font-bold">-{studio.savings}€</span>
                       </div>
                     </div>
@@ -149,9 +149,9 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       }}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
-                      className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20"
+                      className="w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20"
                     >
-                      <Plus className="w-6 h-6 text-white" />
+                      <Plus className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </motion.div>
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {studios.slice(3).map((studio, index) => (
             <motion.div
               key={studio.id}
@@ -201,7 +201,7 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   y: hoveredCard === studio.id ? -5 : 0
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className={`relative h-[400px] rounded-2xl overflow-hidden bg-zinc-900/50 backdrop-blur-sm border-2 ${
+                className={`relative h-[320px] md:h-[360px] lg:h-[400px] rounded-xl md:rounded-2xl overflow-hidden bg-zinc-900/50 backdrop-blur-sm border-2 ${
                   selectedStudioId === studio.id ? 'border-teal-500' : 'border-white/5'
                 }`}
               >
@@ -235,11 +235,11 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   className="absolute top-6 right-6"
                 >
                   <div className={`w-12 h-12 bg-gradient-to-br ${studio.gradient} rounded-xl flex items-center justify-center backdrop-blur-sm`}>
-                    <studio.icon className="w-6 h-6 text-white" />
+                    <studio.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </div>
                 </motion.div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 lg:p-8">
                   <motion.h3
                     animate={{
                       x: hoveredCard === studio.id ? 5 : 0
@@ -248,18 +248,18 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                   >
                     {studio.name}
                   </motion.h3>
-                  <p className="text-white/60 text-sm mb-4">{studio.subtitle}</p>
+                  <p className="text-white/60 text-xs md:text-sm mb-3 md:mb-4">{studio.subtitle}</p>
 
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-montserrat font-black text-white">
+                        <span className="text-2xl md:text-3xl font-montserrat font-black text-white">
                           {studio.launchPrice}€
                         </span>
-                        <span className="text-white/40 text-sm">{studio.priceUnit}</span>
+                        <span className="text-white/40 text-xs md:text-sm">{studio.priceUnit}</span>
                       </div>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-white/40 text-sm line-through">{studio.basePrice}€</span>
+                        <span className="text-white/40 text-xs md:text-sm line-through">{studio.basePrice}€</span>
                         <span className="text-emerald-400 text-xs font-bold">-{studio.savings}€</span>
                       </div>
                     </div>
@@ -271,9 +271,9 @@ export default function StudiosGridSection({ studios, onStudioSelect, selectedSt
                       }}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
-                      className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20"
+                      className="w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20"
                     >
-                      <Plus className="w-6 h-6 text-white" />
+                      <Plus className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </motion.div>
                   </div>
                 </div>
