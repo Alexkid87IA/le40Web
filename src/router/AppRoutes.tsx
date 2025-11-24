@@ -22,6 +22,9 @@ import Checkout from '../pages/Checkout';
 import OrderConfirmation from '../pages/OrderConfirmation';
 import CGV from '../pages/CGV';
 import CartDrawer from '../components/Cart/CartDrawer';
+import ShopPage from '../pages/ShopPage';
+import ShopifyCheckout from '../pages/ShopifyCheckout';
+import ShopifyConfirmation from '../pages/ShopifyConfirmation';
 
 export default function AppRoutes() {
   return (
@@ -51,6 +54,10 @@ export default function AppRoutes() {
         <Route path="/confirmation/:orderNumber" element={<OrderConfirmation />} />
         <Route path="/cgv" element={<CGV />} />
         <Route path="/politique-confidentialite" element={<CGV />} />
+        <Route path="/boutique" element={<ShopPage />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/checkout-shopify" element={<ShopifyCheckout />} />
+        <Route path="/confirmation-shopify" element={<ShopifyConfirmation />} />
 
         {/* Route 404 - toujours en dernier */}
         <Route path="*" element={<NotFound />} />
