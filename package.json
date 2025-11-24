@@ -15,7 +15,8 @@
     "shopify:create-products": "tsx scripts/create-shopify-products.ts",
     "shopify:generate-calendar": "tsx scripts/generate-calendar-slots.ts",
     "shopify:configure-webhooks": "tsx scripts/configure-webhooks.ts",
-    "shopify:list-webhooks": "tsx scripts/configure-webhooks.ts list"
+    "shopify:list-webhooks": "tsx scripts/configure-webhooks.ts list",
+    "shopify:create-collections": "tsx scripts/create-shopify-collections.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1",
