@@ -20,7 +20,7 @@ export default function BureauxPrives() {
       <HeaderNav />
       <MobileBurger />
 
-      <main className="pt-24">
+      <main className="pt-16 md:pt-24">
         <BureauHeroSection />
         <ProblemSolutionSection />
         <StatsSection />
