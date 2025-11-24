@@ -235,24 +235,24 @@ export default function ProblemSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-20 relative"
+          className="mt-12 md:mt-20 relative"
         >
-          <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20 rounded-3xl blur-2xl"></div>
+          <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20 rounded-2xl md:rounded-3xl blur-2xl"></div>
 
-          <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-3xl p-12 text-center">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <Clock className="w-12 h-12 text-orange-400" />
-              <TrendingUp className="w-12 h-12 text-orange-400" />
+          <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 text-center">
+            <div className="flex items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6">
+              <Clock className="w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 text-orange-400" />
+              <TrendingUp className="w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 text-orange-400" />
             </div>
-            <div className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 mb-6">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 mb-4 md:mb-6">
               5h/mois économisées
             </div>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4 font-inter leading-relaxed">
+            <p className="text-sm md:text-base lg:text-lg xl:text-xl text-white/90 max-w-3xl mx-auto mb-4 font-inter leading-relaxed px-4">
               C'est le temps que perdent les entrepreneurs à gérer courrier et paperasse
             </p>
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-400/30">
-              <Zap className="w-5 h-5 text-orange-400" />
-              <span className="text-white font-inter font-bold text-lg">Avec nous ? 0 minute. On s'occupe de tout.</span>
+            <div className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-400/30">
+              <Zap className="w-4 md:w-5 h-4 md:h-5 text-orange-400" />
+              <span className="text-white font-inter font-bold text-sm md:text-base lg:text-lg">Avec nous ? 0 minute. On s'occupe de tout.</span>
             </div>
           </div>
         </motion.div>
