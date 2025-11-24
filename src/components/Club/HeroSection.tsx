@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Star, Sparkles, Users, Calendar, TrendingUp, Check } from 'lucide-react';
+import { ArrowRight, Star, Users, Calendar, TrendingUp, Sparkles } from 'lucide-react';
 import { useRef } from 'react';
 
 export default function HeroSection() {
@@ -73,18 +73,6 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-12 sm:py-16 md:py-20 w-full">
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6 md:mb-8"
-          >
-            <div className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-6 md:mb-8">
-              <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-red-400" />
-              <span className="text-xs md:text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Communauté Premium · 120+ Entrepreneurs</span>
-            </div>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
