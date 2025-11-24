@@ -175,24 +175,24 @@ export default function GalleryVisualSection() {
           className="mt-12 md:mt-16 lg:mt-20 text-center"
         >
           <div className="inline-flex flex-col sm:flex-row items-center gap-6 md:gap-8 bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-xl md:rounded-2xl p-6 md:p-8">
-            <div className="grid grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-3 gap-3 md:gap-6">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1 md:mb-2 whitespace-nowrap">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1 md:mb-2 leading-tight">
                   4000m²
                 </div>
-                <p className="text-white/60 font-inter text-xs md:text-sm">d'espaces</p>
+                <p className="text-white/60 font-inter text-xs md:text-sm leading-tight">d'espaces</p>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1 md:mb-2 whitespace-nowrap">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1 md:mb-2 leading-tight">
                   12
                 </div>
-                <p className="text-white/60 font-inter text-xs md:text-sm">salles équipées</p>
+                <p className="text-white/60 font-inter text-xs md:text-sm leading-tight">salles équipées</p>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-1 md:mb-2">
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-1 md:mb-2 leading-tight">
                   24/7
                 </div>
-                <p className="text-white/60 font-inter text-xs md:text-sm">accès flexible</p>
+                <p className="text-white/60 font-inter text-xs md:text-sm leading-tight">accès flexible</p>
               </div>
             </div>
           </div>
