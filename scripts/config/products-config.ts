@@ -845,4 +845,155 @@ export const EXPERT_SERVICES = [
   },
 ];
 
-export const ALL_PRODUCTS = [...MEETING_ROOMS, ...STUDIOS, ...ADDITIONAL_SERVICES, ...EXPERT_SERVICES];
+export const PREMIUM_SERVICES = [
+  {
+    id: 'makeup-team',
+    title: 'Team Maquillage Professionnel',
+    body_html: `<h2>Maquilleuse dédiée pour votre équipe</h2>
+<p>Service maquillage complet avec maquilleuse présente pendant toute la session.</p>
+<h3>Inclus :</h3>
+<ul>
+  <li>Jusqu'à 4 personnes</li>
+  <li>Maquilleuse dédiée sur place</li>
+  <li>Présence pendant toute la session</li>
+  <li>Retouches continues illimitées</li>
+  <li>Kit complet professionnel</li>
+  <li>Adaptable aux besoins</li>
+  <li>Changements de looks possibles</li>
+  <li>Photos de chaque look</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Service Beauty',
+    tags: ['service', 'beauty', 'makeup', 'team', 'professional', 'populaire'],
+    images: [
+      { src: 'https://images.pexels.com/photos/457701/pexels-photo-457701.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Session complète', price: '399.00', sku: 'BEAUTY-TEAM-SESS' },
+    ],
+    metafields: {
+      calendar_sync_required: true,
+      resource_type: 'beauty-service',
+    },
+  },
+  {
+    id: 'decoration-package',
+    title: 'Pack Décoration Studio',
+    body_html: `<h2>Setup thématique pour votre tournage</h2>
+<p>Décoration personnalisée de votre espace avec plusieurs options thématiques.</p>
+<h3>Options :</h3>
+<ul>
+  <li>Setup E-commerce produits - 199€</li>
+  <li>Setup Interview/Bureau - 149€</li>
+  <li>Setup Gaming/Tech RGB - 249€</li>
+  <li>Décoration personnalisée - 299€</li>
+  <li>Scénographie sur-mesure - 799€</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Service Décoration',
+    tags: ['service', 'decoration', 'setup', 'custom', 'populaire'],
+    images: [
+      { src: 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Setup E-commerce', price: '199.00', sku: 'DECO-ECOM' },
+      { title: 'Setup Bureau', price: '149.00', sku: 'DECO-BUREAU' },
+      { title: 'Setup Gaming', price: '249.00', sku: 'DECO-GAMING' },
+      { title: 'Décoration custom', price: '299.00', sku: 'DECO-CUSTOM' },
+    ],
+    metafields: {
+      calendar_sync_required: true,
+      resource_type: 'decoration-service',
+    },
+  },
+  {
+    id: 'catering-full-day',
+    title: 'Catering Journée Complète',
+    body_html: `<h2>Restauration complète pour votre tournage</h2>
+<p>Package catering avec coffee break, déjeuner et snacks toute la journée.</p>
+<h3>Inclus :</h3>
+<ul>
+  <li>Coffee break (café, thé, viennoiseries)</li>
+  <li>Déjeuner traiteur au choix</li>
+  <li>Bar à snacks toute la journée</li>
+  <li>Eau minérale illimitée</li>
+  <li>Options végétariennes/vegan</li>
+  <li>Service et débarrassage</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Service Catering',
+    tags: ['service', 'catering', 'food', 'lunch', 'populaire'],
+    images: [
+      { src: 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Par personne', price: '45.00', sku: 'CATER-DAY-PERS' },
+    ],
+    metafields: {
+      calendar_sync_required: true,
+      resource_type: 'catering-service',
+    },
+  },
+  {
+    id: 'technical-support',
+    title: 'Support Technique Premium',
+    body_html: `<h2>Techniciens dédiés pour votre tournage</h2>
+<p>Services techniques professionnels avec experts dédiés.</p>
+<h3>Services :</h3>
+<ul>
+  <li>Régie Vidéo Live - 149€</li>
+  <li>Ingénieur Son - 99€/h</li>
+  <li>Photographe Plateau - 299€</li>
+  <li>Drone Intérieur/Extérieur - 399€</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Service Technique',
+    tags: ['service', 'technical', 'support', 'engineer', 'populaire'],
+    images: [
+      { src: 'https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Régie Vidéo', price: '149.00', sku: 'TECH-REGIE' },
+      { title: 'Ingénieur Son', price: '99.00', sku: 'TECH-SOUND' },
+      { title: 'Photographe', price: '299.00', sku: 'TECH-PHOTO' },
+      { title: 'Drone', price: '399.00', sku: 'TECH-DRONE' },
+    ],
+    metafields: {
+      calendar_sync_required: true,
+      resource_type: 'technical-service',
+    },
+  },
+  {
+    id: 'equipment-rental',
+    title: 'Location Équipement Premium',
+    body_html: `<h2>Matériel professionnel haute gamme</h2>
+<p>Location de matériel premium avec formation et assurance incluses.</p>
+<h3>Équipement :</h3>
+<ul>
+  <li>Gimbal DJI Ronin RS3 Pro</li>
+  <li>Kit LED RGB (4 projecteurs)</li>
+  <li>Slider Motorisé 1.5m</li>
+  <li>Kit Micro Sans-Fil</li>
+  <li>Green Screen Portable</li>
+  <li>Kit Cinéma RED/ARRI</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Location',
+    tags: ['rental', 'equipment', 'camera', 'lighting', 'populaire'],
+    images: [
+      { src: 'https://images.pexels.com/photos/66134/pexels-photo-66134.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Gimbal Pro', price: '99.00', sku: 'RENT-GIMBAL' },
+      { title: 'LED RGB Kit', price: '149.00', sku: 'RENT-LED' },
+      { title: 'Slider', price: '79.00', sku: 'RENT-SLIDER' },
+      { title: 'Kit Cinéma', price: '499.00', sku: 'RENT-CINEMA' },
+    ],
+    metafields: {
+      calendar_sync_required: true,
+      resource_type: 'rental',
+    },
+  },
+];
+
+export const ALL_PRODUCTS = [...MEETING_ROOMS, ...STUDIOS, ...ADDITIONAL_SERVICES, ...EXPERT_SERVICES, ...PREMIUM_SERVICES];
