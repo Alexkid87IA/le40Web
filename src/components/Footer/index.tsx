@@ -73,25 +73,25 @@ export default function Footer() {
       </div>
 
       <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-8 pt-24 pb-12">
-          <div className="mb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-12">
+          <div className="mb-12 md:mb-16 lg:mb-20">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-center mb-16"
+              className="text-center mb-8 md:mb-12 lg:mb-16"
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="mb-8 relative inline-block"
+                className="mb-6 md:mb-8 relative inline-block"
               >
                 <img
                   src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
                   alt="Le 40"
-                  className="h-20 w-auto brightness-0 invert"
+                  className="h-12 sm:h-16 md:h-20 w-auto brightness-0 invert"
                 />
               </motion.div>
 
@@ -99,13 +99,13 @@ export default function Footer() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-lg text-white/60 max-w-2xl mx-auto"
+                className="text-sm sm:text-base md:text-lg text-white/60 max-w-2xl mx-auto px-4"
               >
                 Votre espace de travail premium au cœur de Marseille
               </motion.p>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-12 md:mb-16 lg:mb-20">
               {footerStats.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -116,21 +116,21 @@ export default function Footer() {
                   whileHover={{ y: -5 }}
                   className="group"
                 >
-                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-white/20 hover:bg-white/[0.07] transition-all duration-500">
+                  <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 hover:border-white/20 hover:bg-white/[0.07] transition-all duration-500">
                     <motion.div
                       whileHover={{ rotate: 360 }}
                       transition={{ duration: 0.8 }}
-                      className="inline-flex p-3 rounded-xl bg-white/10 mb-4"
+                      className="inline-flex p-2 md:p-3 rounded-lg md:rounded-xl bg-white/10 mb-3 md:mb-4"
                     >
-                      <stat.icon className="w-6 h-6 text-white" />
+                      <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                     </motion.div>
 
-                    <div className="text-3xl font-black text-white mb-1">
+                    <div className="text-2xl md:text-3xl font-black text-white mb-1">
                       {stat.number}
-                      <span className="text-xl text-white/70">{stat.suffix}</span>
+                      <span className="text-base md:text-xl text-white/70">{stat.suffix}</span>
                     </div>
 
-                    <div className="text-sm text-white/60">
+                    <div className="text-xs md:text-sm text-white/60">
                       {stat.label}
                     </div>
                   </div>
@@ -139,7 +139,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 mb-12 md:mb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -147,11 +147,11 @@ export default function Footer() {
               transition={{ delay: 0.2 }}
               className="lg:col-span-1"
             >
-              <h4 className="text-lg font-black text-white mb-6">
+              <h4 className="text-base md:text-lg font-black text-white mb-4 md:mb-6">
                 Contact
               </h4>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                 {contactInfo.map((contact, index) => (
                   <motion.a
                     key={index}
@@ -163,10 +163,10 @@ export default function Footer() {
                     whileHover={{ x: 5 }}
                     className="flex items-start gap-4 group"
                   >
-                    <div className="p-2 rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-300">
-                      <contact.icon className="w-5 h-5 text-white/70" />
+                    <div className="p-2 rounded-lg md:rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-300">
+                      <contact.icon className="w-4 h-4 md:w-5 md:h-5 text-white/70" />
                     </div>
-                    <span className="text-white/70 group-hover:text-white transition-colors whitespace-pre-line text-sm">
+                    <span className="text-white/70 group-hover:text-white transition-colors whitespace-pre-line text-xs md:text-sm">
                       {contact.text}
                     </span>
                   </motion.a>
@@ -174,7 +174,7 @@ export default function Footer() {
               </div>
 
               <div>
-                <h5 className="text-sm font-bold text-white/60 mb-4">Suivez-nous</h5>
+                <h5 className="text-xs md:text-sm font-bold text-white/60 mb-3 md:mb-4">Suivez-nous</h5>
                 <div className="flex gap-3">
                   {socialLinks.map((social, index) => (
                     <motion.a
@@ -187,8 +187,8 @@ export default function Footer() {
                       whileHover={{ y: -3, scale: 1.1 }}
                       className="group relative"
                     >
-                      <div className="w-11 h-11 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg">
-                        <social.icon className="w-5 h-5 text-white/70 group-hover:text-white transition-colors" />
+                      <div className="w-10 h-10 md:w-11 md:h-11 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg">
+                        <social.icon className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white transition-colors" />
                       </div>
                     </motion.a>
                   ))}
@@ -202,8 +202,8 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <h4 className="text-lg font-black text-white mb-6">Services</h4>
-              <ul className="space-y-3">
+              <h4 className="text-base md:text-lg font-black text-white mb-4 md:mb-6">Services</h4>
+              <ul className="space-y-2 md:space-y-3">
                 {footerLinks.services.map((link, index) => (
                   <motion.li
                     key={link.name}
@@ -214,9 +214,9 @@ export default function Footer() {
                   >
                     <Link
                       to={link.href}
-                      className="text-white/70 hover:text-white transition-colors text-sm group flex items-center"
+                      className="text-white/70 hover:text-white transition-colors text-xs md:text-sm group flex items-center"
                     >
-                      <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3 h-3 md:w-4 md:h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
                     </Link>
                   </motion.li>
@@ -230,8 +230,8 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <h4 className="text-lg font-black text-white mb-6">À propos</h4>
-              <ul className="space-y-3">
+              <h4 className="text-base md:text-lg font-black text-white mb-4 md:mb-6">À propos</h4>
+              <ul className="space-y-2 md:space-y-3">
                 {footerLinks.company.map((link, index) => (
                   <motion.li
                     key={link.name}
@@ -242,9 +242,9 @@ export default function Footer() {
                   >
                     <Link
                       to={link.href}
-                      className="text-white/70 hover:text-white transition-colors text-sm group flex items-center"
+                      className="text-white/70 hover:text-white transition-colors text-xs md:text-sm group flex items-center"
                     >
-                      <ChevronRight className="w-4 h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3 h-3 md:w-4 md:h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
                     </Link>
                   </motion.li>
@@ -258,8 +258,8 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              <h4 className="text-lg font-black text-white mb-6">Légal</h4>
-              <ul className="space-y-3">
+              <h4 className="text-base md:text-lg font-black text-white mb-4 md:mb-6">Légal</h4>
+              <ul className="space-y-2 md:space-y-3">
                 {footerLinks.legal.map((link, index) => (
                   <motion.li
                     key={link.name}
@@ -285,9 +285,9 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-16"
+            className="mb-12 md:mb-16"
           >
-            <div className="relative overflow-hidden rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-12 hover:border-white/20 transition-all duration-500">
+            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-6 md:p-8 lg:p-12 hover:border-white/20 transition-all duration-500">
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0" style={{
                   backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 1px)',
@@ -295,11 +295,11 @@ export default function Footer() {
                 }} />
               </div>
 
-              <div className="relative text-center max-w-2xl mx-auto">
-                <h3 className="text-3xl md:text-4xl font-black text-white mb-4">
+              <div className="relative text-center max-w-2xl mx-auto px-4">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-3 md:mb-4">
                   Prêt à Rejoindre Le 40 ?
                 </h3>
-                <p className="text-white/70 mb-8 text-lg">
+                <p className="text-white/70 mb-6 md:mb-8 text-sm sm:text-base md:text-lg">
                   Visitez nos espaces et découvrez votre futur lieu de travail
                 </p>
 
@@ -307,10 +307,10 @@ export default function Footer() {
                   <motion.div
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-xl border border-white/20 text-white font-black rounded-2xl shadow-2xl shadow-white/[0.05] group transition-all duration-300"
+                    className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-white/10 backdrop-blur-xl border border-white/20 text-white font-black rounded-xl md:rounded-2xl shadow-2xl shadow-white/[0.05] group transition-all duration-300 text-sm md:text-base"
                   >
                     <span>Réserver une Visite</span>
-                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
                   </motion.div>
                 </Link>
               </div>
@@ -319,9 +319,9 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-8 py-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="text-white/40 text-sm text-center md:text-left">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+              <div className="text-white/40 text-xs md:text-sm text-center md:text-left">
                 © 2025 Le 40 Marseille. Tous droits réservés.
               </div>
 
