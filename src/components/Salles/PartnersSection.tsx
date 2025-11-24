@@ -20,19 +20,19 @@ export default function PartnersSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 md:mb-16 lg:mb-20"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <Award className="w-8 h-8 text-emerald-400" />
-            <span className="text-emerald-400 font-montserrat font-medium text-sm tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+            <Award className="w-6 h-6 md:w-8 md:h-8 text-emerald-400" />
+            <span className="text-emerald-400 font-montserrat font-medium text-xs md:text-sm tracking-wider uppercase">
               Nos clients
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             ILS ORGANISENT
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               CHEZ NOUS
             </span>
           </h2>
-          <p className="text-base md:text-lg lg:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto px-4">
             Les plus grandes entreprises nous font confiance pour leurs événements
           </p>
         </motion.div>
@@ -46,8 +46,8 @@ export default function PartnersSection() {
         >
           <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-2xl md:rounded-3xl opacity-20 blur-2xl"></div>
 
-          <div className="relative bg-zinc-900/50 backdrop-blur-xl rounded-2xl md:rounded-3xl p-12 border border-white/10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="relative bg-zinc-900/50 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 border border-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
               {partners.map((partner, index) => (
                 <motion.div
                   key={index}
@@ -62,17 +62,17 @@ export default function PartnersSection() {
                     <motion.div
                       className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-cyan-600 rounded-2xl opacity-0 group-hover:opacity-50 blur-xl transition-all duration-500"
                     />
-                    <div className="relative w-full h-full bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 group-hover:border-white/30 transition-all flex items-center justify-center">
+                    <div className="relative w-full h-full bg-white/5 backdrop-blur-sm rounded-xl md:rounded-2xl border border-white/10 group-hover:border-white/30 transition-all flex items-center justify-center p-3 md:p-4">
                       <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                          <span className="text-white font-montserrat font-black text-2xl">
+                        <div className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 md:mb-3 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-500 rounded-lg md:rounded-xl flex items-center justify-center">
+                          <span className="text-white font-montserrat font-black text-lg md:text-xl lg:text-2xl">
                             {partner.logo}
                           </span>
                         </div>
-                        <span className="text-white/90 font-inter font-bold text-sm block mb-1">
+                        <span className="text-white/90 font-inter font-bold text-xs md:text-sm block mb-1">
                           {partner.name}
                         </span>
-                        <span className="text-white/40 font-inter text-xs">
+                        <span className="text-white/40 font-inter text-[10px] md:text-xs">
                           {partner.category}
                         </span>
                       </div>
@@ -89,7 +89,7 @@ export default function PartnersSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-16 grid md:grid-cols-3 gap-6 md:gap-8"
+          className="mt-10 md:mt-12 lg:mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8"
         >
           {[
             {
@@ -120,17 +120,17 @@ export default function PartnersSection() {
               <motion.div
                 className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500`}
               />
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-5 md:p-6 lg:p-8 border border-white/10 group-hover:border-white/20 transition-all text-center">
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-xl md:rounded-2xl p-5 md:p-6 lg:p-8 border border-white/10 group-hover:border-white/20 transition-all text-center">
                 <motion.div
                   initial={{ scale: 0.5 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.8 + index * 0.1, type: "spring", stiffness: 200 }}
-                  className={`text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient} mb-2`}
+                  className={`text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient} mb-2`}
                 >
                   {stat.number}
                 </motion.div>
-                <p className="text-white/70 font-inter">
+                <p className="text-white/70 font-inter text-sm md:text-base">
                   {stat.label}
                 </p>
               </div>
@@ -143,11 +143,11 @@ export default function PartnersSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.9, duration: 0.6 }}
-          className="mt-16 text-center"
+          className="mt-10 md:mt-12 lg:mt-16 text-center px-4"
         >
-          <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-2xl">
-            <Building2 className="w-6 h-6 text-emerald-400" />
-            <p className="text-white font-inter">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 md:gap-4 px-5 md:px-8 py-3 md:py-4 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-xl md:rounded-2xl">
+            <Building2 className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
+            <p className="text-white font-inter text-sm md:text-base text-center sm:text-left">
               <span className="font-bold text-emerald-400">Vous aussi</span>, rejoignez les leaders qui nous font confiance
             </p>
           </div>
