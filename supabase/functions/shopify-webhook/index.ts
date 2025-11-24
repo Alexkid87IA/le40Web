@@ -80,6 +80,26 @@ Deno.serve(async (req: Request) => {
         await handleCheckoutWebhook(supabase, webhookData);
         break;
 
+      case 'subscription_contracts/create':
+        await handleSubscriptionCreated(supabase, webhookData);
+        break;
+
+      case 'subscription_contracts/update':
+        await handleSubscriptionUpdated(supabase, webhookData);
+        break;
+
+      case 'subscription_billing_attempts/success':
+        await handleBillingSuccess(supabase, webhookData);
+        break;
+
+      case 'subscription_billing_attempts/failure':
+        await handleBillingFailure(supabase, webhookData);
+        break;
+
+      case 'subscription_contracts/cancel':
+        await handleSubscriptionCancelled(supabase, webhookData);
+        break;
+
       default:
         console.log('Unhandled webhook topic:', topic);
     }
@@ -232,4 +252,177 @@ async function handleOrderCancellation(supabase: any, order: ShopifyOrder) {
 
 async function handleCheckoutWebhook(supabase: any, checkout: any) {
   console.log('Checkout webhook received:', checkout.id);
+}
+
+async function handleSubscriptionCreated(supabase: any, subscription: any) {
+  console.log('Subscription created:', subscription.id);
+
+  const customer = subscription.customer;
+  const lineItems = subscription.lines?.edges || [];
+
+  for (const edge of lineItems) {
+    const line = edge.node;
+    const productId = line.product_id;
+    const variantId = line.variant_id;
+
+    const planType = extractPlanType(line.title);
+    const billingInterval = extractBillingInterval(line.title);
+
+    const subscriptionData = {
+      shopify_subscription_id: subscription.id,
+      shopify_customer_id: customer.id,
+      customer_email: customer.email,
+      customer_name: `${customer.first_name || ''} ${customer.last_name || ''}`.trim(),
+      product_id: `domiciliation-${planType}`,
+      shopify_product_id: productId,
+      shopify_variant_id: variantId,
+      plan_type: planType,
+      billing_interval: billingInterval,
+      price: parseFloat(line.price),
+      currency: subscription.currency_code || 'EUR',
+      status: subscription.status || 'active',
+      next_billing_date: subscription.next_billing_date,
+      created_at: subscription.created_at,
+      updated_at: subscription.updated_at,
+    };
+
+    const { error } = await supabase
+      .from('shopify_subscriptions')
+      .insert(subscriptionData);
+
+    if (error) {
+      console.error('Error inserting subscription:', error);
+    } else {
+      console.log('Subscription created in database:', subscription.id);
+    }
+  }
+}
+
+async function handleSubscriptionUpdated(supabase: any, subscription: any) {
+  console.log('Subscription updated:', subscription.id);
+
+  const updateData = {
+    status: subscription.status,
+    next_billing_date: subscription.next_billing_date,
+    updated_at: subscription.updated_at || new Date().toISOString(),
+  };
+
+  const { error } = await supabase
+    .from('shopify_subscriptions')
+    .update(updateData)
+    .eq('shopify_subscription_id', subscription.id);
+
+  if (error) {
+    console.error('Error updating subscription:', error);
+  } else {
+    console.log('Subscription updated in database:', subscription.id);
+  }
+}
+
+async function handleBillingSuccess(supabase: any, billingAttempt: any) {
+  console.log('Billing success:', billingAttempt.id);
+
+  const subscriptionId = billingAttempt.subscription_contract_id;
+
+  const { data: subscription } = await supabase
+    .from('shopify_subscriptions')
+    .select('id')
+    .eq('shopify_subscription_id', subscriptionId)
+    .maybeSingle();
+
+  if (subscription) {
+    const billingData = {
+      subscription_id: subscription.id,
+      shopify_billing_attempt_id: billingAttempt.id,
+      amount: parseFloat(billingAttempt.total_price),
+      currency: billingAttempt.currency_code || 'EUR',
+      status: 'success',
+      attempted_at: billingAttempt.created_at,
+    };
+
+    const { error } = await supabase
+      .from('shopify_subscription_billing_attempts')
+      .insert(billingData);
+
+    if (error) {
+      console.error('Error recording billing attempt:', error);
+    }
+
+    await supabase
+      .from('shopify_subscriptions')
+      .update({
+        last_billing_date: billingAttempt.created_at,
+        next_billing_date: billingAttempt.next_billing_date,
+      })
+      .eq('id', subscription.id);
+  }
+}
+
+async function handleBillingFailure(supabase: any, billingAttempt: any) {
+  console.log('Billing failed:', billingAttempt.id);
+
+  const subscriptionId = billingAttempt.subscription_contract_id;
+
+  const { data: subscription } = await supabase
+    .from('shopify_subscriptions')
+    .select('id')
+    .eq('shopify_subscription_id', subscriptionId)
+    .maybeSingle();
+
+  if (subscription) {
+    const billingData = {
+      subscription_id: subscription.id,
+      shopify_billing_attempt_id: billingAttempt.id,
+      amount: parseFloat(billingAttempt.total_price),
+      currency: billingAttempt.currency_code || 'EUR',
+      status: 'failed',
+      error_message: billingAttempt.error_message || 'Payment failed',
+      attempted_at: billingAttempt.created_at,
+      next_retry_at: billingAttempt.next_billing_date,
+    };
+
+    const { error } = await supabase
+      .from('shopify_subscription_billing_attempts')
+      .insert(billingData);
+
+    if (error) {
+      console.error('Error recording failed billing:', error);
+    }
+  }
+}
+
+async function handleSubscriptionCancelled(supabase: any, subscription: any) {
+  console.log('Subscription cancelled:', subscription.id);
+
+  const { error } = await supabase
+    .from('shopify_subscriptions')
+    .update({
+      status: 'cancelled',
+      cancelled_at: new Date().toISOString(),
+      cancellation_reason: subscription.cancellation_reason || 'Customer request',
+      updated_at: new Date().toISOString(),
+    })
+    .eq('shopify_subscription_id', subscription.id);
+
+  if (error) {
+    console.error('Error cancelling subscription:', error);
+  } else {
+    console.log('Subscription cancelled in database:', subscription.id);
+  }
+}
+
+function extractPlanType(title: string): string {
+  const lower = title.toLowerCase();
+  if (lower.includes('starter')) return 'starter';
+  if (lower.includes('business')) return 'business';
+  if (lower.includes('scale-up') || lower.includes('scaleup')) return 'scaleup';
+  return 'starter';
+}
+
+function extractBillingInterval(title: string): string {
+  const lower = title.toLowerCase();
+  if (lower.includes('annuel') || lower.includes('annual') || lower.includes('year')) {
+    return 'year';
+  }
+  return 'month';
 }

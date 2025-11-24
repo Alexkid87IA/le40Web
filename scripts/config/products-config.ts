@@ -996,4 +996,209 @@ export const PREMIUM_SERVICES = [
   },
 ];
 
-export const ALL_PRODUCTS = [...MEETING_ROOMS, ...STUDIOS, ...ADDITIONAL_SERVICES, ...EXPERT_SERVICES, ...PREMIUM_SERVICES];
+export const DOMICILIATION_PACKS = [
+  {
+    id: 'domiciliation-starter',
+    title: 'Domiciliation STARTER - Freelances & Auto-Entrepreneurs',
+    body_html: `<h2>Pack Domiciliation pour Indépendants</h2>
+<p>Solution idéale pour freelances et auto-entrepreneurs qui ont besoin d'une adresse professionnelle prestigieuse à Marseille.</p>
+
+<h3>✅ Services inclus :</h3>
+<ul>
+  <li>📍 Adresse prestigieuse au 40 Avenue de Saint Antoine, Marseille 13015</li>
+  <li>📧 Scan de votre courrier en 2h</li>
+  <li>📦 Réexpédition hebdomadaire incluse</li>
+  <li>📄 Attestations administratives fournies</li>
+  <li>✅ Conformité juridique 100% garantie</li>
+  <li>🔓 Résiliable en 1 clic, sans engagement</li>
+  <li>💯 Satisfait ou remboursé 30 jours</li>
+  <li>📞 Support client prioritaire</li>
+</ul>
+
+<h3>💰 Ce que vous économisez :</h3>
+<ul>
+  <li>⏱️ 5h/mois de gestion courrier (150€)</li>
+  <li>🏢 Location de bureau physique (400€/mois)</li>
+  <li>📋 100% conformité administrative garantie</li>
+  <li>💼 Image professionnelle établie</li>
+</ul>
+
+<h3>📌 Idéal pour :</h3>
+<ul>
+  <li>Freelances démarrant leur activité</li>
+  <li>Auto-entrepreneurs</li>
+  <li>Consultants indépendants</li>
+  <li>Activités digitales sans besoin de bureau</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Domiciliation',
+    tags: ['domiciliation', 'starter', 'freelance', 'auto-entrepreneur', 'marseille', 'adresse-professionnelle', 'sans-engagement'],
+    images: [
+      { src: 'https://images.pexels.com/photos/6224/hands-people-woman-working.jpg?auto=compress&cs=tinysrgb&w=1600' },
+      { src: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      {
+        title: 'Abonnement Mensuel',
+        price: '49.00',
+        sku: 'DOMI-STARTER-MONTH',
+        compare_at_price: null,
+      },
+      {
+        title: 'Abonnement Annuel (Économisez 20%)',
+        price: '470.40',
+        sku: 'DOMI-STARTER-YEAR',
+        compare_at_price: '588.00',
+      },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'domiciliation',
+      is_subscription: true,
+      billing_type: 'recurring',
+      cancellable: true,
+      gradient: 'from-zinc-600 to-gray-600',
+    },
+  },
+  {
+    id: 'domiciliation-business',
+    title: 'Domiciliation BUSINESS - SARL, SAS, PME',
+    body_html: `<h2>Pack Domiciliation Complet pour Entreprises</h2>
+<p>Solution tout-en-un pour SARL, SAS et PME incluant services de secrétariat et espaces de réunion.</p>
+
+<h3>✅ Services inclus :</h3>
+<ul>
+  <li>📍 Adresse prestigieuse au 40 Avenue de Saint Antoine, Marseille 13015</li>
+  <li>📞 Standard téléphonique professionnel inclus</li>
+  <li>👔 Accueil clients personnalisé sur place</li>
+  <li>📧 Scan courrier en 1h + réexpédition quotidienne</li>
+  <li>🏢 2h de salle de réunion/mois incluses</li>
+  <li>🌐 Configuration Google Business Profile</li>
+  <li>📄 Attestations et documents administratifs</li>
+  <li>🔓 Résiliable en 1 clic, sans engagement</li>
+  <li>💯 Satisfait ou remboursé 30 jours</li>
+  <li>📞 Support client prioritaire 7j/7</li>
+</ul>
+
+<h3>💰 Ce que vous économisez :</h3>
+<ul>
+  <li>💼 300€/mois de secrétariat externe</li>
+  <li>🏢 150€/mois de location salle réunion</li>
+  <li>📞 120€/mois de standard téléphonique</li>
+  <li>👥 Image d'entreprise établie et professionnelle</li>
+  <li>⏱️ 10h/mois de gestion administrative</li>
+</ul>
+
+<h3>📌 Idéal pour :</h3>
+<ul>
+  <li>SARL et SAS en croissance</li>
+  <li>PME avec équipes réparties</li>
+  <li>Sociétés de conseil</li>
+  <li>Entreprises cherchant image premium</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Domiciliation',
+    tags: ['domiciliation', 'business', 'sarl', 'sas', 'pme', 'marseille', 'populaire', 'standard-telephonique', 'secretariat'],
+    images: [
+      { src: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { src: 'https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { src: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      {
+        title: 'Abonnement Mensuel',
+        price: '99.00',
+        sku: 'DOMI-BUSINESS-MONTH',
+        compare_at_price: null,
+      },
+      {
+        title: 'Abonnement Annuel (Économisez 20%)',
+        price: '950.40',
+        sku: 'DOMI-BUSINESS-YEAR',
+        compare_at_price: '1188.00',
+      },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'domiciliation',
+      is_subscription: true,
+      billing_type: 'recurring',
+      cancellable: true,
+      gradient: 'from-amber-600 to-orange-600',
+      popular: true,
+    },
+  },
+  {
+    id: 'domiciliation-scaleup',
+    title: 'Domiciliation SCALE-UP - Siège Social Complet',
+    body_html: `<h2>Pack Premium Siège Social Tout Inclus</h2>
+<p>Solution haut de gamme pour entreprises en forte croissance nécessitant infrastructure complète.</p>
+
+<h3>✅ Services inclus :</h3>
+<ul>
+  <li>📍 Adresse prestigieuse au 40 Avenue de Saint Antoine, Marseille 13015</li>
+  <li>👔 Secrétariat dédié avec assistante attitrée</li>
+  <li>🏢 8h de salle de réunion/mois incluses</li>
+  <li>💼 4h de bureau privatif/mois incluses</li>
+  <li>📞 Standard téléphonique premium dédié</li>
+  <li>👥 Accueil VIP clients et partenaires</li>
+  <li>📧 Gestion administrative complète</li>
+  <li>📦 Réception et gestion colis illimitée</li>
+  <li>🎯 Conseiller dédié prioritaire 24/7</li>
+  <li>🌐 Présence digitale optimisée (Google Business)</li>
+  <li>📄 Support juridique et administratif</li>
+  <li>🔓 Résiliable en 1 clic, sans engagement</li>
+  <li>💯 Satisfait ou remboursé 30 jours</li>
+</ul>
+
+<h3>💰 Ce que vous économisez :</h3>
+<ul>
+  <li>🏢 800€/mois de location bureau</li>
+  <li>💼 1000€/mois d'assistante plein temps</li>
+  <li>🏢 300€/mois de salles réunion</li>
+  <li>📞 200€/mois de services téléphoniques</li>
+  <li>⏱️ 20h/mois de gestion administrative</li>
+  <li>💎 Infrastructure complète clé en main</li>
+</ul>
+
+<h3>📌 Idéal pour :</h3>
+<ul>
+  <li>Scale-ups en forte croissance</li>
+  <li>Entreprises levée de fonds</li>
+  <li>Sociétés internationales (siège FR)</li>
+  <li>Groupes nécessitant infrastructure premium</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Domiciliation',
+    tags: ['domiciliation', 'premium', 'scale-up', 'siege-social', 'marseille', 'secretariat-dedie', 'vip', 'entreprise'],
+    images: [
+      { src: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { src: 'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+      { src: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      {
+        title: 'Abonnement Mensuel',
+        price: '199.00',
+        sku: 'DOMI-SCALEUP-MONTH',
+        compare_at_price: null,
+      },
+      {
+        title: 'Abonnement Annuel (Économisez 20%)',
+        price: '1910.40',
+        sku: 'DOMI-SCALEUP-YEAR',
+        compare_at_price: '2388.00',
+      },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'domiciliation',
+      is_subscription: true,
+      billing_type: 'recurring',
+      cancellable: true,
+      gradient: 'from-orange-600 to-red-600',
+    },
+  },
+];
+
+export const ALL_PRODUCTS = [...MEETING_ROOMS, ...STUDIOS, ...ADDITIONAL_SERVICES, ...EXPERT_SERVICES, ...PREMIUM_SERVICES, ...DOMICILIATION_PACKS];
