@@ -18,6 +18,7 @@ import PartnersSection from '../components/Salles/PartnersSection';
 import LocationSection from '../components/Salles/LocationSection';
 import FAQSection from '../components/Salles/FAQSection';
 import FinalCTASection from '../components/Salles/FinalCTASection';
+import StickyHeader from '../components/Salles/StickyHeader';
 import { spaces } from '../data/salles/spaces';
 import { Space } from '../data/salles/spaces';
 
@@ -34,6 +35,7 @@ export default function Salles() {
       />
       <HeaderNav />
       <MobileBurger />
+      <StickyHeader />
 
       <main className="pt-24">
         <HeroSection />

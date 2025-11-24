@@ -12,29 +12,29 @@ export default function SpacesGridSection({ spaces, onSpaceClick }: SpacesGridSe
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <section id="spaces" className="relative py-32 bg-black">
+    <section id="spaces" className="relative py-16 md:py-24 lg:py-32 bg-black">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute top-0 left-1/2 h-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">ESPACES</span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto px-4">
             5 espaces modulables pour tous vos besoins professionnels
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-8">
           {spaces.slice(0, 3).map((space, index) => (
             <motion.div
               key={space.id}

@@ -64,7 +64,7 @@ export default function HeroSection() {
         }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-12 md:py-16 lg:py-20 w-full">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -72,9 +72,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-8">
-              <Shield className="w-5 h-5 text-emerald-400" />
-              <span className="text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Espaces Premium</span>
+            <div className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-6 md:mb-8">
+              <Shield className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+              <span className="text-xs md:text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Espaces Premium</span>
             </div>
           </motion.div>
 
@@ -82,7 +82,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-montserrat font-black text-white mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight px-4"
           >
             SALLES DE{' '}
             <span className="relative inline-block">
@@ -101,7 +101,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-white/70 max-w-4xl mx-auto mb-12 leading-relaxed font-inter"
+            className="text-base md:text-lg lg:text-xl text-white/70 max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed font-inter px-4"
           >
             De la salle intime pour 2 personnes au rooftop panoramique de 300 m².
             Équipement professionnel inclus, réservation flexible.
@@ -111,7 +111,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-12 md:mb-16 lg:mb-20 px-4"
           >
             <motion.a
               href="#spaces"
@@ -124,10 +124,10 @@ export default function HeroSection() {
                 animate={{ opacity: [0.5, 0.75, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
-                <Building2 className="w-5 h-5" />
+              <div className="relative flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm md:text-base">
+                <Building2 className="w-4 h-4 md:w-5 md:h-5" />
                 <span>Découvrir nos espaces</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.a>
 
@@ -135,7 +135,7 @@ export default function HeroSection() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold transition-all duration-300"
+              className="px-6 md:px-8 py-3 md:py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-sm md:text-base"
             >
               Réserver une visite
             </motion.a>
