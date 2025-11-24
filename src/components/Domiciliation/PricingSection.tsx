@@ -84,9 +84,18 @@ export default function PricingSection() {
 
               <div className="text-xs md:text-sm font-semibold text-zinc-400 mb-2">{plan.name}</div>
               <div className="flex items-end gap-2 mb-4">
-                <span className="text-4xl md:text-5xl font-black text-white">{plan.price}€</span>
-                <span className="text-zinc-400 mb-2">{plan.period}</span>
+                <span className="text-4xl md:text-5xl font-black text-white">
+                  {billingPeriod === 'annual' ? Math.round(plan.price * 12 * 0.8) : plan.price}€
+                </span>
+                <span className="text-zinc-400 mb-2">
+                  {billingPeriod === 'annual' ? '/an' : plan.period}
+                </span>
               </div>
+              {billingPeriod === 'annual' && (
+                <div className="text-sm text-orange-400 mb-2">
+                  Soit {Math.round(plan.price * 0.8)}€/mois
+                </div>
+              )}
               <p className="text-zinc-400 text-sm md:text-base mb-6 md:mb-8">{plan.description}</p>
 
               <div className="mb-6 md:mb-8">

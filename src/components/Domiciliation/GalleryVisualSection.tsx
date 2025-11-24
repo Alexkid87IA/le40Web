@@ -71,7 +71,7 @@ export default function GalleryVisualSection() {
   };
 
   return (
-    <section className="py-32 bg-gradient-to-b from-black via-slate-900 to-black relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black via-slate-900 to-black relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-900/10 via-transparent to-transparent"></div>
         <div className="absolute inset-0 opacity-[0.015]"
@@ -82,32 +82,32 @@ export default function GalleryVisualSection() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-400/20 mb-6">
             <Building2 className="w-4 h-4 text-orange-400" />
             <span className="text-white/90 font-inter text-sm font-semibold">Nos espaces</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight px-4">
             Découvrez <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">vos espaces</span>
           </h2>
-          <p className="text-white/70 font-inter text-lg md:text-xl max-w-3xl mx-auto mb-8">
+          <p className="text-white/70 font-inter text-sm md:text-base lg:text-lg max-w-3xl mx-auto mb-6 md:mb-8 px-4">
             Des locaux modernes au cœur de Marseille, accessibles selon votre formule
           </p>
 
-          <div className="inline-flex items-center gap-3 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3">
+          <div className="inline-flex items-center gap-2 md:gap-3 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-full px-4 md:px-6 py-2 md:py-3">
             <MapPin className="w-5 h-5 text-orange-400" />
-            <span className="text-white font-inter font-semibold">40 Avenue de Saint Antoine, 13015 Marseille</span>
+            <span className="text-white font-inter font-semibold text-xs md:text-sm">40 Avenue de Saint Antoine, 13015 Marseille</span>
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {galleryItems.map((item, index) => (
             <motion.div
               key={index}
@@ -172,27 +172,27 @@ export default function GalleryVisualSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-20 text-center"
+          className="mt-12 md:mt-16 lg:mt-20 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-8 bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-2xl p-8">
-            <div className="grid grid-cols-3 gap-6">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-6 md:gap-8 bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-xl md:rounded-2xl p-6 md:p-8">
+            <div className="grid grid-cols-3 gap-4 md:gap-6">
               <div className="text-center">
-                <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1 md:mb-2 whitespace-nowrap">
                   4000m²
                 </div>
-                <p className="text-white/60 font-inter text-sm">d'espaces</p>
+                <p className="text-white/60 font-inter text-xs md:text-sm">d'espaces</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1 md:mb-2 whitespace-nowrap">
                   12
                 </div>
-                <p className="text-white/60 font-inter text-sm">salles équipées</p>
+                <p className="text-white/60 font-inter text-xs md:text-sm">salles équipées</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-1 md:mb-2">
                   24/7
                 </div>
-                <p className="text-white/60 font-inter text-sm">accès flexible</p>
+                <p className="text-white/60 font-inter text-xs md:text-sm">accès flexible</p>
               </div>
             </div>
           </div>
