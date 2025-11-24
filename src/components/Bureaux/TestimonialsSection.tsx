@@ -35,18 +35,18 @@ export default function TestimonialsSection() {
   );
 
   return (
-    <section className="py-32 bg-gradient-to-b from-zinc-900 to-black">
-      <div className="max-w-7xl mx-auto px-8">
+    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-zinc-900 to-black">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             ILS ONT TROUVÉ LEUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">QG IDÉAL</span>
           </h2>
-          <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base lg:text-xl font-inter text-white/60 max-w-2xl mx-auto px-4">
             Découvrez comment 127 équipes ont transformé leur façon de travailler avec un bureau privé au Le 40
           </p>
         </motion.div>
@@ -64,30 +64,30 @@ export default function TestimonialsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
               >
                 {currentTestimonials.map((testimonial) => (
                   <div
                     key={testimonial.id}
-                    className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10 hover:border-emerald-500/30 transition-all duration-300 group"
+                    className="relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/10 hover:border-emerald-500/30 transition-all duration-300 group"
                   >
-                    <div className="absolute top-8 right-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                      <Quote className="w-16 h-16 text-emerald-400" />
+                    <div className="absolute top-6 right-6 md:top-8 md:right-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                      <Quote className="w-12 md:w-16 h-12 md:h-16 text-emerald-400" />
                     </div>
 
                     <div className="relative">
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-1">
                           {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} className="w-5 h-5 text-emerald-400 fill-emerald-400" />
+                            <Star key={i} className="w-4 md:w-5 h-4 md:h-5 text-emerald-400 fill-emerald-400" />
                           ))}
                         </div>
-                        <div className="px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+                        <div className="px-2 md:px-3 py-1 md:py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
                           <span className="text-emerald-400 font-inter text-xs font-bold">{testimonial.officeType}</span>
                         </div>
                       </div>
 
-                      <blockquote className="text-white/90 font-inter text-lg leading-relaxed mb-6">
+                      <blockquote className="text-white/90 font-inter text-sm md:text-base lg:text-lg leading-relaxed mb-4 md:mb-6">
                         "{testimonial.comment}"
                       </blockquote>
 
@@ -96,18 +96,18 @@ export default function TestimonialsSection() {
                           <img
                             src={testimonial.image}
                             alt={testimonial.name}
-                            className="w-14 h-14 rounded-full object-cover border-2 border-emerald-500/30"
+                            className="w-12 md:w-14 h-12 md:h-14 rounded-full object-cover border-2 border-emerald-500/30"
                           />
                           <div>
-                            <div className="font-montserrat font-bold text-white text-base">{testimonial.name}</div>
-                            <div className="text-white/60 text-sm font-inter">{testimonial.role}</div>
+                            <div className="font-montserrat font-bold text-white text-sm md:text-base">{testimonial.name}</div>
+                            <div className="text-white/60 text-xs md:text-sm font-inter">{testimonial.role}</div>
                             <div className="text-emerald-400 text-xs font-inter font-semibold">{testimonial.company} • {testimonial.industry}</div>
                           </div>
                         </div>
                       </div>
 
                       <div className="mt-4 pt-4 border-t border-white/5">
-                        <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center justify-between text-xs md:text-sm">
                           <div className="text-white/50 font-inter">
                             <span className="text-emerald-400 font-semibold">{testimonial.teamSize}</span> • {testimonial.duration}
                           </div>
@@ -130,7 +130,7 @@ export default function TestimonialsSection() {
 
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full border border-white/20 text-white transition-all group"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full border border-white/20 text-white transition-all group"
             aria-label="Previous testimonials"
           >
             <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
@@ -138,7 +138,7 @@ export default function TestimonialsSection() {
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full border border-white/20 text-white transition-all group"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full border border-white/20 text-white transition-all group"
             aria-label="Next testimonials"
           >
             <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -164,22 +164,22 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-10 md:mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-6 px-8 py-4 bg-white/5 border border-white/10 rounded-2xl">
+          <div className="inline-flex flex-col md:flex-row items-center gap-4 md:gap-6 px-6 md:px-8 py-4 bg-white/5 border border-white/10 rounded-2xl">
             <div className="text-center">
-              <div className="text-3xl font-black text-emerald-400">127</div>
-              <div className="text-white/60 text-sm">Entreprises hébergées</div>
+              <div className="text-2xl md:text-3xl font-black text-emerald-400">127</div>
+              <div className="text-white/60 text-xs md:text-sm">Entreprises hébergées</div>
             </div>
-            <div className="w-px h-12 bg-white/10"></div>
+            <div className="hidden md:block w-px h-12 bg-white/10"></div>
             <div className="text-center">
-              <div className="text-3xl font-black text-emerald-400">4.9/5</div>
-              <div className="text-white/60 text-sm">Satisfaction moyenne</div>
+              <div className="text-2xl md:text-3xl font-black text-emerald-400">4.9/5</div>
+              <div className="text-white/60 text-xs md:text-sm">Satisfaction moyenne</div>
             </div>
-            <div className="w-px h-12 bg-white/10"></div>
+            <div className="hidden md:block w-px h-12 bg-white/10"></div>
             <div className="text-center">
-              <div className="text-3xl font-black text-emerald-400">98%</div>
-              <div className="text-white/60 text-sm">Renouvellent leur contrat</div>
+              <div className="text-2xl md:text-3xl font-black text-emerald-400">98%</div>
+              <div className="text-white/60 text-xs md:text-sm">Renouvellent leur contrat</div>
             </div>
           </div>
         </motion.div>
