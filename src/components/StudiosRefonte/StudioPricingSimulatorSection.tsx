@@ -129,27 +129,27 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
   };
 
   return (
-    <section id="configurator" className="relative py-32">
+    <section id="configurator" className="relative py-16 md:py-24 lg:py-32">
       <div className="absolute inset-0">
         <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 backdrop-blur-xl rounded-full border border-emerald-400/30"
+            className="inline-flex items-center gap-2 md:gap-3 mb-6 md:mb-8 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 backdrop-blur-xl rounded-full border border-emerald-400/30"
           >
-            <Calculator className="w-6 h-6 text-emerald-400" />
+            <Calculator className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
             <span className="text-emerald-400 font-montserrat font-bold text-sm tracking-wider uppercase">
               Configurateur de prix
             </span>
@@ -159,7 +159,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-montserrat font-black text-white mb-8 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-6 md:mb-8 leading-tight"
           >
             <span className="inline-block">CONFIGUREZ</span>{' '}
             <span className="inline-block">VOTRE</span>
@@ -172,7 +172,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-2xl md:text-3xl font-inter font-light text-white/70 max-w-4xl mx-auto mb-6"
+            className="text-sm sm:text-base md:text-lg lg:text-xl font-inter font-light text-white/70 max-w-4xl mx-auto mb-4 md:mb-6 px-4"
           >
             Calculez le coût de votre production en temps réel
           </motion.p>
@@ -181,7 +181,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-6 text-white/60 text-sm font-inter"
+            className="flex flex-wrap justify-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm font-inter"
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"></div>
@@ -198,8 +198,8 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
           </motion.div>
         </motion.div>
 
-        <div className="mb-16">
-          <div className="flex items-center justify-between max-w-4xl mx-auto">
+        <div className="mb-8 md:mb-12 lg:mb-16">
+          <div className="flex items-center justify-between max-w-4xl mx-auto overflow-x-auto pb-2 md:pb-0">
             {STEPS.map((step, index) => {
               const StepIcon = step.icon;
               const isActive = currentStep === step.id;
@@ -211,9 +211,9 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                     onClick={() => setCurrentStep(step.id)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex flex-col items-center gap-3 flex-1"
+                    className="flex flex-col items-center gap-2 md:gap-3 flex-1 min-w-[80px] md:min-w-0"
                   >
-                    <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center transition-all ${
+                    <div className={`relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl md:rounded-2xl flex items-center justify-center transition-all ${
                       isActive
                         ? 'bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 shadow-lg shadow-emerald-500/50'
                         : isCompleted
@@ -221,13 +221,13 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         : 'bg-white/10 border border-white/20'
                     }`}>
                       {isCompleted ? (
-                        <Check className="w-7 h-7 text-white" />
+                        <Check className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white" />
                       ) : (
-                        <StepIcon className={`w-7 h-7 ${isActive ? 'text-white' : 'text-white/60'}`} />
+                        <StepIcon className={`w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 ${isActive ? 'text-white' : 'text-white/60'}`} />
                       )}
                     </div>
                     <div className="text-center">
-                      <div className={`font-inter font-bold text-sm ${
+                      <div className={`font-inter font-bold text-xs md:text-sm ${
                         isActive ? 'text-white' : isCompleted ? 'text-emerald-400' : 'text-white/60'
                       }`}>
                         {step.label}
@@ -235,7 +235,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                     </div>
                   </motion.button>
                   {index < STEPS.length - 1 && (
-                    <div className={`h-0.5 flex-1 mx-4 transition-all ${
+                    <div className={`h-0.5 flex-1 mx-2 md:mx-4 transition-all ${
                       currentStep > step.id ? 'bg-gradient-to-r from-emerald-500 to-teal-500' : 'bg-white/10'
                     }`}></div>
                   )}
@@ -245,14 +245,14 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_400px] gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6 md:gap-8">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative bg-gradient-to-br from-zinc-900/90 to-black/90 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl overflow-hidden">
+            <div className="relative bg-gradient-to-br from-zinc-900/90 to-black/90 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-8 border border-white/20 shadow-2xl overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-600/10 to-transparent rounded-full blur-3xl"></div>
 
               <div className="relative z-10">
@@ -266,18 +266,18 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                       transition={{ duration: 0.3 }}
                     >
                       <div className="flex items-center gap-3 mb-8">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
-                          <Sparkles className="w-6 h-6 text-white" />
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
+                          <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-2xl font-montserrat font-bold text-white">
+                          <h3 className="text-lg md:text-xl lg:text-2xl font-montserrat font-bold text-white">
                             Choisissez votre studio
                           </h3>
                           <p className="text-white/50 text-sm">Sélectionnez l'espace qui correspond à votre projet</p>
                         </div>
                       </div>
 
-                      <div className="grid gap-4">
+                      <div className="grid gap-3 md:gap-4">
                         {studios.map((studio, idx) => (
                           <motion.button
                             key={studio.id}
@@ -287,19 +287,19 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                             transition={{ delay: idx * 0.05 }}
                             whileHover={{ scale: 1.02, x: 5 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`relative p-5 rounded-2xl border-2 transition-all group overflow-hidden text-left ${
+                            className={`relative p-4 md:p-5 rounded-xl md:rounded-2xl border-2 transition-all group overflow-hidden text-left ${
                               selectedStudioId === studio.id
                                 ? `border-emerald-400 shadow-lg shadow-emerald-500/30 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10`
                                 : 'border-white/10 bg-white/5 hover:border-white/30'
                             }`}
                           >
                             <div className="flex items-center gap-4">
-                              <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg flex-shrink-0`}>
-                                <studio.icon className="w-8 h-8 text-white" />
+                              <div className={`w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-lg md:rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-lg flex-shrink-0`}>
+                                <studio.icon className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
                               </div>
                               <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-1">
-                                  <span className={`font-inter font-bold text-lg ${selectedStudioId === studio.id ? 'text-white' : 'text-white/80'}`}>
+                                  <span className={`font-inter font-bold text-sm md:text-base lg:text-lg ${selectedStudioId === studio.id ? 'text-white' : 'text-white/80'}`}>
                                     {studio.name}
                                   </span>
                                   {studio.popular && (
@@ -311,7 +311,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                                 <p className="text-white/60 text-sm mb-2">{studio.subtitle}</p>
                                 <div className="flex items-center gap-4">
                                   <div>
-                                    <span className={`text-3xl font-montserrat font-black ${selectedStudioId === studio.id ? 'text-emerald-400' : 'text-white/60'}`}>
+                                    <span className={`text-2xl md:text-3xl font-montserrat font-black ${selectedStudioId === studio.id ? 'text-emerald-400' : 'text-white/60'}`}>
                                       {studio.launchPrice}€
                                     </span>
                                     <span className="text-white/40 text-xs ml-1">/h</span>
@@ -339,7 +339,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         onClick={() => setCurrentStep(2)}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full mt-8 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-inter font-bold text-lg shadow-lg flex items-center justify-center gap-2"
+                        className="w-full mt-6 md:mt-8 py-3 md:py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-lg md:rounded-xl font-inter font-bold text-sm md:text-base lg:text-lg shadow-lg flex items-center justify-center gap-2"
                       >
                         Continuer
                         <ChevronRight className="w-5 h-5" />
@@ -358,12 +358,12 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                     >
                       <div>
                         <div className="flex items-center gap-3 mb-6">
-                          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
-                            <span className="text-white font-bold">1</span>
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
+                            <span className="text-white text-sm md:text-base font-bold">1</span>
                           </div>
-                          <h3 className="text-xl font-inter font-bold text-white">Formule</h3>
+                          <h3 className="text-base md:text-lg lg:text-xl font-inter font-bold text-white">Formule</h3>
                         </div>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                           {formulas.map((formula, idx) => (
                             <motion.button
                               key={formula.id}
@@ -403,7 +403,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                           </div>
                           <h3 className="text-xl font-inter font-bold text-white">Durée</h3>
                         </div>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
                           {durations.map((duration, idx) => (
                             <motion.button
                               key={duration.id}
@@ -671,17 +671,17 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="sticky top-8">
-              <div className="relative bg-gradient-to-br from-zinc-900 via-black to-zinc-950 backdrop-blur-xl rounded-3xl p-6 border border-white/20 shadow-2xl overflow-hidden">
+            <div className="lg:sticky lg:top-8">
+              <div className="relative bg-gradient-to-br from-zinc-900 via-black to-zinc-950 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-6 border border-white/20 shadow-2xl overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-600/5 via-transparent to-transparent"></div>
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center">
-                      <Calculator className="w-5 h-5 text-white" />
+                  <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6 pb-3 md:pb-4 border-b border-white/10">
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-gradient-to-br from-emerald-600 to-cyan-600 flex items-center justify-center">
+                      <Calculator className="w-4 h-4 md:w-5 md:h-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-montserrat font-black text-white">
+                      <h3 className="text-base md:text-lg lg:text-xl font-montserrat font-black text-white">
                         Récapitulatif
                       </h3>
                       <p className="text-white/50 text-xs">Votre configuration</p>
@@ -763,7 +763,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                           key={finalPrice}
                           initial={{ scale: 1.3, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
-                          className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400"
+                          className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400"
                         >
                           {finalPrice.toFixed(0)}€
                         </motion.span>
@@ -822,7 +822,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                       }}
                       whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(236, 72, 153, 0.4)" }}
                       whileTap={{ scale: 0.97 }}
-                      className="relative w-full py-5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-montserrat font-bold text-lg shadow-2xl flex items-center justify-center gap-3 group overflow-hidden"
+                      className="relative w-full py-4 md:py-5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-lg md:rounded-xl font-montserrat font-bold text-sm md:text-base lg:text-lg shadow-2xl flex items-center justify-center gap-2 md:gap-3 group overflow-hidden"
                     >
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
@@ -830,7 +830,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         whileHover={{ x: "100%" }}
                         transition={{ duration: 0.6 }}
                       />
-                      <ShoppingCart className="w-6 h-6 group-hover:scale-110 transition-transform relative z-10" />
+                      <ShoppingCart className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform relative z-10" />
                       <span className="relative z-10">Ajouter au panier</span>
                     </motion.button>
 
@@ -842,7 +842,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         whileTap={{ scale: 0.98 }}
                         className="py-3 bg-white/10 text-white rounded-lg font-inter font-medium text-sm border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                       >
-                        <Save className="w-4 h-4" />
+                        <Save className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         {isSaving ? 'Sauvegarde...' : 'Sauvegarder'}
                       </motion.button>
                       <motion.button
@@ -856,7 +856,7 @@ export default function StudioPricingSimulatorSection({ selectedStudioId, onStud
                         disabled={!shareToken}
                         className="py-3 bg-white/10 text-white rounded-lg font-inter font-medium text-sm border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                       >
-                        <Share2 className="w-4 h-4" />
+                        <Share2 className="w-3.5 h-3.5 md:w-4 md:h-4" />
                         Partager
                       </motion.button>
                     </div>
