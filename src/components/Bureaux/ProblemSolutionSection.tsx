@@ -11,12 +11,12 @@ export default function ProblemSolutionSection() {
           viewport={{ once: true }}
           className="text-center mb-10 md:mb-16"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             Votre équipe grandit.
             <br />
             <span className="text-white/60">Mais où installer tout le monde ?</span>
           </h2>
-          <p className="text-sm md:text-base lg:text-lg xl:text-xl text-white/70 max-w-3xl mx-auto px-4">
+          <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto px-4">
             Le télétravail a ses limites. La location classique est trop rigide et coûteuse.
             <br />
             <span className="text-emerald-400 font-bold">Il existe une 3ème voie.</span>
@@ -162,7 +162,7 @@ export default function ProblemSolutionSection() {
           <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-3 md:mb-4 px-4">
             127 équipes ont fait le choix Le 40
           </h3>
-          <p className="text-sm md:text-base lg:text-lg xl:text-xl text-white/70 max-w-3xl mx-auto mb-4 md:mb-6 px-4">
+          <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto mb-4 md:mb-6 px-4">
             Startups tech, agences, cabinets conseil, studios créatifs... toutes ont trouvé leur QG idéal sans s'engager sur 9 ans ni dépenser 30k€ en aménagement.
           </p>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-6 md:mt-8">

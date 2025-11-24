@@ -70,10 +70,10 @@ export default function StatsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
             DES CHIFFRES QUI <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">PARLENT</span>
           </h2>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto">
             Rejoignez des entrepreneurs ambitieux qui ont trouvé leur espace idéal
           </p>
         </motion.div>
@@ -122,10 +122,10 @@ export default function StatsSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h3 className="text-4xl md:text-5xl font-montserrat font-black text-white mb-4">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-4">
             CE QUI EST <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">INCLUS</span>
           </h3>
-          <p className="text-lg text-white/60">
+          <p className="text-sm md:text-base text-white/60">
             Tout ce dont votre équipe a besoin pour performer
           </p>
         </motion.div>
@@ -151,7 +151,7 @@ export default function StatsSection() {
                   </motion.div>
 
                   <div className="flex-1">
-                    <h4 className="text-2xl font-montserrat font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                    <h4 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
                       {benefit.title}
                     </h4>
                     <p className="text-white/70 font-inter leading-relaxed">
@@ -180,7 +180,7 @@ export default function StatsSection() {
             <Star className="w-6 h-6 text-amber-400 fill-amber-400" />
           </div>
 
-          <blockquote className="text-2xl md:text-3xl font-montserrat font-bold text-white mb-4 max-w-4xl mx-auto">
+          <blockquote className="text-lg md:text-xl font-montserrat font-bold text-white mb-4 max-w-4xl mx-auto">
             "En 6 mois au Le 40, nous avons triplé notre équipe et doublé notre chiffre d'affaires. L'environnement et le réseau ont été déterminants."
           </blockquote>
 

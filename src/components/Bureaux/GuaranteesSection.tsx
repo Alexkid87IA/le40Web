@@ -50,10 +50,10 @@ export default function GuaranteesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
             NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">GARANTIES</span>
           </h2>
-          <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto">
             Louez en toute sérénité. Nous assumons tous les risques pour que vous n'en ayez aucun.
           </p>
         </motion.div>
@@ -80,7 +80,7 @@ export default function GuaranteesSection() {
                   <guarantee.icon className="w-8 h-8 text-white" />
                 </motion.div>
 
-                <h3 className="text-2xl font-montserrat font-bold text-white mb-4">
+                <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-4">
                   {guarantee.title}
                 </h3>
 
@@ -99,10 +99,10 @@ export default function GuaranteesSection() {
           className="mt-16 p-10 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-3xl text-center"
         >
           <Shield className="w-16 h-16 text-emerald-400 mx-auto mb-6" />
-          <h3 className="text-3xl font-montserrat font-black text-white mb-4">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-4">
             Protection totale de votre investissement
           </h3>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto mb-8">
+          <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto mb-8">
             Contrairement à un bail 3-6-9 ans où vous êtes bloqué, chez nous vous ne prenez aucun risque. Testez pendant 3 mois, et si ça ne vous convient pas, on vous rembourse.
           </p>
           <div className="flex flex-wrap justify-center gap-8 text-left">

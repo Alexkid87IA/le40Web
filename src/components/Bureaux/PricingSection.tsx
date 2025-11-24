@@ -111,10 +111,10 @@ export default function PricingSection() {
             <span className="text-sm text-emerald-300 font-medium">Tarifs transparents</span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
             CHOISISSEZ VOTRE <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">ESPACE</span>
           </h2>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto mb-8">
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-8">
             Trois formules adaptées à la taille de votre équipe. Tout inclus, sans surprise.
           </p>
 
@@ -194,7 +194,7 @@ export default function PricingSection() {
                     <span className={`text-transparent bg-clip-text bg-gradient-to-r ${plan.gradient} font-montserrat font-semibold text-sm tracking-wider uppercase`}>
                       {plan.subtitle}
                     </span>
-                    <h3 className="text-3xl font-montserrat font-black text-white mt-2 mb-2">
+                    <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mt-2 mb-2">
                       {plan.name}
                     </h3>
 
@@ -247,10 +247,10 @@ export default function PricingSection() {
           viewport={{ once: true }}
           className="bg-gradient-to-r from-emerald-950/50 to-teal-950/50 border border-emerald-500/30 rounded-3xl p-8 text-center"
         >
-          <h3 className="text-2xl font-montserrat font-bold text-white mb-4">
+          <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-4">
             Besoin d'un espace plus grand ou personnalisé ?
           </h3>
-          <p className="text-white/70 font-inter mb-6 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-white/70 font-inter mb-6 max-w-2xl mx-auto">
             Nous proposons des bureaux jusqu'à 200m² et pouvons créer des configurations sur-mesure pour votre entreprise.
           </p>
           <motion.button

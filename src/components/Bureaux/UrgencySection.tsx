@@ -39,7 +39,7 @@ export default function UrgencySection() {
         >
           <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
             <AlertCircle className="w-5 md:w-6 h-5 md:h-6 text-red-400" />
-            <h3 className="text-base md:text-xl lg:text-2xl font-montserrat font-black text-white">
+            <h3 className="text-lg md:text-xl font-montserrat font-black text-white">
               OFFRE SPÉCIALE - EXPIRE DANS:
             </h3>
           </div>
@@ -90,13 +90,13 @@ export default function UrgencySection() {
               <span className="text-sm md:text-base text-white font-montserrat font-bold">FORTE DEMANDE</span>
             </motion.div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
               Seulement <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">3 bureaux</span>
               <br />
               disponibles ce mois
             </h2>
 
-            <p className="text-sm md:text-base lg:text-xl text-white/80 mb-8 md:mb-12 max-w-3xl mx-auto px-4">
+            <p className="text-base md:text-lg text-white/80 mb-8 md:mb-12 max-w-3xl mx-auto px-4">
               La demande pour nos bureaux privés est très forte. Les meilleurs emplacements partent en premier. <span className="text-orange-400 font-bold">Ne laissez pas passer votre chance.</span>
             </p>
 

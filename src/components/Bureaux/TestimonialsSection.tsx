@@ -43,10 +43,10 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-10 md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             ILS ONT TROUVÉ LEUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">QG IDÉAL</span>
           </h2>
-          <p className="text-sm md:text-base lg:text-xl font-inter text-white/60 max-w-2xl mx-auto px-4">
+          <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto px-4">
             Découvrez comment 127 équipes ont transformé leur façon de travailler avec un bureau privé au Le 40
           </p>
         </motion.div>

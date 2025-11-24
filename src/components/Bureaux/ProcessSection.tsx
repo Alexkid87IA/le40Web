@@ -54,10 +54,10 @@ export default function ProcessSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
             COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">MARCHE</span> ?
           </h2>
-          <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto">
             De la visite à l'emménagement en <span className="text-emerald-400 font-bold">moins d'une semaine</span>. Simple, transparent, sans surprise.
           </p>
         </motion.div>
@@ -87,7 +87,7 @@ export default function ProcessSection() {
                       <span className="text-white/80 text-xs">• {step.duration}</span>
                     </div>
                   </motion.div>
-                  <h3 className="text-3xl font-montserrat font-black text-white mb-4">
+                  <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-4">
                     {step.title}
                   </h3>
                   <p className="text-white/70 font-inter text-lg leading-relaxed max-w-md lg:ml-auto">
@@ -124,10 +124,10 @@ export default function ProcessSection() {
           viewport={{ once: true }}
           className="mt-20 p-10 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-3xl text-center"
         >
-          <h3 className="text-3xl font-montserrat font-black text-white mb-4">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-4">
             Prêt en moins d'une semaine
           </h3>
-          <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white/70 mb-8 max-w-2xl mx-auto">
             Contrairement à une location classique qui prend des mois, vous pouvez emménager chez nous en quelques jours seulement.
           </p>
           <div className="flex flex-wrap justify-center gap-8">

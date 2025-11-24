@@ -91,7 +91,7 @@ export default function BureauHeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight"
+            className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight"
           >
             BUREAUX{' '}
             <span className="relative inline-block">
@@ -110,7 +110,7 @@ export default function BureauHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base md:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed font-inter px-4"
+            className="text-base md:text-lg text-white/70 max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed font-inter px-4"
           >
             De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion, ménage.
           </motion.p>

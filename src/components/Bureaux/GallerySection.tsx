@@ -42,10 +42,10 @@ export default function GallerySection() {
             <span className="text-sm text-emerald-300 font-medium">Explorez nos espaces</span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
             VISITEZ NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">ESPACES</span>
           </h2>
-          <p className="text-xl font-inter text-white/60 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto">
             Découvrez en images nos bureaux privés et espaces communs. Cliquez sur une carte pour explorer en détail.
           </p>
         </motion.div>
@@ -143,7 +143,7 @@ export default function GallerySection() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-xl font-montserrat font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors duration-300">
+                      <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors duration-300">
                         {item.title}
                       </h3>
 

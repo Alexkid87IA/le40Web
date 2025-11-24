@@ -28,14 +28,14 @@ export default function FinalCTASection() {
             <span className="text-emerald-300 font-inter text-sm font-bold">🏢 Dernière étape avant votre nouveau QG</span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-7xl font-montserrat font-black text-white mb-8 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-8 leading-tight">
             TROUVEZ VOTRE
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               BUREAU IDÉAL
             </span>
           </h2>
 
-          <p className="text-2xl font-inter font-light text-white/70 mb-12 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg font-inter font-light text-white/70 mb-12 max-w-3xl mx-auto">
             127 équipes ont déjà fait le choix Le 40. Rejoignez une communauté d'entrepreneurs ambitieux dans des bureaux qui s'adaptent à votre croissance.
           </p>
 
@@ -52,7 +52,7 @@ export default function FinalCTASection() {
                   <div className="w-16 h-16 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                     <Calendar className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-montserrat font-bold text-white mb-3">
+                  <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3">
                     Réserver une visite
                   </h3>
                   <p className="text-white/70 font-inter text-sm mb-4">
@@ -78,7 +78,7 @@ export default function FinalCTASection() {
                   <div className="w-16 h-16 bg-gradient-to-br from-teal-600 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                     <Phone className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-montserrat font-bold text-white mb-3">
+                  <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3">
                     Appeler maintenant
                   </h3>
                   <p className="text-white/70 font-inter text-sm mb-4">
@@ -104,7 +104,7 @@ export default function FinalCTASection() {
                   <div className="w-16 h-16 bg-gradient-to-br from-cyan-600 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                     <MessageSquare className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-montserrat font-bold text-white mb-3">
+                  <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3">
                     Demander un devis
                   </h3>
                   <p className="text-white/70 font-inter text-sm mb-4">
