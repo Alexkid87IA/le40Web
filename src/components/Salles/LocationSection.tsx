@@ -6,16 +6,16 @@ export default function LocationSection() {
     {
       icon: Train,
       title: 'Métro & RER',
-      description: 'Station République',
+      description: 'Stations à proximité',
       time: '2 min à pied',
-      lines: ['Lignes 3, 5, 8, 9, 11'],
+      lines: ['Ligne 1', 'Ligne 2'],
       gradient: 'from-blue-600 to-cyan-600'
     },
     {
       icon: Car,
       title: 'Voiture',
       description: 'Parking à proximité',
-      time: 'Parking République',
+      time: 'Parking proche',
       lines: ['300 places', 'Tarif préférentiel'],
       gradient: 'from-emerald-600 to-teal-600'
     },
@@ -78,10 +78,10 @@ export default function LocationSection() {
                   <div className="text-center p-5 md:p-8">
                     <MapPin className="w-16 h-16 md:w-20 md:h-20 text-emerald-400 mx-auto mb-4 md:mb-6" />
                     <h3 className="text-2xl md:text-3xl font-montserrat font-bold text-white mb-3 md:mb-4">
-                      40 Rue de la République
+                      40 Avenue de Saint Antoine
                     </h3>
                     <p className="text-lg md:text-xl text-white/80 font-inter mb-4 md:mb-6">
-                      75003 Paris, France
+                      13015 Marseille, France
                     </p>
                     <motion.a
                       href="https://maps.google.com"
@@ -168,8 +168,8 @@ export default function LocationSection() {
           {[
             {
               icon: MapPin,
-              title: 'Quartier République',
-              description: 'Centre névralgique de Paris',
+              title: 'Quartier Saint Antoine',
+              description: 'Emplacement stratégique à Marseille',
               gradient: 'from-cyan-600 to-blue-600'
             },
             {
