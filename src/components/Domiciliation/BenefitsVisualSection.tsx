@@ -54,7 +54,7 @@ export default function BenefitsVisualSection() {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-900/5 via-transparent to-transparent"></div>
         <div className="absolute inset-0 opacity-[0.02]"
@@ -65,27 +65,27 @@ export default function BenefitsVisualSection() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-orange-400/20 mb-6">
             <TrendingUp className="w-4 h-4 text-orange-400" />
             <span className="text-white/90 font-inter text-sm font-semibold">Services inclus</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight px-4">
             Des services qui <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">changent tout</span>
           </h2>
-          <p className="text-white/70 font-inter text-lg md:text-xl max-w-3xl mx-auto">
+          <p className="text-white/70 font-inter text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-4">
             Chaque fonctionnalité a été pensée pour vous faire gagner du temps et de la crédibilité
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
@@ -98,8 +98,8 @@ export default function BenefitsVisualSection() {
             >
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${benefit.gradient} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-all duration-500`}></div>
 
-              <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden group-hover:border-white/30 transition-all duration-500 h-full flex flex-col">
-                <div className="relative h-56 overflow-hidden">
+              <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden group-hover:border-white/30 transition-all duration-500 h-full flex flex-col">
+                <div className="relative h-40 md:h-56 overflow-hidden">
                   <motion.img
                     src={benefit.image}
                     alt={benefit.title}
@@ -109,27 +109,27 @@ export default function BenefitsVisualSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
 
-                  <div className={`absolute top-4 left-4 w-14 h-14 rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center shadow-2xl`}>
-                    <benefit.icon className="w-7 h-7 text-white" />
+                  <div className={`absolute top-3 md:top-4 left-3 md:left-4 w-10 md:w-14 h-10 md:h-14 rounded-lg md:rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center shadow-2xl`}>
+                    <benefit.icon className="w-5 md:w-7 h-5 md:h-7 text-white" />
                   </div>
 
-                  <div className="absolute bottom-4 right-4 bg-black/80 backdrop-blur-xl rounded-xl px-4 py-2 border border-white/10">
-                    <div className={`text-2xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${benefit.gradient}`}>
+                  <div className="absolute bottom-3 md:bottom-4 right-3 md:right-4 bg-black/80 backdrop-blur-xl rounded-lg md:rounded-xl px-3 md:px-4 py-1.5 md:py-2 border border-white/10">
+                    <div className={`text-lg md:text-2xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${benefit.gradient}`}>
                       {benefit.stats.value}
                     </div>
                     <div className="text-white/70 text-xs font-inter">{benefit.stats.label}</div>
                   </div>
                 </div>
 
-                <div className="p-8 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-montserrat font-black text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-300">
+                <div className="p-6 md:p-8 flex-1 flex flex-col">
+                  <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-2 md:mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-300">
                     {benefit.title}
                   </h3>
-                  <p className="text-white/70 font-inter leading-relaxed flex-1">
+                  <p className="text-white/70 font-inter text-sm md:text-base leading-relaxed flex-1">
                     {benefit.description}
                   </p>
 
-                  <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-white/10">
                     <div className="flex items-center justify-between">
                       <span className="text-white/50 font-inter text-sm">En savoir plus</span>
                       <motion.div
@@ -153,20 +153,20 @@ export default function BenefitsVisualSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-20 text-center"
+          className="mt-12 md:mt-16 lg:mt-20 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-2xl p-8">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-xl md:rounded-2xl p-6 md:p-8">
             <div className="flex items-center gap-4">
-              <Clock className="w-12 h-12 text-orange-400" />
+              <Clock className="w-10 md:w-12 h-10 md:h-12 text-orange-400" />
               <div className="text-left">
-                <div className="text-3xl md:text-4xl font-montserrat font-black text-white mb-1">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-white mb-1">
                   Tout inclus
                 </div>
                 <p className="text-white/70 font-inter text-sm">Sans frais cachés</p>
               </div>
             </div>
             <div className="hidden sm:block w-px h-16 bg-white/10"></div>
-            <p className="text-white/90 font-inter text-lg max-w-xl">
+            <p className="text-white/90 font-inter text-sm md:text-base lg:text-lg max-w-xl px-4">
               Tous ces services sont <span className="text-orange-400 font-bold">inclus dans votre abonnement</span>. Pas de surprise, pas de coût caché.
             </p>
           </div>
