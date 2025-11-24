@@ -17,6 +17,7 @@ interface Thumbnail {
 
 export default function StudioDetailModal({ studio, onClose, onSelect }: StudioDetailModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [dragY, setDragY] = useState(0);
   const { addItem } = useCart();
 
   useEffect(() => {
@@ -59,6 +60,13 @@ export default function StudioDetailModal({ studio, onClose, onSelect }: StudioD
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const handleDragEnd = (_: any, info: any) => {
+    if (info.offset.y > 100) {
+      onClose();
+    }
+    setDragY(0);
+  };
+
   return (
     <AnimatePresence>
       {studio && (
@@ -67,24 +75,41 @@ export default function StudioDetailModal({ studio, onClose, onSelect }: StudioD
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-center justify-center p-2 md:p-4 overflow-y-auto"
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-start md:items-center justify-center overflow-y-auto"
+          style={{ paddingTop: 'env(safe-area-inset-top)' }}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            initial={{ scale: 0.95, opacity: 0, y: 50 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            exit={{ scale: 0.95, opacity: 0, y: 50 }}
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-zinc-950 rounded-2xl md:rounded-3xl max-w-7xl w-full my-4 md:my-8 overflow-hidden border border-white/10 shadow-2xl"
+            className="relative bg-zinc-950 rounded-t-3xl md:rounded-3xl max-w-7xl w-full mt-auto md:my-8 overflow-hidden border border-white/10 shadow-2xl touch-pan-y"
+            style={{ maxHeight: 'calc(100vh - env(safe-area-inset-top) - 20px)' }}
           >
+            <div className="lg:hidden sticky top-0 z-30 bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 px-4 py-3 flex items-center justify-between">
+              <div className="w-12 h-1 bg-white/30 rounded-full mx-auto absolute left-1/2 -translate-x-1/2 top-2"></div>
+              <h3 className="text-white font-montserrat font-bold text-base pt-4">{studio.name}</h3>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/20 transition-all group"
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
+            </div>
+
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 md:top-4 md:right-4 lg:top-6 lg:right-6 z-20 w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 bg-black/50 hover:bg-black/80 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/20 transition-all group"
+              className="hidden lg:flex absolute top-4 right-4 lg:top-6 lg:right-6 z-20 w-11 h-11 lg:w-12 lg:h-12 bg-black/50 hover:bg-black/80 backdrop-blur-xl rounded-full items-center justify-center border border-white/20 transition-all group"
             >
-              <X className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
+              <X className="w-6 h-6 text-white group-hover:rotate-90 transition-transform duration-300" />
             </button>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
-              <div className="relative bg-black group min-h-[250px] md:min-h-[350px] lg:min-h-[600px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[600px]">
+              <div className="relative bg-black group h-[50vh] md:h-[60vh] lg:h-auto lg:min-h-[600px]">
                 <motion.img
                   key={currentImageIndex}
                   initial={{ opacity: 0 }}
@@ -143,7 +168,7 @@ export default function StudioDetailModal({ studio, onClose, onSelect }: StudioD
                 )}
               </div>
 
-              <div className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 space-y-4 md:space-y-5 lg:space-y-6 overflow-y-auto max-h-[500px] md:max-h-[550px] lg:max-h-[600px]">
+              <div className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 space-y-4 md:space-y-5 lg:space-y-6 overflow-y-auto lg:max-h-[600px]">
                 <div>
                   <div className={`inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-gradient-to-r ${studio.gradient} text-white text-xs md:text-sm font-bold mb-3 md:mb-4 shadow-lg`}>
                     <studio.icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
