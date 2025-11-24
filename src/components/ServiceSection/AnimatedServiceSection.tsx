@@ -82,7 +82,7 @@ export default function AnimatedServiceSection({
       ref={sectionRef}
       id={id}
       style={{ opacity, scale }}
-      className="relative h-full flex items-center bg-black overflow-hidden"
+      className="relative min-h-screen lg:h-full flex items-center bg-black overflow-hidden py-16 lg:py-0"
     >
       <motion.div
         ref={videoRef}
@@ -109,8 +109,8 @@ export default function AnimatedServiceSection({
         backgroundSize: '50px 50px'
       }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-12 lg:py-20 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div
             variants={elegantFadeIn}
             initial="hidden"
@@ -233,7 +233,7 @@ export default function AnimatedServiceSection({
             className={order === 'left' ? 'lg:order-2' : 'lg:order-1'}
           >
             <motion.div
-              className="relative h-[600px] rounded-3xl overflow-hidden"
+              className="relative h-[350px] lg:h-[600px] rounded-2xl lg:rounded-3xl overflow-hidden"
               style={{ perspective: 1000 }}
             >
               <motion.div

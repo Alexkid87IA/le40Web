@@ -3,6 +3,7 @@ import SEOHead from '../components/SEO/SEOHead';
 import { organizationSchema } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
+import MobileStickyCTA from '../components/MobileStickyCTA';
 import Hero from '../sections/Hero';
 import CoworkingSection from '../sections/ServiceSections/CoworkingSection';
 import DomiciliationSection from '../sections/ServiceSections/DomiciliationSection';
@@ -22,21 +23,22 @@ export default function HomeNew() {
       />
       <HeaderNav />
       <MobileBurger />
+      <MobileStickyCTA />
 
-      <main className="pt-24">
+      <main className="pt-16 md:pt-24">
         <Hero />
 
         <div className="relative">
-          <div className="sticky top-0 h-screen">
+          <div className="lg:sticky lg:top-0 lg:h-screen">
             <DomiciliationSection />
           </div>
-          <div className="sticky top-0 h-screen">
+          <div className="lg:sticky lg:top-0 lg:h-screen">
             <BureauxSection />
           </div>
-          <div className="sticky top-0 h-screen">
+          <div className="lg:sticky lg:top-0 lg:h-screen">
             <CoworkingSection />
           </div>
-          <div className="sticky top-0 h-screen">
+          <div className="lg:sticky lg:top-0 lg:h-screen">
             <StudiosSection />
           </div>
           <div className="relative z-10">
