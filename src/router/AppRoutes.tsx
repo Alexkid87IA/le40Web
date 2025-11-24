@@ -21,7 +21,8 @@ import BookingPage from '../pages/BookingPage';
 import Checkout from '../pages/Checkout';
 import OrderConfirmation from '../pages/OrderConfirmation';
 import CGV from '../pages/CGV';
-import CartDrawer from '../components/Cart/CartDrawer';
+import UnifiedCartDrawer from '../components/Cart/UnifiedCartDrawer';
+import UnifiedCheckout from '../pages/UnifiedCheckout';
 import ShopPage from '../pages/ShopPage';
 import ShopifyCheckout from '../pages/ShopifyCheckout';
 import ShopifyConfirmation from '../pages/ShopifyConfirmation';
@@ -29,7 +30,7 @@ import ShopifyConfirmation from '../pages/ShopifyConfirmation';
 export default function AppRoutes() {
   return (
     <Router>
-      <CartDrawer />
+      <UnifiedCartDrawer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/offres" element={<Offres />} />
@@ -50,6 +51,7 @@ export default function AppRoutes() {
         <Route path="/events" element={<Events />} />
         <Route path="/services-plus" element={<ServicesPlus />} />
         <Route path="/reservation" element={<BookingPage />} />
+        <Route path="/panier" element={<UnifiedCheckout />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/confirmation/:orderNumber" element={<OrderConfirmation />} />
         <Route path="/cgv" element={<CGV />} />

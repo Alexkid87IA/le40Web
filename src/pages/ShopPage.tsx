@@ -8,11 +8,11 @@ import ProductCard from '../components/Shop/ProductCard';
 import ProductModal from '../components/Shop/ProductModal';
 import { useShopifyProducts } from '../hooks/useShopifyProducts';
 import { ShopifyProduct } from '../lib/shopify';
-import { useShopifyCheckout } from '../hooks/useShopifyCheckout';
+import { useUnifiedCart } from '../hooks/useUnifiedCart';
 
 export default function ShopPage() {
   const { products, loading, error } = useShopifyProducts();
-  const { addItem } = useShopifyCheckout();
+  const { addShopifyItem, loading: cartLoading } = useUnifiedCart();
   const [selectedProduct, setSelectedProduct] = useState<ShopifyProduct | null>(null);
   const [filterOpen, setFilterOpen] = useState(false);
   const [priceFilter, setPriceFilter] = useState<'all' | 'low' | 'medium' | 'high'>('all');
@@ -24,7 +24,15 @@ export default function ShopPage() {
   const handleAddToCart = async (product: ShopifyProduct) => {
     const firstVariant = product.variants.edges[0]?.node;
     if (firstVariant && firstVariant.availableForSale) {
-      await addItem(firstVariant.id, 1);
+      await addShopifyItem({
+        shopifyVariantId: firstVariant.id,
+        productTitle: product.title,
+        variantTitle: firstVariant.title,
+        price: parseFloat(firstVariant.price.amount),
+        quantity: 1,
+        image: product.images.edges[0]?.node.url,
+        availableForSale: firstVariant.availableForSale,
+      });
     }
   };
 

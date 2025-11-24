@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, Sparkles } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCart } from '../../hooks/useCart';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
+import UnifiedCartButton from '../Cart/UnifiedCartButton';
 
 const navItems = [
   { name: 'Accueil', href: '/', icon: Home },
@@ -57,7 +58,6 @@ const reserveButtonGlow = {
 export default function HeaderNav() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { itemCount, setIsOpen } = useCart();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
@@ -290,32 +290,8 @@ export default function HeaderNav() {
                 );
               })}
 
-              {/* Panier */}
-              <motion.button
-                onClick={() => setIsOpen(true)}
-                className="relative p-2.5 rounded-lg text-white/50 hover:text-white hover:bg-white/[0.04] transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -1 }}
-                whileTap={{ scale: 0.95 }}
-                title="Panier"
-              >
-                <ShoppingCart className="w-[17px] h-[17px]" />
-                
-                <AnimatePresence>
-                  {itemCount > 0 && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                      className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg shadow-amber-500/30"
-                    >
-                      <span className="text-black text-[10px] font-black">
-                        {itemCount}
-                      </span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+              {/* Panier Unifié */}
+              <UnifiedCartButton />
             </div>
 
             {/* Séparateur */}
