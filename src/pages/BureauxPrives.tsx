@@ -2,6 +2,7 @@ import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import BureauHeroSection from '../components/Bureaux/HeroSection';
+import BureauStickyHeader from '../components/Bureaux/StickyHeader';
 import ProblemSolutionSection from '../components/Bureaux/ProblemSolutionSection';
 import StatsSection from '../components/Bureaux/StatsSection';
 import GallerySection from '../components/Bureaux/GallerySection';
@@ -19,6 +20,7 @@ export default function BureauxPrives() {
     <div className="min-h-screen bg-black">
       <HeaderNav />
       <MobileBurger />
+      <BureauStickyHeader />
 
       <main className="pt-16 md:pt-24">
         <BureauHeroSection />
