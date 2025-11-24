@@ -145,7 +145,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16"
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-8 md:mb-12 lg:mb-16 px-4"
           >
             {[
               { value: '5', suffix: '', label: 'Salles uniques', color: 'from-emerald-500 to-teal-500' },
@@ -162,11 +162,11 @@ export default function HeroSection() {
               >
                 <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500`} />
 
-                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 group-hover:border-white/20 transition-all duration-500">
-                  <div className={`text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2`}>
+                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 group-hover:border-white/20 transition-all duration-500">
+                  <div className={`text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2`}>
                     {stat.value}{stat.suffix}
                   </div>
-                  <p className="text-sm text-white/60 uppercase tracking-wider font-inter">{stat.label}</p>
+                  <p className="text-xs md:text-sm text-white/60 uppercase tracking-wider font-inter">{stat.label}</p>
                 </div>
               </motion.div>
             ))}
@@ -176,28 +176,28 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
-            className="mt-16 flex items-center justify-center gap-8"
+            className="mt-8 md:mt-12 lg:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 px-4"
           >
-            <div className="flex items-center gap-2">
-              <div className="flex -space-x-3">
+            <div className="flex items-center gap-2 flex-wrap justify-center">
+              <div className="flex -space-x-2 md:-space-x-3">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 border-2 border-black flex items-center justify-center text-white font-bold text-xs">
+                  <div key={i} className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 border-2 border-black flex items-center justify-center text-white font-bold text-xs">
                     {String.fromCharCode(64 + i)}
                   </div>
                 ))}
               </div>
-              <span className="text-white/60 text-sm font-inter">120+ membres actifs</span>
+              <span className="text-white/60 text-xs md:text-sm font-inter">120+ membres actifs</span>
             </div>
 
-            <div className="w-px h-8 bg-white/10" />
+            <div className="hidden sm:block w-px h-8 bg-white/10" />
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap justify-center">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                 ))}
               </div>
-              <span className="text-white/60 text-sm font-inter">4.9/5 moyenne</span>
+              <span className="text-white/60 text-xs md:text-sm font-inter">4.9/5 moyenne</span>
             </div>
           </motion.div>
         </div>
