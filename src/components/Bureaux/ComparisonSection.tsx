@@ -20,11 +20,62 @@ export default function ComparisonSection() {
           </p>
         </motion.div>
 
+        {/* Mobile: Card-based layout */}
+        <div className="md:hidden space-y-4">
+          {comparisonData.rows.map((row, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="bg-white/5 backdrop-blur-xl rounded-2xl p-5 border border-white/10"
+            >
+              <h3 className="text-white font-montserrat font-bold text-base mb-4 pb-3 border-b border-white/10">
+                {row.criterion}
+              </h3>
+
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 p-3 bg-red-950/20 rounded-xl border border-red-900/30">
+                  <X className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <div className="text-red-400 text-xs font-inter font-semibold mb-1">Location Classique</div>
+                    <div className="text-white/80 text-sm font-inter">{row.classique}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 bg-orange-950/20 rounded-xl border border-orange-900/30">
+                  <X className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <div className="text-orange-400 text-xs font-inter font-semibold mb-1">Télétravail</div>
+                    <div className="text-white/80 text-sm font-inter">{row.teletravail}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 bg-gradient-to-r from-emerald-950/30 to-teal-950/30 rounded-xl border-2 border-emerald-500/50 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-emerald-500/10 rounded-full blur-2xl"></div>
+                  <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5 relative z-10" />
+                  <div className="flex-1 relative z-10">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="text-emerald-400 text-xs font-inter font-semibold">Le 40 Bureaux</div>
+                      <div className="px-2 py-0.5 bg-emerald-500/20 rounded-full">
+                        <span className="text-emerald-300 text-[10px] font-bold">MEILLEUR CHOIX</span>
+                      </div>
+                    </div>
+                    <div className="text-white font-inter text-sm font-semibold">{row.le40}</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: Table layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0"
+          className="hidden md:block overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0"
         >
           <div className="min-w-[800px] bg-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <div className="grid grid-cols-4 bg-gradient-to-r from-emerald-950/30 to-teal-950/30 p-4 md:p-6 border-b border-white/10">
