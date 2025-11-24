@@ -1201,4 +1201,244 @@ export const DOMICILIATION_PACKS = [
   },
 ];
 
-export const ALL_PRODUCTS = [...MEETING_ROOMS, ...STUDIOS, ...ADDITIONAL_SERVICES, ...EXPERT_SERVICES, ...PREMIUM_SERVICES, ...DOMICILIATION_PACKS];
+export const EVENTS = [
+  {
+    id: 'event-afterwork-networking',
+    title: 'Afterwork Networking Premium - 15 Nov 2025',
+    body_html: `<h2>Soirée Networking Exclusive</h2>
+<p>Rejoignez-nous pour une soirée networking exclusive dans une ambiance conviviale. Rencontrez des entrepreneurs passionnés, échangez sur vos projets et développez votre réseau professionnel autour de cocktails et petits fours.</p>
+
+<h3>🎯 Au programme :</h3>
+<ul>
+  <li>🤝 Speed-networking organisés pour maximiser les rencontres</li>
+  <li>🍸 Cocktails et petits fours inclus</li>
+  <li>💼 Échanges entre entrepreneurs passionnés</li>
+  <li>🎤 Présentation rapide de votre projet (optionnel)</li>
+  <li>📱 Échanges de contacts et opportunités business</li>
+</ul>
+
+<h3>📅 Informations pratiques :</h3>
+<ul>
+  <li>📍 Le 40 - 40 Avenue de Saint Antoine, Marseille 13015</li>
+  <li>🕐 15 Novembre 2025 - 18h30</li>
+  <li>⏱️ Durée : 2h30</li>
+  <li>👥 Places limitées : 50 participants</li>
+  <li>🎓 Niveau : Tous niveaux</li>
+</ul>
+
+<h3>💰 Tarifs :</h3>
+<ul>
+  <li>Membres Le 40 Club : GRATUIT</li>
+  <li>Non-membres : 15€</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Événement',
+    tags: ['event', 'networking', 'afterwork', 'cocktail', 'marseille', 'featured'],
+    images: [
+      { src: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Ticket Membre', price: '0.00', sku: 'EVENT-AFTERWORK-MEMBER', inventory_quantity: 25 },
+      { title: 'Ticket Non-Membre', price: '15.00', sku: 'EVENT-AFTERWORK-NONMEMBER', inventory_quantity: 25 },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'event',
+      event_date: '2025-11-15T18:30:00',
+      event_duration: 150,
+      max_attendees: 50,
+      category: 'Networking',
+      difficulty_level: 'Tous niveaux',
+    },
+  },
+  {
+    id: 'event-masterclass-lever-fonds',
+    title: 'Masterclass: Lever des Fonds en 2025 - 22 Nov 2025',
+    body_html: `<h2>Masterclass Intensive - Levée de Fonds</h2>
+<p>Masterclass intensive sur les stratégies et techniques pour réussir sa levée de fonds. Session animée par Caroline Chen, investment partner avec 15 ans d'expérience.</p>
+
+<h3>🎯 Ce que vous allez apprendre :</h3>
+<ul>
+  <li>📊 Préparer un pitch deck qui convertit</li>
+  <li>🎯 Identifier les bons investisseurs pour votre projet</li>
+  <li>💼 Négocier les termes et la valorisation</li>
+  <li>⚠️ Éviter les pièges courants des levées de fonds</li>
+  <li>📈 Stratégies de croissance post-investissement</li>
+  <li>🤝 Networking avec d'autres entrepreneurs en levée</li>
+</ul>
+
+<h3>👩‍🏫 Intervenant :</h3>
+<p><strong>Caroline Chen</strong> - Investment Partner avec 15 ans d'expérience, 50+ deals réalisés, 200M€ levés.</p>
+
+<h3>📅 Informations pratiques :</h3>
+<ul>
+  <li>📍 Le 40 - Marseille</li>
+  <li>🕐 22 Novembre 2025 - 14h00</li>
+  <li>⏱️ Durée : 3h</li>
+  <li>👥 Places limitées : 20 participants</li>
+  <li>🎓 Niveau : Intermédiaire</li>
+  <li>✅ Prérequis : Avoir un projet de startup en phase de développement</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Événement',
+    tags: ['event', 'masterclass', 'finance', 'investissement', 'pitch', 'marseille', 'featured'],
+    images: [
+      { src: 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Ticket Membre', price: '49.00', sku: 'EVENT-MASTERCLASS-FUNDS-MEMBER', inventory_quantity: 10 },
+      { title: 'Ticket Non-Membre', price: '89.00', sku: 'EVENT-MASTERCLASS-FUNDS-NONMEMBER', inventory_quantity: 10 },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'event',
+      event_date: '2025-11-22T14:00:00',
+      event_duration: 180,
+      max_attendees: 20,
+      category: 'Masterclass',
+      difficulty_level: 'Intermédiaire',
+    },
+  },
+  {
+    id: 'event-conference-ia-pme',
+    title: 'Conférence: L\'IA au Service des PME - 5 Déc 2025',
+    body_html: `<h2>Intelligence Artificielle pour PME</h2>
+<p>Découvrez comment intégrer l'intelligence artificielle dans votre stratégie d'entreprise. Applications concrètes, outils accessibles, et retours d'expérience de PME qui ont transformé leur activité.</p>
+
+<h3>🤖 Au programme :</h3>
+<ul>
+  <li>🎯 Applications concrètes de l'IA pour PME</li>
+  <li>🛠️ Outils IA accessibles sans être développeur</li>
+  <li>💡 Cas d'usage : marketing, ventes, service client</li>
+  <li>📊 ROI et gains de productivité mesurables</li>
+  <li>🧪 Démonstrations en live d'outils IA</li>
+  <li>❓ Session Q&A interactive</li>
+</ul>
+
+<h3>📅 Informations pratiques :</h3>
+<ul>
+  <li>📍 Le 40 - Marseille</li>
+  <li>🕐 5 Décembre 2025 - 19h00</li>
+  <li>⏱️ Durée : 2h</li>
+  <li>👥 Places limitées : 80 participants</li>
+  <li>🎓 Niveau : Tous niveaux</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Événement',
+    tags: ['event', 'conference', 'ia', 'innovation', 'technologie', 'marseille', 'featured'],
+    images: [
+      { src: 'https://images.pexels.com/photos/3184436/pexels-photo-3184436.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Ticket Membre', price: '20.00', sku: 'EVENT-CONF-IA-MEMBER', inventory_quantity: 40 },
+      { title: 'Ticket Non-Membre', price: '35.00', sku: 'EVENT-CONF-IA-NONMEMBER', inventory_quantity: 40 },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'event',
+      event_date: '2025-12-05T19:00:00',
+      event_duration: 120,
+      max_attendees: 80,
+      category: 'Conférence',
+      difficulty_level: 'Tous niveaux',
+    },
+  },
+  {
+    id: 'event-atelier-marketing-digital',
+    title: 'Atelier Marketing Digital Intensif - 12 Déc 2025',
+    body_html: `<h2>Formation Marketing Digital - Journée Intensive</h2>
+<p>Formation intensive d'une journée sur les stratégies marketing digital qui convertissent. Tous les canaux essentiels pour générer des leads qualifiés.</p>
+
+<h3>📚 Programme complet :</h3>
+<ul>
+  <li>🔍 SEO : Référencement naturel et stratégie de contenu</li>
+  <li>💰 Publicité en ligne : Google Ads, Facebook Ads, LinkedIn</li>
+  <li>📧 Email marketing : Automation et séquences de conversion</li>
+  <li>📱 Réseaux sociaux : Stratégie et création de contenu</li>
+  <li>📊 Analytics : Mesurer et optimiser vos campagnes</li>
+  <li>🎯 Funnel de conversion : De la visibilité à la vente</li>
+  <li>💪 Exercices pratiques et mise en situation</li>
+</ul>
+
+<h3>📅 Informations pratiques :</h3>
+<ul>
+  <li>📍 Le 40 - Marseille</li>
+  <li>🕐 12 Décembre 2025 - 10h00</li>
+  <li>⏱️ Durée : 6h (pause déjeuner incluse)</li>
+  <li>👥 Places limitées : 15 participants</li>
+  <li>🎓 Niveau : Intermédiaire</li>
+  <li>💻 Apportez votre ordinateur</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Événement',
+    tags: ['event', 'atelier', 'marketing', 'digital', 'formation', 'marseille'],
+    images: [
+      { src: 'https://images.pexels.com/photos/3184396/pexels-photo-3184396.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Ticket Membre', price: '89.00', sku: 'EVENT-ATELIER-MARKETING-MEMBER', inventory_quantity: 8 },
+      { title: 'Ticket Non-Membre', price: '149.00', sku: 'EVENT-ATELIER-MARKETING-NONMEMBER', inventory_quantity: 7 },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'event',
+      event_date: '2025-12-12T10:00:00',
+      event_duration: 360,
+      max_attendees: 15,
+      category: 'Atelier',
+      difficulty_level: 'Intermédiaire',
+    },
+  },
+  {
+    id: 'event-pitch-session-startups',
+    title: 'Pitch Session Startups - 20 Déc 2025',
+    body_html: `<h2>Session Pitch Devant Investisseurs</h2>
+<p>Présentez votre startup devant un panel d'investisseurs et d'entrepreneurs expérimentés. Excellente opportunité pour affiner votre discours et recevoir des feedbacks précieux.</p>
+
+<h3>🎤 Format :</h3>
+<ul>
+  <li>⏱️ 5 minutes de pitch par startup</li>
+  <li>💬 10 minutes de Q&A constructif</li>
+  <li>📝 Feedbacks détaillés du panel</li>
+  <li>🤝 Networking après la session</li>
+  <li>📹 Enregistrement vidéo de votre pitch (optionnel)</li>
+</ul>
+
+<h3>👥 Panel :</h3>
+<ul>
+  <li>Investisseurs early-stage</li>
+  <li>Business angels</li>
+  <li>Entrepreneurs à succès</li>
+</ul>
+
+<h3>📅 Informations pratiques :</h3>
+<ul>
+  <li>📍 Le 40 - Marseille</li>
+  <li>🕐 20 Décembre 2025 - 18h00</li>
+  <li>⏱️ Durée : 2h30</li>
+  <li>👥 Places limitées : 40 participants</li>
+  <li>🎓 Niveau : Tous niveaux</li>
+</ul>`,
+    vendor: 'Le 40',
+    product_type: 'Événement',
+    tags: ['event', 'pitch', 'startup', 'networking', 'investisseurs', 'marseille'],
+    images: [
+      { src: 'https://images.pexels.com/photos/3184632/pexels-photo-3184632.jpeg?auto=compress&cs=tinysrgb&w=1600' },
+    ],
+    variants: [
+      { title: 'Ticket Membre', price: '0.00', sku: 'EVENT-PITCH-SESSION-MEMBER', inventory_quantity: 20 },
+      { title: 'Ticket Non-Membre', price: '25.00', sku: 'EVENT-PITCH-SESSION-NONMEMBER', inventory_quantity: 20 },
+    ],
+    metafields: {
+      calendar_sync_required: false,
+      resource_type: 'event',
+      event_date: '2025-12-20T18:00:00',
+      event_duration: 150,
+      max_attendees: 40,
+      category: 'Networking',
+      difficulty_level: 'Tous niveaux',
+    },
+  },
+];
+
+export const ALL_PRODUCTS = [...MEETING_ROOMS, ...STUDIOS, ...ADDITIONAL_SERVICES, ...EXPERT_SERVICES, ...PREMIUM_SERVICES, ...DOMICILIATION_PACKS, ...EVENTS];

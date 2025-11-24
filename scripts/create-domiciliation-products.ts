@@ -58,13 +58,20 @@ async function createDomiciliationProducts() {
           vendor: product.vendor,
           product_type: product.product_type,
           tags: product.tags.join(', '),
-          variants: product.variants.map(v => ({
-            title: v.title,
+          options: [
+            {
+              name: 'Type d\'abonnement',
+              values: product.variants.map(v => v.title)
+            }
+          ],
+          variants: product.variants.map((v, index) => ({
+            option1: v.title,
             price: v.price,
             compare_at_price: v.compare_at_price || null,
             sku: v.sku,
             inventory_management: null,
             requires_shipping: false,
+            position: index + 1,
           })),
           images: product.images?.map(img => ({ src: img.src })) || [],
           metafields: [
