@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function FinalCTASection() {
   return (
-    <section className="relative py-32 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-24 lg:py-32 bg-black overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px]">
           <div className="absolute inset-0 bg-emerald-600/20 rounded-full blur-[200px] animate-pulse"></div>
@@ -48,14 +48,14 @@ export default function FinalCTASection() {
             </span>
           </div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
             BESOIN D'UN ESPACE
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 animate-gradient">
               SUR-MESURE ?
             </span>
           </h2>
 
-          <p className="text-xl font-inter text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl font-inter text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
             Notre équipe vous accompagne pour créer l'événement parfait dans nos espaces modulables
           </p>
 
@@ -88,7 +88,7 @@ export default function FinalCTASection() {
             </motion.a>
           </div>
 
-          <div className="mt-16 grid grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div className="mt-16 grid grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto">
             {[
               { number: "500+", label: "Événements organisés" },
               { number: "98%", label: "Clients satisfaits" },

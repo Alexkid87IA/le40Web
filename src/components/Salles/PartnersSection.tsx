@@ -4,7 +4,7 @@ import { Building2, Award } from 'lucide-react';
 
 export default function PartnersSection() {
   return (
-    <section className="relative py-32 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-24 lg:py-32 bg-black overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]">
           <div className="absolute inset-0 bg-emerald-600/10 rounded-full blur-[150px]"></div>
@@ -12,13 +12,13 @@ export default function PartnersSection() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <Award className="w-8 h-8 text-emerald-400" />
@@ -26,13 +26,13 @@ export default function PartnersSection() {
               Nos clients
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
             ILS ORGANISENT
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               CHEZ NOUS
             </span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto">
             Les plus grandes entreprises nous font confiance pour leurs événements
           </p>
         </motion.div>
@@ -44,10 +44,10 @@ export default function PartnersSection() {
           transition={{ duration: 0.6 }}
           className="relative"
         >
-          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-3xl opacity-20 blur-2xl"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-2xl md:rounded-3xl opacity-20 blur-2xl"></div>
 
-          <div className="relative bg-zinc-900/50 backdrop-blur-xl rounded-3xl p-12 border border-white/10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="relative bg-zinc-900/50 backdrop-blur-xl rounded-2xl md:rounded-3xl p-12 border border-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
               {partners.map((partner, index) => (
                 <motion.div
                   key={index}
@@ -89,7 +89,7 @@ export default function PartnersSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-16 grid md:grid-cols-3 gap-8"
+          className="mt-16 grid md:grid-cols-3 gap-6 md:gap-8"
         >
           {[
             {
@@ -120,7 +120,7 @@ export default function PartnersSection() {
               <motion.div
                 className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500`}
               />
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 group-hover:border-white/20 transition-all text-center">
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-5 md:p-6 lg:p-8 border border-white/10 group-hover:border-white/20 transition-all text-center">
                 <motion.div
                   initial={{ scale: 0.5 }}
                   whileInView={{ scale: 1 }}

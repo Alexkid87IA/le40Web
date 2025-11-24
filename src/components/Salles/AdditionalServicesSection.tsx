@@ -4,32 +4,32 @@ import { Star, ArrowRight, Check } from 'lucide-react';
 
 export default function AdditionalServicesSection() {
   return (
-    <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
+    <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black to-zinc-900">
       <div className="absolute inset-0">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
             SERVICES
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               ADDITIONNELS
             </span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto">
             Personnalisez votre événement avec nos services premium
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {additionalServices.map((service, index) => (
             <motion.div
               key={service.id}
@@ -58,10 +58,10 @@ export default function AdditionalServicesSection() {
                 className="relative h-full"
               >
                 <motion.div
-                  className={`absolute -inset-1 bg-gradient-to-r ${service.gradient} rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500`}
+                  className={`absolute -inset-1 bg-gradient-to-r ${service.gradient} rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500`}
                 />
 
-                <div className="relative bg-zinc-900/80 backdrop-blur-xl rounded-3xl p-8 border border-white/10 group-hover:border-white/30 transition-all duration-500 h-full flex flex-col">
+                <div className="relative bg-zinc-900/80 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-8 border border-white/10 group-hover:border-white/30 transition-all duration-500 h-full flex flex-col">
                   <div className="flex items-start justify-between mb-6">
                     <motion.div
                       className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center`}
@@ -132,13 +132,13 @@ export default function AdditionalServicesSection() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-6 px-10 py-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-6 px-10 py-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-2xl md:rounded-3xl">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <div className="text-left">
-                <h3 className="text-xl font-montserrat font-bold text-white mb-1">
+                <h3 className="text-base md:text-lg lg:text-xl font-montserrat font-bold text-white mb-1">
                   Besoin d'un service sur-mesure ?
                 </h3>
                 <p className="text-white/70 font-inter">

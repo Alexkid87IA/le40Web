@@ -19,19 +19,19 @@ export default function PricingSimulatorSection() {
   const finalPrice = totalPrice - savings;
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-zinc-900 to-black">
+    <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-zinc-900 to-black">
       <div className="absolute inset-0">
         <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <Calculator className="w-8 h-8 text-emerald-400" />
@@ -39,13 +39,13 @@ export default function PricingSimulatorSection() {
               Simulateur de prix
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
             ESTIMEZ VOTRE
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               BUDGET
             </span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto">
             Calculez le coût de votre événement en temps réel
           </p>
         </motion.div>
@@ -57,7 +57,7 @@ export default function PricingSimulatorSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-zinc-900/80 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+            <div className="bg-zinc-900/80 backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-8 border border-white/10">
               <h3 className="text-2xl font-montserrat font-bold text-white mb-8">
                 Configurez votre événement
               </h3>
@@ -196,7 +196,7 @@ export default function PricingSimulatorSection() {
             transition={{ duration: 0.6 }}
           >
             <div className="sticky top-8">
-              <div className="bg-gradient-to-br from-zinc-900 to-black backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
+              <div className="bg-gradient-to-br from-zinc-900 to-black backdrop-blur-xl rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-8 border border-white/20 shadow-2xl">
                 <h3 className="text-2xl font-montserrat font-bold text-white mb-8">
                   Récapitulatif
                 </h3>

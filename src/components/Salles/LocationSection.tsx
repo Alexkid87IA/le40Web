@@ -30,19 +30,19 @@ export default function LocationSection() {
   ];
 
   return (
-    <section className="relative py-32 bg-black">
+    <section className="relative py-16 md:py-24 lg:py-32 bg-black">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <MapPin className="w-8 h-8 text-emerald-400" />
@@ -50,18 +50,18 @@ export default function LocationSection() {
               Localisation Premium
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
             AU CŒUR DE
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               PARIS
             </span>
           </h2>
-          <p className="text-xl md:text-2xl font-inter font-light text-white/60 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg lg:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto">
             Un emplacement stratégique accessible depuis toute l'Île-de-France
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 mb-10 md:mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -70,9 +70,9 @@ export default function LocationSection() {
           >
             <div className="relative group">
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-3xl opacity-30 group-hover:opacity-50 blur-xl transition-all duration-500"
+                className="absolute -inset-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 rounded-2xl md:rounded-3xl opacity-30 group-hover:opacity-50 blur-xl transition-all duration-500"
               />
-              <div className="relative bg-zinc-900/80 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/20 h-[500px]">
+              <div className="relative bg-zinc-900/80 backdrop-blur-xl rounded-2xl md:rounded-3xl overflow-hidden border border-white/20 h-[500px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-cyan-600/20"></div>
                 <div className="relative h-full flex items-center justify-center">
                   <div className="text-center p-8">
@@ -127,7 +127,7 @@ export default function LocationSection() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-xl font-montserrat font-bold text-white">
+                        <h3 className="text-base md:text-lg lg:text-xl font-montserrat font-bold text-white">
                           {transport.title}
                         </h3>
                         <div className="flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full">
@@ -163,7 +163,7 @@ export default function LocationSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-6 md:gap-8"
         >
           {[
             {
@@ -197,7 +197,7 @@ export default function LocationSection() {
               <motion.div
                 className={`absolute -inset-1 bg-gradient-to-r ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-all duration-500`}
               />
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 group-hover:border-white/20 transition-all text-center">
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-5 md:p-6 lg:p-8 border border-white/10 group-hover:border-white/20 transition-all text-center">
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
@@ -205,7 +205,7 @@ export default function LocationSection() {
                 >
                   <feature.icon className="w-12 h-12 text-emerald-400 mx-auto" />
                 </motion.div>
-                <h3 className="text-xl font-montserrat font-bold text-white mb-2">
+                <h3 className="text-base md:text-lg lg:text-xl font-montserrat font-bold text-white mb-2">
                   {feature.title}
                 </h3>
                 <p className="text-white/70 font-inter">

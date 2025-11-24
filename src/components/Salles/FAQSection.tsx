@@ -7,19 +7,19 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative py-32 bg-black">
-      <div className="max-w-4xl mx-auto px-8 lg:px-16">
+    <section className="relative py-16 md:py-24 lg:py-32 bg-black">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-12 lg:mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
             QUESTIONS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">FRÉQUENTES</span>
           </h2>
-          <p className="text-xl font-inter text-white/60">
+          <p className="text-base md:text-lg lg:text-xl font-inter text-white/60">
             Tout ce que vous devez savoir sur nos salles
           </p>
         </motion.div>
@@ -36,7 +36,7 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-8 py-6 flex items-center justify-between text-left"
+                className="w-full px-5 md:px-8 py-4 md:py-6 flex items-center justify-between text-left"
               >
                 <span className="text-white font-montserrat font-bold text-lg">
                   {item.question}
