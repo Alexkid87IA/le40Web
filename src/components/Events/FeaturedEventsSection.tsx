@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, Users } from 'lucide-react';
 import { useState } from 'react';
 import { useEventRegistration, Event } from '../../hooks/useEventRegistration';
+import { eventSpeakers } from '../../data/events/speakers';
 import EventDetailModal from './EventDetailModal';
 
 export default function FeaturedEventsSection() {
@@ -27,6 +28,11 @@ export default function FeaturedEventsSection() {
       hour: '2-digit',
       minute: '2-digit'
     });
+  };
+
+  // Fonction pour récupérer les speakers d'un événement
+  const getEventSpeakers = (speakerIds: string[]) => {
+    return eventSpeakers.filter(speaker => speakerIds.includes(speaker.id));
   };
 
   if (loading) {
@@ -101,7 +107,7 @@ export default function FeaturedEventsSection() {
         >
           <div className="flex items-center justify-center gap-4 mb-6">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white">
-              Événements à{' '}
+              Événements à {' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
                 Venir
               </span>
@@ -251,4 +257,3 @@ export default function FeaturedEventsSection() {
     </section>
   );
 }
-
