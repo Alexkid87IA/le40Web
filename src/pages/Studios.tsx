@@ -8,6 +8,7 @@ import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import HeroSection from '../components/StudiosRefonte/HeroSection';
 import ProcessSection from '../components/StudiosRefonte/ProcessSection';
+import AllStudiosSection from '../components/StudiosRefonte/AllStudiosSection';
 import StudioProductsSection from '../components/StudiosRefonte/StudioProductsSection';
 import ComparisonTableSection from '../components/StudiosRefonte/ComparisonTableSection';
 import StudioEquipmentSection from '../components/StudiosRefonte/StudioEquipmentSection';
@@ -70,6 +71,7 @@ export default function Studios() {
 
           <div className="relative z-10">
             <ProcessSection />
+            <AllStudiosSection />
             <StudioProductsSection onSelectStudio={setSelectedStudio} />
             <ComparisonTableSection />
             <section id="equipment">
