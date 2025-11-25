@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Offres from '../pages/Offres';
 import Tarifs from '../pages/Tarifs';
@@ -30,7 +30,7 @@ import Bundles from '../pages/Bundles';
 
 export default function AppRoutes() {
   return (
-    <Router>
+    <>
       <UnifiedCartDrawer />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -67,6 +67,6 @@ export default function AppRoutes() {
         {/* Route 404 - toujours en dernier */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+    </>
   );
 }

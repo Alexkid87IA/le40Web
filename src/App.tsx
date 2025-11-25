@@ -1,15 +1,21 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './router/AppRoutes';
+import { CartProvider } from './contexts/CartContext';
 import { UnifiedCartProvider } from './contexts/UnifiedCartContext';
 import { PrerollProvider } from './contexts/PrerollContext';
 
 function App() {
   return (
-    <PrerollProvider>
-      <UnifiedCartProvider>
-        <AppRoutes />
-      </UnifiedCartProvider>
-    </PrerollProvider>
+    <BrowserRouter>
+      <PrerollProvider>
+        <CartProvider>
+          <UnifiedCartProvider>
+            <AppRoutes />
+          </UnifiedCartProvider>
+        </CartProvider>
+      </PrerollProvider>
+    </BrowserRouter>
   );
 }
 
