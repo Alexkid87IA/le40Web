@@ -1,13 +1,49 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Sparkles, Calendar, Clock, ShoppingCart } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { Space } from '../../data/salles/spaces';
 import { useCart } from '../../hooks/useCart';
 
+// Interface flexible qui accepte les deux types de données
+interface SpaceItem {
+  id: string;
+  title: string;
+  capacity: string;
+  description?: string;
+  images: string[];
+  price?: number;
+  priceUnit?: string;
+  gradient?: string;
+  features?: string[];
+  disponibilites?: string[];
+  variants?: Array<{
+    id: string;
+    title: string;
+    price: number;
+  }>;
+}
+
 interface SpaceDetailModalProps {
-  space: Space | null;
+  space: SpaceItem | null;
   onClose: () => void;
 }
+
+// Valeurs par défaut
+const defaultFeatures = [
+  'Wi-Fi haut débit',
+  'Écran de présentation',
+  'Climatisation',
+  'Café & thé offerts'
+];
+
+const defaultDisponibilites = ['Heure', 'Demi-journée', 'Journée'];
+
+const defaultGradients = [
+  'from-cyan-600 to-teal-600',
+  'from-emerald-600 to-teal-600',
+  'from-violet-600 to-purple-600',
+  'from-amber-500 to-orange-500',
+  'from-rose-500 to-pink-500'
+];
 
 export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -38,6 +74,25 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
 
   if (!space) return null;
 
+  // Récupérer les valeurs avec fallbacks
+  const images = space.images && space.images.length > 0 ? space.images : ['https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg'];
+  const features = space.features && space.features.length > 0 ? space.features : defaultFeatures;
+  const disponibilites = space.disponibilites && space.disponibilites.length > 0 ? space.disponibilites : defaultDisponibilites;
+  const gradient = space.gradient || defaultGradients[0];
+  
+  // Récupérer le prix de base
+  const getBasePrice = (): number => {
+    if (space.price !== undefined) {
+      return space.price;
+    }
+    if (space.variants && space.variants.length > 0) {
+      return space.variants[0].price;
+    }
+    return 50; // Prix par défaut
+  };
+
+  const basePrice = getBasePrice();
+
   const getTodayDate = () => {
     const today = new Date();
     return today.toISOString().split('T')[0];
@@ -66,8 +121,8 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
       duration: durationMap[duree] || 'hour',
       price: price,
       quantity: 1,
-      image: space.images[0],
-      gradient: space.gradient
+      image: images[0],
+      gradient: gradient
     });
 
     setSelectedDuration(duree);
@@ -106,8 +161,6 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
   };
 
   const calculatePrice = (duration: string) => {
-    let basePrice = space.price;
-
     switch (duration) {
       case '2 heures':
         return basePrice * 2;
@@ -120,6 +173,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
       case 'Soirée complète':
       case 'Soirée':
         return basePrice * 6;
+      case 'Heure':
       default:
         return basePrice;
     }
@@ -157,7 +211,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImageIndex}
-                  src={space.images[currentImageIndex]}
+                  src={images[currentImageIndex]}
                   alt={space.title}
                   className="w-full h-full object-cover"
                   initial={{ opacity: 0, scale: 1.1 }}
@@ -169,11 +223,11 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
 
-              {space.images.length > 1 && (
+              {images.length > 1 && (
                 <>
                   <button
                     onClick={() => setCurrentImageIndex(prev =>
-                      prev === 0 ? space.images.length - 1 : prev - 1
+                      prev === 0 ? images.length - 1 : prev - 1
                     )}
                     className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all group"
                   >
@@ -182,47 +236,36 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
 
                   <button
                     onClick={() => setCurrentImageIndex(prev =>
-                      prev === space.images.length - 1 ? 0 : prev + 1
+                      prev === images.length - 1 ? 0 : prev + 1
                     )}
                     className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all group"
                   >
                     <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-0.5 transition-transform" />
                   </button>
 
-                  <div className="absolute bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3">
-                    {space.images.map((_, idx) => (
+                  <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                    {images.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setCurrentImageIndex(idx)}
-                        className="group"
-                      >
-                        <div className={`h-1 rounded-full transition-all ${idx === currentImageIndex
-                          ? 'w-8 md:w-12 bg-white'
-                          : 'w-4 md:w-6 bg-white/30 group-hover:bg-white/50'
-                          }`} />
-                      </button>
+                        className={`w-2 h-2 rounded-full transition-all ${
+                          idx === currentImageIndex
+                            ? 'bg-white w-6'
+                            : 'bg-white/40 hover:bg-white/60'
+                        }`}
+                      />
                     ))}
                   </div>
                 </>
               )}
             </div>
 
-            <div className="p-5 sm:p-6 md:p-8 lg:p-12 bg-gradient-to-br from-zinc-900 to-zinc-950 flex-1 overflow-y-auto">
-              <div className="flex items-start justify-between mb-5 md:mb-8">
-                <div className="flex-1 pr-2">
-                  <motion.span
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-${space.accentColor}-500/10 text-${space.accentColor}-400 mb-3 md:mb-4`}
-                  >
-                    <space.icon className="w-3.5 h-3.5" />
-                    {space.category}
-                  </motion.span>
-
+            <div className="p-4 md:p-8 lg:p-10 overflow-y-auto">
+              <div className="flex items-start justify-between mb-4 md:mb-6">
+                <div className="flex-1 pr-4">
                   <motion.h2
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
                     className="text-2xl sm:text-3xl md:text-4xl font-montserrat font-black text-white mb-3 md:mb-4"
                   >
                     {space.title}
@@ -234,7 +277,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
                     transition={{ delay: 0.2 }}
                     className="text-zinc-400 leading-relaxed text-sm md:text-base"
                   >
-                    {space.description}
+                    {space.description || `Espace professionnel idéal pour vos réunions et événements. Capacité: ${space.capacity}.`}
                   </motion.p>
                 </div>
 
@@ -265,7 +308,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
                   Équipements premium inclus
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
-                  {space.features.map((feature, idx) => (
+                  {features.map((feature, idx) => (
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, x: -20 }}
@@ -338,7 +381,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
                   </h4>
 
                   <div className="grid grid-cols-1 gap-3">
-                    {space.disponibilites.map((duree, idx) => {
+                    {disponibilites.map((duree, idx) => {
                       const price = calculatePrice(duree);
                       const isSelected = selectedDuration === duree;
 
