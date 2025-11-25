@@ -39,6 +39,7 @@ export interface ShopifyProduct {
   title: string;
   description: string;
   descriptionHtml: string;
+  tags: string[];  // AJOUTÉ
   priceRange: {
     minVariantPrice: {
       amount: string;
@@ -150,6 +151,7 @@ export const getProducts = async (first = 20): Promise<ShopifyProduct[]> => {
             title
             description
             descriptionHtml
+            tags
             priceRange {
               minVariantPrice {
                 amount
@@ -222,6 +224,7 @@ export const getProductByHandle = async (handle: string): Promise<ShopifyProduct
         title
         description
         descriptionHtml
+        tags
         priceRange {
           minVariantPrice {
             amount
@@ -304,6 +307,7 @@ export const getCollections = async (first = 10): Promise<ShopifyCollection[]> =
                   handle
                   title
                   description
+                  tags
                   priceRange {
                     minVariantPrice {
                       amount
@@ -342,7 +346,7 @@ export const createCheckout = async (lineItems: Array<{ variantId: string; quant
         checkout {
           id
           webUrl
-          lineItems(first: 10) {
+          lineItems(first: 50) {
             edges {
               node {
                 id
