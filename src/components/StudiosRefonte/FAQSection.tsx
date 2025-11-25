@@ -1,80 +1,86 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { studioFAQ } from '../../data/studios/studioFAQ';
 import { Plus, Minus, HelpCircle } from 'lucide-react';
+
+const faqData = [
+  {
+    question: "Qu'est-ce qui est inclus dans la location ?",
+    answer: "Tout l'équipement professionnel est inclus : caméras, micros, éclairages, fond vert, etc. Vous n'avez rien à apporter. Un technicien peut vous accompagner sur demande (option)."
+  },
+  {
+    question: "Dois-je avoir de l'expérience pour utiliser les studios ?",
+    answer: "Non ! Nos studios sont conçus pour être accessibles à tous. Nous proposons une prise en main de 15 minutes avant chaque session, et nos techniciens peuvent vous accompagner si besoin."
+  },
+  {
+    question: "Comment se passe la réservation ?",
+    answer: "Réservez en ligne en quelques clics, choisissez votre créneau et payez de façon sécurisée. Vous recevez une confirmation immédiate par email avec toutes les infos d'accès."
+  },
+  {
+    question: "Puis-je annuler ou modifier ma réservation ?",
+    answer: "Oui, annulation gratuite jusqu'à 24h avant votre session. Modification possible selon disponibilité. Contactez-nous par téléphone ou email."
+  },
+  {
+    question: "Proposez-vous des services de post-production ?",
+    answer: "Oui ! Montage vidéo, étalonnage, mixage audio, création de shorts... Nos experts peuvent finaliser vos contenus. Ces services sont disponibles en option lors de la réservation."
+  },
+  {
+    question: "Où êtes-vous situés ?",
+    answer: "Le 40 est situé au cœur de Marseille, facilement accessible en transports en commun et en voiture. Parking à proximité. Adresse exacte communiquée après réservation."
+  }
+];
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-32">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-        <div className="absolute top-0 left-1/2 h-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
-      </div>
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+    <section className="relative py-20 md:py-32 bg-gradient-to-b from-black to-zinc-950">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16 lg:mb-20"
+          className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-3 mb-6">
-            <HelpCircle className="w-6 h-6 md:w-8 md:h-8 text-teal-400" />
-            <span className="text-teal-400 font-montserrat font-medium text-sm tracking-wider uppercase">
-              Questions fréquentes
-            </span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+            <HelpCircle className="w-4 h-4 text-emerald-400" />
+            <span className="text-sm text-white/70 font-inter">Questions fréquentes</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-4 md:mb-6">
-            VOUS AVEZ DES
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
-              QUESTIONS ?
-            </span>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white">
+            Des questions ?
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto px-4">
-            Trouvez toutes les réponses sur nos studios et services
-          </p>
         </motion.div>
 
-        <div className="space-y-3 md:space-y-4">
-          {studioFAQ.map((faq, index) => (
+        {/* FAQ Items */}
+        <div className="space-y-3">
+          {faqData.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              className="relative group"
+              transition={{ delay: index * 0.05 }}
             >
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500"
-              />
-
-              <div className="relative bg-zinc-900/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden">
+              <div className="bg-zinc-900/80 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden hover:border-white/20 transition-colors">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full px-4 md:px-6 lg:px-8 py-4 md:py-5 lg:py-6 flex items-start md:items-center justify-between gap-3 text-left hover:bg-white/5 transition-colors"
+                  className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left"
                 >
-                  <span className="text-sm md:text-base lg:text-lg xl:text-xl font-montserrat font-bold text-white flex-1">
+                  <span className="text-base font-inter font-medium text-white">
                     {faq.question}
                   </span>
-                  <motion.div
-                    animate={{ rotate: openIndex === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className={`flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center ${
-                      openIndex === index
-                        ? 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500'
-                        : 'bg-white/10'
-                    }`}
-                  >
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
+                    openIndex === index
+                      ? 'bg-emerald-500 text-white'
+                      : 'bg-white/10 text-white/60'
+                  }`}>
                     {openIndex === index ? (
-                      <Minus className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                      <Minus className="w-4 h-4" />
                     ) : (
-                      <Plus className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                      <Plus className="w-4 h-4" />
                     )}
-                  </motion.div>
+                  </div>
                 </button>
 
                 <AnimatePresence>
@@ -83,11 +89,11 @@ export default function FAQSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 md:px-6 lg:px-8 pb-4 md:pb-5 lg:pb-6 pt-2">
-                        <p className="text-sm md:text-base text-white/70 font-inter leading-relaxed">
+                      <div className="px-6 pb-5">
+                        <p className="text-white/60 font-inter leading-relaxed">
                           {faq.answer}
                         </p>
                       </div>
@@ -99,36 +105,23 @@ export default function FAQSection() {
           ))}
         </div>
 
+        {/* Contact CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-16 text-center"
+          transition={{ delay: 0.3 }}
+          className="mt-10 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-6 px-10 py-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 flex items-center justify-center">
-                <HelpCircle className="w-8 h-8 text-white" />
-              </div>
-              <div className="text-left">
-                <h3 className="text-xl font-montserrat font-bold text-white mb-1">
-                  Vous ne trouvez pas votre réponse ?
-                </h3>
-                <p className="text-white/70 font-inter">
-                  Notre équipe est là pour vous aider
-                </p>
-              </div>
-            </div>
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white rounded-xl font-inter font-medium shadow-xl whitespace-nowrap"
-            >
-              Nous contacter
-            </motion.a>
-          </div>
+          <p className="text-white/60 mb-4">
+            Vous ne trouvez pas votre réponse ?
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 rounded-xl text-white font-inter font-medium transition-all"
+          >
+            <span>Contactez-nous</span>
+          </a>
         </motion.div>
       </div>
     </section>

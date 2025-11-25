@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Star, Video, Clock, Users, Zap } from 'lucide-react';
+import { ArrowRight, Star, Video } from 'lucide-react';
 import { useRef } from 'react';
 
 export default function HeroSection() {
@@ -11,66 +11,46 @@ export default function HeroSection() {
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-black">
-      <div className="absolute inset-0">
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Fond transparent - la vidéo de Studios.tsx est visible */}
+      <motion.div
+        style={{ opacity }}
+        className="absolute inset-0"
+      >
+        {/* Blobs animés pour effet visuel */}
         <motion.div
-          style={{ opacity }}
-          className="absolute inset-0"
-        >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            ref={(video) => {
-              if (video) {
-                video.playbackRate = 0.8;
-              }
-            }}
-          >
-            <source
-              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761796403/81a51f1c-febc-4326-80f4-ba27a4c6c008_fyps4f.mp4#t=0.1"
-              type="video/mp4"
-            />
-          </video>
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-600/20 rounded-full blur-[150px]"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.3, 0.2]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-600/20 rounded-full blur-[150px]"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.15, 0.25, 0.15]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-600/15 rounded-full blur-[150px]"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
 
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
-
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-600/20 rounded-full blur-[150px]"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.2, 0.3, 0.2]
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-600/20 rounded-full blur-[150px]"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.15, 0.25, 0.15]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-600/15 rounded-full blur-[150px]"
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
-      </div>
+      {/* Grille subtile */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-16 md:py-20 w-full">
         <div className="text-center">
@@ -210,6 +190,7 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Noise overlay */}
       <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
         <svg width="100%" height="100%">
           <filter id="noiseStudiosHero">
@@ -219,7 +200,6 @@ export default function HeroSection() {
           <rect width="100%" height="100%" filter="url(#noiseStudiosHero)" />
         </svg>
       </div>
-
     </section>
   );
 }

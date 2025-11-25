@@ -1,3 +1,15 @@
+/**
+ * Studios.tsx - Page Studios avec parcours de réservation en 4 étapes
+ * 
+ * Structure simplifiée:
+ * - Hero avec vidéo de fond violet
+ * - ProcessSection (comment ça marche)
+ * - StudioBookingFlow (parcours 4 étapes - LE COEUR)
+ * - Témoignages
+ * - FAQ
+ * - CTA Final
+ */
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
@@ -8,17 +20,13 @@ import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import HeroSection from '../components/StudiosRefonte/HeroSection';
 import ProcessSection from '../components/StudiosRefonte/ProcessSection';
-import AllStudiosSection from '../components/StudiosRefonte/AllStudiosSection';
-import StudioProductsSection from '../components/StudiosRefonte/StudioProductsSection';
-import ComparisonTableSection from '../components/StudiosRefonte/ComparisonTableSection';
-import StudioEquipmentSection from '../components/StudiosRefonte/StudioEquipmentSection';
-import StudioBookingSection from '../components/StudiosRefonte/StudioBookingSection';
+import StudioShowcaseSection from '../components/StudiosRefonte/StudioShowcaseSection';
+import StudioBookingFlow from '../components/StudiosRefonte/StudioBookingFlow';
 import TestimonialsSection from '../components/StudiosRefonte/TestimonialsSection';
 import FAQSection from '../components/StudiosRefonte/FAQSection';
 import FinalCTASection from '../components/StudiosRefonte/FinalCTASection';
 
 export default function Studios() {
-  const [selectedStudio, setSelectedStudio] = useState<'podcast' | 'video' | 'photo'>('podcast');
   const [showStickyCTA, setShowStickyCTA] = useState(false);
 
   useEffect(() => {
@@ -32,7 +40,7 @@ export default function Studios() {
   }, []);
 
   const scrollToBooking = () => {
-    const element = document.getElementById('booking');
+    const element = document.getElementById('booking-flow');
     if (element) {
       const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
@@ -44,54 +52,85 @@ export default function Studios() {
   return (
     <div className="min-h-screen bg-black overflow-hidden">
       <SEOHead
-        title="Studios Créatifs & Production Audio-Visuelle Marseille"
-        description="Louez nos studios créatifs équipés à Marseille. Fond vert, éclairage professionnel, matériel audio/vidéo. Parfait pour créateurs de contenu, podcasters et vidéastes. Réservation en ligne."
-        keywords="studio créatif Marseille, studio podcast Marseille, fond vert Marseille, location studio vidéo Marseille, production audiovisuelle Marseille, studio tournage Marseille"
+        title="Studios Créatifs & Production Audio-Visuelle Marseille | Le 40"
+        description="Louez nos studios créatifs équipés à Marseille. Face-Cam, Podcast, Live Stream, Talk-Show. Formules Autonome, Assisté ou Full Service. Réservation en ligne instantanée."
+        keywords="studio créatif Marseille, studio podcast Marseille, studio vidéo Marseille, location studio tournage, production audiovisuelle Marseille, studio YouTube Marseille, studio TikTok"
         schema={serviceSchemas.studios}
       />
+      
       <HeaderNav />
       <MobileBurger />
 
       <main className="pt-24">
-        <HeroSection />
+        {/* ============================================
+            VIDÉO DE FOND FIXE (violet/abstrait)
+            Visible sur toute la page
+        ============================================ */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source 
+              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803653/d928c6b7-f494-4466-81f2-040f32b9eadc_nqynim.mp4" 
+              type="video/mp4" 
+            />
+          </video>
+          {/* Overlay sombre pour lisibilité du contenu */}
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        </div>
 
-        <div className="relative">
-          <div className="fixed inset-0 z-0 pointer-events-none">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803653/d928c6b7-f494-4466-81f2-040f32b9eadc_nqynim.mp4" type="video/mp4" />
-            </video>
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-          </div>
+        {/* ============================================
+            CONTENU DE LA PAGE (par-dessus la vidéo)
+        ============================================ */}
+        <div className="relative z-10">
+          
+          {/* HERO SECTION */}
+          <HeroSection />
 
-          <div className="relative z-10">
-            <ProcessSection />
-            <AllStudiosSection />
-            <StudioProductsSection onSelectStudio={setSelectedStudio} />
-            <ComparisonTableSection />
-            <section id="equipment">
-              <StudioEquipmentSection />
-            </section>
-            <StudioBookingSection selectedStudio={selectedStudio} />
-            <section id="testimonials">
-              <TestimonialsSection />
-            </section>
-            <section id="faq">
-              <FAQSection />
-            </section>
-            <FinalCTASection />
-          </div>
+          {/* COMMENT ÇA MARCHE - 3 étapes simples */}
+          <ProcessSection />
+
+          {/* ============================================
+              VISITE VIRTUELLE DES STUDIOS + SERVICES
+              Permet de découvrir chaque studio avant de réserver
+          ============================================ */}
+          <StudioShowcaseSection />
+
+          {/* ============================================
+              PARCOURS DE RÉSERVATION EN 4 ÉTAPES
+              
+              Étape 1: Choix du studio
+              Étape 2: Choix de la formule
+              Étape 3: Ajout des extras
+              Étape 4: Récapitulatif & Paiement
+          ============================================ */}
+          <StudioBookingFlow />
+
+          {/* TÉMOIGNAGES */}
+          <section id="testimonials">
+            <TestimonialsSection />
+          </section>
+
+          {/* FAQ */}
+          <section id="faq">
+            <FAQSection />
+          </section>
+
+          {/* CTA FINAL */}
+          <FinalCTASection />
         </div>
       </main>
 
       <Footer />
 
-
+      {/* ============================================
+          STICKY CTA MOBILE
+          Apparaît après scroll
+      ============================================ */}
       <AnimatePresence>
         {showStickyCTA && (
           <motion.div
@@ -104,15 +143,17 @@ export default function Studios() {
           >
             <div className="px-4 py-3">
               <div className="flex items-center gap-3">
+                {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="text-white font-bold text-sm truncate">
                     Réservez votre studio
                   </div>
                   <div className="text-emerald-400 text-xs font-medium">
-                    Offre de lancement · -30% · 50 places
+                    À partir de 40€/h · Réservation instantanée
                   </div>
                 </div>
 
+                {/* Bouton réserver */}
                 <button
                   onClick={scrollToBooking}
                   className="shrink-0 flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600
@@ -123,6 +164,7 @@ export default function Studios() {
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
+                {/* Bouton téléphone */}
                 <a
                   href="tel:+33413252640"
                   className="shrink-0 w-12 h-12 flex items-center justify-center bg-white/10 rounded-xl
