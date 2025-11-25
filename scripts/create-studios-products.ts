@@ -44,6 +44,15 @@ async function createStudioProduct(product: CreateProductInput) {
           id
           title
           handle
+          variants(first: 10) {
+            edges {
+              node {
+                id
+                title
+                price
+              }
+            }
+          }
         }
         userErrors {
           field
@@ -59,6 +68,12 @@ async function createStudioProduct(product: CreateProductInput) {
     productType: product.productType,
     vendor: product.vendor,
     tags: product.tags,
+    variants: product.variants.map(v => ({
+      price: v.price,
+      title: v.title,
+      inventoryPolicy: 'CONTINUE',
+      inventoryManagement: null,
+    })),
   };
 
   const data = await shopifyAdminRequest(createProductMutation, { input });
@@ -68,73 +83,9 @@ async function createStudioProduct(product: CreateProductInput) {
     throw new Error('Failed to create product');
   }
 
-  const createdProduct = data.productCreate.product;
-
-  await createVariants(createdProduct.id, product.variants);
-
-  const finalProduct = await getProduct(createdProduct.id);
-  return finalProduct;
+  return data.productCreate.product;
 }
 
-async function createVariants(productId: string, variants: Array<{ title: string; price: string; sku: string }>) {
-  const mutation = `
-    mutation productVariantsBulkCreate($productId: ID!, $variants: [ProductVariantsBulkInput!]!) {
-      productVariantsBulkCreate(productId: $productId, variants: $variants) {
-        productVariants {
-          id
-          title
-          price
-          sku
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-
-  const variantsInput = variants.map(v => ({
-    options: [v.title],
-    price: v.price,
-    sku: v.sku,
-    inventoryPolicy: 'CONTINUE',
-  }));
-
-  const data = await shopifyAdminRequest(mutation, { productId, variants: variantsInput });
-
-  if (data.productVariantsBulkCreate.userErrors.length > 0) {
-    console.error('Variants creation errors:', data.productVariantsBulkCreate.userErrors);
-    throw new Error('Failed to create variants');
-  }
-
-  return data.productVariantsBulkCreate.productVariants;
-}
-
-async function getProduct(productId: string) {
-  const query = `
-    query getProduct($id: ID!) {
-      product(id: $id) {
-        id
-        title
-        handle
-        variants(first: 10) {
-          edges {
-            node {
-              id
-              title
-              price
-              sku
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const data = await shopifyAdminRequest(query, { id: productId });
-  return data.product;
-}
 
 async function addProductToCollection(productId: string, collectionId: string) {
   const mutation = `

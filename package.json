@@ -24,7 +24,8 @@
     "shopify:create-events": "tsx scripts/create-events-products.ts",
     "shopify:create-bundles": "tsx scripts/create-bundles.ts",
     "shopify:create-club": "tsx scripts/create-club-subscriptions.ts",
-    "shopify:create-additional": "tsx scripts/create-additional-services.ts"
+    "shopify:create-additional": "tsx scripts/create-additional-services.ts",
+    "shopify:create-studios": "tsx scripts/create-studios-simple.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1",
