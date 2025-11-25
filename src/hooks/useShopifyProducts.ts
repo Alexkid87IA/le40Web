@@ -6,7 +6,7 @@ export const useShopifyProducts = (initialFetch = true) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchProducts = async (limit = 20) => {
+  const fetchProducts = async (limit = 50) => {
     setLoading(true);
     setError(null);
     try {
@@ -65,8 +65,13 @@ export const getProductMetafield = (
   namespace: string,
   key: string
 ): string | null => {
+  // Vérifier que metafields existe et filtrer les éléments null
+  if (!product.metafields || !Array.isArray(product.metafields)) {
+    return null;
+  }
+  
   const metafield = product.metafields.find(
-    (m) => m.namespace === namespace && m.key === key
+    (m) => m && m.namespace === namespace && m.key === key
   );
   return metafield?.value || null;
 };
