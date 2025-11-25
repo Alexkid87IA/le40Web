@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { shopifyStorefront } from '../lib/shopify';
+import { shopifyFetch } from '../lib/shopify';
 import type { ShopifyProduct } from '../lib/shopify';
 
 export function useShopifyCollection(collectionHandle: string) {
@@ -83,13 +83,9 @@ export function useShopifyCollection(collectionHandle: string) {
           }
         `;
 
-        const response = await shopifyStorefront(query, { handle: collectionHandle });
+        const response: any = await shopifyFetch({ query, variables: { handle: collectionHandle } });
 
-        if (response.errors) {
-          throw new Error(response.errors[0]?.message || 'Failed to fetch collection');
-        }
-
-        const collection = response.data?.collectionByHandle;
+        const collection = response?.collectionByHandle;
         if (!collection) {
           throw new Error(`Collection "${collectionHandle}" not found`);
         }

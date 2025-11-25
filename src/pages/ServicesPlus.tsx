@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, ArrowRight, Sparkles, Zap, Target, Award, Users, CheckCircle, Calendar, Crown } from 'lucide-react';
+import { Star, ArrowRight, Sparkles, Zap, Target, Award, Users, CheckCircle, Calendar, Crown, ShoppingCart } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import { useShopifyCollection } from '../hooks/useShopifyCollection';
+import { useUnifiedCart } from '../hooks/useUnifiedCart';
+import type { ShopifyProduct } from '../lib/shopify';
 
 const premiumServices = [
   {
@@ -99,6 +102,25 @@ const processSteps = [
 ];
 
 export default function ServicesPlus() {
+  const { products: premiumServices, loading } = useShopifyCollection('services-beauty');
+  const { products: additionalServices } = useShopifyCollection('services-additionnels');
+  const { addShopifyItem, loading: cartLoading } = useUnifiedCart();
+
+  const handleAddToCart = async (product: ShopifyProduct) => {
+    const firstVariant = product.variants.edges[0]?.node;
+    if (firstVariant && firstVariant.availableForSale) {
+      await addShopifyItem({
+        shopifyVariantId: firstVariant.id,
+        productTitle: product.title,
+        variantTitle: firstVariant.title,
+        price: parseFloat(firstVariant.price.amount),
+        quantity: 1,
+        image: product.images.edges[0]?.node.url,
+        availableForSale: firstVariant.availableForSale,
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0F172A]">
       <HeaderNav />
@@ -134,7 +156,7 @@ export default function ServicesPlus() {
           </div>
         </section>
 
-        {/* Premium Services */}
+        {/* Premium Services from Shopify */}
         <section className="py-20 bg-slate-900">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
@@ -145,12 +167,89 @@ export default function ServicesPlus() {
               className="text-center mb-16"
             >
               <h2 className="text-section-title font-montserrat font-black text-white mb-6">
-                Nos Services <span className="gradient-text">Premium</span>
+                Services <span className="gradient-text">Premium</span>
               </h2>
+              <p className="text-white/70 text-lg max-w-3xl mx-auto">
+                Beauty, décoration, catering et support technique pour vos tournages
+              </p>
             </motion.div>
 
+            {loading ? (
+              <div className="flex items-center justify-center py-20">
+                <div className="w-12 h-12 border-4 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...premiumServices, ...additionalServices].map((service, index) => {
+                  const variant = service.variants.edges[0]?.node;
+                  const price = variant ? parseFloat(variant.price.amount) : 0;
+                  const image = service.images.edges[0]?.node;
+
+                  return (
+                    <motion.div
+                      key={service.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: (index % 3) * 0.1, duration: 0.6 }}
+                      className="group glass-effect border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-500"
+                    >
+                      {image && (
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={image.url}
+                            alt={service.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                        </div>
+                      )}
+
+                      <div className="p-6">
+                        <h3 className="text-xl font-montserrat font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-violet-400 group-hover:to-fuchsia-400 transition-all">
+                          {service.title}
+                        </h3>
+
+                        <div
+                          className="text-white/70 text-sm mb-4 line-clamp-3"
+                          dangerouslySetInnerHTML={{ __html: service.description?.substring(0, 150) + '...' || '' }}
+                        />
+
+                        <div className="flex items-baseline gap-2 mb-4">
+                          <span className="text-2xl font-bold text-white">{price}€</span>
+                          {variant && variant.title !== 'Default Title' && (
+                            <span className="text-sm text-white/60">/ {variant.title}</span>
+                          )}
+                        </div>
+
+                        <button
+                          onClick={() => handleAddToCart(service)}
+                          disabled={cartLoading}
+                          className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold py-3 rounded-xl hover:from-violet-500 hover:to-fuchsia-500 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50"
+                        >
+                          {cartLoading ? (
+                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          ) : (
+                            <>
+                              <ShoppingCart className="w-4 h-4" />
+                              <span>Ajouter au panier</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Keep old static content for context */}
+        <section className="py-20 bg-[#0F172A] film-grain" style={{display: 'none'}}>
+          <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {premiumServices.map((service, index) => (
+              {premiumServices.slice(0, 0).map((service, index) => (
                 <motion.div
                   key={service.id}
                   initial={{ opacity: 0, y: 30 }}

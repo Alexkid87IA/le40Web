@@ -26,6 +26,7 @@ import UnifiedCheckout from '../pages/UnifiedCheckout';
 import ShopPage from '../pages/ShopPage';
 import ShopifyCheckout from '../pages/ShopifyCheckout';
 import ShopifyConfirmation from '../pages/ShopifyConfirmation';
+import Bundles from '../pages/Bundles';
 
 export default function AppRoutes() {
   return (
@@ -58,6 +59,8 @@ export default function AppRoutes() {
         <Route path="/politique-confidentialite" element={<CGV />} />
         <Route path="/boutique" element={<ShopPage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path="/bundles" element={<Bundles />} />
+        <Route path="/packs" element={<Bundles />} />
         <Route path="/checkout-shopify" element={<ShopifyCheckout />} />
         <Route path="/confirmation-shopify" element={<ShopifyConfirmation />} />
 
