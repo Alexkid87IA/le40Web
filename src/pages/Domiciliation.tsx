@@ -18,6 +18,7 @@ import FAQSection from '../components/Domiciliation/FAQSection';
 import GuaranteesSection from '../components/Domiciliation/GuaranteesSection';
 import FinalCTASection from '../components/Domiciliation/FinalCTASection';
 import StickyHeader from '../components/Domiciliation/StickyHeader';
+import ClubUpsellSection from '../components/Domiciliation/ClubUpsellSection';
 
 export default function Domiciliation() {
   return (
@@ -40,6 +41,7 @@ export default function Domiciliation() {
         <ServicesDetailSection />
         <GalleryVisualSection />
         <PricingSection />
+        <ClubUpsellSection />
         <ProcessSection />
         <TestimonialsSection />
         <ComparisonTableSection />

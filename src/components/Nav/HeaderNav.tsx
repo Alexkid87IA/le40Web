@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, Sparkles } from 'lucide-react';
+import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, Sparkles, Package } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import UnifiedCartButton from '../Cart/UnifiedCartButton';
@@ -11,6 +11,7 @@ const navItems = [
   { name: 'Domiciliation', href: '/domiciliation', icon: MapPin },
   { name: 'Salles', href: '/salles', icon: Presentation },
   { name: 'Studio', href: '/studios', icon: Video },
+  { name: 'Bundles', href: '/bundles', icon: Package },
   { name: 'Nos Events', href: '/events', icon: Calendar },
   { name: 'Le Club', href: '/experts', icon: Sparkles },
 ];
@@ -26,6 +27,7 @@ const indicatorColors = {
   '/domiciliation': 'bg-orange-400',
   '/salles': 'bg-purple-400',
   '/studios': 'bg-emerald-400',
+  '/bundles': 'bg-pink-400',
   '/events': 'bg-cyan-400',
   '/experts': 'bg-red-400',
 };
@@ -37,6 +39,7 @@ const reserveButtonColors = {
   '/domiciliation': 'from-orange-600 via-amber-600 to-orange-600',
   '/salles': 'from-purple-600 via-violet-600 to-purple-600',
   '/studios': 'from-emerald-600 via-teal-600 to-emerald-600',
+  '/bundles': 'from-pink-600 via-rose-600 to-pink-600',
   '/events': 'from-cyan-600 via-sky-600 to-cyan-600',
   '/experts': 'from-red-600 via-rose-600 to-red-600',
   '/contact': 'from-slate-600 via-gray-600 to-slate-600',
@@ -49,6 +52,7 @@ const reserveButtonGlow = {
   '/domiciliation': 'bg-orange-500/40',
   '/salles': 'bg-purple-500/40',
   '/studios': 'bg-emerald-500/40',
+  '/bundles': 'bg-pink-500/40',
   '/events': 'bg-cyan-500/40',
   '/experts': 'bg-red-500/40',
   '/contact': 'bg-slate-500/40',

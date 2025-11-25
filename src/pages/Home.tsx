@@ -10,6 +10,7 @@ import DomiciliationSection from '../sections/ServiceSections/DomiciliationSecti
 import BureauxSection from '../sections/ServiceSections/BureauxSection';
 import StudiosSection from '../sections/ServiceSections/StudiosSection';
 import CommunitySection from '../sections/ServiceSections/CommunitySection';
+import BundlesHighlightSection from '../sections/BundlesHighlight';
 import Footer from '../components/Footer';
 
 export default function HomeNew() {
@@ -45,6 +46,8 @@ export default function HomeNew() {
             <CommunitySection />
           </div>
         </div>
+
+        <BundlesHighlightSection />
       </main>
 
       <Footer />

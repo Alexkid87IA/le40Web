@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingCart, ArrowRight, Trash2, Clock, Calendar, Sparkles, Store } from 'lucide-react';
+import { X, ShoppingCart, ArrowRight, Trash2, Clock, Calendar, Sparkles, Store, Package, RefreshCw } from 'lucide-react';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import { useNavigate } from 'react-router-dom';
 
@@ -126,10 +126,29 @@ export default function UnifiedCartDrawer() {
                             <div className="p-4">
                               <div className="flex items-start justify-between mb-3">
                                 <div className="flex-1">
-                                  <h4 className="font-montserrat font-semibold text-white text-sm">
-                                    {item.productTitle}
-                                  </h4>
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <h4 className="font-montserrat font-semibold text-white text-sm">
+                                      {item.productTitle}
+                                    </h4>
+                                    {item.productTitle.toLowerCase().includes('club') && (
+                                      <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-yellow-500/20 border border-yellow-500/30 rounded-full">
+                                        <RefreshCw className="w-2.5 h-2.5 text-yellow-400" />
+                                        <span className="text-yellow-400 text-[9px] font-semibold uppercase">Abonnement</span>
+                                      </div>
+                                    )}
+                                    {(item.productTitle.toLowerCase().includes('bundle') || item.productTitle.toLowerCase().includes('pack')) && (
+                                      <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-pink-500/20 border border-pink-500/30 rounded-full">
+                                        <Package className="w-2.5 h-2.5 text-pink-400" />
+                                        <span className="text-pink-400 text-[9px] font-semibold uppercase">Bundle</span>
+                                      </div>
+                                    )}
+                                  </div>
                                   <p className="text-white/60 text-xs mt-1">{item.variantTitle}</p>
+                                  {item.productTitle.toLowerCase().includes('club') && (
+                                    <p className="text-yellow-400/80 text-[10px] mt-1 italic">
+                                      Facturation mensuelle automatique
+                                    </p>
+                                  )}
                                 </div>
                                 <button
                                   onClick={() => removeItem(item.id)}

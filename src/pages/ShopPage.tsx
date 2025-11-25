@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Filter, X, Loader2 } from 'lucide-react';
+import { ShoppingBag, Filter, X, Loader2, Package, Sparkles, Zap } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -16,6 +16,8 @@ export default function ShopPage() {
   const [selectedProduct, setSelectedProduct] = useState<ShopifyProduct | null>(null);
   const [filterOpen, setFilterOpen] = useState(false);
   const [priceFilter, setPriceFilter] = useState<'all' | 'low' | 'medium' | 'high'>('all');
+  const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -36,12 +38,82 @@ export default function ShopPage() {
     }
   };
 
+  const allCollections = Array.from(
+    new Set(
+      products.flatMap(p =>
+        p.tags.filter(tag =>
+          ['le-40-club', 'bundles-packs', 'services-additionnels', 'services-expert', 'services-premium'].some(c => tag.includes(c))
+        )
+      )
+    )
+  );
+
+  const productTypes = Array.from(
+    new Set(
+      products.flatMap(p => {
+        if (p.tags.some(t => t.includes('bundle') || t.includes('pack'))) return ['Bundle'];
+        if (p.tags.some(t => t.includes('club') || t.includes('abonnement'))) return ['Abonnement'];
+        if (p.tags.some(t => t.includes('studio'))) return ['Studio'];
+        if (p.tags.some(t => t.includes('service'))) return ['Service'];
+        return [];
+      })
+    )
+  );
+
+  const isNewProduct = (createdAt: string) => {
+    const created = new Date(createdAt);
+    const now = new Date();
+    const diffDays = Math.floor((now.getTime() - created.getTime()) / (1000 * 60 * 60 * 24));
+    return diffDays <= 30;
+  };
+
+  const toggleCollection = (collection: string) => {
+    setSelectedCollections(prev =>
+      prev.includes(collection)
+        ? prev.filter(c => c !== collection)
+        : [...prev, collection]
+    );
+  };
+
+  const toggleType = (type: string) => {
+    setSelectedTypes(prev =>
+      prev.includes(type)
+        ? prev.filter(t => t !== type)
+        : [...prev, type]
+    );
+  };
+
+  const resetFilters = () => {
+    setPriceFilter('all');
+    setSelectedCollections([]);
+    setSelectedTypes([]);
+  };
+
   const filteredProducts = products.filter(product => {
-    if (priceFilter === 'all') return true;
-    const price = parseFloat(product.priceRange.minVariantPrice.amount);
-    if (priceFilter === 'low') return price < 100;
-    if (priceFilter === 'medium') return price >= 100 && price < 300;
-    if (priceFilter === 'high') return price >= 300;
+    if (priceFilter !== 'all') {
+      const price = parseFloat(product.priceRange.minVariantPrice.amount);
+      if (priceFilter === 'low' && price >= 100) return false;
+      if (priceFilter === 'medium' && (price < 100 || price >= 300)) return false;
+      if (priceFilter === 'high' && price < 300) return false;
+    }
+
+    if (selectedCollections.length > 0) {
+      const hasMatchingCollection = selectedCollections.some(col =>
+        product.tags.some(tag => tag.includes(col))
+      );
+      if (!hasMatchingCollection) return false;
+    }
+
+    if (selectedTypes.length > 0) {
+      let productType = '';
+      if (product.tags.some(t => t.includes('bundle') || t.includes('pack'))) productType = 'Bundle';
+      else if (product.tags.some(t => t.includes('club') || t.includes('abonnement'))) productType = 'Abonnement';
+      else if (product.tags.some(t => t.includes('studio'))) productType = 'Studio';
+      else if (product.tags.some(t => t.includes('service'))) productType = 'Service';
+
+      if (!selectedTypes.includes(productType)) return false;
+    }
+
     return true;
   });
 
@@ -80,9 +152,9 @@ export default function ShopPage() {
                     <Filter className="w-5 h-5" />
                     Filtres
                   </h3>
-                  {priceFilter !== 'all' && (
+                  {(priceFilter !== 'all' || selectedCollections.length > 0 || selectedTypes.length > 0) && (
                     <button
-                      onClick={() => setPriceFilter('all')}
+                      onClick={resetFilters}
                       className="text-xs text-white/60 hover:text-white transition-colors"
                     >
                       Réinitialiser
@@ -90,9 +162,51 @@ export default function ShopPage() {
                   )}
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div>
-                    <h4 className="text-sm font-semibold text-white/80 mb-2">Prix</h4>
+                    <h4 className="text-sm font-semibold text-white/80 mb-3">Type de produit</h4>
+                    <div className="space-y-2">
+                      {productTypes.map(type => (
+                        <label key={type} className="flex items-center gap-2 cursor-pointer group">
+                          <input
+                            type="checkbox"
+                            checked={selectedTypes.includes(type)}
+                            onChange={() => toggleType(type)}
+                            className="w-4 h-4 accent-violet-500 rounded"
+                          />
+                          <span className="text-sm text-white/60 group-hover:text-white transition-colors">
+                            {type}
+                          </span>
+                          {type === 'Bundle' && <Package className="w-3 h-3 text-pink-400" />}
+                          {type === 'Abonnement' && <Sparkles className="w-3 h-3 text-yellow-400" />}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {allCollections.length > 0 && (
+                    <div>
+                      <h4 className="text-sm font-semibold text-white/80 mb-3">Collections</h4>
+                      <div className="space-y-2">
+                        {allCollections.map(collection => (
+                          <label key={collection} className="flex items-center gap-2 cursor-pointer group">
+                            <input
+                              type="checkbox"
+                              checked={selectedCollections.includes(collection)}
+                              onChange={() => toggleCollection(collection)}
+                              className="w-4 h-4 accent-violet-500 rounded"
+                            />
+                            <span className="text-sm text-white/60 group-hover:text-white transition-colors capitalize">
+                              {collection.replace(/-/g, ' ')}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div>
+                    <h4 className="text-sm font-semibold text-white/80 mb-3">Prix</h4>
                     <div className="space-y-2">
                       {[
                         { id: 'all', label: 'Tous les prix' },
@@ -136,14 +250,35 @@ export default function ShopPage() {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredProducts.map(product => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onQuickView={setSelectedProduct}
-                      onAddToCart={handleAddToCart}
-                    />
-                  ))}
+                  {filteredProducts.map(product => {
+                    const isNew = isNewProduct(product.createdAt);
+                    const isBundle = product.tags.some(t => t.includes('bundle') || t.includes('pack'));
+                    return (
+                      <div key={product.id} className="relative">
+                        {isNew && (
+                          <div className="absolute -top-2 -right-2 z-10">
+                            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                              <Zap className="w-3 h-3" />
+                              NOUVEAU
+                            </div>
+                          </div>
+                        )}
+                        {isBundle && (
+                          <div className="absolute -top-2 -left-2 z-10">
+                            <div className="bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+                              <Package className="w-3 h-3" />
+                              PACK
+                            </div>
+                          </div>
+                        )}
+                        <ProductCard
+                          product={product}
+                          onQuickView={setSelectedProduct}
+                          onAddToCart={handleAddToCart}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               )}
 
