@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, Sparkles, ShoppingCart } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useCart } from '../../hooks/useCart';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
 const navItems = [
   { name: 'Accueil', href: '/', icon: Home },
@@ -19,7 +19,7 @@ export default function MobileBurger() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { itemCount, setIsOpen: setCartOpen } = useCart();
+  const { itemCount, setDrawerOpen: setCartOpen } = useUnifiedCart();
 
   useEffect(() => {
     if (isOpen) {
