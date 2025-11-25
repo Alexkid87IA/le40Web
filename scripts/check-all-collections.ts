@@ -14,6 +14,10 @@ async function shopifyRequest(query: string) {
   });
 
   const result = await response.json();
+  if (result.errors) {
+    console.error('GraphQL Errors:', result.errors);
+    throw new Error('GraphQL request failed');
+  }
   return result.data;
 }
 
@@ -26,28 +30,39 @@ async function checkAllCollections() {
             id
             title
             handle
-            productsCount
+            productsCount {
+              count
+            }
           }
         }
       }
     }
   `;
 
-  const data = await shopifyRequest(query);
+  try {
+    const data = await shopifyRequest(query);
 
-  console.log('\n📦 TOUTES LES COLLECTIONS SHOPIFY\n');
-  console.log('='.repeat(60) + '\n');
+    console.log('\n📦 TOUTES LES COLLECTIONS SHOPIFY\n');
+    console.log('='.repeat(60) + '\n');
 
-  data.collections.edges.forEach((c: any) => {
-    const collection = c.node;
-    console.log(`✅ ${collection.title}`);
-    console.log(`   Handle: ${collection.handle}`);
-    console.log(`   Produits: ${collection.productsCount}`);
-    console.log(`   ID: ${collection.id}\n`);
-  });
+    if (!data.collections || data.collections.edges.length === 0) {
+      console.log('❌ Aucune collection trouvée\n');
+      return;
+    }
 
-  console.log('='.repeat(60));
-  console.log(`\nTotal: ${data.collections.edges.length} collections\n`);
+    data.collections.edges.forEach((c: any) => {
+      const collection = c.node;
+      console.log(`✅ ${collection.title}`);
+      console.log(`   Handle: ${collection.handle}`);
+      console.log(`   Produits: ${collection.productsCount.count}`);
+      console.log(`   ID: ${collection.id}\n`);
+    });
+
+    console.log('='.repeat(60));
+    console.log(`\nTotal: ${data.collections.edges.length} collections\n`);
+  } catch (error) {
+    console.error('Erreur:', error);
+  }
 }
 
 checkAllCollections();

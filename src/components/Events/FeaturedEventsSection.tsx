@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Users } from 'lucide-react';
-import { upcomingEvents, UpcomingEvent } from '../../data/events/upcomingEvents';
-import { eventSpeakers } from '../../data/events/speakers';
 import { useState } from 'react';
+import { useEventRegistration, Event } from '../../hooks/useEventRegistration';
 import EventDetailModal from './EventDetailModal';
 
 export default function FeaturedEventsSection() {
+  const { upcomingEvents, loading } = useEventRegistration();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [selectedEvent, setSelectedEvent] = useState<UpcomingEvent | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   const filteredEvents = upcomingEvents;
 
@@ -29,9 +29,13 @@ export default function FeaturedEventsSection() {
     });
   };
 
-  const getEventSpeakers = (speakerIds: string[]) => {
-    return eventSpeakers.filter(speaker => speakerIds.includes(speaker.id));
-  };
+  if (loading) {
+    return (
+      <section className="py-16 md:py-24 lg:py-32 bg-black text-center text-white">
+        Chargement des événements...
+      </section>
+    );
+  }
 
   const getCapacityPercentage = (current: number, max: number) => {
     return (current / max) * 100;

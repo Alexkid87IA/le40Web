@@ -2,15 +2,16 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Star } from 'lucide-react';
 import SectionHeader from './SectionHeader';
-import { pricingPlans } from '../../data/domiciliation/pricingPlans';
+import { useDomiciliationPricing } from '../../hooks/useDomiciliationPricing';
 import { useCart } from '../../hooks/useCart';
 
 export default function PricingSection() {
+  const { plans, loading } = useDomiciliationPricing();
   const { addItem } = useCart();
   const [addedToCart, setAddedToCart] = useState<Record<string, boolean>>({});
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('monthly');
 
-  const handleAddToCart = (plan: typeof pricingPlans[0]) => {
+  const handleAddToCart = (plan: typeof plans[0]) => {
     addItem({
       id: plan.id,
       serviceType: 'domiciliation',
@@ -26,6 +27,16 @@ export default function PricingSection() {
       setAddedToCart({ ...addedToCart, [plan.id]: false });
     }, 2000);
   };
+
+  if (loading) {
+    return (
+      <section id="pricing" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-zinc-900 to-black">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center text-white">
+          Chargement des offres...
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="pricing" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-zinc-900 to-black">
@@ -63,7 +74,7 @@ export default function PricingSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
-          {pricingPlans.map((plan, index) => (
+          {plans.map((plan, index) => (
             <motion.div
               key={plan.id}
               initial={{ opacity: 0, y: 30 }}

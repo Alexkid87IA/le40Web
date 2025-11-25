@@ -19,11 +19,11 @@ import LocationSection from '../components/Salles/LocationSection';
 import FAQSection from '../components/Salles/FAQSection';
 import FinalCTASection from '../components/Salles/FinalCTASection';
 import StickyHeader from '../components/Salles/StickyHeader';
-import { spaces } from '../data/salles/spaces';
-import { Space } from '../data/salles/spaces';
+import { useRoomBooking, Room } from '../hooks/useRoomBooking';
 
 export default function Salles() {
-  const [selectedSpace, setSelectedSpace] = useState<Space | null>(null);
+  const { rooms, loading } = useRoomBooking();
+  const [selectedSpace, setSelectedSpace] = useState<Room | null>(null);
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
@@ -40,10 +40,14 @@ export default function Salles() {
       <main className="pt-24">
         <HeroSection />
         <ProcessSection />
-        <SpacesGridSection
-          spaces={spaces}
-          onSpaceClick={setSelectedSpace}
-        />
+        {loading ? (
+          <div className="py-24 text-center text-white">Chargement des salles...</div>
+        ) : (
+          <SpacesGridSection
+            spaces={rooms}
+            onSpaceClick={setSelectedSpace}
+          />
+        )}
         <EventTypesSection />
         <SpaceComparatorSection />
         <EquipmentSection />
