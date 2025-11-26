@@ -38,7 +38,9 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
 
   if (!event) return null;
 
-  const speakers = eventSpeakers.filter(speaker => event.speakerIds.includes(speaker.id));
+  const speakers = event.speakerIds?.length 
+    ? eventSpeakers.filter(speaker => event.speakerIds.includes(speaker.id))
+    : [];
   const capacityPercentage = (event.currentAttendees / event.maxAttendees) * 100;
   const spotsLeft = event.maxAttendees - event.currentAttendees;
 
