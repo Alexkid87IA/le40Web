@@ -31,7 +31,8 @@ export default function FeaturedEventsSection() {
   };
 
   // Fonction pour récupérer les speakers d'un événement
-  const getEventSpeakers = (speakerIds: string[]) => {
+  const getEventSpeakers = (speakerIds?: string[]) => {
+    if (!speakerIds || speakerIds.length === 0) return [];
     return eventSpeakers.filter(speaker => speakerIds.includes(speaker.id));
   };
 
