@@ -25,7 +25,13 @@ export default function Hero() {
             muted
             playsInline
             className="w-full h-full object-cover"
-            style={{ objectPosition: 'center' }}
+            style={{
+              objectPosition: 'center',
+              filter: 'brightness(0.9)'
+            }}
+            ref={(el) => {
+              if (el) el.playbackRate = 0.75;
+            }}
           >
             <source src="https://cdn.midjourney.com/video/6a97acd6-cbd2-4553-8cf1-d218433970a5/0.mp4" type="video/mp4" />
           </video>
