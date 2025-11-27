@@ -71,7 +71,7 @@ export default function HeroSection() {
         }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-24 sm:py-28 md:py-32 lg:py-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 pt-32 sm:pt-36 md:pt-40 lg:pt-32 pb-24 sm:pb-28 md:pb-32 lg:pb-20 w-full">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -87,7 +87,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight px-4 mt-8"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight px-4"
           >
             REJOIGNEZ{' '}
             <span className="relative inline-block">
