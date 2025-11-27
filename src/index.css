@@ -134,6 +134,16 @@
   line-height: 1.4;
 }
 
+/* Smooth scroll optimization */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 0px;
