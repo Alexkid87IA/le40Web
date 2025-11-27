@@ -18,8 +18,9 @@ import PartnersSection from '../components/Salles/PartnersSection';
 import LocationSection from '../components/Salles/LocationSection';
 import FAQSection from '../components/Salles/FAQSection';
 import FinalCTASection from '../components/Salles/FinalCTASection';
-import StickyHeader from '../components/Salles/StickyHeader';
+import BottomBar from '../components/Shared/BottomBar';
 import { useRoomBooking, Room } from '../hooks/useRoomBooking';
+import { Calendar } from 'lucide-react';
 
 export default function Salles() {
   const { rooms, loading } = useRoomBooking();
@@ -35,7 +36,21 @@ export default function Salles() {
       />
       <HeaderNav />
       <MobileBurger />
-      <StickyHeader />
+
+      <BottomBar
+        variant="salles"
+        title="Salles de Réunion Marseille"
+        subtitle="Dès 50€/heure"
+        features={[
+          { text: 'Réservation facile', pulse: false },
+          { text: 'Équipement pro', pulse: false },
+          { text: '4 à 50 personnes', highlight: true },
+        ]}
+        ctaText="Réserver"
+        ctaHref="#spaces"
+        phoneNumber="04 13 00 10 00"
+        icon={<Calendar className="w-5 h-5 md:w-6 md:h-6 text-white" />}
+      />
 
       <main className="pt-24">
         <HeroSection />

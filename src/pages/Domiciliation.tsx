@@ -17,8 +17,9 @@ import UrgencySection from '../components/Domiciliation/UrgencySection';
 import FAQSection from '../components/Domiciliation/FAQSection';
 import GuaranteesSection from '../components/Domiciliation/GuaranteesSection';
 import FinalCTASection from '../components/Domiciliation/FinalCTASection';
-import StickyHeader from '../components/Domiciliation/StickyHeader';
+import BottomBar from '../components/Shared/BottomBar';
 import ClubUpsellSection from '../components/Domiciliation/ClubUpsellSection';
+import { MapPin } from 'lucide-react';
 
 export default function Domiciliation() {
   return (
@@ -31,7 +32,21 @@ export default function Domiciliation() {
       />
       <HeaderNav />
       <MobileBurger />
-      <StickyHeader />
+
+      <BottomBar
+        variant="domiciliation"
+        title="Domiciliation Marseille"
+        subtitle="Dès 29€/mois"
+        features={[
+          { text: 'Activation 24h', pulse: true },
+          { text: 'Sans engagement', pulse: false },
+          { text: '127 clients actifs', highlight: true },
+        ]}
+        ctaText="Choisir ma formule"
+        ctaHref="#pricing"
+        phoneNumber="04 13 00 10 00"
+        icon={<MapPin className="w-5 h-5 md:w-6 md:h-6 text-white" />}
+      />
 
       <main className="pt-24">
         <HeroSection />
