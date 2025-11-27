@@ -8,6 +8,7 @@ import { elegantFadeIn, staggerContainer, staggerItem } from '../../utils/animat
 interface Feature {
   icon: LucideIcon;
   text: string;
+  description?: string;
 }
 
 interface AnimatedServiceSectionProps {
@@ -162,7 +163,7 @@ export default function AnimatedServiceSection({
                       boxShadow: '0 20px 40px rgba(255, 255, 255, 0.05)'
                     }}
                     transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-                    className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-4 cursor-pointer"
+                    className="flex items-start gap-3 bg-white/8 backdrop-blur-sm border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 cursor-pointer hover:bg-white/12 transition-colors"
                     style={{ transformStyle: 'preserve-3d' }}
                   >
                     <motion.div
@@ -172,7 +173,12 @@ export default function AnimatedServiceSection({
                     >
                       <FeatureIcon className="w-5 h-5" />
                     </motion.div>
-                    <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{feature.text}</span>
+                    <div className="flex-1">
+                      <div className="text-white text-sm md:text-base leading-tight font-semibold mb-1">{feature.text}</div>
+                      {feature.description && (
+                        <div className="text-white/50 text-xs leading-snug">{feature.description}</div>
+                      )}
+                    </div>
                   </motion.div>
                 );
               })}

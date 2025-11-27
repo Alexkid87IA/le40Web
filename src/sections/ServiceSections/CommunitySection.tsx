@@ -34,14 +34,14 @@ export default function CommunitySection() {
       }
       description="Plus qu'un espace de travail, Le 40 est une communauté vibrante où se rencontrent les esprits les plus brillants de Marseille. Échangez, collaborez et grandissez ensemble."
       features={[
-        { icon: Calendar, text: 'Networking Events Mensuels' },
-        { icon: Lightbulb, text: 'Ateliers & Masterclass Membres' },
-        { icon: Award, text: 'Mentors & Experts Disponibles' },
-        { icon: Sparkles, text: 'Opportunités de Collaboration' }
+        { icon: Calendar, text: 'Networking Events Mensuels', description: 'Rencontrez d\'autres entrepreneurs chaque mois' },
+        { icon: Lightbulb, text: 'Ateliers & Masterclass Membres', description: 'Formations exclusives par des experts' },
+        { icon: Award, text: 'Mentors & Experts Disponibles', description: 'Bénéficiez de conseils personnalisés' },
+        { icon: Sparkles, text: 'Opportunités de Collaboration', description: 'Trouvez vos prochains partenaires' }
       ]}
       price={{
-        amount: 'Inclus',
-        period: 'avec votre abonnement',
+        amount: 'Accès illimité',
+        period: 'inclus avec tout abonnement Le 40',
         gradientClasses: 'bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400'
       }}
       cta={{
