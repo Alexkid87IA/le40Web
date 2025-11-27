@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Phone, X, ChevronUp, ChevronDown, Check } from 'lucide-react';
 
 interface BottomBarProps {
-  variant: 'salles' | 'bureaux' | 'domiciliation';
+  variant: 'salles' | 'bureaux' | 'domiciliation' | 'studios' | 'events' | 'club';
   title: string;
   subtitle: string;
   features: Array<{ text: string; highlight?: boolean; pulse?: boolean }>;
@@ -41,6 +41,33 @@ const variantStyles = {
     glowColor: 'shadow-orange-500/30',
     pulseColor: 'bg-orange-400',
     barGradient: 'from-orange-500 via-amber-500 to-orange-500',
+  },
+  studios: {
+    gradient: 'from-purple-600 to-violet-600',
+    gradientHover: 'from-purple-700 to-violet-700',
+    accentColor: 'text-purple-400',
+    borderColor: 'border-purple-500/20',
+    glowColor: 'shadow-purple-500/30',
+    pulseColor: 'bg-purple-400',
+    barGradient: 'from-purple-500 via-violet-500 to-purple-500',
+  },
+  events: {
+    gradient: 'from-cyan-600 to-blue-600',
+    gradientHover: 'from-cyan-700 to-blue-700',
+    accentColor: 'text-cyan-400',
+    borderColor: 'border-cyan-500/20',
+    glowColor: 'shadow-cyan-500/30',
+    pulseColor: 'bg-cyan-400',
+    barGradient: 'from-cyan-500 via-blue-500 to-cyan-500',
+  },
+  club: {
+    gradient: 'from-red-600 to-rose-600',
+    gradientHover: 'from-red-700 to-rose-700',
+    accentColor: 'text-red-400',
+    borderColor: 'border-red-500/20',
+    glowColor: 'shadow-red-500/30',
+    pulseColor: 'bg-red-400',
+    barGradient: 'from-red-500 via-rose-500 to-red-500',
   },
 };
 

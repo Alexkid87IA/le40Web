@@ -10,14 +10,12 @@
  * - CTA Final
  */
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Phone } from 'lucide-react';
 import SEOHead from '../components/SEO/SEOHead';
 import { serviceSchemas } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import BottomBar from '../components/Shared/BottomBar';
 import HeroSection from '../components/StudiosRefonte/HeroSection';
 import ProcessSection from '../components/StudiosRefonte/ProcessSection';
 import StudioShowcaseSection from '../components/StudiosRefonte/StudioShowcaseSection';
@@ -25,29 +23,9 @@ import StudioBookingFlow from '../components/StudiosRefonte/StudioBookingFlow';
 import TestimonialsSection from '../components/StudiosRefonte/TestimonialsSection';
 import FAQSection from '../components/StudiosRefonte/FAQSection';
 import FinalCTASection from '../components/StudiosRefonte/FinalCTASection';
+import { Video } from 'lucide-react';
 
 export default function Studios() {
-  const [showStickyCTA, setShowStickyCTA] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY;
-      setShowStickyCTA(scrolled > 400);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToBooking = () => {
-    const element = document.getElementById('booking-flow');
-    if (element) {
-      const offset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
@@ -57,9 +35,24 @@ export default function Studios() {
         keywords="studio créatif Marseille, studio podcast Marseille, studio vidéo Marseille, location studio tournage, production audiovisuelle Marseille, studio YouTube Marseille, studio TikTok"
         schema={serviceSchemas.studios}
       />
-      
+
       <HeaderNav />
       <MobileBurger />
+
+      <BottomBar
+        variant="studios"
+        title="Studios Créatifs Le 40"
+        subtitle="À partir de 80€/session"
+        features={[
+          { text: 'Équipement 4K', pulse: false },
+          { text: 'Formules flexibles', pulse: false },
+          { text: 'Résa instantanée', highlight: true },
+        ]}
+        ctaText="Réserver un studio"
+        ctaHref="#booking-flow"
+        phoneNumber="04 13 00 10 00"
+        icon={<Video className="w-5 h-5 md:w-6 md:h-6 text-white" />}
+      />
 
       <main className="pt-24">
         {/* ============================================

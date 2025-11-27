@@ -47,7 +47,7 @@ import { Calendar } from 'lucide-react';
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `variant` | `'salles' \| 'bureaux' \| 'domiciliation'` | Définit les couleurs et le style |
+| `variant` | `'salles' \| 'bureaux' \| 'domiciliation' \| 'studios' \| 'events' \| 'club'` | Définit les couleurs et le style |
 | `title` | `string` | Titre principal affiché |
 | `subtitle` | `string` | Prix ou info secondaire |
 | `features` | `Array<Feature>` | Liste des points clés (voir ci-dessous) |
@@ -83,6 +83,21 @@ import { Calendar } from 'lucide-react';
 - Gradient: orange → amber
 - Couleur d'accent: orange-400
 - Utilisé pour: Services de domiciliation
+
+### Studios (Purple/Violet)
+- Gradient: purple → violet
+- Couleur d'accent: purple-400
+- Utilisé pour: Studios créatifs et production
+
+### Events (Cyan/Blue)
+- Gradient: cyan → blue (plus foncé que Salles)
+- Couleur d'accent: cyan-400
+- Utilisé pour: Événements et networking
+
+### Club (Red/Rose)
+- Gradient: red → rose
+- Couleur d'accent: red-400
+- Utilisé pour: Club entrepreneurs premium
 
 ## Comportement
 
@@ -170,9 +185,12 @@ import { Z_INDEX } from '@/utils/zIndex';
 
 ## Pages Implémentées
 
-- ✅ `/salles` - Salles de Réunion
-- ✅ `/bureaux` - Bureaux Privés
-- ✅ `/domiciliation` - Services de Domiciliation
+- ✅ `/salles` - Salles de Réunion (Cyan/Blue)
+- ✅ `/bureaux` - Bureaux Privés (Emerald/Teal)
+- ✅ `/domiciliation` - Services de Domiciliation (Orange/Amber)
+- ✅ `/studios` - Studios Créatifs (Purple/Violet)
+- ✅ `/events` - Événements & Networking (Cyan/Blue)
+- ✅ `/club` - Club Entrepreneurs (Red/Rose)
 
 ## Personnalisation
 

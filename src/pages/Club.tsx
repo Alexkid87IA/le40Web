@@ -3,6 +3,7 @@ import SEOHead from '../components/SEO/SEOHead';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import BottomBar from '../components/Shared/BottomBar';
 import HeroSection from '../components/Club/HeroSection';
 import WorkshopsSection from '../components/Club/WorkshopsSection';
 import BenefitsSection from '../components/Club/BenefitsSection';
@@ -12,6 +13,7 @@ import TestimonialsSection from '../components/Club/TestimonialsSection';
 import MembershipProcessSection from '../components/Club/MembershipProcessSection';
 import FAQSection from '../components/Club/FAQSection';
 import FinalCTASection from '../components/Club/FinalCTASection';
+import { Sparkles } from 'lucide-react';
 
 export default function Club() {
   return (
@@ -23,6 +25,21 @@ export default function Club() {
       />
       <HeaderNav />
       <MobileBurger />
+
+      <BottomBar
+        variant="club"
+        title="Club Le 40 - Entrepreneurs"
+        subtitle="À partir de 199€/an"
+        features={[
+          { text: 'Accès exclusif', pulse: false },
+          { text: 'Réseau premium', pulse: false },
+          { text: '150+ membres', highlight: true },
+        ]}
+        ctaText="Devenir membre"
+        ctaHref="#pricing"
+        phoneNumber="04 13 00 10 00"
+        icon={<Sparkles className="w-5 h-5 md:w-6 md:h-6 text-white" />}
+      />
 
       <main className="pt-0">
         <HeroSection />
