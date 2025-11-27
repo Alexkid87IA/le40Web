@@ -19,13 +19,16 @@ export default function Hero() {
           style={{ opacity }}
           className="absolute inset-0"
         >
-          <div
-            className="w-full h-full bg-cover bg-center md:bg-center"
-            style={{
-              backgroundImage: 'url(https://cdn.midjourney.com/3b057cf6-d2a9-4db4-af88-da9df9729338/0_2.png)',
-              backgroundPosition: 'center 40%'
-            }}
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center' }}
+          >
+            <source src="https://cdn.midjourney.com/video/6a97acd6-cbd2-4553-8cf1-d218433970a5/0.mp4" type="video/mp4" />
+          </video>
 
           <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
 
