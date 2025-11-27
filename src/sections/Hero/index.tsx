@@ -143,7 +143,7 @@ export default function Hero() {
             {[
               { value: '4000', suffix: 'm²', label: 'Surface totale', color: 'from-amber-500 via-orange-600 to-amber-500' },
               { value: '120', suffix: '+', label: 'Entrepreneurs', color: 'from-orange-500 via-amber-600 to-orange-500' },
-              { value: '50', suffix: '+', label: 'Espaces disponibles', color: 'from-amber-600 via-orange-500 to-amber-600' },
+              { value: '50', suffix: '+', label: 'Espaces uniques', color: 'from-amber-600 via-orange-500 to-amber-600' },
               { value: '1', suffix: 'Gb/s', label: 'Fibre dédiée', color: 'from-orange-600 via-amber-500 to-orange-600' },
             ].map((stat, index) => (
               <motion.div
