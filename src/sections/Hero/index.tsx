@@ -148,12 +148,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-10 md:mb-12 lg:mb-16 px-4"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-10 md:mb-12 lg:mb-16 px-4"
           >
             {[
               { value: '4000', suffix: 'm²', label: 'Surface totale', color: 'from-amber-500 via-orange-600 to-amber-500' },
               { value: '120', suffix: '+', label: 'Entrepreneurs', color: 'from-orange-500 via-amber-600 to-orange-500' },
-              { value: '50', suffix: '+', label: 'Espaces uniques', color: 'from-amber-600 via-orange-500 to-amber-600' },
+              { value: '50', suffix: '+', label: 'Espaces', color: 'from-amber-600 via-orange-500 to-amber-600' },
               { value: '1', suffix: 'Gb/s', label: 'Fibre dédiée', color: 'from-orange-600 via-amber-500 to-orange-600' },
             ].map((stat, index) => (
               <motion.div
@@ -166,11 +166,11 @@ export default function Hero() {
               >
                 <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500`} />
 
-                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-8 group-hover:border-white/20 transition-all duration-500">
-                  <div className={`text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2`}>
+                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 group-hover:border-white/20 transition-all duration-500 min-h-[120px] md:min-h-0 flex flex-col items-center justify-center">
+                  <div className={`text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2 whitespace-nowrap`}>
                     {stat.value}{stat.suffix}
                   </div>
-                  <p className="text-xs md:text-sm text-white/60 uppercase tracking-wider font-inter">{stat.label}</p>
+                  <p className="text-xs md:text-sm text-white/60 uppercase tracking-wider font-inter text-center whitespace-nowrap">{stat.label}</p>
                 </div>
               </motion.div>
             ))}
