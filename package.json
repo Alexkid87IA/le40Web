@@ -28,6 +28,8 @@
     "shopify:create-studios": "tsx scripts/create-studios-simple.ts"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^5.4.1",
+    "@stripe/stripe-js": "^8.5.3",
     "@supabase/supabase-js": "^2.76.1",
     "framer-motion": "^10.16.16",
     "lucide-react": "^0.344.0",

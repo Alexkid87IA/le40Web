@@ -2,7 +2,18 @@ const SHOPIFY_DOMAIN = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN;
 const SHOPIFY_STOREFRONT_ACCESS_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 const SHOPIFY_API_VERSION = '2024-10';
 
-const SHOPIFY_GRAPHQL_URL = `https://${SHOPIFY_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
+// Check if Shopify is configured
+const isShopifyConfigured = Boolean(SHOPIFY_DOMAIN && SHOPIFY_STOREFRONT_ACCESS_TOKEN);
+
+if (!isShopifyConfigured) {
+  console.warn('⚠️ Shopify is not configured. Set VITE_SHOPIFY_STORE_DOMAIN and VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN in .env file.');
+}
+
+const SHOPIFY_GRAPHQL_URL = isShopifyConfigured
+  ? `https://${SHOPIFY_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`
+  : '';
+
+export const shopifyEnabled = isShopifyConfigured;
 
 export async function shopifyFetch<T>({
   query,
@@ -11,6 +22,10 @@ export async function shopifyFetch<T>({
   query: string;
   variables?: Record<string, unknown>;
 }): Promise<T> {
+  if (!isShopifyConfigured) {
+    throw new Error('Shopify is not configured. Please contact support.');
+  }
+
   const response = await fetch(SHOPIFY_GRAPHQL_URL, {
     method: 'POST',
     headers: {

@@ -97,14 +97,52 @@ Deno.serve(async (req: Request) => {
       </html>
     `;
 
-    console.log(`✉️ Email de confirmation préparé pour ${customerEmail} (Commande ${orderNumber})`);
-    console.log(`Note: Intégration email service (Resend/SendGrid) à configurer`);
+    // Send email via Resend
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+
+    if (!resendApiKey) {
+      console.warn("RESEND_API_KEY not configured, skipping email");
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: "Email service not configured",
+          emailPreview: emailHtml
+        }),
+        {
+          status: 200,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    const emailResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${resendApiKey}`,
+      },
+      body: JSON.stringify({
+        from: "Le 40 Coworking <reservations@le40coworking.com>",
+        to: [customerEmail],
+        subject: `Confirmation de commande ${orderNumber} - Le 40`,
+        html: emailHtml,
+      }),
+    });
+
+    if (!emailResponse.ok) {
+      const error = await emailResponse.text();
+      console.error(`Resend API error: ${error}`);
+      throw new Error(`Failed to send email: ${error}`);
+    }
+
+    const result = await emailResponse.json();
+    console.log(`✉️ Email envoyé avec succès à ${customerEmail} (ID: ${result.id})`);
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: "Email sent successfully",
-        emailPreview: emailHtml 
+        emailId: result.id
       }),
       {
         status: 200,
