@@ -147,13 +147,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-10 md:mb-12 lg:mb-16 px-4"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-10 md:mb-12 lg:mb-16 px-5 sm:px-4"
           >
             {[
               { value: '50€', suffix: '/m', label: 'Sans engagement', color: 'from-red-500 via-rose-600 to-red-500' },
-              { value: '15+', suffix: '', label: 'Events/mois', color: 'from-rose-500 via-red-600 to-rose-500' },
+              { value: '15+', suffix: '', label: 'Événements/mois', color: 'from-rose-500 via-red-600 to-rose-500' },
               { value: '120+', suffix: '', label: 'Entrepreneurs', color: 'from-red-600 via-rose-500 to-red-600' },
-              { value: '100%', suffix: '', label: 'Networking', color: 'from-rose-600 via-red-500 to-rose-600' },
+              { value: '100%', suffix: '', label: 'Inclus', color: 'from-rose-600 via-red-500 to-rose-600' },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -165,11 +165,11 @@ export default function HeroSection() {
               >
                 <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500`} />
 
-                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-8 group-hover:border-white/20 transition-all duration-500">
-                  <div className={`text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2`}>
+                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8 group-hover:border-white/20 transition-all duration-500">
+                  <div className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-1.5 sm:mb-2`}>
                     {stat.value}{stat.suffix}
                   </div>
-                  <p className="text-xs md:text-sm text-white/60 uppercase tracking-wider font-inter">{stat.label}</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm text-white/60 uppercase tracking-wider font-inter leading-tight">{stat.label}</p>
                 </div>
               </motion.div>
             ))}
@@ -179,7 +179,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 md:mb-10 lg:mb-12 px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-8 md:mb-10 lg:mb-12 px-5 sm:px-4"
           >
             <motion.a
               href="#pricing"
@@ -192,9 +192,9 @@ export default function HeroSection() {
                 animate={{ opacity: [0.5, 0.75, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 text-white rounded-xl font-montserrat font-bold text-base md:text-lg shadow-2xl">
+              <div className="relative flex items-center gap-2 md:gap-3 px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-3.5 md:py-4 lg:py-5 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 text-white rounded-xl font-montserrat font-bold text-sm sm:text-base md:text-lg shadow-2xl w-full sm:w-auto justify-center">
                 <span>Rejoindre le Club</span>
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.a>
 
@@ -202,7 +202,7 @@ export default function HeroSection() {
               href="/contact"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-base md:text-lg transition-all duration-300"
+              className="px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-3.5 md:py-4 lg:py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-sm sm:text-base md:text-lg transition-all duration-300 w-full sm:w-auto text-center"
             >
               Découvrir les événements
             </motion.a>
