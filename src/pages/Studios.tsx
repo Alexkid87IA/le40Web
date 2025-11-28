@@ -10,6 +10,9 @@
  * - CTA Final
  */
 
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Video, ArrowRight, Phone } from 'lucide-react';
 import SEOHead from '../components/SEO/SEOHead';
 import { serviceSchemas } from '../utils/seoSchemas';
 import HeaderNav from '../components/Nav/HeaderNav';
@@ -23,9 +26,21 @@ import StudioBookingFlow from '../components/StudiosRefonte/StudioBookingFlow';
 import TestimonialsSection from '../components/StudiosRefonte/TestimonialsSection';
 import FAQSection from '../components/StudiosRefonte/FAQSection';
 import FinalCTASection from '../components/StudiosRefonte/FinalCTASection';
-import { Video } from 'lucide-react';
 
 export default function Studios() {
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowStickyCTA(window.scrollY > 500);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToBooking = () => {
+    document.getElementById('booking-flow')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
