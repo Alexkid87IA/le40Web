@@ -10,7 +10,7 @@ import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
-import { useCart } from '../hooks/useCart';
+import { useUnifiedCart } from '../hooks/useUnifiedCart';
 import { supabase } from '../lib/supabase';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
@@ -32,9 +32,12 @@ interface FormErrors {
 
 function CheckoutForm() {
   const navigate = useNavigate();
-  const { items, totalPrice, calculateStudioTotal, clearCart, removeItem } = useCart();
+  const { items: allItems, totalPrice, calculateStudioTotal, clearCart, removeItem } = useUnifiedCart();
   const stripe = useStripe();
   const elements = useElements();
+
+  // Filter only local items for this checkout (Shopify items go through Shopify checkout)
+  const items = allItems.filter(item => item.type === 'local');
 
   const [formData, setFormData] = useState<FormData>({
     name: '',

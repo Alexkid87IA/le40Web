@@ -3,17 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Star } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { useDomiciliationPricing } from '../../hooks/useDomiciliationPricing';
-import { useCart } from '../../hooks/useCart';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
 export default function PricingSection() {
   const { plans, loading } = useDomiciliationPricing();
-  const { addItem } = useCart();
+  const { addLocalItem, setIsOpen } = useUnifiedCart();
   const [addedToCart, setAddedToCart] = useState<Record<string, boolean>>({});
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('monthly');
 
   const handleAddToCart = (plan: typeof plans[0]) => {
-    addItem({
-      id: plan.id,
+    addLocalItem({
       serviceType: 'domiciliation',
       serviceName: `Domiciliation ${plan.name}`,
       date: new Date().toISOString(),

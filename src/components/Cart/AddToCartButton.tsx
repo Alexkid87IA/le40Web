@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Check } from 'lucide-react';
-import { useCart } from '../../hooks/useCart';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
 interface AddToCartButtonProps {
   item: {
@@ -18,12 +18,11 @@ interface AddToCartButtonProps {
 }
 
 export default function AddToCartButton({ item, variant = 'primary', fullWidth = true, className = '' }: AddToCartButtonProps) {
-  const { addItem } = useCart();
+  const { addLocalItem, setIsOpen } = useUnifiedCart();
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
-    addItem({
-      id: item.id,
+    addLocalItem({
       serviceType: item.type,
       serviceName: item.name,
       date: new Date().toISOString(),

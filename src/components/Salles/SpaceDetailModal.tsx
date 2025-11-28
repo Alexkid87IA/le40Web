@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Sparkles, Calendar, Clock, ShoppingCart } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { useCart } from '../../hooks/useCart';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
 // Interface flexible qui accepte les deux types de données
 interface SpaceItem {
@@ -50,7 +50,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedDuration, setSelectedDuration] = useState<string | null>(null);
-  const { addItem } = useCart();
+  const { addLocalItem, setIsOpen } = useUnifiedCart();
 
   useEffect(() => {
     if (space) {
@@ -111,8 +111,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
       return;
     }
 
-    addItem({
-      id: `salle-${space.id}-${duree.toLowerCase().replace(/\s/g, '-')}-${selectedDate}-${selectedTime}`,
+    addLocalItem({
       serviceType: 'meeting-room',
       serviceName: `${space.title} - ${duree}`,
       date: selectedDate,

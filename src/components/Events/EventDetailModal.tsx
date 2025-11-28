@@ -3,7 +3,7 @@ import { Calendar, Clock, Users, MapPin, X, Check, ArrowRight, Sparkles, Trendin
 import { useEffect, useState } from 'react';
 import { UpcomingEvent } from '../../data/events/upcomingEvents';
 import { eventSpeakers } from '../../data/events/speakers';
-import { useCart } from '../../hooks/useCart';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
 interface EventDetailModalProps {
   event: UpcomingEvent | null;
@@ -13,7 +13,7 @@ interface EventDetailModalProps {
 export default function EventDetailModal({ event, onClose }: EventDetailModalProps) {
   const [selectedTicketType, setSelectedTicketType] = useState<'member' | 'non-member'>('non-member');
   const [dragY, setDragY] = useState(0);
-  const { addItem } = useCart();
+  const { addLocalItem, setIsOpen } = useUnifiedCart();
 
   useEffect(() => {
     if (event) {
@@ -64,8 +64,7 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
   const selectedPrice = selectedTicketType === 'member' ? event.priceMember : event.priceNonMember;
 
   const handleAddToCart = () => {
-    addItem({
-      id: `event-${event.id}-${selectedTicketType}`,
+    addLocalItem({
       serviceType: 'event',
       serviceName: `${event.title} (${selectedTicketType === 'member' ? 'Membre' : 'Visiteur'})`,
       date: event.eventDate,
