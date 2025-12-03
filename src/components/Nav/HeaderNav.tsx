@@ -210,7 +210,7 @@ export default function HeaderNav() {
               })}
 
               {/* Panier Unifié */}
-              <UnifiedCartButton />
+              <UnifiedCartButton pathname={location.pathname} />
             </div>
 
             {/* Séparateur */}
