@@ -129,29 +129,30 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center p-4" style={{ zIndex: Z_INDEX.modal }}>
+        <div className="fixed inset-0 overflow-y-auto" style={{ zIndex: Z_INDEX.modal }}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/60 backdrop-blur-md"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md"
             onClick={onClose}
           />
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
-          >
+          <div className="min-h-screen flex items-center justify-center p-4 py-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl my-8"
+            >
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 z-10 p-2 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
             >
-              <X className="w-6 h-6 text-slate-600" />
+              <X className="w-5 h-5 text-slate-600" />
             </button>
 
-            <div className="p-8 sm:p-10">
+            <div className="p-6 sm:p-8">
               {submitStatus === 'success' ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -162,37 +163,37 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: "spring" }}
-                    className="w-24 h-24 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/30"
+                    className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/30"
                   >
-                    <CheckCircle className="w-12 h-12 text-white" />
+                    <CheckCircle className="w-10 h-10 text-white" />
                   </motion.div>
-                  <h3 className="text-3xl sm:text-4xl font-montserrat font-bold text-slate-900 mb-4">
+                  <h3 className="text-2xl sm:text-3xl font-montserrat font-bold text-slate-900 mb-3">
                     Demande envoyée !
                   </h3>
-                  <p className="text-lg text-slate-600 font-inter max-w-md mx-auto">
+                  <p className="text-base text-slate-600 font-inter max-w-md mx-auto">
                     Nous vous recontactons sous <span className="font-bold text-emerald-600">2h</span> pour confirmer votre visite.
                   </p>
                 </motion.div>
               ) : (
                 <>
-                  <div className="text-center mb-8">
+                  <div className="text-center mb-6">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.2, type: "spring" }}
-                      className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20"
+                      className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-500/20"
                     >
-                      <Calendar className="w-10 h-10 text-white" />
+                      <Calendar className="w-8 h-8 text-white" />
                     </motion.div>
-                    <h2 className="text-3xl sm:text-4xl font-montserrat font-bold text-slate-900 mb-3">
+                    <h2 className="text-2xl sm:text-3xl font-montserrat font-bold text-slate-900 mb-2">
                       Planifiez votre visite
                     </h2>
-                    <p className="text-base text-slate-600 font-inter max-w-md mx-auto">
+                    <p className="text-sm text-slate-600 font-inter max-w-md mx-auto">
                       Découvrez nos espaces et rencontrez notre équipe
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                       <label className="block text-sm font-inter font-semibold text-slate-700 mb-2">
                         Nom complet *
@@ -203,7 +204,7 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleChange('name', e.target.value)}
-                          className={`w-full bg-slate-50 border-2 ${errors.name ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
+                          className={`w-full bg-slate-50 border-2 ${errors.name ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
                           placeholder="Jean Dupont"
                         />
                       </div>
@@ -215,7 +216,7 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-inter font-semibold text-slate-700 mb-2">
                           Email *
@@ -226,7 +227,7 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                             type="email"
                             value={formData.email}
                             onChange={(e) => handleChange('email', e.target.value)}
-                            className={`w-full bg-slate-50 border-2 ${errors.email ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
+                            className={`w-full bg-slate-50 border-2 ${errors.email ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
                             placeholder="jean@exemple.fr"
                           />
                         </div>
@@ -248,7 +249,7 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                             type="tel"
                             value={formData.phone}
                             onChange={(e) => handleChange('phone', e.target.value)}
-                            className={`w-full bg-slate-50 border-2 ${errors.phone ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
+                            className={`w-full bg-slate-50 border-2 ${errors.phone ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
                             placeholder="06 12 34 56 78"
                           />
                         </div>
@@ -272,7 +273,7 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                           value={formData.date}
                           min={today}
                           onChange={(e) => handleChange('date', e.target.value)}
-                          className={`w-full bg-slate-50 border-2 ${errors.date ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
+                          className={`w-full bg-slate-50 border-2 ${errors.date ? 'border-red-400 focus:border-red-500' : 'border-slate-200 focus:border-emerald-500'} rounded-xl px-12 py-3 text-slate-900 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all`}
                         />
                       </div>
                       {errors.date && (
@@ -321,8 +322,8 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                         <textarea
                           value={formData.message}
                           onChange={(e) => handleChange('message', e.target.value)}
-                          rows={4}
-                          className="w-full bg-slate-50 border-2 border-slate-200 focus:border-emerald-500 rounded-xl px-12 py-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all resize-none"
+                          rows={3}
+                          className="w-full bg-slate-50 border-2 border-slate-200 focus:border-emerald-500 rounded-xl px-12 py-3 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all resize-none"
                           placeholder="Précisez vos besoins ou questions..."
                         />
                       </div>
@@ -340,23 +341,23 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-montserrat font-bold py-5 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 hover:scale-[1.02]"
+                      className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-montserrat font-bold py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 hover:scale-[1.02]"
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 className="w-6 h-6 animate-spin" />
-                          <span className="text-lg">Envoi en cours...</span>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>Envoi en cours...</span>
                         </>
                       ) : (
                         <>
-                          <Calendar className="w-6 h-6" />
-                          <span className="text-lg">Réserver ma visite gratuite</span>
+                          <Calendar className="w-5 h-5" />
+                          <span>Réserver ma visite gratuite</span>
                         </>
                       )}
                     </button>
 
-                    <div className="text-center pt-2">
-                      <p className="text-sm text-slate-500 font-inter">
+                    <div className="text-center pt-1">
+                      <p className="text-xs text-slate-500 font-inter">
                         Réponse sous <span className="font-bold text-emerald-600">2h</span> • Visite gratuite • Sans engagement
                       </p>
                     </div>
@@ -364,7 +365,8 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
                 </>
               )}
             </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       )}
     </AnimatePresence>
