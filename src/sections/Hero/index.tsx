@@ -70,13 +70,13 @@ export default function Hero() {
         }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-24 sm:py-28 md:py-32 lg:py-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-24 sm:pb-28 md:pb-32 lg:pb-20 w-full">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-6 md:mb-8"
+            className="mb-8 md:mb-10"
           >
             <div className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-6 md:mb-8">
               <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
