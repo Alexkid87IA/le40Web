@@ -1,63 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, Sparkles, Package } from 'lucide-react';
+import { Phone, Calendar, Eye } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import UnifiedCartButton from '../Cart/UnifiedCartButton';
+import VisitModal from '../Booking/VisitModal';
 
 const navItems = [
-  { name: 'Accueil', href: '/', icon: Home },
-  { name: 'Bureaux', href: '/bureaux', icon: Building2 },
-  { name: 'Domiciliation', href: '/domiciliation', icon: MapPin },
-  { name: 'Salles', href: '/salles', icon: Presentation },
-  { name: 'Studio', href: '/studios', icon: Video },
-  { name: 'Bundles', href: '/bundles', icon: Package },
-  { name: 'Nos Events', href: '/events', icon: Calendar },
-  { name: 'Le Club', href: '/experts', icon: Sparkles },
+  { name: 'Accueil', href: '/' },
+  { name: 'Bureaux', href: '/bureaux' },
+  { name: 'Domiciliation', href: '/domiciliation' },
+  { name: 'Salles', href: '/salles' },
+  { name: 'Studio', href: '/studios' },
+  { name: 'Bundles', href: '/bundles' },
+  { name: 'Nos Events', href: '/events' },
+  { name: 'Le Club', href: '/experts' },
 ];
 
 const secondaryItems = [
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
-
-// Couleurs des traits indicateurs
-const indicatorColors = {
-  '/': 'bg-amber-400',
-  '/bureaux': 'bg-blue-400',
-  '/domiciliation': 'bg-orange-400',
-  '/salles': 'bg-purple-400',
-  '/studios': 'bg-emerald-400',
-  '/bundles': 'bg-pink-400',
-  '/events': 'bg-cyan-400',
-  '/experts': 'bg-red-400',
-};
-
-// Couleurs du bouton Réserver
-const reserveButtonColors = {
-  '/': 'from-amber-600 via-orange-600 to-amber-600',
-  '/bureaux': 'from-blue-600 via-indigo-600 to-blue-600',
-  '/domiciliation': 'from-orange-600 via-amber-600 to-orange-600',
-  '/salles': 'from-purple-600 via-violet-600 to-purple-600',
-  '/studios': 'from-emerald-600 via-teal-600 to-emerald-600',
-  '/bundles': 'from-pink-600 via-rose-600 to-pink-600',
-  '/events': 'from-cyan-600 via-sky-600 to-cyan-600',
-  '/experts': 'from-red-600 via-rose-600 to-red-600',
-  '/contact': 'from-slate-600 via-gray-600 to-slate-600',
-  'default': 'from-amber-600 via-orange-600 to-amber-600',
-};
-
-const reserveButtonGlow = {
-  '/': 'bg-amber-500/40',
-  '/bureaux': 'bg-blue-500/40',
-  '/domiciliation': 'bg-orange-500/40',
-  '/salles': 'bg-purple-500/40',
-  '/studios': 'bg-emerald-500/40',
-  '/bundles': 'bg-pink-500/40',
-  '/events': 'bg-cyan-500/40',
-  '/experts': 'bg-red-500/40',
-  '/contact': 'bg-slate-500/40',
-  'default': 'bg-amber-500/40',
-};
 
 export default function HeaderNav() {
   const location = useLocation();
@@ -65,9 +27,7 @@ export default function HeaderNav() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
-
-  const currentButtonColor = reserveButtonColors[location.pathname] || reserveButtonColors.default;
-  const currentButtonGlow = reserveButtonGlow[location.pathname] || reserveButtonGlow.default;
+  const [isVisitModalOpen, setIsVisitModalOpen] = useState(false);
 
   const handleNavigation = (href: string) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -132,61 +92,35 @@ export default function HeaderNav() {
 
   return (
     <motion.header
-      animate={{ 
+      animate={{
         y: isVisible ? 0 : -100,
         opacity: isVisible ? 1 : 0
       }}
-      transition={{ 
-        duration: 0.3, 
-        ease: [0.19, 1, 0.22, 1] 
+      transition={{
+        duration: 0.3,
+        ease: [0.19, 1, 0.22, 1]
       }}
-      className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
+      className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isAtTop
-          ? 'bg-black/90 border-b border-white/[0.02]'
-          : 'bg-black/98 border-b border-white/5 shadow-2xl shadow-black/50'
+          ? 'bg-black/90 border-b border-white/5'
+          : 'bg-black/95 border-b border-white/10'
       }`}
-      style={{ backdropFilter: 'blur(30px)' }}
+      style={{ backdropFilter: 'blur(20px)' }}
     >
-      {/* Effet de lumière en haut */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      
-      {/* Grille subtile */}
-      <div 
-        className="absolute inset-0 opacity-[0.015]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.15) 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-        }}
-      />
-
-      <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-500 ${
-        isAtTop ? 'py-4' : 'py-3'
+      <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-300 ${
+        isAtTop ? 'py-3' : 'py-2.5'
       }`}>
         <div className="flex items-center justify-between gap-8">
           
           {/* LOGO */}
-          <div onClick={() => handleNavigation('/')} className="flex-shrink-0 group cursor-pointer">
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="relative"
-            >
-              <motion.div
-                className="absolute -inset-4 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                style={{
-                  background: 'radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%)',
-                  filter: 'blur(20px)',
-                }}
-              />
-
-              <img
-                src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
-                alt="Le 40"
-                className={`relative brightness-0 invert transition-all duration-500 ${
-                  isAtTop ? 'w-24' : 'w-20'
-                }`}
-              />
-            </motion.div>
+          <div onClick={() => handleNavigation('/')} className="flex-shrink-0 cursor-pointer">
+            <motion.img
+              src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+              alt="Le 40"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="brightness-0 invert w-20 transition-all duration-300"
+            />
           </div>
 
           {/* NAVIGATION PRINCIPALE */}
@@ -194,70 +128,55 @@ export default function HeaderNav() {
             <ul className="flex items-center justify-center gap-1">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.href;
-                const Icon = item.icon;
 
                 return (
                   <li key={item.name}>
                     <motion.div
                       onClick={() => handleNavigation(item.href)}
-                      className="relative group px-4 py-2.5 rounded-lg cursor-pointer"
+                      className="relative group px-4 py-2 rounded-lg cursor-pointer"
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
                     >
                         {isActive && (
                           <motion.div
                             layoutId="activeNav"
-                            className="absolute inset-0 bg-white/[0.08] rounded-lg"
-                            transition={{ 
-                              type: "spring", 
-                              stiffness: 400, 
+                            className="absolute inset-0 bg-white/[0.06] rounded-lg"
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
                               damping: 35,
                               mass: 0.8,
                             }}
                           />
                         )}
 
-                        <div className={`absolute inset-0 rounded-lg transition-opacity duration-300 ${
-                          isActive 
-                            ? 'opacity-0' 
-                            : 'opacity-0 group-hover:opacity-100 bg-white/[0.04]'
+                        <div className={`absolute inset-0 rounded-lg transition-opacity duration-200 ${
+                          isActive
+                            ? 'opacity-0'
+                            : 'opacity-0 group-hover:opacity-100 bg-white/[0.03]'
                         }`} />
 
-                        <div className="relative flex items-center gap-2.5">
-                          <Icon 
-                            className={`w-[15px] h-[15px] transition-all duration-300 ${
-                              isActive 
-                                ? 'text-white' 
-                                : 'text-white/50 group-hover:text-white/90'
-                            }`} 
-                          />
-                          <span 
-                            className={`font-medium text-[13px] tracking-wide transition-all duration-300 ${
-                              isActive 
-                                ? 'text-white font-semibold' 
-                                : 'text-white/60 group-hover:text-white/95'
-                            }`}
-                          >
-                            {item.name}
-                          </span>
-                        </div>
+                        <span
+                          className={`relative font-medium text-[13px] tracking-wide transition-all duration-200 ${
+                            isActive
+                              ? 'text-white'
+                              : 'text-white/50 group-hover:text-white/90'
+                          }`}
+                        >
+                          {item.name}
+                        </span>
 
                         {isActive && (
                           <motion.div
                             layoutId="activeIndicator"
-                            className="absolute -bottom-1 left-0 right-0 flex justify-center"
-                            transition={{ 
-                              type: "spring", 
-                              stiffness: 400, 
-                              damping: 35 
+                            className="absolute -bottom-0.5 left-0 right-0 flex justify-center"
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 35
                             }}
                           >
-                            <div 
-                              className={`w-[45px] h-[3px] ${indicatorColors[item.href] || 'bg-amber-400'} rounded-full`}
-                              style={{
-                                boxShadow: '0 0 10px currentColor',
-                              }}
-                            />
+                            <div className="w-8 h-0.5 bg-emerald-400 rounded-full" />
                           </motion.div>
                         )}
                     </motion.div>
@@ -269,7 +188,7 @@ export default function HeaderNav() {
 
           {/* ACTIONS SECONDAIRES */}
           <div className="flex items-center gap-3 flex-shrink-0">
-            
+
             {/* Icônes secondaires */}
             <div className="flex items-center gap-2">
               {secondaryItems.map((item) => {
@@ -280,12 +199,12 @@ export default function HeaderNav() {
                   <motion.div
                     key={item.name}
                     onClick={() => handleNavigation(item.href)}
-                    className={`relative p-2.5 rounded-lg transition-all duration-300 cursor-pointer ${
+                    className={`relative p-2 rounded-lg transition-all duration-200 cursor-pointer ${
                       isActive
-                        ? 'bg-white/[0.08] text-white'
-                        : 'text-white/50 hover:text-white hover:bg-white/[0.04]'
+                        ? 'bg-white/[0.06] text-white'
+                        : 'text-white/50 hover:text-white hover:bg-white/[0.03]'
                     }`}
-                    whileHover={{ scale: 1.05, y: -1 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     title={item.name}
                   >
@@ -299,43 +218,44 @@ export default function HeaderNav() {
             </div>
 
             {/* Séparateur */}
-            <div className="w-px h-6 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+            <div className="w-px h-5 bg-white/10" />
 
-            {/* BOUTON RÉSERVER */}
-            <motion.div
-              onClick={() => handleNavigation('/reservation')}
-              className="relative group overflow-hidden rounded-lg cursor-pointer"
-              whileHover={{ scale: 1.03, y: -1 }}
-              whileTap={{ scale: 0.97 }}
-            >
-                <div className={`absolute inset-0 bg-gradient-to-r ${currentButtonColor} opacity-90 group-hover:opacity-100 transition-opacity duration-300`} />
-                
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                  initial={{ x: '-100%', skewX: -20 }}
-                  whileHover={{ x: '200%' }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                />
+            {/* DOUBLE CTA BUTTONS */}
+            <div className="flex items-center gap-2">
+              {/* Bouton Explorer (Outline) */}
+              <motion.button
+                onClick={() => handleNavigation('/reservation')}
+                className="px-4 py-2 rounded-lg border border-white/20 hover:border-emerald-400/50 hover:bg-white/[0.03] transition-all duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="font-medium text-[13px] text-white/70 hover:text-white transition-colors">
+                  Explorer
+                </span>
+              </motion.button>
 
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className={`absolute inset-0 blur-xl ${currentButtonGlow}`} />
-                </div>
-
-                <div className="relative px-6 py-2.5 flex items-center gap-2.5">
-                  <Calendar className="w-[15px] h-[15px] text-white" />
-                  <span className="font-bold text-[13px] text-white tracking-wide">
-                    Réserver
-                  </span>
-                </div>
-            </motion.div>
+              {/* Bouton Planifier une visite (Solid) */}
+              <motion.button
+                onClick={() => setIsVisitModalOpen(true)}
+                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all duration-200 flex items-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Eye className="w-[14px] h-[14px] text-white" />
+                <span className="font-medium text-[13px] text-white">
+                  Planifier une visite
+                </span>
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Ombre en bas */}
-      <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent transition-opacity duration-500 ${
-        isAtTop ? 'opacity-0' : 'opacity-100'
-      }`} />
+      {/* Modal de visite */}
+      <VisitModal
+        isOpen={isVisitModalOpen}
+        onClose={() => setIsVisitModalOpen(false)}
+      />
     </motion.header>
   );
 }
