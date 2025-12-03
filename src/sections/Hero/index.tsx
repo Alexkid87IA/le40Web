@@ -36,7 +36,7 @@ export default function Hero() {
             <source src="https://cdn.midjourney.com/video/6a97acd6-cbd2-4553-8cf1-d218433970a5/0.mp4" type="video/mp4" />
           </video>
 
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60" />
 
           <motion.div
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-[150px]"
