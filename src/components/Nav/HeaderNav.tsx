@@ -30,10 +30,7 @@ export default function HeaderNav() {
   const [isVisitModalOpen, setIsVisitModalOpen] = useState(false);
 
   const handleNavigation = (href: string) => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(() => {
-      navigate(href);
-    }, 300);
+    navigate(href);
   };
 
   useEffect(() => {
