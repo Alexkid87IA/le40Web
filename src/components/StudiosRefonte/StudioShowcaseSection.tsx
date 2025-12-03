@@ -1,11 +1,10 @@
 /**
- * StudioShowcaseSection - Version UX Client First
+ * StudioShowcaseSection - Version Ultra-Compact "Above the Fold"
  *
- * Objectif: Aider le client à prendre une décision éclairée
- * - Galerie photos complète et claire
- * - Informations transparentes sur le prix et les inclusions
- * - Éléments de réassurance (avis, garanties, popularité)
- * - Process de réservation visible et simple
+ * Tout visible d'un coup d'œil sans scroll :
+ * - Layout horizontal 50/50 (galerie gauche, infos droite)
+ * - Tabs pour organiser les informations
+ * - Hauteur max ~800px pour tenir sur 1 écran
  */
 
 import { useState } from 'react';
@@ -15,8 +14,8 @@ import {
   ChevronLeft, ChevronRight, Check, Camera, X,
   Monitor, Lightbulb, Headphones, Wifi, Armchair,
   Clock, Square, Star, Shield, Zap, TrendingUp,
-  Calendar, ArrowRight, Play, CheckCircle, AlertCircle,
-  MapPin, Maximize2
+  Calendar, ArrowRight, CheckCircle, AlertCircle,
+  Maximize2, Sparkles
 } from 'lucide-react';
 
 // ============================================================
@@ -65,7 +64,7 @@ const STUDIOS: Studio[] = [
     ],
     capacity: '1 personne',
     surface: '15m²',
-    minDuration: '2h minimum',
+    minDuration: '2h',
     images: [
       { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Vue d\'ensemble' },
       { url: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=90', label: 'Setup caméra' },
@@ -118,7 +117,7 @@ const STUDIOS: Studio[] = [
     ],
     capacity: '1-4 personnes',
     surface: '20m²',
-    minDuration: '2h minimum',
+    minDuration: '2h',
     images: [
       { url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&q=90', label: 'Vue d\'ensemble' },
       { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup 4 micros' },
@@ -171,7 +170,7 @@ const STUDIOS: Studio[] = [
     ],
     capacity: '1-2 personnes',
     surface: '25m²',
-    minDuration: '2h minimum',
+    minDuration: '2h',
     images: [
       { url: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=90', label: 'Vue d\'ensemble' },
       { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup 3 caméras' },
@@ -224,7 +223,7 @@ const STUDIOS: Studio[] = [
     ],
     capacity: '2-4 personnes',
     surface: '40m²',
-    minDuration: '2h minimum',
+    minDuration: '2h',
     images: [
       { url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=90', label: 'Vue plateau' },
       { url: 'https://images.unsplash.com/photo-1560439514-4e9645039924?w=1200&q=90', label: 'Décor TV' },
@@ -277,7 +276,7 @@ const STUDIOS: Studio[] = [
     ],
     capacity: '2 personnes',
     surface: '18m²',
-    minDuration: '2h minimum',
+    minDuration: '2h',
     images: [
       { url: 'https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=1200&q=90', label: 'Vue d\'ensemble' },
       { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup face-à-face' },
@@ -330,7 +329,7 @@ const STUDIOS: Studio[] = [
     ],
     capacity: '1-2 personnes',
     surface: '12m²',
-    minDuration: '2h minimum',
+    minDuration: '2h',
     images: [
       { url: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&q=90', label: 'Vue d\'ensemble' },
       { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup vertical' },
@@ -455,34 +454,37 @@ export default function StudioShowcaseSection() {
   const [activeStudio, setActiveStudio] = useState(0);
   const [activeImage, setActiveImage] = useState(0);
   const [showFullGallery, setShowFullGallery] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'equipment' | 'pricing'>('overview');
+
   const studio = STUDIOS[activeStudio];
   const Icon = studio.icon;
 
   return (
-    <section id="showcase" className="relative py-16 md:py-24 bg-black">
+    <section id="showcase" className="relative py-12 md:py-16 bg-black">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900/50 to-black" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
+        {/* Header section title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
             Explorez nos{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
               espaces créatifs
             </span>
           </h2>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Découvrez chaque studio en détail : équipements, photos réelles, tarifs transparents
+          <p className="text-white/60 text-sm">
+            Tout ce qu'il faut savoir pour choisir votre studio
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-6">
-          {/* SIDEBAR - Studios */}
-          <div className="lg:col-span-3 space-y-2">
+        {/* Studios Tabs - Horizontal on desktop, compact on mobile */}
+        <div className="mb-6 overflow-x-auto pb-2 hide-scrollbar">
+          <div className="flex gap-2 min-w-max md:min-w-0 md:justify-center">
             {STUDIOS.map((s, idx) => {
               const SIcon = s.icon;
               const isActive = idx === activeStudio;
@@ -493,217 +495,299 @@ export default function StudioShowcaseSection() {
                   onClick={() => {
                     setActiveStudio(idx);
                     setActiveImage(0);
+                    setActiveTab('overview');
                   }}
-                  className={`w-full flex items-center gap-3 p-3 rounded-xl text-left transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all flex-shrink-0 ${
                     isActive
-                      ? `bg-gradient-to-r ${s.gradient} shadow-lg`
-                      : 'bg-white/5 hover:bg-white/10'
+                      ? `bg-gradient-to-r ${s.gradient} text-white shadow-lg`
+                      : 'bg-white/5 text-white/70 hover:bg-white/10'
                   }`}
                 >
-                  <div className={`w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                    isActive ? 'bg-white/20' : 'bg-white/10'
-                  }`}>
-                    <SIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5 mb-0.5">
-                      <span className="font-bold text-white text-sm truncate">{s.shortName}</span>
-                      {s.popular && <Star className="w-3 h-3 text-amber-400 fill-amber-400 flex-shrink-0" />}
-                    </div>
-                    <span className="text-xs text-white/80">dès {s.basePrice}€/h</span>
-                  </div>
+                  <SIcon className="w-4 h-4" />
+                  <span>{s.shortName}</span>
+                  {s.popular && <Star className="w-3 h-3 text-amber-300 fill-amber-300" />}
+                  <span className="text-xs opacity-80">{s.basePrice}€/h</span>
                 </button>
               );
             })}
           </div>
+        </div>
 
-          {/* CONTENU PRINCIPAL */}
-          <div className="lg:col-span-9">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={studio.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="space-y-6"
-              >
-                {/* Header Studio */}
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-start gap-4">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center flex-shrink-0`}>
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-2xl md:text-3xl font-black text-white">{studio.name}</h3>
-                        {studio.popular && (
-                          <span className="px-3 py-1 bg-amber-500 rounded-full text-xs font-black text-black">
-                            POPULAIRE
-                          </span>
-                        )}
-                      </div>
-                      <p className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r ${studio.gradient} mb-2`}>
-                        {studio.tagline}
-                      </p>
-                      <div className="flex items-center gap-4 text-sm text-white/60">
-                        <span className="flex items-center gap-1.5">
-                          <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                          <span className="font-bold text-white">{studio.rating}</span>
-                          <span>({studio.reviewCount} avis)</span>
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <TrendingUp className="w-4 h-4 text-emerald-400" />
-                          <span>{studio.reservations} réservations ce mois</span>
-                        </span>
-                      </div>
-                    </div>
+        {/* LAYOUT PRINCIPAL - SPLIT 50/50 */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={studio.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="grid lg:grid-cols-2 gap-6 lg:gap-8"
+          >
+            {/* GAUCHE - GALERIE COMPACTE */}
+            <div className="space-y-3">
+              {/* Header Studio - Ultra Compact */}
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center flex-shrink-0`}>
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-xl md:text-2xl font-black text-white">{studio.name}</h3>
+                      {studio.popular && (
+                        <span className="px-2 py-0.5 bg-amber-500 rounded-full text-[10px] font-black text-black uppercase">
+                          Top
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-white/60">{studio.tagline}</p>
+                  </div>
+                </div>
+              </div>
 
-                  {/* Prix à partir de */}
-                  <div className={`px-5 py-3 rounded-2xl bg-gradient-to-r ${studio.gradient} flex-shrink-0`}>
-                    <div className="text-xs text-white/80 mb-0.5">À partir de</div>
-                    <div className="text-3xl font-black text-white">{studio.basePrice}€<span className="text-lg">/h</span></div>
+              {/* Stats rapides - 1 ligne */}
+              <div className="flex items-center gap-4 text-xs text-white/60">
+                <span className="flex items-center gap-1">
+                  <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  <span className="font-bold text-white">{studio.rating}</span>
+                  <span>({studio.reviewCount})</span>
+                </span>
+                <span className="w-1 h-1 rounded-full bg-white/30" />
+                <span className="flex items-center gap-1">
+                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>{studio.reservations} résa/mois</span>
+                </span>
+              </div>
+
+              {/* Image principale carousel */}
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer bg-zinc-900" onClick={() => setShowFullGallery(true)}>
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeImage}
+                    src={studio.images[activeImage].url}
+                    alt={studio.images[activeImage].label}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full h-full object-cover"
+                  />
+                </AnimatePresence>
+
+                {/* Navigation carousel */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveImage((prev) => (prev - 1 + studio.images.length) % studio.images.length);
+                  }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 transition-all"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveImage((prev) => (prev + 1) % studio.images.length);
+                  }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 transition-all"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+
+                {/* Label photo + zoom icon */}
+                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-3 bg-gradient-to-t from-black/80 to-transparent">
+                  <span className="text-white text-xs font-medium">
+                    {studio.images[activeImage].label}
+                  </span>
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-[10px] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 className="w-3 h-3" />
+                    Voir {studio.images.length} photos
                   </div>
                 </div>
 
-                {/* GALERIE PHOTOS - PRIORITAIRE */}
-                <div className="space-y-3">
-                  {/* Image principale */}
-                  <div className="relative aspect-video rounded-2xl overflow-hidden group cursor-pointer" onClick={() => setShowFullGallery(true)}>
-                    <img
-                      src={studio.images[activeImage].url}
-                      alt={studio.images[activeImage].label}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <div className="flex items-center gap-2 px-5 py-3 bg-white/20 backdrop-blur-xl rounded-full text-white font-bold">
-                        <Maximize2 className="w-5 h-5" />
-                        Voir en plein écran
-                      </div>
-                    </div>
-                    <div className="absolute bottom-4 left-4 px-4 py-2 bg-black/60 backdrop-blur-xl rounded-full text-white text-sm font-medium">
-                      {studio.images[activeImage].label}
-                    </div>
-                  </div>
-
-                  {/* Toutes les miniatures */}
-                  <div className="grid grid-cols-6 gap-2">
-                    {studio.images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setActiveImage(idx)}
-                        className={`relative aspect-video rounded-lg overflow-hidden transition-all ${
-                          idx === activeImage ? 'ring-2 ring-white' : 'opacity-60 hover:opacity-100'
-                        }`}
-                      >
-                        <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
-                        <div className="absolute inset-x-0 bottom-0 px-1 py-0.5 bg-black/80 text-[10px] text-white/90 text-center truncate">
-                          {img.label}
-                        </div>
-                      </button>
-                    ))}
-                  </div>
+                {/* Indicateur position */}
+                <div className="absolute top-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs font-medium">
+                  {activeImage + 1}/{studio.images.length}
                 </div>
+              </div>
 
-                {/* Grille Infos */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Colonne Gauche */}
-                  <div className="space-y-6">
+              {/* Miniatures - 4 seulement */}
+              <div className="grid grid-cols-4 gap-2">
+                {studio.images.slice(0, 4).map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImage(idx)}
+                    className={`relative aspect-video rounded-lg overflow-hidden transition-all ${
+                      idx === activeImage ? 'ring-2 ring-white' : 'opacity-50 hover:opacity-100'
+                    }`}
+                  >
+                    <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
+                    {idx === 3 && studio.images.length > 4 && (
+                      <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-xs font-bold">
+                        +{studio.images.length - 4}
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              {/* Quick stats - 4 colonnes compactes */}
+              <div className="grid grid-cols-4 gap-2">
+                <div className="p-2 bg-white/5 rounded-lg text-center">
+                  <Users className="w-4 h-4 text-white/40 mx-auto mb-1" />
+                  <div className="text-white font-bold text-xs">{studio.capacity.split(' ')[0]}</div>
+                  <div className="text-white/40 text-[10px]">pers.</div>
+                </div>
+                <div className="p-2 bg-white/5 rounded-lg text-center">
+                  <Square className="w-4 h-4 text-white/40 mx-auto mb-1" />
+                  <div className="text-white font-bold text-xs">{studio.surface}</div>
+                  <div className="text-white/40 text-[10px]">surface</div>
+                </div>
+                <div className="p-2 bg-white/5 rounded-lg text-center">
+                  <Clock className="w-4 h-4 text-white/40 mx-auto mb-1" />
+                  <div className="text-white font-bold text-xs">{studio.minDuration}</div>
+                  <div className="text-white/40 text-[10px]">min</div>
+                </div>
+                <div className={`p-2 bg-gradient-to-br ${studio.gradient} rounded-lg text-center`}>
+                  <Zap className="w-4 h-4 text-white/80 mx-auto mb-1" />
+                  <div className="text-white font-black text-xs">{studio.basePrice}€</div>
+                  <div className="text-white/80 text-[10px]">par h</div>
+                </div>
+              </div>
+            </div>
+
+            {/* DROITE - INFOS AVEC TABS */}
+            <div className="flex flex-col">
+              {/* Tabs Navigation */}
+              <div className="flex gap-1 p-1 bg-white/5 rounded-xl mb-4">
+                <button
+                  onClick={() => setActiveTab('overview')}
+                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                    activeTab === 'overview'
+                      ? 'bg-white text-black'
+                      : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  Vue d'ensemble
+                </button>
+                <button
+                  onClick={() => setActiveTab('equipment')}
+                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                    activeTab === 'equipment'
+                      ? 'bg-white text-black'
+                      : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  Équipements
+                </button>
+                <button
+                  onClick={() => setActiveTab('pricing')}
+                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                    activeTab === 'pricing'
+                      ? 'bg-white text-black'
+                      : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  Tarifs & Résa
+                </button>
+              </div>
+
+              {/* Tab Content - Scrollable si besoin */}
+              <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 pr-2 custom-scrollbar">
+                {/* TAB OVERVIEW */}
+                {activeTab === 'overview' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-4"
+                  >
                     {/* Description */}
                     <div>
-                      <h4 className="font-bold text-white text-lg mb-2">À propos de ce studio</h4>
-                      <p className="text-white/80 leading-relaxed">{studio.description}</p>
+                      <p className="text-white/80 text-sm leading-relaxed">{studio.description}</p>
                     </div>
 
-                    {/* Pourquoi choisir */}
-                    <div className="p-5 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl">
-                      <h4 className="font-bold text-white text-lg mb-3 flex items-center gap-2">
-                        <CheckCircle className="w-5 h-5 text-emerald-400" />
+                    {/* Pourquoi ce studio - Compact */}
+                    <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                      <h4 className="font-bold text-white text-sm mb-2 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-emerald-400" />
                         Pourquoi ce studio ?
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1.5">
                         {studio.whyChoose.map((reason, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-white/90">
-                            <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                          <li key={idx} className="flex items-start gap-2 text-white/90 text-sm">
+                            <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
                             <span>{reason}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    {/* Caractéristiques */}
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="p-4 bg-white/5 rounded-xl text-center">
-                        <Users className="w-5 h-5 text-white/50 mx-auto mb-2" />
-                        <div className="text-white font-bold text-sm">{studio.capacity}</div>
-                        <div className="text-white/40 text-xs">Capacité</div>
-                      </div>
-                      <div className="p-4 bg-white/5 rounded-xl text-center">
-                        <Square className="w-5 h-5 text-white/50 mx-auto mb-2" />
-                        <div className="text-white font-bold text-sm">{studio.surface}</div>
-                        <div className="text-white/40 text-xs">Surface</div>
-                      </div>
-                      <div className="p-4 bg-white/5 rounded-xl text-center">
-                        <Clock className="w-5 h-5 text-white/50 mx-auto mb-2" />
-                        <div className="text-white font-bold text-sm">{studio.minDuration}</div>
-                        <div className="text-white/40 text-xs">Durée min</div>
+                    {/* Idéal pour - Tags compacts */}
+                    <div>
+                      <h4 className="font-bold text-white text-sm mb-2">Idéal pour</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {studio.idealFor.map((use, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2.5 py-1 rounded-full text-xs font-semibold bg-white/10 text-white"
+                          >
+                            {use}
+                          </span>
+                        ))}
                       </div>
                     </div>
 
-                    {/* Garanties */}
-                    <div className="p-5 bg-white/5 rounded-2xl">
-                      <h4 className="font-bold text-white text-lg mb-3 flex items-center gap-2">
-                        <Shield className="w-5 h-5 text-cyan-400" />
-                        Nos garanties
+                    {/* Garanties - Compact */}
+                    <div className="p-4 bg-white/5 rounded-xl">
+                      <h4 className="font-bold text-white text-sm mb-2 flex items-center gap-2">
+                        <Shield className="w-4 h-4 text-cyan-400" />
+                        Garanties
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1.5">
                         {studio.guarantees.map((guarantee, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-white/80 text-sm">
-                            <CheckCircle className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                          <li key={idx} className="flex items-start gap-2 text-white/80 text-xs">
+                            <CheckCircle className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
                             <span>{guarantee}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                  </div>
 
-                  {/* Colonne Droite */}
-                  <div className="space-y-6">
-                    {/* Tarifs transparents */}
-                    <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                      <h4 className="font-bold text-white text-lg mb-4">Tarifs transparents</h4>
-                      <div className="space-y-2 mb-4">
-                        {studio.pricing.map((p, idx) => (
-                          <div key={idx} className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
-                            <span className="text-white font-medium">{p.duration}</span>
-                            <span className="text-white font-black text-lg">{p.price}€</span>
-                          </div>
-                        ))}
+                    {/* Non inclus */}
+                    {studio.notIncluded.length > 0 && (
+                      <div className="p-3 bg-orange-500/10 border border-orange-500/20 rounded-xl">
+                        <h4 className="font-bold text-white text-xs mb-2 flex items-center gap-1.5">
+                          <AlertCircle className="w-3.5 h-3.5 text-orange-400" />
+                          Non inclus (options payantes)
+                        </h4>
+                        <ul className="space-y-1">
+                          {studio.notIncluded.map((item, idx) => (
+                            <li key={idx} className="text-white/70 text-xs">
+                              • {item}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <div className="text-xs text-white/60 mb-4">
-                        Tous les équipements listés ci-dessous sont inclus dans ces tarifs
-                      </div>
-                      <a
-                        href="#booking-flow"
-                        className={`flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r ${studio.gradient} hover:shadow-lg transition-shadow`}
-                      >
-                        <Calendar className="w-5 h-5" />
-                        Voir les disponibilités
-                        <ArrowRight className="w-5 h-5" />
-                      </a>
-                    </div>
+                    )}
+                  </motion.div>
+                )}
 
-                    {/* Équipements inclus */}
-                    <div className="p-6 bg-white/5 rounded-2xl">
-                      <h4 className="font-bold text-white text-lg mb-4 flex items-center gap-2">
-                        <Check className="w-5 h-5 text-emerald-400" />
-                        Équipements inclus
+                {/* TAB EQUIPMENT */}
+                {activeTab === 'equipment' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-3"
+                  >
+                    <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                      <h4 className="font-bold text-white text-sm mb-3 flex items-center gap-2">
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        Tout est inclus dans le tarif
                       </h4>
-                      <div className="space-y-2">
+                      <div className="grid gap-2">
                         {studio.equipment.map((eq, idx) => {
                           const EqIcon = eq.icon;
                           return (
-                            <div key={idx} className="flex items-center gap-3 p-2">
+                            <div key={idx} className="flex items-center gap-3 p-2.5 bg-white/5 rounded-lg">
                               <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
                                 <EqIcon className="w-4 h-4 text-emerald-400" />
                               </div>
@@ -714,43 +798,69 @@ export default function StudioShowcaseSection() {
                       </div>
                     </div>
 
-                    {/* Non inclus */}
-                    {studio.notIncluded.length > 0 && (
-                      <div className="p-5 bg-orange-500/10 border border-orange-500/20 rounded-2xl">
-                        <h4 className="font-bold text-white text-base mb-3 flex items-center gap-2">
-                          <AlertCircle className="w-4 h-4 text-orange-400" />
-                          Non inclus (options payantes)
-                        </h4>
-                        <ul className="space-y-1.5">
-                          {studio.notIncluded.map((item, idx) => (
-                            <li key={idx} className="text-white/70 text-sm">
-                              • {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                    {/* Description équipements */}
+                    <div className="p-4 bg-white/5 rounded-xl">
+                      <p className="text-white/70 text-xs leading-relaxed">
+                        Tout le matériel est vérifié avant chaque session. Configuration professionnelle clé en main, vous n'avez rien à apporter.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
 
-                    {/* Idéal pour */}
-                    <div>
-                      <h4 className="font-bold text-white mb-3">Idéal pour</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {studio.idealFor.map((use, idx) => (
-                          <span
-                            key={idx}
-                            className={`px-3 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r ${studio.gradient} text-white`}
-                          >
-                            {use}
-                          </span>
+                {/* TAB PRICING */}
+                {activeTab === 'pricing' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-4"
+                  >
+                    {/* Tarifs - Format horizontal compact */}
+                    <div className="p-5 bg-white/5 border border-white/10 rounded-xl">
+                      <h4 className="font-bold text-white mb-3">Tarifs transparents</h4>
+                      <div className="space-y-2">
+                        {studio.pricing.map((p, idx) => (
+                          <div key={idx} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                            <span className="text-white/80 text-sm">{p.duration}</span>
+                            <span className="text-white font-black text-xl">{p.price}€</span>
+                          </div>
                         ))}
                       </div>
+                      <div className="mt-3 text-xs text-white/50">
+                        Tous les équipements inclus • Annulation gratuite 48h avant
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
+
+                    {/* CTA Principal */}
+                    <a
+                      href="#booking-flow"
+                      className={`flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold text-white bg-gradient-to-r ${studio.gradient} hover:shadow-2xl hover:scale-[1.02] transition-all`}
+                    >
+                      <Calendar className="w-5 h-5" />
+                      Voir les disponibilités
+                      <ArrowRight className="w-5 h-5" />
+                    </a>
+
+                    {/* Info supplémentaire */}
+                    <div className="p-4 bg-white/5 rounded-xl space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-white/60">Réservation instantanée</span>
+                        <CheckCircle className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-white/60">Paiement sécurisé</span>
+                        <CheckCircle className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-white/60">Confirmation immédiate</span>
+                        <CheckCircle className="w-4 h-4 text-emerald-400" />
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Galerie plein écran */}
@@ -759,6 +869,30 @@ export default function StudioShowcaseSection() {
           <FullScreenGallery studio={studio} onClose={() => setShowFullGallery(false)} />
         )}
       </AnimatePresence>
+
+      <style>{`
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+      `}</style>
     </section>
   );
 }
