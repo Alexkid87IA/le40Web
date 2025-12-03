@@ -20,6 +20,8 @@ import {
 import { useShopifyCheckout } from '../../hooks/useShopifyCheckout';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
+import BookingSidebar from './BookingSidebar';
+import BookingBottomSheet from './BookingBottomSheet';
 
 // ============================================================
 // TYPES
@@ -317,6 +319,10 @@ export default function StudioBookingFlow() {
   // Shopify (gardé pour compatibilité)
   const { createCheckout, loading: checkoutLoading } = useShopifyCheckout();
 
+  // Gestion de la sauvegarde localStorage
+  const [showRestoreModal, setShowRestoreModal] = useState(false);
+  const [savedBooking, setSavedBooking] = useState<any>(null);
+
   // ============================================================
   // CALCULS
   // ============================================================
@@ -350,6 +356,101 @@ export default function StudioBookingFlow() {
   }, [extraCategory, searchExtra]);
 
   // ============================================================
+  // SAUVEGARDE & RESTAURATION LOCALSTORAGE
+  // ============================================================
+
+  // Charger la sauvegarde au montage
+  useEffect(() => {
+    const saved = localStorage.getItem('studioBooking_draft');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Vérifier que la sauvegarde a moins de 24h
+        const savedTime = new Date(parsed.timestamp);
+        const now = new Date();
+        const hoursDiff = (now.getTime() - savedTime.getTime()) / (1000 * 60 * 60);
+
+        if (hoursDiff < 24 && (parsed.selectedStudio || parsed.selectedFormule)) {
+          setSavedBooking(parsed);
+          setShowRestoreModal(true);
+        } else {
+          // Supprimer si trop vieux
+          localStorage.removeItem('studioBooking_draft');
+        }
+      } catch (error) {
+        console.error('Erreur lors du chargement de la sauvegarde:', error);
+        localStorage.removeItem('studioBooking_draft');
+      }
+    }
+  }, []);
+
+  // Sauvegarder automatiquement toutes les 3 secondes si changement
+  useEffect(() => {
+    // Ne sauvegarder que si au moins un élément est sélectionné
+    if (!selectedStudio && !selectedFormule) return;
+
+    const timeoutId = setTimeout(() => {
+      const bookingState = {
+        timestamp: new Date().toISOString(),
+        currentStep,
+        selectedStudio,
+        selectedFormule,
+        selectedDuration,
+        selectedExtras,
+        selectedDate: selectedDate?.toISOString(),
+        selectedSlot,
+      };
+
+      localStorage.setItem('studioBooking_draft', JSON.stringify(bookingState));
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [currentStep, selectedStudio, selectedFormule, selectedDuration, selectedExtras, selectedDate, selectedSlot]);
+
+  // Restaurer la sauvegarde
+  const handleRestoreBooking = () => {
+    if (savedBooking) {
+      if (savedBooking.selectedStudio) {
+        const studio = STUDIOS.find(s => s.id === savedBooking.selectedStudio.id);
+        if (studio) setSelectedStudio(studio);
+      }
+      if (savedBooking.selectedFormule) {
+        const formule = FORMULES.find(f => f.id === savedBooking.selectedFormule.id);
+        if (formule) setSelectedFormule(formule);
+      }
+      if (savedBooking.selectedDuration) {
+        setSelectedDuration(savedBooking.selectedDuration);
+      }
+      if (savedBooking.selectedExtras) {
+        const extras = EXTRAS.filter(e =>
+          savedBooking.selectedExtras.some((saved: Extra) => saved.id === e.id)
+        );
+        setSelectedExtras(extras);
+      }
+      if (savedBooking.selectedDate) {
+        setSelectedDate(new Date(savedBooking.selectedDate));
+      }
+      if (savedBooking.selectedSlot) {
+        setSelectedSlot(savedBooking.selectedSlot);
+      }
+      setCurrentStep(savedBooking.currentStep || 1);
+    }
+    setShowRestoreModal(false);
+  };
+
+  // Recommencer à zéro
+  const handleStartFresh = () => {
+    localStorage.removeItem('studioBooking_draft');
+    setShowRestoreModal(false);
+    setSavedBooking(null);
+  };
+
+  // Nettoyer la sauvegarde après checkout réussi
+  const clearBookingSave = () => {
+    localStorage.removeItem('studioBooking_draft');
+  };
+
+  // ============================================================
   // HANDLERS
   // ============================================================
 
@@ -377,6 +478,12 @@ export default function StudioBookingFlow() {
       }
       return [...prev, extra];
     });
+  };
+
+  const handleEditStep = (step: number) => {
+    setCurrentStep(step);
+    // Scroll vers le haut pour voir l'étape
+    document.getElementById('booking-flow')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleCheckout = async () => {
@@ -460,35 +567,162 @@ export default function StudioBookingFlow() {
   const availableSlots = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
 
   // ============================================================
-  // RENDER - STEPPER
+  // RENDER - STEPPER INTELLIGENT
   // ============================================================
 
-  const renderStepper = () => (
-    <div className="flex items-center justify-center mb-8 md:mb-12">
-      {[1, 2, 3, 4].map((step, idx) => (
-        <div key={step} className="flex items-center">
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: currentStep >= step ? 1 : 0.8 }}
-            className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-sm md:text-base transition-all ${
-              currentStep > step
-                ? 'bg-emerald-500 text-white'
-                : currentStep === step
-                ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30'
-                : 'bg-white/10 text-white/40'
-            }`}
-          >
-            {currentStep > step ? <Check className="w-5 h-5" /> : step}
-          </motion.div>
-          {idx < 3 && (
-            <div className={`w-8 md:w-16 h-1 mx-1 md:mx-2 rounded-full transition-all ${
-              currentStep > step ? 'bg-emerald-500' : 'bg-white/10'
-            }`} />
-          )}
+  const renderStepper = () => {
+    const steps = [
+      {
+        number: 1,
+        label: 'Studio',
+        value: selectedStudio ? selectedStudio.shortName : null,
+        icon: selectedStudio?.icon,
+      },
+      {
+        number: 2,
+        label: 'Formule',
+        value: selectedFormule ? `${selectedFormule.name} · ${selectedDuration}` : null,
+        icon: selectedFormule ? selectedFormule.icon : null,
+      },
+      {
+        number: 3,
+        label: 'Extras',
+        value: selectedExtras.length > 0 ? `${selectedExtras.length} extra${selectedExtras.length > 1 ? 's' : ''}` : null,
+        icon: null,
+      },
+      {
+        number: 4,
+        label: 'Date',
+        value: selectedDate && selectedSlot ? `${selectedSlot}` : null,
+        icon: null,
+      },
+    ];
+
+    return (
+      <div className="mb-8 md:mb-12">
+        {/* Version desktop - stepper horizontal détaillé */}
+        <div className="hidden md:flex items-start justify-center gap-2">
+          {steps.map((step, idx) => {
+            const isActive = currentStep === step.number;
+            const isCompleted = currentStep > step.number;
+            const StepIcon = step.icon;
+            const isClickable = isCompleted || (step.number === 1);
+
+            return (
+              <div key={step.number} className="flex items-center">
+                <motion.button
+                  onClick={() => isClickable && handleEditStep(step.number)}
+                  disabled={!isClickable}
+                  whileHover={isClickable ? { scale: 1.02, y: -2 } : {}}
+                  whileTap={isClickable ? { scale: 0.98 } : {}}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className={`relative p-4 rounded-xl border-2 transition-all min-w-[140px] ${
+                    isActive
+                      ? 'border-emerald-500 bg-emerald-500/10 shadow-lg shadow-emerald-500/20'
+                      : isCompleted
+                      ? 'border-emerald-500/50 bg-emerald-500/5 hover:border-emerald-500 hover:bg-emerald-500/10 cursor-pointer'
+                      : 'border-white/10 bg-white/5'
+                  } ${!isClickable ? 'cursor-not-allowed' : ''}`}
+                >
+                  {/* Numéro/Check */}
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
+                      isCompleted
+                        ? 'bg-emerald-500 text-white'
+                        : isActive
+                        ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white'
+                        : 'bg-white/10 text-white/40'
+                    }`}>
+                      {isCompleted ? <Check className="w-4 h-4" /> : step.number}
+                    </div>
+
+                    <div className="text-left flex-1">
+                      <div className={`text-xs font-medium transition-colors ${
+                        isActive ? 'text-emerald-400' : isCompleted ? 'text-emerald-300' : 'text-white/60'
+                      }`}>
+                        {step.label}
+                      </div>
+
+                      {step.value && (
+                        <div className="text-xs font-bold text-white mt-0.5 truncate">
+                          {typeof StepIcon === 'string' ? StepIcon : ''}
+                          {step.value}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Badge "Modifier" si complété */}
+                  {isCompleted && (
+                    <div className="absolute top-1 right-1 text-[10px] text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Edit2 className="w-3 h-3" />
+                    </div>
+                  )}
+                </motion.button>
+
+                {/* Séparateur */}
+                {idx < steps.length - 1 && (
+                  <div className={`w-6 h-1 mx-1 rounded-full transition-all ${
+                    isCompleted ? 'bg-emerald-500' : 'bg-white/10'
+                  }`} />
+                )}
+              </div>
+            );
+          })}
         </div>
-      ))}
-    </div>
-  );
+
+        {/* Version mobile - stepper simple avec progression */}
+        <div className="md:hidden">
+          <div className="flex items-center justify-center mb-4">
+            {steps.map((step, idx) => {
+              const isActive = currentStep === step.number;
+              const isCompleted = currentStep > step.number;
+
+              return (
+                <div key={step.number} className="flex items-center">
+                  <motion.div
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: isActive || isCompleted ? 1 : 0.8 }}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
+                      isCompleted
+                        ? 'bg-emerald-500 text-white'
+                        : isActive
+                        ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30'
+                        : 'bg-white/10 text-white/40'
+                    }`}
+                  >
+                    {isCompleted ? <Check className="w-5 h-5" /> : step.number}
+                  </motion.div>
+                  {idx < steps.length - 1 && (
+                    <div className={`w-6 h-1 mx-1 rounded-full transition-all ${
+                      isCompleted ? 'bg-emerald-500' : 'bg-white/10'
+                    }`} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Label de l'étape actuelle */}
+          <div className="text-center">
+            <div className="text-emerald-400 text-sm font-medium mb-1">
+              Étape {currentStep}/4
+            </div>
+            <div className="text-white font-bold text-lg">
+              {steps[currentStep - 1].label}
+            </div>
+            {steps[currentStep - 1].value && (
+              <div className="text-white/60 text-sm mt-1">
+                {steps[currentStep - 1].value}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   // ============================================================
   // RENDER - ÉTAPE 1: CHOIX STUDIO
@@ -496,9 +730,10 @@ export default function StudioBookingFlow() {
 
   const renderStep1 = () => (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="space-y-6"
     >
       <div className="text-center mb-8">
@@ -626,9 +861,10 @@ export default function StudioBookingFlow() {
 
   const renderStep2 = () => (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="space-y-6"
     >
       <div className="text-center mb-8">
@@ -770,9 +1006,10 @@ export default function StudioBookingFlow() {
 
   const renderStep3 = () => (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="space-y-6"
     >
       <div className="text-center mb-8">
@@ -908,9 +1145,10 @@ export default function StudioBookingFlow() {
 
   const renderStep4 = () => (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className="space-y-6"
     >
       <div className="text-center mb-8">
@@ -1078,13 +1316,100 @@ export default function StudioBookingFlow() {
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
       </div>
 
+      {/* Modal de restauration */}
+      <AnimatePresence>
+        {showRestoreModal && savedBooking && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={handleStartFresh}
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg"
+            >
+              <div className="bg-gradient-to-br from-zinc-900 to-black border-2 border-emerald-500/30 rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center">
+                    <Sparkles className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-montserrat font-black text-white mb-2">
+                    Bon retour !
+                  </h3>
+                  <p className="text-white/60">
+                    Vous aviez commencé une réservation
+                  </p>
+                </div>
+
+                {/* Résumé de la sauvegarde */}
+                <div className="bg-white/5 rounded-xl p-4 mb-6 space-y-2">
+                  {savedBooking.selectedStudio && (
+                    <div className="flex items-center gap-2 text-white/80">
+                      <Check className="w-4 h-4 text-emerald-400" />
+                      <span className="text-sm">
+                        Studio: <strong className="text-white">{savedBooking.selectedStudio.shortName}</strong>
+                      </span>
+                    </div>
+                  )}
+                  {savedBooking.selectedFormule && (
+                    <div className="flex items-center gap-2 text-white/80">
+                      <Check className="w-4 h-4 text-emerald-400" />
+                      <span className="text-sm">
+                        Formule: <strong className="text-white">{savedBooking.selectedFormule.name}</strong>
+                      </span>
+                    </div>
+                  )}
+                  {savedBooking.selectedExtras && savedBooking.selectedExtras.length > 0 && (
+                    <div className="flex items-center gap-2 text-white/80">
+                      <Check className="w-4 h-4 text-emerald-400" />
+                      <span className="text-sm">
+                        <strong className="text-white">{savedBooking.selectedExtras.length}</strong> extra{savedBooking.selectedExtras.length > 1 ? 's' : ''}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <motion.button
+                    onClick={handleRestoreBooking}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 py-3 px-6 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold rounded-xl shadow-lg hover:shadow-emerald-500/30 transition-all"
+                  >
+                    Reprendre
+                  </motion.button>
+                  <motion.button
+                    onClick={handleStartFresh}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 py-3 px-6 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-all"
+                  >
+                    Recommencer
+                  </motion.button>
+                </div>
+
+                <p className="text-white/40 text-xs text-center mt-4">
+                  La sauvegarde est automatique pendant 24h
+                </p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         {/* Titre section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-8"
+          className="text-center mb-8 lg:mb-12"
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white mb-4">
             RÉSERVEZ
@@ -1094,60 +1419,106 @@ export default function StudioBookingFlow() {
           </h1>
         </motion.div>
 
-        {/* Stepper */}
-        {renderStepper()}
+        {/* Layout 2 colonnes sur desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        {/* Contenu étape */}
-        <AnimatePresence mode="wait">
-          {currentStep === 1 && renderStep1()}
-          {currentStep === 2 && renderStep2()}
-          {currentStep === 3 && renderStep3()}
-          {currentStep === 4 && renderStep4()}
-        </AnimatePresence>
+          {/* Colonne gauche - Formulaire (2/3 sur desktop) */}
+          <div className="lg:col-span-2 space-y-8">
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center mt-8 pt-8 border-t border-white/10">
-          <motion.button
-            onClick={handlePrevStep}
-            disabled={currentStep === 1}
-            whileHover={currentStep > 1 ? { scale: 1.02 } : {}}
-            whileTap={currentStep > 1 ? { scale: 0.98 } : {}}
-            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
-              currentStep > 1
-                ? 'bg-white/10 text-white hover:bg-white/20'
-                : 'opacity-0 pointer-events-none'
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5" />
-            Retour
-          </motion.button>
+            {/* Stepper */}
+            {renderStepper()}
 
-          {/* Résumé prix mobile */}
-          <div className="text-center">
-            <div className="text-sm text-white/60">Total</div>
-            <div className="text-2xl font-black text-white">{totalPrice}€</div>
+            {/* Contenu étape */}
+            <AnimatePresence mode="wait">
+              {currentStep === 1 && renderStep1()}
+              {currentStep === 2 && renderStep2()}
+              {currentStep === 3 && renderStep3()}
+              {currentStep === 4 && renderStep4()}
+            </AnimatePresence>
+
+            {/* Navigation */}
+            <div className="flex justify-between items-center pt-8 border-t border-white/10">
+              <motion.button
+                onClick={handlePrevStep}
+                disabled={currentStep === 1}
+                whileHover={currentStep > 1 ? { scale: 1.02 } : {}}
+                whileTap={currentStep > 1 ? { scale: 0.98 } : {}}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+                  currentStep > 1
+                    ? 'bg-white/10 text-white hover:bg-white/20'
+                    : 'opacity-0 pointer-events-none'
+                }`}
+              >
+                <ChevronLeft className="w-5 h-5" />
+                Retour
+              </motion.button>
+
+              {/* Résumé prix mobile (caché sur desktop car dans sidebar) */}
+              <div className="text-center lg:hidden">
+                <div className="text-sm text-white/60">Total</div>
+                <div className="text-2xl font-black text-white">{totalPrice}€</div>
+              </div>
+
+              {currentStep < 4 ? (
+                <motion.button
+                  onClick={handleNextStep}
+                  disabled={!canProceed()}
+                  whileHover={canProceed() ? { scale: 1.02 } : {}}
+                  whileTap={canProceed() ? { scale: 0.98 } : {}}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
+                    canProceed()
+                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50'
+                      : 'bg-white/10 text-white/40 cursor-not-allowed'
+                  }`}
+                >
+                  Continuer
+                  <ChevronRight className="w-5 h-5" />
+                </motion.button>
+              ) : (
+                <div className="w-32" />
+              )}
+            </div>
           </div>
 
-          {currentStep < 4 ? (
-            <motion.button
-              onClick={handleNextStep}
-              disabled={!canProceed()}
-              whileHover={canProceed() ? { scale: 1.02 } : {}}
-              whileTap={canProceed() ? { scale: 0.98 } : {}}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
-                canProceed()
-                  ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50'
-                  : 'bg-white/10 text-white/40 cursor-not-allowed'
-              }`}
-            >
-              Continuer
-              <ChevronRight className="w-5 h-5" />
-            </motion.button>
-          ) : (
-            <div className="w-32" /> // Placeholder pour l'alignement
-          )}
+          {/* Colonne droite - Sidebar récapitulatif (1/3 sur desktop) */}
+          <div className="lg:col-span-1">
+            <BookingSidebar
+              selectedStudio={selectedStudio}
+              selectedFormule={selectedFormule}
+              selectedDuration={selectedDuration}
+              selectedExtras={selectedExtras}
+              selectedDate={selectedDate}
+              selectedSlot={selectedSlot}
+              studioPrice={studioPrice}
+              formulePrice={formulePrice}
+              extrasPrice={extrasPrice}
+              totalPrice={totalPrice}
+              onEditStep={handleEditStep}
+              onCheckout={handleCheckout}
+              currentStep={currentStep}
+              canCheckout={canProceed() && currentStep === 4}
+              isProcessing={isProcessing}
+            />
+          </div>
         </div>
       </div>
+
+      {/* Bottom Sheet pour mobile */}
+      <BookingBottomSheet
+        selectedStudio={selectedStudio}
+        selectedFormule={selectedFormule}
+        selectedDuration={selectedDuration}
+        selectedExtras={selectedExtras}
+        selectedDate={selectedDate}
+        selectedSlot={selectedSlot}
+        studioPrice={studioPrice}
+        formulePrice={formulePrice}
+        extrasPrice={extrasPrice}
+        totalPrice={totalPrice}
+        onCheckout={handleCheckout}
+        canCheckout={canProceed() && currentStep === 4}
+        isProcessing={isProcessing}
+      />
     </section>
   );
 }
