@@ -142,8 +142,8 @@ export default function HeaderNav() {
       <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-300 ${
         isAtTop ? 'py-3' : 'py-2.5'
       }`}>
-        <div className="flex items-center justify-between gap-8">
-          
+        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-8">
+
           {/* LOGO */}
           <div onClick={() => handleNavigation('/')} className="flex-shrink-0 cursor-pointer">
             <motion.img
@@ -156,7 +156,7 @@ export default function HeaderNav() {
           </div>
 
           {/* NAVIGATION PRINCIPALE */}
-          <nav className="flex-1">
+          <nav className="flex justify-center">
             <ul className="flex items-center justify-center gap-1">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.href;
