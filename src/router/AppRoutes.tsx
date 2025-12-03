@@ -29,6 +29,7 @@ import ShopPage from '../pages/ShopPage';
 import ShopifyCheckout from '../pages/ShopifyCheckout';
 import ShopifyConfirmation from '../pages/ShopifyConfirmation';
 import Bundles from '../pages/Bundles';
+import AdminVisits from '../pages/AdminVisits';
 
 export default function AppRoutes() {
   return (
@@ -66,6 +67,7 @@ export default function AppRoutes() {
         <Route path="/packs" element={<Bundles />} />
         <Route path="/checkout-shopify" element={<ShopifyCheckout />} />
         <Route path="/confirmation-shopify" element={<ShopifyConfirmation />} />
+        <Route path="/admin/visites" element={<AdminVisits />} />
 
         {/* Route 404 - toujours en dernier */}
         <Route path="*" element={<NotFound />} />
