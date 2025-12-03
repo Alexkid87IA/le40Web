@@ -7,7 +7,7 @@
  * Étape 4: Récapitulatif & Paiement
  */
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -294,7 +294,10 @@ export default function StudioBookingFlow() {
   // Navigation et panier unifié
   const navigate = useNavigate();
   const { addLocalItem, setIsOpen } = useUnifiedCart();
-  
+
+  // Ref pour la section de réservation
+  const sectionRef = useRef<HTMLElement>(null);
+
   // État principal
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedStudio, setSelectedStudio] = useState<Studio | null>(null);
@@ -323,9 +326,13 @@ export default function StudioBookingFlow() {
   const [showRestoreModal, setShowRestoreModal] = useState(false);
   const [savedBooking, setSavedBooking] = useState<any>(null);
 
-  // Scroll automatique en haut à chaque changement d'étape
+  // Scroll automatique en haut de la section à chaque changement d'étape
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (sectionRef.current) {
+      const yOffset = -20; // Petit offset pour ne pas coller au top
+      const y = sectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   }, [currentStep]);
 
   // ============================================================
@@ -1329,7 +1336,7 @@ export default function StudioBookingFlow() {
   // ============================================================
 
   return (
-    <section id="booking-flow" className="relative py-16 md:py-24 bg-gradient-to-b from-black to-zinc-950 min-h-screen">
+    <section ref={sectionRef} id="booking-flow" className="relative py-16 md:py-24 bg-gradient-to-b from-black to-zinc-950 min-h-screen">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
