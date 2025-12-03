@@ -1,24 +1,25 @@
 /**
- * StudioShowcaseSection - Version Premium
- * 
- * Design ultra-sophistiqué avec :
- * - Galerie immersive plein écran
- * - Navigation fluide entre studios
- * - Animations premium
- * - 100% optimisé mobile-first
- * - Aperçu services intégré
+ * StudioShowcaseSection - Version Ultra Premium
+ *
+ * Design sophistiqué et audacieux avec :
+ * - Animations magnétiques et effets de hover avancés
+ * - Glassmorphism et effets de lumière dynamiques
+ * - Micro-interactions premium sur chaque élément
+ * - Parallax subtil et transitions fluides
+ * - Layout immersif avec profondeur visuelle
  */
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import {
   Video, Mic, Radio, Users, MessageSquare, Smartphone,
   ChevronLeft, ChevronRight, Check, Camera,
   Monitor, Lightbulb, Headphones, Wifi, Armchair,
   Scissors, Sparkles, Car, Coffee, Package,
   ArrowRight, Eye, Star, Zap, X, Maximize2,
-  Clock, Users as UsersIcon, Square
+  Clock, Users as UsersIcon, Square, Play, TrendingUp
 } from 'lucide-react';
+import { useMagneticHover } from '../../hooks/useMagneticHover';
 
 // ============================================================
 // TYPES
@@ -221,298 +222,256 @@ const STUDIOS: Studio[] = [
 ];
 
 // ============================================================
-// DATA - SERVICES PREVIEW
+// COMPOSANT - STUDIO CARD SIDEBAR (Premium)
 // ============================================================
 
-const SERVICES_PREVIEW = [
-  {
-    id: 'post-prod',
-    name: 'Post-Production',
-    icon: Scissors,
-    color: 'purple',
-    description: 'Montage, clipping, sous-titres',
-    price: 'dès 79€',
-  },
-  {
-    id: 'beauty',
-    name: 'Beauty',
-    icon: Sparkles,
-    color: 'pink',
-    description: 'Maquillage & coiffure pro',
-    price: 'dès 89€',
-  },
-  {
-    id: 'transport',
-    name: 'Transport',
-    icon: Car,
-    color: 'blue',
-    description: 'Navettes gare & aéroport',
-    price: 'dès 20€',
-  },
-  {
-    id: 'catering',
-    name: 'Catering',
-    icon: Coffee,
-    color: 'amber',
-    description: 'Coffee break, déjeuners',
-    price: 'dès 12€/pers',
-  },
-];
-
-// ============================================================
-// COMPOSANT - STUDIO CARD MOBILE
-// ============================================================
-
-interface StudioCardMobileProps {
+interface StudioCardSidebarProps {
   studio: Studio;
   isActive: boolean;
   onClick: () => void;
 }
 
-const StudioCardMobile = ({ studio, isActive, onClick }: StudioCardMobileProps) => {
+const StudioCardSidebar = ({ studio, isActive, onClick }: StudioCardSidebarProps) => {
+  const cardRef = useRef<HTMLButtonElement>(null);
+  const { handleMouseMove, handleMouseLeave, x, y } = useMagneticHover(10);
   const Icon = studio.icon;
-  
+
   return (
     <motion.button
+      ref={cardRef}
       onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ x, y }}
       whileTap={{ scale: 0.98 }}
-      className={`relative flex-shrink-0 w-[280px] rounded-3xl overflow-hidden transition-all duration-300 ${
-        isActive ? 'ring-2 ring-white/50 scale-[1.02]' : 'opacity-80'
+      className={`group relative w-full flex items-center gap-4 p-4 rounded-2xl text-left transition-all duration-500 overflow-hidden ${
+        isActive
+          ? 'bg-gradient-to-br from-white/10 to-white/5'
+          : 'bg-white/5 hover:bg-white/8'
       }`}
     >
-      {/* Image de fond */}
-      <div className="relative aspect-[3/4]">
-        <img
-          src={studio.images[0]}
-          alt={studio.name}
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="lazy"
+      {isActive && (
+        <motion.div
+          layoutId="active-studio-glow"
+          className={`absolute inset-0 bg-gradient-to-r ${studio.gradient} opacity-20 blur-xl`}
+          transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
         />
-        
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-        
-        {/* Badge populaire */}
-        {studio.popular && (
-          <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-amber-500/90 backdrop-blur-sm rounded-full">
-            <Star className="w-3.5 h-3.5 text-black fill-black" />
-            <span className="text-xs font-bold text-black">Populaire</span>
-          </div>
+      )}
+
+      <motion.div
+        className={`relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center overflow-hidden ${
+          isActive
+            ? `bg-gradient-to-br ${studio.gradient} shadow-lg`
+            : 'bg-white/10 group-hover:bg-white/15'
+        }`}
+        whileHover={{ scale: 1.05, rotate: isActive ? 0 : 5 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+      >
+        {isActive && (
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
         )}
-        
-        {/* Prix */}
-        <div className={`absolute top-4 right-4 px-3 py-2 rounded-2xl bg-gradient-to-r ${studio.gradient}`}>
-          <span className="text-xl font-black text-white">{studio.basePrice}€</span>
-          <span className="text-white/80 text-xs">/h</span>
+        <Icon className={`relative z-10 w-6 h-6 ${isActive ? 'text-white' : 'text-white/80'}`} />
+      </motion.div>
+
+      <div className="relative z-10 flex-1 min-w-0">
+        <div className="flex items-center gap-2 mb-1">
+          <span className={`font-bold truncate transition-colors ${isActive ? 'text-white' : 'text-white/90'}`}>
+            {studio.shortName}
+          </span>
+          {studio.popular && (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', delay: 0.2 }}
+            >
+              <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 flex-shrink-0" />
+            </motion.div>
+          )}
         </div>
-        
-        {/* Contenu */}
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          {/* Icon + Name */}
-          <div className="flex items-center gap-3 mb-3">
-            <div className={`w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center`}>
-              <Icon className="w-5 h-5 text-white" />
-            </div>
-            <div className="text-left">
-              <h3 className="text-lg font-bold text-white leading-tight">{studio.shortName}</h3>
-              <p className="text-xs text-white/70">{studio.tagline}</p>
-            </div>
-          </div>
-          
-          {/* Highlights */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {studio.highlights.slice(0, 2).map((h, idx) => (
-              <span
-                key={idx}
-                className="px-2.5 py-1 bg-white/15 backdrop-blur-sm rounded-full text-[11px] text-white font-medium"
-              >
-                {h}
-              </span>
-            ))}
-          </div>
-          
-          {/* Specs */}
-          <div className="flex items-center gap-4 text-xs text-white/80">
-            <span className="flex items-center gap-1.5">
-              <UsersIcon className="w-3.5 h-3.5" />
-              {studio.capacity}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Square className="w-3.5 h-3.5" />
-              {studio.surface}
-            </span>
-          </div>
+        <div className="flex items-center gap-2">
+          <span className={`text-sm ${isActive ? `text-transparent bg-clip-text bg-gradient-to-r ${studio.gradientText}` : 'text-white/60'}`}>
+            dès {studio.basePrice}€/h
+          </span>
+          {isActive && (
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-1 px-2 py-0.5 bg-emerald-500/20 rounded-full"
+            >
+              <TrendingUp className="w-3 h-3 text-emerald-400" />
+              <span className="text-[10px] font-bold text-emerald-400">ACTIF</span>
+            </motion.div>
+          )}
         </div>
       </div>
+
+      {isActive && (
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+          className="relative z-10"
+        >
+          <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${studio.gradient}`} />
+        </motion.div>
+      )}
     </motion.button>
   );
 };
 
 // ============================================================
-// COMPOSANT - STUDIO DETAIL MODAL (Mobile)
+// COMPOSANT - GALERIE PREMIUM
 // ============================================================
 
-interface StudioDetailModalProps {
+interface GalleryPremiumProps {
   studio: Studio;
-  onClose: () => void;
 }
 
-const StudioDetailModal = ({ studio, onClose }: StudioDetailModalProps) => {
+const GalleryPremium = ({ studio }: GalleryPremiumProps) => {
   const [activeImage, setActiveImage] = useState(0);
-  const Icon = studio.icon;
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // Empêcher le scroll du body
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, []);
+  const parallaxX = useTransform(mouseX, [0, 1], [-10, 10]);
+  const parallaxY = useTransform(mouseY, [0, 1], [-10, 10]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black"
-    >
-      <div className="h-full overflow-y-auto overscroll-contain">
-        {/* Header fixe */}
-        <div className="sticky top-0 z-20 flex items-center justify-between p-4 bg-gradient-to-b from-black via-black/80 to-transparent">
-          <motion.button
-            onClick={onClose}
-            whileTap={{ scale: 0.9 }}
-            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center"
+    <div className="relative space-y-4">
+      <motion.div
+        className="relative aspect-[4/3] rounded-3xl overflow-hidden group"
+        onMouseMove={handleMouseMove}
+        whileHover={{ scale: 1.02 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeImage}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0"
           >
-            <X className="w-5 h-5 text-white" />
-          </motion.button>
-          
-          <div className={`px-4 py-2 rounded-full bg-gradient-to-r ${studio.gradient}`}>
-            <span className="font-bold text-white">{studio.basePrice}€/h</span>
-          </div>
-        </div>
+            <motion.img
+              src={studio.images[activeImage]}
+              alt={studio.name}
+              style={{ x: parallaxX, y: parallaxY }}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Galerie images - Full width */}
-        <div className="relative -mt-16">
-          <div className="relative aspect-[4/3]">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={activeImage}
-                src={studio.images[activeImage]}
-                alt={studio.name}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </AnimatePresence>
-            
-            {/* Gradient bas */}
-            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+        {studio.popular && (
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="absolute top-5 left-5 flex items-center gap-2 px-4 py-2 bg-amber-500/90 backdrop-blur-xl rounded-2xl shadow-xl"
+          >
+            <Star className="w-4 h-4 text-black fill-black" />
+            <span className="text-sm font-black text-black">POPULAIRE</span>
+          </motion.div>
+        )}
+
+        <motion.div
+          initial={{ x: 20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className={`absolute top-5 right-5 px-5 py-3 rounded-2xl bg-gradient-to-r ${studio.gradient} backdrop-blur-xl shadow-xl`}
+        >
+          <div className="flex items-baseline gap-1">
+            <motion.span
+              key={studio.basePrice}
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="text-3xl font-black text-white"
+            >
+              {studio.basePrice}€
+            </motion.span>
+            <span className="text-white/80 text-sm font-bold">/h</span>
           </div>
-          
-          {/* Navigation images */}
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+        </motion.div>
+
+        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
+          <button
+            onClick={() => setActiveImage((prev) => (prev - 1 + studio.images.length) % studio.images.length)}
+            className="w-12 h-12 rounded-2xl bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 active:scale-95"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex gap-2">
             {studio.images.map((_, idx) => (
-              <button
+              <motion.button
                 key={idx}
                 onClick={() => setActiveImage(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === activeImage ? 'w-8 bg-white' : 'w-1.5 bg-white/40'
-                }`}
-              />
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                className="relative"
+              >
+                <div className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === activeImage ? 'w-10 bg-white' : 'w-2 bg-white/40'
+                }`} />
+                {idx === activeImage && (
+                  <motion.div
+                    layoutId="active-dot"
+                    className={`absolute inset-0 rounded-full bg-gradient-to-r ${studio.gradient} blur-lg opacity-60`}
+                  />
+                )}
+              </motion.button>
             ))}
           </div>
-        </div>
 
-        {/* Contenu */}
-        <div className="relative z-10 px-5 pb-32 -mt-4 space-y-6">
-          {/* Header */}
-          <div className="flex items-start gap-4">
-            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center flex-shrink-0`}>
-              <Icon className="w-7 h-7 text-white" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-black text-white leading-tight">{studio.name}</h2>
-              <p className={`text-transparent bg-clip-text bg-gradient-to-r ${studio.gradientText} font-semibold`}>
-                {studio.tagline}
-              </p>
-            </div>
-          </div>
-
-          {/* Description */}
-          <p className="text-white/80 leading-relaxed text-[15px]">{studio.description}</p>
-
-          {/* Specs - Cards */}
-          <div className="grid grid-cols-3 gap-3">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 text-center">
-              <UsersIcon className="w-5 h-5 text-white/50 mx-auto mb-2" />
-              <div className="text-white font-bold text-sm">{studio.capacity}</div>
-              <div className="text-white/40 text-xs">Capacité</div>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 text-center">
-              <Square className="w-5 h-5 text-white/50 mx-auto mb-2" />
-              <div className="text-white font-bold text-sm">{studio.surface}</div>
-              <div className="text-white/40 text-xs">Surface</div>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 text-center">
-              <Clock className="w-5 h-5 text-white/50 mx-auto mb-2" />
-              <div className="text-white font-bold text-sm">2h min</div>
-              <div className="text-white/40 text-xs">Durée</div>
-            </div>
-          </div>
-
-          {/* Équipements */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-5">
-            <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-              <Package className="w-5 h-5 text-emerald-400" />
-              Équipements inclus
-            </h3>
-            <div className="grid grid-cols-1 gap-3">
-              {studio.equipment.map((eq, idx) => {
-                const EqIcon = eq.icon;
-                return (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/5 rounded-xl">
-                    <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-                      <EqIcon className="w-4 h-4 text-emerald-400" />
-                    </div>
-                    <span className="text-sm text-white/90 font-medium">{eq.name}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Idéal pour */}
-          <div>
-            <h3 className="text-base font-bold text-white mb-4">Idéal pour</h3>
-            <div className="flex flex-wrap gap-2">
-              {studio.idealFor.map((use, idx) => (
-                <span
-                  key={idx}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${studio.gradient} text-white`}
-                >
-                  {use}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Fixe en bas */}
-        <div className="fixed bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black via-black to-transparent">
-          <motion.a
-            href="#booking-flow"
-            onClick={onClose}
-            whileTap={{ scale: 0.98 }}
-            className={`flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-bold text-lg text-white bg-gradient-to-r ${studio.gradient} shadow-xl`}
+          <button
+            onClick={() => setActiveImage((prev) => (prev + 1) % studio.images.length)}
+            className="w-12 h-12 rounded-2xl bg-black/40 backdrop-blur-xl flex items-center justify-center text-white hover:bg-black/60 transition-all hover:scale-110 active:scale-95"
           >
-            Réserver ce studio
-            <ArrowRight className="w-5 h-5" />
-          </motion.a>
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
+      </motion.div>
+
+      <div className="grid grid-cols-3 gap-3">
+        {studio.images.map((img, idx) => (
+          <motion.button
+            key={idx}
+            onClick={() => setActiveImage(idx)}
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            className="relative aspect-video rounded-2xl overflow-hidden group"
+          >
+            <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
+            <div className={`absolute inset-0 transition-all duration-300 ${
+              idx === activeImage
+                ? 'ring-2 ring-white bg-transparent'
+                : 'bg-black/40 group-hover:bg-black/20'
+            }`} />
+            {idx === activeImage && (
+              <motion.div
+                layoutId="active-thumb"
+                className="absolute inset-0 bg-white/10"
+                transition={{ type: 'spring', bounce: 0.3 }}
+              />
+            )}
+          </motion.button>
+        ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -522,444 +481,234 @@ const StudioDetailModal = ({ studio, onClose }: StudioDetailModalProps) => {
 
 export default function StudioShowcaseSection() {
   const [activeStudio, setActiveStudio] = useState(0);
-  const [showDetail, setShowDetail] = useState(false);
-  const [activeImageDesktop, setActiveImageDesktop] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
   const studio = STUDIOS[activeStudio];
   const Icon = studio.icon;
 
-  // Auto-scroll vers la card active sur mobile
-  useEffect(() => {
-    if (scrollContainerRef.current && window.innerWidth < 768) {
-      const container = scrollContainerRef.current;
-      const cards = container.querySelectorAll('[data-studio-card]');
-      const activeCard = cards[activeStudio] as HTMLElement;
-      
-      if (activeCard) {
-        const containerWidth = container.offsetWidth;
-        const cardLeft = activeCard.offsetLeft;
-        const cardWidth = activeCard.offsetWidth;
-        const scrollTo = cardLeft - (containerWidth - cardWidth) / 2;
-        
-        container.scrollTo({
-          left: scrollTo,
-          behavior: 'smooth',
-        });
-      }
-    }
-  }, [activeStudio]);
-
-  // Reset image quand on change de studio
-  useEffect(() => {
-    setActiveImageDesktop(0);
-  }, [activeStudio]);
-
   return (
-    <section id="showcase" className="relative py-12 md:py-24 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <section id="showcase" className="relative py-24 overflow-hidden bg-black">
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
           animate={{
-            x: [0, 20, 0],
-            y: [0, -20, 0],
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/4 -left-48 w-96 h-96 bg-emerald-500/10 rounded-full blur-[150px]"
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          className="absolute top-1/4 -left-48 w-[600px] h-[600px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-full blur-[150px]"
         />
         <motion.div
           animate={{
-            x: [0, -20, 0],
-            y: [0, 20, 0],
+            scale: [1, 1.3, 1],
+            rotate: [0, -90, 0],
           }}
-          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-1/4 -right-48 w-96 h-96 bg-purple-500/10 rounded-full blur-[150px]"
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          className="absolute bottom-1/4 -right-48 w-[600px] h-[600px] bg-gradient-to-l from-purple-500/20 to-pink-500/20 rounded-full blur-[150px]"
         />
       </div>
 
-      {/* ============================================
-          HEADER
-      ============================================ */}
-      <div className="relative z-10 px-5 md:px-8 lg:px-16 max-w-7xl mx-auto mb-8 md:mb-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="text-center mb-16"
         >
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-5"
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-xl rounded-full mb-6 border border-white/10"
           >
             <Eye className="w-4 h-4 text-emerald-400" />
-            <span className="text-white/80 text-sm font-medium">6 studios équipés</span>
+            <span className="text-white/90 text-sm font-bold">6 STUDIOS ÉQUIPÉS PRO</span>
           </motion.div>
-          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-3 leading-tight">
-            Explorez nos
-            <span className="block md:inline md:ml-3 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
-              espaces créatifs
-            </span>
-          </h2>
-          <p className="text-white/60 max-w-xl mx-auto text-sm md:text-base">
-            Découvrez chaque studio et ses équipements avant de réserver.
-          </p>
-        </motion.div>
-      </div>
 
-      {/* ============================================
-          VERSION MOBILE - Carousel horizontal
-      ============================================ */}
-      <div className="md:hidden">
-        {/* Carousel */}
-        <div
-          ref={scrollContainerRef}
-          className="flex gap-4 px-5 pb-6 overflow-x-auto scrollbar-hide"
-          style={{ 
-            scrollSnapType: 'x mandatory',
-            WebkitOverflowScrolling: 'touch',
-          }}
-        >
-          {STUDIOS.map((s, idx) => (
-            <div
-              key={s.id}
-              data-studio-card
-              className="scroll-snap-align-center flex-shrink-0"
-              style={{ scrollSnapAlign: 'center' }}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-5 leading-tight">
+            Explorez nos
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"
             >
-              <StudioCardMobile
+              espaces créatifs
+            </motion.span>
+          </h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-white/70 max-w-2xl mx-auto text-lg"
+          >
+            Sélectionnez le studio adapté à votre projet
+          </motion.p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-12 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-4 space-y-3"
+          >
+            {STUDIOS.map((s, idx) => (
+              <StudioCardSidebar
+                key={s.id}
                 studio={s}
                 isActive={idx === activeStudio}
-                onClick={() => {
-                  setActiveStudio(idx);
-                  setShowDetail(true);
-                }}
+                onClick={() => setActiveStudio(idx)}
               />
-            </div>
-          ))}
-        </div>
+            ))}
+          </motion.div>
 
-        {/* Dots navigation */}
-        <div className="flex justify-center gap-2 mb-6">
-          {STUDIOS.map((s, idx) => (
-            <button
-              key={s.id}
-              onClick={() => setActiveStudio(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === activeStudio 
-                  ? `w-8 bg-gradient-to-r ${s.gradient}` 
-                  : 'w-2 bg-white/20'
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Bouton voir détails */}
-        <div className="px-5">
-          <motion.button
-            onClick={() => setShowDetail(true)}
-            whileTap={{ scale: 0.98 }}
-            className={`w-full py-4 rounded-2xl font-bold text-white bg-gradient-to-r ${studio.gradient} flex items-center justify-center gap-2 shadow-lg`}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-8"
           >
-            <Maximize2 className="w-5 h-5" />
-            Voir {studio.shortName} en détail
-          </motion.button>
-        </div>
-
-        {/* Modal détails */}
-        <AnimatePresence>
-          {showDetail && (
-            <StudioDetailModal
-              studio={studio}
-              onClose={() => setShowDetail(false)}
-            />
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* ============================================
-          VERSION DESKTOP - Layout split
-      ============================================ */}
-      <div className="hidden md:block px-8 lg:px-16 max-w-7xl mx-auto">
-        <div className="grid grid-cols-12 gap-6 lg:gap-8">
-          
-          {/* Colonne gauche - Navigation studios */}
-          <div className="col-span-4 lg:col-span-3 space-y-2">
-            {STUDIOS.map((s, idx) => {
-              const SIcon = s.icon;
-              const isActive = idx === activeStudio;
-              
-              return (
-                <motion.button
-                  key={s.id}
-                  onClick={() => setActiveStudio(idx)}
-                  whileHover={{ x: isActive ? 0 : 4 }}
-                  className={`w-full flex items-center gap-3 lg:gap-4 p-3 lg:p-4 rounded-2xl text-left transition-all duration-300 ${
-                    isActive
-                      ? `bg-gradient-to-r ${s.gradient} shadow-lg shadow-${s.color}-500/20`
-                      : 'bg-white/5 hover:bg-white/10'
-                  }`}
-                >
-                  <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                    isActive ? 'bg-white/20' : 'bg-white/10'
-                  }`}>
-                    <SIcon className={`w-5 h-5 lg:w-6 lg:h-6 ${isActive ? 'text-white' : 'text-white/70'}`} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className={`font-bold text-sm lg:text-base truncate ${isActive ? 'text-white' : 'text-white/90'}`}>
-                        {s.shortName}
-                      </span>
-                      {s.popular && (
-                        <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400 flex-shrink-0" />
-                      )}
-                    </div>
-                    <span className={`text-xs lg:text-sm ${isActive ? 'text-white/80' : 'text-white/50'}`}>
-                      dès {s.basePrice}€/h
-                    </span>
-                  </div>
-                  <ChevronRight className={`w-5 h-5 flex-shrink-0 transition-transform ${
-                    isActive ? 'text-white translate-x-1' : 'text-white/30'
-                  }`} />
-                </motion.button>
-              );
-            })}
-          </div>
-
-          {/* Colonne droite - Détails studio */}
-          <div className="col-span-8 lg:col-span-9">
             <AnimatePresence mode="wait">
               <motion.div
                 key={studio.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.4 }}
+                className="grid lg:grid-cols-2 gap-8"
               >
-                {/* Galerie */}
-                <div className="space-y-3">
-                  {/* Image principale */}
-                  <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group">
-                    <AnimatePresence mode="wait">
-                      <motion.img
-                        key={activeImageDesktop}
-                        src={studio.images[activeImageDesktop]}
-                        alt={studio.name}
-                        initial={{ opacity: 0, scale: 1.05 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                    </AnimatePresence>
+                <GalleryPremium studio={studio} />
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                    {/* Badge prix */}
-                    <div className={`absolute top-4 right-4 px-4 py-2 rounded-2xl bg-gradient-to-r ${studio.gradient}`}>
-                      <span className="text-2xl font-black text-white">{studio.basePrice}€</span>
-                      <span className="text-white/80">/h</span>
-                    </div>
-
-                    {/* Badge populaire */}
-                    {studio.popular && (
-                      <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-amber-500 rounded-full">
-                        <Star className="w-4 h-4 text-black fill-black" />
-                        <span className="text-sm font-bold text-black">Populaire</span>
-                      </div>
-                    )}
-
-                    {/* Navigation arrows */}
-                    <button
-                      onClick={() => setActiveImageDesktop((prev) => (prev - 1 + studio.images.length) % studio.images.length)}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-black/60"
+                <div className="space-y-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex items-start gap-4"
+                  >
+                    <motion.div
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ type: 'spring', stiffness: 200 }}
+                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center shadow-xl flex-shrink-0`}
                     >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => setActiveImageDesktop((prev) => (prev + 1) % studio.images.length)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-black/60"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-
-                    {/* Dots */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                      {studio.images.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setActiveImageDesktop(idx)}
-                          className={`h-2 rounded-full transition-all duration-300 ${
-                            idx === activeImageDesktop ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Thumbnails */}
-                  <div className="grid grid-cols-3 gap-3">
-                    {studio.images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setActiveImageDesktop(idx)}
-                        className={`relative aspect-video rounded-xl overflow-hidden transition-all duration-300 ${
-                          idx === activeImageDesktop
-                            ? 'ring-2 ring-white'
-                            : 'opacity-50 hover:opacity-80'
-                        }`}
-                      >
-                        <img src={img} alt="" className="w-full h-full object-cover" loading="lazy" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Infos */}
-                <div className="space-y-5">
-                  {/* Header */}
-                  <div className="flex items-start gap-4">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center flex-shrink-0`}>
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
+                      <Icon className="w-8 h-8 text-white" />
+                    </motion.div>
                     <div>
-                      <h3 className="text-2xl font-black text-white leading-tight">{studio.name}</h3>
-                      <p className={`text-transparent bg-clip-text bg-gradient-to-r ${studio.gradientText} font-semibold`}>
+                      <h3 className="text-3xl font-black text-white leading-tight mb-2">{studio.name}</h3>
+                      <p className={`text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r ${studio.gradientText}`}>
                         {studio.tagline}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* Description */}
-                  <p className="text-white/70 leading-relaxed">{studio.description}</p>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-white/80 leading-relaxed"
+                  >
+                    {studio.description}
+                  </motion.p>
 
-                  {/* Specs */}
-                  <div className="flex gap-3">
-                    <div className="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-xl">
-                      <UsersIcon className="w-4 h-4 text-white/50" />
-                      <span className="text-white font-medium text-sm">{studio.capacity}</span>
-                    </div>
-                    <div className="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-xl">
-                      <Square className="w-4 h-4 text-white/50" />
-                      <span className="text-white font-medium text-sm">{studio.surface}</span>
-                    </div>
-                    <div className="flex items-center gap-2 px-4 py-2.5 bg-white/5 rounded-xl">
-                      <Clock className="w-4 h-4 text-white/50" />
-                      <span className="text-white font-medium text-sm">2h min</span>
-                    </div>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="flex gap-3"
+                  >
+                    {[
+                      { icon: UsersIcon, label: studio.capacity },
+                      { icon: Square, label: studio.surface },
+                      { icon: Clock, label: '2h min' },
+                    ].map((spec, idx) => {
+                      const SpecIcon = spec.icon;
+                      return (
+                        <motion.div
+                          key={idx}
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          className="flex items-center gap-2 px-4 py-3 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10"
+                        >
+                          <SpecIcon className="w-4 h-4 text-emerald-400" />
+                          <span className="text-white font-medium text-sm">{spec.label}</span>
+                        </motion.div>
+                      );
+                    })}
+                  </motion.div>
 
-                  {/* Équipements */}
-                  <div className="p-5 bg-white/5 rounded-2xl">
-                    <h4 className="font-bold text-white mb-4 flex items-center gap-2">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10"
+                  >
+                    <h4 className="font-black text-white mb-4 flex items-center gap-2 text-lg">
                       <Package className="w-5 h-5 text-emerald-400" />
                       Équipements inclus
                     </h4>
-                    <div className="grid grid-cols-2 gap-2">
-                      {studio.equipment.map((eq, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
-                          <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                          <span className="text-sm text-white/80">{eq.name}</span>
-                        </div>
-                      ))}
+                    <div className="grid grid-cols-2 gap-3">
+                      {studio.equipment.map((eq, idx) => {
+                        const EqIcon = eq.icon;
+                        return (
+                          <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.6 + idx * 0.05 }}
+                            whileHover={{ x: 4 }}
+                            className="flex items-center gap-2"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                              <EqIcon className="w-4 h-4 text-emerald-400" />
+                            </div>
+                            <span className="text-sm text-white/90 font-medium">{eq.name}</span>
+                          </motion.div>
+                        );
+                      })}
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* Idéal pour */}
-                  <div>
-                    <h4 className="font-bold text-white mb-3 text-sm">Idéal pour</h4>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    <h4 className="font-bold text-white mb-3">Idéal pour</h4>
                     <div className="flex flex-wrap gap-2">
                       {studio.idealFor.map((use, idx) => (
-                        <span
+                        <motion.span
                           key={idx}
-                          className={`px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r ${studio.gradient} text-white`}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.8 + idx * 0.05 }}
+                          whileHover={{ scale: 1.05 }}
+                          className={`px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r ${studio.gradient} text-white`}
                         >
                           {use}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* CTA */}
                   <motion.a
                     href="#booking-flow"
-                    whileHover={{ scale: 1.02 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9 }}
+                    whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-bold text-white bg-gradient-to-r ${studio.gradient} shadow-lg`}
+                    className={`flex items-center justify-center gap-3 w-full py-5 rounded-2xl font-black text-lg text-white bg-gradient-to-r ${studio.gradient} shadow-2xl`}
                   >
+                    <Play className="w-5 h-5" />
                     Réserver ce studio
                     <ArrowRight className="w-5 h-5" />
                   </motion.a>
                 </div>
               </motion.div>
             </AnimatePresence>
-          </div>
+          </motion.div>
         </div>
       </div>
-
-      {/* ============================================
-          SERVICES PREVIEW
-      ============================================ */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="relative z-10 mt-16 md:mt-24 px-5 md:px-8 lg:px-16 max-w-7xl mx-auto"
-      >
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-4">
-            <Zap className="w-4 h-4 text-amber-400" />
-            <span className="text-white/80 text-sm font-medium">Services additionnels</span>
-          </div>
-          <h3 className="text-2xl md:text-3xl font-black text-white mb-2">
-            On s'occupe de tout
-          </h3>
-          <p className="text-white/60 text-sm md:text-base max-w-md mx-auto">
-            Montage, maquillage, transport... Ajoutez ce dont vous avez besoin.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {SERVICES_PREVIEW.map((service, idx) => {
-            const ServiceIcon = service.icon;
-            return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="group p-4 md:p-5 bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/10 transition-all cursor-pointer"
-              >
-                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-${service.color}-500/20 flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform`}>
-                  <ServiceIcon className={`w-5 h-5 md:w-6 md:h-6 text-${service.color}-400`} />
-                </div>
-                <h4 className="font-bold text-white text-sm md:text-base mb-1">{service.name}</h4>
-                <p className="text-xs md:text-sm text-white/50 mb-2 md:mb-3 line-clamp-2">{service.description}</p>
-                <span className="text-emerald-400 font-bold text-sm">{service.price}</span>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* CTA global */}
-        <div className="text-center mt-8 md:mt-10">
-          <motion.a
-            href="#booking-flow"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl font-bold text-white shadow-lg shadow-emerald-500/25"
-          >
-            Composer mon offre
-            <ArrowRight className="w-5 h-5" />
-          </motion.a>
-        </div>
-      </motion.div>
     </section>
   );
 }
