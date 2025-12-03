@@ -4,7 +4,6 @@ import { Phone, Calendar, Eye } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import UnifiedCartButton from '../Cart/UnifiedCartButton';
-import VisitModal from '../Booking/VisitModal';
 import { Z_INDEX } from '../../utils/zIndex';
 
 const navItems = [
@@ -28,7 +27,6 @@ export default function HeaderNav() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
-  const [isVisitModalOpen, setIsVisitModalOpen] = useState(false);
 
   const handleNavigation = (href: string) => {
     navigate(href);
@@ -234,7 +232,7 @@ export default function HeaderNav() {
 
               {/* Bouton Planifier une visite (Solid) */}
               <motion.button
-                onClick={() => setIsVisitModalOpen(true)}
+                onClick={() => navigate('/reserver-visite')}
                 className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all duration-200 flex items-center gap-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -248,12 +246,6 @@ export default function HeaderNav() {
           </div>
         </div>
       </div>
-
-      {/* Modal de visite */}
-      <VisitModal
-        isOpen={isVisitModalOpen}
-        onClose={() => setIsVisitModalOpen(false)}
-      />
     </motion.header>
   );
 }

@@ -30,6 +30,7 @@ import ShopifyCheckout from '../pages/ShopifyCheckout';
 import ShopifyConfirmation from '../pages/ShopifyConfirmation';
 import Bundles from '../pages/Bundles';
 import AdminVisits from '../pages/AdminVisits';
+import ReserverVisite from '../pages/ReserverVisite';
 
 export default function AppRoutes() {
   return (
@@ -55,6 +56,7 @@ export default function AppRoutes() {
         <Route path="/events" element={<Events />} />
         <Route path="/services-plus" element={<ServicesPlus />} />
         <Route path="/reservation" element={<BookingPage />} />
+        <Route path="/reserver-visite" element={<ReserverVisite />} />
         <Route path="/panier" element={<UnifiedCheckout />} />
         <Route path="/checkout" element={<CheckoutWithStripe />} />
         <Route path="/checkout-old" element={<Checkout />} />

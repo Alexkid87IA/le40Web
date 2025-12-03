@@ -5,7 +5,6 @@ import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
 import BookingHeroChoice from '../components/Booking/BookingHeroChoice';
-import VisitModal from '../components/Booking/VisitModal';
 import ServicesGrid from '../components/Booking/ServicesGrid';
 import ClubApplicationModal from '../components/Booking/ClubApplicationModal';
 import DomiciliationModal from '../components/Booking/DomiciliationModal';
@@ -17,12 +16,11 @@ type ViewMode = 'choice' | 'services';
 export default function BookingPage() {
   const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<ViewMode>('choice');
-  const [isVisitModalOpen, setIsVisitModalOpen] = useState(false);
   const [isClubModalOpen, setIsClubModalOpen] = useState(false);
   const [isDomiciliationModalOpen, setIsDomiciliationModalOpen] = useState(false);
 
   const handleSelectVisit = () => {
-    setIsVisitModalOpen(true);
+    navigate('/reserver-visite');
   };
 
   const handleSelectService = () => {
@@ -132,11 +130,6 @@ export default function BookingPage() {
       <Footer />
 
       <ContactBar />
-
-      <VisitModal
-        isOpen={isVisitModalOpen}
-        onClose={() => setIsVisitModalOpen(false)}
-      />
 
       <ClubApplicationModal
         isOpen={isClubModalOpen}
