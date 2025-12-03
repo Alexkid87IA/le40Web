@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, Calendar, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import UnifiedCartButton from '../Cart/UnifiedCartButton';
@@ -17,9 +17,7 @@ const navItems = [
   { name: 'Le Club', href: '/experts' },
 ];
 
-const secondaryItems = [
-  { name: 'Contact', href: '/contact', icon: Phone },
-];
+const secondaryItems: Array<{ name: string; href: string; icon: any }> = [];
 
 // Fonction pour obtenir la couleur du trait selon la page
 const getActiveIndicatorColor = (pathname: string): string => {
