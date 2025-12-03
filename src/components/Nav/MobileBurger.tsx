@@ -41,7 +41,6 @@ export default function MobileBurger() {
     setIsOpen(false);
     setTimeout(() => {
       navigate(href);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 300);
   };
 

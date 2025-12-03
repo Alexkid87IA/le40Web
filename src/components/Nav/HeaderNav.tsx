@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import UnifiedCartButton from '../Cart/UnifiedCartButton';
 import VisitModal from '../Booking/VisitModal';
+import { Z_INDEX } from '../../utils/zIndex';
 
 const navItems = [
   { name: 'Accueil', href: '/' },
@@ -97,12 +98,12 @@ export default function HeaderNav() {
         duration: 0.3,
         ease: [0.19, 1, 0.22, 1]
       }}
-      className={`hidden md:block fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`hidden md:block fixed top-0 left-0 right-0 transition-colors duration-300 ${
         isAtTop
           ? 'bg-black/90 border-b border-white/5'
           : 'bg-black/95 border-b border-white/10'
       }`}
-      style={{ backdropFilter: 'blur(20px)' }}
+      style={{ backdropFilter: 'blur(20px)', zIndex: Z_INDEX.headerNav }}
     >
       <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-300 ${
         isAtTop ? 'py-3' : 'py-2.5'

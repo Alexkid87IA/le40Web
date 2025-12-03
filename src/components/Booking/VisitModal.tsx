@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
+import { Z_INDEX } from '../../utils/zIndex';
 
 interface VisitModalProps {
   isOpen: boolean;
@@ -20,6 +21,18 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const timeSlots = [
     { value: 'morning', label: 'Matin (9h-12h)', time: '09:00' },
@@ -116,7 +129,7 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div className="fixed inset-0 flex items-center justify-center p-4" style={{ zIndex: Z_INDEX.modal }}>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
