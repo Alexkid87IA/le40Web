@@ -15,7 +15,7 @@ import {
   Check, ChevronRight, ChevronLeft, ArrowRight,
   Scissors, Camera, Car, Coffee, Sparkles, Music,
   Palette, Heart, FileText, Package, Star, Zap,
-  Calendar, Clock, Loader2, X, Filter, Search
+  Calendar, Clock, Loader2, X, Filter, Search, Edit2
 } from 'lucide-react';
 import { useShopifyCheckout } from '../../hooks/useShopifyCheckout';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
