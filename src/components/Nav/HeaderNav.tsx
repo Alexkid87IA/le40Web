@@ -21,6 +21,23 @@ const secondaryItems = [
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
+// Fonction pour obtenir la couleur du trait selon la page
+const getActiveIndicatorColor = (pathname: string): string => {
+  const colorMap: Record<string, string> = {
+    '/': 'from-orange-400 via-orange-500 to-orange-400',
+    '/bureaux': 'from-emerald-400 via-emerald-500 to-emerald-400',
+    '/domiciliation': 'from-cyan-400 via-cyan-500 to-cyan-400',
+    '/salles': 'from-rose-400 via-rose-500 to-rose-400',
+    '/studios': 'from-orange-400 via-orange-500 to-orange-400',
+    '/bundles': 'from-purple-400 via-purple-500 to-purple-400',
+    '/events': 'from-violet-400 via-violet-500 to-violet-400',
+    '/experts': 'from-fuchsia-400 via-fuchsia-500 to-fuchsia-400',
+    '/contact': 'from-blue-400 via-blue-500 to-blue-400',
+  };
+
+  return colorMap[pathname] || 'from-orange-400 via-orange-500 to-orange-400';
+};
+
 export default function HeaderNav() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -176,7 +193,7 @@ export default function HeaderNav() {
                               damping: 35
                             }}
                           >
-                            <div className="w-8 h-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400 rounded-full" />
+                            <div className={`w-8 h-0.5 bg-gradient-to-r ${getActiveIndicatorColor(location.pathname)} rounded-full`} />
                           </motion.div>
                         )}
                     </motion.div>

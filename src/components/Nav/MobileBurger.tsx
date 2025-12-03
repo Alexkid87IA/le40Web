@@ -15,6 +15,40 @@ const navItems = [
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
+// Fonction pour obtenir le gradient de fond selon la page
+const getActiveBgGradient = (pathname: string): string => {
+  const gradientMap: Record<string, string> = {
+    '/': 'from-orange-500/20 to-orange-500/20 border-orange-500/30',
+    '/bureaux': 'from-emerald-500/20 to-emerald-500/20 border-emerald-500/30',
+    '/domiciliation': 'from-cyan-500/20 to-cyan-500/20 border-cyan-500/30',
+    '/salles': 'from-rose-500/20 to-rose-500/20 border-rose-500/30',
+    '/studios': 'from-orange-500/20 to-orange-500/20 border-orange-500/30',
+    '/bundles': 'from-purple-500/20 to-purple-500/20 border-purple-500/30',
+    '/events': 'from-violet-500/20 to-violet-500/20 border-violet-500/30',
+    '/experts': 'from-fuchsia-500/20 to-fuchsia-500/20 border-fuchsia-500/30',
+    '/contact': 'from-blue-500/20 to-blue-500/20 border-blue-500/30',
+  };
+
+  return gradientMap[pathname] || 'from-orange-500/20 to-orange-500/20 border-orange-500/30';
+};
+
+// Fonction pour obtenir la couleur de l'icône selon la page
+const getActiveIconColor = (pathname: string): string => {
+  const colorMap: Record<string, string> = {
+    '/': 'text-orange-400',
+    '/bureaux': 'text-emerald-400',
+    '/domiciliation': 'text-cyan-400',
+    '/salles': 'text-rose-400',
+    '/studios': 'text-orange-400',
+    '/bundles': 'text-purple-400',
+    '/events': 'text-violet-400',
+    '/experts': 'text-fuchsia-400',
+    '/contact': 'text-blue-400',
+  };
+
+  return colorMap[pathname] || 'text-orange-400';
+};
+
 export default function MobileBurger() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -147,10 +181,10 @@ export default function MobileBurger() {
                         onClick={() => handleNavigation(item.href)}
                         className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl transition-all
                                   ${isActive
-                                    ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30'
+                                    ? `bg-gradient-to-r ${getActiveBgGradient(item.href)} border`
                                     : 'bg-white/5 hover:bg-white/10 border border-white/10'}`}
                       >
-                        <Icon className={`w-5 h-5 ${isActive ? 'text-amber-400' : 'text-white/60'}`} />
+                        <Icon className={`w-5 h-5 ${isActive ? getActiveIconColor(item.href) : 'text-white/60'}`} />
                         <span className={`font-inter font-medium ${isActive ? 'text-white' : 'text-white/80'}`}>
                           {item.name}
                         </span>
