@@ -297,6 +297,8 @@ export default function StudioBookingFlow() {
 
   // Ref pour la section de réservation
   const sectionRef = useRef<HTMLElement>(null);
+  // Ref pour la section durée de location
+  const durationSectionRef = useRef<HTMLDivElement>(null);
 
   // État principal
   const [currentStep, setCurrentStep] = useState(1);
@@ -334,6 +336,19 @@ export default function StudioBookingFlow() {
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }, [currentStep]);
+
+  // Scroll vers la section durée quand un studio est sélectionné
+  useEffect(() => {
+    if (selectedStudio && durationSectionRef.current) {
+      setTimeout(() => {
+        if (durationSectionRef.current) {
+          const yOffset = -100; // Offset pour voir le titre de la section
+          const y = durationSectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 300); // Petit délai pour laisser l'animation se faire
+    }
+  }, [selectedStudio]);
 
   // ============================================================
   // CALCULS
@@ -848,6 +863,7 @@ export default function StudioBookingFlow() {
       {/* Sélection durée */}
       {selectedStudio && (
         <motion.div
+          ref={durationSectionRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
