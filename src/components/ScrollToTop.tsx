@@ -5,13 +5,14 @@ export default function ScrollToTop() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Si pas de hash dans l'URL, scroll en haut
+    // Si pas de hash dans l'URL, scroll en haut immédiatement
     if (!hash) {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant' as ScrollBehavior
-      });
+      // Force immédiate
+      window.scrollTo(0, 0);
+      // Double check après un court délai
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 0);
     }
   }, [pathname, hash]);
 

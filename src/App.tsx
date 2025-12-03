@@ -7,6 +7,13 @@ import { PrerollProvider } from './contexts/PrerollContext';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
+  // Disable browser scroll restoration
+  React.useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />

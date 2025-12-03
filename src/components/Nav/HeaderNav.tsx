@@ -30,6 +30,10 @@ export default function HeaderNav() {
 
   const handleNavigation = (href: string) => {
     navigate(href);
+    // Force scroll to top immediately
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   };
 
   useEffect(() => {
