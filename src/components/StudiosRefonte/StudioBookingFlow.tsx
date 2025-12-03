@@ -323,6 +323,11 @@ export default function StudioBookingFlow() {
   const [showRestoreModal, setShowRestoreModal] = useState(false);
   const [savedBooking, setSavedBooking] = useState<any>(null);
 
+  // Scroll automatique en haut à chaque changement d'étape
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStep]);
+
   // ============================================================
   // CALCULS
   // ============================================================
@@ -599,7 +604,7 @@ export default function StudioBookingFlow() {
     ];
 
     return (
-      <div className="mb-8 md:mb-12">
+      <div className="sticky top-0 z-30 mb-8 md:mb-12 bg-gradient-to-b from-zinc-950 via-zinc-950/95 to-transparent backdrop-blur-md pb-4 pt-2 -mx-4 px-4 md:-mx-6 md:px-6 border-b border-white/5">
         {/* Version desktop - stepper horizontal détaillé */}
         <div className="hidden md:flex items-start justify-center gap-2">
           {steps.map((step, idx) => {
@@ -675,6 +680,21 @@ export default function StudioBookingFlow() {
 
         {/* Version mobile - stepper simple avec progression */}
         <div className="md:hidden">
+          {/* Indicateur de progression */}
+          <div className="mb-3 text-center">
+            <div className="text-emerald-400 text-xs font-bold mb-1">
+              ÉTAPE {currentStep} SUR 4
+            </div>
+            <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+              <motion.div
+                className="h-full bg-gradient-to-r from-emerald-500 to-teal-500"
+                initial={{ width: 0 }}
+                animate={{ width: `${(currentStep / 4) * 100}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
+          </div>
+
           <div className="flex items-center justify-center mb-4">
             {steps.map((step, idx) => {
               const isActive = currentStep === step.number;
