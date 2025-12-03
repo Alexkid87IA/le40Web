@@ -38,6 +38,23 @@ const getActiveIndicatorColor = (pathname: string): string => {
   return colorMap[pathname] || 'from-orange-400 via-orange-500 to-orange-400';
 };
 
+// Fonction pour obtenir la couleur du bouton CTA selon la page
+const getCTAButtonColor = (pathname: string): string => {
+  const colorMap: Record<string, string> = {
+    '/': 'bg-orange-600 hover:bg-orange-500',
+    '/bureaux': 'bg-emerald-600 hover:bg-emerald-500',
+    '/domiciliation': 'bg-cyan-600 hover:bg-cyan-500',
+    '/salles': 'bg-rose-600 hover:bg-rose-500',
+    '/studios': 'bg-orange-600 hover:bg-orange-500',
+    '/bundles': 'bg-purple-600 hover:bg-purple-500',
+    '/events': 'bg-violet-600 hover:bg-violet-500',
+    '/experts': 'bg-fuchsia-600 hover:bg-fuchsia-500',
+    '/contact': 'bg-blue-600 hover:bg-blue-500',
+  };
+
+  return colorMap[pathname] || 'bg-emerald-600 hover:bg-emerald-500';
+};
+
 export default function HeaderNav() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -241,11 +258,7 @@ export default function HeaderNav() {
             {/* Bouton Planifier une visite (Solid) */}
             <motion.button
               onClick={() => navigate('/reserver-visite')}
-              className={`px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 ${
-                location.pathname === '/'
-                  ? 'bg-orange-600 hover:bg-orange-500'
-                  : 'bg-emerald-600 hover:bg-emerald-500'
-              }`}
+              className={`px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 ${getCTAButtonColor(location.pathname)}`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

@@ -49,6 +49,23 @@ const getActiveIconColor = (pathname: string): string => {
   return colorMap[pathname] || 'text-orange-400';
 };
 
+// Fonction pour obtenir le gradient du bouton CTA selon la page
+const getCTAGradient = (pathname: string): string => {
+  const gradientMap: Record<string, string> = {
+    '/': 'from-orange-600 via-orange-600 to-orange-600 shadow-orange-500/30 hover:shadow-orange-500/40',
+    '/bureaux': 'from-emerald-600 via-emerald-600 to-emerald-600 shadow-emerald-500/30 hover:shadow-emerald-500/40',
+    '/domiciliation': 'from-cyan-600 via-cyan-600 to-cyan-600 shadow-cyan-500/30 hover:shadow-cyan-500/40',
+    '/salles': 'from-rose-600 via-rose-600 to-rose-600 shadow-rose-500/30 hover:shadow-rose-500/40',
+    '/studios': 'from-orange-600 via-orange-600 to-orange-600 shadow-orange-500/30 hover:shadow-orange-500/40',
+    '/bundles': 'from-purple-600 via-purple-600 to-purple-600 shadow-purple-500/30 hover:shadow-purple-500/40',
+    '/events': 'from-violet-600 via-violet-600 to-violet-600 shadow-violet-500/30 hover:shadow-violet-500/40',
+    '/experts': 'from-fuchsia-600 via-fuchsia-600 to-fuchsia-600 shadow-fuchsia-500/30 hover:shadow-fuchsia-500/40',
+    '/contact': 'from-blue-600 via-blue-600 to-blue-600 shadow-blue-500/30 hover:shadow-blue-500/40',
+  };
+
+  return gradientMap[pathname] || 'from-orange-600 via-orange-600 to-orange-600 shadow-orange-500/30 hover:shadow-orange-500/40';
+};
+
 export default function MobileBurger() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -200,11 +217,11 @@ export default function MobileBurger() {
                   className="mt-8 pt-8 border-t border-white/10"
                 >
                   <Link
-                    to="/contact"
+                    to="/reserver-visite"
                     onClick={() => setIsOpen(false)}
-                    className="w-full block py-4 px-6 bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600
-                             rounded-xl text-white font-bold text-center shadow-lg shadow-amber-500/30
-                             hover:shadow-xl hover:shadow-amber-500/40 transition-all"
+                    className={`w-full block py-4 px-6 bg-gradient-to-r ${getCTAGradient(location.pathname)}
+                             rounded-xl text-white font-bold text-center shadow-lg
+                             hover:shadow-xl transition-all`}
                   >
                     Réserver une visite
                   </Link>
