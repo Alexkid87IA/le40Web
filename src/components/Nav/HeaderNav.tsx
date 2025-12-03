@@ -142,10 +142,10 @@ export default function HeaderNav() {
       <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-300 ${
         isAtTop ? 'py-3' : 'py-2.5'
       }`}>
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-8">
 
           {/* LOGO */}
-          <div onClick={() => handleNavigation('/')} className="flex-shrink-0 cursor-pointer z-10">
+          <div onClick={() => handleNavigation('/')} className="flex-shrink-0 cursor-pointer">
             <motion.img
               src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
               alt="Le 40"
@@ -155,8 +155,8 @@ export default function HeaderNav() {
             />
           </div>
 
-          {/* NAVIGATION PRINCIPALE - Centrée absolument */}
-          <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          {/* NAVIGATION PRINCIPALE */}
+          <nav className="flex justify-center">
             <ul className="flex items-center justify-center gap-1">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.href;
@@ -219,7 +219,7 @@ export default function HeaderNav() {
           </nav>
 
           {/* ACTIONS SECONDAIRES */}
-          <div className="flex items-center gap-3 flex-shrink-0 z-10">
+          <div className="flex items-center gap-3 flex-shrink-0">
 
             {/* Icônes secondaires */}
             <div className="flex items-center gap-2">
