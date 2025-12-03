@@ -55,7 +55,6 @@ export default function AppRoutes() {
         <Route path="/club" element={<Club />} />
         <Route path="/events" element={<Events />} />
         <Route path="/services-plus" element={<ServicesPlus />} />
-        <Route path="/reservation" element={<BookingPage />} />
         <Route path="/reserver-visite" element={<ReserverVisite />} />
         <Route path="/panier" element={<UnifiedCheckout />} />
         <Route path="/checkout" element={<CheckoutWithStripe />} />
