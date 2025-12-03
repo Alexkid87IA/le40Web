@@ -17,6 +17,7 @@ import Club from '../pages/Club';
 import Events from '../pages/Events';
 import ServicesPlus from '../pages/ServicesPlus';
 import NotFound from '../pages/NotFound';
+import BookingPage from '../pages/BookingPage';
 import Checkout from '../pages/Checkout';
 import CheckoutWithStripe from '../pages/CheckoutWithStripe';
 import OrderConfirmation from '../pages/OrderConfirmation';
@@ -54,6 +55,7 @@ export default function AppRoutes() {
         <Route path="/club" element={<Club />} />
         <Route path="/events" element={<Events />} />
         <Route path="/services-plus" element={<ServicesPlus />} />
+        <Route path="/reservation" element={<BookingPage />} />
         <Route path="/reserver-visite" element={<ReserverVisite />} />
         <Route path="/panier" element={<UnifiedCheckout />} />
         <Route path="/checkout" element={<CheckoutWithStripe />} />

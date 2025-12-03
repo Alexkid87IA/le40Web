@@ -52,9 +52,9 @@ export default function CartDrawer() {
                   <ShoppingCart className="w-16 h-16 text-white/20 mx-auto mb-4" />
                   <p className="text-white/60 font-inter">Votre panier est vide</p>
                   <Link
-                    to="/"
+                    to="/reservation"
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex items-center gap-2 mt-6 text-purple-400
+                    className="inline-flex items-center gap-2 mt-6 text-purple-400 
                              hover:text-purple-300 transition-colors"
                   >
                     Découvrir nos services

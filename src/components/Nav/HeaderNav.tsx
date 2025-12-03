@@ -1,41 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Phone, Calendar, Eye } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import UnifiedCartButton from '../Cart/UnifiedCartButton';
 import { Z_INDEX } from '../../utils/zIndex';
 
-interface DropdownItem {
-  name: string;
-  href: string;
-}
-
-interface NavItem {
-  name: string;
-  href?: string;
-  dropdown?: DropdownItem[];
-}
-
-const navItems: NavItem[] = [
-  {
-    name: 'Espaces',
-    dropdown: [
-      { name: 'Bureaux Privés', href: '/bureaux' },
-      { name: 'Coworking', href: '/coworking' },
-      { name: 'Salles', href: '/salles' },
-      { name: 'Studios', href: '/studios' },
-    ]
-  },
-  {
-    name: 'Services',
-    dropdown: [
-      { name: 'Domiciliation', href: '/domiciliation' },
-      { name: 'Bundles', href: '/bundles' },
-    ]
-  },
+const navItems = [
+  { name: 'Accueil', href: '/' },
+  { name: 'Bureaux', href: '/bureaux' },
+  { name: 'Domiciliation', href: '/domiciliation' },
+  { name: 'Salles', href: '/salles' },
+  { name: 'Studio', href: '/studios' },
+  { name: 'Bundles', href: '/bundles' },
+  { name: 'Nos Events', href: '/events' },
   { name: 'Le Club', href: '/experts' },
-  { name: 'Événements', href: '/events' },
-  { name: 'Contact', href: '/contact' },
+];
+
+const secondaryItems = [
+  { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
 export default function HeaderNav() {
@@ -44,19 +27,9 @@ export default function HeaderNav() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const handleNavigation = (href: string) => {
-    setActiveDropdown(null);
     navigate(href);
-  };
-
-  const isItemActive = (item: NavItem) => {
-    if (item.href) return location.pathname === item.href;
-    if (item.dropdown) {
-      return item.dropdown.some(subItem => location.pathname === subItem.href);
-    }
-    return false;
   };
 
   useEffect(() => {
@@ -64,25 +37,29 @@ export default function HeaderNav() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
+      
+      // On est en haut de la page
       if (currentScrollY < 50) {
         setIsAtTop(true);
         setIsVisible(true);
         setLastScrollY(currentScrollY);
         return;
       }
-
+      
       setIsAtTop(false);
 
+      // Scroll vers le bas = cacher
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
-        setActiveDropdown(null);
-      } else if (currentScrollY < lastScrollY) {
+      } 
+      // Scroll vers le haut = montrer immédiatement
+      else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
 
       setLastScrollY(currentScrollY);
 
+      // IMPORTANT : Toujours relancer le timer après chaque scroll
       clearTimeout(inactivityTimeout);
       inactivityTimeout = setTimeout(() => {
         setIsVisible(true);
@@ -90,6 +67,7 @@ export default function HeaderNav() {
     };
 
     const handleMouseMove = () => {
+      // Relancer le timer au mouvement de souris
       if (window.scrollY > 50) {
         clearTimeout(inactivityTimeout);
         inactivityTimeout = setTimeout(() => {
@@ -100,7 +78,7 @@ export default function HeaderNav() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -118,107 +96,153 @@ export default function HeaderNav() {
         duration: 0.3,
         ease: [0.19, 1, 0.22, 1]
       }}
-      className="hidden md:block fixed top-0 left-0 right-0"
-      style={{
-        background: isAtTop ? 'rgba(0,0,0,0.5)' : 'rgba(0,0,0,0.8)',
-        backdropFilter: 'blur(12px)',
-        zIndex: Z_INDEX.headerNav,
-        borderBottom: '1px solid rgba(255,255,255,0.06)'
-      }}
+      className={`hidden md:block fixed top-0 left-0 right-0 transition-colors duration-300 ${
+        isAtTop
+          ? 'bg-black/90 border-b border-white/5'
+          : 'bg-black/95 border-b border-white/10'
+      }`}
+      style={{ backdropFilter: 'blur(20px)', zIndex: Z_INDEX.headerNav }}
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
-
+      <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-300 ${
+        isAtTop ? 'py-3' : 'py-2.5'
+      }`}>
+        <div className="flex items-center justify-between gap-8">
+          
           {/* LOGO */}
-          <div onClick={() => handleNavigation('/')} className="cursor-pointer">
-            <img
+          <div onClick={() => handleNavigation('/')} className="flex-shrink-0 cursor-pointer">
+            <motion.img
               src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
               alt="Le 40"
-              className="brightness-0 invert w-20 opacity-90 hover:opacity-100 transition-opacity"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="brightness-0 invert w-20 transition-all duration-300"
             />
           </div>
 
-          {/* NAVIGATION */}
-          <nav className="flex-1 flex justify-center">
-            <ul className="flex items-center gap-1">
+          {/* NAVIGATION PRINCIPALE */}
+          <nav className="flex-1">
+            <ul className="flex items-center justify-center gap-1">
               {navItems.map((item) => {
-                const isActive = isItemActive(item);
-                const hasDropdown = !!item.dropdown;
+                const isActive = location.pathname === item.href;
 
                 return (
-                  <li
-                    key={item.name}
-                    className="relative"
-                    onMouseEnter={() => hasDropdown && setActiveDropdown(item.name)}
-                    onMouseLeave={() => hasDropdown && setActiveDropdown(null)}
-                  >
-                    <button
-                      onClick={() => !hasDropdown && item.href && handleNavigation(item.href)}
-                      className={`px-3 py-2 text-sm flex items-center gap-1 transition-colors ${
-                        isActive
-                          ? 'text-white'
-                          : 'text-white/60 hover:text-white'
-                      }`}
+                  <li key={item.name}>
+                    <motion.div
+                      onClick={() => handleNavigation(item.href)}
+                      className="relative group px-4 py-2 rounded-lg cursor-pointer"
+                      whileHover={{ y: -1 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      {item.name}
-                      {hasDropdown && (
-                        <ChevronDown className={`w-3 h-3 transition-transform ${
-                          activeDropdown === item.name ? 'rotate-180' : ''
+                        {isActive && (
+                          <motion.div
+                            layoutId="activeNav"
+                            className="absolute inset-0 bg-white/[0.06] rounded-lg"
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 35,
+                              mass: 0.8,
+                            }}
+                          />
+                        )}
+
+                        <div className={`absolute inset-0 rounded-lg transition-opacity duration-200 ${
+                          isActive
+                            ? 'opacity-0'
+                            : 'opacity-0 group-hover:opacity-100 bg-white/[0.03]'
                         }`} />
-                      )}
-                    </button>
 
-                    {/* DROPDOWN */}
-                    <AnimatePresence>
-                      {hasDropdown && activeDropdown === item.name && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 5 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute top-full left-0 mt-1 w-48 py-1 rounded-lg"
-                          style={{
-                            background: 'rgba(0,0,0,0.95)',
-                            backdropFilter: 'blur(12px)',
-                            border: '1px solid rgba(255,255,255,0.08)'
-                          }}
+                        <span
+                          className={`relative font-medium text-[13px] tracking-wide transition-all duration-200 ${
+                            isActive
+                              ? 'text-white'
+                              : 'text-white/50 group-hover:text-white/90'
+                          }`}
                         >
-                          {item.dropdown?.map((dropItem) => {
-                            const isDropItemActive = location.pathname === dropItem.href;
+                          {item.name}
+                        </span>
 
-                            return (
-                              <button
-                                key={dropItem.href}
-                                onClick={() => handleNavigation(dropItem.href)}
-                                className={`w-full px-3 py-2 text-left text-sm transition-colors ${
-                                  isDropItemActive
-                                    ? 'text-white bg-white/5'
-                                    : 'text-white/70 hover:text-white hover:bg-white/5'
-                                }`}
-                              >
-                                {dropItem.name}
-                              </button>
-                            );
-                          })}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                        {isActive && (
+                          <motion.div
+                            layoutId="activeIndicator"
+                            className="absolute -bottom-0.5 left-0 right-0 flex justify-center"
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 35
+                            }}
+                          >
+                            <div className="w-8 h-0.5 bg-emerald-400 rounded-full" />
+                          </motion.div>
+                        )}
+                    </motion.div>
                   </li>
                 );
               })}
             </ul>
           </nav>
 
-          {/* ACTIONS */}
-          <div className="flex items-center gap-3">
-            <UnifiedCartButton />
+          {/* ACTIONS SECONDAIRES */}
+          <div className="flex items-center gap-3 flex-shrink-0">
 
-            <button
-              onClick={() => navigate('/reserver-visite')}
-              className="px-4 py-2 text-sm text-white bg-white/10 hover:bg-white/15 rounded-lg transition-colors border border-white/10"
-            >
-              Réserver une visite
-            </button>
+            {/* Icônes secondaires */}
+            <div className="flex items-center gap-2">
+              {secondaryItems.map((item) => {
+                const isActive = location.pathname === item.href;
+                const Icon = item.icon;
+
+                return (
+                  <motion.div
+                    key={item.name}
+                    onClick={() => handleNavigation(item.href)}
+                    className={`relative p-2 rounded-lg transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? 'bg-white/[0.06] text-white'
+                        : 'text-white/50 hover:text-white hover:bg-white/[0.03]'
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    title={item.name}
+                  >
+                    <Icon className="w-[17px] h-[17px]" />
+                  </motion.div>
+                );
+              })}
+
+              {/* Panier Unifié */}
+              <UnifiedCartButton />
+            </div>
+
+            {/* Séparateur */}
+            <div className="w-px h-5 bg-white/10" />
+
+            {/* DOUBLE CTA BUTTONS */}
+            <div className="flex items-center gap-2">
+              {/* Bouton Explorer (Outline) */}
+              <motion.button
+                onClick={() => handleNavigation('/reservation')}
+                className="px-4 py-2 rounded-lg border border-white/20 hover:border-emerald-400/50 hover:bg-white/[0.03] transition-all duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="font-medium text-[13px] text-white/70 hover:text-white transition-colors">
+                  Explorer
+                </span>
+              </motion.button>
+
+              {/* Bouton Planifier une visite (Solid) */}
+              <motion.button
+                onClick={() => navigate('/reserver-visite')}
+                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all duration-200 flex items-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Eye className="w-[14px] h-[14px] text-white" />
+                <span className="font-medium text-[13px] text-white">
+                  Planifier une visite
+                </span>
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>

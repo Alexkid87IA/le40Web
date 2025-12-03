@@ -35,7 +35,6 @@ export default {
       animation: {
         'ken-burns': 'ken-burns 25s ease-in-out infinite',
         'gradient-shift': 'gradient-shift 3s ease infinite',
-        'gradient': 'gradient 4s ease infinite',
         'film-grain': 'film-grain 2s ease-in-out infinite alternate',
       },
       backdropBlur: {
