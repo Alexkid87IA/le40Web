@@ -308,7 +308,7 @@ export default function MeetingRooms() {
                 {/* CTA buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <motion.a
-                    href="/reservation"
+                    href="/salles"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="group"

@@ -216,33 +216,18 @@ export default function HeaderNav() {
             {/* Séparateur */}
             <div className="w-px h-5 bg-white/10" />
 
-            {/* DOUBLE CTA BUTTONS */}
-            <div className="flex items-center gap-2">
-              {/* Bouton Explorer (Outline) */}
-              <motion.button
-                onClick={() => handleNavigation('/reservation')}
-                className="px-4 py-2 rounded-lg border border-white/20 hover:border-emerald-400/50 hover:bg-white/[0.03] transition-all duration-200"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <span className="font-medium text-[13px] text-white/70 hover:text-white transition-colors">
-                  Explorer
-                </span>
-              </motion.button>
-
-              {/* Bouton Planifier une visite (Solid) */}
-              <motion.button
-                onClick={() => navigate('/reserver-visite')}
-                className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all duration-200 flex items-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Eye className="w-[14px] h-[14px] text-white" />
-                <span className="font-medium text-[13px] text-white">
-                  Planifier une visite
-                </span>
-              </motion.button>
-            </div>
+            {/* CTA BUTTON */}
+            <motion.button
+              onClick={() => navigate('/reserver-visite')}
+              className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all duration-200 flex items-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Eye className="w-[14px] h-[14px] text-white" />
+              <span className="font-medium text-[13px] text-white">
+                Planifier une visite
+              </span>
+            </motion.button>
           </div>
         </div>
       </div>
