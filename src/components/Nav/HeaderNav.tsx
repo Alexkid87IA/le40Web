@@ -220,7 +220,11 @@ export default function HeaderNav() {
             {/* Bouton Planifier une visite (Solid) */}
             <motion.button
               onClick={() => navigate('/reserver-visite')}
-              className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 transition-all duration-200 flex items-center gap-2"
+              className={`px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 ${
+                location.pathname === '/'
+                  ? 'bg-orange-600 hover:bg-orange-500'
+                  : 'bg-emerald-600 hover:bg-emerald-500'
+              }`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
