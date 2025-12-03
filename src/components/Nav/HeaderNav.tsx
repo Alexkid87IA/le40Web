@@ -172,7 +172,7 @@ export default function HeaderNav() {
                               damping: 35
                             }}
                           >
-                            <div className="w-8 h-0.5 bg-emerald-400 rounded-full" />
+                            <div className="w-8 h-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400 rounded-full" />
                           </motion.div>
                         )}
                     </motion.div>
