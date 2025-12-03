@@ -26,7 +26,7 @@ export default function HomeNew() {
       <MobileBurger />
       <MobileStickyCTA />
 
-      <main className="pt-16 md:pt-24">
+      <main>
         <Hero />
 
         <div className="relative">
