@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Sparkles, Calendar, Clock, ShoppingCart } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Sparkles, Calendar, Clock, ShoppingCart, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
-// Interface flexible qui accepte les deux types de données
 interface SpaceItem {
   id: string;
   title: string;
@@ -27,7 +27,6 @@ interface SpaceDetailModalProps {
   onClose: () => void;
 }
 
-// Valeurs par défaut
 const defaultFeatures = [
   'Wi-Fi haut débit',
   'Écran de présentation',
@@ -46,10 +45,14 @@ const defaultGradients = [
 ];
 
 export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalProps) {
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedDuration, setSelectedDuration] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState<string | null>(null);
+  
+  // IMPORTANT: On récupère addLocalItem ET setIsOpen pour contrôler le panier
   const { addLocalItem, setIsOpen } = useUnifiedCart();
 
   useEffect(() => {
@@ -74,13 +77,11 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
 
   if (!space) return null;
 
-  // Récupérer les valeurs avec fallbacks
   const images = space.images && space.images.length > 0 ? space.images : ['https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg'];
   const features = space.features && space.features.length > 0 ? space.features : defaultFeatures;
   const disponibilites = space.disponibilites && space.disponibilites.length > 0 ? space.disponibilites : defaultDisponibilites;
   const gradient = space.gradient || defaultGradients[0];
   
-  // Récupérer le prix de base
   const getBasePrice = (): number => {
     if (space.price !== undefined) {
       return space.price;
@@ -88,7 +89,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
     if (space.variants && space.variants.length > 0) {
       return space.variants[0].price;
     }
-    return 50; // Prix par défaut
+    return 50;
   };
 
   const basePrice = getBasePrice();
@@ -111,6 +112,9 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
       return;
     }
 
+    setIsProcessing(duree);
+
+    // Ajouter au panier local
     addLocalItem({
       serviceType: 'meeting-room',
       serviceName: `${space.title} - ${duree}`,
@@ -125,9 +129,14 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
     });
 
     setSelectedDuration(duree);
+    
+    // CORRECTION: Fermer le panier latéral, fermer le modal, puis naviguer
     setTimeout(() => {
-      setSelectedDuration(null);
-    }, 2000);
+      setIsOpen(false); // Fermer le panier latéral
+      onClose(); // Fermer le modal
+      document.body.style.overflow = 'unset';
+      navigate('/checkout'); // Aller à la page récap
+    }, 300);
   };
 
   const calculateEndTime = (startTime: string, duration: string): string => {
@@ -142,13 +151,18 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
         addHours = 4;
         break;
       case 'Demi-journée':
+      case 'Demi-journée (4h)':
         addHours = 4;
         break;
       case 'Journée':
+      case 'Journée complète':
+      case 'Journée complète (8h)':
         addHours = 8;
         break;
       case 'Soirée complète':
+      case 'Soirée complète (6h)':
       case 'Soirée':
+      case 'Soirée (6h)':
         addHours = 6;
         break;
       default:
@@ -160,19 +174,33 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
   };
 
   const calculatePrice = (duration: string) => {
+    if (space.variants && space.variants.length > 0) {
+      const variant = space.variants.find(v => 
+        v.title.toLowerCase().includes(duration.toLowerCase()) ||
+        duration.toLowerCase().includes(v.title.toLowerCase().split(' ')[0])
+      );
+      if (variant) return variant.price;
+    }
+
     switch (duration) {
       case '2 heures':
         return basePrice * 2;
       case '4 heures':
         return basePrice * 4;
       case 'Demi-journée':
+      case 'Demi-journée (4h)':
         return Math.round(basePrice * 3.5);
       case 'Journée':
+      case 'Journée complète':
+      case 'Journée complète (8h)':
         return Math.round(basePrice * 7);
       case 'Soirée complète':
+      case 'Soirée complète (6h)':
       case 'Soirée':
+      case 'Soirée (6h)':
         return basePrice * 6;
       case 'Heure':
+      case '1 heure':
       default:
         return basePrice;
     }
@@ -180,12 +208,18 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
 
   const durationMap: Record<string, string> = {
     'Heure': 'hour',
+    '1 heure': 'hour',
     'Demi-journée': 'half-day',
+    'Demi-journée (4h)': 'half-day',
     'Journée': 'day',
+    'Journée complète': 'day',
+    'Journée complète (8h)': 'day',
     '2 heures': 'hour',
     '4 heures': 'half-day',
     'Soirée complète': 'day',
-    'Soirée': 'day'
+    'Soirée complète (6h)': 'day',
+    'Soirée': 'day',
+    'Soirée (6h)': 'day'
   };
 
   return (
@@ -194,60 +228,56 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/90 backdrop-blur-xl z-50 flex items-end md:items-center justify-center"
+        className="fixed inset-0 bg-black/90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
         onClick={onClose}
       >
         <motion.div
-          initial={{ scale: 0.9, opacity: 0, y: 100 }}
+          initial={{ scale: 0.9, opacity: 0, y: 50 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.9, opacity: 0, y: 100 }}
-          transition={{ type: "spring", stiffness: 250, damping: 25 }}
-          className="bg-gradient-to-br from-zinc-900 to-black rounded-t-3xl md:rounded-3xl max-w-6xl w-full h-[95vh] md:h-auto md:max-h-[90vh] overflow-hidden shadow-2xl border-t border-white/10 md:border md:border-white/10 flex flex-col"
-          onClick={(e) => e.stopPropagation()}
+          exit={{ scale: 0.9, opacity: 0, y: 50 }}
+          className="bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-950 rounded-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden shadow-2xl border border-white/10 relative"
+          onClick={e => e.stopPropagation()}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 h-full overflow-y-auto">
-            <div className="relative h-[250px] sm:h-[350px] md:h-[400px] lg:h-[700px] bg-black flex-shrink-0">
+          {/* CORRECTION: Conteneur scrollable */}
+          <div className="grid md:grid-cols-2 max-h-[90vh]">
+            {/* Image - fixe sur desktop */}
+            <div className="relative h-48 sm:h-64 md:h-full md:min-h-[500px] bg-zinc-900 md:sticky md:top-0">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImageIndex}
                   src={images[currentImageIndex]}
-                  alt={space.title}
+                  alt={`${space.title} - Image ${currentImageIndex + 1}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
                   className="w-full h-full object-cover"
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.5 }}
                 />
               </AnimatePresence>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+              <div className={`absolute inset-0 bg-gradient-to-t ${gradient} opacity-20`} />
 
               {images.length > 1 && (
                 <>
                   <button
-                    onClick={() => setCurrentImageIndex(prev =>
-                      prev === 0 ? images.length - 1 : prev - 1
-                    )}
-                    className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all group"
+                    onClick={() => setCurrentImageIndex(prev => prev === 0 ? images.length - 1 : prev - 1)}
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-black/50 rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
                   >
-                    <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:-translate-x-0.5 transition-transform" />
+                    <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </button>
-
                   <button
-                    onClick={() => setCurrentImageIndex(prev =>
-                      prev === images.length - 1 ? 0 : prev + 1
-                    )}
-                    className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all group"
+                    onClick={() => setCurrentImageIndex(prev => prev === images.length - 1 ? 0 : prev + 1)}
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-black/50 rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
                   >
-                    <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
                   </button>
 
-                  <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                  <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2">
                     {images.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setCurrentImageIndex(idx)}
-                        className={`w-2 h-2 rounded-full transition-all ${
+                        className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all ${
                           idx === currentImageIndex
                             ? 'bg-white w-6'
                             : 'bg-white/40 hover:bg-white/60'
@@ -259,7 +289,8 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
               )}
             </div>
 
-            <div className="p-4 md:p-8 lg:p-10 overflow-y-auto">
+            {/* CORRECTION: Contenu scrollable */}
+            <div className="p-4 md:p-8 overflow-y-auto max-h-[60vh] md:max-h-[90vh]">
               <div className="flex items-start justify-between mb-4 md:mb-6">
                 <div className="flex-1 pr-4">
                   <motion.h2
@@ -290,7 +321,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
                 </motion.button>
               </div>
 
-              <div className="flex items-center gap-2 md:gap-3 text-zinc-400 mb-5 md:mb-10 flex-wrap">
+              <div className="flex items-center gap-2 md:gap-3 text-zinc-400 mb-5 md:mb-8 flex-wrap">
                 <div className="flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 bg-white/5 rounded-lg">
                   <Users className="w-3.5 h-3.5 md:w-4 md:h-4" />
                   <span className="text-xs md:text-sm">{space.capacity}</span>
@@ -301,64 +332,68 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
                 </div>
               </div>
 
-              <div className="mb-6 md:mb-10">
-                <h3 className="text-base md:text-lg font-montserrat font-bold text-white mb-4 md:mb-6 flex items-center gap-2">
+              <div className="mb-6 md:mb-8">
+                <h3 className="text-base md:text-lg font-montserrat font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                  Équipements premium inclus
+                  Équipements inclus
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                <div className="grid grid-cols-2 gap-2">
                   {features.map((feature, idx) => (
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 }}
-                      className="flex items-center gap-2 md:gap-3 p-2.5 md:p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors"
+                      className="flex items-center gap-2 p-2 bg-white/5 rounded-lg"
                     >
-                      <Check className="w-3.5 h-3.5 md:w-4 md:h-4 text-emerald-400 flex-shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                       <span className="text-zinc-300 text-xs md:text-sm">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-xl md:rounded-2xl p-4 md:p-6 border border-emerald-500/20">
-                  <h4 className="text-sm md:text-base font-montserrat font-semibold text-white mb-3 md:mb-4 flex items-center gap-2">
-                    <Calendar className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
-                    Sélectionnez date et heure
+              <div className="space-y-4">
+                <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-xl p-4 border border-emerald-500/20">
+                  <h4 className="text-sm md:text-base font-montserrat font-semibold text-white mb-3 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-emerald-400" />
+                    Date et heure
                   </h4>
 
-                  <div className="grid grid-cols-1 gap-3 md:gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="date" className="block text-xs md:text-sm text-white/80 mb-2">
-                        Date de réservation
+                      <label htmlFor="date" className="block text-xs text-white/80 mb-1">
+                        Date
                       </label>
-                      <input
-                        id="date"
-                        type="date"
-                        min={getTodayDate()}
-                        value={selectedDate}
-                        onChange={(e) => setSelectedDate(e.target.value)}
-                        className="w-full px-3 md:px-4 py-2.5 md:py-3 bg-white/10 border border-white/20 rounded-lg md:rounded-xl text-white text-sm md:text-base
-                                 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
-                                 [color-scheme:dark]"
-                      />
+                      <div 
+                        className="relative cursor-pointer"
+                        onClick={() => document.getElementById('date')?.showPicker?.()}
+                      >
+                        <input
+                          id="date"
+                          type="date"
+                          min={getTodayDate()}
+                          value={selectedDate}
+                          onChange={(e) => setSelectedDate(e.target.value)}
+                          className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm
+                                   focus:outline-none focus:ring-2 focus:ring-emerald-400
+                                   [color-scheme:dark] cursor-pointer"
+                        />
+                      </div>
                     </div>
 
                     <div>
-                      <label htmlFor="time" className="block text-xs md:text-sm text-white/80 mb-2">
-                        Heure de début
+                      <label htmlFor="time" className="block text-xs text-white/80 mb-1">
+                        Heure
                       </label>
                       <select
                         id="time"
                         value={selectedTime}
                         onChange={(e) => setSelectedTime(e.target.value)}
-                        className="w-full px-3 md:px-4 py-2.5 md:py-3 bg-white/10 border border-white/20 rounded-lg md:rounded-xl text-white text-sm md:text-base
-                                 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400
-                                 cursor-pointer"
+                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm
+                                 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                       >
-                        <option value="" className="bg-zinc-900">Sélectionner une heure</option>
+                        <option value="" className="bg-zinc-900">Heure</option>
                         {timeSlots.map((time) => (
                           <option key={time} value={time} className="bg-zinc-900">{time}</option>
                         ))}
@@ -367,72 +402,70 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
                   </div>
 
                   {(!selectedDate || !selectedTime) && (
-                    <p className="text-emerald-400/80 text-xs mt-3 flex items-center gap-1">
+                    <p className="text-emerald-400/80 text-xs mt-2 flex items-center gap-1">
                       <Clock className="w-3 h-3" />
-                      Veuillez choisir une date et une heure pour continuer
+                      Choisissez date et heure
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <h4 className="text-sm md:text-base font-montserrat font-semibold text-white mb-3 md:mb-4">
-                    Choisissez votre durée
+                  <h4 className="text-sm md:text-base font-montserrat font-semibold text-white mb-3">
+                    Durée
                   </h4>
 
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="space-y-2">
                     {disponibilites.map((duree, idx) => {
                       const price = calculatePrice(duree);
                       const isSelected = selectedDuration === duree;
+                      const isLoading = isProcessing === duree;
 
                       return (
                         <motion.div
                           key={duree}
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: idx * 0.1 }}
-                          className={`flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 md:p-4 rounded-lg md:rounded-xl transition-all gap-3 ${
+                          transition={{ delay: idx * 0.05 }}
+                          className={`flex items-center justify-between p-3 rounded-xl transition-all ${
                             isSelected
                               ? 'bg-emerald-500/20 border-2 border-emerald-400'
                               : 'bg-white/5 border-2 border-transparent hover:bg-white/10'
                           }`}
                         >
-                          <div className="w-full sm:w-auto">
-                            <p className="text-white font-medium text-sm md:text-base">{space.title} - {duree}</p>
-                            <p className="text-zinc-400 text-xs md:text-sm">
+                          <div>
+                            <p className="text-white font-medium text-sm">{duree}</p>
+                            <p className="text-zinc-400 text-xs">
                               {price}€ TTC
                               {selectedTime && (
-                                <span className="ml-2 text-emerald-400">
+                                <span className="ml-1 text-emerald-400">
                                   • {selectedTime} - {calculateEndTime(selectedTime, duree)}
                                 </span>
                               )}
                             </p>
                           </div>
                           <motion.button
-                            whileHover={selectedDate && selectedTime ? { scale: 1.05 } : {}}
-                            whileTap={selectedDate && selectedTime ? { scale: 0.95 } : {}}
+                            whileHover={selectedDate && selectedTime && !isLoading ? { scale: 1.05 } : {}}
+                            whileTap={selectedDate && selectedTime && !isLoading ? { scale: 0.95 } : {}}
                             onClick={() => handleAddToCart(duree, price)}
-                            disabled={!selectedDate || !selectedTime}
-                            className={`w-full sm:w-auto px-4 md:px-6 py-2.5 md:py-3 rounded-lg md:rounded-xl font-medium text-sm md:text-base flex items-center justify-center gap-2 transition-all ${
+                            disabled={!selectedDate || !selectedTime || isLoading}
+                            className={`px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-all ${
                               !selectedDate || !selectedTime
                                 ? 'bg-white/10 text-white/40 cursor-not-allowed'
+                                : isLoading
+                                ? 'bg-emerald-500/50 text-white cursor-wait'
                                 : isSelected
                                 ? 'bg-emerald-500 text-white'
-                                : idx === 0
-                                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white'
-                                : 'bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30'
+                                : 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white'
                             }`}
                           >
-                            {isSelected ? (
-                              <>
-                                <Check className="w-4 h-4" />
-                                Ajouté
-                              </>
+                            {isLoading ? (
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : isSelected ? (
+                              <Check className="w-4 h-4" />
                             ) : (
-                              <>
-                                <ShoppingCart className="w-4 h-4" />
-                                Réserver
-                              </>
+                              <ShoppingCart className="w-4 h-4" />
                             )}
+                            {isLoading ? '' : isSelected ? 'OK' : 'Réserver'}
                           </motion.button>
                         </motion.div>
                       );
@@ -440,8 +473,8 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
                   </div>
                 </div>
 
-                <p className="text-center text-zinc-500 text-xs mt-4">
-                  Réservation flexible • Annulation gratuite jusqu'à 24h avant
+                <p className="text-center text-zinc-500 text-xs pt-2">
+                  Annulation gratuite jusqu'à 24h avant
                 </p>
               </div>
             </div>

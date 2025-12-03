@@ -1,30 +1,40 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Star } from 'lucide-react';
+import { Check, Star, Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import SectionHeader from './SectionHeader';
 import { useDomiciliationPricing } from '../../hooks/useDomiciliationPricing';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
 export default function PricingSection() {
+  const navigate = useNavigate();
   const { plans, loading } = useDomiciliationPricing();
-  const { addLocalItem, setIsOpen } = useUnifiedCart();
-  const [addedToCart, setAddedToCart] = useState<Record<string, boolean>>({});
+  const { addLocalItem } = useUnifiedCart();
+  const [processingPlan, setProcessingPlan] = useState<string | null>(null);
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annual'>('monthly');
 
-  const handleAddToCart = (plan: typeof plans[0]) => {
+  const handleSelectPlan = (plan: typeof plans[0]) => {
+    setProcessingPlan(plan.id);
+
+    // Calculer le prix selon la période
+    const price = billingPeriod === 'annual' 
+      ? Math.round(plan.price * 12 * 0.8) 
+      : plan.price;
+
+    // Ajouter au panier local
     addLocalItem({
       serviceType: 'domiciliation',
       serviceName: `Domiciliation ${plan.name}`,
       date: new Date().toISOString(),
-      duration: 'month',
-      price: plan.price,
+      duration: billingPeriod === 'annual' ? 'year' : 'month',
+      price: price,
       quantity: 1
     });
 
-    setAddedToCart({ ...addedToCart, [plan.id]: true });
+    // Rediriger vers la page de checkout/récap
     setTimeout(() => {
-      setAddedToCart({ ...addedToCart, [plan.id]: false });
-    }, 2000);
+      navigate('/checkout');
+    }, 300);
   };
 
   if (loading) {
@@ -130,33 +140,34 @@ export default function PricingSection() {
               </div>
 
               <button
-                onClick={() => handleAddToCart(plan)}
-                className={`w-full py-3 md:py-4 text-sm md:text-base font-bold rounded-lg md:rounded-xl transition-all ${
+                onClick={() => handleSelectPlan(plan)}
+                disabled={processingPlan !== null}
+                className={`w-full py-3 md:py-4 text-sm md:text-base font-bold rounded-lg md:rounded-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed ${
                   plan.popular
                     ? 'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white'
                     : 'bg-white/10 hover:bg-white/20 text-white'
                 }`}
               >
                 <AnimatePresence mode="wait">
-                  {addedToCart[plan.id] ? (
+                  {processingPlan === plan.id ? (
                     <motion.span
-                      key="added"
+                      key="processing"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                       className="flex items-center justify-center gap-2"
                     >
-                      <Check className="w-5 h-5" />
-                      Ajouté au panier !
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Chargement...
                     </motion.span>
                   ) : (
                     <motion.span
-                      key="add"
+                      key="select"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                     >
-                      {plan.popular ? 'Le plus choisi' : 'Démarrer'}
+                      {plan.popular ? 'Souscrire maintenant' : 'Choisir ce plan'}
                     </motion.span>
                   )}
                 </AnimatePresence>

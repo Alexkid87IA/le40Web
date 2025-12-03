@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Clock, Users, MapPin, X, Check, ArrowRight, Sparkles, TrendingUp, Target } from 'lucide-react';
+import { Calendar, Clock, Users, MapPin, X, Check, ArrowRight, Sparkles, TrendingUp, Target, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { UpcomingEvent } from '../../data/events/upcomingEvents';
 import { eventSpeakers } from '../../data/events/speakers';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
@@ -11,8 +12,10 @@ interface EventDetailModalProps {
 }
 
 export default function EventDetailModal({ event, onClose }: EventDetailModalProps) {
+  const navigate = useNavigate();
   const [selectedTicketType, setSelectedTicketType] = useState<'member' | 'non-member'>('non-member');
   const [dragY, setDragY] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
   const { addLocalItem, setIsOpen } = useUnifiedCart();
 
   useEffect(() => {
@@ -64,17 +67,27 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
   const selectedPrice = selectedTicketType === 'member' ? event.priceMember : event.priceNonMember;
 
   const handleAddToCart = () => {
+    setIsProcessing(true);
+    
     addLocalItem({
       serviceType: 'event',
       serviceName: `${event.title} (${selectedTicketType === 'member' ? 'Membre' : 'Visiteur'})`,
       date: event.eventDate,
+      startTime: formatTime(event.eventDate),
       duration: 'hour',
       price: selectedPrice,
       quantity: 1,
       image: event.imageUrl,
       gradient: 'from-cyan-500 to-blue-500'
     });
-    onClose();
+    
+    // Fermer le panier, fermer le modal, et rediriger vers checkout
+    setTimeout(() => {
+      setIsOpen(false);
+      onClose();
+      document.body.style.overflow = 'unset';
+      navigate('/checkout');
+    }, 300);
   };
 
   const handleDragEnd = (_: any, info: any) => {
@@ -301,15 +314,24 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleAddToCart}
-                      disabled={spotsLeft === 0}
+                      disabled={spotsLeft === 0 || isProcessing}
                       className={`w-full py-4 px-6 rounded-xl font-montserrat font-bold shadow-lg transition-all flex items-center justify-center gap-2 ${
-                        spotsLeft === 0
+                        spotsLeft === 0 || isProcessing
                           ? 'bg-white/10 text-white/40 cursor-not-allowed'
                           : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white'
                       }`}
                     >
-                      <span>{spotsLeft === 0 ? 'Événement complet' : 'Réserver ma place'}</span>
-                      {spotsLeft > 0 && <ArrowRight className="w-5 h-5" />}
+                      {isProcessing ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>Chargement...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>{spotsLeft === 0 ? 'Événement complet' : 'Réserver ma place'}</span>
+                          {spotsLeft > 0 && <ArrowRight className="w-5 h-5" />}
+                        </>
+                      )}
                     </motion.button>
 
                     {selectedPrice === 0 && spotsLeft > 0 && (

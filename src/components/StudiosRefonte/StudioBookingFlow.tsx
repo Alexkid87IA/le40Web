@@ -5,21 +5,21 @@
  * Étape 2: Choix de la formule (Autonome/Assisté/Full Service)
  * Étape 3: Ajout des extras
  * Étape 4: Récapitulatif & Paiement
- * 
- * INTÉGRATION SHOPIFY FONCTIONNELLE
  */
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Video, Mic, Radio, Users, MessageSquare, Smartphone,
   Check, ChevronRight, ChevronLeft, ArrowRight,
   Scissors, Camera, Car, Coffee, Sparkles, Music,
   Palette, Heart, FileText, Package, Star, Zap,
-  Calendar, Clock, Loader2, X, Filter, Search, AlertCircle
+  Calendar, Clock, Loader2, X, Filter, Search
 } from 'lucide-react';
 import { useShopifyCheckout } from '../../hooks/useShopifyCheckout';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
+import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
 // ============================================================
 // TYPES
@@ -36,7 +36,6 @@ interface Studio {
   basePrice: number;
   features: string[];
   recommended?: boolean;
-  shopifyHandle?: string; // Handle Shopify pour matcher avec les produits
 }
 
 interface Formule {
@@ -63,23 +62,17 @@ interface Extra {
   icon: any;
 }
 
-interface ShopifyProduct {
+interface CartItem {
+  type: 'studio' | 'formule' | 'extra';
   id: string;
-  title: string;
-  handle: string;
-  variants: {
-    edges: Array<{
-      node: {
-        id: string;
-        title: string;
-        price: { amount: string };
-      };
-    }>;
-  };
+  name: string;
+  price: number;
+  variantId?: string;
+  quantity?: number;
 }
 
 // ============================================================
-// DATA - STUDIOS (avec mapping Shopify)
+// DATA - STUDIOS
 // ============================================================
 
 const STUDIOS: Studio[] = [
@@ -91,10 +84,9 @@ const STUDIOS: Studio[] = [
     icon: Video,
     color: 'emerald',
     gradient: 'from-emerald-500 to-teal-500',
-    basePrice: 59,
+    basePrice: 45,
     features: ['1 caméra 4K', 'Éclairage 3 points', 'Micro cravate', 'Téléprompter inclus'],
     recommended: true,
-    shopifyHandle: 'studio-face-cam-solo-youtube-formation-vlog',
   },
   {
     id: 'podcast-audio',
@@ -104,9 +96,8 @@ const STUDIOS: Studio[] = [
     icon: Mic,
     color: 'purple',
     gradient: 'from-purple-500 to-violet-500',
-    basePrice: 54,
+    basePrice: 55,
     features: ['4 micros Shure SM7B', 'Console RodeCaster', 'Casques monitoring', 'Traitement acoustique'],
-    shopifyHandle: 'studio-podcast-audio-2-4-voix',
   },
   {
     id: 'live-stream',
@@ -116,9 +107,8 @@ const STUDIOS: Studio[] = [
     icon: Radio,
     color: 'red',
     gradient: 'from-red-500 to-orange-500',
-    basePrice: 79,
+    basePrice: 75,
     features: ['3 caméras', 'ATEM Mini Pro', 'Overlay personnalisé', 'Chat management'],
-    shopifyHandle: 'studio-live-twitch-youtube-multi-plateformes',
   },
   {
     id: 'talk-show',
@@ -128,10 +118,9 @@ const STUDIOS: Studio[] = [
     icon: Users,
     color: 'blue',
     gradient: 'from-blue-500 to-cyan-500',
-    basePrice: 119,
+    basePrice: 95,
     features: ['Plateau 4 places', '4 caméras', 'Décor modulable', 'Régie intégrée'],
     recommended: true,
-    shopifyHandle: 'studio-emission-talk-show-grand-plateau-50m',
   },
   {
     id: 'interview',
@@ -141,9 +130,8 @@ const STUDIOS: Studio[] = [
     icon: MessageSquare,
     color: 'amber',
     gradient: 'from-amber-500 to-yellow-500',
-    basePrice: 84,
+    basePrice: 65,
     features: ['2 places face à face', 'Éclairage cinématique', 'Fond bokeh', 'Son broadcast'],
-    shopifyHandle: 'studio-interview-intimiste-setup-cosy',
   },
   {
     id: 'vertical-social',
@@ -153,9 +141,8 @@ const STUDIOS: Studio[] = [
     icon: Smartphone,
     color: 'pink',
     gradient: 'from-pink-500 to-rose-500',
-    basePrice: 49,
+    basePrice: 40,
     features: ['Setup vertical 9:16', 'Ring light pro', 'Fond LED RGB', 'Prompteur vertical'],
-    shopifyHandle: 'studio-vertical-social-tiktok-reels-shorts',
   },
 ];
 
@@ -179,10 +166,9 @@ const FORMULES: Formule[] = [
       'Vous gérez le reste en toute autonomie',
     ],
     variants: [
-      { duration: '1h', price: 0, sku: 'FORM-AUTO-1H' },
       { duration: '2h', price: 0, sku: 'FORM-AUTO-2H' },
-      { duration: '3h', price: 0, sku: 'FORM-AUTO-3H' },
       { duration: '4h', price: 0, sku: 'FORM-AUTO-4H' },
+      { duration: '8h', price: 0, sku: 'FORM-AUTO-8H' },
     ],
   },
   {
@@ -203,10 +189,9 @@ const FORMULES: Formule[] = [
       'Backup fichiers sécurisé',
     ],
     variants: [
-      { duration: '1h', price: 60, sku: 'FORM-ASSIST-1H' },
       { duration: '2h', price: 120, sku: 'FORM-ASSIST-2H' },
-      { duration: '3h', price: 180, sku: 'FORM-ASSIST-3H' },
       { duration: '4h', price: 220, sku: 'FORM-ASSIST-4H' },
+      { duration: '8h', price: 400, sku: 'FORM-ASSIST-8H' },
     ],
   },
   {
@@ -233,10 +218,9 @@ const FORMULES: Formule[] = [
       'Livraison en 5 jours',
     ],
     variants: [
-      { duration: '1h', price: 295, sku: 'FORM-FULL-1H' },
       { duration: '2h', price: 590, sku: 'FORM-FULL-2H' },
-      { duration: '3h', price: 850, sku: 'FORM-FULL-3H' },
       { duration: '4h', price: 990, sku: 'FORM-FULL-4H' },
+      { duration: '8h', price: 1790, sku: 'FORM-FULL-8H' },
     ],
   },
 ];
@@ -305,6 +289,10 @@ const EXTRAS: Extra[] = [
 // ============================================================
 
 export default function StudioBookingFlow() {
+  // Navigation et panier unifié
+  const navigate = useNavigate();
+  const { addLocalItem, setIsOpen } = useUnifiedCart();
+  
   // État principal
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedStudio, setSelectedStudio] = useState<Studio | null>(null);
@@ -318,67 +306,26 @@ export default function StudioBookingFlow() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   
-  // Client
+  // Client (gardé pour compatibilité mais optionnel)
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   
-  // Shopify - CORRECTION: utiliser la bonne collection
-  const { products: shopifyProducts, loading: productsLoading, error: productsError } = useShopifyCollection('studios-creatifs');
-  const { initCheckout, loading: checkoutLoading, error: checkoutError } = useShopifyCheckout();
-
-  // État pour les erreurs
-  const [bookingError, setBookingError] = useState<string | null>(null);
-
-  // ============================================================
-  // HELPER: Trouver le produit Shopify correspondant au studio
-  // ============================================================
+  // État de traitement
+  const [isProcessing, setIsProcessing] = useState(false);
   
-  const getShopifyProduct = (studio: Studio): ShopifyProduct | null => {
-    if (!shopifyProducts || !studio.shopifyHandle) return null;
-    return shopifyProducts.find((p: any) => 
-      p.handle === studio.shopifyHandle || 
-      p.title.toLowerCase().includes(studio.shortName.toLowerCase())
-    ) || null;
-  };
-
-  // ============================================================
-  // HELPER: Trouver la variante Shopify correspondant à la durée
-  // ============================================================
-  
-  const getShopifyVariant = (product: ShopifyProduct | null, duration: string) => {
-    if (!product) return null;
-    
-    const hours = parseInt(duration);
-    
-    // Chercher la variante qui correspond à la durée
-    return product.variants.edges.find((v) => {
-      const title = v.node.title.toLowerCase();
-      // Matcher "1 heure", "2 heures", "3 heures", "4 heures", "demi-journée"
-      if (hours === 1 && title.includes('1 heure')) return true;
-      if (hours === 2 && (title.includes('2 heure') || title.includes('recommandé'))) return true;
-      if (hours === 3 && title.includes('3 heure')) return true;
-      if (hours === 4 && (title.includes('4 heure') || title.includes('demi-journée'))) return true;
-      return false;
-    })?.node || null;
-  };
+  // Shopify (gardé pour compatibilité)
+  const { createCheckout, loading: checkoutLoading } = useShopifyCheckout();
 
   // ============================================================
   // CALCULS
   // ============================================================
 
-  const shopifyProduct = selectedStudio ? getShopifyProduct(selectedStudio) : null;
-  const shopifyVariant = getShopifyVariant(shopifyProduct, selectedDuration);
-
-  // Prix du studio (depuis Shopify si disponible, sinon calcul local)
   const studioPrice = useMemo(() => {
-    if (shopifyVariant) {
-      return parseFloat(shopifyVariant.price.amount);
-    }
     if (!selectedStudio) return 0;
     const hours = parseInt(selectedDuration);
     return selectedStudio.basePrice * hours;
-  }, [selectedStudio, selectedDuration, shopifyVariant]);
+  }, [selectedStudio, selectedDuration]);
 
   const formulePrice = useMemo(() => {
     if (!selectedFormule) return 0;
@@ -402,22 +349,6 @@ export default function StudioBookingFlow() {
     });
   }, [extraCategory, searchExtra]);
 
-  // Durées disponibles basées sur les variantes Shopify
-  const availableDurations = useMemo(() => {
-    if (!shopifyProduct) return ['1h', '2h', '3h', '4h'];
-    
-    const durations: string[] = [];
-    shopifyProduct.variants.edges.forEach((v) => {
-      const title = v.node.title.toLowerCase();
-      if (title.includes('1 heure')) durations.push('1h');
-      if (title.includes('2 heure') || (title.includes('recommandé') && !title.includes('3') && !title.includes('4'))) durations.push('2h');
-      if (title.includes('3 heure')) durations.push('3h');
-      if (title.includes('4 heure') || title.includes('demi-journée')) durations.push('4h');
-    });
-    
-    return durations.length > 0 ? [...new Set(durations)] : ['1h', '2h', '3h', '4h'];
-  }, [shopifyProduct]);
-
   // ============================================================
   // HANDLERS
   // ============================================================
@@ -432,24 +363,6 @@ export default function StudioBookingFlow() {
 
   const handleSelectStudio = (studio: Studio) => {
     setSelectedStudio(studio);
-    setBookingError(null);
-    
-    // Réinitialiser la durée si elle n'est pas disponible pour ce studio
-    const product = getShopifyProduct(studio);
-    if (product) {
-      const variant = getShopifyVariant(product, selectedDuration);
-      if (!variant) {
-        // Prendre la première durée disponible
-        const firstVariant = product.variants.edges[0]?.node;
-        if (firstVariant) {
-          const title = firstVariant.title.toLowerCase();
-          if (title.includes('1 heure')) setSelectedDuration('1h');
-          else if (title.includes('2 heure')) setSelectedDuration('2h');
-          else if (title.includes('3 heure')) setSelectedDuration('3h');
-          else if (title.includes('4 heure')) setSelectedDuration('4h');
-        }
-      }
-    }
   };
 
   const handleSelectFormule = (formule: Formule) => {
@@ -466,113 +379,56 @@ export default function StudioBookingFlow() {
     });
   };
 
-  // ============================================================
-  // CHECKOUT SHOPIFY - FONCTION CORRIGÉE
-  // ============================================================
-
   const handleCheckout = async () => {
-    setBookingError(null);
+    if (!selectedStudio || !selectedFormule || !selectedSlot) return;
     
-    // Vérifications
-    if (!selectedStudio) {
-      setBookingError('Veuillez sélectionner un studio');
-      return;
-    }
-    
-    if (!selectedFormule) {
-      setBookingError('Veuillez sélectionner une formule');
-      return;
-    }
-    
-    if (!selectedSlot) {
-      setBookingError('Veuillez sélectionner un créneau');
-      return;
-    }
-    
-    if (!customerName || !customerEmail) {
-      setBookingError('Veuillez remplir vos informations de contact');
-      return;
-    }
+    setIsProcessing(true);
 
-    // Trouver le produit et la variante Shopify
-    const product = getShopifyProduct(selectedStudio);
-    const variant = product ? getShopifyVariant(product, selectedDuration) : null;
+    // Calculer l'heure de fin
+    const [hours] = selectedSlot.split(':').map(Number);
+    const durationHours = parseInt(selectedDuration);
+    const endHours = hours + durationHours;
+    const endTime = `${endHours.toString().padStart(2, '0')}:00`;
 
-    if (!variant) {
-      setBookingError(`Ce studio n'est pas disponible pour la durée sélectionnée. Veuillez choisir une autre durée ou un autre studio.`);
-      console.error('Variant not found:', { 
-        studio: selectedStudio.name, 
-        duration: selectedDuration,
-        product: product?.title,
-        availableVariants: product?.variants.edges.map(v => v.node.title)
-      });
-      return;
-    }
+    // Construire le nom du service
+    const extrasText = selectedExtras.length > 0 
+      ? ` + ${selectedExtras.length} extra${selectedExtras.length > 1 ? 's' : ''}`
+      : '';
+    const serviceName = `${selectedStudio.name} - ${selectedDuration} - ${selectedFormule.name}${extrasText}`;
 
-    try {
-      // Préparer les attributs personnalisés pour la commande
-      const customAttributes = [
-        { key: 'Date', value: formatDate(selectedDate) },
-        { key: 'Créneau', value: selectedSlot },
-        { key: 'Durée', value: selectedDuration },
-        { key: 'Formule', value: selectedFormule.name },
-        { key: 'Client', value: customerName },
-        { key: 'Email', value: customerEmail },
-        { key: 'Téléphone', value: customerPhone || 'Non renseigné' },
-      ];
-
-      // Ajouter les extras aux attributs
-      if (selectedExtras.length > 0) {
-        customAttributes.push({
-          key: 'Extras',
-          value: selectedExtras.map(e => `${e.name} (${e.price}€)`).join(', ')
-        });
-        customAttributes.push({
-          key: 'Prix Extras',
-          value: `${extrasPrice}€`
-        });
+    // Ajouter au panier unifié
+    addLocalItem({
+      serviceType: 'studio',
+      serviceName: serviceName,
+      date: selectedDate.toISOString().split('T')[0],
+      startTime: selectedSlot,
+      endTime: endTime,
+      duration: selectedDuration === '2h' ? 'hour' : selectedDuration === '4h' ? 'half-day' : 'day',
+      price: totalPrice,
+      quantity: 1,
+      gradient: selectedStudio.gradient,
+      studioConfig: {
+        studioId: selectedStudio.id,
+        formulaId: selectedFormule.id,
+        formulaName: selectedFormule.name,
+        formulaMultiplier: 1,
+        durationId: selectedDuration,
+        durationLabel: selectedDuration,
+        durationHours: parseInt(selectedDuration),
+        durationMultiplier: 1,
+        options: selectedExtras.map(e => ({
+          id: e.id,
+          name: e.name,
+          price: e.price
+        }))
       }
+    });
 
-      // Ajouter le prix de la formule si > 0
-      if (formulePrice > 0) {
-        customAttributes.push({
-          key: 'Prix Formule',
-          value: `${formulePrice}€`
-        });
-      }
-
-      customAttributes.push({
-        key: 'Total Estimé',
-        value: `${totalPrice}€`
-      });
-
-      console.log('Creating checkout with:', {
-        variantId: variant.id,
-        variantTitle: variant.title,
-        price: variant.price.amount,
-        customAttributes
-      });
-
-      // Créer le checkout Shopify
-      const checkout = await initCheckout([
-        {
-          variantId: variant.id,
-          quantity: 1,
-          customAttributes
-        }
-      ]);
-
-      if (checkout?.webUrl) {
-        // Rediriger vers la page de paiement Shopify
-        window.location.href = checkout.webUrl;
-      } else {
-        setBookingError('Erreur lors de la création du panier. Veuillez réessayer.');
-        console.error('No checkout URL returned:', checkout);
-      }
-    } catch (error) {
-      console.error('Checkout error:', error);
-      setBookingError('Une erreur est survenue. Veuillez réessayer ou nous contacter.');
-    }
+    // Fermer le panier et rediriger vers checkout
+    setTimeout(() => {
+      setIsOpen(false);
+      navigate('/checkout');
+    }, 300);
   };
 
   const canProceed = () => {
@@ -580,7 +436,7 @@ export default function StudioBookingFlow() {
       case 1: return selectedStudio !== null;
       case 2: return selectedFormule !== null;
       case 3: return true; // Extras optionnels
-      case 4: return customerName && customerEmail && selectedSlot && !checkoutLoading;
+      case 4: return selectedSlot !== null;
       default: return false;
     }
   };
@@ -650,20 +506,12 @@ export default function StudioBookingFlow() {
           Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">studio</span>
         </h2>
         <p className="text-white/60">Sélectionnez le studio adapté à votre projet</p>
-        {productsLoading && (
-          <p className="text-emerald-400 text-sm mt-2 flex items-center justify-center gap-2">
-            <Loader2 className="w-4 h-4 animate-spin" />
-            Chargement des disponibilités...
-          </p>
-        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {STUDIOS.map((studio) => {
           const Icon = studio.icon;
           const isSelected = selectedStudio?.id === studio.id;
-          const shopifyProd = getShopifyProduct(studio);
-          const hasShopifyProduct = !!shopifyProd;
           
           return (
             <motion.button
@@ -673,7 +521,7 @@ export default function StudioBookingFlow() {
               whileTap={{ scale: 0.98 }}
               className={`relative p-6 rounded-2xl border-2 text-left transition-all ${
                 isSelected
-                  ? `border-emerald-500 bg-gradient-to-br ${studio.gradient} shadow-lg shadow-emerald-500/20`
+                  ? `border-${studio.color}-500 bg-gradient-to-br ${studio.gradient} shadow-lg shadow-${studio.color}-500/20`
                   : 'border-white/10 bg-zinc-900/50 hover:border-white/20'
               }`}
             >
@@ -685,10 +533,10 @@ export default function StudioBookingFlow() {
               
               <div className="flex items-start gap-4">
                 <div className={`p-3 rounded-xl ${
-                  isSelected ? 'bg-white/20' : 'bg-white/5'
+                  isSelected ? 'bg-white/20' : `bg-${studio.color}-500/10`
                 }`}>
                   <Icon className={`w-6 h-6 ${
-                    isSelected ? 'text-white' : 'text-white/60'
+                    isSelected ? 'text-white' : `text-${studio.color}-400`
                   }`} />
                 </div>
                 
@@ -720,22 +568,15 @@ export default function StudioBookingFlow() {
                   {studio.basePrice}€<span className="text-sm font-normal opacity-60">/h</span>
                 </span>
                 
-                <div className="flex items-center gap-2">
-                  {hasShopifyProduct && (
-                    <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs rounded-full">
-                      ✓ Dispo
-                    </span>
-                  )}
-                  {isSelected && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      className="w-8 h-8 rounded-full bg-white flex items-center justify-center"
-                    >
-                      <Check className="w-5 h-5 text-emerald-500" />
-                    </motion.div>
-                  )}
-                </div>
+                {isSelected && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="w-8 h-8 rounded-full bg-white flex items-center justify-center"
+                  >
+                    <Check className="w-5 h-5 text-emerald-500" />
+                  </motion.div>
+                )}
               </div>
             </motion.button>
           );
@@ -753,32 +594,26 @@ export default function StudioBookingFlow() {
             <Clock className="w-5 h-5 text-emerald-400" />
             Durée de location
           </h3>
-          <div className="grid grid-cols-4 gap-3">
-            {availableDurations.map((dur) => {
-              const hours = parseInt(dur);
-              const variant = shopifyProduct ? getShopifyVariant(shopifyProduct, dur) : null;
-              const price = variant ? parseFloat(variant.price.amount) : selectedStudio.basePrice * hours;
-              
-              return (
-                <button
-                  key={dur}
-                  onClick={() => setSelectedDuration(dur)}
-                  className={`p-4 rounded-xl border-2 transition-all ${
-                    selectedDuration === dur
-                      ? 'border-emerald-500 bg-emerald-500/10'
-                      : 'border-white/10 hover:border-white/30'
-                  }`}
-                >
-                  <div className="text-2xl font-black text-white">{dur}</div>
-                  <div className="text-sm text-white/60">
-                    {hours === 1 ? 'Express' : hours === 2 ? 'Standard' : hours === 3 ? 'Confort' : 'Demi-journée'}
-                  </div>
-                  <div className="text-lg font-bold text-emerald-400 mt-2">
-                    {price}€
-                  </div>
-                </button>
-              );
-            })}
+          <div className="grid grid-cols-3 gap-3">
+            {['2h', '4h', '8h'].map((dur) => (
+              <button
+                key={dur}
+                onClick={() => setSelectedDuration(dur)}
+                className={`p-4 rounded-xl border-2 transition-all ${
+                  selectedDuration === dur
+                    ? 'border-emerald-500 bg-emerald-500/10'
+                    : 'border-white/10 hover:border-white/30'
+                }`}
+              >
+                <div className="text-2xl font-black text-white">{dur}</div>
+                <div className="text-sm text-white/60">
+                  {dur === '2h' ? 'Standard' : dur === '4h' ? 'Demi-journée' : 'Journée'}
+                </div>
+                <div className="text-lg font-bold text-emerald-400 mt-2">
+                  {selectedStudio.basePrice * parseInt(dur)}€
+                </div>
+              </button>
+            ))}
           </div>
         </motion.div>
       )}
@@ -817,7 +652,7 @@ export default function StudioBookingFlow() {
               whileTap={{ scale: 0.98 }}
               className={`relative p-6 rounded-2xl border-2 text-left transition-all ${
                 isSelected
-                  ? 'border-amber-500 bg-amber-500/10 shadow-lg shadow-amber-500/20'
+                  ? `border-${formule.color}-500 bg-${formule.color}-500/10 shadow-lg shadow-${formule.color}-500/20`
                   : 'border-white/10 bg-zinc-900/50 hover:border-white/20'
               }`}
             >
@@ -839,7 +674,7 @@ export default function StudioBookingFlow() {
                 {formule.features.slice(0, 5).map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-2">
                     <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
-                      isSelected ? 'text-amber-400' : 'text-emerald-400'
+                      isSelected ? `text-${formule.color}-400` : 'text-emerald-400'
                     }`} />
                     <span className="text-sm text-white/80">{feature}</span>
                   </div>
@@ -867,7 +702,7 @@ export default function StudioBookingFlow() {
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center"
+                    className={`w-8 h-8 rounded-full bg-${formule.color}-500 flex items-center justify-center`}
                   >
                     <Check className="w-5 h-5 text-white" />
                   </motion.div>
@@ -911,7 +746,13 @@ export default function StudioBookingFlow() {
                 <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
               </tr>
               <tr className="border-b border-white/5">
-                <td className="py-3 px-4 text-white/80">Coaching caméra</td>
+                <td className="py-3 px-4 text-white/80">Script inclus</td>
+                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
+                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
+                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 text-white/80">Livraison clé en main</td>
                 <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
                 <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
                 <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
@@ -1076,11 +917,11 @@ export default function StudioBookingFlow() {
         <h2 className="text-2xl md:text-3xl font-montserrat font-black text-white mb-2">
           Finalisez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">réservation</span>
         </h2>
-        <p className="text-white/60">Vérifiez votre commande et complétez vos informations</p>
+        <p className="text-white/60">Choisissez votre créneau et confirmez</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Colonne gauche - Date, créneau, infos */}
+        {/* Colonne gauche - Date, créneau */}
         <div className="space-y-6">
           {/* Date */}
           <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
@@ -1129,43 +970,6 @@ export default function StudioBookingFlow() {
                   <div className="text-white font-bold">{slot}</div>
                 </button>
               ))}
-            </div>
-          </div>
-
-          {/* Infos client */}
-          <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
-            <h3 className="text-lg font-bold text-white mb-4">Vos informations</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-white/60 text-sm mb-2">Nom complet *</label>
-                <input
-                  type="text"
-                  value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-emerald-500 focus:outline-none"
-                  placeholder="John Doe"
-                />
-              </div>
-              <div>
-                <label className="block text-white/60 text-sm mb-2">Email *</label>
-                <input
-                  type="email"
-                  value={customerEmail}
-                  onChange={(e) => setCustomerEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-emerald-500 focus:outline-none"
-                  placeholder="john@example.com"
-                />
-              </div>
-              <div>
-                <label className="block text-white/60 text-sm mb-2">Téléphone</label>
-                <input
-                  type="tel"
-                  value={customerPhone}
-                  onChange={(e) => setCustomerPhone(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:border-emerald-500 focus:outline-none"
-                  placeholder="+33 6 12 34 56 78"
-                />
-              </div>
             </div>
           </div>
         </div>
@@ -1228,29 +1032,21 @@ export default function StudioBookingFlow() {
               </div>
             </div>
 
-            {/* Message d'erreur */}
-            {(bookingError || checkoutError) && (
-              <div className="mt-4 p-3 bg-red-500/20 border border-red-500/50 rounded-xl flex items-start gap-2">
-                <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                <p className="text-red-200 text-sm">{bookingError || checkoutError}</p>
-              </div>
-            )}
-
             <motion.button
               onClick={handleCheckout}
-              disabled={!canProceed() || checkoutLoading}
-              whileHover={canProceed() && !checkoutLoading ? { scale: 1.02 } : {}}
-              whileTap={canProceed() && !checkoutLoading ? { scale: 0.98 } : {}}
+              disabled={!canProceed() || isProcessing}
+              whileHover={canProceed() ? { scale: 1.02 } : {}}
+              whileTap={canProceed() ? { scale: 0.98 } : {}}
               className={`w-full mt-6 py-4 rounded-xl font-montserrat font-bold text-lg flex items-center justify-center gap-2 transition-all ${
-                canProceed() && !checkoutLoading
+                canProceed()
                   ? 'bg-white text-emerald-600 shadow-xl hover:shadow-2xl'
                   : 'bg-white/20 text-white/40 cursor-not-allowed'
               }`}
             >
-              {checkoutLoading ? (
+              {isProcessing ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Redirection vers le paiement...</span>
+                  <span>Traitement...</span>
                 </>
               ) : (
                 <>

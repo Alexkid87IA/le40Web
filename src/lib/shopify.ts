@@ -54,7 +54,7 @@ export interface ShopifyProduct {
   title: string;
   description: string;
   descriptionHtml: string;
-  tags: string[];  // AJOUTÉ
+  tags: string[];
   priceRange: {
     minVariantPrice: {
       amount: string;
@@ -81,16 +81,24 @@ export interface ShopifyProduct {
       node: {
         id: string;
         title: string;
-        availableForSale: boolean;
-        quantityAvailable: number;
         price: {
           amount: string;
           currencyCode: string;
         };
+        compareAtPrice: {
+          amount: string;
+          currencyCode: string;
+        } | null;
+        availableForSale: boolean;
+        quantityAvailable: number;
         selectedOptions: Array<{
           name: string;
           value: string;
         }>;
+        image: {
+          url: string;
+          altText: string | null;
+        } | null;
       };
     }>;
   };
@@ -98,24 +106,310 @@ export interface ShopifyProduct {
     key: string;
     value: string;
     namespace: string;
-  }>;
+  } | null>;
 }
 
-export interface ShopifyCollection {
+// ============================================================
+// NOUVELLE API CART (remplace Checkout)
+// ============================================================
+
+export interface ShopifyCart {
   id: string;
-  handle: string;
-  title: string;
-  description: string;
-  image: {
-    url: string;
-    altText: string | null;
-  } | null;
-  products: {
+  checkoutUrl: string;
+  totalQuantity: number;
+  cost: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+    subtotalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+    totalTaxAmount: {
+      amount: string;
+      currencyCode: string;
+    } | null;
+  };
+  lines: {
     edges: Array<{
-      node: ShopifyProduct;
+      node: {
+        id: string;
+        quantity: number;
+        merchandise: {
+          id: string;
+          title: string;
+          price: {
+            amount: string;
+            currencyCode: string;
+          };
+          image: {
+            url: string;
+            altText: string | null;
+          } | null;
+          product: {
+            title: string;
+            handle: string;
+          };
+        };
+        attributes: Array<{
+          key: string;
+          value: string;
+        }>;
+      };
     }>;
   };
 }
+
+// Type simplifié pour le cart retourné
+export interface ShopifyCartSimple {
+  id: string;
+  checkoutUrl: string;
+  totalQuantity: number;
+  lines: {
+    edges: Array<{
+      node: {
+        id: string;
+        quantity: number;
+        attributes: Array<{
+          key: string;
+          value: string;
+        }>;
+        merchandise: {
+          id: string;
+          title: string;
+          price: {
+            amount: string;
+            currencyCode: string;
+          };
+          image?: {
+            url: string;
+            altText: string | null;
+          } | null;
+          product: {
+            title: string;
+            handle: string;
+          };
+        };
+      };
+    }>;
+  };
+  cost: {
+    totalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+    subtotalAmount: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+}
+
+// ============================================================
+// CART MUTATIONS
+// ============================================================
+
+const CART_FRAGMENT = `
+  fragment CartFragment on Cart {
+    id
+    checkoutUrl
+    totalQuantity
+    lines(first: 100) {
+      edges {
+        node {
+          id
+          quantity
+          attributes {
+            key
+            value
+          }
+          merchandise {
+            ... on ProductVariant {
+              id
+              title
+              price {
+                amount
+                currencyCode
+              }
+              image {
+                url
+                altText
+              }
+              product {
+                title
+                handle
+              }
+            }
+          }
+        }
+      }
+    }
+    cost {
+      totalAmount {
+        amount
+        currencyCode
+      }
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+    }
+  }
+`;
+
+export const createCart = async (
+  lines: Array<{ 
+    merchandiseId: string; 
+    quantity: number; 
+    attributes?: Array<{ key: string; value: string }> 
+  }> = []
+): Promise<ShopifyCartSimple> => {
+  const query = `
+    mutation CartCreate($input: CartInput!) {
+      cartCreate(input: $input) {
+        cart {
+          ...CartFragment
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+    ${CART_FRAGMENT}
+  `;
+
+  const data = await shopifyFetch<{ 
+    cartCreate: { 
+      cart: ShopifyCartSimple; 
+      userErrors: Array<{ field: string[]; message: string }> 
+    } 
+  }>({
+    query,
+    variables: {
+      input: {
+        lines: lines.map(line => ({
+          merchandiseId: line.merchandiseId,
+          quantity: line.quantity,
+          attributes: line.attributes || [],
+        })),
+      },
+    },
+  });
+
+  if (data.cartCreate.userErrors.length > 0) {
+    throw new Error(data.cartCreate.userErrors[0].message);
+  }
+
+  return data.cartCreate.cart;
+};
+
+export const addToCart = async (
+  cartId: string,
+  lines: Array<{ 
+    merchandiseId: string; 
+    quantity: number; 
+    attributes?: Array<{ key: string; value: string }> 
+  }>
+): Promise<ShopifyCartSimple> => {
+  const query = `
+    mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+      cartLinesAdd(cartId: $cartId, lines: $lines) {
+        cart {
+          ...CartFragment
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+    ${CART_FRAGMENT}
+  `;
+
+  const data = await shopifyFetch<{ 
+    cartLinesAdd: { 
+      cart: ShopifyCartSimple; 
+      userErrors: Array<{ field: string[]; message: string }> 
+    } 
+  }>({
+    query,
+    variables: {
+      cartId,
+      lines: lines.map(line => ({
+        merchandiseId: line.merchandiseId,
+        quantity: line.quantity,
+        attributes: line.attributes || [],
+      })),
+    },
+  });
+
+  if (data.cartLinesAdd.userErrors.length > 0) {
+    throw new Error(data.cartLinesAdd.userErrors[0].message);
+  }
+
+  return data.cartLinesAdd.cart;
+};
+
+export const removeFromCart = async (
+  cartId: string,
+  lineIds: string[]
+): Promise<ShopifyCartSimple> => {
+  const query = `
+    mutation CartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+      cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+        cart {
+          ...CartFragment
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+    ${CART_FRAGMENT}
+  `;
+
+  const data = await shopifyFetch<{ 
+    cartLinesRemove: { 
+      cart: ShopifyCartSimple; 
+      userErrors: Array<{ field: string[]; message: string }> 
+    } 
+  }>({
+    query,
+    variables: { cartId, lineIds },
+  });
+
+  if (data.cartLinesRemove.userErrors.length > 0) {
+    throw new Error(data.cartLinesRemove.userErrors[0].message);
+  }
+
+  return data.cartLinesRemove.cart;
+};
+
+export const getCart = async (cartId: string): Promise<ShopifyCartSimple | null> => {
+  const query = `
+    query GetCart($cartId: ID!) {
+      cart(id: $cartId) {
+        ...CartFragment
+      }
+    }
+    ${CART_FRAGMENT}
+  `;
+
+  const data = await shopifyFetch<{ cart: ShopifyCartSimple | null }>({
+    query,
+    variables: { cartId },
+  });
+
+  return data.cart;
+};
+
+// ============================================================
+// ANCIENNE API CHECKOUT (pour compatibilité)
+// Redirige vers la nouvelle API Cart
+// ============================================================
 
 export interface ShopifyCheckout {
   id: string;
@@ -133,7 +427,7 @@ export interface ShopifyCheckout {
             amount: string;
             currencyCode: string;
           };
-          image: {
+          image?: {
             url: string;
             altText: string | null;
           } | null;
@@ -154,6 +448,89 @@ export interface ShopifyCheckout {
     currencyCode: string;
   };
 }
+
+// Fonction de compatibilité - convertit Cart en format Checkout
+const cartToCheckout = (cart: ShopifyCartSimple): ShopifyCheckout => {
+  return {
+    id: cart.id,
+    webUrl: cart.checkoutUrl,
+    lineItems: {
+      edges: cart.lines.edges.map(edge => ({
+        node: {
+          id: edge.node.id,
+          title: edge.node.merchandise.product.title,
+          quantity: edge.node.quantity,
+          variant: {
+            id: edge.node.merchandise.id,
+            title: edge.node.merchandise.title,
+            price: edge.node.merchandise.price,
+            image: edge.node.merchandise.image,
+          },
+        },
+      })),
+    },
+    subtotalPrice: cart.cost.subtotalAmount,
+    totalPrice: cart.cost.totalAmount,
+    totalTax: { amount: '0', currencyCode: 'EUR' },
+  };
+};
+
+// Fonctions de compatibilité qui utilisent la nouvelle API Cart
+export const createCheckout = async (
+  lineItems: Array<{ 
+    variantId: string; 
+    quantity: number; 
+    customAttributes?: Array<{ key: string; value: string }> 
+  }> = []
+): Promise<ShopifyCheckout> => {
+  const cart = await createCart(
+    lineItems.map(item => ({
+      merchandiseId: item.variantId,
+      quantity: item.quantity,
+      attributes: item.customAttributes,
+    }))
+  );
+  return cartToCheckout(cart);
+};
+
+export const addToCheckout = async (
+  checkoutId: string,
+  lineItems: Array<{ 
+    variantId: string; 
+    quantity: number; 
+    customAttributes?: Array<{ key: string; value: string }> 
+  }>
+): Promise<ShopifyCheckout> => {
+  const cart = await addToCart(
+    checkoutId,
+    lineItems.map(item => ({
+      merchandiseId: item.variantId,
+      quantity: item.quantity,
+      attributes: item.customAttributes,
+    }))
+  );
+  return cartToCheckout(cart);
+};
+
+export const removeFromCheckout = async (
+  checkoutId: string,
+  lineItemIds: string[]
+): Promise<ShopifyCheckout> => {
+  const cart = await removeFromCart(checkoutId, lineItemIds);
+  return cartToCheckout(cart);
+};
+
+export const getCheckout = async (checkoutId: string): Promise<ShopifyCheckout> => {
+  const cart = await getCart(checkoutId);
+  if (!cart) {
+    throw new Error('Cart not found');
+  }
+  return cartToCheckout(cart);
+};
+
+// ============================================================
+// PRODUCTS & COLLECTIONS
+// ============================================================
 
 export const getProducts = async (first = 20): Promise<ShopifyProduct[]> => {
   const query = `
@@ -177,7 +554,7 @@ export const getProducts = async (first = 20): Promise<ShopifyProduct[]> => {
                 currencyCode
               }
             }
-            images(first: 5) {
+            images(first: 10) {
               edges {
                 node {
                   id
@@ -193,24 +570,32 @@ export const getProducts = async (first = 20): Promise<ShopifyProduct[]> => {
                 node {
                   id
                   title
-                  availableForSale
-                  quantityAvailable
                   price {
                     amount
                     currencyCode
                   }
+                  compareAtPrice {
+                    amount
+                    currencyCode
+                  }
+                  availableForSale
+                  quantityAvailable
                   selectedOptions {
                     name
                     value
+                  }
+                  image {
+                    url
+                    altText
                   }
                 }
               }
             }
             metafields(identifiers: [
-              { namespace: "custom", key: "calendar_sync_required" },
-              { namespace: "custom", key: "resource_name" },
-              { namespace: "custom", key: "resource_type" },
-              { namespace: "custom", key: "duration_hours" }
+              {namespace: "custom", key: "calendar_sync_required"},
+              {namespace: "custom", key: "resource_type"},
+              {namespace: "custom", key: "capacity"},
+              {namespace: "custom", key: "gradient"}
             ]) {
               key
               value
@@ -261,29 +646,37 @@ export const getProductByHandle = async (handle: string): Promise<ShopifyProduct
             }
           }
         }
-        variants(first: 20) {
+        variants(first: 10) {
           edges {
             node {
               id
               title
-              availableForSale
-              quantityAvailable
               price {
                 amount
                 currencyCode
               }
+              compareAtPrice {
+                amount
+                currencyCode
+              }
+              availableForSale
+              quantityAvailable
               selectedOptions {
                 name
                 value
+              }
+              image {
+                url
+                altText
               }
             }
           }
         }
         metafields(identifiers: [
-          { namespace: "custom", key: "calendar_sync_required" },
-          { namespace: "custom", key: "resource_name" },
-          { namespace: "custom", key: "resource_type" },
-          { namespace: "custom", key: "duration_hours" }
+          {namespace: "custom", key: "calendar_sync_required"},
+          {namespace: "custom", key: "resource_type"},
+          {namespace: "custom", key: "capacity"},
+          {namespace: "custom", key: "gradient"}
         ]) {
           key
           value
@@ -301,301 +694,100 @@ export const getProductByHandle = async (handle: string): Promise<ShopifyProduct
   return data.productByHandle;
 };
 
-export const getCollections = async (first = 10): Promise<ShopifyCollection[]> => {
+export const getCollection = async (handle: string): Promise<ShopifyProduct[]> => {
   const query = `
-    query GetCollections($first: Int!) {
-      collections(first: $first) {
-        edges {
-          node {
-            id
-            handle
-            title
-            description
-            image {
-              url
-              altText
-            }
-            products(first: 20) {
-              edges {
-                node {
-                  id
-                  handle
-                  title
-                  description
-                  tags
-                  priceRange {
-                    minVariantPrice {
+    query GetCollection($handle: String!) {
+      collectionByHandle(handle: $handle) {
+        id
+        title
+        products(first: 50) {
+          edges {
+            node {
+              id
+              handle
+              title
+              description
+              descriptionHtml
+              tags
+              priceRange {
+                minVariantPrice {
+                  amount
+                  currencyCode
+                }
+                maxVariantPrice {
+                  amount
+                  currencyCode
+                }
+              }
+              images(first: 10) {
+                edges {
+                  node {
+                    id
+                    url
+                    altText
+                    width
+                    height
+                  }
+                }
+              }
+              variants(first: 10) {
+                edges {
+                  node {
+                    id
+                    title
+                    price {
                       amount
                       currencyCode
                     }
-                  }
-                  images(first: 1) {
-                    edges {
-                      node {
-                        url
-                        altText
-                      }
+                    compareAtPrice {
+                      amount
+                      currencyCode
+                    }
+                    availableForSale
+                    quantityAvailable
+                    selectedOptions {
+                      name
+                      value
+                    }
+                    image {
+                      url
+                      altText
                     }
                   }
                 }
               }
-            }
-          }
-        }
-      }
-    }
-  `;
-
-  const data = await shopifyFetch<{ collections: { edges: Array<{ node: ShopifyCollection }> } }>({
-    query,
-    variables: { first },
-  });
-
-  return data.collections.edges.map(edge => edge.node);
-};
-
-export const createCheckout = async (lineItems: Array<{ variantId: string; quantity: number; customAttributes?: Array<{ key: string; value: string }> }> = []): Promise<ShopifyCheckout> => {
-  const query = `
-    mutation CheckoutCreate($input: CheckoutCreateInput!) {
-      checkoutCreate(input: $input) {
-        checkout {
-          id
-          webUrl
-          lineItems(first: 50) {
-            edges {
-              node {
-                id
-                title
-                quantity
-                variant {
-                  id
-                  title
-                  price {
-                    amount
-                    currencyCode
-                  }
-                  image {
-                    url
-                    altText
-                  }
-                }
+              metafields(identifiers: [
+                {namespace: "custom", key: "calendar_sync_required"},
+                {namespace: "custom", key: "resource_type"},
+                {namespace: "custom", key: "capacity"},
+                {namespace: "custom", key: "gradient"}
+              ]) {
+                key
+                value
+                namespace
               }
             }
           }
-          subtotalPrice {
-            amount
-            currencyCode
-          }
-          totalPrice {
-            amount
-            currencyCode
-          }
-          totalTax {
-            amount
-            currencyCode
-          }
-        }
-        checkoutUserErrors {
-          field
-          message
         }
       }
     }
   `;
 
-  const data = await shopifyFetch<{ checkoutCreate: { checkout: ShopifyCheckout; checkoutUserErrors: Array<{ field: string[]; message: string }> } }>({
+  const data = await shopifyFetch<{ 
+    collectionByHandle: { 
+      id: string; 
+      title: string; 
+      products: { edges: Array<{ node: ShopifyProduct }> } 
+    } | null 
+  }>({
     query,
-    variables: {
-      input: {
-        lineItems: lineItems.map(item => ({
-          variantId: item.variantId,
-          quantity: item.quantity,
-          customAttributes: item.customAttributes || [],
-        })),
-      },
-    },
+    variables: { handle },
   });
 
-  if (data.checkoutCreate.checkoutUserErrors.length > 0) {
-    throw new Error(data.checkoutCreate.checkoutUserErrors[0].message);
+  if (!data.collectionByHandle) {
+    console.warn(`Collection "${handle}" not found`);
+    return [];
   }
 
-  return data.checkoutCreate.checkout;
-};
-
-export const addToCheckout = async (
-  checkoutId: string,
-  lineItems: Array<{ variantId: string; quantity: number; customAttributes?: Array<{ key: string; value: string }> }>
-): Promise<ShopifyCheckout> => {
-  const query = `
-    mutation CheckoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInput!]!) {
-      checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
-        checkout {
-          id
-          webUrl
-          lineItems(first: 50) {
-            edges {
-              node {
-                id
-                title
-                quantity
-                variant {
-                  id
-                  title
-                  price {
-                    amount
-                    currencyCode
-                  }
-                  image {
-                    url
-                    altText
-                  }
-                }
-              }
-            }
-          }
-          subtotalPrice {
-            amount
-            currencyCode
-          }
-          totalPrice {
-            amount
-            currencyCode
-          }
-          totalTax {
-            amount
-            currencyCode
-          }
-        }
-        checkoutUserErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-
-  const data = await shopifyFetch<{ checkoutLineItemsAdd: { checkout: ShopifyCheckout; checkoutUserErrors: Array<{ field: string[]; message: string }> } }>({
-    query,
-    variables: {
-      checkoutId,
-      lineItems: lineItems.map(item => ({
-        variantId: item.variantId,
-        quantity: item.quantity,
-        customAttributes: item.customAttributes || [],
-      })),
-    },
-  });
-
-  if (data.checkoutLineItemsAdd.checkoutUserErrors.length > 0) {
-    throw new Error(data.checkoutLineItemsAdd.checkoutUserErrors[0].message);
-  }
-
-  return data.checkoutLineItemsAdd.checkout;
-};
-
-export const removeFromCheckout = async (checkoutId: string, lineItemIds: string[]): Promise<ShopifyCheckout> => {
-  const query = `
-    mutation CheckoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
-      checkoutLineItemsRemove(checkoutId: $checkoutId, lineItemIds: $lineItemIds) {
-        checkout {
-          id
-          webUrl
-          lineItems(first: 50) {
-            edges {
-              node {
-                id
-                title
-                quantity
-                variant {
-                  id
-                  title
-                  price {
-                    amount
-                    currencyCode
-                  }
-                }
-              }
-            }
-          }
-          subtotalPrice {
-            amount
-            currencyCode
-          }
-          totalPrice {
-            amount
-            currencyCode
-          }
-        }
-        checkoutUserErrors {
-          field
-          message
-        }
-      }
-    }
-  `;
-
-  const data = await shopifyFetch<{ checkoutLineItemsRemove: { checkout: ShopifyCheckout; checkoutUserErrors: Array<{ field: string[]; message: string }> } }>({
-    query,
-    variables: { checkoutId, lineItemIds },
-  });
-
-  if (data.checkoutLineItemsRemove.checkoutUserErrors.length > 0) {
-    throw new Error(data.checkoutLineItemsRemove.checkoutUserErrors[0].message);
-  }
-
-  return data.checkoutLineItemsRemove.checkout;
-};
-
-export const getCheckout = async (checkoutId: string): Promise<ShopifyCheckout> => {
-  const query = `
-    query GetCheckout($checkoutId: ID!) {
-      node(id: $checkoutId) {
-        ... on Checkout {
-          id
-          webUrl
-          lineItems(first: 50) {
-            edges {
-              node {
-                id
-                title
-                quantity
-                variant {
-                  id
-                  title
-                  price {
-                    amount
-                    currencyCode
-                  }
-                  image {
-                    url
-                    altText
-                  }
-                }
-              }
-            }
-          }
-          subtotalPrice {
-            amount
-            currencyCode
-          }
-          totalPrice {
-            amount
-            currencyCode
-          }
-          totalTax {
-            amount
-            currencyCode
-          }
-        }
-      }
-    }
-  `;
-
-  const data = await shopifyFetch<{ node: ShopifyCheckout }>({
-    query,
-    variables: { checkoutId },
-  });
-
-  return data.node;
+  return data.collectionByHandle.products.edges.map(edge => edge.node);
 };
