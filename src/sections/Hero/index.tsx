@@ -27,7 +27,7 @@ export default function Hero() {
             className="w-full h-full object-cover"
             style={{
               objectPosition: 'center',
-              filter: 'brightness(0.9)'
+              filter: 'brightness(0.7)'
             }}
             ref={(el) => {
               if (el) el.playbackRate = 0.75;
@@ -36,7 +36,7 @@ export default function Hero() {
             <source src="https://cdn.midjourney.com/video/6a97acd6-cbd2-4553-8cf1-d218433970a5/0.mp4" type="video/mp4" />
           </video>
 
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" />
 
           <motion.div
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-[150px]"
@@ -72,18 +72,6 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-24 sm:py-28 md:py-32 lg:py-20 w-full">
         <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6 md:mb-8"
-          >
-            <div className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-6 md:mb-8">
-              <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-              <span className="text-xs md:text-sm font-inter font-medium text-white/90 tracking-wide uppercase">Espace Premium à Marseille</span>
-            </div>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
