@@ -13,7 +13,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-black">
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden bg-black pt-24">
       <div className="absolute inset-0">
         <motion.div
           style={{ opacity }}
