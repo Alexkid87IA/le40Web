@@ -83,7 +83,7 @@ export default function AnimatedServiceSection({
       ref={sectionRef}
       id={id}
       style={{ opacity, scale, willChange: 'opacity, transform' }}
-      className="relative min-h-screen lg:h-full flex items-center bg-black overflow-hidden py-16 lg:py-0"
+      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 xl:py-20"
     >
       <motion.div
         ref={videoRef}
@@ -111,8 +111,8 @@ export default function AnimatedServiceSection({
         backgroundSize: '50px 50px'
       }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-12 lg:py-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           <motion.div
             variants={elegantFadeIn}
             initial="hidden"
@@ -140,12 +140,12 @@ export default function AnimatedServiceSection({
               {title}
             </motion.div>
 
-            <p className="text-sm md:text-lg lg:text-xl text-white/70 mb-6 md:mb-10 leading-relaxed font-inter">
+            <p className="text-sm md:text-base lg:text-lg xl:text-xl text-white/70 mb-6 md:mb-8 leading-relaxed font-inter">
               {description}
             </p>
 
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-10"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8"
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -189,10 +189,10 @@ export default function AnimatedServiceSection({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
               viewport={{ once: true, amount: 0.3 }}
-              className="flex flex-wrap items-center gap-2 md:gap-4 mb-6 md:mb-10"
+              className="flex flex-wrap items-center gap-2 md:gap-4 mb-6 md:mb-8"
             >
               <div className="text-white/50 text-xs md:text-sm font-inter">À partir de</div>
-              <div className={`text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-transparent bg-clip-text ${price.gradientClasses}`}>{price.amount}</div>
+              <div className={`text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-montserrat font-black text-transparent bg-clip-text ${price.gradientClasses}`}>{price.amount}</div>
               <div className="text-white/50 text-xs md:text-sm font-inter">{price.period}</div>
             </motion.div>
 
@@ -240,7 +240,7 @@ export default function AnimatedServiceSection({
             className={order === 'left' ? 'lg:order-2' : 'lg:order-1'}
           >
             <motion.div
-              className="relative h-[350px] lg:h-[600px] rounded-2xl lg:rounded-3xl overflow-hidden"
+              className="relative h-[350px] lg:h-[450px] xl:h-[550px] rounded-2xl lg:rounded-3xl overflow-hidden"
               style={{ perspective: 1000 }}
             >
               <motion.div

@@ -30,16 +30,16 @@ export default function HomeNew() {
         <Hero />
 
         <div className="relative">
-          <div className="lg:sticky lg:top-0 lg:h-screen">
+          <div className="lg:sticky lg:top-0 lg:min-h-screen">
             <DomiciliationSection />
           </div>
-          <div className="lg:sticky lg:top-0 lg:h-screen">
+          <div className="lg:sticky lg:top-0 lg:min-h-screen">
             <BureauxSection />
           </div>
-          <div className="lg:sticky lg:top-0 lg:h-screen">
+          <div className="lg:sticky lg:top-0 lg:min-h-screen">
             <CoworkingSection />
           </div>
-          <div className="lg:sticky lg:top-0 lg:h-screen">
+          <div className="lg:sticky lg:top-0 lg:min-h-screen">
             <StudiosSection />
           </div>
           <div className="relative z-10">

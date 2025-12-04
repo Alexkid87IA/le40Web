@@ -33,7 +33,7 @@ export default function CoworkingSection() {
       ref={sectionRef}
       id="coworking"
       style={{ opacity, scale }}
-      className="relative h-full flex items-center bg-black overflow-hidden"
+      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 xl:py-20"
     >
       <motion.div
         ref={videoRef}
@@ -60,8 +60,8 @@ export default function CoworkingSection() {
         backgroundSize: '50px 50px'
       }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           <motion.div
             variants={elegantFadeIn}
             initial="hidden"
@@ -81,7 +81,7 @@ export default function CoworkingSection() {
             </motion.div>
 
             <motion.h2
-              className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight"
+              className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-6 leading-tight"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
@@ -103,12 +103,12 @@ export default function CoworkingSection() {
               </span>
             </motion.h2>
 
-            <p className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed font-inter">
+            <p className="text-base md:text-lg lg:text-lg xl:text-xl text-white/70 mb-8 leading-relaxed font-inter">
               Rejoignez une communauté dynamique d'entrepreneurs, freelances et innovateurs dans nos espaces de travail haut de gamme. Flexibilité totale, équipements premium et networking au quotidien.
             </p>
 
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -145,10 +145,10 @@ export default function CoworkingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex items-center gap-4 mb-10"
+              className="flex items-center gap-4 mb-8"
             >
               <div className="text-white/50 text-sm font-inter">À partir de</div>
-              <div className="text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">199€</div>
+              <div className="text-4xl lg:text-4xl xl:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">199€</div>
               <div className="text-white/50 text-sm font-inter">/mois</div>
             </motion.div>
 
@@ -197,7 +197,7 @@ export default function CoworkingSection() {
             className="lg:order-2"
           >
             <motion.div
-              className="relative h-[600px] rounded-3xl overflow-hidden"
+              className="relative h-[350px] lg:h-[450px] xl:h-[550px] rounded-2xl lg:rounded-3xl overflow-hidden"
               style={{ perspective: 1000 }}
             >
               <motion.div
