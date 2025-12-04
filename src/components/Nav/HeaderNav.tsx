@@ -23,13 +23,13 @@ const secondaryItems: Array<{ name: string; href: string; icon: any }> = [];
 const getActiveIndicatorColor = (pathname: string): string => {
   const colorMap: Record<string, string> = {
     '/': 'from-orange-400 via-orange-500 to-orange-400',
-    '/bureaux': 'from-emerald-400 via-emerald-500 to-emerald-400',
-    '/domiciliation': 'from-cyan-400 via-cyan-500 to-cyan-400',
-    '/salles': 'from-rose-400 via-rose-500 to-rose-400',
-    '/studios': 'from-orange-400 via-orange-500 to-orange-400',
-    '/bundles': 'from-purple-400 via-purple-500 to-purple-400',
-    '/events': 'from-violet-400 via-violet-500 to-violet-400',
-    '/experts': 'from-fuchsia-400 via-fuchsia-500 to-fuchsia-400',
+    '/bureaux': 'from-blue-400 via-blue-500 to-blue-400',
+    '/domiciliation': 'from-orange-400 via-amber-500 to-orange-400',
+    '/salles': 'from-emerald-400 via-emerald-500 to-emerald-400',
+    '/studios': 'from-emerald-400 via-teal-500 to-cyan-400',
+    '/bundles': 'from-amber-400 via-orange-500 to-amber-400',
+    '/events': 'from-cyan-400 via-cyan-500 to-cyan-400',
+    '/experts': 'from-red-400 via-rose-500 to-rose-400',
     '/contact': 'from-blue-400 via-blue-500 to-blue-400',
   };
 
@@ -40,17 +40,17 @@ const getActiveIndicatorColor = (pathname: string): string => {
 const getCTAButtonColor = (pathname: string): string => {
   const colorMap: Record<string, string> = {
     '/': 'bg-orange-600 hover:bg-orange-500',
-    '/bureaux': 'bg-emerald-600 hover:bg-emerald-500',
-    '/domiciliation': 'bg-cyan-600 hover:bg-cyan-500',
-    '/salles': 'bg-rose-600 hover:bg-rose-500',
-    '/studios': 'bg-orange-600 hover:bg-orange-500',
-    '/bundles': 'bg-purple-600 hover:bg-purple-500',
-    '/events': 'bg-violet-600 hover:bg-violet-500',
-    '/experts': 'bg-fuchsia-600 hover:bg-fuchsia-500',
+    '/bureaux': 'bg-blue-600 hover:bg-blue-500',
+    '/domiciliation': 'bg-orange-600 hover:bg-orange-500',
+    '/salles': 'bg-emerald-600 hover:bg-emerald-500',
+    '/studios': 'bg-teal-600 hover:bg-teal-500',
+    '/bundles': 'bg-amber-600 hover:bg-amber-500',
+    '/events': 'bg-cyan-600 hover:bg-cyan-500',
+    '/experts': 'bg-red-600 hover:bg-red-500',
     '/contact': 'bg-blue-600 hover:bg-blue-500',
   };
 
-  return colorMap[pathname] || 'bg-emerald-600 hover:bg-emerald-500';
+  return colorMap[pathname] || 'bg-orange-600 hover:bg-orange-500';
 };
 
 export default function HeaderNav() {

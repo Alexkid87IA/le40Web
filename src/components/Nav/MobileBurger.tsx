@@ -19,13 +19,13 @@ const navItems = [
 const getActiveBgGradient = (pathname: string): string => {
   const gradientMap: Record<string, string> = {
     '/': 'from-orange-500/20 to-orange-500/20 border-orange-500/30',
-    '/bureaux': 'from-emerald-500/20 to-emerald-500/20 border-emerald-500/30',
-    '/domiciliation': 'from-cyan-500/20 to-cyan-500/20 border-cyan-500/30',
-    '/salles': 'from-rose-500/20 to-rose-500/20 border-rose-500/30',
-    '/studios': 'from-orange-500/20 to-orange-500/20 border-orange-500/30',
-    '/bundles': 'from-purple-500/20 to-purple-500/20 border-purple-500/30',
-    '/events': 'from-violet-500/20 to-violet-500/20 border-violet-500/30',
-    '/experts': 'from-fuchsia-500/20 to-fuchsia-500/20 border-fuchsia-500/30',
+    '/bureaux': 'from-blue-500/20 to-blue-500/20 border-blue-500/30',
+    '/domiciliation': 'from-orange-500/20 to-orange-500/20 border-orange-500/30',
+    '/salles': 'from-emerald-500/20 to-emerald-500/20 border-emerald-500/30',
+    '/studios': 'from-teal-500/20 to-teal-500/20 border-teal-500/30',
+    '/bundles': 'from-amber-500/20 to-amber-500/20 border-amber-500/30',
+    '/events': 'from-cyan-500/20 to-cyan-500/20 border-cyan-500/30',
+    '/experts': 'from-red-500/20 to-red-500/20 border-red-500/30',
     '/contact': 'from-blue-500/20 to-blue-500/20 border-blue-500/30',
   };
 
@@ -36,13 +36,13 @@ const getActiveBgGradient = (pathname: string): string => {
 const getActiveIconColor = (pathname: string): string => {
   const colorMap: Record<string, string> = {
     '/': 'text-orange-400',
-    '/bureaux': 'text-emerald-400',
-    '/domiciliation': 'text-cyan-400',
-    '/salles': 'text-rose-400',
-    '/studios': 'text-orange-400',
-    '/bundles': 'text-purple-400',
-    '/events': 'text-violet-400',
-    '/experts': 'text-fuchsia-400',
+    '/bureaux': 'text-blue-400',
+    '/domiciliation': 'text-orange-400',
+    '/salles': 'text-emerald-400',
+    '/studios': 'text-teal-400',
+    '/bundles': 'text-amber-400',
+    '/events': 'text-cyan-400',
+    '/experts': 'text-red-400',
     '/contact': 'text-blue-400',
   };
 
@@ -53,13 +53,13 @@ const getActiveIconColor = (pathname: string): string => {
 const getCTAGradient = (pathname: string): string => {
   const gradientMap: Record<string, string> = {
     '/': 'from-orange-600 via-orange-600 to-orange-600 shadow-orange-500/30 hover:shadow-orange-500/40',
-    '/bureaux': 'from-emerald-600 via-emerald-600 to-emerald-600 shadow-emerald-500/30 hover:shadow-emerald-500/40',
-    '/domiciliation': 'from-cyan-600 via-cyan-600 to-cyan-600 shadow-cyan-500/30 hover:shadow-cyan-500/40',
-    '/salles': 'from-rose-600 via-rose-600 to-rose-600 shadow-rose-500/30 hover:shadow-rose-500/40',
-    '/studios': 'from-orange-600 via-orange-600 to-orange-600 shadow-orange-500/30 hover:shadow-orange-500/40',
-    '/bundles': 'from-purple-600 via-purple-600 to-purple-600 shadow-purple-500/30 hover:shadow-purple-500/40',
-    '/events': 'from-violet-600 via-violet-600 to-violet-600 shadow-violet-500/30 hover:shadow-violet-500/40',
-    '/experts': 'from-fuchsia-600 via-fuchsia-600 to-fuchsia-600 shadow-fuchsia-500/30 hover:shadow-fuchsia-500/40',
+    '/bureaux': 'from-blue-600 via-blue-600 to-blue-600 shadow-blue-500/30 hover:shadow-blue-500/40',
+    '/domiciliation': 'from-orange-600 via-orange-600 to-orange-600 shadow-orange-500/30 hover:shadow-orange-500/40',
+    '/salles': 'from-emerald-600 via-emerald-600 to-emerald-600 shadow-emerald-500/30 hover:shadow-emerald-500/40',
+    '/studios': 'from-teal-600 via-teal-600 to-teal-600 shadow-teal-500/30 hover:shadow-teal-500/40',
+    '/bundles': 'from-amber-600 via-amber-600 to-amber-600 shadow-amber-500/30 hover:shadow-amber-500/40',
+    '/events': 'from-cyan-600 via-cyan-600 to-cyan-600 shadow-cyan-500/30 hover:shadow-cyan-500/40',
+    '/experts': 'from-red-600 via-red-600 to-red-600 shadow-red-500/30 hover:shadow-red-500/40',
     '/contact': 'from-blue-600 via-blue-600 to-blue-600 shadow-blue-500/30 hover:shadow-blue-500/40',
   };
 
