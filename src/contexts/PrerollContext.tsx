@@ -27,13 +27,11 @@ export function PrerollProvider({ children }: { children: React.ReactNode }) {
     setSelectedService(serviceId);
     setShowPreroll(false);
     sessionStorage.setItem(PREROLL_SESSION_KEY, 'true');
-    console.log('Service selected:', serviceId);
   };
 
   const handleSkipPreroll = () => {
     setShowPreroll(false);
     sessionStorage.setItem(PREROLL_SESSION_KEY, 'true');
-    console.log('Preroll skipped');
   };
 
   const resetPreroll = () => {

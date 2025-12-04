@@ -82,7 +82,6 @@ export default function OrderConfirmation() {
 
       setOrderItems(itemsData || []);
     } catch (err) {
-      console.error('Error loading order:', err);
       setError('Erreur lors du chargement de la commande');
     } finally {
       setLoading(false);
@@ -103,7 +102,7 @@ export default function OrderConfirmation() {
           url: url
         });
       } catch (err) {
-        console.log('Share cancelled');
+        // Share cancelled by user
       }
     } else {
       navigator.clipboard.writeText(url);

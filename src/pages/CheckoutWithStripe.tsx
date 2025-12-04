@@ -345,7 +345,6 @@ export default function CheckoutWithStripe() {
         }
 
         if (!variantId) {
-          console.error('Variant non trouvé pour:', item);
           throw new Error(`Produit non trouvé. Veuillez réessayer ou nous contacter.`);
         }
 
@@ -360,7 +359,6 @@ export default function CheckoutWithStripe() {
         throw new Error('Aucun produit valide dans le panier');
       }
 
-      console.log('Creating Shopify cart with lines:', cartLines);
       const cart = await createCart(cartLines);
 
       if (cart?.checkoutUrl) {
@@ -370,7 +368,6 @@ export default function CheckoutWithStripe() {
         throw new Error('Impossible de créer le panier. Veuillez réessayer.');
       }
     } catch (error: any) {
-      console.error('Checkout error:', error);
       setOrderError(error.message || 'Une erreur est survenue. Veuillez réessayer.');
       setIsProcessing(false);
     }
