@@ -16,7 +16,7 @@ export default function StudiosSection() {
           colorClasses: 'bg-blue-500/10 border border-blue-500/20 text-blue-300'
         }}
         title={
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl laptop:text-4xl font-montserrat font-black text-white mb-6 laptop:mb-4 leading-tight">
             Production<br />
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
@@ -78,7 +78,7 @@ export default function StudiosSection() {
           colorClasses: 'bg-red-500/10 border border-red-500/20 text-red-300'
         }}
         title={
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl laptop:text-4xl font-montserrat font-black text-white mb-6 laptop:mb-4 leading-tight">
             Créez Vos<br />
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-pink-400">

@@ -1,0 +1,50 @@
+/* Optimisation spécifique pour écrans 13 pouces (1280px - 1439px) */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  /* Réduction globale des titres */
+  h1 {
+    font-size: 85% !important;
+  }
+
+  h2 {
+    font-size: 85% !important;
+  }
+
+  h3 {
+    font-size: 90% !important;
+  }
+
+  /* Réduction des espacements verticaux */
+  .py-16, .py-20 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Réduction des marges verticales */
+  .mb-8, .mb-10, .mb-12 {
+    margin-bottom: 1rem !important;
+  }
+
+  .mb-6 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Réduction des gaps */
+  .gap-12, .gap-16 {
+    gap: 1.5rem !important;
+  }
+
+  .gap-8 {
+    gap: 1rem !important;
+  }
+
+  /* Réduction des paddings horizontaux */
+  .px-16 {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  .px-12 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}

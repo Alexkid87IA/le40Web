@@ -70,7 +70,7 @@ export default function Hero() {
         }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-24 sm:pb-28 md:pb-32 lg:pb-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 laptop:px-8 pt-32 sm:pt-36 md:pt-40 lg:pt-44 laptop:pt-28 pb-24 sm:pb-28 md:pb-32 lg:pb-20 laptop:pb-12 w-full">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -88,7 +88,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight px-4"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl laptop:text-6xl xl:text-8xl font-montserrat font-black text-white mb-4 md:mb-6 laptop:mb-3 leading-tight px-4"
           >
             DÉVELOPPEZ VOTRE{' '}
             <span className="relative inline-block">
@@ -110,7 +110,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 font-inter max-w-4xl mx-auto mb-8 md:mb-10 lg:mb-12 leading-relaxed px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl laptop:text-lg text-white/70 font-inter max-w-4xl mx-auto mb-8 md:mb-10 laptop:mb-6 lg:mb-12 leading-relaxed px-4"
           >
             4000m² d'espaces premium à Marseille. Coworking, bureaux privés, studios et salles de réunion.
             <span className="text-white font-semibold"> Rejoignez 120+ entrepreneurs.</span>
@@ -120,7 +120,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10 md:mb-12 lg:mb-16 px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10 md:mb-12 laptop:mb-8 lg:mb-16 px-4"
           >
             <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-400/20 backdrop-blur-sm">
               <div className="flex items-center gap-1">
@@ -148,7 +148,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-10 md:mb-12 lg:mb-16 px-4"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8 laptop:gap-4 max-w-5xl mx-auto mb-10 md:mb-12 laptop:mb-8 lg:mb-16 px-4"
           >
             {[
               { value: '4000', suffix: 'm²', label: 'Surface totale', color: 'from-amber-500 via-orange-600 to-amber-500' },
@@ -166,11 +166,11 @@ export default function Hero() {
               >
                 <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500`} />
 
-                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 group-hover:border-white/20 transition-all duration-500 min-h-[120px] md:min-h-0 flex flex-col items-center justify-center">
-                  <div className={`text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2 whitespace-nowrap`}>
+                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 laptop:p-4 group-hover:border-white/20 transition-all duration-500 min-h-[120px] md:min-h-0 flex flex-col items-center justify-center">
+                  <div className={`text-3xl md:text-4xl lg:text-5xl laptop:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2 laptop:mb-1 whitespace-nowrap`}>
                     {stat.value}{stat.suffix}
                   </div>
-                  <p className="text-xs md:text-sm text-white/60 uppercase tracking-wider font-inter text-center whitespace-nowrap">{stat.label}</p>
+                  <p className="text-xs md:text-sm laptop:text-xs text-white/60 uppercase tracking-wider font-inter text-center whitespace-nowrap">{stat.label}</p>
                 </div>
               </motion.div>
             ))}
@@ -180,7 +180,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 md:mb-10 lg:mb-12 px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 laptop:gap-3 mb-8 md:mb-10 laptop:mb-6 lg:mb-12 px-4"
           >
             <motion.a
               href="/contact"
@@ -193,9 +193,9 @@ export default function Hero() {
                 animate={{ opacity: [0.5, 0.75, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-base md:text-lg shadow-2xl">
+              <div className="relative flex items-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 laptop:px-6 py-3 md:py-4 lg:py-5 laptop:py-3 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-base md:text-lg laptop:text-base shadow-2xl">
                 <span>Réserver une visite</span>
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 laptop:w-5 laptop:h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.a>
 
@@ -203,7 +203,7 @@ export default function Hero() {
               href="/bureaux"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-base md:text-lg transition-all duration-300"
+              className="px-6 md:px-8 lg:px-10 laptop:px-6 py-3 md:py-4 lg:py-5 laptop:py-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-base md:text-lg laptop:text-base transition-all duration-300"
             >
               Découvrir nos espaces
             </motion.a>
