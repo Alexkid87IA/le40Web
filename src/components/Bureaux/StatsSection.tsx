@@ -17,9 +17,9 @@ export default function StatsSection() {
     },
     {
       icon: TrendingUp,
-      value: '+45%',
+      value: '+25%',
       label: 'Croissance moyenne',
-      description: 'De nos clients après 6 mois',
+      description: 'De nos clients après 1 an',
     },
     {
       icon: Clock,
@@ -38,13 +38,13 @@ export default function StatsSection() {
     },
     {
       icon: Zap,
-      title: 'Fibre dédiée 1 Gb/s',
+      title: 'Internet haut débit compris',
       description: 'Connexion ultra-rapide et stable pour toute votre équipe',
       color: 'from-emerald-500 to-teal-500',
     },
     {
       icon: Award,
-      title: 'Adresse prestigieuse',
+      title: 'Adresse de caractère',
       description: '40 avenue de Saint Antoine, Marseille 15e - Idéal pour votre image',
       color: 'from-amber-500 to-orange-500',
     },
@@ -181,14 +181,14 @@ export default function StatsSection() {
           </div>
 
           <blockquote className="text-lg md:text-xl font-montserrat font-bold text-white mb-4 max-w-4xl mx-auto">
-            "En 6 mois au Le 40, nous avons triplé notre équipe et doublé notre chiffre d'affaires. L'environnement et le réseau ont été déterminants."
+            "En 3 ans au 40 notre société a pris un tournant incroyable, on a explosé le chiffre d'affaire et avons constitué une équipe de presque 10 personnes. L'environnement et le réseau ont été déterminants"
           </blockquote>
 
           <div className="flex items-center justify-center gap-4">
             <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 to-teal-400"></div>
             <div className="text-left">
-              <p className="text-white font-montserrat font-bold text-lg">Alexandre Martin</p>
-              <p className="text-white/60 font-inter">CEO @ DataFlow Solutions</p>
+              <p className="text-white font-montserrat font-bold text-lg">Morgan Aiwekhoe</p>
+              <p className="text-white/60 font-inter">CEO @ South Management</p>
             </div>
           </div>
         </motion.div>

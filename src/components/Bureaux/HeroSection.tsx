@@ -112,7 +112,7 @@ export default function BureauHeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-base md:text-lg text-white/70 max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed font-inter px-4"
           >
-            De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion, ménage.
+            De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion.
           </motion.p>
 
           <motion.div
