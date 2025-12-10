@@ -16,7 +16,7 @@ export default function CommunitySection() {
       }}
       title={
         <div className="mb-4 md:mb-6 laptop:mb-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl laptop:text-4xl xl:text-7xl font-montserrat font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl laptop:text-4xl font-montserrat font-black text-white leading-tight">
             Rejoignez<br />
             <span className="relative inline-block">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400">

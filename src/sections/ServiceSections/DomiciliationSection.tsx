@@ -154,7 +154,7 @@ export default function DomiciliationSection() {
             </motion.div>
 
             <motion.h2
-              className="text-4xl sm:text-5xl lg:text-5xl laptop:text-4xl xl:text-6xl font-montserrat font-black text-white mb-6 laptop:mb-4 leading-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl laptop:text-4xl font-montserrat font-black text-white mb-6 laptop:mb-4 leading-tight"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
