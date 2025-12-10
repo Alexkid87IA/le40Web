@@ -65,7 +65,7 @@ export default function StudiosSection() {
         ]}
         noiseFilterId="noiseStudiosPro"
         noiseSeed="5"
-        order="left"
+        order="right"
       />
 
       <AnimatedServiceSection
