@@ -83,7 +83,7 @@ export default function BureauHeroSection() {
           >
             <div className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-6 md:mb-8">
               <Building2 className="w-4 md:w-5 h-4 md:h-5 text-blue-400" />
-              <span className="text-xs md:text-sm font-inter font-medium text-white/80 tracking-wide uppercase">Tout Inclus · Prêt à Travailler</span>
+              <span className="text-xs md:text-sm font-inter font-medium text-white/80 tracking-wide uppercase">À partir de 499€ · Tout Inclus</span>
             </div>
           </motion.div>
 
