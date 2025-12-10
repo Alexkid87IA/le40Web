@@ -46,8 +46,6 @@ export default function HomeNew() {
             <CommunitySection />
           </div>
         </div>
-
-        <BundlesHighlightSection />
       </main>
 
       <Footer />
