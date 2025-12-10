@@ -7,6 +7,7 @@ export interface Testimonial {
   initial: string;
   name: string;
   role: string;
+  image?: string;
   before: string[];
   after: TestimonialMetric[];
   quote: string;
@@ -60,5 +61,22 @@ export const testimonials: Testimonial[] = [
       { metric: '20h/mois', label: 'Admin gagnées' }
     ],
     quote: 'L\'accompagnement complet nous a permis de nous concentrer sur notre croissance.'
+  },
+  {
+    initial: 'M',
+    name: 'Morgan Aiwekhoe',
+    role: 'CEO @ South Management',
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQFlUkvzeP7ZMQ/profile-displayphoto-shrink_400_400/B4DZQryeOKHwAg-/0/1735901440262?e=1767225600&v=beta&t=C1jlypUXePxHF4zbP__T-OOVtfdgyBm6Pwcx8zy-4Zs',
+    before: [
+      'Image peu professionnelle',
+      'Difficile de recevoir des clients',
+      'Gestion administrative complexe'
+    ],
+    after: [
+      { metric: '10', label: 'Membres d\'équipe recrutés' },
+      { metric: '✓', label: 'Réseau professionnel actif' },
+      { metric: '✓', label: 'Adresse prestigieuse' }
+    ],
+    quote: 'Tout est à prix au sourire incroyable. On a constitué une équipe de presque 10 personnes, le réseau ont été déterminants.'
   }
 ];

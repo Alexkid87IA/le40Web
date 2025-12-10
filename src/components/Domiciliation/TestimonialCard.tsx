@@ -57,9 +57,19 @@ const TestimonialCard = memo<TestimonialCardProps>(function TestimonialCard({ te
               className="relative"
             >
               <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></div>
-              <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 flex items-center justify-center text-white text-3xl font-black font-montserrat shadow-2xl ring-4 ring-orange-500/15 group-hover:ring-orange-400/35 transition-all">
-                {testimonial.initial}
-              </div>
+              {testimonial.image ? (
+                <div className="relative w-20 h-20 rounded-full shadow-2xl ring-4 ring-orange-500/15 group-hover:ring-orange-400/35 transition-all overflow-hidden">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 flex items-center justify-center text-white text-3xl font-black font-montserrat shadow-2xl ring-4 ring-orange-500/15 group-hover:ring-orange-400/35 transition-all">
+                  {testimonial.initial}
+                </div>
+              )}
             </motion.div>
             <div>
               <div className="font-bold text-white font-montserrat text-xl mb-1.5 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-amber-400 transition-all duration-300">
