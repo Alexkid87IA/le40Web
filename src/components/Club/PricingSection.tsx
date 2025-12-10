@@ -92,30 +92,10 @@ const PricingCard = ({ product, index, isPopular, onAddToCart, isAdding }: Prici
         </div>
 
         <motion.button
-          onClick={() => onAddToCart(product.id)}
-          disabled={isAdding}
-          whileHover={{ scale: isAdding ? 1 : 1.02, y: isAdding ? 0 : -2 }}
-          whileTap={{ scale: isAdding ? 1 : 0.98 }}
-          className={`w-full py-4 rounded-2xl font-montserrat font-bold text-white mb-6 ${
-            isPopular
-              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/30'
-              : `bg-gradient-to-r ${gradient}`
-          } hover:shadow-xl transition-all flex items-center justify-center gap-2 ${
-            isAdding ? 'opacity-70 cursor-not-allowed' : ''
-          }`}
+          disabled={true}
+          className={`w-full py-4 rounded-2xl font-montserrat font-bold text-white mb-6 bg-white/10 border border-white/20 opacity-70 cursor-not-allowed transition-all flex items-center justify-center gap-2`}
         >
-          {isAdding ? (
-            <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Ajout...</span>
-            </>
-          ) : (
-            <>
-              <ShoppingCart className="w-4 h-4" />
-              <span>S'abonner maintenant</span>
-              <ArrowRight className="w-4 h-4" />
-            </>
-          )}
+          <span>Bientôt disponible</span>
         </motion.button>
 
         <div className="space-y-3 flex-grow">

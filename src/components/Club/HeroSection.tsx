@@ -150,7 +150,7 @@ export default function HeroSection() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto mb-10 md:mb-12 lg:mb-16 px-5 sm:px-4"
           >
             {[
-              { value: '50€', suffix: '/m', label: 'Sans engagement', color: 'from-red-500 via-rose-600 to-red-500' },
+              { value: '299€', suffix: '/m', label: 'À partir de', color: 'from-red-500 via-rose-600 to-red-500' },
               { value: '15+', suffix: '', label: 'Événements/mois', color: 'from-rose-500 via-red-600 to-rose-500' },
               { value: '120+', suffix: '', label: 'Entrepreneurs', color: 'from-red-600 via-rose-500 to-red-600' },
               { value: '100%', suffix: '', label: 'Inclus', color: 'from-rose-600 via-red-500 to-rose-600' },
