@@ -35,12 +35,12 @@ export default function Hero() {
       <div className="relative z-10 w-full">
         {/* Mobile Layout: Vertical stack */}
         <div className="lg:hidden flex flex-col min-h-screen">
-          {/* Video Section - Top (40% height) */}
+          {/* Video Section - 9:16 format */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative w-full h-[45vh] min-h-[320px]"
+            className="relative w-full aspect-[9/16]"
           >
             <div className="absolute inset-0 overflow-hidden">
               <video
@@ -93,8 +93,8 @@ export default function Hero() {
             />
           </motion.div>
 
-          {/* Content Section - Bottom (55% height) */}
-          <div className="flex-1 px-4 py-8 flex flex-col justify-center bg-gradient-to-b from-black via-black to-zinc-950">
+          {/* Content Section - Simplified for mobile */}
+          <div className="flex-1 px-5 py-6 flex flex-col justify-center bg-gradient-to-b from-black via-black to-zinc-950">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -103,7 +103,7 @@ export default function Hero() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
                 <div className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
-                <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">4000m² Premium à Marseille</span>
+                <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">4000m² à Marseille</span>
               </div>
             </motion.div>
 
@@ -111,7 +111,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-3xl sm:text-4xl font-montserrat font-black text-white mb-3 leading-[1.1]"
+              className="text-3xl sm:text-4xl font-montserrat font-black text-white mb-4 leading-[1.1]"
             >
               DÉVELOPPEZ VOTRE{' '}
               <span className="relative inline-block">
@@ -133,35 +133,34 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-sm sm:text-base text-white/70 font-inter mb-6 leading-relaxed"
+              className="text-base text-white/70 font-inter mb-6 leading-relaxed"
             >
-              Coworking, bureaux privés, studios et salles de réunion.
-              <span className="text-white font-semibold"> Rejoignez 120+ entrepreneurs.</span>
+              Coworking, bureaux privés, studios.
+              <br />
+              <span className="text-white font-semibold">Rejoignez 120+ entrepreneurs</span>
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-2 gap-3 mb-6"
+              className="grid grid-cols-3 gap-3 mb-6"
             >
               {[
-                { value: '4000', suffix: 'm²', color: 'from-amber-500 to-orange-500' },
-                { value: '120', suffix: '+', color: 'from-orange-500 to-amber-500' },
-                { value: '50', suffix: '+', color: 'from-amber-600 to-orange-600' },
-                { value: '24/7', suffix: '', color: 'from-orange-600 to-amber-600' },
+                { value: '4000m²', color: 'from-amber-500 to-orange-500' },
+                { value: '120+', color: 'from-orange-500 to-amber-500' },
+                { value: '24/7', color: 'from-amber-600 to-orange-600' },
               ].map((stat, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
-                  className="relative group"
+                  className="relative"
                 >
-                  <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-active:opacity-50 blur-lg transition-opacity duration-300`} />
-                  <div className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-xl p-3 group-active:border-white/30 transition-all duration-300 text-center">
-                    <div className={`text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} whitespace-nowrap`}>
-                      {stat.value}{stat.suffix}
+                  <div className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-xl p-2.5 text-center">
+                    <div className={`text-sm font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}>
+                      {stat.value}
                     </div>
                   </div>
                 </motion.div>
@@ -169,37 +168,10 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/30">
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
-              </div>
-
-              <div className="flex items-center gap-1.5">
-                <motion.div
-                  className="w-1.5 h-1.5 rounded-full bg-amber-400"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <span className="text-white/80 font-inter text-xs sm:text-sm">
-                  <span className="text-amber-400 font-semibold">127+ entreprises</span>
-                </span>
-              </div>
-            </motion.div>
-
-            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-3"
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="flex flex-col gap-3 mb-6"
             >
               <motion.a
                 href="/contact"
@@ -211,16 +183,16 @@ export default function Hero() {
                   animate={{ opacity: [0.5, 0.75, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <div className="relative flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-2xl">
+                <div className="relative flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-base shadow-2xl">
                   <span>Réserver une visite</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-5 h-5" />
                 </div>
               </motion.a>
 
               <motion.a
                 href="/bureaux"
                 whileTap={{ scale: 0.98 }}
-                className="px-6 py-3 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-xl font-montserrat font-bold text-sm transition-all duration-300 text-center"
+                className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-xl font-montserrat font-bold text-base transition-all duration-300 text-center"
               >
                 Découvrir nos espaces
               </motion.a>
@@ -229,33 +201,18 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.9 }}
-              className="flex flex-wrap items-center gap-3 mt-6 text-xs"
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex items-center justify-center gap-2"
             >
-              <div className="flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                <span className="text-white/60 font-inter">Marseille Centre</span>
-              </div>
-
-              <div className="w-px h-4 bg-white/10" />
-
-              <div className="flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-amber-400" />
-                <span className="text-white/60 font-inter">Accès 24/7</span>
-              </div>
-
-              <div className="w-px h-4 bg-white/10" />
-
-              <div className="flex items-center gap-1.5">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-6 h-6 rounded-full bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 border-2 border-black flex items-center justify-center text-white font-bold text-[10px]">
-                      {String.fromCharCode(64 + i)}
-                    </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/30">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <span className="text-white/60 font-inter">+120</span>
+                <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
               </div>
+              <span className="text-white/60 font-inter text-sm">127+ entreprises</span>
             </motion.div>
           </div>
         </div>
