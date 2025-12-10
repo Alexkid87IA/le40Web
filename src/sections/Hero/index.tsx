@@ -95,7 +95,7 @@ export default function Hero() {
                 {/* Gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
 
-                {/* Play/Pause Button (Center) - Shows when paused */}
+                {/* Play/Pause Button (Center) - Shows when paused - FIXED CENTERING */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{
@@ -103,7 +103,7 @@ export default function Hero() {
                     scale: isPlaying ? 0.8 : 1
                   }}
                   transition={{ duration: 0.3 }}
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
                 >
                   <div className="relative">
                     <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl" />
@@ -496,7 +496,7 @@ export default function Hero() {
                   {/* Gradient overlays */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
 
-                  {/* Play/Pause Button (Center) - Shows when paused */}
+                  {/* Play/Pause Button (Center) - Shows when paused - FIXED CENTERING */}
                   <motion.div
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{
@@ -504,12 +504,12 @@ export default function Hero() {
                       scale: isPlaying ? 0.8 : 1
                     }}
                     transition={{ duration: 0.3 }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
                   >
                     <div className="relative">
                       <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl" />
-                      <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center pl-1.5">
-                        <Play className="w-10 h-10 text-white fill-white" />
+                      <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
+                        <Play className="w-10 h-10 text-white fill-white ml-1" />
                       </div>
                     </div>
                   </motion.div>
