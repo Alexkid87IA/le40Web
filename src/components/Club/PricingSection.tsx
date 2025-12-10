@@ -262,7 +262,7 @@ export default function PricingSection() {
                   <li>Workshops illimités ✓</li>
                   <li>Networking illimité ✓</li>
                   <li>Coworking inclus ✓</li>
-                  <li className="pt-2 border-t border-emerald-500/30 font-bold text-emerald-400">Dès 299€/mois</li>
+                  <li className="pt-2 border-t border-emerald-500/30 font-bold text-emerald-400">Dès 50€/mois</li>
                 </ul>
               </div>
             </div>
