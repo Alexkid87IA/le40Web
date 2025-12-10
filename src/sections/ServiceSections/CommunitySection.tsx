@@ -76,7 +76,7 @@ export default function CommunitySection() {
       ]}
       noiseFilterId="noiseCommunity"
       noiseSeed="7"
-      order="right"
+      order="left"
     />
   );
 }
