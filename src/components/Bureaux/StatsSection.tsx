@@ -194,7 +194,17 @@ export default function StatsSection() {
             </div>
             <div className="text-left">
               <p className="text-white font-montserrat font-bold text-lg">Morgan Aiwekhoe</p>
-              <p className="text-white/60 font-inter">CEO @ South Management</p>
+              <p className="text-white/60 font-inter">
+                CEO{' '}
+                <a
+                  href="https://www.linkedin.com/in/morgan-aiwekhoe/?originalSubdomain=fr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-400 hover:text-emerald-300 transition-colors underline decoration-emerald-400/30 hover:decoration-emerald-300"
+                >
+                  @ South Management
+                </a>
+              </p>
             </div>
           </div>
         </motion.div>
