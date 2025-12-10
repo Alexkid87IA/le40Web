@@ -127,7 +127,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
 
     const config = item.studioConfig;
-    const basePrice = item.price * config.durationHours * config.formulaMultiplier * config.durationMultiplier;
+    const basePrice = item.price * config.durationMultiplier * config.formulaMultiplier;
 
     let optionsTotal = 0;
     config.options.forEach(option => {

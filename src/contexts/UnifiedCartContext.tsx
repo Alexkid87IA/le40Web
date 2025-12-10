@@ -289,7 +289,7 @@ export const UnifiedCartProvider: React.FC<{ children: ReactNode }> = ({ childre
     }
 
     const config = item.studioConfig;
-    const basePrice = item.price * config.durationHours * config.formulaMultiplier * config.durationMultiplier;
+    const basePrice = item.price * config.durationMultiplier * config.formulaMultiplier;
     const optionsTotal = config.options.reduce((sum, opt) => sum + opt.price, 0);
     return (basePrice + optionsTotal) * item.quantity;
   };
