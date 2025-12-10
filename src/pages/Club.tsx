@@ -29,7 +29,7 @@ export default function Club() {
       <BottomBar
         variant="club"
         title="Club Le 40 - Entrepreneurs"
-        subtitle="À partir de 199€/an"
+        subtitle="À partir de 40€/mois"
         features={[
           { text: 'Accès exclusif', pulse: false },
           { text: 'Réseau premium', pulse: false },
