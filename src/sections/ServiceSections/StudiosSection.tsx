@@ -127,7 +127,7 @@ export default function StudiosSection() {
         ]}
         noiseFilterId="noiseStudiosContent"
         noiseSeed="6"
-        order="right"
+        order="left"
       />
     </>
   );
