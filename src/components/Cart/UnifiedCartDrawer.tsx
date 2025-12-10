@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingCart, ArrowRight, Trash2, Clock, Calendar, Sparkles, Store, Package, RefreshCw } from 'lucide-react';
+import { X, ShoppingCart, ArrowRight, Trash2, Clock, Calendar, Sparkles, Package, RefreshCw } from 'lucide-react';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import { useNavigate } from 'react-router-dom';
 
@@ -79,18 +79,7 @@ export default function UnifiedCartDrawer() {
                 <div className="text-center py-12">
                   <ShoppingCart className="w-16 h-16 text-white/20 mx-auto mb-4" />
                   <p className="text-white/60 font-inter mb-2">Votre panier est vide</p>
-                  <p className="text-white/40 text-sm mb-6">Découvrez nos espaces et services</p>
-                  <button
-                    onClick={() => {
-                      navigate('/boutique');
-                      setIsOpen(false);
-                    }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-fuchsia-600 to-violet-600
-                             text-white rounded-xl hover:from-fuchsia-500 hover:to-violet-500 transition-all"
-                  >
-                    <Store className="w-4 h-4" />
-                    Voir la boutique
-                  </button>
+                  <p className="text-white/40 text-sm">Découvrez nos espaces et services</p>
                 </div>
               ) : (
                 <div className="space-y-6">
