@@ -25,7 +25,7 @@ export default function BureauxPrives() {
       <BottomBar
         variant="bureaux"
         title="Bureaux Privés Le 40"
-        subtitle="De 699€/mois"
+        subtitle="De 499€/mois"
         features={[
           { text: 'Installation 48h', pulse: true },
           { text: 'Tout inclus', pulse: false },

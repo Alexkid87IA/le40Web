@@ -33,7 +33,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     ],
     capacity: '2-4 pers.',
     surface: '20m²',
-    priceFrom: '699€',
+    priceFrom: '499€',
     features: [
       'Bureau fermé et sécurisé avec serrure individuelle',
       '4 postes de travail ergonomiques avec sièges Herman Miller',
@@ -299,7 +299,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     ],
     capacity: '2-20 pers.',
     surface: 'Variable',
-    priceFrom: '699€',
+    priceFrom: '499€',
     features: [
       'Espaces modulables selon vos besoins',
       'Zones de concentration et de collaboration',

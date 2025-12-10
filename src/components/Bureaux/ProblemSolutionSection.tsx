@@ -141,7 +141,7 @@ export default function ProblemSolutionSection() {
             <div className="mt-4 md:mt-6 p-3 md:p-4 bg-gradient-to-r from-emerald-950/50 to-teal-950/50 rounded-lg md:rounded-xl border border-emerald-500/30">
               <div className="text-center">
                 <div className="text-2xl md:text-3xl lg:text-4xl font-black text-emerald-400 mb-1 md:mb-2">
-                  699€/mois
+                  499€/mois
                   <span className="text-sm md:text-base lg:text-lg text-white/60 ml-2">tout inclus</span>
                 </div>
                 <div className="text-white/80 text-xs md:text-sm font-semibold">

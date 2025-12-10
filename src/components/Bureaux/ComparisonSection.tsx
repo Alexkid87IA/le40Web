@@ -163,7 +163,7 @@ export default function ComparisonSection() {
               </div>
               <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-2">Le 40 Bureaux</h3>
               <p className="text-white/60 text-xs md:text-sm mb-3 md:mb-4">Flexibilité maximale</p>
-              <div className="text-2xl md:text-3xl font-black text-emerald-400 mb-2">699-2499€</div>
+              <div className="text-2xl md:text-3xl font-black text-emerald-400 mb-2">499-2499€</div>
               <p className="text-emerald-300 text-xs font-semibold">TOUT INCLUS • Sans engagement long</p>
             </div>
           </div>

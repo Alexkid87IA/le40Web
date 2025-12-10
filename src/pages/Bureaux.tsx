@@ -40,7 +40,7 @@ const workspaceOptions = [
     subtitle: 'Confidentialité & Confort',
     description: 'Bureaux fermés et sécurisés de 15m² à 100m² pour des équipes de 2 à 20 personnes. Personnalisables et entièrement équipés.',
     image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
-    price: 'À partir de 699€/mois',
+    price: 'À partir de 499€/mois',
     priceDetail: 'Bureau 2-4 personnes',
     features: [
       'Bureau privé fermé',
@@ -82,7 +82,7 @@ const comparisonFeatures = [
   {
     category: 'Tarif',
     coworking: 'À partir de 29€/jour',
-    bureaux: 'À partir de 699€/mois'
+    bureaux: 'À partir de 499€/mois'
   },
   {
     category: 'Confidentialité',

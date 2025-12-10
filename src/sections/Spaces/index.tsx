@@ -45,7 +45,7 @@ const spaceCategories = [
       {
         name: 'Bureaux Privés',
         capacity: '2-20 personnes',
-        price: 699,
+        price: 499,
         priceLabel: '€/mois',
         features: ['Mobilier premium', 'Ligne téléphonique', 'Stockage privé', 'Personnalisable'],
         highlight: 'Votre espace dédié',

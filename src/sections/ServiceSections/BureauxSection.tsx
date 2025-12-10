@@ -40,7 +40,7 @@ export default function BureauxSection() {
         { icon: Users, text: 'De 2 à 20 Personnes' }
       ]}
       price={{
-        amount: '699€',
+        amount: '499€',
         period: '/mois',
         gradientClasses: 'bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400'
       }}
