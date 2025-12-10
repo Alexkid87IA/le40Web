@@ -185,7 +185,13 @@ export default function StatsSection() {
           </blockquote>
 
           <div className="flex items-center justify-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 to-teal-400"></div>
+            <div className="w-14 h-14 rounded-full overflow-hidden ring-4 ring-emerald-500/30">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4D03AQFlUkvzeP7ZMQ/profile-displayphoto-shrink_400_400/B4DZQryeOKHwAg-/0/1735901440262?e=1767225600&v=beta&t=C1jlypUXePxHF4zbP__T-OOVtfdgyBm6Pwcx8zy-4Zs"
+                alt="Morgan Aiwekhoe"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="text-left">
               <p className="text-white font-montserrat font-bold text-lg">Morgan Aiwekhoe</p>
               <p className="text-white/60 font-inter">CEO @ South Management</p>
