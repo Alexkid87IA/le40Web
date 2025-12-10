@@ -220,7 +220,7 @@ export default function HeroSection() {
               { icon: Zap, text: 'Activation en 24h', color: 'text-orange-400' },
               { icon: Mail, text: 'Scan courrier 2h', color: 'text-blue-400' },
               { icon: Shield, text: 'Conformité totale', color: 'text-orange-400' },
-              { icon: MapPin, text: 'Marseille centre', color: 'text-amber-400' }
+              { icon: MapPin, text: 'Marseille', color: 'text-amber-400' }
             ].map((benefit, index) => (
               <motion.div
                 key={index}

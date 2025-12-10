@@ -14,9 +14,9 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'domiciliation-starter',
     name: 'STARTER',
-    price: 49,
+    price: 39,
     period: '/mois',
-    description: 'Freelances, auto-entrepreneurs',
+    description: 'Freelances & Auto',
     features: [
       'Votre courrier (scan 2h)',
       'Votre adresse officielle',
@@ -34,7 +34,7 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'domiciliation-business',
     name: 'BUSINESS',
-    price: 99,
+    price: 79,
     period: '/mois',
     description: 'SARL, SAS, PME',
     features: [
@@ -55,9 +55,9 @@ export const pricingPlans: PricingPlan[] = [
   {
     id: 'domiciliation-premium',
     name: 'SCALE-UP',
-    price: 199,
+    price: 149,
     period: '/mois',
-    description: 'Siège social complet',
+    description: 'UP',
     features: [
       'Secrétariat dédié',
       '8h salle/mois',

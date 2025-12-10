@@ -44,7 +44,7 @@ export default function Domiciliation() {
         ]}
         ctaText="Choisir ma formule"
         ctaHref="#pricing"
-        phoneNumber="04 13 00 10 00"
+        phoneNumber="04 91 96 21 51"
         icon={<MapPin className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />
 

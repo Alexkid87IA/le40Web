@@ -44,13 +44,13 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    text: '+33 4 91 23 45 67',
-    link: 'tel:+33491234567'
+    text: '04 91 96 21 51',
+    link: 'tel:+33491962151'
   },
   {
     icon: Mail,
-    text: 'contact@le40.fr',
-    link: 'mailto:contact@le40.fr'
+    text: 'contact@bureauxle40.fr',
+    link: 'mailto:contact@bureauxle40.fr'
   }
 ];
 

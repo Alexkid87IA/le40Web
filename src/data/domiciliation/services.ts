@@ -45,11 +45,9 @@ export const detailedServices: DetailedService[] = [
     color: 'text-blue-400',
     bgColor: 'from-zinc-900 to-zinc-800',
     features: [
-      'Ligne fixe 04 à votre nom d\'entreprise',
-      'Accueil pro personnalisé (on dit "Bonjour, [VotreEntreprise]")',
-      'Transfert d\'appel vers votre mobile',
-      'Messages pris et transmis par email',
-      'Filtrage des spams/démarchages'
+      'Profitez de la ligne fixe 04 du 40',
+      'Accueil pro personnalisé',
+      'Messages pris et transmis'
     ],
     testimonial: {
       quote: 'Mes clients pensent que j\'ai une vraie équipe. Ça change tout pour la crédibilité.',

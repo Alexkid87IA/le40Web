@@ -6,7 +6,7 @@ export default function TrustBannerSection() {
     {
       icon: Shield,
       title: 'Agrément Préfecture',
-      subtitle: 'N° 13-2018-042',
+      subtitle: 'Marseille',
       color: 'from-blue-500 to-blue-600'
     },
     {

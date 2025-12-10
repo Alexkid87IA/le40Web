@@ -110,7 +110,7 @@ export default function ClubUpsellSection() {
 
             <div className="border-t border-white/10 pt-6">
               <div className="text-3xl font-montserrat font-black text-white mb-2">
-                Dès 49€<span className="text-lg text-white/60 font-normal">/mois</span>
+                à partir de 39€<span className="text-lg text-white/60 font-normal">/mois</span>
               </div>
               <p className="text-white/50 text-sm font-inter">Sans les avantages du Club</p>
             </div>
@@ -167,7 +167,7 @@ export default function ClubUpsellSection() {
               <div className="border-t border-orange-500/20 pt-6 mb-6">
                 <div className="flex items-baseline gap-2 mb-2">
                   <div className="text-3xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-500">
-                    449€<span className="text-lg text-white/60 font-normal">/mois</span>
+                    249€<span className="text-lg text-white/60 font-normal">/mois</span>
                   </div>
                   <div className="text-sm text-green-400 font-semibold">
                     Économie de 50€+/mois
