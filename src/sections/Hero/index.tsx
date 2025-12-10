@@ -465,7 +465,7 @@ export default function Hero() {
               className="relative"
             >
               {/* Video Card with sophisticated design */}
-              <div className="relative w-full aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative w-full max-h-[70vh] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
                 {/* Animated border glow */}
                 <motion.div
                   className="absolute -inset-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-3xl opacity-60 blur-xl"
@@ -504,12 +504,12 @@ export default function Hero() {
                       scale: isPlaying ? 0.8 : 1
                     }}
                     transition={{ duration: 0.3 }}
-                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                   >
                     <div className="relative">
                       <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl" />
-                      <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
-                        <Play className="w-10 h-10 text-white fill-white ml-1" />
+                      <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center pl-1.5">
+                        <Play className="w-10 h-10 text-white fill-white" />
                       </div>
                     </div>
                   </motion.div>

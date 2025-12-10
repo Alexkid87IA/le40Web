@@ -47,7 +47,7 @@ export default function BureauxSection() {
       cta={{
         primary: {
           text: 'VOIR LES BUREAUX',
-          href: '/bureaux-prives',
+          href: '/bureaux',
           gradientClasses: 'bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500'
         },
         secondary: {
