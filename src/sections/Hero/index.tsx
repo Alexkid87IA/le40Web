@@ -4,26 +4,39 @@ import { ArrowRight, Star, MapPin, Clock } from 'lucide-react';
 export default function Hero() {
   return (
     <section className="relative h-screen flex items-center overflow-hidden bg-black">
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-950 to-black" />
+      <div className="absolute inset-0 lg:hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90" />
+      </div>
+
+      <div className="absolute inset-0 hidden lg:block bg-gradient-to-br from-black via-zinc-950 to-black" />
 
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-[1fr,420px] gap-8 items-center">
 
-          <div>
+          <div className="backdrop-blur-sm lg:backdrop-blur-none">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="mb-4"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
                 <div className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
-                <span className="text-xs font-inter font-medium text-white/90 tracking-wide uppercase">4000m² Premium à Marseille</span>
+                <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">4000m² Premium à Marseille</span>
               </div>
             </motion.div>
 
@@ -80,7 +93,7 @@ export default function Hero() {
                   className="relative group"
                 >
                   <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300`} />
-                  <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-xl p-3 group-hover:border-white/20 transition-all duration-300 text-center">
+                  <div className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-xl p-3 group-hover:border-white/30 transition-all duration-300 text-center">
                     <div className={`text-xl lg:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} whitespace-nowrap`}>
                       {stat.value}{stat.suffix}
                     </div>
@@ -95,13 +108,13 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex items-center gap-3 mb-6"
             >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/20">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/30">
                 <div className="flex items-center gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <span className="text-white/90 font-inter text-xs font-semibold">4.9/5</span>
+                <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
               </div>
 
               <div className="flex items-center gap-1.5">
@@ -110,7 +123,7 @@ export default function Hero() {
                   animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <span className="text-white/70 font-inter text-sm">
+                <span className="text-white/80 font-inter text-sm">
                   <span className="text-amber-400 font-semibold">127+ entreprises</span>
                 </span>
               </div>
