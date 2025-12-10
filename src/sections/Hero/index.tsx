@@ -339,10 +339,10 @@ export default function Hero() {
                 className="grid grid-cols-4 gap-3 mb-6"
               >
                 {[
-                  { value: '4000', suffix: 'm²', color: 'from-amber-500 to-orange-500' },
-                  { value: '120', suffix: '+', color: 'from-orange-500 to-amber-500' },
-                  { value: '50', suffix: '+', color: 'from-amber-600 to-orange-600' },
-                  { value: '24/7', suffix: '', color: 'from-orange-600 to-amber-600' },
+                  { value: '4000m²', label: 'd\'espace', color: 'from-amber-500 to-orange-500' },
+                  { value: '120+', label: 'entrepreneurs', color: 'from-orange-500 to-amber-500' },
+                  { value: '50+', label: 'espaces', color: 'from-amber-600 to-orange-600' },
+                  { value: '24/7', label: 'accès', color: 'from-orange-600 to-amber-600' },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -353,9 +353,12 @@ export default function Hero() {
                     className="relative group"
                   >
                     <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300`} />
-                    <div className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-xl p-3 group-hover:border-white/30 transition-all duration-300 text-center">
-                      <div className={`text-xl lg:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} whitespace-nowrap`}>
-                        {stat.value}{stat.suffix}
+                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-3 group-hover:border-white/30 transition-all duration-300 text-center">
+                      <div className={`text-xl lg:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-1`}>
+                        {stat.value}
+                      </div>
+                      <div className="text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
+                        {stat.label}
                       </div>
                     </div>
                   </motion.div>
@@ -461,53 +464,90 @@ export default function Hero() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl">
-                <video
-                  ref={desktopVideoRef}
-                  autoPlay
-                  loop
-                  muted={true}
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover"
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-
-                {/* Sound Control Button - Desktop */}
-                <motion.button
-                  onClick={toggleMute}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="absolute bottom-6 right-6 z-20 group"
-                >
-                  <motion.div
-                    className="absolute -inset-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-60"
-                    animate={isMuted ? {
-                      scale: [1, 1.2, 1],
-                      opacity: [0.4, 0.7, 0.4]
-                    } : {}}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <div className="relative flex items-center justify-center w-14 h-14 bg-black/60 backdrop-blur-xl border-2 border-amber-400/50 rounded-full group-hover:border-amber-400 group-hover:bg-black/80 transition-all duration-300">
-                    {isMuted ? (
-                      <VolumeX className="w-6 h-6 text-amber-400" />
-                    ) : (
-                      <Volume2 className="w-6 h-6 text-amber-400" />
-                    )}
-                  </div>
-                </motion.button>
-
+              {/* Video Card with sophisticated design */}
+              <div className="relative w-full aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
+                {/* Animated border glow */}
                 <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 rounded-2xl blur-3xl -z-10"
+                  className="absolute -inset-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-3xl opacity-60 blur-xl"
                   animate={{
-                    opacity: [0.3, 0.5, 0.3],
-                    scale: [1, 1.05, 1]
+                    opacity: [0.4, 0.7, 0.4],
+                    scale: [1, 1.02, 1]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+
+                {/* Inner video container */}
+                <div
+                  className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
+                  onClick={togglePlayPause}
+                >
+                  <video
+                    ref={desktopVideoRef}
+                    autoPlay
+                    loop
+                    muted={true}
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                  </video>
+
+                  {/* Gradient overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
+
+                  {/* Play/Pause Button (Center) - Shows when paused */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: isPlaying ? 0 : 0.8,
+                      scale: isPlaying ? 0.8 : 1
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl" />
+                      <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
+                        <Play className="w-10 h-10 text-white fill-white ml-1" />
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Sound Control Button - Top Right (Discreet) */}
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMute();
+                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 0.6, scale: 1 }}
+                    whileHover={{ opacity: 1, scale: 1.05 }}
+                    transition={{ delay: 1, duration: 0.5 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="absolute top-4 right-4 z-20 group"
+                  >
+                    <div className="relative flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-amber-400/50 transition-all duration-300">
+                      {isMuted ? (
+                        <VolumeX className="w-5 h-5 text-white/70 group-hover:text-amber-400" />
+                      ) : (
+                        <Volume2 className="w-5 h-5 text-amber-400" />
+                      )}
+                    </div>
+                  </motion.button>
+
+                  {/* Corner accents */}
+                  <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-amber-500/30 rounded-tl-3xl" />
+                  <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-amber-500/30 rounded-tr-3xl" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-amber-500/30 rounded-bl-3xl" />
+                  <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-amber-500/30 rounded-br-3xl" />
+                </div>
+
+                {/* Outer glow effect */}
+                <motion.div
+                  className="absolute -inset-8 bg-gradient-to-b from-amber-500/5 via-orange-500/5 to-transparent pointer-events-none blur-2xl"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
                   }}
                   transition={{ duration: 4, repeat: Infinity }}
                 />
