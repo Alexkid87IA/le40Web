@@ -412,7 +412,7 @@ export default function Checkout() {
                                   {item.serviceName}
                                 </h4>
                                 <span className="text-white font-bold text-lg whitespace-nowrap">
-                                  {itemTotal.toFixed(0)}€
+                                  {(itemTotal * 1.20).toFixed(0)}€
                                 </span>
                               </div>
 

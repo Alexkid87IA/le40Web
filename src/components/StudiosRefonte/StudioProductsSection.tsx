@@ -195,9 +195,9 @@ export default function StudioProductsSection({ onSelectStudio }: StudioProducts
                       <div className="mb-6">
                         <div className="flex items-baseline gap-2 mb-2">
                           <span className={`text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${gradient}`}>
-                            {basePrice.toFixed(0)}€
+                            {(basePrice * 1.20).toFixed(0)}€
                           </span>
-                          <span className="text-white/60 font-inter text-sm">/heure</span>
+                          <span className="text-white/60 font-inter text-sm">/heure TTC</span>
                         </div>
                         {maxDiscount > 0 && (
                           <p className="text-emerald-400 text-sm font-semibold">

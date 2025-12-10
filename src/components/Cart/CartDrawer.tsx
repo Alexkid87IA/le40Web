@@ -154,11 +154,11 @@ export default function CartDrawer() {
                             </div>
                             <div className="text-right">
                               <p className="text-fuchsia-400 font-montserrat font-bold text-lg">
-                                {itemTotal.toFixed(0)}€
+                                {(itemTotal * 1.20).toFixed(0)}€
                               </p>
                               {isStudio && item.studioConfig && item.studioConfig.options.length > 0 && (
                                 <p className="text-white/40 text-xs">
-                                  +{item.studioConfig.options.reduce((sum, opt) => sum + opt.price, 0)}€ options
+                                  +{(item.studioConfig.options.reduce((sum, opt) => sum + opt.price, 0) * 1.20).toFixed(0)}€ options
                                 </p>
                               )}
                             </div>
@@ -175,9 +175,9 @@ export default function CartDrawer() {
             {items.length > 0 && (
               <div className="p-6 border-t border-white/10">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-white/60">Total</span>
+                  <span className="text-white/60">Total TTC</span>
                   <span className="text-3xl font-montserrat font-bold text-white">
-                    {totalPrice.toFixed(2)}€
+                    {(totalPrice * 1.20).toFixed(2)}€
                   </span>
                 </div>
 

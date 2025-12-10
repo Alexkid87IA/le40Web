@@ -36,10 +36,10 @@ export default function ComparisonTableSection() {
 
   const comparisonData = [
     {
-      feature: 'Prix par heure',
-      podcast: podcast ? `${podcast.price.toFixed(0)}€/h` : '-',
-      video: video ? `${video.price.toFixed(0)}€/h` : '-',
-      photo: photo ? `${photo.price.toFixed(0)}€/h` : '-',
+      feature: 'Prix par heure TTC',
+      podcast: podcast ? `${(podcast.price * 1.20).toFixed(0)}€/h` : '-',
+      video: video ? `${(video.price * 1.20).toFixed(0)}€/h` : '-',
+      photo: photo ? `${(photo.price * 1.20).toFixed(0)}€/h` : '-',
     },
     {
       feature: 'Superficie',

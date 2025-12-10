@@ -173,7 +173,7 @@ export default function UnifiedCartDrawer() {
                                   </button>
                                 </div>
                                 <p className="text-fuchsia-400 font-montserrat font-bold text-lg">
-                                  {(item.price * item.quantity).toFixed(2)}€
+                                  {(item.price * item.quantity * 1.20).toFixed(2)}€
                                 </p>
                               </div>
                             </div>
@@ -291,7 +291,7 @@ export default function UnifiedCartDrawer() {
                                     </button>
                                   </div>
                                   <p className="text-fuchsia-400 font-montserrat font-bold text-lg">
-                                    {itemTotal.toFixed(0)}€
+                                    {(itemTotal * 1.20).toFixed(0)}€
                                   </p>
                                 </div>
                               </div>
@@ -308,9 +308,9 @@ export default function UnifiedCartDrawer() {
             {items.length > 0 && (
               <div className="p-6 border-t border-white/10 bg-black/50">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-white/60">Total</span>
+                  <span className="text-white/60">Total TTC</span>
                   <span className="text-3xl font-montserrat font-bold text-white">
-                    {totalPrice.toFixed(2)}€
+                    {(totalPrice * 1.20).toFixed(2)}€
                   </span>
                 </div>
 

@@ -333,8 +333,8 @@ export default function StudioBookingSection({ selectedStudio }: StudioBookingSe
                 </div>
                 <div className="border-t border-white/20 pt-3 mt-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-white text-lg font-bold">Total</span>
-                    <span className="text-white text-2xl font-black">{price.toFixed(2)}€</span>
+                    <span className="text-white text-lg font-bold">Total TTC</span>
+                    <span className="text-white text-2xl font-black">{(price * 1.20).toFixed(2)}€</span>
                   </div>
                 </div>
               </div>
