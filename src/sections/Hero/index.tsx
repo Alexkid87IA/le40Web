@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX, Play } from 'lucide-react';
 import { useState, useRef } from 'react';
 
 export default function Hero() {
@@ -35,65 +35,108 @@ export default function Hero() {
       <div className="relative z-10 w-full">
         {/* Mobile Layout: Video with overlaid content */}
         <div className="lg:hidden relative min-h-screen">
-          {/* Video Section - 9:16 format */}
+          {/* Video Section - 9:16 format with sophisticated card design */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative w-full aspect-[9/16]"
+            className="relative w-full px-4 pt-20"
           >
-            <div className="absolute inset-0 overflow-hidden">
-              <video
-                ref={mobileVideoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="w-full h-full object-cover"
-              >
-                <source src={videoUrl} type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
+            {/* Video Card with sophisticated design */}
+            <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
+              {/* Animated border glow */}
+              <motion.div
+                className="absolute -inset-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-3xl opacity-60 blur-xl"
+                animate={{
+                  opacity: [0.4, 0.7, 0.4],
+                  scale: [1, 1.02, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
 
-              {/* Sound Control Button - Mobile Top Left */}
-              <motion.button
-                onClick={toggleMute}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1, duration: 0.5 }}
-                whileTap={{ scale: 0.9 }}
-                className="absolute top-20 left-4 z-20 group"
-              >
+              {/* Inner video container */}
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black">
+                <video
+                  ref={mobileVideoRef}
+                  autoPlay
+                  loop
+                  muted={true}
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                </video>
+
+                {/* Gradient overlays */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90" />
+
+                {/* Decorative Play Button (Center) */}
                 <motion.div
-                  className="absolute -inset-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-60"
-                  animate={isMuted ? {
-                    scale: [1, 1.2, 1],
-                    opacity: [0.4, 0.7, 0.4]
-                  } : {}}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <div className="relative flex items-center justify-center w-12 h-12 bg-black/60 backdrop-blur-xl border-2 border-amber-400/50 rounded-full group-hover:border-amber-400 transition-all duration-300">
-                  {isMuted ? (
-                    <VolumeX className="w-5 h-5 text-amber-400" />
-                  ) : (
-                    <Volume2 className="w-5 h-5 text-amber-400" />
-                  )}
-                </div>
-              </motion.button>
-            </div>
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 0.3, scale: 1 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                >
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.3, 0.5, 0.3]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="relative"
+                  >
+                    <div className="absolute inset-0 bg-amber-500/20 rounded-full blur-3xl" />
+                    <div className="relative w-20 h-20 rounded-full bg-black/40 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center">
+                      <Play className="w-8 h-8 text-white fill-white ml-1" />
+                    </div>
+                  </motion.div>
+                </motion.div>
 
-            {/* Glow effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-orange-500/10 to-transparent pointer-events-none"
-              animate={{
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
+                {/* Sound Control Button - Top Left */}
+                <motion.button
+                  onClick={toggleMute}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1, duration: 0.5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="absolute top-4 left-4 z-20 group"
+                >
+                  <motion.div
+                    className="absolute -inset-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-60"
+                    animate={isMuted ? {
+                      scale: [1, 1.2, 1],
+                      opacity: [0.4, 0.7, 0.4]
+                    } : {}}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <div className="relative flex items-center justify-center w-11 h-11 bg-black/70 backdrop-blur-xl border-2 border-amber-400/50 rounded-full group-hover:border-amber-400 transition-all duration-300">
+                    {isMuted ? (
+                      <VolumeX className="w-5 h-5 text-amber-400" />
+                    ) : (
+                      <Volume2 className="w-5 h-5 text-amber-400" />
+                    )}
+                  </div>
+                </motion.button>
 
-            {/* Content overlaid on bottom third of video */}
-            <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-16 bg-gradient-to-t from-black via-black/95 to-transparent">
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-amber-500/30 rounded-tl-3xl" />
+                <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-amber-500/30 rounded-tr-3xl" />
+                <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-amber-500/30 rounded-bl-3xl" />
+                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-amber-500/30 rounded-br-3xl" />
+              </div>
+
+              {/* Outer glow effect */}
+              <motion.div
+                className="absolute -inset-8 bg-gradient-to-b from-amber-500/5 via-orange-500/5 to-transparent pointer-events-none blur-2xl"
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
+
+              {/* Content overlaid on bottom third of video */}
+              <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-16 bg-gradient-to-t from-black via-black/95 to-transparent rounded-b-3xl">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -146,9 +189,9 @@ export default function Hero() {
                 className="grid grid-cols-3 gap-2 mb-4"
               >
                 {[
-                  { value: '4000m²', color: 'from-amber-500 to-orange-500' },
-                  { value: '120+', color: 'from-orange-500 to-amber-500' },
-                  { value: '24/7', color: 'from-amber-600 to-orange-600' },
+                  { value: '4000m²', label: 'd\'espace', color: 'from-amber-500 to-orange-500' },
+                  { value: '120+', label: 'entrepreneurs', color: 'from-orange-500 to-amber-500' },
+                  { value: '24/7', label: 'accès', color: 'from-amber-600 to-orange-600' },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -157,9 +200,12 @@ export default function Hero() {
                     transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
                     className="relative"
                   >
-                    <div className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-xl p-2 text-center">
-                      <div className={`text-xs font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}>
+                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-2.5 text-center">
+                      <div className={`text-sm font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5`}>
                         {stat.value}
+                      </div>
+                      <div className="text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
+                        {stat.label}
                       </div>
                     </div>
                   </motion.div>
@@ -182,6 +228,7 @@ export default function Hero() {
                 </div>
                 <span className="text-white/60 font-inter text-xs">127+ entreprises</span>
               </motion.div>
+            </div>
             </div>
           </motion.div>
 
@@ -403,7 +450,7 @@ export default function Hero() {
                   ref={desktopVideoRef}
                   autoPlay
                   loop
-                  muted
+                  muted={true}
                   playsInline
                   preload="metadata"
                   className="absolute inset-0 w-full h-full object-cover"
