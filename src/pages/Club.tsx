@@ -47,7 +47,7 @@ export default function Club() {
         <BenefitsSection />
         <PricingSection />
         <EventsCalendarSection />
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         <MembershipProcessSection />
         <FAQSection />
         <FinalCTASection />

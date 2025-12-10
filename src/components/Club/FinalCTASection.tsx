@@ -80,7 +80,7 @@ export default function FinalCTASection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 text-sm font-semibold text-amber-400 mb-8"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-red-500/20 to-rose-500/20 border border-red-400/30 text-sm font-semibold text-red-400 mb-8"
           >
             <Sparkles className="w-4 h-4" />
             LANCEMENT IMMINENT
@@ -88,7 +88,7 @@ export default function FinalCTASection() {
 
           <h2 className="text-6xl md:text-7xl lg:text-8xl font-black mb-8">
             <span className="text-white">Soyez parmi</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">
               les Premiers
             </span>
           </h2>
@@ -153,7 +153,7 @@ export default function FinalCTASection() {
                     placeholder="Votre nom (optionnel)"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:border-amber-500/50 transition-colors"
+                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:border-red-400/50 transition-colors"
                   />
                 </div>
                 <div>
@@ -163,7 +163,7 @@ export default function FinalCTASection() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:border-amber-500/50 transition-colors"
+                    className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:border-red-400/50 transition-colors"
                   />
                 </div>
                 {error && (
@@ -176,8 +176,8 @@ export default function FinalCTASection() {
                   whileTap={{ scale: loading ? 1 : 0.98 }}
                   className="group relative w-full"
                 >
-                  <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity" />
-                  <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-xl text-white font-bold text-lg shadow-xl">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity" />
+                  <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 rounded-xl text-white font-bold text-lg shadow-xl">
                     {loading ? (
                       <>
                         <motion.div
