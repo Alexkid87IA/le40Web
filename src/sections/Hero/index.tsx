@@ -6,6 +6,7 @@ export default function Hero() {
   const videoUrl = "https://www.dropbox.com/scl/fi/os52ctwifhugugggq5la0/Bureau-pub-Direct.mp4?rlkey=fardhad45oxi1b18hdat7xxe6&st=zyh1l01i&dl=1";
 
   const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
 
@@ -18,6 +19,26 @@ export default function Hero() {
     }
     if (desktopVideoRef.current) {
       desktopVideoRef.current.muted = newMutedState;
+    }
+  };
+
+  const togglePlayPause = () => {
+    const newPlayingState = !isPlaying;
+    setIsPlaying(newPlayingState);
+
+    if (mobileVideoRef.current) {
+      if (newPlayingState) {
+        mobileVideoRef.current.play();
+      } else {
+        mobileVideoRef.current.pause();
+      }
+    }
+    if (desktopVideoRef.current) {
+      if (newPlayingState) {
+        desktopVideoRef.current.play();
+      } else {
+        desktopVideoRef.current.pause();
+      }
     }
   };
 
@@ -55,7 +76,10 @@ export default function Hero() {
               />
 
               {/* Inner video container */}
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black">
+              <div
+                className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
+                onClick={togglePlayPause}
+              >
                 <video
                   ref={mobileVideoRef}
                   autoPlay
@@ -69,52 +93,44 @@ export default function Hero() {
                 </video>
 
                 {/* Gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
 
-                {/* Decorative Play Button (Center) */}
+                {/* Play/Pause Button (Center) - Shows when paused */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 0.3, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
+                  animate={{
+                    opacity: isPlaying ? 0 : 0.8,
+                    scale: isPlaying ? 0.8 : 1
+                  }}
+                  transition={{ duration: 0.3 }}
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                 >
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      opacity: [0.3, 0.5, 0.3]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="relative"
-                  >
-                    <div className="absolute inset-0 bg-amber-500/20 rounded-full blur-3xl" />
-                    <div className="relative w-20 h-20 rounded-full bg-black/40 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl" />
+                    <div className="relative w-20 h-20 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
                       <Play className="w-8 h-8 text-white fill-white ml-1" />
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
 
-                {/* Sound Control Button - Top Left */}
+                {/* Sound Control Button - Top Right (Discreet) */}
                 <motion.button
-                  onClick={toggleMute}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleMute();
+                  }}
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  animate={{ opacity: 0.6, scale: 1 }}
+                  whileHover={{ opacity: 1, scale: 1.05 }}
                   transition={{ delay: 1, duration: 0.5 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="absolute top-4 left-4 z-20 group"
+                  whileTap={{ scale: 0.95 }}
+                  className="absolute top-4 right-4 z-20 group"
                 >
-                  <motion.div
-                    className="absolute -inset-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-60"
-                    animate={isMuted ? {
-                      scale: [1, 1.2, 1],
-                      opacity: [0.4, 0.7, 0.4]
-                    } : {}}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <div className="relative flex items-center justify-center w-11 h-11 bg-black/70 backdrop-blur-xl border-2 border-amber-400/50 rounded-full group-hover:border-amber-400 transition-all duration-300">
+                  <div className="relative flex items-center justify-center w-8 h-8 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-amber-400/50 transition-all duration-300">
                     {isMuted ? (
-                      <VolumeX className="w-5 h-5 text-amber-400" />
+                      <VolumeX className="w-4 h-4 text-white/70 group-hover:text-amber-400" />
                     ) : (
-                      <Volume2 className="w-5 h-5 text-amber-400" />
+                      <Volume2 className="w-4 h-4 text-amber-400" />
                     )}
                   </div>
                 </motion.button>
