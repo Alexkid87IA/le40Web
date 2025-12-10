@@ -1,8 +1,25 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX } from 'lucide-react';
+import { useState, useRef } from 'react';
 
 export default function Hero() {
   const videoUrl = "https://www.dropbox.com/scl/fi/os52ctwifhugugggq5la0/Bureau-pub-Direct.mp4?rlkey=fardhad45oxi1b18hdat7xxe6&st=zyh1l01i&dl=1";
+
+  const [isMuted, setIsMuted] = useState(true);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+
+    if (mobileVideoRef.current) {
+      mobileVideoRef.current.muted = newMutedState;
+    }
+    if (desktopVideoRef.current) {
+      desktopVideoRef.current.muted = newMutedState;
+    }
+  };
 
   return (
     <section className="relative min-h-screen lg:h-screen flex items-center overflow-hidden bg-black">
@@ -27,6 +44,7 @@ export default function Hero() {
           >
             <div className="absolute inset-0 overflow-hidden">
               <video
+                ref={mobileVideoRef}
                 autoPlay
                 loop
                 muted
@@ -37,6 +55,32 @@ export default function Hero() {
                 <source src={videoUrl} type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
+
+              {/* Sound Control Button - Mobile */}
+              <motion.button
+                onClick={toggleMute}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                whileTap={{ scale: 0.9 }}
+                className="absolute bottom-4 right-4 z-20 group"
+              >
+                <motion.div
+                  className="absolute -inset-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-60"
+                  animate={isMuted ? {
+                    scale: [1, 1.2, 1],
+                    opacity: [0.4, 0.7, 0.4]
+                  } : {}}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <div className="relative flex items-center justify-center w-12 h-12 bg-black/60 backdrop-blur-xl border-2 border-amber-400/50 rounded-full group-hover:border-amber-400 transition-all duration-300">
+                  {isMuted ? (
+                    <VolumeX className="w-5 h-5 text-amber-400" />
+                  ) : (
+                    <Volume2 className="w-5 h-5 text-amber-400" />
+                  )}
+                </div>
+              </motion.button>
             </div>
 
             {/* Glow effect */}
@@ -396,6 +440,7 @@ export default function Hero() {
             >
               <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl">
                 <video
+                  ref={desktopVideoRef}
                   autoPlay
                   loop
                   muted
@@ -407,6 +452,33 @@ export default function Hero() {
                 </video>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+
+                {/* Sound Control Button - Desktop */}
+                <motion.button
+                  onClick={toggleMute}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1, duration: 0.5 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="absolute bottom-6 right-6 z-20 group"
+                >
+                  <motion.div
+                    className="absolute -inset-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-60"
+                    animate={isMuted ? {
+                      scale: [1, 1.2, 1],
+                      opacity: [0.4, 0.7, 0.4]
+                    } : {}}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <div className="relative flex items-center justify-center w-14 h-14 bg-black/60 backdrop-blur-xl border-2 border-amber-400/50 rounded-full group-hover:border-amber-400 group-hover:bg-black/80 transition-all duration-300">
+                    {isMuted ? (
+                      <VolumeX className="w-6 h-6 text-amber-400" />
+                    ) : (
+                      <Volume2 className="w-6 h-6 text-amber-400" />
+                    )}
+                  </div>
+                </motion.button>
 
                 <motion.div
                   className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 rounded-2xl blur-3xl -z-10"
