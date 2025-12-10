@@ -35,8 +35,8 @@ export default function Club() {
           { text: 'Réseau premium', pulse: false },
           { text: '150+ membres', highlight: true },
         ]}
-        ctaText="Devenir membre"
-        ctaHref="#pricing"
+        ctaText="Être notifié"
+        ctaHref="#notify"
         phoneNumber="04 13 00 10 00"
         icon={<Sparkles className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />

@@ -77,10 +77,14 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 bg-red-500/10 border border-red-400/20 rounded-full px-5 py-3 mb-8"
+            className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-400/30 rounded-full px-6 py-3 mb-8"
           >
-            <Users className="w-5 h-5 text-red-400" />
-            <span className="text-sm font-bold uppercase tracking-wider text-red-300">Communauté Exclusive</span>
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-2 h-2 rounded-full bg-amber-400"
+            />
+            <span className="text-sm font-bold uppercase tracking-wider text-amber-300">Bientôt Disponible</span>
           </motion.div>
 
           <motion.h1
@@ -182,18 +186,18 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-8 md:mb-10 lg:mb-12 px-5 sm:px-4"
           >
             <motion.a
-              href="#pricing"
+              href="#notify"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="group relative"
             >
               <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
                 animate={{ opacity: [0.5, 0.75, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
-              <div className="relative flex items-center gap-2 md:gap-3 px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-3.5 md:py-4 lg:py-5 bg-gradient-to-r from-red-500 via-rose-500 to-red-500 text-white rounded-xl font-montserrat font-bold text-sm sm:text-base md:text-lg shadow-2xl w-full sm:w-auto justify-center">
-                <span>Rejoindre le Club</span>
+              <div className="relative flex items-center gap-2 md:gap-3 px-5 sm:px-6 md:px-8 lg:px-10 py-3 sm:py-3.5 md:py-4 lg:py-5 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-sm sm:text-base md:text-lg shadow-2xl w-full sm:w-auto justify-center">
+                <span>Être notifié du lancement</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.a>
