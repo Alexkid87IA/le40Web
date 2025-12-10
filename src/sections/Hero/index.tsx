@@ -33,8 +33,8 @@ export default function Hero() {
       }} />
 
       <div className="relative z-10 w-full">
-        {/* Mobile Layout: Vertical stack */}
-        <div className="lg:hidden flex flex-col min-h-screen">
+        {/* Mobile Layout: Video with overlaid content */}
+        <div className="lg:hidden relative min-h-screen">
           {/* Video Section - 9:16 format */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -54,16 +54,16 @@ export default function Hero() {
               >
                 <source src={videoUrl} type="video/mp4" />
               </video>
-              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
 
-              {/* Sound Control Button - Mobile */}
+              {/* Sound Control Button - Mobile Top Left */}
               <motion.button
                 onClick={toggleMute}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
                 whileTap={{ scale: 0.9 }}
-                className="absolute bottom-4 right-4 z-20 group"
+                className="absolute top-20 left-4 z-20 group"
               >
                 <motion.div
                   className="absolute -inset-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full blur-lg opacity-60"
@@ -91,87 +91,107 @@ export default function Hero() {
               }}
               transition={{ duration: 4, repeat: Infinity }}
             />
+
+            {/* Content overlaid on bottom third of video */}
+            <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-16 bg-gradient-to-t from-black via-black/95 to-transparent">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-3"
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
+                  <div className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
+                  <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">4000m² à Marseille</span>
+                </div>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-3xl font-montserrat font-black text-white mb-2 leading-[1.1]"
+              >
+                DÉVELOPPEZ VOTRE{' '}
+                <span className="relative inline-block">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400">
+                    ACTIVITÉ
+                  </span>
+                  <motion.div
+                    className="absolute -inset-2 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-2xl -z-10"
+                    animate={{
+                      opacity: [0.5, 0.8, 0.5],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-sm text-white/70 font-inter mb-4 leading-relaxed"
+              >
+                Coworking, bureaux privés, studios.
+                <br />
+                <span className="text-white font-semibold">Rejoignez 120+ entrepreneurs</span>
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="grid grid-cols-3 gap-2 mb-4"
+              >
+                {[
+                  { value: '4000m²', color: 'from-amber-500 to-orange-500' },
+                  { value: '120+', color: 'from-orange-500 to-amber-500' },
+                  { value: '24/7', color: 'from-amber-600 to-orange-600' },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
+                    className="relative"
+                  >
+                    <div className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-xl p-2 text-center">
+                      <div className={`text-xs font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}>
+                        {stat.value}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="flex items-center justify-center gap-2"
+              >
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/30">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-2.5 h-2.5 text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
+                </div>
+                <span className="text-white/60 font-inter text-xs">127+ entreprises</span>
+              </motion.div>
+            </div>
           </motion.div>
 
-          {/* Content Section - Simplified for mobile */}
-          <div className="flex-1 px-5 py-6 flex flex-col justify-center bg-gradient-to-b from-black via-black to-zinc-950">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-4"
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
-                <div className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
-                <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">4000m² à Marseille</span>
-              </div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-3xl sm:text-4xl font-montserrat font-black text-white mb-4 leading-[1.1]"
-            >
-              DÉVELOPPEZ VOTRE{' '}
-              <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400">
-                  ACTIVITÉ
-                </span>
-                <motion.div
-                  className="absolute -inset-2 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-2xl -z-10"
-                  animate={{
-                    opacity: [0.5, 0.8, 0.5],
-                    scale: [1, 1.05, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-base text-white/70 font-inter mb-6 leading-relaxed"
-            >
-              Coworking, bureaux privés, studios.
-              <br />
-              <span className="text-white font-semibold">Rejoignez 120+ entrepreneurs</span>
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-3 gap-3 mb-6"
-            >
-              {[
-                { value: '4000m²', color: 'from-amber-500 to-orange-500' },
-                { value: '120+', color: 'from-orange-500 to-amber-500' },
-                { value: '24/7', color: 'from-amber-600 to-orange-600' },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
-                  className="relative"
-                >
-                  <div className="relative bg-black/60 backdrop-blur-xl border border-white/20 rounded-xl p-2.5 text-center">
-                    <div className={`text-sm font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color}`}>
-                      {stat.value}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
+          {/* CTA Section below video */}
+          <div className="px-5 py-6 bg-gradient-to-b from-black to-zinc-950">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-col gap-3 mb-6"
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-col gap-3"
             >
               <motion.a
                 href="/contact"
@@ -196,23 +216,6 @@ export default function Hero() {
               >
                 Découvrir nos espaces
               </motion.a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex items-center justify-center gap-2"
-            >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-md border border-amber-400/30">
-                <div className="flex items-center gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
-              </div>
-              <span className="text-white/60 font-inter text-sm">127+ entreprises</span>
             </motion.div>
           </div>
         </div>
