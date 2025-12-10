@@ -36,7 +36,7 @@ export default function Domiciliation() {
       <BottomBar
         variant="domiciliation"
         title="Domiciliation Marseille"
-        subtitle="Dès 29€/mois"
+        subtitle="Dès 39€/mois"
         features={[
           { text: 'Activation 24h', pulse: true },
           { text: 'Sans engagement', pulse: false },
