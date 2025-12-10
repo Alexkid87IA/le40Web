@@ -39,7 +39,7 @@ export default function HomeNew() {
           <div className="lg:sticky lg:top-0 lg:min-h-screen">
             <CoworkingSection />
           </div>
-          <div className="lg:sticky lg:top-0 lg:min-h-screen">
+          <div className="relative">
             <StudiosSection />
           </div>
           <div className="relative z-10">
