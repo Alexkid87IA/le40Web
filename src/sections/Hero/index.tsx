@@ -1,54 +1,63 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX, Play } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function Hero() {
   const videoUrl = "https://www.dropbox.com/scl/fi/os52ctwifhugugggq5la0/Bureau-pub-Direct.mp4?rlkey=fardhad45oxi1b18hdat7xxe6&st=zyh1l01i&dl=1";
+  const backgroundVideoUrl = "https://res.cloudinary.com/dwt7u0azs/video/upload/v1761805289/e3c2235d-6478-42d0-85b3-6266f2227367_iazq5a.mp4";
 
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
-  const mobileVideoRef = useRef<HTMLVideoElement>(null);
-  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Détecter mobile/desktop
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const toggleMute = () => {
     const newMutedState = !isMuted;
     setIsMuted(newMutedState);
-
-    if (mobileVideoRef.current) {
-      mobileVideoRef.current.muted = newMutedState;
-    }
-    if (desktopVideoRef.current) {
-      desktopVideoRef.current.muted = newMutedState;
+    if (videoRef.current) {
+      videoRef.current.muted = newMutedState;
     }
   };
 
   const togglePlayPause = () => {
     const newPlayingState = !isPlaying;
     setIsPlaying(newPlayingState);
-
-    if (mobileVideoRef.current) {
+    if (videoRef.current) {
       if (newPlayingState) {
-        mobileVideoRef.current.play();
+        videoRef.current.play();
       } else {
-        mobileVideoRef.current.pause();
-      }
-    }
-    if (desktopVideoRef.current) {
-      if (newPlayingState) {
-        desktopVideoRef.current.play();
-      } else {
-        desktopVideoRef.current.pause();
+        videoRef.current.pause();
       }
     }
   };
 
   return (
     <section className="relative min-h-screen lg:h-screen flex items-center overflow-hidden bg-black">
-      {/* Desktop Background */}
-      <div className="absolute inset-0 hidden lg:block bg-gradient-to-br from-black via-zinc-950 to-black" />
+      {/* VIDEO DE FOND */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={backgroundVideoUrl} type="video/mp4" />
+        </video>
+        {/* Overlay sombre */}
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
 
       {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
+      <div className="absolute inset-0 opacity-[0.02] z-[1]" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }} />
@@ -80,17 +89,19 @@ export default function Hero() {
                 className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
                 onClick={togglePlayPause}
               >
-                <video
-                  ref={mobileVideoRef}
-                  autoPlay
-                  loop
-                  muted={true}
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-cover"
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
+                {isMobile && (
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    loop
+                    muted={true}
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                  </video>
+                )}
 
                 {/* Gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
@@ -207,7 +218,7 @@ export default function Hero() {
                 {[
                   { value: '4000m²', label: 'd\'espace', color: 'from-amber-500 to-orange-500' },
                   { value: '120+', label: 'entrepreneurs', color: 'from-orange-500 to-amber-500' },
-                  { value: '24/7', label: 'accès', color: 'from-amber-600 to-orange-600' },
+                  { value: '9h-20h', label: 'Lun-Ven', color: 'from-amber-600 to-orange-600' },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -342,7 +353,7 @@ export default function Hero() {
                   { value: '4000m²', label: 'd\'espace', color: 'from-amber-500 to-orange-500' },
                   { value: '120+', label: 'entrepreneurs', color: 'from-orange-500 to-amber-500' },
                   { value: '50+', label: 'espaces', color: 'from-amber-600 to-orange-600' },
-                  { value: '24/7', label: 'accès', color: 'from-orange-600 to-amber-600' },
+                  { value: '9h-20h', label: 'Lun-Ven', color: 'from-orange-600 to-amber-600' },
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -440,7 +451,7 @@ export default function Hero() {
 
                 <div className="flex items-center gap-2">
                   <Clock className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="text-white/60 text-xs font-inter">Accès 24/7</span>
+                  <span className="text-white/60 text-xs font-inter">9h-20h Lun-Ven</span>
                 </div>
 
                 <div className="w-px h-4 bg-white/10" />
@@ -481,17 +492,19 @@ export default function Hero() {
                   className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
                   onClick={togglePlayPause}
                 >
-                  <video
-                    ref={desktopVideoRef}
-                    autoPlay
-                    loop
-                    muted={true}
-                    playsInline
-                    preload="metadata"
-                    className="w-full h-full object-cover"
-                  >
-                    <source src={videoUrl} type="video/mp4" />
-                  </video>
+                  {!isMobile && (
+                    <video
+                      ref={videoRef}
+                      autoPlay
+                      loop
+                      muted={true}
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    >
+                      <source src={videoUrl} type="video/mp4" />
+                    </video>
+                  )}
 
                   {/* Gradient overlays */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
@@ -557,9 +570,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-[2]" />
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none z-[1]">
         <svg width="100%" height="100%">
           <filter id="noiseHomeHero">
             <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" />
