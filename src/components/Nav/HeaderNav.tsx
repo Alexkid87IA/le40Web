@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Eye } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useUnifiedCart } from '../../hooks/useUnifiedCart';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UnifiedCartButton from '../Cart/UnifiedCartButton';
 import { Z_INDEX } from '../../utils/zIndex';
 
@@ -17,40 +16,36 @@ const navItems = [
   { name: 'Le Club', href: '/experts' },
 ];
 
-const secondaryItems: Array<{ name: string; href: string; icon: any }> = [];
-
 // Fonction pour obtenir la couleur du trait selon la page
 const getActiveIndicatorColor = (pathname: string): string => {
   const colorMap: Record<string, string> = {
-    '/': 'from-orange-400 via-orange-500 to-orange-400',
-    '/bureaux': 'from-blue-400 via-blue-500 to-blue-400',
-    '/domiciliation': 'from-orange-400 via-amber-500 to-orange-400',
+    '/': 'from-amber-400 via-orange-500 to-amber-400',
+    '/bureaux': 'from-blue-400 via-indigo-500 to-blue-400',
+    '/domiciliation': 'from-amber-400 via-orange-500 to-amber-400',
     '/salles': 'from-emerald-400 via-emerald-500 to-emerald-400',
-    '/studios': 'from-emerald-400 via-teal-500 to-cyan-400',
+    '/studios': 'from-teal-400 via-cyan-500 to-teal-400',
     '/bundles': 'from-amber-400 via-orange-500 to-amber-400',
     '/events': 'from-cyan-400 via-cyan-500 to-cyan-400',
-    '/experts': 'from-red-400 via-rose-500 to-rose-400',
+    '/experts': 'from-rose-400 via-red-500 to-rose-400',
     '/contact': 'from-blue-400 via-blue-500 to-blue-400',
   };
-
-  return colorMap[pathname] || 'from-orange-400 via-orange-500 to-orange-400';
+  return colorMap[pathname] || 'from-amber-400 via-orange-500 to-amber-400';
 };
 
 // Fonction pour obtenir la couleur du bouton CTA selon la page
-const getCTAButtonColor = (pathname: string): string => {
-  const colorMap: Record<string, string> = {
-    '/': 'bg-orange-600 hover:bg-orange-500',
-    '/bureaux': 'bg-blue-600 hover:bg-blue-500',
-    '/domiciliation': 'bg-orange-600 hover:bg-orange-500',
-    '/salles': 'bg-emerald-600 hover:bg-emerald-500',
-    '/studios': 'bg-teal-600 hover:bg-teal-500',
-    '/bundles': 'bg-amber-600 hover:bg-amber-500',
-    '/events': 'bg-cyan-600 hover:bg-cyan-500',
-    '/experts': 'bg-red-600 hover:bg-red-500',
-    '/contact': 'bg-blue-600 hover:bg-blue-500',
+const getCTAColors = (pathname: string): { bg: string; glow: string } => {
+  const colorMap: Record<string, { bg: string; glow: string }> = {
+    '/': { bg: 'from-amber-500 via-orange-500 to-amber-500', glow: 'bg-orange-500/30' },
+    '/bureaux': { bg: 'from-blue-500 via-indigo-500 to-blue-500', glow: 'bg-blue-500/30' },
+    '/domiciliation': { bg: 'from-amber-500 via-orange-500 to-amber-500', glow: 'bg-orange-500/30' },
+    '/salles': { bg: 'from-emerald-500 via-emerald-600 to-emerald-500', glow: 'bg-emerald-500/30' },
+    '/studios': { bg: 'from-teal-500 via-cyan-500 to-teal-500', glow: 'bg-teal-500/30' },
+    '/bundles': { bg: 'from-amber-500 via-orange-500 to-amber-500', glow: 'bg-amber-500/30' },
+    '/events': { bg: 'from-cyan-500 via-cyan-600 to-cyan-500', glow: 'bg-cyan-500/30' },
+    '/experts': { bg: 'from-rose-500 via-red-500 to-rose-500', glow: 'bg-rose-500/30' },
+    '/contact': { bg: 'from-blue-500 via-blue-600 to-blue-500', glow: 'bg-blue-500/30' },
   };
-
-  return colorMap[pathname] || 'bg-orange-600 hover:bg-orange-500';
+  return colorMap[pathname] || { bg: 'from-amber-500 via-orange-500 to-amber-500', glow: 'bg-orange-500/30' };
 };
 
 export default function HeaderNav() {
@@ -62,7 +57,6 @@ export default function HeaderNav() {
 
   const handleNavigation = (href: string) => {
     navigate(href);
-    // Force scroll to top immediately
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 0);
@@ -74,7 +68,6 @@ export default function HeaderNav() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // On est en haut de la page
       if (currentScrollY < 50) {
         setIsAtTop(true);
         setIsVisible(true);
@@ -84,18 +77,14 @@ export default function HeaderNav() {
       
       setIsAtTop(false);
 
-      // Scroll vers le bas = cacher
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
-      } 
-      // Scroll vers le haut = montrer immédiatement
-      else if (currentScrollY < lastScrollY) {
+      } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
 
       setLastScrollY(currentScrollY);
 
-      // IMPORTANT : Toujours relancer le timer après chaque scroll
       clearTimeout(inactivityTimeout);
       inactivityTimeout = setTimeout(() => {
         setIsVisible(true);
@@ -103,7 +92,6 @@ export default function HeaderNav() {
     };
 
     const handleMouseMove = () => {
-      // Relancer le timer au mouvement de souris
       if (window.scrollY > 50) {
         clearTimeout(inactivityTimeout);
         inactivityTimeout = setTimeout(() => {
@@ -122,6 +110,8 @@ export default function HeaderNav() {
     };
   }, [lastScrollY]);
 
+  const ctaColors = getCTAColors(location.pathname);
+
   return (
     <motion.header
       animate={{
@@ -132,17 +122,18 @@ export default function HeaderNav() {
         duration: 0.3,
         ease: [0.19, 1, 0.22, 1]
       }}
-      className={`hidden md:block fixed top-0 left-0 right-0 transition-colors duration-300 ${
+      className={`hidden md:block fixed top-0 left-0 right-0 transition-all duration-300 ${
         isAtTop
-          ? 'bg-black/90 border-b border-white/5'
-          : 'bg-black/95 border-b border-white/10'
+          ? 'bg-black/80'
+          : 'bg-black/90 border-b border-white/[0.06]'
       }`}
       style={{ backdropFilter: 'blur(20px)', zIndex: Z_INDEX.headerNav }}
     >
-      <div className={`relative max-w-[1600px] mx-auto px-8 transition-all duration-300 ${
-        isAtTop ? 'py-3' : 'py-2.5'
+      {/* Container aligné avec le contenu (max-w-7xl) */}
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+        isAtTop ? 'py-4' : 'py-3'
       }`}>
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-8">
+        <div className="flex items-center justify-between">
 
           {/* LOGO */}
           <div onClick={() => handleNavigation('/')} className="flex-shrink-0 cursor-pointer">
@@ -151,13 +142,13 @@ export default function HeaderNav() {
               alt="Le 40"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="brightness-0 invert w-20 transition-all duration-300"
+              className="brightness-0 invert w-14 lg:w-16 transition-all duration-300"
             />
           </div>
 
-          {/* NAVIGATION PRINCIPALE */}
-          <nav className="flex justify-center">
-            <ul className="flex items-center justify-center gap-1">
+          {/* NAVIGATION PRINCIPALE - Centrée */}
+          <nav className="flex-1 flex justify-center">
+            <ul className="flex items-center gap-0.5">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.href;
 
@@ -165,52 +156,38 @@ export default function HeaderNav() {
                   <li key={item.name}>
                     <motion.div
                       onClick={() => handleNavigation(item.href)}
-                      className="relative group px-4 py-2 rounded-lg cursor-pointer"
+                      className="relative group cursor-pointer"
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeNav"
-                            className="absolute inset-0 bg-white/[0.06] rounded-lg"
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 35,
-                              mass: 0.8,
-                            }}
-                          />
-                        )}
-
-                        <div className={`absolute inset-0 rounded-lg transition-opacity duration-200 ${
-                          isActive
-                            ? 'opacity-0'
-                            : 'opacity-0 group-hover:opacity-100 bg-white/[0.03]'
-                        }`} />
-
+                      <div className={`px-3 lg:px-4 py-2 rounded-lg transition-all duration-200 ${
+                        isActive ? 'bg-white/[0.08]' : 'hover:bg-white/[0.04]'
+                      }`}>
                         <span
                           className={`relative font-medium text-[13px] tracking-wide transition-all duration-200 ${
                             isActive
                               ? 'text-white'
-                              : 'text-white/50 group-hover:text-white/90'
+                              : 'text-white/50 group-hover:text-white/80'
                           }`}
                         >
                           {item.name}
                         </span>
+                      </div>
 
-                        {isActive && (
-                          <motion.div
-                            layoutId="activeIndicator"
-                            className="absolute -bottom-0.5 left-0 right-0 flex justify-center"
-                            transition={{
-                              type: "spring",
-                              stiffness: 400,
-                              damping: 35
-                            }}
-                          >
-                            <div className={`w-8 h-0.5 bg-gradient-to-r ${getActiveIndicatorColor(location.pathname)} rounded-full`} />
-                          </motion.div>
-                        )}
+                      {/* Indicateur actif */}
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeIndicator"
+                          className="absolute -bottom-1 left-1/2 -translate-x-1/2"
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 35
+                          }}
+                        >
+                          <div className={`w-6 h-[2px] bg-gradient-to-r ${getActiveIndicatorColor(location.pathname)} rounded-full`} />
+                        </motion.div>
+                      )}
                     </motion.div>
                   </li>
                 );
@@ -218,52 +195,27 @@ export default function HeaderNav() {
             </ul>
           </nav>
 
-          {/* ACTIONS SECONDAIRES */}
+          {/* ACTIONS - À droite */}
           <div className="flex items-center gap-3 flex-shrink-0">
-
-            {/* Icônes secondaires */}
-            <div className="flex items-center gap-2">
-              {secondaryItems.map((item) => {
-                const isActive = location.pathname === item.href;
-                const Icon = item.icon;
-
-                return (
-                  <motion.div
-                    key={item.name}
-                    onClick={() => handleNavigation(item.href)}
-                    className={`relative p-2 rounded-lg transition-all duration-200 cursor-pointer ${
-                      isActive
-                        ? 'bg-white/[0.06] text-white'
-                        : 'text-white/50 hover:text-white hover:bg-white/[0.03]'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    title={item.name}
-                  >
-                    <Icon className="w-[17px] h-[17px]" />
-                  </motion.div>
-                );
-              })}
-
-              {/* Panier Unifié */}
-              <UnifiedCartButton pathname={location.pathname} />
-            </div>
-
-            {/* Séparateur */}
-            <div className="w-px h-5 bg-white/10" />
+            {/* Panier */}
+            <UnifiedCartButton pathname={location.pathname} />
 
             {/* CTA BUTTON */}
-            {/* Bouton Planifier une visite (Solid) */}
             <motion.button
               onClick={() => navigate('/reserver-visite')}
-              className={`px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 ${getCTAButtonColor(location.pathname)}`}
+              className="group relative"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Eye className="w-[14px] h-[14px] text-white" />
-              <span className="font-medium text-[13px] text-white">
-                Planifier une visite
-              </span>
+              {/* Glow effect */}
+              <div className={`absolute -inset-1 ${ctaColors.glow} rounded-xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-300`} />
+              
+              <div className={`relative flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${ctaColors.bg} rounded-lg shadow-lg`}>
+                <Eye className="w-4 h-4 text-white" />
+                <span className="font-semibold text-[13px] text-white">
+                  Planifier une visite
+                </span>
+              </div>
             </motion.button>
           </div>
         </div>

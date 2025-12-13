@@ -1,220 +1,586 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Star, Building2, Shield, MapPin, Users } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX, Play, Building2 } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
 import VisitBookingModal from './VisitBookingModal';
 
 export default function BureauHeroSection() {
-  const containerRef = useRef(null);
+  // VIDÉOS BUREAUX
+  const videoUrl = "https://www.dropbox.com/scl/fi/sgidqavcw87kuh5fk486n/Bureau-le-40-vid-o-2-V2.mp4?rlkey=j3bc4fz7xru6ekfq51c5sfj8h&st=qgc81q82&dl=1";
+  const backgroundVideoUrl = "https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4";
+
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
+  // Détecter mobile/desktop
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const toggleMute = () => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+    if (videoRef.current) {
+      videoRef.current.muted = newMutedState;
+    }
+  };
+
+  const togglePlayPause = () => {
+    const newPlayingState = !isPlaying;
+    setIsPlaying(newPlayingState);
+    if (videoRef.current) {
+      if (newPlayingState) {
+        videoRef.current.play();
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
 
   return (
-    <section ref={containerRef} className="relative min-h-[100dvh] flex items-center overflow-hidden bg-black">
-      <div className="absolute inset-0">
-        <motion.div
-          style={{ opacity }}
-          className="absolute inset-0"
+    <section className="relative min-h-screen lg:h-screen flex items-center overflow-hidden bg-black">
+      {/* VIDEO DE FOND */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
         >
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-            ref={(video) => {
-              if (video) {
-                video.playbackRate = 0.7;
-              }
-            }}
-          >
-            <source
-              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4#t=0.1"
-              type="video/mp4"
-            />
-          </video>
-
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70" />
-
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/15 rounded-full blur-[150px]"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.15, 0.25, 0.15]
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-[150px]"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-600/10 rounded-full blur-[150px]"
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.1, 0.15, 0.1]
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
+          <source src={backgroundVideoUrl} type="video/mp4" />
+        </video>
+        {/* Overlay sombre */}
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 py-16 md:py-20 w-full">
-        <div className="text-center">
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02] z-[1]" style={{
+        backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }} />
+
+      <div className="relative z-10 w-full">
+        {/* Mobile Layout: Video with overlaid content */}
+        <div className="lg:hidden relative min-h-screen">
+          {/* Video Section - 9:16 format with sophisticated card design */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="relative w-full px-4 pt-20"
           >
-            <div className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 mb-6 md:mb-8">
-              <Building2 className="w-4 md:w-5 h-4 md:h-5 text-blue-400" />
-              <span className="text-xs md:text-sm font-inter font-medium text-white/80 tracking-wide uppercase">À partir de 499€ · Tout Inclus</span>
-            </div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight"
-          >
-            BUREAUX{' '}
-            <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400">
-                PRIVATIFS
-              </span>
+            {/* Video Card with sophisticated design */}
+            <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
+              {/* Animated border glow */}
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 blur-3xl -z-10"
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-3xl opacity-60 blur-xl"
+                animate={{
+                  opacity: [0.4, 0.7, 0.4],
+                  scale: [1, 1.02, 1]
+                }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-            </span>
-          </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base md:text-lg text-white/70 max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed font-inter px-4"
-          >
-            De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-12 md:mb-20"
-          >
-            <motion.a
-              href="#pricing"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative"
-            >
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
-                animate={{ opacity: [0.5, 0.75, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <div className="relative flex items-center gap-2 md:gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 text-white rounded-xl font-montserrat font-bold shadow-2xl text-sm md:text-base">
-                <Building2 className="w-4 md:w-5 h-4 md:h-5" />
-                <span>Découvrir les bureaux</span>
-                <ArrowRight className="w-4 md:w-5 h-4 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
-            </motion.a>
-
-            <motion.button
-              onClick={() => setIsBookingModalOpen(true)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 py-3 md:py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold transition-all duration-300 text-sm md:text-base"
-            >
-              Réserver une visite
-            </motion.button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto mb-10 md:mb-16"
-          >
-            {[
-              { value: '100', suffix: 'm²', label: 'Surface max', color: 'from-blue-500 via-indigo-600 to-blue-500' },
-              { value: '127', suffix: '+', label: 'Entreprises hébergées', color: 'from-indigo-500 via-blue-600 to-indigo-500' },
-              { value: '24/7', suffix: '', label: 'Accès sécurisé', color: 'from-blue-600 via-indigo-500 to-blue-600' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 + index * 0.1, duration: 0.6 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="relative group"
+              {/* Inner video container */}
+              <div
+                className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-blue-500/30 bg-black cursor-pointer"
+                onClick={togglePlayPause}
               >
-                <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500`} />
+                {isMobile && (
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    loop
+                    muted={true}
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-full object-cover"
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                  </video>
+                )}
 
-                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 group-hover:border-white/20 transition-all duration-500">
-                  <div className={`text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-2`}>
-                    {stat.value}{stat.suffix}
+                {/* Gradient overlays */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
+
+                {/* Play/Pause Button (Center) - Shows when paused */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{
+                    opacity: isPlaying ? 0 : 0.8,
+                    scale: isPlaying ? 0.8 : 1
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                >
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-blue-500/30 rounded-full blur-3xl" />
+                    <div className="relative w-20 h-20 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
+                      <Play className="w-8 h-8 text-white fill-white ml-1" />
+                    </div>
                   </div>
-                  <p className="text-xs md:text-sm text-white/60 uppercase tracking-wider font-inter">{stat.label}</p>
+                </motion.div>
+
+                {/* Sound Control Button - Top Right */}
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleMute();
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 0.6, scale: 1 }}
+                  whileHover={{ opacity: 1, scale: 1.05 }}
+                  transition={{ delay: 1, duration: 0.5 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="absolute top-4 right-4 z-20 group"
+                >
+                  <div className="relative flex items-center justify-center w-8 h-8 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-blue-400/50 transition-all duration-300">
+                    {isMuted ? (
+                      <VolumeX className="w-4 h-4 text-white/70 group-hover:text-blue-400" />
+                    ) : (
+                      <Volume2 className="w-4 h-4 text-blue-400" />
+                    )}
+                  </div>
+                </motion.button>
+
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl" />
+                <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-blue-500/30 rounded-tr-3xl" />
+                <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-blue-500/30 rounded-bl-3xl" />
+                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-500/30 rounded-br-3xl" />
+              </div>
+
+              {/* Outer glow effect */}
+              <motion.div
+                className="absolute -inset-8 bg-gradient-to-b from-blue-500/5 via-indigo-500/5 to-transparent pointer-events-none blur-2xl"
+                animate={{
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
+
+              {/* Content overlaid on bottom third of video */}
+              <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-16 bg-gradient-to-t from-black via-black/95 to-transparent rounded-b-3xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-3"
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
+                  <Building2 className="w-3.5 h-3.5 text-blue-400" />
+                  <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">À partir de 499€/mois</span>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2 }}
-            className="mt-8 md:mt-16 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8"
-          >
-            <div className="flex items-center gap-2">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-8 md:w-10 h-8 md:h-10 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-blue-600 border-2 border-black flex items-center justify-center text-white font-bold text-xs">
-                    {String.fromCharCode(64 + i)}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-3xl font-montserrat font-black text-white mb-2 leading-[1.1]"
+              >
+                BUREAUX{' '}
+                <span className="relative inline-block">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400">
+                    PRIVATIFS
+                  </span>
+                  <motion.div
+                    className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 blur-2xl -z-10"
+                    animate={{
+                      opacity: [0.5, 0.8, 0.5],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-sm text-white/70 font-inter mb-4 leading-relaxed"
+              >
+                De 15m² à 100m². Tout équipé.
+                <br />
+                <span className="text-white font-semibold">127+ entreprises hébergées</span>
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="grid grid-cols-3 gap-2 mb-4"
+              >
+                {[
+                  { value: '100m²', label: 'max', color: 'from-blue-500 to-indigo-500' },
+                  { value: '127+', label: 'entreprises', color: 'from-indigo-500 to-blue-500' },
+                  { value: '9h-20h', label: 'Lun-Ven', color: 'from-blue-600 to-indigo-600' },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
+                    className="relative"
+                  >
+                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-2.5 text-center">
+                      <div className={`text-sm font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5`}>
+                        {stat.value}
+                      </div>
+                      <div className="text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="flex items-center justify-center gap-2"
+              >
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-md border border-blue-400/30">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-2.5 h-2.5 text-amber-400 fill-amber-400" />
+                    ))}
                   </div>
-                ))}
-              </div>
-              <span className="text-white/60 text-xs md:text-sm font-inter">127+ entreprises actives</span>
+                  <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
+                </div>
+                <span className="text-white/60 font-inter text-xs">127+ entreprises</span>
+              </motion.div>
             </div>
-
-            <div className="hidden md:block w-px h-8 bg-white/10" />
-
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 md:w-4 h-3.5 md:h-4 text-amber-400 fill-amber-400" />
-                ))}
-              </div>
-              <span className="text-white/60 text-xs md:text-sm font-inter">4.9/5 moyenne</span>
             </div>
           </motion.div>
+
+          {/* CTA Section below video */}
+          <div className="px-5 py-6 bg-gradient-to-b from-black to-zinc-950">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-col gap-3"
+            >
+              <motion.a
+                href="#pricing"
+                whileTap={{ scale: 0.98 }}
+                className="group relative"
+              >
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-xl opacity-75 blur-lg group-active:opacity-100 transition-opacity duration-300"
+                  animate={{ opacity: [0.5, 0.75, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <div className="relative flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 text-white rounded-xl font-montserrat font-bold text-base shadow-2xl">
+                  <Building2 className="w-5 h-5" />
+                  <span>Découvrir les bureaux</span>
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </motion.a>
+
+              <motion.button
+                onClick={() => setIsBookingModalOpen(true)}
+                whileTap={{ scale: 0.98 }}
+                className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-xl font-montserrat font-bold text-base transition-all duration-300 text-center"
+              >
+                Réserver une visite
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Desktop Layout: Side by side */}
+        <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1fr,420px] gap-8 items-center">
+
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-4"
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
+                  <Building2 className="w-4 h-4 text-blue-400" />
+                  <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">À partir de 499€/mois · Tout Inclus</span>
+                </div>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-4xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-3 leading-[1.1]"
+              >
+                BUREAUX{' '}
+                <span className="relative inline-block">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400">
+                    PRIVATIFS
+                  </span>
+                  <motion.div
+                    className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 blur-2xl -z-10"
+                    animate={{
+                      opacity: [0.5, 0.8, 0.5],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  />
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-base lg:text-lg text-white/70 font-inter mb-6 leading-relaxed max-w-xl"
+              >
+                De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion.
+                <span className="text-white font-semibold"> 127+ entreprises hébergées.</span>
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="grid grid-cols-4 gap-3 mb-6"
+              >
+                {[
+                  { value: '100m²', label: 'surface max', color: 'from-blue-500 to-indigo-500' },
+                  { value: '127+', label: 'entreprises', color: 'from-indigo-500 to-blue-500' },
+                  { value: '50+', label: 'bureaux', color: 'from-blue-600 to-indigo-600' },
+                  { value: '9h-20h', label: 'Lun-Ven', color: 'from-indigo-600 to-blue-600' },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
+                    whileHover={{ y: -3 }}
+                    className="relative group"
+                  >
+                    <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300`} />
+                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-3 group-hover:border-white/30 transition-all duration-300 text-center">
+                      <div className={`text-xl lg:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-1`}>
+                        {stat.value}
+                      </div>
+                      <div className="text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="flex items-center gap-3 mb-6"
+              >
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-md border border-blue-400/30">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
+                </div>
+
+                <div className="flex items-center gap-1.5">
+                  <motion.div
+                    className="w-1.5 h-1.5 rounded-full bg-blue-400"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <span className="text-white/80 font-inter text-sm">
+                    <span className="text-blue-400 font-semibold">127+ entreprises</span>
+                  </span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="flex flex-wrap gap-3"
+              >
+                <motion.a
+                  href="#pricing"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative"
+                >
+                  <motion.div
+                    className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                    animate={{ opacity: [0.5, 0.75, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <div className="relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-2xl">
+                    <Building2 className="w-4 h-4" />
+                    <span>Découvrir les bureaux</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </motion.a>
+
+                <motion.button
+                  onClick={() => setIsBookingModalOpen(true)}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-sm transition-all duration-300"
+                >
+                  Réserver une visite
+                </motion.button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="flex flex-wrap items-center gap-4 mt-6"
+              >
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-blue-400" />
+                  <span className="text-white/60 text-xs font-inter">Marseille Centre</span>
+                </div>
+
+                <div className="w-px h-4 bg-white/10" />
+
+                <div className="flex items-center gap-2">
+                  <Clock className="w-3.5 h-3.5 text-blue-400" />
+                  <span className="text-white/60 text-xs font-inter">9h-20h Lun-Ven</span>
+                </div>
+
+                <div className="w-px h-4 bg-white/10" />
+
+                <div className="flex items-center gap-1.5">
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-blue-600 border-2 border-black flex items-center justify-center text-white font-bold text-[10px]">
+                        {String.fromCharCode(64 + i)}
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-white/60 text-xs font-inter">+127</span>
+                </div>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              {/* Video Card with sophisticated design */}
+              <div className="relative w-full max-h-[70vh] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
+                {/* Animated border glow */}
+                <motion.div
+                  className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-3xl opacity-60 blur-xl"
+                  animate={{
+                    opacity: [0.4, 0.7, 0.4],
+                    scale: [1, 1.02, 1]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+
+                {/* Inner video container */}
+                <div
+                  className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-blue-500/30 bg-black cursor-pointer"
+                  onClick={togglePlayPause}
+                >
+                  {!isMobile && (
+                    <video
+                      ref={videoRef}
+                      autoPlay
+                      loop
+                      muted={true}
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    >
+                      <source src={videoUrl} type="video/mp4" />
+                    </video>
+                  )}
+
+                  {/* Gradient overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
+
+                  {/* Play/Pause Button (Center) - Shows when paused */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: isPlaying ? 0 : 0.8,
+                      scale: isPlaying ? 0.8 : 1
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                  >
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-blue-500/30 rounded-full blur-3xl" />
+                      <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
+                        <Play className="w-10 h-10 text-white fill-white ml-1" />
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Sound Control Button - Top Right */}
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleMute();
+                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 0.6, scale: 1 }}
+                    whileHover={{ opacity: 1, scale: 1.05 }}
+                    transition={{ delay: 1, duration: 0.5 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="absolute top-4 right-4 z-20 group"
+                  >
+                    <div className="relative flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-blue-400/50 transition-all duration-300">
+                      {isMuted ? (
+                        <VolumeX className="w-5 h-5 text-white/70 group-hover:text-blue-400" />
+                      ) : (
+                        <Volume2 className="w-5 h-5 text-blue-400" />
+                      )}
+                    </div>
+                  </motion.button>
+
+                  {/* Corner accents */}
+                  <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl" />
+                  <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-blue-500/30 rounded-tr-3xl" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-blue-500/30 rounded-bl-3xl" />
+                  <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-blue-500/30 rounded-br-3xl" />
+                </div>
+
+                {/* Outer glow effect */}
+                <motion.div
+                  className="absolute -inset-8 bg-gradient-to-b from-blue-500/5 via-indigo-500/5 to-transparent pointer-events-none blur-2xl"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-[2]" />
+
+      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none z-[1]">
         <svg width="100%" height="100%">
           <filter id="noiseBureauxHero">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="1" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" />
             <feColorMatrix type="saturate" values="0" />
           </filter>
           <rect width="100%" height="100%" filter="url(#noiseBureauxHero)" />

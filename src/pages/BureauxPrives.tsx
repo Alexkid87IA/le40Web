@@ -37,8 +37,11 @@ export default function BureauxPrives() {
         icon={<Building2 className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />
 
-      <main className="pt-16 md:pt-24">
-        <BureauHeroSection />
+      {/* Hero plein écran - pas de padding */}
+      <BureauHeroSection />
+
+      {/* Autres sections avec padding pour le header */}
+      <main>
         <ProblemSolutionSection />
         <StatsSection />
         <GallerySection />
