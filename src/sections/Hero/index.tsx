@@ -3,7 +3,7 @@ import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX, Play } from 'lucide-
 import { useState, useRef, useEffect } from 'react';
 
 export default function Hero() {
-  const videoUrl = "https://www.dropbox.com/scl/fi/os52ctwifhugugggq5la0/Bureau-pub-Direct.mp4?rlkey=fardhad45oxi1b18hdat7xxe6&st=zyh1l01i&dl=1";
+  const videoUrl = "https://res.cloudinary.com/dafo6bvhc/video/upload/v1765989623/Bureau_pub_Direct_1_fn1xli.mp4";
   const backgroundVideoUrl = "https://res.cloudinary.com/dwt7u0azs/video/upload/v1761805289/e3c2235d-6478-42d0-85b3-6266f2227367_iazq5a.mp4";
 
   const [isMuted, setIsMuted] = useState(true);
@@ -32,6 +32,9 @@ export default function Hero() {
     setIsPlaying(newPlayingState);
     if (videoRef.current) {
       if (newPlayingState) {
+        // Quand on clique sur play, on active aussi le son
+        videoRef.current.muted = false;
+        setIsMuted(false);
         videoRef.current.play();
       } else {
         videoRef.current.pause();
@@ -267,8 +270,9 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="flex flex-col gap-3"
             >
+              {/* ✅ CORRIGÉ : /contact → /reserver-visite */}
               <motion.a
-                href="/contact"
+                href="/reserver-visite"
                 whileTap={{ scale: 0.98 }}
                 className="group relative"
               >
@@ -409,8 +413,9 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="flex flex-wrap gap-3"
               >
+                {/* ✅ CORRIGÉ : /contact → /reserver-visite */}
                 <motion.a
-                  href="/contact"
+                  href="/reserver-visite"
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative"

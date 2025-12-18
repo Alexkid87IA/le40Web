@@ -229,7 +229,7 @@ export default function DomiciliationSection() {
               className="flex items-center gap-4 laptop:gap-2 mb-8 laptop:mb-5"
             >
               <div className="text-white/50 text-sm font-inter">À partir de</div>
-              <div className="text-4xl lg:text-4xl laptop:text-3xl xl:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400">49€</div>
+              <div className="text-4xl lg:text-4xl laptop:text-3xl xl:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400">39€</div>
               <div className="text-white/50 text-sm font-inter">/mois</div>
             </motion.div>
 
