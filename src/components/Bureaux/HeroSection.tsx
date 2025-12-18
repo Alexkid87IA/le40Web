@@ -5,7 +5,7 @@ import VisitBookingModal from './VisitBookingModal';
 
 export default function BureauHeroSection() {
   // VIDÉOS BUREAUX
-  const videoUrl = "https://www.dropbox.com/scl/fi/sgidqavcw87kuh5fk486n/Bureau-le-40-vid-o-2-V2.mp4?rlkey=j3bc4fz7xru6ekfq51c5sfj8h&st=qgc81q82&dl=1";
+  const videoUrl = "https://res.cloudinary.com/dafo6bvhc/video/upload/v1766057439/Bureau_le_40_vide%CC%81o_2_V2_1_kgumfa.mp4";
   const backgroundVideoUrl = "https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4";
 
   const [isMuted, setIsMuted] = useState(true);
@@ -35,6 +35,9 @@ export default function BureauHeroSection() {
     setIsPlaying(newPlayingState);
     if (videoRef.current) {
       if (newPlayingState) {
+        // Quand on clique sur play, on active aussi le son
+        videoRef.current.muted = false;
+        setIsMuted(false);
         videoRef.current.play();
       } else {
         videoRef.current.pause();
