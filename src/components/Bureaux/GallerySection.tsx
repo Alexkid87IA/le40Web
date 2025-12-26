@@ -113,31 +113,27 @@ export default function GallerySection() {
                       <img
                         src={item.images[0].url}
                         alt={item.images[0].alt}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
+                      {/* Badge catégorie */}
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1.5 bg-emerald-500 text-white text-xs font-bold rounded-full shadow-lg">
                           {item.category}
                         </span>
                       </div>
 
-                      <div className="absolute top-4 right-4">
-                        <div className="px-3 py-1.5 bg-black/80 backdrop-blur-sm text-white text-xs font-bold rounded-full border border-white/10">
-                          <span className="text-emerald-400">{item.images.length}</span> photos
-                        </div>
-                      </div>
-
+                      {/* Overlay hover */}
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileHover={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
                         className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm"
                       >
                         <div className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-bold shadow-xl">
                           <Eye className="w-5 h-5" />
-                          <span>Explorer</span>
+                          <span>Voir les détails</span>
                         </div>
                       </motion.div>
                     </div>

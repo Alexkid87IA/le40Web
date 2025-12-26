@@ -19,6 +19,12 @@ import {
 } from 'lucide-react';
 
 // ============================================================
+// CDN BUNNY.NET - Configuration
+// ============================================================
+
+const CDN_URL = 'https://le40cdn.b-cdn.net';
+
+// ============================================================
 // TYPES & DATA
 // ============================================================
 
@@ -66,12 +72,12 @@ const STUDIOS: Studio[] = [
     surface: '15m²',
     minDuration: '2h',
     images: [
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Vue d\'ensemble' },
-      { url: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=90', label: 'Setup caméra' },
-      { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=90', label: 'Zone éclairage' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Téléprompter' },
-      { url: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=1200&q=90', label: 'Fond personnalisable' },
-      { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=90', label: 'Régie' },
+      { url: `${CDN_URL}/studios/face-cam/facecam1.png`, label: 'Vue d\'ensemble' },
+      { url: `${CDN_URL}/studios/face-cam/facecam2.png`, label: 'Setup caméra' },
+      { url: `${CDN_URL}/studios/face-cam/facecam3.png`, label: 'Zone éclairage' },
+      { url: `${CDN_URL}/studios/face-cam/facecam4.png`, label: 'Téléprompter' },
+      { url: `${CDN_URL}/studios/face-cam/facecam5.png`, label: 'Fonds' },
+      { url: `${CDN_URL}/studios/face-cam/facecam6.png`, label: 'Régie' },
     ],
     equipment: [
       { name: 'Sony FX3 4K', icon: Camera, included: true },
@@ -119,12 +125,12 @@ const STUDIOS: Studio[] = [
     surface: '20m²',
     minDuration: '2h',
     images: [
-      { url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&q=90', label: 'Vue d\'ensemble' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup 4 micros' },
-      { url: 'https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=1200&q=90', label: 'Console RodeCaster' },
-      { url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&q=90', label: 'Cabine acoustique' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Zone invités' },
-      { url: 'https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=1200&q=90', label: 'Monitoring' },
+      { url: `${CDN_URL}/studios/podcast/podcast1.png`, label: 'Vue d\'ensemble' },
+      { url: `${CDN_URL}/studios/podcast/podcast%202.png`, label: 'Setup 4 micros' },
+      { url: `${CDN_URL}/studios/podcast/podcast3.png`, label: 'Console RodeCaster' },
+      { url: `${CDN_URL}/studios/podcast/podcast%204.png`, label: 'Cabine acoustique' },
+      { url: `${CDN_URL}/studios/podcast/podcast%205.png`, label: 'Zone invités' },
+      { url: `${CDN_URL}/studios/podcast/podcast%206.png`, label: 'Monitoring' },
     ],
     equipment: [
       { name: '4x Shure SM7B', icon: Mic, included: true },
@@ -172,12 +178,12 @@ const STUDIOS: Studio[] = [
     surface: '25m²',
     minDuration: '2h',
     images: [
-      { url: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=90', label: 'Vue d\'ensemble' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup 3 caméras' },
-      { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=90', label: 'Régie ATEM' },
-      { url: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=90', label: 'Zone streaming' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Monitoring' },
-      { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=90', label: 'Setup éclairage' },
+      { url: `${CDN_URL}/studios/live/stream1.png`, label: 'Vue d\'ensemble' },
+      { url: `${CDN_URL}/studios/live/stream%202.png`, label: 'Setup 3 caméras' },
+      { url: `${CDN_URL}/studios/live/stream%203.png`, label: 'Régie ATEM' },
+      { url: `${CDN_URL}/studios/live/stream%204.png`, label: 'Zone streaming' },
+      { url: `${CDN_URL}/studios/live/stream%205.png`, label: 'Monitoring' },
+      { url: `${CDN_URL}/studios/live/stream3.png`, label: 'Setup éclairage' },
     ],
     equipment: [
       { name: '3 caméras PTZ 4K', icon: Camera, included: true },
@@ -198,7 +204,7 @@ const STUDIOS: Studio[] = [
       'Test pré-session inclus',
     ],
     whyChoose: [
-      'Configuration multi-caméras',
+      'Régie pro multi-caméras',
       'Fibre dédiée 1Gb/s',
       'Changement de plan automatique',
     ],
@@ -225,35 +231,35 @@ const STUDIOS: Studio[] = [
     surface: '40m²',
     minDuration: '2h',
     images: [
-      { url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=90', label: 'Vue plateau' },
-      { url: 'https://images.unsplash.com/photo-1560439514-4e9645039924?w=1200&q=90', label: 'Décor TV' },
-      { url: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=90', label: 'Setup 4 caméras' },
-      { url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=90', label: 'Zone invités' },
-      { url: 'https://images.unsplash.com/photo-1560439514-4e9645039924?w=1200&q=90', label: 'Régie' },
-      { url: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=90', label: 'Éclairage pro' },
+      { url: `${CDN_URL}/studios/talk-show/4a.png`, label: 'Vue plateau' },
+      { url: `${CDN_URL}/studios/talk-show/4b.png`, label: 'Décor TV' },
+      { url: `${CDN_URL}/studios/talk-show/4c.png`, label: 'Setup 4 caméras' },
+      { url: `${CDN_URL}/studios/talk-show/a4.png`, label: 'Zone invités' },
+      { url: `${CDN_URL}/studios/talk-show/ae.png`, label: 'Régie' },
+      { url: `${CDN_URL}/studios/talk-show/ae.png`, label: 'Éclairage pro' }, // Note: image dupliquée, il manque une 6ème image
     ],
     equipment: [
       { name: 'Plateau modulable 4 places', icon: Users, included: true },
       { name: '4 caméras broadcast', icon: Camera, included: true },
-      { name: 'Décor TV professionnel', icon: Armchair, included: true },
-      { name: 'Régie vidéo intégrée', icon: Monitor, included: true },
-      { name: 'Micros HF pro', icon: Mic, included: true },
-      { name: 'Éclairage plateau TV', icon: Lightbulb, included: true },
+      { name: 'Régie intégrée', icon: Monitor, included: true },
+      { name: 'Décor TV personnalisable', icon: Square, included: true },
+      { name: 'Éclairage plateau', icon: Lightbulb, included: true },
+      { name: 'Retours écran', icon: Monitor, included: true },
     ],
-    idealFor: ['Émissions TV', 'Débats', 'Interviews', 'Corporate'],
-    popular: true,
-    reservations: 93,
-    rating: 5.0,
-    reviewCount: 67,
+    idealFor: ['Émissions', 'Débats', 'Interviews groupées', 'Webséries'],
+    popular: false,
+    reservations: 45,
+    rating: 4.9,
+    reviewCount: 31,
     guarantees: [
-      'Plateau professionnel garanti',
-      'Décor personnalisable inclus',
-      'Technicien vidéo disponible',
+      'Décor TV professionnel',
+      'Configuration sur mesure',
+      'Régisseur disponible (option)',
     ],
     whyChoose: [
-      'Notre plus grand studio (40m²)',
-      'Décor façon plateau TV',
-      'Jusqu\'à 4 invités confortablement',
+      'Le plus grand studio',
+      'Plateau TV authentique',
+      'Multi-caméras intégré',
     ],
     notIncluded: [
       'Maquillage pro (disponible en option)',
@@ -278,12 +284,12 @@ const STUDIOS: Studio[] = [
     surface: '18m²',
     minDuration: '2h',
     images: [
-      { url: 'https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=1200&q=90', label: 'Vue d\'ensemble' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup face-à-face' },
-      { url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1200&q=90', label: 'Éclairage ciné' },
-      { url: 'https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=1200&q=90', label: 'Fond bokeh' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Caméras' },
-      { url: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1200&q=90', label: 'Zone confort' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Intimate_interview_studio_setup_two_comforta_d37695fa-59d9-4312-b3d7-9518f08b10ad.png`, label: 'Vue d\'ensemble' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Two-person_interview_configuration_from_side_2ab44313-b189-4e3f-8373-25f003ac2f03.png`, label: 'Setup face-à-face' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Cinematic_interview_lighting_setup_soft_diff_896cfc58-2040-4d10-aaaf-2ff6b08dd20d.png`, label: 'Éclairage ciné' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Beautiful_bokeh_background_for_interview_war_71e20421-ecd6-4b10-9b70-08ebc998259d.png`, label: 'Fond bokeh' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Two_Sony_FX3_cameras_positioned_for_intervie_3fc9d153-9639-49cb-9bdb-1ad933dd68fc.png`, label: 'Caméras' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Cozy_interview_corner_with_designer_furnitur_6ad63ea5-2dbb-422e-b673-f8c1385ad272.png`, label: 'Zone confort' },
     ],
     equipment: [
       { name: '2 caméras cinéma 4K', icon: Camera, included: true },
@@ -331,12 +337,12 @@ const STUDIOS: Studio[] = [
     surface: '12m²',
     minDuration: '2h',
     images: [
-      { url: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&q=90', label: 'Vue d\'ensemble' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Setup vertical' },
-      { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=90', label: 'Ring light pro' },
-      { url: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&q=90', label: 'Fond LED RGB' },
-      { url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=90', label: 'Prompteur' },
-      { url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=90', label: 'Zone création' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_video_recording_setup_camera_mounte_e2083961-ee73-44ac-a1dd-f3a8bf1f900a.png`, label: 'Vue d\'ensemble' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_TikTok_vertical_video_studio_phone_mount_in__1c46911e-4961-4ead-84aa-9a19afaee31d.png`, label: 'Setup vertical' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Professional_ring_light_close-up_circular_LE_14f665c2-2b02-4a17-9987-c6062cd4dca9.png`, label: 'Ring light pro' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_RGB_LED_panel_backdrop_showing_multiple_colo_762a035a-2644-42ac-8c5d-e43b005561c7.png`, label: 'Fond LED RGB' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_teleprompter_for_TikTok_content_scr_bbaa6816-6711-455f-966c-976810598620.png`, label: 'Prompteur' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Social_media_creator_workspace_makeup_mirror_92ffc7a3-b3d6-4dbc-8370-013144aab90b.png`, label: 'Zone création' },
     ],
     equipment: [
       { name: 'Setup format 9:16', icon: Smartphone, included: true },
@@ -350,349 +356,281 @@ const STUDIOS: Studio[] = [
     popular: true,
     reservations: 156,
     rating: 4.8,
-    reviewCount: 103,
+    reviewCount: 92,
     guarantees: [
-      'Format vertical optimisé',
-      'Setup prêt en 3 minutes',
-      'Le tarif le plus accessible',
+      'Setup vertical natif',
+      'Qualité pro en 5 min',
+      'Fond LED personnalisable',
     ],
     whyChoose: [
-      'Le moins cher (40€/h)',
-      'Parfait pour contenu viral',
-      'Fond RGB personnalisable',
+      'Le seul studio 100% vertical',
+      'Fond LED 256 couleurs',
+      'Format TikTok/Reels natif',
     ],
     notIncluded: [
-      'Smartphone (apportez le vôtre)',
-      'Clipping vidéo (disponible en option)',
+      'Montage vidéo (disponible en option)',
+      'Filtres avancés (disponible en option)',
     ],
   },
 ];
 
 // ============================================================
-// COMPOSANT - Galerie Full Screen
+// COMPONENTS
 // ============================================================
 
-interface FullScreenGalleryProps {
-  studio: Studio;
-  onClose: () => void;
-}
-
-function FullScreenGallery({ studio, onClose }: FullScreenGalleryProps) {
-  const [activeImage, setActiveImage] = useState(0);
+// Galerie plein écran
+const FullScreenGallery = ({ studio, onClose }: { studio: Studio; onClose: () => void }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black"
+      className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center"
       onClick={onClose}
     >
+      {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+        className="absolute top-4 right-4 z-10 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
       >
-        <X className="w-6 h-6" />
+        <X className="w-6 h-6 text-white" />
       </button>
 
-      <div className="relative h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+      {/* Main image */}
+      <div className="relative w-full h-full flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
+        <img
+          src={studio.images[currentIndex].url}
+          alt={studio.images[currentIndex].label}
+          className="max-w-full max-h-[85vh] object-contain rounded-lg"
+        />
+
+        {/* Navigation arrows */}
         <button
-          onClick={() => setActiveImage((prev) => (prev - 1 + studio.images.length) % studio.images.length)}
-          className="absolute left-6 z-10 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/20 transition-all"
+          onClick={() => setCurrentIndex(prev => prev === 0 ? studio.images.length - 1 : prev - 1)}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
         >
-          <ChevronLeft className="w-7 h-7" />
+          <ChevronLeft className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={() => setCurrentIndex(prev => prev === studio.images.length - 1 ? 0 : prev + 1)}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
+        >
+          <ChevronRight className="w-6 h-6 text-white" />
         </button>
 
-        <div className="relative w-full h-full flex items-center justify-center p-20">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={activeImage}
-              src={studio.images[activeImage].url}
-              alt={studio.images[activeImage].label}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              className="max-w-full max-h-full object-contain rounded-2xl"
-            />
-          </AnimatePresence>
-
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-black/80 backdrop-blur-xl rounded-full">
-            <span className="text-white font-medium">
-              {studio.images[activeImage].label}
-            </span>
-          </div>
+        {/* Label */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full">
+          <span className="text-white text-sm font-medium">
+            {studio.images[currentIndex].label} ({currentIndex + 1}/{studio.images.length})
+          </span>
         </div>
-
-        <button
-          onClick={() => setActiveImage((prev) => (prev + 1) % studio.images.length)}
-          className="absolute right-6 z-10 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl flex items-center justify-center text-white hover:bg-white/20 transition-all"
-        >
-          <ChevronRight className="w-7 h-7" />
-        </button>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-        {studio.images.map((_, idx) => (
+      {/* Thumbnails */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {studio.images.map((img, idx) => (
           <button
             key={idx}
-            onClick={() => setActiveImage(idx)}
-            className={`h-2 rounded-full transition-all ${
-              idx === activeImage ? 'w-8 bg-white' : 'w-2 bg-white/40'
+            onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+            className={`w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
+              idx === currentIndex ? 'border-white scale-110' : 'border-transparent opacity-60 hover:opacity-100'
             }`}
-          />
+          >
+            <img src={img.url} alt="" className="w-full h-full object-cover" />
+          </button>
         ))}
       </div>
     </motion.div>
   );
-}
+};
 
-// ============================================================
-// COMPOSANT PRINCIPAL
-// ============================================================
-
+// Composant principal
 export default function StudioShowcaseSection() {
-  const [activeStudio, setActiveStudio] = useState(0);
-  const [activeImage, setActiveImage] = useState(0);
-  const [showFullGallery, setShowFullGallery] = useState(false);
+  const [activeStudioIndex, setActiveStudioIndex] = useState(0);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState<'overview' | 'equipment' | 'pricing'>('overview');
+  const [showFullGallery, setShowFullGallery] = useState(false);
 
-  const studio = STUDIOS[activeStudio];
+  const studio = STUDIOS[activeStudioIndex];
   const Icon = studio.icon;
 
-  return (
-    <section id="showcase" className="relative py-12 md:py-16 bg-black">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-900/50 to-black" />
+  // Reset image index when changing studio
+  const handleStudioChange = (index: number) => {
+    setActiveStudioIndex(index);
+    setActiveImageIndex(0);
+    setActiveTab('overview');
+  };
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 lg:px-16">
-        {/* Header section title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-8"
-        >
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
-            Explorez nos{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-              espaces créatifs
-            </span>
+  return (
+    <section className="bg-[#0a0a0a] py-8 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Header minimaliste */}
+        <div className="text-center mb-6">
+          <h2 className="text-2xl lg:text-3xl font-black text-white mb-2">
+            6 Studios Professionnels
           </h2>
           <p className="text-white/60 text-sm">
-            Tout ce qu'il faut savoir pour choisir votre studio
+            Matériel haut de gamme inclus • Réservation instantanée
           </p>
-        </motion.div>
+        </div>
 
-        {/* Studios Tabs - Horizontal on desktop, compact on mobile */}
-        <div className="mb-6 overflow-x-auto pb-2 hide-scrollbar">
-          <div className="flex gap-2 min-w-max md:min-w-0 md:justify-center">
+        {/* Navigation studios - Pills horizontales */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex bg-white/5 rounded-2xl p-1.5 gap-1 overflow-x-auto hide-scrollbar max-w-full">
             {STUDIOS.map((s, idx) => {
               const SIcon = s.icon;
-              const isActive = idx === activeStudio;
-
               return (
                 <button
                   key={s.id}
-                  onClick={() => {
-                    setActiveStudio(idx);
-                    setActiveImage(0);
-                    setActiveTab('overview');
-                  }}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all flex-shrink-0 ${
-                    isActive
+                  onClick={() => handleStudioChange(idx)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all whitespace-nowrap ${
+                    activeStudioIndex === idx
                       ? `bg-gradient-to-r ${s.gradient} text-white shadow-lg`
-                      : 'bg-white/5 text-white/70 hover:bg-white/10'
+                      : 'text-white/60 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   <SIcon className="w-4 h-4" />
-                  <span>{s.shortName}</span>
-                  {s.popular && <Star className="w-3 h-3 text-amber-300 fill-amber-300" />}
-                  <span className="text-xs opacity-80">{s.basePrice}€/h</span>
+                  <span className="hidden sm:inline">{s.shortName}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* LAYOUT PRINCIPAL - SPLIT 50/50 */}
+        {/* Contenu principal - Layout horizontal */}
         <AnimatePresence mode="wait">
           <motion.div
             key={studio.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="grid lg:grid-cols-2 gap-6 lg:gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="grid lg:grid-cols-2 gap-6 bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 rounded-3xl overflow-hidden"
           >
-            {/* GAUCHE - GALERIE COMPACTE */}
-            <div className="space-y-3">
-              {/* Header Studio - Ultra Compact */}
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center flex-shrink-0`}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-xl md:text-2xl font-black text-white">{studio.name}</h3>
-                      {studio.popular && (
-                        <span className="px-2 py-0.5 bg-amber-500 rounded-full text-[10px] font-black text-black uppercase">
-                          Top
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-white/60">{studio.tagline}</p>
+            {/* GAUCHE - Galerie */}
+            <div className="relative p-4 lg:p-6">
+              {/* Image principale */}
+              <div
+                className="relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => setShowFullGallery(true)}
+              >
+                <img
+                  src={studio.images[activeImageIndex].url}
+                  alt={studio.images[activeImageIndex].label}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Overlay au hover */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/20 backdrop-blur-sm rounded-full p-3">
+                    <Maximize2 className="w-6 h-6 text-white" />
                   </div>
                 </div>
-              </div>
-
-              {/* Stats rapides - 1 ligne */}
-              <div className="flex items-center gap-4 text-xs text-white/60">
-                <span className="flex items-center gap-1">
-                  <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-                  <span className="font-bold text-white">{studio.rating}</span>
-                  <span>({studio.reviewCount})</span>
-                </span>
-                <span className="w-1 h-1 rounded-full bg-white/30" />
-                <span className="flex items-center gap-1">
-                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>{studio.reservations} résa/mois</span>
-                </span>
-              </div>
-
-              {/* Image principale carousel */}
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden group cursor-pointer bg-zinc-900" onClick={() => setShowFullGallery(true)}>
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeImage}
-                    src={studio.images[activeImage].url}
-                    alt={studio.images[activeImage].label}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-
-                {/* Navigation carousel */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveImage((prev) => (prev - 1 + studio.images.length) % studio.images.length);
-                  }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 transition-all"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveImage((prev) => (prev + 1) % studio.images.length);
-                  }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/80 transition-all"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-
-                {/* Label photo + zoom icon */}
-                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-3 bg-gradient-to-t from-black/80 to-transparent">
+                {/* Badge label */}
+                <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
                   <span className="text-white text-xs font-medium">
-                    {studio.images[activeImage].label}
+                    {studio.images[activeImageIndex].label}
                   </span>
-                  <div className="flex items-center gap-1.5 px-2 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-[10px] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3 h-3" />
-                    Voir {studio.images.length} photos
+                </div>
+                {/* Badge popular */}
+                {studio.popular && (
+                  <div className="absolute top-3 right-3 bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 rounded-full flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-white" />
+                    <span className="text-white text-xs font-bold">Populaire</span>
                   </div>
-                </div>
-
-                {/* Indicateur position */}
-                <div className="absolute top-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-sm rounded-full text-white text-xs font-medium">
-                  {activeImage + 1}/{studio.images.length}
-                </div>
+                )}
               </div>
 
-              {/* Miniatures - 4 seulement */}
-              <div className="grid grid-cols-4 gap-2">
-                {studio.images.slice(0, 4).map((img, idx) => (
+              {/* Thumbnails */}
+              <div className="flex gap-2 mt-3 overflow-x-auto hide-scrollbar">
+                {studio.images.map((img, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setActiveImage(idx)}
-                    className={`relative aspect-video rounded-lg overflow-hidden transition-all ${
-                      idx === activeImage ? 'ring-2 ring-white' : 'opacity-50 hover:opacity-100'
+                    onClick={() => setActiveImageIndex(idx)}
+                    className={`flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
+                      activeImageIndex === idx
+                        ? `border-white shadow-lg shadow-white/20`
+                        : 'border-transparent opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
-                    {idx === 3 && studio.images.length > 4 && (
-                      <div className="absolute inset-0 bg-black/70 flex items-center justify-center text-white text-xs font-bold">
-                        +{studio.images.length - 4}
-                      </div>
-                    )}
+                    <img src={img.url} alt="" className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>
 
-              {/* Quick stats - 4 colonnes compactes */}
-              <div className="grid grid-cols-4 gap-2">
-                <div className="p-2 bg-white/5 rounded-lg text-center">
-                  <Users className="w-4 h-4 text-white/40 mx-auto mb-1" />
-                  <div className="text-white font-bold text-xs">{studio.capacity.split(' ')[0]}</div>
-                  <div className="text-white/40 text-[10px]">pers.</div>
+              {/* Mini stats sous les thumbnails */}
+              <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-1.5">
+                    <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <span className="text-white font-bold text-sm">{studio.rating}</span>
+                    <span className="text-white/50 text-xs">({studio.reviewCount})</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-white/60 text-xs">
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    {studio.reservations} réservations
+                  </div>
                 </div>
-                <div className="p-2 bg-white/5 rounded-lg text-center">
-                  <Square className="w-4 h-4 text-white/40 mx-auto mb-1" />
-                  <div className="text-white font-bold text-xs">{studio.surface}</div>
-                  <div className="text-white/40 text-[10px]">surface</div>
-                </div>
-                <div className="p-2 bg-white/5 rounded-lg text-center">
-                  <Clock className="w-4 h-4 text-white/40 mx-auto mb-1" />
-                  <div className="text-white font-bold text-xs">{studio.minDuration}</div>
-                  <div className="text-white/40 text-[10px]">min</div>
-                </div>
-                <div className={`p-2 bg-gradient-to-br ${studio.gradient} rounded-lg text-center`}>
-                  <Zap className="w-4 h-4 text-white/80 mx-auto mb-1" />
-                  <div className="text-white font-black text-xs">{studio.basePrice}€</div>
-                  <div className="text-white/80 text-[10px]">par h</div>
+                <div className="text-right">
+                  <span className="text-white/50 text-xs">à partir de</span>
+                  <span className="text-white font-black text-lg ml-1">{studio.basePrice}€</span>
+                  <span className="text-white/50 text-xs">/h</span>
                 </div>
               </div>
             </div>
 
-            {/* DROITE - INFOS AVEC TABS */}
-            <div className="flex flex-col">
-              {/* Tabs Navigation */}
-              <div className="flex gap-1 p-1 bg-white/5 rounded-xl mb-4">
-                <button
-                  onClick={() => setActiveTab('overview')}
-                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                    activeTab === 'overview'
-                      ? 'bg-white text-black'
-                      : 'text-white/60 hover:text-white'
-                  }`}
-                >
-                  Vue d'ensemble
-                </button>
-                <button
-                  onClick={() => setActiveTab('equipment')}
-                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                    activeTab === 'equipment'
-                      ? 'bg-white text-black'
-                      : 'text-white/60 hover:text-white'
-                  }`}
-                >
-                  Équipements
-                </button>
-                <button
-                  onClick={() => setActiveTab('pricing')}
-                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
-                    activeTab === 'pricing'
-                      ? 'bg-white text-black'
-                      : 'text-white/60 hover:text-white'
-                  }`}
-                >
-                  Tarifs & Résa
-                </button>
+            {/* DROITE - Infos avec tabs */}
+            <div className="p-4 lg:p-6 flex flex-col">
+              {/* Header */}
+              <div className="mb-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${studio.gradient} flex items-center justify-center`}>
+                    <Icon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-black text-white">{studio.name}</h3>
+                    <p className="text-white/60 text-sm">{studio.tagline}</p>
+                  </div>
+                </div>
+
+                {/* Infos clés en ligne */}
+                <div className="flex flex-wrap gap-3 mt-3">
+                  <span className="inline-flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full text-white/80 text-xs">
+                    <Users className="w-3.5 h-3.5" /> {studio.capacity}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full text-white/80 text-xs">
+                    <Square className="w-3.5 h-3.5" /> {studio.surface}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full text-white/80 text-xs">
+                    <Clock className="w-3.5 h-3.5" /> Min. {studio.minDuration}
+                  </span>
+                </div>
               </div>
 
-              {/* Tab Content - Scrollable si besoin */}
-              <div className="flex-1 overflow-y-auto max-h-[600px] space-y-4 pr-2 custom-scrollbar">
+              {/* Tabs */}
+              <div className="flex gap-1 mb-4 bg-white/5 rounded-xl p-1">
+                {[
+                  { id: 'overview', label: 'Aperçu' },
+                  { id: 'equipment', label: 'Équipement' },
+                  { id: 'pricing', label: 'Tarifs' },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                      activeTab === tab.id
+                        ? 'bg-white text-gray-900'
+                        : 'text-white/60 hover:text-white'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Contenu des tabs - Scrollable */}
+              <div className="flex-1 overflow-y-auto custom-scrollbar max-h-[320px]">
                 {/* TAB OVERVIEW */}
                 {activeTab === 'overview' && (
                   <motion.div
@@ -700,53 +638,51 @@ export default function StudioShowcaseSection() {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-4"
                   >
-                    {/* Description */}
-                    <div>
-                      <p className="text-white/80 text-sm leading-relaxed">{studio.description}</p>
-                    </div>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      {studio.description}
+                    </p>
 
-                    {/* Pourquoi ce studio - Compact */}
-                    <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
-                      <h4 className="font-bold text-white text-sm mb-2 flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-emerald-400" />
-                        Pourquoi ce studio ?
+                    {/* Idéal pour */}
+                    <div className="p-3 bg-white/5 rounded-xl">
+                      <h4 className="font-bold text-white text-xs mb-2 flex items-center gap-1.5">
+                        <Zap className="w-3.5 h-3.5 text-amber-400" />
+                        Idéal pour
                       </h4>
-                      <ul className="space-y-1.5">
-                        {studio.whyChoose.map((reason, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-white/90 text-sm">
-                            <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
-                            <span>{reason}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Idéal pour - Tags compacts */}
-                    <div>
-                      <h4 className="font-bold text-white text-sm mb-2">Idéal pour</h4>
                       <div className="flex flex-wrap gap-1.5">
                         {studio.idealFor.map((use, idx) => (
-                          <span
-                            key={idx}
-                            className="px-2.5 py-1 rounded-full text-xs font-semibold bg-white/10 text-white"
-                          >
+                          <span key={idx} className="bg-white/10 px-2.5 py-1 rounded-full text-white/80 text-xs">
                             {use}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    {/* Garanties - Compact */}
-                    <div className="p-4 bg-white/5 rounded-xl">
-                      <h4 className="font-bold text-white text-sm mb-2 flex items-center gap-2">
-                        <Shield className="w-4 h-4 text-cyan-400" />
-                        Garanties
+                    {/* Pourquoi choisir */}
+                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                      <h4 className="font-bold text-white text-xs mb-2 flex items-center gap-1.5">
+                        <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+                        Pourquoi ce studio ?
                       </h4>
-                      <ul className="space-y-1.5">
-                        {studio.guarantees.map((guarantee, idx) => (
+                      <ul className="space-y-1">
+                        {studio.whyChoose.map((reason, idx) => (
                           <li key={idx} className="flex items-start gap-2 text-white/80 text-xs">
-                            <CheckCircle className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                            <span>{guarantee}</span>
+                            <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                            {reason}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Garanties */}
+                    <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                      <h4 className="font-bold text-white text-xs mb-2 flex items-center gap-1.5">
+                        <Shield className="w-3.5 h-3.5 text-blue-400" />
+                        Nos garanties
+                      </h4>
+                      <ul className="space-y-1">
+                        {studio.guarantees.map((guarantee, idx) => (
+                          <li key={idx} className="text-white/70 text-xs">
+                            • {guarantee}
                           </li>
                         ))}
                       </ul>

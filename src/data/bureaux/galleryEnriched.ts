@@ -25,21 +25,17 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     description: 'Espace lumineux et fonctionnel pour petites équipes',
     longDescription: 'Idéal pour les startups et petites équipes qui ont besoin d\'un espace privé tout en restant connectées à la communauté. Bureau entièrement équipé avec lumière naturelle abondante et vue dégagée.',
     images: [
-      { url: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau privé 2-4 personnes - vue principale' },
-      { url: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau privé 2-4 personnes - postes de travail' },
-      { url: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau privé 2-4 personnes - espace réunion' },
-      { url: 'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau privé 2-4 personnes - détail poste' },
-      { url: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau privé 2-4 personnes - lumière naturelle' }
+      { url: 'https://static.eno.do/x/fs-209550-default/29be7178c30a995b1c18d52753a2565f/media.jpg', alt: 'Bureau privé 2-4 personnes Le 40 Marseille' }
     ],
     capacity: '2-4 pers.',
     surface: '20m²',
     priceFrom: '499€',
     features: [
       'Bureau fermé et sécurisé avec serrure individuelle',
-      '4 postes de travail ergonomiques avec sièges Herman Miller',
+      '4 postes de travail ergonomiques',
       'Lumière naturelle optimale avec grandes fenêtres',
-      'Rangements privatifs sécurisés pour chaque poste',
-      'Ligne téléphonique dédiée avec numéro fixe',
+      'Rangements privatifs sécurisés',
+      'Ligne téléphonique dédiée',
       'Climatisation et chauffage réglables',
       'Accès 24/7 avec badge personnel',
       'Wifi fibre 1 Gb/s dédié'
@@ -64,12 +60,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     description: 'Espace optimisé pour équipes en croissance',
     longDescription: 'Bureau spacieux parfaitement adapté aux équipes en développement. Configuration flexible permettant d\'évoluer de 5 à 10 personnes. Inclut une zone de réunion informelle et un espace détente privé.',
     images: [
-      { url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau 5-10 personnes - open space privé' },
-      { url: 'https://images.pexels.com/photos/3184634/pexels-photo-3184634.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau 5-10 personnes - postes multiples' },
-      { url: 'https://images.pexels.com/photos/3182746/pexels-photo-3182746.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau 5-10 personnes - espace détente' },
-      { url: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau 5-10 personnes - collaboration' },
-      { url: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau 5-10 personnes - réunion' },
-      { url: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau 5-10 personnes - design intérieur' }
+      { url: 'https://static.eno.do/x/fs-209551-default/97972a3cfd4fb6f5d74740183fd1d64e/media.jpg', alt: 'Bureau privé 5-10 personnes Le 40 Marseille' }
     ],
     capacity: '5-10 pers.',
     surface: '50m²',
@@ -78,13 +69,11 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
       'Open space privé modulable avec cloisons acoustiques',
       'Jusqu\'à 10 postes de travail ergonomiques',
       'Zone de réunion informelle avec canapés',
-      'Espace détente café privé entièrement équipé',
+      'Espace détente café privé',
       'Rangements muraux sur mesure',
       'Double ligne téléphonique professionnelle',
-      'Système audio pour musique d\'ambiance',
       'Éclairage LED réglable par zone',
-      'Accès privatif avec badges personnalisés',
-      'Possibilité de personnalisation des couleurs'
+      'Accès privatif avec badges personnalisés'
     ],
     equipments: [
       'Écrans 27"',
@@ -93,7 +82,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
       'Kitchenette',
       'TV 55"',
       'Sono',
-      'Tableau blanc géant',
+      'Tableau blanc',
       'Rangements'
     ],
     tags: ['Modulable', 'Espace détente', 'Évolutif', 'Équipe croissance'],
@@ -106,13 +95,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     description: 'Espace premium pour grandes équipes',
     longDescription: 'Bureau d\'entreprise premium offrant tous les avantages d\'un siège social. Configuration complète avec open space, salle de réunion privée, kitchenette équipée et espace détente. Idéal pour entreprises établies.',
     images: [
-      { url: 'https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau entreprise - vue d\'ensemble' },
-      { url: 'https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau entreprise - salle de réunion' },
-      { url: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau entreprise - kitchenette' },
-      { url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau entreprise - open space' },
-      { url: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau entreprise - équipe collaboration' },
-      { url: 'https://images.pexels.com/photos/3182833/pexels-photo-3182833.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau entreprise - concentration' },
-      { url: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Bureau entreprise - design premium' }
+      { url: 'https://static.eno.do/x/fs-209549-default/043c5aa87c9dcef20fab04438606f2ff/media.jpg', alt: 'Bureau entreprise 10-20 personnes Le 40 Marseille' }
     ],
     capacity: '10-20 pers.',
     surface: '90m²',
@@ -121,15 +104,11 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
       'Suite complète avec plusieurs zones distinctes',
       'Open space principal pour 15 postes',
       'Salle de réunion privée équipée pour 12 personnes',
-      'Bureau direction séparé avec vue panoramique',
+      'Bureau direction séparé',
       'Kitchenette complète avec frigo, micro-ondes, lave-vaisselle',
-      'Espace détente lounge avec canapés premium',
-      'Toilettes privatives avec douche',
-      'Vestiaire et casiers personnels pour toute l\'équipe',
+      'Espace détente lounge avec canapés',
       'Système de climatisation et chauffage par zone',
-      'Installation électrique renforcée pour serveurs',
-      'Triple ligne téléphonique professionnelle',
-      'Possibilité de branding personnalisé aux couleurs de l\'entreprise'
+      'Triple ligne téléphonique professionnelle'
     ],
     equipments: [
       'Écrans multiples',
@@ -139,25 +118,19 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
       'Lounge privé',
       'TV 75"',
       'Visioconférence pro',
-      'Serveur rack',
-      'Stockage 10m²',
-      'Douche',
-      'Parking 4 places',
-      'Signalétique'
+      'Stockage 10m²'
     ],
-    tags: ['Premium', 'Tout inclus', 'Entreprise', 'Prestige', 'Personnalisable'],
+    tags: ['Premium', 'Tout inclus', 'Entreprise', 'Personnalisable'],
     availability: '1 bureau disponible'
   },
   {
     id: 10,
-    title: 'Hall d\'Accueil Prestigieux',
+    title: 'Hall d\'Accueil',
     category: 'Espaces Communs',
     description: 'Entrée professionnelle pour recevoir vos clients',
     longDescription: 'Accueil professionnel avec réception tenue pour vos visiteurs. Créez la meilleure première impression avec un hall moderne et accueillant.',
     images: [
-      { url: 'https://images.pexels.com/photos/1797393/pexels-photo-1797393.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Hall d\'accueil - vue principale' },
-      { url: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Hall d\'accueil - espace attente' },
-      { url: 'https://images.pexels.com/photos/3182746/pexels-photo-3182746.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Hall d\'accueil - zone lounge' }
+      { url: 'https://static.eno.do/x/fs-209543-default/38e3f0872fceaa577efd20f777109732/media.jpg', alt: 'Hall d\'accueil Le 40 Marseille' }
     ],
     capacity: 'Partagé',
     surface: '80m²',
@@ -178,7 +151,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
       'Plantes',
       'Casiers courrier'
     ],
-    tags: ['Professionnel', 'Accueil', 'Prestige', 'Première impression'],
+    tags: ['Professionnel', 'Accueil', 'Première impression'],
     availability: 'Accès inclus dans tous les forfaits'
   },
   {
@@ -188,10 +161,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     description: 'Heures incluses dans votre forfait',
     longDescription: 'Accès aux salles de réunion modernes et équipées. Parfait pour vos rendez-vous clients, présentations et réunions d\'équipe.',
     images: [
-      { url: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Salle de réunion - configuration 8 personnes' },
-      { url: 'https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Salle de réunion - configuration 12 personnes' },
-      { url: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Salle de réunion - en utilisation' },
-      { url: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Salle de réunion - équipements' }
+      { url: 'https://static.eno.do/x/fs-209545-default/1f8db3cc706389492670db5916bf10e6/media.jpg', alt: 'Salle de réunion Le 40 Marseille' }
     ],
     capacity: '4-50 pers.',
     surface: 'Variable',
@@ -225,10 +195,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     description: 'Zone commune pour échanger avec la communauté',
     longDescription: 'Espace convivial pour rencontrer les autres membres, échanger des idées et créer des synergies. Le cœur vibrant de notre communauté de 120+ entrepreneurs.',
     images: [
-      { url: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Espace networking - zone principale' },
-      { url: 'https://images.pexels.com/photos/3182746/pexels-photo-3182746.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Espace networking - lounge' },
-      { url: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Espace networking - échanges' },
-      { url: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Espace networking - ambiance' }
+      { url: 'https://static.eno.do/x/fs-209544-default/2d5940a543a725b7f46b061a24ffdbaf/media.jpg', alt: 'Espace networking Le 40 Marseille' }
     ],
     capacity: '120+ membres',
     surface: '150m²',
@@ -261,9 +228,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     description: 'Grandes fenêtres dans tous nos bureaux',
     longDescription: 'Chaque bureau bénéficie d\'un apport en lumière naturelle exceptionnel grâce à nos grandes baies vitrées. Un environnement de travail sain et stimulant.',
     images: [
-      { url: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Lumière naturelle - bureau vitré' },
-      { url: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Lumière naturelle - poste de travail' },
-      { url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Lumière naturelle - open space' }
+      { url: 'https://static.eno.do/x/fs-209547-default/3eb6c47d0d64a47aecc6be50f4cf4966/media.jpg', alt: 'Poste de travail lumière naturelle Le 40 Marseille' }
     ],
     capacity: 'Tous bureaux',
     surface: 'Variable',
@@ -271,7 +236,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     features: [
       'Grandes baies vitrées sur tous les bureaux',
       'Vue dégagée sur Marseille',
-      'Stores électriques pour contrôle de luminosité',
+      'Stores pour contrôle de luminosité',
       'Double vitrage acoustique',
       'Orientation optimale sud/est',
       'Améliore bien-être et productivité'
@@ -292,10 +257,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
     description: 'Vos équipes dans un cadre professionnel',
     longDescription: 'Des espaces pensés pour favoriser la collaboration et la créativité de vos équipes. Configuration modulable selon vos besoins du jour.',
     images: [
-      { url: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Équipe en collaboration' },
-      { url: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Réunion d\'équipe' },
-      { url: 'https://images.pexels.com/photos/3182833/pexels-photo-3182833.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Travail concentré' },
-      { url: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920', alt: 'Espace modulable' }
+      { url: 'https://static.eno.do/x/fs-209548-default/110bbe332534127eb84829e332645a2c/media.jpg', alt: 'Espace collaboration Le 40 Marseille' }
     ],
     capacity: '2-20 pers.',
     surface: 'Variable',
@@ -305,7 +267,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
       'Zones de concentration et de collaboration',
       'Équipement complet pour le travail d\'équipe',
       'Acoustique étudiée pour limiter le bruit',
-      'Mobilier ergonomique premium',
+      'Mobilier ergonomique',
       'Configuration personnalisable'
     ],
     equipments: [
