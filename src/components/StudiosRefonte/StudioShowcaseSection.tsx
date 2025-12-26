@@ -41,7 +41,7 @@ interface Studio {
   capacity: string;
   surface: string;
   minDuration: string;
-  images: { url: string; label: string }[];
+  images: { url: string }[];
   equipment: { name: string; icon: any; included: boolean }[];
   idealFor: string[];
   popular?: boolean;
@@ -72,12 +72,12 @@ const STUDIOS: Studio[] = [
     surface: '15m²',
     minDuration: '2h',
     images: [
-      { url: `${CDN_URL}/studios/face-cam/facecam1.png`, label: 'Vue d\'ensemble' },
-      { url: `${CDN_URL}/studios/face-cam/facecam2.png`, label: 'Setup caméra' },
-      { url: `${CDN_URL}/studios/face-cam/facecam3.png`, label: 'Zone éclairage' },
-      { url: `${CDN_URL}/studios/face-cam/facecam4.png`, label: 'Téléprompter' },
-      { url: `${CDN_URL}/studios/face-cam/facecam5.png`, label: 'Fonds' },
-      { url: `${CDN_URL}/studios/face-cam/facecam6.png`, label: 'Régie' },
+      { url: `${CDN_URL}/studios/face-cam/facecam1.png`ensemble' },
+      { url: `${CDN_URL}/studios/face-cam/facecam2.png` },
+      { url: `${CDN_URL}/studios/face-cam/facecam3.png` },
+      { url: `${CDN_URL}/studios/face-cam/facecam4.png` },
+      { url: `${CDN_URL}/studios/face-cam/facecam5.png` },
+      { url: `${CDN_URL}/studios/face-cam/facecam6.png` },
     ],
     equipment: [
       { name: 'Sony FX3 4K', icon: Camera, included: true },
@@ -125,12 +125,12 @@ const STUDIOS: Studio[] = [
     surface: '20m²',
     minDuration: '2h',
     images: [
-      { url: `${CDN_URL}/studios/podcast/podcast1.png`, label: 'Vue d\'ensemble' },
-      { url: `${CDN_URL}/studios/podcast/podcast%202.png`, label: 'Setup 4 micros' },
-      { url: `${CDN_URL}/studios/podcast/podcast3.png`, label: 'Console RodeCaster' },
-      { url: `${CDN_URL}/studios/podcast/podcast%204.png`, label: 'Cabine acoustique' },
-      { url: `${CDN_URL}/studios/podcast/podcast%205.png`, label: 'Zone invités' },
-      { url: `${CDN_URL}/studios/podcast/podcast%206.png`, label: 'Monitoring' },
+      { url: `${CDN_URL}/studios/podcast/podcast1.png`ensemble' },
+      { url: `${CDN_URL}/studios/podcast/podcast%202.png` },
+      { url: `${CDN_URL}/studios/podcast/podcast3.png` },
+      { url: `${CDN_URL}/studios/podcast/podcast%204.png` },
+      { url: `${CDN_URL}/studios/podcast/podcast%205.png` },
+      { url: `${CDN_URL}/studios/podcast/podcast%206.png` },
     ],
     equipment: [
       { name: '4x Shure SM7B', icon: Mic, included: true },
@@ -178,12 +178,12 @@ const STUDIOS: Studio[] = [
     surface: '25m²',
     minDuration: '2h',
     images: [
-      { url: `${CDN_URL}/studios/live/stream1.png`, label: 'Vue d\'ensemble' },
-      { url: `${CDN_URL}/studios/live/stream%202.png`, label: 'Setup 3 caméras' },
-      { url: `${CDN_URL}/studios/live/stream%203.png`, label: 'Régie ATEM' },
-      { url: `${CDN_URL}/studios/live/stream%204.png`, label: 'Zone streaming' },
-      { url: `${CDN_URL}/studios/live/stream%205.png`, label: 'Monitoring' },
-      { url: `${CDN_URL}/studios/live/stream3.png`, label: 'Setup éclairage' },
+      { url: `${CDN_URL}/studios/live/stream1.png`ensemble' },
+      { url: `${CDN_URL}/studios/live/stream%202.png` },
+      { url: `${CDN_URL}/studios/live/stream%203.png` },
+      { url: `${CDN_URL}/studios/live/stream%204.png` },
+      { url: `${CDN_URL}/studios/live/stream%205.png` },
+      { url: `${CDN_URL}/studios/live/stream3.png` },
     ],
     equipment: [
       { name: '3 caméras PTZ 4K', icon: Camera, included: true },
@@ -231,12 +231,12 @@ const STUDIOS: Studio[] = [
     surface: '40m²',
     minDuration: '2h',
     images: [
-      { url: `${CDN_URL}/studios/talk-show/4a.png`, label: 'Vue plateau' },
-      { url: `${CDN_URL}/studios/talk-show/4b.png`, label: 'Décor TV' },
-      { url: `${CDN_URL}/studios/talk-show/4c.png`, label: 'Setup 4 caméras' },
-      { url: `${CDN_URL}/studios/talk-show/a4.png`, label: 'Zone invités' },
-      { url: `${CDN_URL}/studios/talk-show/ae.png`, label: 'Régie' },
-      { url: `${CDN_URL}/studios/talk-show/ae.png`, label: 'Éclairage pro' }, // Note: image dupliquée, il manque une 6ème image
+      { url: `${CDN_URL}/studios/talk-show/4a.png` },
+      { url: `${CDN_URL}/studios/talk-show/4b.png` },
+      { url: `${CDN_URL}/studios/talk-show/4c.png` },
+      { url: `${CDN_URL}/studios/talk-show/a4.png` },
+      { url: `${CDN_URL}/studios/talk-show/ae.png` },
+      { url: `${CDN_URL}/studios/talk-show/ae.png` }, // Note: image dupliquée, il manque une 6ème image
     ],
     equipment: [
       { name: 'Plateau modulable 4 places', icon: Users, included: true },
@@ -284,12 +284,12 @@ const STUDIOS: Studio[] = [
     surface: '18m²',
     minDuration: '2h',
     images: [
-      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Intimate_interview_studio_setup_two_comforta_d37695fa-59d9-4312-b3d7-9518f08b10ad.png`, label: 'Vue d\'ensemble' },
-      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Two-person_interview_configuration_from_side_2ab44313-b189-4e3f-8373-25f003ac2f03.png`, label: 'Setup face-à-face' },
-      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Cinematic_interview_lighting_setup_soft_diff_896cfc58-2040-4d10-aaaf-2ff6b08dd20d.png`, label: 'Éclairage ciné' },
-      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Beautiful_bokeh_background_for_interview_war_71e20421-ecd6-4b10-9b70-08ebc998259d.png`, label: 'Fond bokeh' },
-      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Two_Sony_FX3_cameras_positioned_for_intervie_3fc9d153-9639-49cb-9bdb-1ad933dd68fc.png`, label: 'Caméras' },
-      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Cozy_interview_corner_with_designer_furnitur_6ad63ea5-2dbb-422e-b673-f8c1385ad272.png`, label: 'Zone confort' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Intimate_interview_studio_setup_two_comforta_d37695fa-59d9-4312-b3d7-9518f08b10ad.png`ensemble' },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Two-person_interview_configuration_from_side_2ab44313-b189-4e3f-8373-25f003ac2f03.png` },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Cinematic_interview_lighting_setup_soft_diff_896cfc58-2040-4d10-aaaf-2ff6b08dd20d.png` },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Beautiful_bokeh_background_for_interview_war_71e20421-ecd6-4b10-9b70-08ebc998259d.png` },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Two_Sony_FX3_cameras_positioned_for_intervie_3fc9d153-9639-49cb-9bdb-1ad933dd68fc.png` },
+      { url: `${CDN_URL}/studios/interview/alexorigines_71937_Cozy_interview_corner_with_designer_furnitur_6ad63ea5-2dbb-422e-b673-f8c1385ad272.png` },
     ],
     equipment: [
       { name: '2 caméras cinéma 4K', icon: Camera, included: true },
@@ -337,12 +337,12 @@ const STUDIOS: Studio[] = [
     surface: '12m²',
     minDuration: '2h',
     images: [
-      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_video_recording_setup_camera_mounte_e2083961-ee73-44ac-a1dd-f3a8bf1f900a.png`, label: 'Vue d\'ensemble' },
-      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_TikTok_vertical_video_studio_phone_mount_in__1c46911e-4961-4ead-84aa-9a19afaee31d.png`, label: 'Setup vertical' },
-      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Professional_ring_light_close-up_circular_LE_14f665c2-2b02-4a17-9987-c6062cd4dca9.png`, label: 'Ring light pro' },
-      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_RGB_LED_panel_backdrop_showing_multiple_colo_762a035a-2644-42ac-8c5d-e43b005561c7.png`, label: 'Fond LED RGB' },
-      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_teleprompter_for_TikTok_content_scr_bbaa6816-6711-455f-966c-976810598620.png`, label: 'Prompteur' },
-      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Social_media_creator_workspace_makeup_mirror_92ffc7a3-b3d6-4dbc-8370-013144aab90b.png`, label: 'Zone création' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_video_recording_setup_camera_mounte_e2083961-ee73-44ac-a1dd-f3a8bf1f900a.png`ensemble' },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_TikTok_vertical_video_studio_phone_mount_in__1c46911e-4961-4ead-84aa-9a19afaee31d.png` },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Professional_ring_light_close-up_circular_LE_14f665c2-2b02-4a17-9987-c6062cd4dca9.png` },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_RGB_LED_panel_backdrop_showing_multiple_colo_762a035a-2644-42ac-8c5d-e43b005561c7.png` },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_teleprompter_for_TikTok_content_scr_bbaa6816-6711-455f-966c-976810598620.png` },
+      { url: `${CDN_URL}/studios/vertical/alexorigines_71937_Social_media_creator_workspace_makeup_mirror_92ffc7a3-b3d6-4dbc-8370-013144aab90b.png` },
     ],
     equipment: [
       { name: 'Setup format 9:16', icon: Smartphone, included: true },
@@ -402,7 +402,7 @@ const FullScreenGallery = ({ studio, onClose }: { studio: Studio; onClose: () =>
       <div className="relative w-full h-full flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
         <img
           src={studio.images[currentIndex].url}
-          alt={studio.images[currentIndex].label}
+          alt={`${studio.name} - Photo ${currentIndex + 1}`}
           className="max-w-full max-h-[85vh] object-contain rounded-lg"
         />
 
@@ -423,7 +423,7 @@ const FullScreenGallery = ({ studio, onClose }: { studio: Studio; onClose: () =>
         {/* Label */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full">
           <span className="text-white text-sm font-medium">
-            {studio.images[currentIndex].label} ({currentIndex + 1}/{studio.images.length})
+            {currentIndex + 1} / {studio.images.length}
           </span>
         </div>
       </div>
@@ -518,7 +518,7 @@ export default function StudioShowcaseSection() {
               >
                 <img
                   src={studio.images[activeImageIndex].url}
-                  alt={studio.images[activeImageIndex].label}
+                  alt={`${studio.name} - Photo ${activeImageIndex + 1}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {/* Overlay au hover */}
@@ -527,12 +527,7 @@ export default function StudioShowcaseSection() {
                     <Maximize2 className="w-6 h-6 text-white" />
                   </div>
                 </div>
-                {/* Badge label */}
-                <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                  <span className="text-white text-xs font-medium">
-                    {studio.images[activeImageIndex].label}
-                  </span>
-                </div>
+
                 {/* Badge popular */}
                 {studio.popular && (
                   <div className="absolute top-3 right-3 bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 rounded-full flex items-center gap-1.5">
@@ -611,9 +606,9 @@ export default function StudioShowcaseSection() {
               {/* Tabs */}
               <div className="flex gap-1 mb-4 bg-white/5 rounded-xl p-1">
                 {[
-                  { id: 'overview', label: 'Aperçu' },
-                  { id: 'equipment', label: 'Équipement' },
-                  { id: 'pricing', label: 'Tarifs' },
+                  { id: 'overview' },
+                  { id: 'equipment' },
+                  { id: 'pricing' },
                 ].map((tab) => (
                   <button
                     key={tab.id}
