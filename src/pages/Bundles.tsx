@@ -25,6 +25,7 @@ import Footer from '../components/Footer';
 import SEOHead from '../components/SEO/SEOHead';
 import { useShopifyCollection } from '../hooks/useShopifyCollection';
 import type { ShopifyProduct } from '../lib/shopify';
+import { extractListItems } from '../lib/sanitize';
 
 export default function Bundles() {
   const { products: bundles, loading } = useShopifyCollection('bundles-packs');
@@ -50,10 +51,7 @@ export default function Bundles() {
   };
 
   const extractBenefits = (description: string) => {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = description;
-    const listItems = tempDiv.querySelectorAll('li');
-    return Array.from(listItems).map(li => li.textContent || '').slice(0, 4);
+    return extractListItems(description, 4);
   };
 
   return (

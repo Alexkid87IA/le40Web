@@ -20,7 +20,9 @@ function App() {
       <PrerollProvider>
         <CartProvider>
           <UnifiedCartProvider>
-            <AppRoutes />
+            <main id="main-content">
+              <AppRoutes />
+            </main>
           </UnifiedCartProvider>
         </CartProvider>
       </PrerollProvider>

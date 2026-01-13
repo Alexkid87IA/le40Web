@@ -6,6 +6,7 @@ import { requiresCalendarSync, getResourceName, getResourceType, getDurationHour
 import { useShopifyCheckout } from '../../hooks/useShopifyCheckout';
 import { createTemporaryHold } from '../../hooks/useCalendarAvailability';
 import CalendarPicker from './CalendarPicker';
+import { sanitizeHtml } from '../../lib/sanitize';
 
 interface ProductModalProps {
   product: ShopifyProduct;
@@ -160,7 +161,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
               <div
                 className="text-white/80 prose prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(product.descriptionHtml) }}
               />
 
               {product.variants.edges.length > 1 && (

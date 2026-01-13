@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
       'import.meta.env.VITE_SUPABASE_ANON_KEY': JSON.stringify(env.VITE_SUPABASE_ANON_KEY),
     },
     optimizeDeps: {
-      exclude: ['lucide-react'],
+      include: ['lucide-react'],
     },
     build: {
       target: 'es2015',
@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => {
             'react-vendor': ['react', 'react-dom', 'react-router-dom'],
             'framer-motion': ['framer-motion'],
             'supabase': ['@supabase/supabase-js'],
+            'icons': ['lucide-react'],
           },
         },
       },

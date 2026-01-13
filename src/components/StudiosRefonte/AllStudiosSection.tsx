@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Clock, Users, DollarSign, Sparkles } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
+import { sanitizeHtml } from '../../lib/sanitize';
 
 interface StudioCardProps {
   product: any;
@@ -128,7 +129,7 @@ function ProductModal({ product, onClose }: ProductModalProps) {
 
           <div
             className="prose prose-invert prose-sm max-w-none mb-6"
-            dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(product.descriptionHtml) }}
           />
 
           <div className="space-y-4">

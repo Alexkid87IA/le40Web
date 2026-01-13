@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import { useShopifyCollection } from '../hooks/useShopifyCollection';
 import { useUnifiedCart } from '../hooks/useUnifiedCart';
 import type { ShopifyProduct } from '../lib/shopify';
+import { extractTextFromHtml } from '../lib/sanitize';
 
 const premiumServices = [
   {
@@ -210,10 +211,9 @@ export default function ServicesPlus() {
                           {service.title}
                         </h3>
 
-                        <div
-                          className="text-white/70 text-sm mb-4 line-clamp-3"
-                          dangerouslySetInnerHTML={{ __html: service.description?.substring(0, 150) + '...' || '' }}
-                        />
+                        <p className="text-white/70 text-sm mb-4 line-clamp-3">
+                          {extractTextFromHtml(service.description)?.substring(0, 150)}...
+                        </p>
 
                         <div className="flex items-baseline gap-2 mb-4">
                           <span className="text-2xl font-bold text-white">{price}€</span>
