@@ -299,6 +299,8 @@ export default function StudioBookingFlow() {
   const sectionRef = useRef<HTMLElement>(null);
   // Ref pour la section durée de location
   const durationSectionRef = useRef<HTMLDivElement>(null);
+  // Ref pour le bouton "Continuer"
+  const continueButtonRef = useRef<HTMLButtonElement>(null);
 
   // État principal
   const [currentStep, setCurrentStep] = useState(1);
@@ -349,6 +351,32 @@ export default function StudioBookingFlow() {
       }, 300); // Petit délai pour laisser l'animation se faire
     }
   }, [selectedStudio]);
+
+  // Scroll vers le bouton "Continuer" quand une durée est sélectionnée (étape 1)
+  useEffect(() => {
+    if (selectedStudio && selectedDuration && currentStep === 1 && continueButtonRef.current) {
+      setTimeout(() => {
+        if (continueButtonRef.current) {
+          const yOffset = -50;
+          const y = continueButtonRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 300);
+    }
+  }, [selectedDuration, selectedStudio, currentStep]);
+
+  // Scroll vers le bouton "Continuer" quand une formule est sélectionnée (étape 2)
+  useEffect(() => {
+    if (selectedFormule && currentStep === 2 && continueButtonRef.current) {
+      setTimeout(() => {
+        if (continueButtonRef.current) {
+          const yOffset = -50;
+          const y = continueButtonRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 300);
+    }
+  }, [selectedFormule, currentStep]);
 
   // ============================================================
   // CALCULS
@@ -575,14 +603,19 @@ export default function StudioBookingFlow() {
     }
   };
 
-  // Générer les prochains jours
+  // Générer les prochains jours (hors dimanches - fermé)
   const generateNextDays = (count: number): Date[] => {
     const days: Date[] = [];
     const today = new Date();
-    for (let i = 0; i < count; i++) {
+    let i = 0;
+    while (days.length < count) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      days.push(date);
+      // Exclure les dimanches (0 = dimanche en JavaScript)
+      if (date.getDay() !== 0) {
+        days.push(date);
+      }
+      i++;
     }
     return days;
   };
@@ -1362,19 +1395,18 @@ export default function StudioBookingFlow() {
       {/* Modal de restauration */}
       <AnimatePresence>
         {showRestoreModal && savedBooking && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={handleStartFresh}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+          >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-lg"
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-lg mx-auto"
             >
               <div className="bg-gradient-to-br from-zinc-900 to-black border-2 border-emerald-500/30 rounded-2xl p-6 md:p-8 shadow-2xl">
                 <div className="text-center mb-6">
@@ -1442,7 +1474,7 @@ export default function StudioBookingFlow() {
                 </p>
               </div>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -1504,6 +1536,7 @@ export default function StudioBookingFlow() {
 
               {currentStep < 4 ? (
                 <motion.button
+                  ref={continueButtonRef}
                   onClick={handleNextStep}
                   disabled={!canProceed()}
                   whileHover={canProceed() ? { scale: 1.02 } : {}}
