@@ -122,7 +122,7 @@ export default function ProblemSolutionSection() {
                 <div>
                   <div className="text-white font-semibold mb-1 text-sm md:text-base">Zéro gestion, tout inclus</div>
                   <div className="text-white/80 text-xs md:text-sm">
-                    Mobilier fourni, fibre 1 Gb/s, ménage hebdo, salles de réunion, maintenance. Vous arrivez avec votre laptop, c'est tout.
+                    Mobilier fourni, fibre 1 Gb/s, salles de réunion, maintenance. Vous arrivez avec votre laptop, c'est tout.
                   </div>
                 </div>
               </div>

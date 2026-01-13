@@ -60,7 +60,7 @@ interface Extra {
   price: number;
   unit: string;
   description: string;
-  popular?: boolean;
+  image?: string;
   icon: any;
 }
 
@@ -245,41 +245,41 @@ const EXTRAS_CATEGORIES = [
 
 const EXTRAS: Extra[] = [
   // POST-PRODUCTION
-  { id: 'montage-standard', name: 'Montage Standard', category: 'post-production', price: 79, unit: '/h rush', description: 'Montage pro avec transitions et titres', popular: true, icon: Scissors },
-  { id: 'montage-premium', name: 'Montage Premium', category: 'post-production', price: 120, unit: '/h rush', description: 'Montage cinématique avec motion design', popular: true, icon: Scissors },
-  { id: 'clipping-shorts', name: 'Pack Clipping Shorts', category: 'post-production', price: 149, unit: '/pack', description: '5-10 clips optimisés TikTok/Reels', popular: true, icon: Smartphone },
-  { id: 'miniatures', name: 'Pack Miniatures (3)', category: 'post-production', price: 39, unit: '/pack', description: '3 miniatures YouTube optimisées CTR', popular: true, icon: Camera },
+  { id: 'montage-standard', name: 'Montage Standard', category: 'post-production', price: 79, unit: '/h rush', description: 'Montage pro avec transitions et titres', icon: Scissors },
+  { id: 'montage-premium', name: 'Montage Premium', category: 'post-production', price: 120, unit: '/h rush', description: 'Montage cinématique avec motion design', icon: Scissors },
+  { id: 'clipping-shorts', name: 'Pack Clipping Shorts', category: 'post-production', price: 149, unit: '/pack', description: '5-10 clips optimisés TikTok/Reels', icon: Smartphone },
+  { id: 'miniatures', name: 'Pack Miniatures (3)', category: 'post-production', price: 39, unit: '/pack', description: '3 miniatures YouTube optimisées CTR', icon: Camera },
   { id: 'sous-titrage', name: 'Sous-titrage FR/EN', category: 'post-production', price: 45, unit: '/h vidéo', description: 'Sous-titres pro incrustés', icon: FileText },
   { id: 'mixage-audio', name: 'Mixage Audio Pro', category: 'post-production', price: 55, unit: '/h vidéo', description: 'Nettoyage et mastering audio', icon: Music },
-  { id: 'etalonnage', name: 'Étalonnage Cinéma', category: 'post-production', price: 149, unit: '/vidéo', description: 'Color grading professionnel', popular: true, icon: Palette },
+  { id: 'etalonnage', name: 'Étalonnage Cinéma', category: 'post-production', price: 149, unit: '/vidéo', description: 'Color grading professionnel', icon: Palette },
 
   // ÉQUIPEMENT
-  { id: 'teleprompter', name: 'Téléprompter 15"', category: 'equipement', price: 15, unit: '/h', description: 'Avec iPad et télécommande', popular: true, icon: FileText },
+  { id: 'teleprompter', name: 'Téléprompter 15"', category: 'equipement', price: 15, unit: '/h', description: 'Avec iPad et télécommande', icon: FileText },
   { id: 'camera-extra', name: 'Caméra Extra Sony FX3', category: 'equipement', price: 25, unit: '/h', description: 'Angle supplémentaire 4K', icon: Camera },
-  { id: 'atem-live', name: 'Live-Switch ATEM', category: 'equipement', price: 35, unit: '/h', description: 'Régie multi-caméras live', popular: true, icon: Radio },
-  { id: 'micro-cravate', name: 'Micro Cravate HF', category: 'equipement', price: 15, unit: '/h', description: 'Sennheiser sans fil', popular: true, icon: Mic },
-  { id: 'micro-sm7b', name: 'Micro Shure SM7B', category: 'equipement', price: 25, unit: '/h', description: 'Le micro podcast par excellence', popular: true, icon: Mic },
+  { id: 'atem-live', name: 'Live-Switch ATEM', category: 'equipement', price: 35, unit: '/h', description: 'Régie multi-caméras live', icon: Radio },
+  { id: 'micro-cravate', name: 'Micro Cravate HF', category: 'equipement', price: 15, unit: '/h', description: 'Sennheiser sans fil', icon: Mic },
+  { id: 'micro-sm7b', name: 'Micro Shure SM7B', category: 'equipement', price: 25, unit: '/h', description: 'Le micro podcast par excellence', icon: Mic },
 
   // BEAUTY
-  { id: 'maquillage-pro', name: 'Maquillage Pro', category: 'beauty', price: 89, unit: '/pers', description: 'Adapté caméra et éclairage', popular: true, icon: Sparkles },
-  { id: 'maquillage-coiffure', name: 'Maquillage + Coiffure', category: 'beauty', price: 149, unit: '/pers', description: 'Pack complet maquillage et brushing', popular: true, icon: Sparkles },
+  { id: 'maquillage-pro', name: 'Maquillage Pro', category: 'beauty', price: 89, unit: '/pers', description: 'Adapté caméra et éclairage', icon: Sparkles },
+  { id: 'maquillage-coiffure', name: 'Maquillage + Coiffure', category: 'beauty', price: 149, unit: '/pers', description: 'Pack complet maquillage et brushing', icon: Sparkles },
 
   // TRANSPORT
   { id: 'navette-gare', name: 'Navette Gare', category: 'transport', price: 20, unit: 'A/R', description: 'Gare Saint-Charles', icon: Car },
-  { id: 'navette-aeroport', name: 'Navette Aéroport', category: 'transport', price: 60, unit: 'A/R', description: 'Marseille-Provence', popular: true, icon: Car },
+  { id: 'navette-aeroport', name: 'Navette Aéroport', category: 'transport', price: 60, unit: 'A/R', description: 'Marseille-Provence', icon: Car },
 
   // CATERING
-  { id: 'coffee-break', name: 'Coffee Break', category: 'catering', price: 12, unit: '/pers', description: 'Café, thé, viennoiseries', popular: true, icon: Coffee },
-  { id: 'dejeuner-traiteur', name: 'Déjeuner Traiteur', category: 'catering', price: 25, unit: '/pers', description: 'Entrée, plat, dessert, boissons', popular: true, icon: Coffee },
+  { id: 'coffee-break', name: 'Coffee Break', category: 'catering', price: 12, unit: '/pers', description: 'Café, thé, viennoiseries', icon: Coffee },
+  { id: 'dejeuner-traiteur', name: 'Déjeuner Traiteur', category: 'catering', price: 25, unit: '/pers', description: 'Entrée, plat, dessert, boissons', icon: Coffee },
 
   // TECHNIQUE
-  { id: 'regie-live', name: 'Régie Vidéo Live', category: 'technique', price: 149, unit: '/session', description: 'Technicien régie multi-caméras', popular: true, icon: Radio },
-  { id: 'photographe-bts', name: 'Photographe BTS', category: 'technique', price: 299, unit: '/session', description: 'Behind-the-scenes + portraits', popular: true, icon: Camera },
+  { id: 'regie-live', name: 'Régie Vidéo Live', category: 'technique', price: 149, unit: '/session', description: 'Technicien régie multi-caméras', icon: Radio },
+  { id: 'photographe-bts', name: 'Photographe BTS', category: 'technique', price: 299, unit: '/session', description: 'Behind-the-scenes + portraits', icon: Camera },
   { id: 'drone', name: 'Drone Intérieur/Extérieur', category: 'technique', price: 399, unit: '/session', description: 'Prises de vues aériennes', icon: Camera },
 
   // DÉCORATION
-  { id: 'deco-personnalisee', name: 'Décoration Personnalisée', category: 'decoration', price: 299, unit: '/setup', description: 'Setup déco selon votre univers', popular: true, icon: Palette },
-  { id: 'setup-gaming', name: 'Setup Gaming RGB', category: 'decoration', price: 249, unit: '/setup', description: 'Configuration gaming avec LEDs', popular: true, icon: Zap },
+  { id: 'deco-personnalisee', name: 'Décoration Personnalisée', category: 'decoration', price: 299, unit: '/setup', description: 'Setup déco selon votre univers', icon: Palette },
+  { id: 'setup-gaming', name: 'Setup Gaming RGB', category: 'decoration', price: 249, unit: '/setup', description: 'Configuration gaming avec LEDs', icon: Zap },
 
   // WELLNESS
   { id: 'massage-express', name: 'Massage Express', category: 'wellness', price: 49, unit: '/30min', description: 'Relaxation avant tournage', icon: Heart },
@@ -353,11 +353,12 @@ export default function StudioBookingFlow() {
   }, [selectedStudio]);
 
   // Scroll vers le bouton "Continuer" quand une durée est sélectionnée (étape 1)
+  // Offset important pour voir la durée sélectionnée ET le bouton
   useEffect(() => {
     if (selectedStudio && selectedDuration && currentStep === 1 && continueButtonRef.current) {
       setTimeout(() => {
         if (continueButtonRef.current) {
-          const yOffset = -50;
+          const yOffset = -350; // Grand offset pour voir la section durée + bouton
           const y = continueButtonRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
@@ -366,11 +367,12 @@ export default function StudioBookingFlow() {
   }, [selectedDuration, selectedStudio, currentStep]);
 
   // Scroll vers le bouton "Continuer" quand une formule est sélectionnée (étape 2)
+  // Offset important pour voir la formule sélectionnée ET le bouton
   useEffect(() => {
     if (selectedFormule && currentStep === 2 && continueButtonRef.current) {
       setTimeout(() => {
         if (continueButtonRef.current) {
-          const yOffset = -50;
+          const yOffset = -400; // Grand offset pour voir les formules + bouton
           const y = continueButtonRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
@@ -1157,49 +1159,59 @@ export default function StudioBookingFlow() {
         </div>
       )}
 
-      {/* Grille des extras */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* Grille des extras - Design premium */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {filteredExtras.map((extra) => {
           const isSelected = selectedExtras.some(e => e.id === extra.id);
           const Icon = extra.icon;
-          
+
           return (
             <motion.button
               key={extra.id}
               onClick={() => handleToggleExtra(extra)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className={`relative p-4 rounded-xl border-2 text-left transition-all ${
+              whileHover={{ scale: 1.01, y: -2 }}
+              whileTap={{ scale: 0.99 }}
+              className={`relative group p-5 rounded-2xl border-2 text-left transition-all duration-300 ${
                 isSelected
-                  ? 'border-emerald-500 bg-emerald-500/10'
-                  : 'border-white/10 bg-zinc-900/50 hover:border-white/20'
+                  ? 'border-emerald-500 bg-gradient-to-br from-emerald-500/15 to-teal-500/10 shadow-lg shadow-emerald-500/10'
+                  : 'border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-800/50 hover:border-white/20 hover:from-zinc-800/80 hover:to-zinc-700/50'
               }`}
             >
-              {extra.popular && (
-                <div className="absolute -top-2 right-4 px-2 py-0.5 bg-amber-500 rounded-full text-xs font-bold text-black">
-                  ⭐ Populaire
-                </div>
-              )}
-              
-              <div className="flex items-start gap-3">
-                <div className={`p-2 rounded-lg ${isSelected ? 'bg-emerald-500/20' : 'bg-white/5'}`}>
-                  <Icon className={`w-5 h-5 ${isSelected ? 'text-emerald-400' : 'text-white/60'}`} />
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-bold text-white truncate">{extra.name}</h4>
-                  <p className="text-xs text-white/60 line-clamp-2">{extra.description}</p>
-                </div>
-                
-                {isSelected && (
-                  <Check className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                )}
+              {/* Checkbox de sélection */}
+              <div className={`absolute top-4 right-4 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${
+                isSelected
+                  ? 'bg-emerald-500 border-emerald-500'
+                  : 'border-white/20 group-hover:border-white/40'
+              }`}>
+                {isSelected && <Check className="w-4 h-4 text-white" />}
               </div>
-              
-              <div className="mt-3 flex items-center justify-between">
-                <span className="text-lg font-bold text-white">
+
+              {/* Icône avec fond gradient */}
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all ${
+                isSelected
+                  ? 'bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/30'
+                  : 'bg-gradient-to-br from-white/10 to-white/5 group-hover:from-white/15 group-hover:to-white/10'
+              }`}>
+                <Icon className={`w-6 h-6 ${isSelected ? 'text-white' : 'text-white/70'}`} />
+              </div>
+
+              {/* Contenu - Titre JAMAIS tronqué */}
+              <div className="pr-8">
+                <h4 className="font-bold text-white text-base leading-tight mb-1">
+                  {extra.name}
+                </h4>
+                <p className="text-sm text-white/50 leading-relaxed">
+                  {extra.description}
+                </p>
+              </div>
+
+              {/* Prix en bas */}
+              <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+                <span className={`text-xl font-black ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
                   {extra.price}€
-                  <span className="text-xs font-normal text-white/60 ml-1">{extra.unit}</span>
+                </span>
+                <span className="text-xs text-white/40 font-medium uppercase tracking-wide">
+                  {extra.unit}
                 </span>
               </div>
             </motion.button>

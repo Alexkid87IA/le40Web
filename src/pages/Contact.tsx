@@ -98,9 +98,9 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      content: ["contact@le40-marseille.fr"],
+      content: ["contact@bureauxle40.fr"],
       action: "Envoyer un email",
-      link: "mailto:contact@le40-marseille.fr",
+      link: "mailto:contact@bureauxle40.fr",
       gradient: "from-sky-500 to-blue-500"
     },
     {

@@ -17,9 +17,9 @@ const footerLinks = {
     { name: 'Contact', href: '/contact' }
   ],
   legal: [
-    { name: 'Mentions légales', href: '/legal' },
-    { name: 'Confidentialité', href: '/privacy' },
-    { name: 'CGU', href: '/terms' }
+    { name: 'Mentions légales', href: '/mentions-legales' },
+    { name: 'Confidentialité', href: '/politique-confidentialite' },
+    { name: 'CGV', href: '/cgv' }
   ]
 };
 
@@ -32,7 +32,7 @@ const socialLinks = [
 const footerStats = [
   { number: "4000", suffix: "m²", label: "d'espaces premium", icon: Building2 },
   { number: "120", suffix: "+", label: "entreprises", icon: Users },
-  { number: "24", suffix: "/7", label: "accès flexible", icon: Clock },
+  { number: "9h", suffix: "-20h", label: "Lun-Ven", icon: Clock },
   { number: "100", suffix: "%", label: "satisfaction", icon: Award }
 ];
 

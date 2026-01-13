@@ -10,10 +10,10 @@ const coworkingSpaces = [
     description: "Un espace ouvert et lumineux conçu pour favoriser les échanges et la créativité collective.",
     image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1920",
     capacity: "50 postes",
-    access: "24/7",
+    access: "9h-20h",
     features: ["Bureaux flexibles", "Écrans 4K", "Casiers sécurisés"],
     gradient: "from-blue-600 to-cyan-600",
-    price: "À partir de 250€/mois"
+    price: "À partir de 200€/mois"
   },
   {
     id: 2,
@@ -22,10 +22,10 @@ const coworkingSpaces = [
     description: "Des bureaux fermés pour 2 à 10 personnes, entièrement équipés et personnalisables.",
     image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920",
     capacity: "2-10 personnes",
-    access: "24/7",
+    access: "9h-20h",
     features: ["Mobilier premium", "Ligne téléphonique", "Stockage privé"],
     gradient: "from-purple-600 to-pink-600",
-    price: "À partir de 800€/mois"
+    price: "À partir de 499€/mois"
   },
   {
     id: 3,
@@ -72,22 +72,22 @@ const features = [
     desc: "Connexion ultra-rapide 1 Gb/s",
     gradient: "from-blue-500 to-cyan-500"
   },
-  { 
-    icon: Coffee, 
-    title: "Café Illimité", 
-    desc: "Boissons chaudes et froides",
+  {
+    icon: Coffee,
+    title: "Espace Café",
+    desc: "Coin détente convivial",
     gradient: "from-orange-500 to-amber-500"
   },
   {
     icon: Shield,
     title: "Accès Sécurisé",
-    desc: "Contrôle d'accès 24/7",
+    desc: "Contrôle d'accès par badge",
     gradient: "from-emerald-500 to-green-500"
   },
-  { 
-    icon: Users, 
-    title: "Communauté", 
-    desc: "200+ entrepreneurs actifs",
+  {
+    icon: Users,
+    title: "Communauté",
+    desc: "120+ entrepreneurs actifs",
     gradient: "from-purple-500 to-pink-500"
   }
 ];

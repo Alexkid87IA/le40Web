@@ -232,7 +232,7 @@ export default function PolitiqueConfidentialite() {
                     </li>
                   </ul>
                   <p className="mt-4">
-                    Pour exercer vos droits, contactez-nous à <a href="mailto:contact@le40-marseille.fr" className="text-fuchsia-400 hover:underline">contact@le40-marseille.fr</a>
+                    Pour exercer vos droits, contactez-nous à <a href="mailto:contact@bureauxle40.fr" className="text-fuchsia-400 hover:underline">contact@bureauxle40.fr</a>
                   </p>
                 </div>
               }
@@ -273,9 +273,9 @@ export default function PolitiqueConfidentialite() {
                   <p>Pour toute question concernant cette politique de confidentialité ou vos données personnelles :</p>
                   <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 mt-4">
                     <p className="font-semibold mb-2">Le 40 Coworking</p>
-                    <p className="text-white/70 mb-1">40 Rue Sainte, 13001 Marseille</p>
-                    <p className="text-white/70 mb-1">Email : <a href="mailto:contact@le40-marseille.fr" className="text-fuchsia-400 hover:underline">contact@le40-marseille.fr</a></p>
-                    <p className="text-white/70">Téléphone : <a href="tel:+33413252640" className="text-fuchsia-400 hover:underline">04 13 25 26 40</a></p>
+                    <p className="text-white/70 mb-1">40 Avenue de Saint Antoine, 13015 Marseille</p>
+                    <p className="text-white/70 mb-1">Email : <a href="mailto:contact@bureauxle40.fr" className="text-fuchsia-400 hover:underline">contact@bureauxle40.fr</a></p>
+                    <p className="text-white/70">Téléphone : <a href="tel:+33491962151" className="text-fuchsia-400 hover:underline">04 91 96 21 51</a></p>
                   </div>
                   <p className="mt-4 text-sm text-white/60">
                     Vous avez également le droit de déposer une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-fuchsia-400 hover:underline">www.cnil.fr</a>

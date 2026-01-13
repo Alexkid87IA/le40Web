@@ -45,7 +45,7 @@ export const enrichedGalleryData: EnrichedSpaceDetail[] = [
       'Bureau réglable',
       'Armoires',
       'Tableau blanc',
-      'Café illimité',
+      'Espace café',
       'Imprimante',
       'Vidéo-conférence',
       'Casiers'

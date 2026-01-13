@@ -25,8 +25,8 @@ export default function Domiciliation() {
   return (
     <div className="min-h-screen bg-black">
       <SEOHead
-        title="Domiciliation Entreprise Marseille | Adresse Prestigieuse dès 49€/mois"
-        description="Domiciliez votre entreprise à Marseille avec Le 40. Adresse prestigieuse, gestion du courrier, permanence téléphonique. Service premium dès 49€/mois. Accompagnement juridique inclus."
+        title="Domiciliation Entreprise Marseille | Adresse Prestigieuse dès 39€/mois"
+        description="Domiciliez votre entreprise à Marseille avec Le 40. Adresse prestigieuse, gestion du courrier, permanence téléphonique. Service premium dès 39€/mois. Accompagnement juridique inclus."
         keywords="domiciliation entreprise Marseille, domiciliation société Marseille, adresse commerciale Marseille, siège social Marseille, domiciliation pas cher Marseille, domiciliation auto-entrepreneur"
         schema={serviceSchemas.domiciliation}
       />
@@ -69,7 +69,7 @@ export default function Domiciliation() {
           <div className="flex items-center justify-between gap-4">
             <div className="flex-1">
               <div className="text-white font-bold">Domiciliation Marseille</div>
-              <div className="text-orange-400 text-sm">Dès 49€/mois</div>
+              <div className="text-orange-400 text-sm">Dès 39€/mois</div>
             </div>
             <a
               href="#pricing"

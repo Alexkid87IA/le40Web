@@ -22,12 +22,13 @@ import CheckoutWithStripe from '../pages/CheckoutWithStripe';
 import OrderConfirmation from '../pages/OrderConfirmation';
 import CGV from '../pages/CGV';
 import PolitiqueConfidentialite from '../pages/PolitiqueConfidentialite';
+import MentionsLegales from '../pages/MentionsLegales';
 import UnifiedCartDrawer from '../components/Cart/UnifiedCartDrawer';
 import UnifiedCheckout from '../pages/UnifiedCheckout';
 import ShopPage from '../pages/ShopPage';
 import ShopifyCheckout from '../pages/ShopifyCheckout';
 import ShopifyConfirmation from '../pages/ShopifyConfirmation';
-import Bundles from '../pages/Bundles';
+import Packs from '../pages/Packs';
 import AdminVisits from '../pages/AdminVisits';
 import ReserverVisite from '../pages/ReserverVisite';
 
@@ -60,10 +61,11 @@ export default function AppRoutes() {
         <Route path="/confirmation/:orderNumber" element={<OrderConfirmation />} />
         <Route path="/cgv" element={<CGV />} />
         <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/boutique" element={<ShopPage />} />
         <Route path="/shop" element={<ShopPage />} />
-        <Route path="/bundles" element={<Bundles />} />
-        <Route path="/packs" element={<Bundles />} />
+        <Route path="/packs" element={<Packs />} />
+        <Route path="/bundles" element={<Packs />} /> {/* Redirect legacy URL */}
         <Route path="/checkout-shopify" element={<ShopifyCheckout />} />
         <Route path="/confirmation-shopify" element={<ShopifyConfirmation />} />
         <Route path="/admin/visites" element={<AdminVisits />} />

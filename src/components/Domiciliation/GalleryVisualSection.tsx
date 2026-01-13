@@ -10,7 +10,7 @@ export default function GalleryVisualSection() {
       image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1200',
       title: 'Espace Coworking',
       description: 'Espaces de travail modernes et lumineux',
-      amenities: ['Wifi haut débit', 'Café gratuit', 'Imprimante'],
+      amenities: ['Wifi haut débit', 'Espace café', 'Imprimante'],
       category: 'Coworking'
     },
     {
@@ -52,7 +52,7 @@ export default function GalleryVisualSection() {
 
   const amenityIcons: Record<string, any> = {
     'Wifi haut débit': Wifi,
-    'Café gratuit': Coffee,
+    'Espace café': Coffee,
     'Imprimante': Monitor,
     'Écran 55"': Monitor,
     'Visio': Monitor,

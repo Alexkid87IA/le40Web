@@ -197,19 +197,19 @@ export const pricingData = {
       title: "Flexible",
       price: "25€/jour",
       description: "Accès libre à l'open space",
-      features: ["Poste non attitré", "Wifi fibré", "Café illimité", "Accès 7j/7"]
+      features: ["Poste non attitré", "Wifi fibré", "Espace café", "Accès Lun-Ven"]
     },
     {
       id: 2,
       title: "Résident",
-      price: "189€/mois",
+      price: "200€/mois",
       description: "Votre poste fixe au quotidien",
       features: ["Poste attitré", "Casier personnel", "2h salle/mois", "Communauté"]
     },
     {
       id: 3,
       title: "Bureau Privé",
-      price: "399€/mois",
+      price: "499€/mois",
       description: "Votre espace dédié et sécurisé",
       features: ["Bureau fermé 2p", "Mobilier inclus", "5h salle/mois", "Domiciliation offerte"]
     }

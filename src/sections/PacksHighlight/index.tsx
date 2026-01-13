@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import { Package, Clock } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
 
-export default function BundlesHighlightSection() {
-  const { products: bundles, loading } = useShopifyCollection('bundles-packs');
+export default function PacksHighlightSection() {
+  const { products: packs, loading } = useShopifyCollection('packs');
 
-  if (loading || bundles.length === 0) {
+  if (loading || packs.length === 0) {
     return null;
   }
 
@@ -33,7 +33,7 @@ export default function BundlesHighlightSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-6">
             ÉCONOMISEZ
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-500 to-pink-400">
-              AVEC NOS BUNDLES
+              AVEC NOS PACKS
             </span>
           </h2>
           <p className="text-lg md:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto">
@@ -42,13 +42,13 @@ export default function BundlesHighlightSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12">
-          {bundles.map((bundle, index) => {
-            const price = parseFloat(bundle.priceRange.minVariantPrice.amount);
-            const image = bundle.images.edges[0]?.node.url;
+          {packs.map((pack, index) => {
+            const price = parseFloat(pack.priceRange.minVariantPrice.amount);
+            const image = pack.images.edges[0]?.node.url;
 
             return (
               <motion.div
-                key={bundle.id}
+                key={pack.id}
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -70,7 +70,7 @@ export default function BundlesHighlightSection() {
                       <div className="relative h-48 overflow-hidden">
                         <img
                           src={image}
-                          alt={bundle.title}
+                          alt={pack.title}
                           className="w-full h-full object-cover opacity-60"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent"></div>
@@ -84,13 +84,13 @@ export default function BundlesHighlightSection() {
                         </div>
                         <div className="flex-1">
                           <h3 className="text-lg font-montserrat font-bold text-white/60 line-clamp-2">
-                            {bundle.title}
+                            {pack.title}
                           </h3>
                         </div>
                       </div>
 
                       <p className="text-white/50 font-inter text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
-                        {bundle.description.split('\n')[0] || 'Pack complet pour une productivité maximale'}
+                        {pack.description.split('\n')[0] || 'Pack complet pour une productivité maximale'}
                       </p>
 
                       <div className="inline-flex items-baseline gap-2 mb-5 px-4 py-2 bg-white/5 border border-white/10 rounded-xl self-start">

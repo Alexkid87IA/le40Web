@@ -1,6 +1,6 @@
 import { LucideIcon, Zap, Crown, Rocket } from 'lucide-react';
 
-export interface StudioBundle {
+export interface StudioPack {
   id: string;
   name: string;
   description: string;
@@ -18,7 +18,7 @@ export interface StudioBundle {
   recommended?: boolean;
 }
 
-export const studioBundles: StudioBundle[] = [
+export const studioPacks: StudioPack[] = [
   {
     id: 'pack-creator-pro',
     name: 'Pack Créateur Pro',
@@ -532,18 +532,18 @@ export const studioBundles: StudioBundle[] = [
   }
 ];
 
-export const getBundleById = (id: string): StudioBundle | undefined => {
-  return studioBundles.find(bundle => bundle.id === id);
+export const getPackById = (id: string): StudioPack | undefined => {
+  return studioPacks.find(pack => pack.id === id);
 };
 
-export const getRecommendedBundles = (): StudioBundle[] => {
-  return studioBundles.filter(bundle => bundle.recommended);
+export const getRecommendedPacks = (): StudioPack[] => {
+  return studioPacks.filter(pack => pack.recommended);
 };
 
-export const getPopularBundles = (): StudioBundle[] => {
-  return studioBundles.filter(bundle => bundle.popular);
+export const getPopularPacks = (): StudioPack[] => {
+  return studioPacks.filter(pack => pack.popular);
 };
 
-export const calculateBundleSavings = (bundle: StudioBundle): number => {
-  return Math.round(((bundle.originalPrice - bundle.price) / bundle.originalPrice) * 100);
+export const calculatePackSavings = (pack: StudioPack): number => {
+  return Math.round(((pack.originalPrice - pack.price) / pack.originalPrice) * 100);
 };

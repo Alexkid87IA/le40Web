@@ -39,7 +39,7 @@ const coworkingSpaces = [
       'Bureau fermé',
       'Mobilier premium',
       'Ligne téléphonique',
-      'Accès 24/7'
+      'Accès Lun-Ven 9h-20h'
     ],
     gradient: 'from-emerald-600 to-teal-600',
     link: '/spaces/bureaux-prives'
@@ -73,7 +73,7 @@ const pricingPlans = [
     features: [
       'Poste de travail flexible',
       'Wi-Fi ultra rapide',
-      'Café illimité',
+      'Espace café',
       'Accès 8h-20h',
       'Impressions (20 pages)',
       'Salles de réunion (1h)'
@@ -88,7 +88,7 @@ const pricingPlans = [
     description: 'Votre bureau attitré',
     features: [
       'Poste de travail dédié',
-      'Accès 24/7',
+      'Accès Lun-Ven 9h-20h',
       'Casier personnel',
       'Salles de réunion (10h/mois)',
       'Impressions illimitées',
@@ -142,7 +142,7 @@ export default function Coworking() {
     <div className="min-h-screen bg-black">
       <SEOHead
         title="Coworking Marseille | Espaces de Travail Flexibles & Bureaux Privés"
-        description="Découvrez nos espaces de coworking à Marseille : open space lumineux, bureaux privés, hot desks. WiFi ultra-rapide, café illimité, communauté dynamique. Dès 29€/jour."
+        description="Découvrez nos espaces de coworking à Marseille : open space lumineux, bureaux privés, hot desks. WiFi ultra-rapide, espace café, communauté dynamique. Dès 29€/jour."
         keywords="coworking Marseille, espace de travail Marseille, bureau flexible Marseille, hot desk Marseille, bureau privé Marseille, coworking 13001, open space Marseille"
         schema={serviceSchemas.coworking}
       />
@@ -563,8 +563,8 @@ export default function Coworking() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
                 { icon: Wifi, title: 'Fibre optique', desc: '1 Gb/s inclus' },
-                { icon: Coffee, title: 'Café et thé', desc: 'Illimité' },
-                { icon: Clock, title: 'Accès 24/7', desc: 'Contrôle sécurisé' },
+                { icon: Coffee, title: 'Espace café', desc: 'Coin détente' },
+                { icon: Clock, title: 'Horaires', desc: 'Lun-Ven 9h-20h' },
                 { icon: Users, title: 'Communauté', desc: '120+ entrepreneurs' },
                 { icon: Shield, title: 'Sécurité', desc: 'Surveillance 24h' },
                 { icon: Zap, title: 'Networking', desc: 'Événements réguliers' },

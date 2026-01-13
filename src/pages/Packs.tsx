@@ -1,9 +1,9 @@
 /**
- * Bundles - Version Ultra-Compact et Efficace
+ * Packs - Version Ultra-Compact et Efficace
  *
  * Objectif : Montrer toutes les offres clairement et rapidement
  * - Hero compact
- * - Cards bundles condensées avec toutes les infos
+ * - Cards packs condensées avec toutes les infos
  * - Comparaison visuelle rapide
  * - Pas de modal inutile
  */
@@ -27,15 +27,15 @@ import { useShopifyCollection } from '../hooks/useShopifyCollection';
 import type { ShopifyProduct } from '../lib/shopify';
 import { extractListItems } from '../lib/sanitize';
 
-export default function Bundles() {
-  const { products: bundles, loading } = useShopifyCollection('bundles-packs');
+export default function Packs() {
+  const { products: packs, loading } = useShopifyCollection('packs');
   const { products: subscriptions } = useShopifyCollection('le-40-club');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const getBundleSavings = (product: ShopifyProduct) => {
+  const getPackSavings = (product: ShopifyProduct) => {
     const variant = product.variants.edges[0]?.node;
     if (!variant) return null;
 
@@ -57,9 +57,9 @@ export default function Bundles() {
   return (
     <div className="min-h-screen bg-black text-white">
       <SEOHead
-        title="Packs & Bundles Le 40 | Économisez jusqu'à 30% sur nos Services"
-        description="Profitez de nos bundles studios + services et abonnements Le 40 Club. Économisez jusqu'à 30% avec nos packs tout inclus à Marseille."
-        keywords="bundles coworking Marseille, packs studio Marseille, offres Le 40, abonnements coworking, réductions studio"
+        title="Packs Le 40 | Économisez jusqu'à 30% sur nos Services"
+        description="Profitez de nos packs studios + services et abonnements Le 40 Club. Économisez jusqu'à 30% avec nos packs tout inclus à Marseille."
+        keywords="packs coworking Marseille, packs studio Marseille, offres Le 40, abonnements coworking, réductions studio"
       />
       <HeaderNav />
       <MobileBurger />
@@ -86,7 +86,7 @@ export default function Bundles() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4">
-              Bundles{' '}
+              Packs{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
                 tout inclus
               </span>
@@ -129,7 +129,7 @@ export default function Bundles() {
             </div>
           ) : (
             <div className="space-y-16">
-              {/* Bundles Grid Compact */}
+              {/* Packs Grid Compact */}
               <section>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -140,7 +140,7 @@ export default function Bundles() {
                   <div className="flex items-center gap-3 mb-3">
                     <Package className="w-6 h-6 text-amber-400" />
                     <h2 className="text-2xl md:text-3xl font-black text-white/60">
-                      Bundles Studio + Services
+                      Packs Studio + Services
                     </h2>
                   </div>
                   <p className="text-white/50">
@@ -149,16 +149,16 @@ export default function Bundles() {
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {bundles.map((bundle, index) => {
-                    const savings = getBundleSavings(bundle);
-                    const variant = bundle.variants.edges[0]?.node;
+                  {packs.map((pack, index) => {
+                    const savings = getPackSavings(pack);
+                    const variant = pack.variants.edges[0]?.node;
                     const price = variant ? parseFloat(variant.price.amount) : 0;
                     const comparePrice = variant?.compareAtPrice ? parseFloat(variant.compareAtPrice.amount) : null;
-                    const benefits = extractBenefits(bundle.description || '');
+                    const benefits = extractBenefits(pack.description || '');
 
                     return (
                       <motion.div
-                        key={bundle.id}
+                        key={pack.id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -174,11 +174,11 @@ export default function Bundles() {
 
                         <div className="relative bg-zinc-900/30 backdrop-blur-sm rounded-2xl border border-white/5 overflow-hidden">
                           {/* Image Compact */}
-                          {bundle.images.edges[0] && (
+                          {pack.images.edges[0] && (
                             <div className="relative h-40 overflow-hidden">
                               <img
-                                src={bundle.images.edges[0].node.url}
-                                alt={bundle.title}
+                                src={pack.images.edges[0].node.url}
+                                alt={pack.title}
                                 className="w-full h-full object-cover opacity-50"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/30 to-transparent" />
@@ -189,7 +189,7 @@ export default function Bundles() {
                             {/* Title & Price - Compact */}
                             <div className="mb-4">
                               <h3 className="text-lg font-black text-white/50 mb-2 leading-tight">
-                                {bundle.title}
+                                {pack.title}
                               </h3>
 
                               <div className="flex items-end justify-between">
@@ -335,7 +335,7 @@ export default function Bundles() {
                 className="bg-zinc-900/20 backdrop-blur-sm rounded-2xl border border-white/5 p-8"
               >
                 <h3 className="text-xl font-black text-white/60 mb-6 text-center">
-                  Pourquoi choisir un bundle ?
+                  Pourquoi choisir un pack ?
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -353,7 +353,7 @@ export default function Bundles() {
                     {
                       icon: Clock,
                       title: 'Bientôt disponible',
-                      desc: 'Nos bundles arrivent prochainement'
+                      desc: 'Nos packs arrivent prochainement'
                     }
                   ].map((item, index) => (
                     <div key={index} className="text-center opacity-60">

@@ -16,9 +16,9 @@ export default function DomiciliationSection() {
     offset: ['start end', 'end start']
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.3]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.95, 1, 1, 0.98]);
-  const gradientOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.8, 0.6]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.95, 1, 1, 0.9]);
+  const scale = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 1, 1, 1]);
+  const gradientOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.75, 0.8, 0.75]);
 
   const btnMagnetic = useMagneticHover({ strength: 0.15 });
 
@@ -33,8 +33,8 @@ export default function DomiciliationSection() {
     <motion.section
       ref={sectionRef}
       id="domiciliation"
-      style={{ opacity, scale }}
-      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20"
+      style={{ opacity, scale, willChange: 'opacity' }}
+      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
     >
       <motion.div
         ref={videoRef}

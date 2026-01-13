@@ -449,7 +449,7 @@ export default function Hero() {
               >
                 <div className="flex items-center gap-2">
                   <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="text-white/60 text-xs font-inter">Marseille Centre</span>
+                  <span className="text-white/60 text-xs font-inter">Marseille</span>
                 </div>
 
                 <div className="w-px h-4 bg-white/10" />

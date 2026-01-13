@@ -33,13 +33,13 @@ export const bureauFAQ = [
     id: 6,
     category: 'Aménagement & Services',
     question: 'Le ménage est-il compris ?',
-    answer: 'Oui, le ménage hebdomadaire est inclus dans tous les forfaits. Notre équipe nettoie votre bureau chaque semaine : sols, surfaces, vitres, poubelles. Pour un ménage plus fréquent, nous proposons des options supplémentaires.'
+    answer: 'Le ménage est disponible en option. Nous proposons un service de nettoyage hebdomadaire ou plus fréquent selon vos besoins : sols, surfaces, vitres, poubelles. Contactez-nous pour un devis personnalisé.'
   },
   {
     id: 7,
     category: 'Accès & Sécurité',
-    question: 'Puis-je accéder à mon bureau 24h/24 ?',
-    answer: 'Oui, vous bénéficiez d\'un accès 24/7 avec badge personnel nominatif. Vous et votre équipe pouvez travailler quand vous voulez : tôt le matin, tard le soir, weekend. Le bâtiment est sécurisé avec vidéosurveillance et contrôle d\'accès.'
+    question: 'Quels sont les horaires d\'accès ?',
+    answer: 'Les bureaux sont accessibles du lundi au vendredi de 9h à 20h avec badge personnel nominatif. Le bâtiment est sécurisé avec vidéosurveillance et contrôle d\'accès.'
   },
   {
     id: 8,
@@ -75,7 +75,7 @@ export const bureauFAQ = [
     id: 13,
     category: 'Tarifs & Facturation',
     question: 'Quels sont les frais cachés ?',
-    answer: 'Aucun frais caché ! Le loyer inclut : mobilier, ménage, fibre, électricité, chauffage, climatisation, maintenance, salles de réunion (heures incluses selon formule). Seuls suppléments possibles : impression importante, heures salles supplémentaires.'
+    answer: 'Aucun frais caché ! Le loyer inclut : mobilier, fibre, électricité, chauffage, climatisation, maintenance, salles de réunion (heures incluses selon formule). Options disponibles : ménage, impressions importantes, heures salles supplémentaires.'
   },
   {
     id: 14,

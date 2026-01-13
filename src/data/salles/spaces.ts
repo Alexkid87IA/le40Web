@@ -114,7 +114,7 @@ export const spaces: Space[] = [
     priceUnit: '/heure (min. 2h)',
     description: 'Rooftop exceptionnel avec vue 360° pour réceptions, keynotes et afterworks mémorables',
     features: [
-      'Vue panoramique 360° sur Paris',
+      'Vue panoramique 360° sur Marseille',
       'Lounge extérieur chauffé',
       'Estrade modulable 20m²',
       'Mobilier cocktail design',

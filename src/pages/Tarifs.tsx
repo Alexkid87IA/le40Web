@@ -78,7 +78,7 @@ const pricingData = {
       features: [
         { text: "Poste de travail flexible", included: true },
         { text: "Wi-Fi ultra rapide", included: true },
-        { text: "Café illimité", included: true },
+        { text: "Espace café", included: true },
         { text: "Impressions (20 pages)", included: true },
         { text: "Casier personnel", included: false },
         { text: "Salle de réunion", included: false },
@@ -94,7 +94,7 @@ const pricingData = {
       features: [
         { text: "Poste de travail dédié", included: true },
         { text: "Wi-Fi ultra rapide", included: true },
-        { text: "Café illimité", included: true },
+        { text: "Espace café", included: true },
         { text: "Impressions illimitées", included: true },
         { text: "Casier personnel", included: true },
         { text: "Salle de réunion (10h/mois)", included: true },
@@ -109,7 +109,7 @@ const pricingData = {
       features: [
         { text: "5 postes de travail dédiés", included: true },
         { text: "Wi-Fi ultra rapide", included: true },
-        { text: "Café illimité pour l'équipe", included: true },
+        { text: "Espace café", included: true },
         { text: "Impressions illimitées", included: true },
         { text: "Casiers personnels", included: true },
         { text: "Salle de réunion privée", included: true },

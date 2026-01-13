@@ -27,7 +27,7 @@ const workspaceOptions = [
       { icon: Users, text: '120+ membres' },
       { icon: MapPin, text: '300m² ouvert' },
       { icon: Wifi, text: 'Fibre 1 Gbps' },
-      { icon: Coffee, text: 'Café illimité' }
+      { icon: Coffee, text: 'Espace café' }
     ],
     gradient: 'from-cyan-600 via-blue-600 to-teal-600',
     link: '/coworking',
@@ -46,12 +46,12 @@ const workspaceOptions = [
       'Bureau privé fermé',
       'Mobilier ergonomique',
       'Ligne téléphonique dédiée',
-      'Accès sécurisé 24/7',
+      'Accès sécurisé par badge',
       'Configuration personnalisable',
       'Stockage sécurisé'
     ],
     highlights: [
-      { icon: Lock, text: 'Sécurisé 24/7' },
+      { icon: Lock, text: 'Accès sécurisé' },
       { icon: Building2, text: '15-100m²' },
       { icon: Shield, text: 'Privé & fermé' },
       { icon: Zap, text: 'Fibre dédiée' }
@@ -76,8 +76,8 @@ const comparisonFeatures = [
   },
   {
     category: 'Accès',
-    coworking: '8h-20h ou 24/7',
-    bureaux: '24/7 avec badge'
+    coworking: 'Lun-Ven 9h-20h',
+    bureaux: 'Lun-Ven 9h-20h'
   },
   {
     category: 'Tarif',

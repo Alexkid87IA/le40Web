@@ -50,7 +50,7 @@ export default function CGV() {
                 <h2 className="text-2xl font-montserrat font-bold text-white mb-4">1. Objet</h2>
                 <p className="text-white/80 leading-relaxed">
                   Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre
-                  Le 40, espace de coworking et studios situé au 40 Rue Sainte, 13001 Marseille, et ses clients
+                  Le 40, espace de coworking et studios situé au 40 Avenue de Saint Antoine, 13015 Marseille, et ses clients
                   pour la réservation et l'utilisation de ses services (espaces de coworking, bureaux privés,
                   salles de réunion, studios créatifs et services associés).
                 </p>
@@ -60,9 +60,9 @@ export default function CGV() {
                 <h2 className="text-2xl font-montserrat font-bold text-white mb-4">2. Identification</h2>
                 <div className="text-white/80 leading-relaxed space-y-2">
                   <p><strong>Raison sociale :</strong> Le 40</p>
-                  <p><strong>Adresse :</strong> 40 Rue Sainte, 13001 Marseille</p>
-                  <p><strong>Téléphone :</strong> 04 13 25 26 40</p>
-                  <p><strong>Email :</strong> contact@le40-marseille.fr</p>
+                  <p><strong>Adresse :</strong> 40 Avenue de Saint Antoine, 13015 Marseille</p>
+                  <p><strong>Téléphone :</strong> 04 91 96 21 51</p>
+                  <p><strong>Email :</strong> contact@bureauxle40.fr</p>
                 </div>
               </section>
 
@@ -118,7 +118,7 @@ export default function CGV() {
                   <p className="mt-4"><strong>Modification :</strong></p>
                   <p>
                     Les modifications de réservation sont possibles sous réserve de disponibilité.
-                    Contactez-nous au 04 13 25 26 40 ou par email.
+                    Contactez-nous au 04 91 96 21 51 ou par email.
                   </p>
                 </div>
               </section>
@@ -164,9 +164,9 @@ export default function CGV() {
                   Pour toute question relative aux présentes CGV, contactez-nous :
                 </p>
                 <div className="mt-4 p-4 bg-white/5 rounded-xl border border-white/10">
-                  <p className="text-white/80">📧 Email : contact@le40-marseille.fr</p>
-                  <p className="text-white/80">📞 Téléphone : 04 13 25 26 40</p>
-                  <p className="text-white/80">📍 Adresse : 40 Rue Sainte, 13001 Marseille</p>
+                  <p className="text-white/80">📧 Email : contact@bureauxle40.fr</p>
+                  <p className="text-white/80">📞 Téléphone : 04 91 96 21 51</p>
+                  <p className="text-white/80">📍 Adresse : 40 Avenue de Saint Antoine, 13015 Marseille</p>
                 </div>
               </section>
             </div>

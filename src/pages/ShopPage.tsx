@@ -42,7 +42,7 @@ export default function ShopPage() {
     new Set(
       products.flatMap(p =>
         p.tags.filter(tag =>
-          ['le-40-club', 'bundles-packs', 'services-additionnels', 'services-expert', 'services-premium'].some(c => tag.includes(c))
+          ['le-40-club', 'packs', 'services-additionnels', 'services-expert', 'services-premium'].some(c => tag.includes(c))
         )
       )
     )

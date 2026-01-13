@@ -10,7 +10,7 @@ import DomiciliationSection from '../sections/ServiceSections/DomiciliationSecti
 import BureauxSection from '../sections/ServiceSections/BureauxSection';
 import StudiosSection from '../sections/ServiceSections/StudiosSection';
 import CommunitySection from '../sections/ServiceSections/CommunitySection';
-import BundlesHighlightSection from '../sections/BundlesHighlight';
+import PacksHighlightSection from '../sections/PacksHighlight';
 import Footer from '../components/Footer';
 
 export default function HomeNew() {
@@ -30,19 +30,19 @@ export default function HomeNew() {
         <Hero />
 
         <div className="relative">
-          <div className="lg:sticky lg:top-0 lg:min-h-screen">
+          <div className="lg:sticky lg:top-0 lg:min-h-screen" style={{ zIndex: 1 }}>
             <DomiciliationSection />
           </div>
-          <div className="lg:sticky lg:top-0 lg:min-h-screen">
+          <div className="lg:sticky lg:top-0 lg:min-h-screen" style={{ zIndex: 2 }}>
             <BureauxSection />
           </div>
-          <div className="lg:sticky lg:top-0 lg:min-h-screen">
+          <div className="lg:sticky lg:top-0 lg:min-h-screen" style={{ zIndex: 3 }}>
             <CoworkingSection />
           </div>
-          <div className="relative">
+          <div className="relative" style={{ zIndex: 4 }}>
             <StudiosSection />
           </div>
-          <div className="relative z-10">
+          <div className="relative" style={{ zIndex: 5 }}>
             <CommunitySection />
           </div>
         </div>
