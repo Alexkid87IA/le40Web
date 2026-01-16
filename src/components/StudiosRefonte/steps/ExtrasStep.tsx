@@ -4,7 +4,7 @@
  */
 
 import { motion } from 'framer-motion';
-import { Check, X, Search, Info, ChevronDown, ChevronUp, Package } from 'lucide-react';
+import { Check, X, Search, ChevronDown, ChevronUp, Package } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { EXTRAS_CATEGORIES } from '../../../data/studios';
 import type { ExtrasStepProps } from './types';
@@ -146,8 +146,8 @@ export default function ExtrasStep({
         </div>
       )}
 
-      {/* Scrollable extras container */}
-      <div className="mt-4 flex-1 overflow-y-auto max-h-[50vh] lg:max-h-[55vh] pr-2 -mr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+      {/* Scrollable extras container - padding for hover effects */}
+      <div className="mt-4 flex-1 overflow-y-auto max-h-[50vh] lg:max-h-[55vh] px-1 -mx-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
         {Object.entries(groupedExtras).map(([categoryId, extras]) => {
           const category = EXTRAS_CATEGORIES.find(c => c.id === categoryId);
           const showCategoryHeader = extraCategory === 'all' && category;
@@ -170,72 +170,78 @@ export default function ExtrasStep({
                   const Icon = extra.icon;
 
                   return (
-                    <motion.div
+                    <div
                       key={extra.id}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
-                      onClick={() => onToggleExtra(extra)}
-                      className={`relative group p-4 rounded-xl border cursor-pointer transition-all duration-200 ${
+                      className={`relative group p-4 rounded-xl border transition-all duration-200 ${
                         isSelected
-                          ? 'border-emerald-500 bg-emerald-500/10'
-                          : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/8'
+                          ? 'border-emerald-500 bg-emerald-500/10 shadow-lg shadow-emerald-500/10'
+                          : 'border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/8 hover:shadow-md hover:shadow-white/5'
                       }`}
                     >
                       <div className="flex items-start gap-3">
-                        {/* Icon */}
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all ${
-                          isSelected
-                            ? 'bg-emerald-500 shadow-lg shadow-emerald-500/30'
-                            : 'bg-white/10 group-hover:bg-white/15'
-                        }`}>
+                        {/* Icon - clickable to open details */}
+                        <button
+                          onClick={() => onOpenExtraDetail(extra)}
+                          className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all cursor-pointer hover:scale-105 ${
+                            isSelected
+                              ? 'bg-emerald-500 shadow-lg shadow-emerald-500/30'
+                              : 'bg-white/10 hover:bg-white/20'
+                          }`}
+                        >
                           <Icon className={`w-5 h-5 ${isSelected ? 'text-white' : 'text-white/70'}`} />
-                        </div>
+                        </button>
 
                         {/* Content */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-2">
-                            <h4 className={`font-bold text-sm leading-tight ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
-                              {extra.name}
-                            </h4>
-                            <div className="flex items-center gap-1.5 shrink-0">
-                              {/* Info button */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  onOpenExtraDetail(extra);
-                                }}
-                                className="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
-                                title="Voir les détails"
-                              >
-                                <Info className="w-3.5 h-3.5 text-white/70" />
-                              </button>
+                            {/* Title - clickable to open details */}
+                            <button
+                              onClick={() => onOpenExtraDetail(extra)}
+                              className="text-left"
+                            >
+                              <h4 className={`font-bold text-sm leading-tight hover:underline ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
+                                {extra.name}
+                              </h4>
+                            </button>
 
-                              {/* Checkbox */}
-                              <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
+                            {/* Checkbox - clickable to toggle */}
+                            <button
+                              onClick={() => onToggleExtra(extra)}
+                              className={`w-7 h-7 rounded-md border-2 flex items-center justify-center transition-all shrink-0 ${
                                 isSelected
                                   ? 'bg-emerald-500 border-emerald-500'
-                                  : 'border-white/20 group-hover:border-white/40'
-                              }`}>
-                                {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
-                              </div>
-                            </div>
+                                  : 'border-white/30 hover:border-emerald-500 hover:bg-emerald-500/10'
+                              }`}
+                            >
+                              {isSelected && <Check className="w-4 h-4 text-white" />}
+                            </button>
                           </div>
 
-                          <p className="text-xs text-white/50 mt-1 line-clamp-2">
-                            {extra.description}
-                          </p>
+                          {/* Description - clickable to open details */}
+                          <button
+                            onClick={() => onOpenExtraDetail(extra)}
+                            className="text-left w-full"
+                          >
+                            <p className="text-xs text-white/50 mt-1 line-clamp-2 hover:text-white/70 transition-colors">
+                              {extra.description}
+                            </p>
+                          </button>
 
+                          {/* Price row */}
                           <div className="flex items-center justify-between mt-2">
-                            <span className={`text-lg font-black ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
+                            <button
+                              onClick={() => onToggleExtra(extra)}
+                              className={`text-lg font-black transition-colors ${isSelected ? 'text-emerald-400' : 'text-white hover:text-emerald-400'}`}
+                            >
                               {extra.price}€
-                            </span>
+                            </button>
                             <span className="text-xs text-white/40">
                               {extra.unit}
                             </span>
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
