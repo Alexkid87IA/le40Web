@@ -117,7 +117,7 @@ export default function Contact() {
       <HeaderNav />
       <MobileBurger />
 
-      <main className="pt-28 md:pt-32">
+      <main className="pt-20 md:pt-24">
         {/* Hero Section */}
         <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
           {/* Background animé */}

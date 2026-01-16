@@ -52,7 +52,7 @@ export default function Salles() {
         icon={<Calendar className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />
 
-      <main className="pt-32">
+      <main className="pt-24">
         {/* ============================================
             VIDÉO DE FOND FIXE
             Visible sur toute la page

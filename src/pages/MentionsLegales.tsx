@@ -11,7 +11,7 @@ export default function MentionsLegales() {
       <HeaderNav />
       <MobileBurger />
 
-      <main className="pt-32 pb-20 px-4">
+      <main className="pt-24 pb-20 px-4">
         <div className="max-w-4xl mx-auto">
           <Link
             to="/"

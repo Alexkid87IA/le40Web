@@ -36,7 +36,7 @@ export default function ShopifyConfirmation() {
       <HeaderNav />
       <MobileBurger />
 
-      <main className="pt-32 pb-20 px-4">
+      <main className="pt-24 pb-20 px-4">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

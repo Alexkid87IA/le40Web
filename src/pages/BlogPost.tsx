@@ -60,7 +60,7 @@ export default function BlogPost() {
       <HeaderNav />
       <MobileBurger />
       
-      <main className="pt-32">
+      <main className="pt-24">
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

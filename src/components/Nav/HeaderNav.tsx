@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Eye, ChevronDown, ArrowRight, Search, Mail, X,
+  Eye, ChevronDown, ArrowRight,
   Building2, Users, GitCompare,
   Star, Briefcase, CreditCard, HelpCircle,
   LayoutGrid, Monitor, Calculator,
@@ -47,7 +47,7 @@ const navItems = [
     ]
   },
   {
-    name: 'Studios',
+    name: 'Studio',
     href: '/studios',
     hasDropdown: true,
     subcategories: [
@@ -90,7 +90,6 @@ const pageColors: Record<string, {
   activeBorder: string;
   glowColor: string;
   dropdownAccent: string;
-  hex: string;
 }> = {
   '/': {
     accent: 'text-amber-400',
@@ -103,7 +102,6 @@ const pageColors: Record<string, {
     activeBorder: 'border-amber-400/70',
     glowColor: 'bg-amber-500/30',
     dropdownAccent: 'text-amber-400',
-    hex: '#f59e0b',
   },
   '/bureaux': {
     accent: 'text-blue-400',
@@ -116,7 +114,6 @@ const pageColors: Record<string, {
     activeBorder: 'border-blue-400/70',
     glowColor: 'bg-blue-500/30',
     dropdownAccent: 'text-blue-400',
-    hex: '#3b82f6',
   },
   '/domiciliation': {
     accent: 'text-orange-400',
@@ -129,7 +126,6 @@ const pageColors: Record<string, {
     activeBorder: 'border-orange-400/70',
     glowColor: 'bg-orange-500/30',
     dropdownAccent: 'text-orange-400',
-    hex: '#f97316',
   },
   '/salles': {
     accent: 'text-emerald-400',
@@ -142,7 +138,6 @@ const pageColors: Record<string, {
     activeBorder: 'border-emerald-400/70',
     glowColor: 'bg-emerald-500/30',
     dropdownAccent: 'text-emerald-400',
-    hex: '#10b981',
   },
   '/studios': {
     accent: 'text-teal-400',
@@ -155,7 +150,6 @@ const pageColors: Record<string, {
     activeBorder: 'border-teal-400/70',
     glowColor: 'bg-teal-500/30',
     dropdownAccent: 'text-teal-400',
-    hex: '#14b8a6',
   },
   '/events': {
     accent: 'text-cyan-400',
@@ -168,7 +162,6 @@ const pageColors: Record<string, {
     activeBorder: 'border-cyan-400/70',
     glowColor: 'bg-cyan-500/30',
     dropdownAccent: 'text-cyan-400',
-    hex: '#06b6d4',
   },
   '/club': {
     accent: 'text-rose-400',
@@ -181,20 +174,18 @@ const pageColors: Record<string, {
     activeBorder: 'border-rose-400/70',
     glowColor: 'bg-rose-500/30',
     dropdownAccent: 'text-rose-400',
-    hex: '#f43f5e',
   },
   '/contact': {
-    accent: 'text-violet-400',
-    accentLight: 'text-violet-300',
-    border: 'border-violet-500/40',
-    borderHover: 'hover:border-violet-400/60',
-    glow: 'shadow-violet-500/25',
-    gradient: 'via-violet-500/50',
-    activeBg: 'bg-violet-500/20',
-    activeBorder: 'border-violet-400/70',
-    glowColor: 'bg-violet-500/30',
-    dropdownAccent: 'text-violet-400',
-    hex: '#8b5cf6',
+    accent: 'text-blue-400',
+    accentLight: 'text-blue-300',
+    border: 'border-blue-500/40',
+    borderHover: 'hover:border-blue-400/60',
+    glow: 'shadow-blue-500/25',
+    gradient: 'via-blue-500/50',
+    activeBg: 'bg-blue-500/20',
+    activeBorder: 'border-blue-400/70',
+    glowColor: 'bg-blue-500/30',
+    dropdownAccent: 'text-blue-400',
   },
 };
 
@@ -209,20 +200,21 @@ export default function HeaderNav() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const colors = getPageColors(location.pathname);
 
   const handleNavigation = (href: string) => {
+    // Check if it's an anchor link on the same page
     if (href.includes('#')) {
       const [path, hash] = href.split('#');
       if (path === location.pathname || path === '') {
+        // Same page, just scroll to anchor
         const element = document.getElementById(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       } else {
+        // Different page with anchor
         navigate(path);
         setTimeout(() => {
           const element = document.getElementById(hash);
@@ -281,6 +273,7 @@ export default function HeaderNav() {
     };
   }, [lastScrollY]);
 
+  // Close dropdown on route change
   useEffect(() => {
     setActiveDropdown(null);
   }, [location.pathname]);
@@ -289,113 +282,55 @@ export default function HeaderNav() {
     <>
       <motion.header
         animate={{
-          y: isVisible ? 0 : -140,
+          y: isVisible ? 0 : -100,
           opacity: isVisible ? 1 : 0
         }}
         transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
         className="hidden md:block fixed top-0 left-0 right-0"
         style={{ zIndex: Z_INDEX.headerNav }}
       >
-        {/* Background */}
+        {/* Background glassmorphism */}
         <div className={`absolute inset-0 transition-all duration-500 ${
-          scrolled ? 'bg-[#0a0a0f]/98 backdrop-blur-2xl' : 'bg-[#0a0a0f]/95 backdrop-blur-xl'
+          scrolled ? 'bg-black/90 backdrop-blur-2xl' : 'bg-black/70 backdrop-blur-xl'
         }`} />
 
-        {/* ========================================
-            ÉTAGE 1 : Logo + Recherche + CTAs
-        ======================================== */}
-        <div className="relative border-b border-white/[0.06]">
-          <div className="max-w-[1400px] mx-auto px-6 h-[56px] flex items-center justify-between">
+        {/* Trait gradient bas - couleur selon page */}
+        <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent ${colors.gradient} to-transparent`} />
 
-            {/* Logo */}
-            <div
-              onClick={() => handleNavigation('/')}
-              className="group cursor-pointer flex items-center gap-3"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && handleNavigation('/')}
-              aria-label="Accueil - Le 40"
-            >
-              <div className={`relative w-10 h-10 rounded-xl bg-white/[0.06] border transition-all duration-500 flex items-center justify-center overflow-hidden ${
-                location.pathname === '/'
-                  ? 'border-amber-400/50 bg-amber-500/10'
-                  : 'border-white/[0.1] group-hover:border-white/20'
-              }`}>
-                <img
-                  src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
-                  alt="Le 40"
-                  className="w-8 h-8 object-contain brightness-0 invert"
-                />
-              </div>
-              <span className="text-white font-bold text-lg tracking-tight hidden lg:block">
-                Le 40
-              </span>
-            </div>
+        {/* Container */}
+        <div className="relative h-[72px] max-w-[1400px] mx-auto px-6">
 
-            {/* Barre de recherche */}
-            <div className="flex-1 max-w-xl mx-8">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
-                <input
-                  type="text"
-                  placeholder="Rechercher un espace, service..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setSearchOpen(true)}
-                  className="w-full h-10 pl-11 pr-4 bg-white/[0.04] border border-white/[0.08] rounded-xl text-white placeholder-white/40 text-sm focus:outline-none focus:border-white/20 focus:bg-white/[0.06] transition-all"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-white/10 rounded-lg transition-colors"
-                  >
-                    <X className="w-3 h-3 text-white/40" />
-                  </button>
-                )}
-              </div>
-            </div>
+          {/* ========== TOUT GROUPÉ AU CENTRE ========== */}
+          <nav className="h-full flex items-center justify-center" aria-label="Navigation principale">
+            <div className="flex items-center gap-2">
 
-            {/* CTAs droite */}
-            <div className="flex items-center gap-3">
-              {/* Newsletter CTA */}
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group flex items-center gap-2 px-4 py-2.5 bg-amber-500 hover:bg-amber-400 rounded-xl font-semibold text-sm text-black transition-all shadow-lg shadow-amber-500/25"
+              {/* Logo intégré au groupe */}
+              <div
+                onClick={() => handleNavigation('/')}
+                className="group cursor-pointer mr-1"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleNavigation('/')}
+                aria-label="Accueil - Le 40"
               >
-                <Mail className="w-4 h-4" />
-                <span>Newsletter</span>
-              </motion.button>
+                {/* Glow au hover */}
+                <div className={`absolute -inset-2 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700`} />
 
-              {/* Réserver une visite CTA */}
-              <motion.button
-                onClick={() => navigate('/reserver-visite')}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm text-white transition-all"
-                style={{
-                  background: `linear-gradient(135deg, ${colors.hex}, ${colors.hex}dd)`,
-                  boxShadow: `0 4px 20px ${colors.hex}40`
-                }}
-              >
-                <Eye className="w-4 h-4" />
-                <span>Réserver une visite</span>
-              </motion.button>
-            </div>
-          </div>
-        </div>
+                {/* Container logo */}
+                <div className={`relative w-12 h-12 rounded-xl bg-white/[0.06] border transition-all duration-500 flex items-center justify-center overflow-hidden ${
+                  location.pathname === '/'
+                    ? 'border-amber-400/70 bg-amber-500/20'
+                    : 'border-white/[0.12] group-hover:border-white/25'
+                }`}>
+                  <img
+                    src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                    alt="Le 40"
+                    className="w-10 h-10 object-contain brightness-0 invert"
+                  />
+                </div>
+              </div>
 
-        {/* ========================================
-            ÉTAGE 2 : Navigation principale
-        ======================================== */}
-        <div className="relative">
-          {/* Trait gradient bas */}
-          <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent ${colors.gradient} to-transparent`} />
-
-          <div className="max-w-[1400px] mx-auto px-6 h-[52px]">
-            <nav className="h-full flex items-center justify-center gap-1" aria-label="Navigation principale">
-
-              {/* Items de navigation */}
+              {/* Items de navigation avec dropdown */}
               {navItems.map((item) => {
                 const isActive = location.pathname === item.href;
                 const itemColors = getPageColors(item.href);
@@ -410,24 +345,28 @@ export default function HeaderNav() {
                   >
                     <button
                       onClick={() => handleNavigation(item.href)}
-                      className={`group relative h-9 px-4 rounded-lg border transition-all duration-300 flex items-center justify-center gap-1.5 ${
+                      className={`group relative h-10 px-4 rounded-xl border transition-all duration-300 flex items-center justify-center gap-1.5 ${
                         isActive
-                          ? `${itemColors.activeBg} ${itemColors.activeBorder}`
-                          : `bg-transparent border-transparent hover:bg-white/[0.04] hover:border-white/[0.08]`
+                          ? `${itemColors.activeBg} ${itemColors.activeBorder} shadow-lg`
+                          : `bg-white/[0.04] ${itemColors.border} ${itemColors.borderHover} hover:bg-white/[0.08]`
                       }`}
                       aria-current={isActive ? 'page' : undefined}
                       aria-expanded={isDropdownOpen}
                       aria-haspopup={item.hasDropdown ? 'true' : undefined}
                     >
-                      <span className={`text-[12px] font-semibold tracking-wide transition-colors duration-300 ${
-                        isActive ? itemColors.accent : 'text-white/80 group-hover:text-white'
+                      {/* Glow effect pour l'état actif */}
+                      {isActive && (
+                        <div className={`absolute -inset-1 ${itemColors.glowColor} rounded-xl blur-md -z-10`} />
+                      )}
+                      <span className={`text-[11px] font-bold tracking-wider uppercase leading-none transition-colors duration-300 ${
+                        isActive ? itemColors.accent : 'text-white'
                       }`}>
                         {item.name}
                       </span>
                       {item.hasDropdown && (
-                        <ChevronDown className={`w-3.5 h-3.5 transition-all duration-300 ${
+                        <ChevronDown className={`w-3 h-3 transition-all duration-300 ${
                           isDropdownOpen ? 'rotate-180' : ''
-                        } ${isActive ? itemColors.accent : 'text-white/50 group-hover:text-white/70'}`} />
+                        } ${isActive ? itemColors.accent : 'text-white/60'}`} />
                       )}
                     </button>
 
@@ -442,9 +381,9 @@ export default function HeaderNav() {
                           className="absolute top-full left-1/2 -translate-x-1/2 mt-3 z-50"
                         >
                           <div className="relative">
-                            {/* Outer glow */}
+                            {/* Outer glow - animated */}
                             <motion.div
-                              className="absolute -inset-3 rounded-3xl blur-2xl opacity-60"
+                              className={`absolute -inset-3 rounded-3xl blur-2xl opacity-60`}
                               style={{
                                 background: `linear-gradient(135deg, ${
                                   item.href === '/bureaux' ? 'rgba(59, 130, 246, 0.4), rgba(99, 102, 241, 0.3)' :
@@ -461,6 +400,7 @@ export default function HeaderNav() {
 
                             {/* Main container */}
                             <div className="relative bg-[#0c0c12] rounded-2xl border border-white/[0.12] shadow-2xl shadow-black/80 overflow-hidden min-w-[280px]">
+
                               {/* Top gradient bar */}
                               <div
                                 className="absolute top-0 inset-x-0 h-[2px]"
@@ -528,7 +468,7 @@ export default function HeaderNav() {
                                           }}
                                         />
 
-                                        {/* Icon container */}
+                                        {/* Icon container with gradient */}
                                         <div className="relative flex-shrink-0">
                                           <div
                                             className="absolute -inset-1 rounded-xl blur-lg opacity-0 group-hover/item:opacity-70 transition-all duration-500"
@@ -549,7 +489,7 @@ export default function HeaderNav() {
                                               background: `linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))`
                                             }}
                                           >
-                                            <IconComponent className="w-5 h-5 text-white/60 group-hover/item:text-white transition-all duration-300 group-hover/item:scale-110" strokeWidth={1.5} />
+                                            <IconComponent className={`w-5 h-5 text-white/60 group-hover/item:text-white transition-all duration-300 group-hover/item:scale-110`} strokeWidth={1.5} />
                                           </div>
                                         </div>
 
@@ -576,6 +516,7 @@ export default function HeaderNav() {
                                     onClick={() => handleNavigation(item.href)}
                                     className="group/cta w-full relative overflow-hidden rounded-xl transition-all duration-300"
                                   >
+                                    {/* CTA Background gradient */}
                                     <div
                                       className="absolute inset-0 opacity-80 group-hover/cta:opacity-100 transition-opacity"
                                       style={{
@@ -619,28 +560,33 @@ export default function HeaderNav() {
               })}
 
               {/* Séparateur */}
-              <div className="w-px h-6 bg-white/10 mx-3" />
-
-              {/* Contact */}
-              <button
-                onClick={() => handleNavigation('/contact')}
-                className={`h-9 px-4 rounded-lg transition-all duration-300 flex items-center ${
-                  location.pathname === '/contact'
-                    ? 'bg-violet-500/20 border border-violet-400/50 text-violet-400'
-                    : 'text-white/70 hover:text-white hover:bg-white/[0.04]'
-                }`}
-              >
-                <span className="text-[12px] font-semibold tracking-wide">Contact</span>
-              </button>
+              <div className="w-px h-8 bg-white/10 mx-2" />
 
               {/* Panier */}
               <UnifiedCartButton pathname={location.pathname} />
-            </nav>
-          </div>
+
+              {/* CTA Planifier une visite */}
+              <motion.button
+                onClick={() => navigate('/reserver-visite')}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`group relative px-5 py-2.5 rounded-xl bg-white/[0.06] border ${colors.border} ${colors.borderHover} backdrop-blur-sm transition-all duration-300 hover:bg-white/[0.1] hover:shadow-lg ${colors.glow}`}
+                aria-label="Planifier une visite"
+              >
+                <div className="flex items-center gap-2">
+                  <Eye className={`w-4 h-4 ${colors.accent} transition-colors duration-300`} />
+                  <span className="text-[12px] font-semibold text-white">
+                    Planifier une visite
+                  </span>
+                </div>
+              </motion.button>
+            </div>
+          </nav>
+
         </div>
       </motion.header>
 
-      {/* Overlay pour fermer les dropdowns */}
+      {/* Overlay to close dropdowns */}
       <AnimatePresence>
         {activeDropdown && (
           <motion.div

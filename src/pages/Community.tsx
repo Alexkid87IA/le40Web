@@ -366,7 +366,7 @@ export default function Community() {
       <MobileBurger />
       
       {/* Main Content - with margin for sidebar */}
-      <main className="pt-32">
+      <main className="pt-24">
         {/* Hero Section Épique */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Animé */}

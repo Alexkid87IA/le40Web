@@ -229,7 +229,7 @@ export default function CheckoutWithStripe() {
       <HeaderNav />
       <MobileBurger />
 
-      <main className="pt-32 pb-20 px-4">
+      <main className="pt-24 pb-20 px-4">
         <div className="max-w-5xl mx-auto">
           <motion.button
             onClick={() => navigate(-1)}
