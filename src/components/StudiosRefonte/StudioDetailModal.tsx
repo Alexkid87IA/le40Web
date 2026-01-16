@@ -4,7 +4,8 @@
  */
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Users, Wrench, Lightbulb, ArrowRight } from 'lucide-react';
+import { X, Check, Users, Wrench, Lightbulb, ArrowRight, ImageIcon } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import type { Studio } from '../../data/studios/types';
 
 interface StudioDetailModalProps {
@@ -23,6 +24,12 @@ export default function StudioDetailModal({
   if (!studio) return null;
 
   const Icon = studio.icon;
+  const [imageError, setImageError] = useState(false);
+
+  // Reset image error when studio changes
+  useEffect(() => {
+    setImageError(false);
+  }, [studio?.id]);
 
   const handleSelect = () => {
     onSelect(studio);
@@ -83,6 +90,35 @@ export default function StudioDetailModal({
                     <div className="text-xs text-white/70">/heure</div>
                   </div>
                 </div>
+              </div>
+
+              {/* Image */}
+              <div className={`relative h-40 bg-gradient-to-br ${studio.gradient} overflow-hidden`}>
+                {studio.image && !imageError ? (
+                  <img
+                    src={studio.image}
+                    alt={studio.name}
+                    onError={() => setImageError(true)}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    {/* Pattern overlay */}
+                    <div className="absolute inset-0 opacity-20">
+                      <div className="absolute inset-0" style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                      }} />
+                    </div>
+                    {/* Placeholder content */}
+                    <div className="relative text-center text-white/80">
+                      <Icon className="w-12 h-12 mx-auto mb-2 opacity-60" />
+                      <p className="text-xs flex items-center gap-1 justify-center">
+                        <ImageIcon className="w-3 h-3" />
+                        Photo à venir
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Content - Scrollable */}
