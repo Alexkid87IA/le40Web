@@ -1,4 +1,5 @@
 import { Camera, Mic, Lightbulb, Monitor } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export interface EquipmentItem {
   name: string;
@@ -8,7 +9,7 @@ export interface EquipmentItem {
 
 export interface EquipmentCategory {
   category: string;
-  icon: any;
+  icon: LucideIcon;
   gradient: string;
   items: EquipmentItem[];
 }

@@ -8,13 +8,14 @@ import {
   Check, Edit2, Calendar, Clock, ChevronDown, ChevronUp, X,
   Sparkles, Package
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useState } from 'react';
 
 interface Studio {
   id: string;
   name: string;
   shortName: string;
-  icon: any;
+  icon: LucideIcon;
   color: string;
   gradient: string;
 }
