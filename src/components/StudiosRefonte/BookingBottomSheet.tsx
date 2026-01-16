@@ -288,7 +288,7 @@ export default function BookingBottomSheet({
                 {selectedDate && selectedSlot && (
                   <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                     <div className="flex items-start gap-3">
-                      <Calendar className="w-5 h-5 text-blue-400 mt-1" />
+                      <Calendar className="w-5 h-5 text-emerald-400 mt-1" />
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <Check className="w-4 h-4 text-emerald-400" />

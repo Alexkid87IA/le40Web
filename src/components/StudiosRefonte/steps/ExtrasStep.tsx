@@ -52,7 +52,7 @@ export default function ExtrasStep({
       {/* Header compact */}
       <div className="text-center mb-4">
         <h2 className="text-xl md:text-2xl font-montserrat font-black text-white mb-1">
-          Ajoutez des <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">extras</span>
+          Ajoutez des <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">extras</span>
         </h2>
         <p className="text-white/60 text-sm">Personnalisez votre expérience (optionnel)</p>
       </div>

@@ -27,7 +27,7 @@ export default function FormuleStep({
       {/* Header compact */}
       <div className="text-center mb-4">
         <h2 className="text-xl md:text-2xl font-montserrat font-black text-white mb-1">
-          Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">formule</span>
+          Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">formule</span>
         </h2>
         <p className="text-white/60 text-sm">Quel niveau d'accompagnement souhaitez-vous ?</p>
       </div>
