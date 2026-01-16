@@ -145,7 +145,12 @@ export function useStudioConfiguration() {
     setError(null);
 
     try {
-      const updateData: any = {};
+      const updateData: {
+        configuration_name?: string;
+        is_favorite?: boolean;
+        selected_options?: Record<string, number>;
+        total_price?: number;
+      } = {};
       if (updates.configurationName !== undefined) updateData.configuration_name = updates.configurationName;
       if (updates.isFavorite !== undefined) updateData.is_favorite = updates.isFavorite;
       if (updates.selectedOptions !== undefined) updateData.selected_options = updates.selectedOptions;
@@ -203,8 +208,8 @@ export function useStudioConfiguration() {
         options_viewed: interaction.optionsViewed || [],
         time_spent_seconds: interaction.timeSpentSeconds || 0
       });
-    } catch (err) {
-      console.error('Failed to track interaction:', err);
+    } catch {
+      // Tracking failure is non-critical
     }
   };
 
@@ -225,8 +230,18 @@ export function useStudioConfiguration() {
   };
 }
 
+interface StudioReview {
+  id: string;
+  user_id: string | null;
+  studio_id: string | null;
+  option_id: string | null;
+  rating: number;
+  comment: string | null;
+  created_at: string;
+}
+
 export function useStudioReviews() {
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<StudioReview[]>([]);
   const [loading, setLoading] = useState(false);
 
   const loadReviews = async (studioId?: string, optionId?: string) => {
@@ -242,8 +257,8 @@ export function useStudioReviews() {
 
       const { data } = await query;
       setReviews(data || []);
-    } catch (err) {
-      console.error('Failed to load reviews:', err);
+    } catch {
+      // Failed to load reviews, silently ignore
     } finally {
       setLoading(false);
     }
@@ -267,8 +282,8 @@ export function useStudioReviews() {
       });
 
       await loadReviews(review.studioId, review.optionId);
-    } catch (err) {
-      console.error('Failed to submit review:', err);
+    } catch {
+      // Failed to submit review
     }
   };
 

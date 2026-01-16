@@ -7,13 +7,14 @@ import { motion, AnimatePresence, PanInfo, useAnimation } from 'framer-motion';
 import {
   Check, ChevronDown, ChevronUp, X, Sparkles, Clock, Calendar
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useState } from 'react';
 
 interface Studio {
   id: string;
   name: string;
   shortName: string;
-  icon: any;
+  icon: LucideIcon;
   color: string;
   gradient: string;
 }
@@ -74,7 +75,7 @@ export default function BookingBottomSheet({
     });
   };
 
-  const handleDragEnd = (event: any, info: PanInfo) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     // Si swipe vers le bas avec vélocité > 20, fermer
     if (info.velocity.y > 20 || info.offset.y > 100) {
       setIsOpen(false);

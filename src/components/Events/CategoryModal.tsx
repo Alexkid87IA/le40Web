@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { Users, GraduationCap, Mic2, Wrench, Wine, Award, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { EventCategory } from '../../data/events/categories';
@@ -45,7 +45,7 @@ export default function CategoryModal({ category, onClose }: CategoryModalProps)
 
   const Icon = iconMap[category.iconName] || Users;
 
-  const handleDragEnd = (_: any, info: any) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (info.offset.y > 100) {
       onClose();
     }

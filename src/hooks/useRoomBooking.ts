@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useShopifyCollection } from './useShopifyCollection';
+import type { ShopifyProduct, ShopifyEdge, ShopifyVariant, ShopifyImage } from '../types';
 
 export interface Room {
   id: string;
@@ -53,9 +54,9 @@ export function useRoomBooking() {
 
   useEffect(() => {
     if (products.length > 0) {
-      const mappedRooms: Room[] = products.map((product: any) => {
-        const images = product.images?.edges?.map((e: any) => e.node.url) || [];
-        const variants = product.variants?.edges?.map((e: any) => ({
+      const mappedRooms: Room[] = products.map((product: ShopifyProduct) => {
+        const images = product.images?.edges?.map((e: ShopifyEdge<ShopifyImage>) => e.node.url) || [];
+        const variants = product.variants?.edges?.map((e: ShopifyEdge<ShopifyVariant>) => ({
           id: e.node.id,
           title: e.node.title,
           price: parseFloat(e.node.price.amount),

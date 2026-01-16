@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useShopifyCollection } from './useShopifyCollection';
+import type { ShopifyProduct, ShopifyEdge, ShopifyVariant } from '../types';
 
 export interface Event {
   id: string;
@@ -53,9 +54,9 @@ export function useEventRegistration() {
   useEffect(() => {
     if (products.length > 0) {
       const now = new Date();
-      const mappedEvents: Event[] = products.map((product: any) => {
+      const mappedEvents: Event[] = products.map((product: ShopifyProduct) => {
         const image = product.images?.edges?.[0]?.node.url || 'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg';
-        const variants = product.variants?.edges?.map((e: any) => ({
+        const variants = product.variants?.edges?.map((e: ShopifyEdge<ShopifyVariant>) => ({
           id: e.node.id,
           title: e.node.title,
           price: parseFloat(e.node.price.amount),

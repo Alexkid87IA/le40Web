@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { Calendar, Clock, Users, MapPin, X, Check, ArrowRight, Sparkles, TrendingUp, Target, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -90,7 +90,7 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
     }, 300);
   };
 
-  const handleDragEnd = (_: any, info: any) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (info.offset.y > 100) {
       onClose();
     }

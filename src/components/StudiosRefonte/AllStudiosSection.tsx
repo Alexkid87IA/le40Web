@@ -3,15 +3,16 @@ import { motion } from 'framer-motion';
 import { Play, Clock, Users, DollarSign, Sparkles } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
 import { sanitizeHtml } from '../../lib/sanitize';
+import type { ShopifyProduct, ShopifyEdge, ShopifyVariant } from '../../types';
 
 interface StudioCardProps {
-  product: any;
+  product: ShopifyProduct;
   onSelect: () => void;
 }
 
 function StudioCard({ product, onSelect }: StudioCardProps) {
   const variants = product.variants.edges;
-  const minPrice = Math.min(...variants.map((v: any) => parseFloat(v.node.price.amount)));
+  const minPrice = Math.min(...variants.map((v: ShopifyEdge<ShopifyVariant>) => parseFloat(v.node.price.amount)));
   const image = product.images.edges[0]?.node.url || 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800';
 
   return (
@@ -58,7 +59,7 @@ function StudioCard({ product, onSelect }: StudioCardProps) {
         </div>
 
         <div className="grid grid-cols-2 gap-2 mb-4">
-          {variants.slice(0, 3).map((variant: any, idx: number) => (
+          {variants.slice(0, 3).map((variant: ShopifyEdge<ShopifyVariant>, idx: number) => (
             <div
               key={idx}
               className="px-3 py-2 bg-white/5 rounded-lg border border-white/10 text-center"
@@ -83,7 +84,7 @@ function StudioCard({ product, onSelect }: StudioCardProps) {
 }
 
 interface ProductModalProps {
-  product: any;
+  product: ShopifyProduct;
   onClose: () => void;
 }
 
@@ -137,7 +138,7 @@ function ProductModal({ product, onClose }: ProductModalProps) {
               Formules disponibles
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {variants.map((variant: any, idx: number) => (
+              {variants.map((variant: ShopifyEdge<ShopifyVariant>, idx: number) => (
                 <div
                   key={idx}
                   className="p-6 bg-gradient-to-br from-emerald-600/20 to-cyan-600/20 rounded-xl border border-emerald-500/30"
@@ -167,7 +168,7 @@ function ProductModal({ product, onClose }: ProductModalProps) {
 
 export default function AllStudiosSection() {
   const { products, loading, error } = useShopifyCollection('studios-location');
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ShopifyProduct | null>(null);
 
   if (loading) {
     return (
@@ -227,7 +228,7 @@ export default function AllStudiosSection() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((product: any) => (
+              {products.map((product: ShopifyProduct) => (
                 <StudioCard
                   key={product.id}
                   product={product}

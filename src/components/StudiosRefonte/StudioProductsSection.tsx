@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Video, Mic, Camera, Check, TrendingDown, Loader2, Calendar } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
+import type { ShopifyProduct, ShopifyEdge, ShopifyVariant } from '../../types';
 
 interface StudioProductsSectionProps {
   onSelectStudio?: (studioType: 'podcast' | 'video' | 'photo') => void;
@@ -49,7 +50,7 @@ export default function StudioProductsSection({ onSelectStudio }: StudioProducts
     return equipment.slice(0, 5);
   };
 
-  const getBasePrice = (product: any): number => {
+  const getBasePrice = (product: ShopifyProduct): number => {
     const variants = product.variants.edges;
     if (variants.length === 0) return 0;
 
@@ -64,11 +65,11 @@ export default function StudioProductsSection({ onSelectStudio }: StudioProducts
     return price;
   };
 
-  const getMaxDiscount = (product: any): number => {
+  const getMaxDiscount = (product: ShopifyProduct): number => {
     const variants = product.variants.edges;
     if (variants.length < 2) return 0;
 
-    const prices = variants.map((v: any) => {
+    const prices = variants.map((v: ShopifyEdge<ShopifyVariant>) => {
       const price = parseFloat(v.node.price.amount);
       const title = v.node.title.toLowerCase();
       let hours = 2;

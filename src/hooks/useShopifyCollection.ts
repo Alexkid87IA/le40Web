@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react';
 import { shopifyFetch } from '../lib/shopify';
-import type { ShopifyProduct } from '../lib/shopify';
+import type { ShopifyProduct, ShopifyEdge } from '../types';
+
+interface CollectionResponse {
+  collectionByHandle: {
+    id: string;
+    title: string;
+    products: {
+      edges: Array<ShopifyEdge<ShopifyProduct>>;
+    };
+  } | null;
+}
 
 export function useShopifyCollection(collectionHandle: string) {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
@@ -83,18 +93,17 @@ export function useShopifyCollection(collectionHandle: string) {
           }
         `;
 
-        const response: any = await shopifyFetch({ query, variables: { handle: collectionHandle } });
+        const response = await shopifyFetch({ query, variables: { handle: collectionHandle } }) as CollectionResponse;
 
         const collection = response?.collectionByHandle;
         if (!collection) {
           throw new Error(`Collection "${collectionHandle}" not found`);
         }
 
-        const fetchedProducts = collection.products.edges.map((edge: any) => edge.node);
+        const fetchedProducts = collection.products.edges.map((edge: ShopifyEdge<ShopifyProduct>) => edge.node);
         setProducts(fetchedProducts);
-      } catch (err: any) {
-        console.error('Error fetching collection products:', err);
-        setError(err.message || 'Une erreur est survenue');
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Une erreur est survenue');
       } finally {
         setLoading(false);
       }

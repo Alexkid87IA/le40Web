@@ -35,7 +35,7 @@ interface OrderItem {
   quantity: number;
   unit_price_ht: number;
   total_price_ht: number;
-  configuration: any;
+  configuration: Record<string, unknown> | null;
 }
 
 export default function OrderConfirmation() {

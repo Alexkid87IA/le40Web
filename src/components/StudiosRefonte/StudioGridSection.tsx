@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Loader2, 
-  X, 
-  Clock, 
-  Users, 
-  Check, 
+import {
+  Loader2,
+  X,
+  Clock,
+  Users,
+  Check,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
@@ -23,8 +23,10 @@ import {
   Lightbulb,
   Square
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
 import { useShopifyCheckout } from '../../hooks/useShopifyCheckout';
+import type { ShopifyProduct, ShopifyEdge, ShopifyVariant } from '../../types';
 
 // ============================================
 // IMAGES DE STOCK PAR TYPE DE STUDIO
@@ -89,7 +91,7 @@ const stockImageSets: Record<string, string[]> = {
 // ============================================
 // ÉQUIPEMENTS PAR TYPE DE STUDIO
 // ============================================
-const equipmentByType: Record<string, Array<{ icon: any; label: string }>> = {
+const equipmentByType: Record<string, Array<{ icon: LucideIcon; label: string }>> = {
   'face-cam': [
     { icon: Video, label: 'Caméra Sony FX3 4K' },
     { icon: Lightbulb, label: 'Éclairage LED pro' },
@@ -150,11 +152,11 @@ const getStudioType = (title: string): string => {
   return 'default';
 };
 
-const getStudioImages = (product: any): string[] => {
+const getStudioImages = (product: ShopifyProduct): string[] => {
   // D'abord, essayer les images Shopify
-  const shopifyImages = product.images?.edges?.map((e: any) => e.node.url) || [];
+  const shopifyImages = product.images?.edges?.map((e) => e.node.url) || [];
   if (shopifyImages.length >= 2) return shopifyImages.slice(0, 4);
-  
+
   // Sinon, utiliser les images stock
   const type = getStudioType(product.title);
   return stockImageSets[type] || stockImageSets.default;
@@ -193,43 +195,43 @@ const getEquipment = (title: string) => {
   return equipmentByType[type] || equipmentByType.default;
 };
 
-const getBasePrice = (product: any): number => {
+const getBasePrice = (product: ShopifyProduct): number => {
   const variants = product.variants?.edges || [];
   if (variants.length === 0) return 0;
-  
+
   let minPricePerHour = Infinity;
-  
-  variants.forEach((v: any) => {
+
+  variants.forEach((v: ShopifyEdge<ShopifyVariant>) => {
     const price = parseFloat(v.node.price?.amount || '0');
     const title = v.node.title?.toLowerCase() || '';
-    
+
     let hours = 1;
     if (title.includes('8') || title.includes('journée')) hours = 8;
     else if (title.includes('4') || title.includes('demi')) hours = 4;
     else if (title.includes('3')) hours = 3;
     else if (title.includes('2')) hours = 2;
-    
+
     const pricePerHour = price / hours;
     if (pricePerHour < minPricePerHour && pricePerHour > 0) {
       minPricePerHour = pricePerHour;
     }
   });
-  
+
   return minPricePerHour === Infinity ? 0 : Math.round(minPricePerHour);
 };
 
-const hasLaunchOffer = (product: any): boolean => {
+const hasLaunchOffer = (product: ShopifyProduct): boolean => {
   const tags = product.tags || [];
-  return tags.some((tag: string) => 
-    tag.toLowerCase().includes('lancement') || 
+  return tags.some((tag: string) =>
+    tag.toLowerCase().includes('lancement') ||
     tag.toLowerCase().includes('offre')
   );
 };
 
-const getCapacity = (product: any): string => {
+const getCapacity = (product: ShopifyProduct): string => {
   const desc = product.description?.toLowerCase() || '';
   const title = product.title.toLowerCase();
-  
+
   if (desc.includes('1-2') || title.includes('solo')) return '1-2 pers.';
   if (desc.includes('2-3') || title.includes('duo')) return '2-3 pers.';
   if (desc.includes('2-4')) return '2-4 pers.';
@@ -242,7 +244,7 @@ const getCapacity = (product: any): string => {
 // STUDIO CARD
 // ============================================
 interface StudioCardProps {
-  product: any;
+  product: ShopifyProduct;
   onSelect: () => void;
 }
 
@@ -315,7 +317,7 @@ function StudioCard({ product, onSelect }: StudioCardProps) {
 
         {/* Variants - HAUTEUR FIXE */}
         <div className="flex flex-wrap gap-1.5 mb-4 min-h-[32px]">
-          {product.variants?.edges?.slice(0, 3).map((v: any, idx: number) => (
+          {product.variants?.edges?.slice(0, 3).map((v: ShopifyEdge<ShopifyVariant>, idx: number) => (
             <span 
               key={idx}
               className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-lg text-xs text-white/60"
@@ -346,7 +348,7 @@ function StudioCard({ product, onSelect }: StudioCardProps) {
 // MODAL DÉTAILLÉ AVEC GALERIE
 // ============================================
 interface StudioModalProps {
-  product: any;
+  product: ShopifyProduct;
   onClose: () => void;
 }
 
@@ -385,8 +387,8 @@ function StudioModal({ product, onClose }: StudioModalProps) {
       if (checkout?.webUrl) {
         window.location.href = checkout.webUrl;
       }
-    } catch (error) {
-      console.error('Checkout error:', error);
+    } catch {
+      // Checkout failed, user stays on page
     }
   };
 
@@ -529,7 +531,7 @@ function StudioModal({ product, onClose }: StudioModalProps) {
                 Choisissez votre durée
               </h3>
               <div className="grid grid-cols-1 gap-2">
-                {variants.map((variant: any) => {
+                {variants.map((variant: ShopifyEdge<ShopifyVariant>) => {
                   const isSelected = selectedVariant === variant.node.id;
                   const price = parseFloat(variant.node.price?.amount || '0');
                   
@@ -614,7 +616,7 @@ function StudioModal({ product, onClose }: StudioModalProps) {
 // ============================================
 export default function StudioGridSection() {
   const { products, loading, error } = useShopifyCollection('studios-creatifs');
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ShopifyProduct | null>(null);
   const [filter, setFilter] = useState<string>('all');
 
   const filters = [
@@ -625,7 +627,7 @@ export default function StudioGridSection() {
     { id: 'interview', label: 'Interview' },
   ];
 
-  const filteredProducts = products.filter((product: any) => {
+  const filteredProducts = products.filter((product: ShopifyProduct) => {
     if (filter === 'all') return true;
     return product.title.toLowerCase().includes(filter);
   });
@@ -703,7 +705,7 @@ export default function StudioGridSection() {
 
           {/* Grille */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product: any) => (
+            {filteredProducts.map((product: ShopifyProduct) => (
               <StudioCard
                 key={product.id}
                 product={product}

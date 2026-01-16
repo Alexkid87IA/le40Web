@@ -17,6 +17,7 @@ import {
   Calendar, ArrowRight, CheckCircle, AlertCircle,
   Maximize2, Sparkles
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 // ============================================================
 // CDN BUNNY.NET - Configuration
@@ -34,7 +35,7 @@ interface Studio {
   shortName: string;
   tagline: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   gradient: string;
   basePrice: number;
   pricing: { duration: string; price: number }[];
@@ -42,7 +43,7 @@ interface Studio {
   surface: string;
   minDuration: string;
   images: string[];
-  equipment: { name: string; icon: any; included: boolean }[];
+  equipment: { name: string; icon: LucideIcon; included: boolean }[];
   idealFor: string[];
   popular?: boolean;
   reservations: number;

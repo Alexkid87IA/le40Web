@@ -4,6 +4,7 @@ import { Calendar, Clock, Check, AlertCircle, Loader2, ArrowRight, Mic, Video, C
 import { useStudioAvailability } from '../../hooks/useStudioAvailability';
 import { useShopifyCheckout } from '../../hooks/useShopifyCheckout';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
+import type { ShopifyProduct, ShopifyEdge, ShopifyVariant } from '../../types';
 
 interface StudioBookingSectionProps {
   selectedStudio?: 'podcast' | 'video' | 'photo';
@@ -26,8 +27,8 @@ export default function StudioBookingSection({ selectedStudio }: StudioBookingSe
     return products.find(p => p.title.toLowerCase().includes(studioType));
   };
 
-  const getVariantForDuration = (product: any) => {
-    return product.variants.edges.find((v: any) => {
+  const getVariantForDuration = (product: ShopifyProduct) => {
+    return product.variants.edges.find((v: ShopifyEdge<ShopifyVariant>) => {
       const title = v.node.title.toLowerCase();
       if (duration === 2) return title.includes('2');
       if (duration === 4) return title.includes('4');
