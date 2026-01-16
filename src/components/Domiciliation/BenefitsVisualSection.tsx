@@ -131,7 +131,7 @@ export default function BenefitsVisualSection() {
 
                   <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-white/10">
                     <div className="flex items-center justify-between">
-                      <span className="text-white/50 font-inter text-sm">En savoir plus</span>
+                      <span className="text-white/70 font-inter text-sm">En savoir plus</span>
                       <motion.div
                         className={`w-8 h-8 rounded-lg bg-gradient-to-br ${benefit.gradient} flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                         whileHover={{ x: 4 }}

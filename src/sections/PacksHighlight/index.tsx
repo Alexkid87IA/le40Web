@@ -89,18 +89,18 @@ export default function PacksHighlightSection() {
                         </div>
                       </div>
 
-                      <p className="text-white/50 font-inter text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
+                      <p className="text-white/70 font-inter text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
                         {pack.description.split('\n')[0] || 'Pack complet pour une productivité maximale'}
                       </p>
 
                       <div className="inline-flex items-baseline gap-2 mb-5 px-4 py-2 bg-white/5 border border-white/10 rounded-xl self-start">
-                        <span className="text-2xl font-montserrat font-black text-white/40">
+                        <span className="text-2xl font-montserrat font-black text-white/70">
                           {price.toFixed(0)}€
                         </span>
                       </div>
 
                       <div className="flex gap-2">
-                        <div className="flex-1 py-3 bg-white/5 text-white/40 rounded-xl font-inter font-medium text-sm flex items-center justify-center gap-2 cursor-not-allowed">
+                        <div className="flex-1 py-3 bg-white/5 text-white/70 rounded-xl font-inter font-medium text-sm flex items-center justify-center gap-2 cursor-not-allowed">
                           <Clock className="w-4 h-4" />
                           <span>Prochainement</span>
                         </div>
@@ -120,7 +120,7 @@ export default function PacksHighlightSection() {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 text-white/40 rounded-xl font-montserrat font-bold text-lg cursor-not-allowed">
+          <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 text-white/70 rounded-xl font-montserrat font-bold text-lg cursor-not-allowed">
             <Clock className="w-5 h-5" />
             <span>Prochainement disponible</span>
           </div>

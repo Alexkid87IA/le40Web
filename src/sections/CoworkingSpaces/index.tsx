@@ -144,7 +144,7 @@ export default function CoworkingSpaces() {
             className="inline-flex items-center mb-12"
           >
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4"></div>
-            <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
+            <span className="text-xs font-montserrat font-medium text-white/70 tracking-[0.3em] uppercase">
               Nos Espaces
             </span>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4"></div>
@@ -284,7 +284,7 @@ export default function CoworkingSpaces() {
                           {space.title}
                         </h4>
                         <p className={`font-inter text-sm transition-colors duration-300 ${
-                          index === activeIndex ? 'text-white/80' : 'text-white/50'
+                          index === activeIndex ? 'text-white/80' : 'text-white/70'
                         }`}>
                           {space.description}
                         </p>
@@ -294,7 +294,7 @@ export default function CoworkingSpaces() {
                         animate={{ rotate: index === activeIndex ? 45 : 0 }}
                         transition={{ duration: 0.3 }}
                         className={`ml-4 transition-colors duration-300 ${
-                          index === activeIndex ? 'text-white' : 'text-white/30'
+                          index === activeIndex ? 'text-white' : 'text-white/70'
                         }`}
                       >
                         <ArrowUpRight className="w-6 h-6" />

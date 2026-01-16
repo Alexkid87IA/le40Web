@@ -301,7 +301,7 @@ export default function Contact() {
                         <p className="text-white/80 text-base mb-1">
                           {info.content}
                         </p>
-                        <p className="text-white/50 text-sm">
+                        <p className="text-white/70 text-sm">
                           {info.subcontent}
                         </p>
                       </div>

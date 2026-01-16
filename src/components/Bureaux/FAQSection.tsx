@@ -47,7 +47,7 @@ export default function FAQSection() {
           className="mb-8"
         >
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/70" />
             <input
               type="text"
               placeholder="Rechercher une question..."

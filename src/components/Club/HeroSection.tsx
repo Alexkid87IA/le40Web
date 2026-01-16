@@ -160,7 +160,7 @@ export default function HeroSection() {
               { value: '100%', suffix: '', label: 'Inclus', color: 'from-rose-600 via-red-500 to-rose-600' },
             ].map((stat, index) => (
               <motion.div
-                key={index}
+                key={stat.label}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 + index * 0.1, duration: 0.6 }}
@@ -225,7 +225,7 @@ export default function HeroSection() {
               { icon: Sparkles, text: 'Sans engagement', color: 'text-rose-400' }
             ].map((benefit, index) => (
               <motion.div
-                key={index}
+                key={benefit.text}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.5 + index * 0.1 }}

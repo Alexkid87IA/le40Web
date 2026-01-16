@@ -142,7 +142,7 @@ export default function ComparisonSection() {
             <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-2">Location Classique</h3>
             <p className="text-white/60 text-xs md:text-sm mb-3 md:mb-4">Engagement 3-9 ans</p>
             <div className="text-2xl md:text-3xl font-black text-red-400 mb-2">2500-3500€</div>
-            <p className="text-white/50 text-xs">+ charges + aménagement</p>
+            <p className="text-white/70 text-xs">+ charges + aménagement</p>
           </div>
 
           <div className="p-6 md:p-8 bg-gradient-to-br from-orange-950/20 to-orange-900/10 border border-orange-900/30 rounded-xl md:rounded-2xl text-center">
@@ -152,7 +152,7 @@ export default function ComparisonSection() {
             <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-2">Télétravail</h3>
             <p className="text-white/60 text-xs md:text-sm mb-3 md:mb-4">Isolement & limites</p>
             <div className="text-2xl md:text-3xl font-black text-orange-400 mb-2">0€</div>
-            <p className="text-white/50 text-xs">mais perte de productivité</p>
+            <p className="text-white/70 text-xs">mais perte de productivité</p>
           </div>
 
           <div className="p-6 md:p-8 bg-gradient-to-br from-emerald-950/30 to-teal-950/30 border-2 border-emerald-500/50 rounded-xl md:rounded-2xl text-center relative overflow-hidden">

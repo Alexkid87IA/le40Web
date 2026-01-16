@@ -56,7 +56,7 @@ const contactInfo = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black overflow-hidden">
+    <footer className="relative bg-black overflow-hidden" role="contentinfo" aria-label="Pied de page">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-black" />
 
@@ -107,7 +107,7 @@ export default function Footer() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-12 md:mb-16 lg:mb-20">
               {footerStats.map((stat, index) => (
                 <motion.div
-                  key={index}
+                  key={stat.label}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -121,7 +121,7 @@ export default function Footer() {
                       transition={{ duration: 0.8 }}
                       className="inline-flex p-2 md:p-3 rounded-lg md:rounded-xl bg-white/10 mb-3 md:mb-4"
                     >
-                      <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                      <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-white" aria-hidden="true" />
                     </motion.div>
 
                     <div className="text-2xl md:text-3xl font-black text-white mb-1">
@@ -153,7 +153,7 @@ export default function Footer() {
               <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                 {contactInfo.map((contact, index) => (
                   <motion.a
-                    key={index}
+                    key={contact.link}
                     href={contact.link}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -163,7 +163,7 @@ export default function Footer() {
                     className="flex items-start gap-4 group"
                   >
                     <div className="p-2 rounded-lg md:rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-300">
-                      <contact.icon className="w-4 h-4 md:w-5 md:h-5 text-white/70" />
+                      <contact.icon className="w-4 h-4 md:w-5 md:h-5 text-white/70" aria-hidden="true" />
                     </div>
                     <span className="text-white/70 group-hover:text-white transition-colors whitespace-pre-line text-xs md:text-sm">
                       {contact.text}
@@ -185,9 +185,10 @@ export default function Footer() {
                       transition={{ delay: 0.3 + index * 0.05 }}
                       whileHover={{ y: -3, scale: 1.1 }}
                       className="group relative"
+                      aria-label={`Suivez-nous sur ${social.name}`}
                     >
                       <div className="w-10 h-10 md:w-11 md:h-11 bg-white/10 hover:bg-white/20 border border-white/10 hover:border-white/30 rounded-lg md:rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg">
-                        <social.icon className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white transition-colors" />
+                        <social.icon className="w-4 h-4 md:w-5 md:h-5 text-white/70 group-hover:text-white transition-colors" aria-hidden="true" />
                       </div>
                     </motion.a>
                   ))}
@@ -215,7 +216,7 @@ export default function Footer() {
                       to={link.href}
                       className="text-white/70 hover:text-white transition-colors text-xs md:text-sm group flex items-center"
                     >
-                      <ChevronRight className="w-3 h-3 md:w-4 md:h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3 h-3 md:w-4 md:h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" aria-hidden="true" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
                     </Link>
                   </motion.li>
@@ -243,7 +244,7 @@ export default function Footer() {
                       to={link.href}
                       className="text-white/70 hover:text-white transition-colors text-xs md:text-sm group flex items-center"
                     >
-                      <ChevronRight className="w-3 h-3 md:w-4 md:h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                      <ChevronRight className="w-3 h-3 md:w-4 md:h-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" aria-hidden="true" />
                       <span className="group-hover:translate-x-1 transition-transform">{link.name}</span>
                     </Link>
                   </motion.li>
@@ -269,7 +270,7 @@ export default function Footer() {
                   >
                     <Link
                       to={link.href}
-                      className="text-white/40 hover:text-white/70 transition-colors text-xs"
+                      className="text-white/70 hover:text-white/70 transition-colors text-xs"
                     >
                       {link.name}
                     </Link>
@@ -309,7 +310,7 @@ export default function Footer() {
                     className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-white/10 backdrop-blur-xl border border-white/20 text-white font-black rounded-xl md:rounded-2xl shadow-2xl shadow-white/[0.05] group transition-all duration-300 text-sm md:text-base"
                   >
                     <span>Réserver une Visite</span>
-                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </motion.div>
                 </Link>
               </div>
@@ -320,11 +321,11 @@ export default function Footer() {
         <div className="border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
-              <div className="text-white/40 text-xs md:text-sm text-center md:text-left">
+              <div className="text-white/70 text-xs md:text-sm text-center md:text-left">
                 © 2025 Le 40 Marseille. Tous droits réservés.
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-white/30">
+              <div className="flex items-center gap-2 text-xs text-white/70">
                 <span>Made with precision in Marseille</span>
               </div>
             </div>

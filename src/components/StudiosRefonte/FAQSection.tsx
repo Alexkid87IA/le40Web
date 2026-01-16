@@ -56,7 +56,7 @@ export default function FAQSection() {
         <div className="space-y-3">
           {faqData.map((faq, index) => (
             <motion.div
-              key={index}
+              key={faq.question}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

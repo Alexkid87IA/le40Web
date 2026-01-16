@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Star, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ interface PricingCardProps {
   index?: number;
 }
 
-export default function PricingCard({ plan, index = 0 }: PricingCardProps) {
+const PricingCard = memo<PricingCardProps>(function PricingCard({ plan, index = 0 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
@@ -193,4 +193,6 @@ export default function PricingCard({ plan, index = 0 }: PricingCardProps) {
       </motion.div>
     </motion.div>
   );
-}
+});
+
+export default PricingCard;

@@ -107,10 +107,10 @@ export default function MobileBurger() {
     <>
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-white/10">
         <div className="flex items-center justify-between px-4 py-4">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center" aria-label="Retour à l'accueil - Le 40 Coworking">
             <img
               src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
-              alt="Le 40"
+              alt="Le 40 Coworking - Logo"
               className="h-10 w-auto brightness-0 invert"
             />
           </Link>
@@ -120,8 +120,9 @@ export default function MobileBurger() {
               onClick={handleCartClick}
               className="relative w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20
                        flex items-center justify-center transition-colors"
+              aria-label={`Panier${itemCount > 0 ? ` (${itemCount} article${itemCount > 1 ? 's' : ''})` : ''}`}
             >
-              <ShoppingCart className="w-5 h-5 text-white" />
+              <ShoppingCart className="w-5 h-5 text-white" aria-hidden="true" />
               {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-rose-500 to-fuchsia-500
                                rounded-full text-white text-xs font-bold flex items-center justify-center">
@@ -134,7 +135,9 @@ export default function MobileBurger() {
               onClick={() => setIsOpen(!isOpen)}
               className="w-11 h-11 rounded-xl bg-white/10 hover:bg-white/20
                        flex flex-col items-center justify-center gap-1.5 transition-colors relative"
-              aria-label="Menu"
+              aria-label="Menu mobile"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               <motion.span
                 animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
@@ -165,12 +168,16 @@ export default function MobileBurger() {
             />
 
             <motion.div
+              id="mobile-menu"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               className="md:hidden fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black/98 backdrop-blur-xl
                        border-l border-white/10 z-[70] overflow-y-auto"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu de navigation mobile"
             >
               <div className="p-6">
                 <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/10">
@@ -179,12 +186,13 @@ export default function MobileBurger() {
                     onClick={() => setIsOpen(false)}
                     className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20
                              flex items-center justify-center transition-colors"
+                    aria-label="Fermer le menu"
                   >
-                    <X className="w-5 h-5 text-white" />
+                    <X className="w-5 h-5 text-white" aria-hidden="true" />
                   </button>
                 </div>
 
-                <nav className="space-y-2">
+                <nav className="space-y-2" aria-label="Navigation principale">
                   {navItems.map((item, index) => {
                     const isActive = location.pathname === item.href;
                     const Icon = item.icon;
@@ -196,12 +204,14 @@ export default function MobileBurger() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 }}
                         onClick={() => handleNavigation(item.href)}
+                        aria-current={isActive ? 'page' : undefined}
+                        aria-label={`Aller à ${item.name}`}
                         className={`w-full flex items-center gap-4 px-4 py-4 rounded-xl transition-all
                                   ${isActive
                                     ? `bg-gradient-to-r ${getActiveBgGradient(item.href)} border`
                                     : 'bg-white/5 hover:bg-white/10 border border-white/10'}`}
                       >
-                        <Icon className={`w-5 h-5 ${isActive ? getActiveIconColor(item.href) : 'text-white/60'}`} />
+                        <Icon className={`w-5 h-5 ${isActive ? getActiveIconColor(item.href) : 'text-white/60'}`} aria-hidden="true" />
                         <span className={`font-inter font-medium ${isActive ? 'text-white' : 'text-white/80'}`}>
                           {item.name}
                         </span>

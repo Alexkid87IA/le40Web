@@ -150,7 +150,7 @@ export default function GallerySection() {
                       <div className="flex items-center justify-between pt-4 border-t border-white/5">
                         <div className="flex items-center gap-4 text-xs">
                           <span className="text-emerald-400 font-bold">{item.capacity}</span>
-                          <span className="text-white/30">•</span>
+                          <span className="text-white/70">•</span>
                           <span className="text-teal-400 font-bold">{item.surface}</span>
                         </div>
                         <span className="text-white font-bold">Dès {item.priceFrom}</span>

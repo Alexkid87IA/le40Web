@@ -130,7 +130,7 @@ export default function HeroSection() {
                 ))}
               </div>
               <span className="text-white/90 font-inter text-sm font-semibold">4.9/5</span>
-              <span className="text-white/50 text-xs">(120+ avis)</span>
+              <span className="text-white/70 text-xs">(120+ avis)</span>
             </div>
 
             <div className="flex items-center gap-2">

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Calendar, Clock } from 'lucide-react';
 import { ShopifyProduct } from '../../lib/shopify';
@@ -9,7 +10,7 @@ interface ProductCardProps {
   onAddToCart: (product: ShopifyProduct) => void;
 }
 
-export default function ProductCard({ product, onQuickView, onAddToCart }: ProductCardProps) {
+const ProductCard = memo<ProductCardProps>(function ProductCard({ product, onQuickView, onAddToCart }) {
   const needsCalendar = requiresCalendarSync(product);
   const firstImage = product.images.edges[0]?.node;
   const minPrice = parseFloat(product.priceRange.minVariantPrice.amount);
@@ -98,4 +99,6 @@ export default function ProductCard({ product, onQuickView, onAddToCart }: Produ
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
     </motion.div>
   );
-}
+});
+
+export default ProductCard;

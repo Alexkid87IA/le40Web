@@ -138,7 +138,7 @@ export default function FinalCTASection() {
             </div>
           </div>
 
-          <p className="text-white/50 font-inter text-sm mt-8">
+          <p className="text-white/70 font-inter text-sm mt-8">
             En continuant, vous acceptez d'être contacté par notre équipe pour organiser votre visite
           </p>
         </motion.div>

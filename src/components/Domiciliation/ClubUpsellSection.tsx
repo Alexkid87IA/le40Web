@@ -95,15 +95,15 @@ export default function ClubUpsellSection() {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-white/40 flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-white/70 flex-shrink-0 mt-0.5" />
                 <span className="text-white/70 font-inter">Adresse professionnelle</span>
               </div>
               <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-white/40 flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-white/70 flex-shrink-0 mt-0.5" />
                 <span className="text-white/70 font-inter">Réception du courrier</span>
               </div>
               <div className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-white/40 flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-white/70 flex-shrink-0 mt-0.5" />
                 <span className="text-white/70 font-inter">Notification de courrier</span>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function ClubUpsellSection() {
               <div className="text-3xl font-montserrat font-black text-white mb-2">
                 à partir de 39€<span className="text-lg text-white/60 font-normal">/mois</span>
               </div>
-              <p className="text-white/50 text-sm font-inter">Sans les avantages du Club</p>
+              <p className="text-white/70 text-sm font-inter">Sans les avantages du Club</p>
             </div>
           </motion.div>
 

@@ -151,12 +151,12 @@ export default function TestimonialsSection() {
 
           {/* Dots */}
           <div className="flex items-center gap-2">
-            {testimonials.map((_, index) => (
+            {testimonials.map((testimonial) => (
               <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
+                key={testimonial.id}
+                onClick={() => setCurrentIndex(testimonials.findIndex(t => t.id === testimonial.id))}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
+                  testimonials.findIndex(t => t.id === testimonial.id) === currentIndex
                     ? 'w-8 bg-gradient-to-r from-emerald-500 to-cyan-500'
                     : 'w-2 bg-white/20 hover:bg-white/40'
                 }`}

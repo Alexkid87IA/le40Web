@@ -228,7 +228,7 @@ export default function SpacesSection() {
                   className={`relative px-8 py-4 rounded-2xl font-bold transition-all duration-500 ${
                     isActive
                       ? 'text-white shadow-2xl'
-                      : 'text-white/40 bg-white/5 hover:bg-white/10'
+                      : 'text-white/70 bg-white/5 hover:bg-white/10'
                   }`}
                   style={{
                     background: isActive ? `linear-gradient(135deg, ${category.accentColor}20, ${category.accentColor}10)` : undefined,
@@ -288,7 +288,7 @@ export default function SpacesSection() {
               <h3 className="text-4xl font-black text-white mb-3">
                 {currentCategory.subtitle}
               </h3>
-              <p className="text-xl text-white/50 italic">
+              <p className="text-xl text-white/70 italic">
                 "{currentCategory.tagline}"
               </p>
             </div>
@@ -426,7 +426,7 @@ export default function SpacesSection() {
                             {space.price > 0 ? space.price : 'Inclus'}
                           </div>
                           {space.price > 0 && (
-                            <span className="text-xs text-white/50 font-semibold">{space.priceLabel}</span>
+                            <span className="text-xs text-white/70 font-semibold">{space.priceLabel}</span>
                           )}
                         </div>
                       </div>
@@ -468,7 +468,7 @@ export default function SpacesSection() {
                             animate={{ opacity: 1 }}
                             className="mb-8 p-4 rounded-xl bg-white/[0.03] border border-white/[0.05]"
                           >
-                            <div className="text-white/50 text-sm font-medium text-center">
+                            <div className="text-white/70 text-sm font-medium text-center">
                               <span style={{ color: currentCategory.accentColor }} className="font-bold">{space.features.length}</span> caractéristiques • Cliquer pour détails
                             </div>
                           </motion.div>

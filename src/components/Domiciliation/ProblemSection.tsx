@@ -115,7 +115,7 @@ export default function ProblemSection() {
                   </div>
                   <div>
                     <div className="text-red-400 font-montserrat font-bold text-lg">DOMICILIATION CLASSIQUE</div>
-                    <div className="text-white/50 text-sm font-inter">Solution basique</div>
+                    <div className="text-white/70 text-sm font-inter">Solution basique</div>
                   </div>
                 </div>
 

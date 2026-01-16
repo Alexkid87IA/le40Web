@@ -370,9 +370,9 @@ export default function Gallery() {
 
             {/* Indicateurs en dessous */}
             <div className="flex justify-center gap-2 mt-6">
-              {images.map((_, index) => (
+              {images.map((image, index) => (
                 <button
-                  key={index}
+                  key={image.url}
                   onClick={() => {
                     setDirection(index > currentIndex ? 1 : -1);
                     setCurrentIndex(index);

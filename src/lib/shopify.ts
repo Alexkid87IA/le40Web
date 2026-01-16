@@ -2,6 +2,11 @@ const SHOPIFY_DOMAIN = import.meta.env.VITE_SHOPIFY_STORE_DOMAIN;
 const SHOPIFY_STOREFRONT_ACCESS_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 const SHOPIFY_API_VERSION = '2024-10';
 
+// Configuration
+const FETCH_TIMEOUT = 15000; // 15 seconds
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000; // 1 second base delay
+
 // Check if Shopify is configured
 const isShopifyConfigured = Boolean(SHOPIFY_DOMAIN && SHOPIFY_STOREFRONT_ACCESS_TOKEN);
 
@@ -15,34 +20,132 @@ const SHOPIFY_GRAPHQL_URL = isShopifyConfigured
 
 export const shopifyEnabled = isShopifyConfigured;
 
+// Error types for better error handling
+export class ShopifyNetworkError extends Error {
+  constructor(message: string, public readonly isRetryable: boolean = true) {
+    super(message);
+    this.name = 'ShopifyNetworkError';
+  }
+}
+
+export class ShopifyAPIError extends Error {
+  constructor(message: string, public readonly statusCode?: number) {
+    super(message);
+    this.name = 'ShopifyAPIError';
+  }
+}
+
+// Delay helper with exponential backoff
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Retry logic with exponential backoff
+async function fetchWithRetry(
+  url: string,
+  options: RequestInit,
+  retries = MAX_RETRIES,
+  signal?: AbortSignal
+): Promise<Response> {
+  let lastError: Error = new Error('Unknown error');
+
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      // Create timeout controller
+      const timeoutController = new AbortController();
+      const timeoutId = setTimeout(() => timeoutController.abort(), FETCH_TIMEOUT);
+
+      // Combine with external signal if provided
+      const combinedSignal = signal
+        ? AbortSignal.any([signal, timeoutController.signal])
+        : timeoutController.signal;
+
+      const response = await fetch(url, {
+        ...options,
+        signal: combinedSignal,
+      });
+
+      clearTimeout(timeoutId);
+
+      // Don't retry on client errors (4xx), only on server errors (5xx) or rate limits
+      if (response.status >= 400 && response.status < 500 && response.status !== 429) {
+        return response; // Let the caller handle the error
+      }
+
+      // Retry on 429 (rate limit) or 5xx errors
+      if (response.status === 429 || response.status >= 500) {
+        if (attempt < retries) {
+          const retryAfter = response.headers.get('Retry-After');
+          const delayMs = retryAfter
+            ? parseInt(retryAfter, 10) * 1000
+            : RETRY_DELAY * Math.pow(2, attempt);
+          await delay(delayMs);
+          continue;
+        }
+      }
+
+      return response;
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+
+      // Don't retry if the request was aborted by the user
+      if (signal?.aborted) {
+        throw new ShopifyNetworkError('Request cancelled', false);
+      }
+
+      // Don't retry on timeout if we've run out of retries
+      if (attempt >= retries) {
+        throw new ShopifyNetworkError(
+          lastError.name === 'AbortError'
+            ? 'Request timeout - please try again'
+            : `Network error: ${lastError.message}`,
+          true
+        );
+      }
+
+      // Exponential backoff
+      await delay(RETRY_DELAY * Math.pow(2, attempt));
+    }
+  }
+
+  throw new ShopifyNetworkError(`Failed after ${retries} retries: ${lastError.message}`);
+}
+
 export async function shopifyFetch<T>({
   query,
   variables = {},
+  signal,
 }: {
   query: string;
   variables?: Record<string, unknown>;
+  signal?: AbortSignal;
 }): Promise<T> {
   if (!isShopifyConfigured) {
-    throw new Error('Shopify is not configured. Please contact support.');
+    throw new ShopifyAPIError('Shopify is not configured. Please contact support.');
   }
 
-  const response = await fetch(SHOPIFY_GRAPHQL_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+  const response = await fetchWithRetry(
+    SHOPIFY_GRAPHQL_URL,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+      },
+      body: JSON.stringify({ query, variables }),
     },
-    body: JSON.stringify({ query, variables }),
-  });
+    MAX_RETRIES,
+    signal
+  );
 
   if (!response.ok) {
-    throw new Error(`Shopify API error: ${response.statusText}`);
+    const errorText = await response.text().catch(() => response.statusText);
+    throw new ShopifyAPIError(`Shopify API error (${response.status}): ${errorText}`, response.status);
   }
 
   const json = await response.json();
 
   if (json.errors) {
-    throw new Error(json.errors[0]?.message || 'Shopify GraphQL error');
+    const errorMessage = json.errors.map((e: { message: string }) => e.message).join(', ');
+    throw new ShopifyAPIError(errorMessage || 'Shopify GraphQL error');
   }
 
   return json.data;

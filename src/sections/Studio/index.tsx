@@ -159,7 +159,7 @@ export default function Studio() {
             className="inline-flex items-center mb-12"
           >
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4"></div>
-            <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
+            <span className="text-xs font-montserrat font-medium text-white/70 tracking-[0.3em] uppercase">
               Studio de Production
             </span>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4"></div>

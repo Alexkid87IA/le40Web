@@ -147,9 +147,9 @@ export default function CoworkingSection() {
               viewport={{ once: true }}
               className="flex items-center gap-4 laptop:gap-2 mb-8 laptop:mb-5"
             >
-              <div className="text-white/50 text-sm font-inter">À partir de</div>
+              <div className="text-white/70 text-sm font-inter">À partir de</div>
               <div className="text-4xl lg:text-4xl laptop:text-3xl xl:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">199€</div>
-              <div className="text-white/50 text-sm font-inter">/mois</div>
+              <div className="text-white/70 text-sm font-inter">/mois</div>
             </motion.div>
 
             <motion.div

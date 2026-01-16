@@ -89,7 +89,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
 
             {isFirstService && (
               <div className="mb-8">
-                <div className="text-[10px] text-white/50 mb-4 font-montserrat tracking-widest uppercase font-semibold">Aperçu de l'interface</div>
+                <div className="text-[10px] text-white/70 mb-4 font-montserrat tracking-widest uppercase font-semibold">Aperçu de l'interface</div>
                 <div className="grid grid-cols-2 gap-4">
                   <motion.div
                     whileHover={{ scale: 1.05, y: -4 }}
@@ -134,7 +134,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
                 <p className="text-base text-white/85 italic font-inter leading-relaxed mb-4">
                   "{service.testimonial.quote}"
                 </p>
-                <p className="text-xs text-white/50 font-inter font-medium">
+                <p className="text-xs text-white/70 font-inter font-medium">
                   — {service.testimonial.author}, <span className="text-orange-400/70">{service.testimonial.role}</span>
                 </p>
               </div>

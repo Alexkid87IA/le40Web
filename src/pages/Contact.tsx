@@ -263,7 +263,7 @@ export default function Contact() {
                           placeholder="Votre prénom"
                         />
                         <User className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
-                          activeField === 'firstName' ? 'text-blue-400' : 'text-white/30'
+                          activeField === 'firstName' ? 'text-blue-400' : 'text-white/70'
                         }`} />
                       </div>
                     </motion.div>
@@ -285,7 +285,7 @@ export default function Contact() {
                           placeholder="Votre nom"
                         />
                         <User className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
-                          activeField === 'lastName' ? 'text-blue-400' : 'text-white/30'
+                          activeField === 'lastName' ? 'text-blue-400' : 'text-white/70'
                         }`} />
                       </div>
                     </motion.div>
@@ -310,7 +310,7 @@ export default function Contact() {
                           placeholder="votre@email.fr"
                         />
                         <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
-                          activeField === 'email' ? 'text-blue-400' : 'text-white/30'
+                          activeField === 'email' ? 'text-blue-400' : 'text-white/70'
                         }`} />
                       </div>
                     </motion.div>
@@ -331,7 +331,7 @@ export default function Contact() {
                           placeholder="06 12 34 56 78"
                         />
                         <Phone className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
-                          activeField === 'phone' ? 'text-blue-400' : 'text-white/30'
+                          activeField === 'phone' ? 'text-blue-400' : 'text-white/70'
                         }`} />
                       </div>
                     </motion.div>
@@ -355,7 +355,7 @@ export default function Contact() {
                           placeholder="Nom de votre entreprise"
                         />
                         <Building className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors duration-300 ${
-                          activeField === 'company' ? 'text-blue-400' : 'text-white/30'
+                          activeField === 'company' ? 'text-blue-400' : 'text-white/70'
                         }`} />
                       </div>
                     </motion.div>
@@ -385,9 +385,9 @@ export default function Contact() {
                           <option value="autre" className="bg-gray-900">Autre demande</option>
                         </select>
                         <Calendar className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors duration-300 pointer-events-none ${
-                          activeField === 'service' ? 'text-blue-400' : 'text-white/30'
+                          activeField === 'service' ? 'text-blue-400' : 'text-white/70'
                         }`} />
-                        <ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 rotate-90 text-white/30 pointer-events-none" />
+                        <ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 rotate-90 text-white/70 pointer-events-none" />
                       </div>
                     </motion.div>
                   </div>
@@ -410,7 +410,7 @@ export default function Contact() {
                         placeholder="Décrivez votre projet ou votre demande..."
                       />
                       <MessageSquare className={`absolute left-4 top-4 w-5 h-5 transition-colors duration-300 ${
-                        activeField === 'message' ? 'text-blue-400' : 'text-white/30'
+                        activeField === 'message' ? 'text-blue-400' : 'text-white/70'
                       }`} />
                     </div>
                   </motion.div>
@@ -517,7 +517,7 @@ export default function Contact() {
                 <div className="space-y-5">
                   {contactInfo.map((info, index) => (
                     <motion.div
-                      key={index}
+                      key={info.title}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -632,7 +632,7 @@ export default function Contact() {
                 }
               ].map((faq, index) => (
                 <motion.div
-                  key={index}
+                  key={faq.q}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

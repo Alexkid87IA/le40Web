@@ -108,7 +108,7 @@ export default function TestimonialsSection() {
 
                       <div className="mt-4 pt-4 border-t border-white/5">
                         <div className="flex items-center justify-between text-xs md:text-sm">
-                          <div className="text-white/50 font-inter">
+                          <div className="text-white/70 font-inter">
                             <span className="text-emerald-400 font-semibold">{testimonial.teamSize}</span> • {testimonial.duration}
                           </div>
                         </div>
@@ -147,7 +147,7 @@ export default function TestimonialsSection() {
           <div className="flex justify-center gap-2 mt-8">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
-                key={index}
+                key={`testimonial-page-${index}`}
                 onClick={() => goToSlide(index)}
                 className={`h-2 rounded-full transition-all ${
                   index === currentIndex

@@ -103,7 +103,7 @@ export default function FAQSection() {
           <div className="space-y-4">
             {filteredFaqItems.map((item, index) => (
               <FAQItem
-                key={index}
+                key={item.question}
                 item={item}
                 index={index}
                 isOpen={openFaqIndex === index}

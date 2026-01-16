@@ -1,7 +1,196 @@
 /**
- * Safe localStorage wrapper with error handling
+ * Safe localStorage wrapper with error handling and schema validation
  * Prevents crashes from JSON parse errors or storage quota exceeded
  */
+
+// Storage version for migration support
+const STORAGE_VERSION = 1;
+
+// Storage keys
+export const STORAGE_KEYS = {
+  LOCAL_CART: 'le40-unified-cart-local',
+  SHOPIFY_CHECKOUT: 'le40-shopify-checkout-id',
+  STUDIO_SESSION: 'studio_session_id',
+  PREROLL_SERVICE: 'le40-preroll-service',
+} as const;
+
+// Schema definitions for stored data
+export interface LocalCartItemSchema {
+  id: string;
+  type: 'local' | 'shopify';
+  serviceName: string;
+  serviceType: string;
+  price: number;
+  quantity: number;
+  date?: string;
+  time?: string;
+  duration?: string;
+  studioConfig?: {
+    studioId: string;
+    formulaId: string;
+    durationHours: number;
+    selectedExtras: Record<string, number>;
+    basePrice: number;
+    extrasTotal: number;
+    totalPrice: number;
+  };
+  shopifyVariantId?: string;
+  customAttributes?: Array<{ key: string; value: string }>;
+}
+
+export interface StoredCartData {
+  version: number;
+  items: LocalCartItemSchema[];
+  updatedAt: string;
+}
+
+export interface CheckoutStorageData {
+  version: number;
+  checkoutId: string;
+  createdAt: string;
+  expiresAt: string;
+}
+
+// Validation functions
+function isValidCartItem(item: unknown): item is LocalCartItemSchema {
+  if (typeof item !== 'object' || item === null) return false;
+  const obj = item as Record<string, unknown>;
+  return (
+    typeof obj.id === 'string' &&
+    (obj.type === 'local' || obj.type === 'shopify') &&
+    typeof obj.serviceName === 'string' &&
+    typeof obj.serviceType === 'string' &&
+    typeof obj.price === 'number' &&
+    typeof obj.quantity === 'number' &&
+    obj.quantity > 0
+  );
+}
+
+function isValidStoredCart(data: unknown): data is StoredCartData {
+  if (typeof data !== 'object' || data === null) return false;
+  const obj = data as Record<string, unknown>;
+  return (
+    typeof obj.version === 'number' &&
+    Array.isArray(obj.items) &&
+    obj.items.every(isValidCartItem) &&
+    typeof obj.updatedAt === 'string'
+  );
+}
+
+function isValidCheckoutData(data: unknown): data is CheckoutStorageData {
+  if (typeof data !== 'object' || data === null) return false;
+  const obj = data as Record<string, unknown>;
+  return (
+    typeof obj.version === 'number' &&
+    typeof obj.checkoutId === 'string' &&
+    typeof obj.createdAt === 'string' &&
+    typeof obj.expiresAt === 'string'
+  );
+}
+
+// Cart storage functions with validation
+const CHECKOUT_EXPIRY_DAYS = 7;
+
+export function getStoredCart(): LocalCartItemSchema[] {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEYS.LOCAL_CART);
+    if (!stored) return [];
+
+    const parsed = JSON.parse(stored);
+
+    // Check new format
+    if (isValidStoredCart(parsed)) {
+      return parsed.items;
+    }
+
+    // Try legacy format (just array of items)
+    if (Array.isArray(parsed) && parsed.every(isValidCartItem)) {
+      saveStoredCart(parsed); // Migrate to new format
+      return parsed;
+    }
+
+    // Invalid data
+    localStorage.removeItem(STORAGE_KEYS.LOCAL_CART);
+    return [];
+  } catch {
+    localStorage.removeItem(STORAGE_KEYS.LOCAL_CART);
+    return [];
+  }
+}
+
+export function saveStoredCart(items: LocalCartItemSchema[]): void {
+  try {
+    const data: StoredCartData = {
+      version: STORAGE_VERSION,
+      items,
+      updatedAt: new Date().toISOString(),
+    };
+    localStorage.setItem(STORAGE_KEYS.LOCAL_CART, JSON.stringify(data));
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.error('[Storage] Error saving cart:', error);
+    }
+  }
+}
+
+export function clearStoredCart(): void {
+  localStorage.removeItem(STORAGE_KEYS.LOCAL_CART);
+}
+
+export function getStoredCheckoutId(): string | null {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEYS.SHOPIFY_CHECKOUT);
+    if (!stored) return null;
+
+    // Try new format
+    try {
+      const parsed = JSON.parse(stored);
+      if (isValidCheckoutData(parsed)) {
+        const expiresAt = new Date(parsed.expiresAt);
+        if (expiresAt < new Date()) {
+          localStorage.removeItem(STORAGE_KEYS.SHOPIFY_CHECKOUT);
+          return null;
+        }
+        return parsed.checkoutId;
+      }
+    } catch {
+      // Not JSON, try legacy format
+    }
+
+    // Legacy format (just string ID)
+    if (stored.startsWith('gid://')) {
+      saveStoredCheckoutId(stored);
+      return stored;
+    }
+
+    localStorage.removeItem(STORAGE_KEYS.SHOPIFY_CHECKOUT);
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveStoredCheckoutId(checkoutId: string): void {
+  try {
+    const now = new Date();
+    const expiresAt = new Date(now.getTime() + CHECKOUT_EXPIRY_DAYS * 24 * 60 * 60 * 1000);
+    const data: CheckoutStorageData = {
+      version: STORAGE_VERSION,
+      checkoutId,
+      createdAt: now.toISOString(),
+      expiresAt: expiresAt.toISOString(),
+    };
+    localStorage.setItem(STORAGE_KEYS.SHOPIFY_CHECKOUT, JSON.stringify(data));
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      console.error('[Storage] Error saving checkout:', error);
+    }
+  }
+}
+
+export function clearStoredCheckoutId(): void {
+  localStorage.removeItem(STORAGE_KEYS.SHOPIFY_CHECKOUT);
+}
 
 /**
  * Safely get an item from localStorage with JSON parsing

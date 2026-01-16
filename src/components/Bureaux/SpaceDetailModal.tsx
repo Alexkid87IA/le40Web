@@ -93,6 +93,9 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10 w-full h-full max-w-[1600px] max-h-[90vh] m-4 md:m-8 bg-gradient-to-br from-zinc-900/95 to-black/95 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="space-modal-title"
           >
             <div className="absolute top-4 right-4 lg:top-6 lg:right-6 z-50 flex gap-2">
               <motion.button
@@ -100,8 +103,10 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsFavorite(!isFavorite)}
                 className="w-10 h-10 flex items-center justify-center bg-black/90 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-red-500/20 hover:border-red-500/40 transition-all shadow-xl"
+                aria-label={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+                aria-pressed={isFavorite}
               >
-                <Heart className={`w-5 h-5 ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} />
+                <Heart className={`w-5 h-5 ${isFavorite ? 'fill-red-500 text-red-500' : ''}`} aria-hidden="true" />
               </motion.button>
 
               <motion.button
@@ -109,8 +114,9 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                 whileTap={{ scale: 0.9 }}
                 onClick={onClose}
                 className="w-10 h-10 flex items-center justify-center bg-black/90 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-red-500/20 hover:border-red-500/40 transition-all shadow-xl"
+                aria-label="Fermer la fenêtre"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5" aria-hidden="true" />
               </motion.button>
             </div>
 
@@ -140,8 +146,9 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                         whileTap={{ scale: 0.9 }}
                         onClick={handlePrevImage}
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-black/80 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-white/10 transition-all shadow-lg opacity-0 group-hover:opacity-100"
+                        aria-label="Image précédente"
                       >
-                        <ChevronLeft className="w-7 h-7" />
+                        <ChevronLeft className="w-7 h-7" aria-hidden="true" />
                       </motion.button>
 
                       <motion.button
@@ -149,13 +156,14 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                         whileTap={{ scale: 0.9 }}
                         onClick={handleNextImage}
                         className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-black/80 backdrop-blur-xl rounded-full border border-white/20 text-white hover:bg-white/10 transition-all shadow-lg opacity-0 group-hover:opacity-100"
+                        aria-label="Image suivante"
                       >
-                        <ChevronRight className="w-7 h-7" />
+                        <ChevronRight className="w-7 h-7" aria-hidden="true" />
                       </motion.button>
                     </>
                   )}
 
-                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2" role="tablist" aria-label="Navigation des images">
                     {space.images.map((_, index) => (
                       <motion.button
                         key={index}
@@ -166,6 +174,9 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                             ? 'bg-white w-8'
                             : 'bg-white/40 hover:bg-white/60'
                         }`}
+                        role="tab"
+                        aria-selected={index === currentImageIndex}
+                        aria-label={`Image ${index + 1} sur ${space.images.length}`}
                       />
                     ))}
                   </div>
@@ -178,7 +189,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                 </div>
 
                 <div className="bg-black/60 backdrop-blur-xl border-t border-white/10 p-4">
-                  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide" role="tablist" aria-label="Miniatures des images">
                     {space.images.map((image, index) => (
                       <motion.button
                         key={index}
@@ -190,10 +201,13 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                             ? 'border-emerald-500 shadow-lg shadow-emerald-500/30'
                             : 'border-white/20 hover:border-white/40'
                         }`}
+                        role="tab"
+                        aria-selected={index === currentImageIndex}
+                        aria-label={`Voir image ${index + 1}: ${image.alt}`}
                       >
                         <img
                           src={image.url}
-                          alt={image.alt}
+                          alt=""
                           className="w-full h-full object-cover"
                         />
                       </motion.button>
@@ -209,7 +223,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <h2 className="text-4xl md:text-5xl font-black font-montserrat text-white mb-3 leading-tight">
+                    <h2 id="space-modal-title" className="text-4xl md:text-5xl font-black font-montserrat text-white mb-3 leading-tight">
                       {space.title}
                     </h2>
                     <p className="text-white/70 font-inter text-lg leading-relaxed">
@@ -224,18 +238,18 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     className="grid grid-cols-3 gap-4"
                   >
                     <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10">
-                      <Users className="w-6 h-6 text-emerald-400 mb-2" />
-                      <div className="text-white/50 text-xs mb-1">Capacité</div>
+                      <Users className="w-6 h-6 text-emerald-400 mb-2" aria-hidden="true" />
+                      <div className="text-white/70 text-xs mb-1">Capacité</div>
                       <div className="text-white font-bold">{space.capacity}</div>
                     </div>
                     <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10">
-                      <Maximize2 className="w-6 h-6 text-emerald-400 mb-2" />
-                      <div className="text-white/50 text-xs mb-1">Surface</div>
+                      <Maximize2 className="w-6 h-6 text-emerald-400 mb-2" aria-hidden="true" />
+                      <div className="text-white/70 text-xs mb-1">Surface</div>
                       <div className="text-white font-bold">{space.surface}</div>
                     </div>
                     <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10">
-                      <Clock className="w-6 h-6 text-emerald-400 mb-2" />
-                      <div className="text-white/50 text-xs mb-1">Accès</div>
+                      <Clock className="w-6 h-6 text-emerald-400 mb-2" aria-hidden="true" />
+                      <div className="text-white/70 text-xs mb-1">Accès</div>
                       <div className="text-white font-bold">24/7</div>
                     </div>
                   </motion.div>
@@ -246,7 +260,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.4 }}
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <Star className="w-5 h-5 text-emerald-400" />
+                      <Star className="w-5 h-5 text-emerald-400" aria-hidden="true" />
                       <h3 className="text-xl font-black font-montserrat text-white">Points Forts</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -267,7 +281,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.5 }}
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <CheckCircle className="w-5 h-5 text-emerald-400" />
+                      <CheckCircle className="w-5 h-5 text-emerald-400" aria-hidden="true" />
                       <h3 className="text-xl font-black font-montserrat text-white">Caractéristiques</h3>
                     </div>
                     <div className="grid grid-cols-1 gap-3">
@@ -279,7 +293,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                           transition={{ delay: 0.5 + index * 0.05 }}
                           className="flex items-start gap-3 p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
                         >
-                          <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                          <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                           <span className="text-white/90 font-inter">{feature}</span>
                         </motion.div>
                       ))}
@@ -292,7 +306,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.6 }}
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <Zap className="w-5 h-5 text-emerald-400" />
+                      <Zap className="w-5 h-5 text-emerald-400" aria-hidden="true" />
                       <h3 className="text-xl font-black font-montserrat text-white">Équipements</h3>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
@@ -304,7 +318,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                           transition={{ delay: 0.6 + index * 0.03 }}
                           className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-lg border border-white/10"
                         >
-                          <Shield className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                          <Shield className="w-4 h-4 text-emerald-400 flex-shrink-0" aria-hidden="true" />
                           <span className="text-white/80 text-sm font-inter">{equipment}</span>
                         </motion.div>
                       ))}
@@ -341,7 +355,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                       className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold font-montserrat rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2"
                     >
                       <span>Réserver une visite</span>
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-5 h-5" aria-hidden="true" />
                     </motion.button>
                     <motion.button
                       onClick={() => {

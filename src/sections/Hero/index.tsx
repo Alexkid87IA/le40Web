@@ -91,6 +91,10 @@ export default function Hero() {
               <div
                 className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
                 onClick={togglePlayPause}
+                role="button"
+                tabIndex={0}
+                aria-label={isPlaying ? "Mettre en pause la vidéo" : "Lire la vidéo"}
+                onKeyDown={(e) => e.key === 'Enter' && togglePlayPause()}
               >
                 {isMobile && (
                   <video
@@ -118,11 +122,12 @@ export default function Hero() {
                   }}
                   transition={{ duration: 0.3 }}
                   className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                  aria-hidden="true"
                 >
                   <div className="relative">
                     <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl" />
                     <div className="relative w-20 h-20 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
-                      <Play className="w-8 h-8 text-white fill-white ml-1" />
+                      <Play className="w-8 h-8 text-white fill-white ml-1" aria-hidden="true" />
                     </div>
                   </div>
                 </motion.div>
@@ -139,12 +144,13 @@ export default function Hero() {
                   transition={{ delay: 1, duration: 0.5 }}
                   whileTap={{ scale: 0.95 }}
                   className="absolute top-4 right-4 z-20 group"
+                  aria-label={isMuted ? "Activer le son" : "Couper le son"}
                 >
                   <div className="relative flex items-center justify-center w-8 h-8 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-amber-400/50 transition-all duration-300">
                     {isMuted ? (
-                      <VolumeX className="w-4 h-4 text-white/70 group-hover:text-amber-400" />
+                      <VolumeX className="w-4 h-4 text-white/70 group-hover:text-amber-400" aria-hidden="true" />
                     ) : (
-                      <Volume2 className="w-4 h-4 text-amber-400" />
+                      <Volume2 className="w-4 h-4 text-amber-400" aria-hidden="true" />
                     )}
                   </div>
                 </motion.button>
@@ -224,7 +230,7 @@ export default function Hero() {
                   { value: '9h-20h', label: 'Lun-Ven', color: 'from-amber-600 to-orange-600' },
                 ].map((stat, index) => (
                   <motion.div
-                    key={index}
+                    key={stat.value}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
@@ -360,7 +366,7 @@ export default function Hero() {
                   { value: '9h-20h', label: 'Lun-Ven', color: 'from-orange-600 to-amber-600' },
                 ].map((stat, index) => (
                   <motion.div
-                    key={index}
+                    key={stat.value}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
@@ -496,6 +502,10 @@ export default function Hero() {
                 <div
                   className="relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
                   onClick={togglePlayPause}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={isPlaying ? "Mettre en pause la vidéo" : "Lire la vidéo"}
+                  onKeyDown={(e) => e.key === 'Enter' && togglePlayPause()}
                 >
                   {!isMobile && (
                     <video
@@ -520,11 +530,12 @@ export default function Hero() {
                     }}
                     transition={{ duration: 0.3 }}
                     className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    aria-hidden="true"
                   >
                     <div className="relative">
                       <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl" />
                       <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
-                        <Play className="w-10 h-10 text-white fill-white ml-1" />
+                        <Play className="w-10 h-10 text-white fill-white ml-1" aria-hidden="true" />
                       </div>
                     </div>
                   </motion.div>
@@ -541,12 +552,13 @@ export default function Hero() {
                     transition={{ delay: 1, duration: 0.5 }}
                     whileTap={{ scale: 0.95 }}
                     className="absolute top-4 right-4 z-20 group"
+                    aria-label={isMuted ? "Activer le son" : "Couper le son"}
                   >
                     <div className="relative flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-amber-400/50 transition-all duration-300">
                       {isMuted ? (
-                        <VolumeX className="w-5 h-5 text-white/70 group-hover:text-amber-400" />
+                        <VolumeX className="w-5 h-5 text-white/70 group-hover:text-amber-400" aria-hidden="true" />
                       ) : (
-                        <Volume2 className="w-5 h-5 text-amber-400" />
+                        <Volume2 className="w-5 h-5 text-amber-400" aria-hidden="true" />
                       )}
                     </div>
                   </motion.button>

@@ -92,7 +92,7 @@ export default function MeetingRooms() {
             className="inline-flex items-center mb-12"
           >
             <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-white/30 mr-4"></div>
-            <span className="text-xs font-montserrat font-medium text-white/50 tracking-[0.3em] uppercase">
+            <span className="text-xs font-montserrat font-medium text-white/70 tracking-[0.3em] uppercase">
               Salles de Réunion
             </span>
             <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-white/30 ml-4"></div>
@@ -181,7 +181,7 @@ export default function MeetingRooms() {
                     
                     <div className="flex items-center gap-4 mb-4">
                       <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-white/40" />
+                        <Users className="w-4 h-4 text-white/70" />
                         <span className="text-white/80 text-sm font-inter">{room.capacity}</span>
                       </div>
                       <div className="w-px h-4 bg-white/20"></div>
@@ -196,7 +196,7 @@ export default function MeetingRooms() {
                         </span>
                       ))}
                       {room.features.length > 2 && (
-                        <span className="px-3 py-1 bg-white/5 rounded-full text-white/40 text-xs font-inter">
+                        <span className="px-3 py-1 bg-white/5 rounded-full text-white/70 text-xs font-inter">
                           +{room.features.length - 2}
                         </span>
                       )}
@@ -245,7 +245,7 @@ export default function MeetingRooms() {
                         </div>
                         <div className="flex-1">
                           <h4 className="text-white font-montserrat font-semibold mb-1">{service.label}</h4>
-                          <p className="text-white/40 text-sm font-inter">{service.desc}</p>
+                          <p className="text-white/70 text-sm font-inter">{service.desc}</p>
                         </div>
                       </div>
                     </div>
@@ -293,15 +293,15 @@ export default function MeetingRooms() {
                 <div className="grid grid-cols-3 gap-8 mb-10">
                   <div>
                     <div className="text-3xl font-montserrat font-bold text-white mb-1">98%</div>
-                    <div className="text-white/40 text-sm font-inter">Satisfaction client</div>
+                    <div className="text-white/70 text-sm font-inter">Satisfaction client</div>
                   </div>
                   <div>
                     <div className="text-3xl font-montserrat font-bold text-white mb-1">24/7</div>
-                    <div className="text-white/40 text-sm font-inter">Réservation en ligne</div>
+                    <div className="text-white/70 text-sm font-inter">Réservation en ligne</div>
                   </div>
                   <div>
                     <div className="text-3xl font-montserrat font-bold text-white mb-1">15min</div>
-                    <div className="text-white/40 text-sm font-inter">Confirmation rapide</div>
+                    <div className="text-white/70 text-sm font-inter">Confirmation rapide</div>
                   </div>
                 </div>
 

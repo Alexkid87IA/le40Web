@@ -38,7 +38,7 @@ export default function ProblemSolutionSection() {
                 <div className="text-red-400 font-montserrat font-bold text-sm md:text-base lg:text-lg">
                   LES PROBLÈMES CLASSIQUES
                 </div>
-                <div className="text-white/50 text-xs md:text-sm font-inter">
+                <div className="text-white/70 text-xs md:text-sm font-inter">
                   Ce que vivent les équipes aujourd'hui
                 </div>
               </div>
@@ -100,7 +100,7 @@ export default function ProblemSolutionSection() {
                 <div className="text-emerald-400 font-montserrat font-bold text-sm md:text-base lg:text-lg">
                   LA SOLUTION LE 40
                 </div>
-                <div className="text-white/50 text-xs md:text-sm font-inter">
+                <div className="text-white/70 text-xs md:text-sm font-inter">
                   Le meilleur des deux mondes
                 </div>
               </div>

@@ -224,7 +224,7 @@ export default function Community() {
                     <Calendar className="w-8 h-8 text-violet-400" />
                   </div>
                   <div>
-                    <div className="text-white/50 text-sm font-medium mb-1">Prochain événement</div>
+                    <div className="text-white/70 text-sm font-medium mb-1">Prochain événement</div>
                     <div className="text-white font-bold text-lg">Afterwork Networking</div>
                     <div className="text-violet-400 text-sm font-medium">Jeudi 7 Nov à 18h</div>
                   </div>
