@@ -4,7 +4,7 @@
  */
 
 import { motion } from 'framer-motion';
-import { Check, X, Search, ChevronDown, ChevronUp, Package } from 'lucide-react';
+import { Check, X, Search, ChevronDown, ChevronUp, Package, Eye } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { EXTRAS_CATEGORIES } from '../../../data/studios';
 import type { ExtrasStepProps } from './types';
@@ -217,18 +217,22 @@ export default function ExtrasStep({
                             </button>
                           </div>
 
-                          {/* Description - clickable to open details */}
+                          {/* Description */}
+                          <p className="text-xs text-white/50 mt-1 line-clamp-1">
+                            {extra.description}
+                          </p>
+
+                          {/* "Voir détails" link - always visible */}
                           <button
                             onClick={() => onOpenExtraDetail(extra)}
-                            className="text-left w-full"
+                            className="flex items-center gap-1 mt-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
                           >
-                            <p className="text-xs text-white/50 mt-1 line-clamp-2 hover:text-white/70 transition-colors">
-                              {extra.description}
-                            </p>
+                            <Eye className="w-3 h-3" />
+                            <span className="underline">Voir détails</span>
                           </button>
 
                           {/* Price row */}
-                          <div className="flex items-center justify-between mt-2">
+                          <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
                             <button
                               onClick={() => onToggleExtra(extra)}
                               className={`text-lg font-black transition-colors ${isSelected ? 'text-emerald-400' : 'text-white hover:text-emerald-400'}`}
