@@ -1,9 +1,11 @@
 /**
  * FormuleStep - Step 2: Formula Selection
+ * Refonte UX: plus compact, tableau comparatif collapsible
  */
 
-import { motion } from 'framer-motion';
-import { Check, X } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, X, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { FORMULES } from '../../../data/studios';
 import type { FormuleStepProps } from './types';
 
@@ -12,22 +14,26 @@ export default function FormuleStep({
   selectedDuration,
   onSelectFormule,
 }: FormuleStepProps) {
+  const [showComparison, setShowComparison] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="space-y-6"
+      className="space-y-5"
     >
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-montserrat font-black text-white mb-2">
+      {/* Header compact */}
+      <div className="text-center mb-4">
+        <h2 className="text-xl md:text-2xl font-montserrat font-black text-white mb-1">
           Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">formule</span>
         </h2>
-        <p className="text-white/60">Quel niveau d'accompagnement souhaitez-vous ?</p>
+        <p className="text-white/60 text-sm">Quel niveau d'accompagnement souhaitez-vous ?</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Formules - horizontal on desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {FORMULES.map((formule) => {
           const isSelected = selectedFormule?.id === formule.id;
           const variant = formule.variants.find(v => v.duration === selectedDuration);
@@ -37,64 +43,71 @@ export default function FormuleStep({
             <motion.button
               key={formule.id}
               onClick={() => onSelectFormule(formule)}
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              className={`relative p-6 rounded-2xl border-2 text-left transition-all ${
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
+              className={`relative p-4 rounded-xl border-2 text-left transition-all ${
                 isSelected
-                  ? `border-${formule.color}-500 bg-${formule.color}-500/10 shadow-lg shadow-${formule.color}-500/20`
-                  : 'border-white/10 bg-zinc-900/50 hover:border-white/20'
+                  ? 'border-emerald-500 bg-emerald-500/10 shadow-lg shadow-emerald-500/20'
+                  : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/8'
               }`}
             >
+              {/* Recommended badge */}
               {formule.recommended && (
-                <div className="absolute -top-3 left-4 px-3 py-1 bg-amber-500 rounded-full text-xs font-bold text-black">
+                <div className="absolute -top-2 right-3 px-2 py-0.5 bg-amber-500 rounded-full text-[10px] font-bold text-black">
                   Recommandé
                 </div>
               )}
 
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">{formule.icon}</span>
-                <div>
-                  <h3 className="font-bold text-xl text-white">{formule.name}</h3>
-                  <p className="text-sm text-white/60">{formule.tagline}</p>
+              {/* Header with icon */}
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">{formule.icon}</span>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className={`font-bold text-base ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
+                      {formule.name}
+                    </h3>
+                    {isSelected && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center"
+                      >
+                        <Check className="w-3 h-3 text-white" />
+                      </motion.div>
+                    )}
+                  </div>
+                  <p className="text-xs text-white/50">{formule.tagline}</p>
                 </div>
               </div>
 
-              <div className="space-y-2 mb-6">
-                {formule.features.slice(0, 5).map((feature, idx) => (
+              {/* Features - compact list */}
+              <div className="space-y-1.5 mb-4">
+                {formule.features.slice(0, 3).map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-2">
-                    <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
-                      isSelected ? `text-${formule.color}-400` : 'text-emerald-400'
+                    <Check className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${
+                      isSelected ? 'text-emerald-400' : 'text-white/40'
                     }`} />
-                    <span className="text-sm text-white/80">{feature}</span>
+                    <span className="text-xs text-white/70 leading-tight">{feature}</span>
                   </div>
                 ))}
-                {formule.features.length > 5 && (
-                  <div className="text-sm text-white/40">
-                    +{formule.features.length - 5} autres avantages...
+                {formule.features.length > 3 && (
+                  <div className="text-[10px] text-white/40 ml-5">
+                    +{formule.features.length - 3} autres...
                   </div>
                 )}
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                <div>
-                  {price === 0 ? (
-                    <span className="text-2xl font-black text-emerald-400">Inclus</span>
-                  ) : (
-                    <>
-                      <span className="text-2xl font-black text-white">+{price}€</span>
-                      <span className="text-sm text-white/60 ml-1">pour {selectedDuration}</span>
-                    </>
-                  )}
-                </div>
-
-                {isSelected && (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className={`w-8 h-8 rounded-full bg-${formule.color}-500 flex items-center justify-center`}
-                  >
-                    <Check className="w-5 h-5 text-white" />
-                  </motion.div>
+              {/* Price */}
+              <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                {price === 0 ? (
+                  <span className="text-lg font-black text-emerald-400">Inclus</span>
+                ) : (
+                  <div>
+                    <span className={`text-lg font-black ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
+                      +{price}€
+                    </span>
+                    <span className="text-[10px] text-white/40 ml-1">/{selectedDuration}</span>
+                  </div>
                 )}
               </div>
             </motion.button>
@@ -102,53 +115,73 @@ export default function FormuleStep({
         })}
       </div>
 
-      {/* Comparison Table */}
-      <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10">
-        <h3 className="font-bold text-lg text-white mb-4">Comparatif des formules</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-white/10">
-                <th className="text-left py-3 px-4 text-white/60">Inclus</th>
-                {FORMULES.map(f => (
-                  <th key={f.id} className="text-center py-3 px-4 text-white">{f.icon} {f.name}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-white/5">
-                <td className="py-3 px-4 text-white/80">Installation matériel</td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-              </tr>
-              <tr className="border-b border-white/5">
-                <td className="py-3 px-4 text-white/80">Tech dédié</td>
-                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-              </tr>
-              <tr className="border-b border-white/5">
-                <td className="py-3 px-4 text-white/80">Montage inclus</td>
-                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-              </tr>
-              <tr className="border-b border-white/5">
-                <td className="py-3 px-4 text-white/80">Script inclus</td>
-                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-              </tr>
-              <tr>
-                <td className="py-3 px-4 text-white/80">Livraison clé en main</td>
-                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><X className="w-5 h-5 text-white/20 mx-auto" /></td>
-                <td className="text-center py-3 px-4"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      {/* Collapsible Comparison Table */}
+      <div className="bg-white/5 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden">
+        <button
+          onClick={() => setShowComparison(!showComparison)}
+          className="w-full px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <HelpCircle className="w-4 h-4 text-white/40" />
+            <span className="text-sm font-bold text-white">Comparatif des formules</span>
+          </div>
+          {showComparison ? (
+            <ChevronUp className="w-5 h-5 text-white/40" />
+          ) : (
+            <ChevronDown className="w-5 h-5 text-white/40" />
+          )}
+        </button>
+
+        <AnimatePresence>
+          {showComparison && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden"
+            >
+              <div className="px-4 pb-4">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-white/10">
+                        <th className="text-left py-2 px-2 text-white/50 text-xs font-medium">Inclus</th>
+                        {FORMULES.map(f => (
+                          <th key={f.id} className="text-center py-2 px-2">
+                            <span className="text-xs text-white">{f.icon}</span>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="text-xs">
+                      {[
+                        { label: 'Installation matériel', values: [true, true, true] },
+                        { label: 'Tech dédié', values: [false, true, true] },
+                        { label: 'Montage inclus', values: [false, false, true] },
+                        { label: 'Script inclus', values: [false, false, true] },
+                        { label: 'Livraison clé en main', values: [false, false, true] },
+                      ].map((row, idx) => (
+                        <tr key={idx} className="border-b border-white/5 last:border-0">
+                          <td className="py-2 px-2 text-white/60">{row.label}</td>
+                          {row.values.map((val, i) => (
+                            <td key={i} className="text-center py-2 px-2">
+                              {val ? (
+                                <Check className="w-4 h-4 text-emerald-400 mx-auto" />
+                              ) : (
+                                <X className="w-4 h-4 text-white/20 mx-auto" />
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );

@@ -1,9 +1,11 @@
 /**
  * ExtrasStep - Step 3: Extras Selection
+ * Refonte UX: scroll interne, filtres sticky, compteur
  */
 
 import { motion } from 'framer-motion';
-import { Check, X, Search, Info } from 'lucide-react';
+import { Check, X, Search, Info, ChevronDown, ChevronUp, Package } from 'lucide-react';
+import { useState, useMemo } from 'react';
 import { EXTRAS_CATEGORIES } from '../../../data/studios';
 import type { ExtrasStepProps } from './types';
 
@@ -18,174 +20,250 @@ export default function ExtrasStep({
   onSetSearch,
   onOpenExtraDetail,
 }: ExtrasStepProps) {
+  const [isSelectedExpanded, setIsSelectedExpanded] = useState(true);
+
+  // Group extras by category for better organization
+  const groupedExtras = useMemo(() => {
+    if (extraCategory !== 'all') {
+      return { [extraCategory]: filteredExtras };
+    }
+
+    const groups: Record<string, typeof filteredExtras> = {};
+    filteredExtras.forEach(extra => {
+      if (!groups[extra.category]) {
+        groups[extra.category] = [];
+      }
+      groups[extra.category].push(extra);
+    });
+    return groups;
+  }, [filteredExtras, extraCategory]);
+
+  const totalExtrasCount = filteredExtras.length;
+  const categoryName = EXTRAS_CATEGORIES.find(c => c.id === extraCategory)?.name || 'Tous';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className="space-y-6"
+      className="flex flex-col h-full"
     >
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-montserrat font-black text-white mb-2">
+      {/* Header compact */}
+      <div className="text-center mb-4">
+        <h2 className="text-xl md:text-2xl font-montserrat font-black text-white mb-1">
           Ajoutez des <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">extras</span>
         </h2>
-        <p className="text-white/60">Personnalisez votre expérience (optionnel)</p>
+        <p className="text-white/60 text-sm">Personnalisez votre expérience (optionnel)</p>
       </div>
 
-      {/* Filters and search */}
-      <div className="flex flex-col md:flex-row gap-4">
-        {/* Categories */}
-        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-          {EXTRAS_CATEGORIES.map((cat) => {
-            const Icon = cat.icon;
-            return (
-              <button
-                key={cat.id}
-                onClick={() => onSetCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-all ${
-                  extraCategory === cat.id
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-white/10 text-white/60 hover:bg-white/20'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                <span className="text-sm font-medium">{cat.name}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Search */}
-        <div className="relative flex-1 max-w-xs">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-          <input
-            type="text"
-            value={searchExtra}
-            onChange={(e) => onSetSearch(e.target.value)}
-            placeholder="Rechercher..."
-            className="w-full pl-10 pr-4 py-2 bg-white/10 border border-white/10 rounded-xl text-white placeholder-white/40 focus:border-emerald-500 focus:outline-none"
-          />
-        </div>
-      </div>
-
-      {/* Selected extras summary */}
-      {selectedExtras.length > 0 && (
-        <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-4">
-          <div className="flex items-center justify-between mb-3">
-            <span className="font-bold text-white">{selectedExtras.length} extra(s) sélectionné(s)</span>
-            <span className="text-emerald-400 font-bold">+{extrasPrice}€</span>
+      {/* Sticky filters zone */}
+      <div className="sticky top-0 z-20 bg-[#0A0A0A]/95 backdrop-blur-xl pb-4 -mx-4 px-4 border-b border-white/5">
+        <div className="flex flex-col gap-3">
+          {/* Search + Counter row */}
+          <div className="flex items-center gap-3">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
+              <input
+                type="text"
+                value={searchExtra}
+                onChange={(e) => onSetSearch(e.target.value)}
+                placeholder="Rechercher un extra..."
+                className="w-full pl-9 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm placeholder-white/40 focus:border-emerald-500 focus:outline-none transition-colors"
+              />
+            </div>
+            <div className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-xl">
+              <Package className="w-4 h-4 text-white/40" />
+              <span className="text-white/70 text-sm font-medium">{totalExtrasCount}</span>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {selectedExtras.map((extra) => (
-              <span
-                key={extra.id}
-                className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-sm text-white"
-              >
-                {extra.name}
+
+          {/* Categories horizontal scroll */}
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-1 px-1">
+            {EXTRAS_CATEGORIES.map((cat) => {
+              const Icon = cat.icon;
+              const isActive = extraCategory === cat.id;
+              return (
                 <button
-                  onClick={() => onToggleExtra(extra)}
-                  className="hover:text-red-400"
+                  key={cat.id}
+                  onClick={() => onSetCategory(cat.id)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full whitespace-nowrap transition-all text-sm ${
+                    isActive
+                      ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20'
+                      : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white/80'
+                  }`}
                 >
-                  <X className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
+                  <span className="font-medium">{cat.name}</span>
                 </button>
-              </span>
-            ))}
+              );
+            })}
           </div>
+        </div>
+      </div>
+
+      {/* Selected extras collapsible summary */}
+      {selectedExtras.length > 0 && (
+        <div className="mt-4 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-xl overflow-hidden">
+          <button
+            onClick={() => setIsSelectedExpanded(!isSelectedExpanded)}
+            className="w-full px-4 py-3 flex items-center justify-between hover:bg-white/5 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                <Check className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div className="text-left">
+                <span className="font-bold text-white text-sm">{selectedExtras.length} extra{selectedExtras.length > 1 ? 's' : ''}</span>
+                <span className="text-emerald-400 font-bold ml-2">+{extrasPrice}€</span>
+              </div>
+            </div>
+            {isSelectedExpanded ? (
+              <ChevronUp className="w-5 h-5 text-white/40" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-white/40" />
+            )}
+          </button>
+
+          {isSelectedExpanded && (
+            <div className="px-4 pb-3 flex flex-wrap gap-2">
+              {selectedExtras.map((extra) => (
+                <span
+                  key={extra.id}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/10 rounded-lg text-xs text-white"
+                >
+                  {extra.name}
+                  <button
+                    onClick={() => onToggleExtra(extra)}
+                    className="hover:text-red-400 transition-colors"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
-      {/* Extras grid - Premium design */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {filteredExtras.map((extra) => {
-          const isSelected = selectedExtras.some(e => e.id === extra.id);
-          const Icon = extra.icon;
+      {/* Scrollable extras container */}
+      <div className="mt-4 flex-1 overflow-y-auto max-h-[50vh] lg:max-h-[55vh] pr-2 -mr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+        {Object.entries(groupedExtras).map(([categoryId, extras]) => {
+          const category = EXTRAS_CATEGORIES.find(c => c.id === categoryId);
+          const showCategoryHeader = extraCategory === 'all' && category;
 
           return (
-            <motion.div
-              key={extra.id}
-              whileHover={{ scale: 1.01, y: -2 }}
-              className={`relative group p-5 rounded-2xl border-2 text-left transition-all duration-300 ${
-                isSelected
-                  ? 'border-emerald-500 bg-gradient-to-br from-emerald-500/15 to-teal-500/10 shadow-lg shadow-emerald-500/10'
-                  : 'border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-800/50 hover:border-white/20 hover:from-zinc-800/80 hover:to-zinc-700/50'
-              }`}
-            >
-              {/* Buttons top right */}
-              <div className="absolute top-4 right-4 flex items-center gap-2">
-                {/* Info button for details */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onOpenExtraDetail(extra);
-                  }}
-                  className="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all opacity-60 hover:opacity-100"
-                  title="Voir les détails"
-                >
-                  <Info className="w-4 h-4 text-white" />
-                </button>
+            <div key={categoryId} className="mb-6 last:mb-0">
+              {showCategoryHeader && (
+                <div className="flex items-center gap-2 mb-3 sticky top-0 bg-[#0A0A0A]/90 py-2 -mt-2">
+                  {category && <category.icon className="w-4 h-4 text-white/40" />}
+                  <h3 className="text-sm font-bold text-white/60 uppercase tracking-wide">
+                    {category?.name}
+                  </h3>
+                  <span className="text-xs text-white/30">({extras.length})</span>
+                </div>
+              )}
 
-                {/* Selection checkbox */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onToggleExtra(extra);
-                  }}
-                  className={`w-7 h-7 rounded-lg border-2 flex items-center justify-center transition-all ${
-                    isSelected
-                      ? 'bg-emerald-500 border-emerald-500'
-                      : 'border-white/20 group-hover:border-white/40 hover:bg-white/10'
-                  }`}
-                >
-                  {isSelected && <Check className="w-4 h-4 text-white" />}
-                </button>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {extras.map((extra) => {
+                  const isSelected = selectedExtras.some(e => e.id === extra.id);
+                  const Icon = extra.icon;
+
+                  return (
+                    <motion.div
+                      key={extra.id}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      onClick={() => onToggleExtra(extra)}
+                      className={`relative group p-4 rounded-xl border cursor-pointer transition-all duration-200 ${
+                        isSelected
+                          ? 'border-emerald-500 bg-emerald-500/10'
+                          : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/8'
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* Icon */}
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all ${
+                          isSelected
+                            ? 'bg-emerald-500 shadow-lg shadow-emerald-500/30'
+                            : 'bg-white/10 group-hover:bg-white/15'
+                        }`}>
+                          <Icon className={`w-5 h-5 ${isSelected ? 'text-white' : 'text-white/70'}`} />
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <h4 className={`font-bold text-sm leading-tight ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
+                              {extra.name}
+                            </h4>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              {/* Info button */}
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onOpenExtraDetail(extra);
+                                }}
+                                className="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                                title="Voir les détails"
+                              >
+                                <Info className="w-3.5 h-3.5 text-white/70" />
+                              </button>
+
+                              {/* Checkbox */}
+                              <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-all ${
+                                isSelected
+                                  ? 'bg-emerald-500 border-emerald-500'
+                                  : 'border-white/20 group-hover:border-white/40'
+                              }`}>
+                                {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                              </div>
+                            </div>
+                          </div>
+
+                          <p className="text-xs text-white/50 mt-1 line-clamp-2">
+                            {extra.description}
+                          </p>
+
+                          <div className="flex items-center justify-between mt-2">
+                            <span className={`text-lg font-black ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
+                              {extra.price}€
+                            </span>
+                            <span className="text-xs text-white/40">
+                              {extra.unit}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
-
-              {/* Clickable zone to open details */}
-              <button
-                onClick={() => onOpenExtraDetail(extra)}
-                className="w-full text-left"
-              >
-                {/* Icon with gradient background */}
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all ${
-                  isSelected
-                    ? 'bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/30'
-                    : 'bg-gradient-to-br from-white/10 to-white/5 group-hover:from-white/15 group-hover:to-white/10'
-                }`}>
-                  <Icon className={`w-6 h-6 ${isSelected ? 'text-white' : 'text-white/70'}`} />
-                </div>
-
-                {/* Content - Title never truncated */}
-                <div className="pr-10">
-                  <h4 className="font-bold text-white text-base leading-tight mb-1 hover:text-emerald-400 transition-colors">
-                    {extra.name}
-                  </h4>
-                  <p className="text-sm text-white/50 leading-relaxed">
-                    {extra.description}
-                  </p>
-                </div>
-              </button>
-
-              {/* Price at bottom - clickable to toggle */}
-              <button
-                onClick={() => onToggleExtra(extra)}
-                className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between w-full text-left hover:opacity-80 transition-opacity"
-              >
-                <span className={`text-xl font-black ${isSelected ? 'text-emerald-400' : 'text-white'}`}>
-                  {extra.price}€
-                </span>
-                <span className="text-xs text-white/40 font-medium uppercase tracking-wide">
-                  {extra.unit}
-                </span>
-              </button>
-            </motion.div>
+            </div>
           );
         })}
+
+        {filteredExtras.length === 0 && (
+          <div className="text-center py-12 text-white/40">
+            <Package className="w-12 h-12 mx-auto mb-3 opacity-50" />
+            <p>Aucun extra trouvé pour cette recherche</p>
+          </div>
+        )}
       </div>
 
-      {filteredExtras.length === 0 && (
-        <div className="text-center py-12 text-white/40">
-          Aucun extra trouvé pour cette recherche
+      {/* Quick action footer */}
+      {selectedExtras.length > 0 && (
+        <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+          <button
+            onClick={() => selectedExtras.forEach(e => onToggleExtra(e))}
+            className="text-sm text-white/50 hover:text-red-400 transition-colors"
+          >
+            Tout désélectionner
+          </button>
+          <div className="text-right">
+            <span className="text-white/60 text-sm">Total extras:</span>
+            <span className="text-emerald-400 font-bold text-lg ml-2">+{extrasPrice}€</span>
+          </div>
         </div>
       )}
     </motion.div>
