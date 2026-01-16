@@ -85,8 +85,8 @@ export const UnifiedCartProvider: React.FC<{ children: ReactNode }> = ({ childre
     if (savedLocalCart) {
       try {
         setLocalItems(JSON.parse(savedLocalCart));
-      } catch (e) {
-        console.error('Failed to parse local cart:', e);
+      } catch {
+        // Invalid cart data, reset to empty
       }
     }
 
@@ -119,8 +119,8 @@ export const UnifiedCartProvider: React.FC<{ children: ReactNode }> = ({ childre
         availableForSale: true,
       }));
       setShopifyItems(items);
-    } catch (err) {
-      console.error('Failed to fetch Shopify checkout:', err);
+    } catch {
+      // Checkout expired or invalid, reset
       localStorage.removeItem(SHOPIFY_CHECKOUT_KEY);
     }
   };
@@ -205,8 +205,7 @@ export const UnifiedCartProvider: React.FC<{ children: ReactNode }> = ({ childre
       setShopifyItems(items);
       setIsOpen(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to add item to cart');
-      console.error('Add to Shopify cart error:', err);
+      setError(err instanceof Error ? err.message : 'Erreur lors de l\'ajout au panier');
     } finally {
       setLoading(false);
     }

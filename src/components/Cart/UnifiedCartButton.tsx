@@ -8,7 +8,16 @@ interface UnifiedCartButtonProps {
 
 // Fonction pour obtenir les couleurs selon la page
 const getCartColors = (pathname: string) => {
-  const colorMap: Record<string, any> = {
+  const colorMap: Record<string, {
+    bg: string;
+    border: string;
+    borderHover: string;
+    icon: string;
+    iconHover: string;
+    badge: string;
+    badgeShadow: string;
+    shimmer: string;
+  }> = {
     '/': {
       bg: 'from-orange-600/20 to-orange-700/20',
       border: 'border-orange-500/30',
@@ -58,6 +67,16 @@ const getCartColors = (pathname: string) => {
       badge: 'from-teal-600 to-teal-700',
       badgeShadow: 'shadow-teal-500/50',
       shimmer: 'from-teal-600/0 via-teal-600/30 to-teal-600/0',
+    },
+    '/packs': {
+      bg: 'from-amber-600/20 to-amber-700/20',
+      border: 'border-amber-500/30',
+      borderHover: 'hover:border-amber-500/50',
+      icon: 'text-amber-400',
+      iconHover: 'group-hover:text-amber-300',
+      badge: 'from-amber-600 to-amber-700',
+      badgeShadow: 'shadow-amber-500/50',
+      shimmer: 'from-amber-600/0 via-amber-600/30 to-amber-600/0',
     },
     '/bundles': {
       bg: 'from-amber-600/20 to-amber-700/20',
@@ -109,6 +128,10 @@ export default function UnifiedCartButton({ pathname = '' }: UnifiedCartButtonPr
 
   const colors = getCartColors(pathname);
 
+  const ariaLabel = itemCount > 0
+    ? `Ouvrir le panier, ${itemCount} article${itemCount > 1 ? 's' : ''}`
+    : 'Ouvrir le panier, panier vide';
+
   return (
     <motion.button
       onClick={() => setIsOpen(true)}
@@ -116,9 +139,12 @@ export default function UnifiedCartButton({ pathname = '' }: UnifiedCartButtonPr
       whileTap={{ scale: 0.95 }}
       className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${colors.bg}
                  border ${colors.border} flex items-center justify-center group
-                 ${colors.borderHover} transition-all duration-300`}
+                 ${colors.borderHover} transition-all duration-300
+                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white/50`}
+      aria-label={ariaLabel}
+      aria-haspopup="dialog"
     >
-      <ShoppingCart className={`w-6 h-6 ${colors.icon} ${colors.iconHover} transition-colors`} />
+      <ShoppingCart className={`w-6 h-6 ${colors.icon} ${colors.iconHover} transition-colors`} aria-hidden="true" />
 
       <AnimatePresence>
         {itemCount > 0 && (
@@ -128,6 +154,7 @@ export default function UnifiedCartButton({ pathname = '' }: UnifiedCartButtonPr
             exit={{ scale: 0, opacity: 0 }}
             className={`absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r ${colors.badge}
                        rounded-full flex items-center justify-center shadow-lg ${colors.badgeShadow}`}
+            aria-hidden="true"
           >
             <span className="text-white text-xs font-bold">{itemCount > 99 ? '99+' : itemCount}</span>
           </motion.div>
@@ -145,6 +172,7 @@ export default function UnifiedCartButton({ pathname = '' }: UnifiedCartButtonPr
           repeat: Infinity,
           repeatDelay: 3,
         }}
+        aria-hidden="true"
       />
     </motion.button>
   );
