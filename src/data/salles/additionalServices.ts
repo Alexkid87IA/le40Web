@@ -1,11 +1,12 @@
 import { Utensils, Camera, Headphones, Package, Users as UsersIcon, Sparkles } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export interface AdditionalService {
   id: string;
   name: string;
   description: string;
   price: string;
-  icon: any;
+  icon: LucideIcon;
   gradient: string;
   features: string[];
   popular?: boolean;

@@ -1,8 +1,9 @@
 import { Monitor, Wifi, Coffee, Mic, Video, Projector, Speaker, Thermometer } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export interface EquipmentCategory {
   category: string;
-  icon: any;
+  icon: LucideIcon;
   items: string[];
   gradient: string;
 }

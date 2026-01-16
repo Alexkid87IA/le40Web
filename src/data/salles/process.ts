@@ -1,10 +1,11 @@
 import { Search, Calendar, CreditCard, CheckCircle } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export interface ProcessStep {
   number: string;
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   gradient: string;
   duration: string;
 }

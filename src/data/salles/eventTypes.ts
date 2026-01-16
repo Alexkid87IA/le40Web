@@ -1,9 +1,10 @@
 import { Briefcase, Users, Lightbulb, GraduationCap, Presentation, PartyPopper } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 export interface EventType {
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   gradient: string;
   recommendedSpaces: string[];
   examples: string[];
