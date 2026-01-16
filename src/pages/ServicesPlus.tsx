@@ -127,7 +127,7 @@ export default function ServicesPlus() {
       <HeaderNav />
       <MobileBurger />
       
-      <main className="pt-24">
+      <main className="pt-32">
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 film-grain">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">

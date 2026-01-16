@@ -104,7 +104,7 @@ export default function Experts() {
       <HeaderNav />
       <MobileBurger />
       
-      <main className="pt-24">
+      <main className="pt-32">
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 film-grain">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">

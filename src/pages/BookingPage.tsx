@@ -65,7 +65,7 @@ export default function BookingPage() {
       <HeaderNav />
       <MobileBurger />
 
-      <main className="pt-20 sm:pt-24">
+      <main className="pt-28 sm:pt-32">
         <AnimatePresence mode="wait">
           {viewMode === 'choice' ? (
             <motion.div

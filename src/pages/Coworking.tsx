@@ -149,7 +149,7 @@ export default function Coworking() {
       <HeaderNav />
       <MobileBurger />
       
-      <main className="pt-24">
+      <main className="pt-32">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           {/* Background avec effet parallax */}
