@@ -83,7 +83,7 @@ export default function Studios() {
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source 
-              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803653/d928c6b7-f494-4466-81f2-040f32b9eadc_nqynim.mp4" 
+              src="https://le40-cdn.b-cdn.net/videos/studios/studios-background.mp4" 
               type="video/mp4" 
             />
           </video>

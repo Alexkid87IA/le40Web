@@ -32,7 +32,7 @@ export default function HeroSection() {
             }}
           >
             <source
-              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761808607/8fc51ed3-de40-42f7-ac18-7dd2da634556_yxt3cm.mp4"
+              src="https://le40-cdn.b-cdn.net/videos/club/club-background.mp4"
               type="video/mp4"
             />
           </video>

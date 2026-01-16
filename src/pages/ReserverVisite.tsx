@@ -92,8 +92,7 @@ export default function ReserverVisite() {
       setTimeout(() => {
         navigate('/');
       }, 3000);
-    } catch (error) {
-      console.error('Error submitting visit request:', error);
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

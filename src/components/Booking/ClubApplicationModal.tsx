@@ -132,8 +132,7 @@ export default function ClubApplicationModal({ isOpen, onClose }: ClubApplicatio
         setSubmitStatus('idle');
         setErrors({});
       }, 3000);
-    } catch (error) {
-      console.error('Error submitting club application:', error);
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

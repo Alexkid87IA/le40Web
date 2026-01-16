@@ -8,7 +8,7 @@ export default function StudiosSection() {
     <>
       <AnimatedServiceSection
         id="studios-pro"
-        videoSrc="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803653/d928c6b7-f494-4466-81f2-040f32b9eadc_nqynim.mp4"
+        videoSrc="https://le40-cdn.b-cdn.net/videos/studios/studios-background.mp4"
         gradientClasses="bg-gradient-to-br from-blue-950/60 via-black/80 to-slate-950/60"
         badge={{
           icon: Video,
@@ -70,7 +70,7 @@ export default function StudiosSection() {
 
       <AnimatedServiceSection
         id="studios-content"
-        videoSrc="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761808607/8fc51ed3-de40-42f7-ac18-7dd2da634556_yxt3cm.mp4"
+        videoSrc="https://le40-cdn.b-cdn.net/videos/club/club-background.mp4"
         gradientClasses="bg-gradient-to-br from-red-950/60 via-black/80 to-rose-950/60"
         badge={{
           icon: Camera,

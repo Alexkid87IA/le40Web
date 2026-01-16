@@ -111,8 +111,7 @@ export default function VisitModal({ isOpen, onClose }: VisitModalProps) {
         setSubmitStatus('idle');
         setErrors({});
       }, 2500);
-    } catch (error) {
-      console.error('Error submitting visit request:', error);
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

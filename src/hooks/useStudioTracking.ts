@@ -14,7 +14,7 @@ export interface TrackingSession {
 export interface ConversionEvent {
   sessionId: string;
   eventType: string;
-  eventData?: Record<string, any>;
+  eventData?: Record<string, unknown>;
   pageSection?: string;
   ctaClicked?: string;
 }
@@ -43,8 +43,8 @@ export function useStudioTracking() {
         referrer: document.referrer || 'direct',
         device_type: deviceType,
       });
-    } catch (error) {
-      console.error('Failed to init session:', error);
+    } catch {
+      // Tracking failure is non-critical, silently ignore
     }
   }, []);
 
@@ -57,8 +57,8 @@ export function useStudioTracking() {
         page_section: event.pageSection,
         cta_clicked: event.ctaClicked,
       });
-    } catch (error) {
-      console.error('Failed to track event:', error);
+    } catch {
+      // Tracking failure is non-critical
     }
   }, []);
 
@@ -70,8 +70,8 @@ export function useStudioTracking() {
           .from('studio_sessions')
           .update({ scroll_depth: Math.round(depth) })
           .eq('session_id', sessionId.current);
-      } catch (error) {
-        console.error('Failed to update scroll depth:', error);
+      } catch {
+        // Non-critical
       }
     }
   }, []);
@@ -83,8 +83,8 @@ export function useStudioTracking() {
         .from('studio_sessions')
         .update({ time_spent_seconds: timeSpent })
         .eq('session_id', sessionId.current);
-    } catch (error) {
-      console.error('Failed to update time spent:', error);
+    } catch {
+      // Non-critical
     }
   }, []);
 
@@ -107,8 +107,8 @@ export function useStudioTracking() {
             .eq('session_id', sessionId.current);
         }
       }
-    } catch (error) {
-      console.error('Failed to track studio view:', error);
+    } catch {
+      // Non-critical
     }
   }, []);
 
@@ -126,8 +126,8 @@ export function useStudioTracking() {
         eventType: 'conversion',
         eventData: { value }
       });
-    } catch (error) {
-      console.error('Failed to track conversion:', error);
+    } catch {
+      // Non-critical
     }
   }, [trackEvent]);
 
@@ -172,8 +172,7 @@ export function useStudioTracking() {
       });
 
       return { success: true, shareToken, configId: data.id };
-    } catch (error) {
-      console.error('Failed to save configuration:', error);
+    } catch {
       return { success: false };
     }
   }, [trackEvent]);

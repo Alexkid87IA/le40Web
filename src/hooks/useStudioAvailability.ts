@@ -84,8 +84,7 @@ export function useStudioAvailability(studioType: 'podcast' | 'video' | 'photo',
       );
 
       setAvailableSlots(slots);
-    } catch (err) {
-      console.error('Error loading availability:', err);
+    } catch {
       setError('Erreur lors du chargement des disponibilités');
     } finally {
       setLoading(false);
@@ -151,8 +150,7 @@ export function useStudioAvailability(studioType: 'podcast' | 'video' | 'photo',
       await loadAvailability();
 
       return { success: true, booking: data };
-    } catch (err) {
-      console.error('Error creating booking:', err);
+    } catch {
       return { success: false, error: 'Erreur lors de la création de la réservation' };
     }
   };

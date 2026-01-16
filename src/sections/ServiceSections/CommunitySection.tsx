@@ -7,7 +7,7 @@ export default function CommunitySection() {
   return (
     <AnimatedServiceSection
       id="community"
-      videoSrc="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4"
+      videoSrc="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4"
       gradientClasses="bg-gradient-to-br from-orange-950/60 via-[#0A0A0A]/80 to-amber-950/60"
       badge={{
         icon: Users,

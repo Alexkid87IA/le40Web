@@ -146,8 +146,8 @@ export default function PricingSection() {
           availableForSale: firstVariant.availableForSale,
         });
       }
-    } catch (error) {
-      console.error('Error adding to cart:', error);
+    } catch {
+      // Error adding to cart, user will see the button reset
     } finally {
       setAddingProductId(null);
     }

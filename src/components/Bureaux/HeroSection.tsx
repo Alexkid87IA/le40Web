@@ -5,8 +5,8 @@ import VisitBookingModal from './VisitBookingModal';
 
 export default function BureauHeroSection() {
   // VIDÉOS BUREAUX
-  const videoUrl = "https://res.cloudinary.com/dafo6bvhc/video/upload/v1766057439/Bureau_le_40_vide%CC%81o_2_V2_1_kgumfa.mp4";
-  const backgroundVideoUrl = "https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4";
+  const videoUrl = "https://le40-cdn.b-cdn.net/videos/promo/bureau-promo-916.mp4";
+  const backgroundVideoUrl = "https://le40-cdn.b-cdn.net/videos/bureaux/bureaux-background.mp4";
 
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -46,7 +46,7 @@ export default function BureauHeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen lg:h-screen flex items-center overflow-hidden bg-black">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black py-20 lg:pt-24 lg:pb-8">
       {/* VIDEO DE FOND */}
       <div className="absolute inset-0 z-0">
         <video
@@ -103,7 +103,7 @@ export default function BureauHeroSection() {
                     muted={true}
                     playsInline
                     preload="metadata"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   >
                     <source src={videoUrl} type="video/mp4" />
                   </video>
@@ -303,7 +303,7 @@ export default function BureauHeroSection() {
 
         {/* Desktop Layout: Side by side */}
         <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr,420px] gap-8 items-center">
+          <div className="grid lg:grid-cols-[1fr,280px] xl:grid-cols-[1fr,320px] gap-6 xl:gap-8 items-center">
 
             <div>
               <motion.div
@@ -322,7 +322,7 @@ export default function BureauHeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-3 leading-[1.1]"
+                className="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-montserrat font-black text-white mb-2 lg:mb-3 leading-[1.1]"
               >
                 BUREAUX{' '}
                 <span className="relative inline-block">
@@ -344,7 +344,7 @@ export default function BureauHeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-base lg:text-lg text-white/70 font-inter mb-6 leading-relaxed max-w-xl"
+                className="text-sm lg:text-base xl:text-lg text-white/70 font-inter mb-4 xl:mb-6 leading-relaxed max-w-xl"
               >
                 De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion.
                 <span className="text-white font-semibold"> 127+ entreprises hébergées.</span>
@@ -354,7 +354,7 @@ export default function BureauHeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="grid grid-cols-4 gap-3 mb-6"
+                className="grid grid-cols-4 gap-2 xl:gap-3 mb-4 xl:mb-6"
               >
                 {[
                   { value: '100m²', label: 'surface max', color: 'from-blue-500 to-indigo-500' },
@@ -371,11 +371,11 @@ export default function BureauHeroSection() {
                     className="relative group"
                   >
                     <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300`} />
-                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-3 group-hover:border-white/30 transition-all duration-300 text-center">
-                      <div className={`text-xl lg:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-1`}>
+                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-2 xl:p-3 group-hover:border-white/30 transition-all duration-300 text-center">
+                      <div className={`text-lg lg:text-xl xl:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5 xl:mb-1`}>
                         {stat.value}
                       </div>
-                      <div className="text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
+                      <div className="text-[9px] xl:text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
                         {stat.label}
                       </div>
                     </div>
@@ -387,7 +387,7 @@ export default function BureauHeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="flex items-center gap-3 mb-6"
+                className="flex items-center gap-3 mb-4 xl:mb-6"
               >
                 <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-md border border-blue-400/30">
                   <div className="flex items-center gap-0.5">
@@ -483,11 +483,11 @@ export default function BureauHeroSection() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              {/* Video Card with sophisticated design */}
-              <div className="relative w-full max-h-[70vh] aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
+              {/* Video Card with sophisticated design - True 9:16 ratio */}
+              <div className="relative w-full aspect-[9/16] max-h-[60vh] xl:max-h-[70vh] 2xl:max-h-[calc(100vh-140px)] rounded-2xl xl:rounded-3xl overflow-hidden shadow-2xl">
                 {/* Animated border glow */}
                 <motion.div
-                  className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-3xl opacity-60 blur-xl"
+                  className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-2xl xl:rounded-3xl opacity-60 blur-xl"
                   animate={{
                     opacity: [0.4, 0.7, 0.4],
                     scale: [1, 1.02, 1]
@@ -497,7 +497,7 @@ export default function BureauHeroSection() {
 
                 {/* Inner video container */}
                 <div
-                  className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-blue-500/30 bg-black cursor-pointer"
+                  className="relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden border-2 border-blue-500/30 bg-black cursor-pointer"
                   onClick={togglePlayPause}
                 >
                   {!isMobile && (
@@ -508,14 +508,11 @@ export default function BureauHeroSection() {
                       muted={true}
                       playsInline
                       preload="metadata"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     >
                       <source src={videoUrl} type="video/mp4" />
                     </video>
                   )}
-
-                  {/* Gradient overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
 
                   {/* Play/Pause Button (Center) - Shows when paused */}
                   <motion.div
@@ -558,15 +555,15 @@ export default function BureauHeroSection() {
                   </motion.button>
 
                   {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl" />
-                  <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-blue-500/30 rounded-tr-3xl" />
-                  <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-blue-500/30 rounded-bl-3xl" />
-                  <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-blue-500/30 rounded-br-3xl" />
+                  <div className="absolute top-0 left-0 w-16 h-16 xl:w-24 xl:h-24 border-t-2 border-l-2 border-blue-500/30 rounded-tl-2xl xl:rounded-tl-3xl" />
+                  <div className="absolute top-0 right-0 w-16 h-16 xl:w-24 xl:h-24 border-t-2 border-r-2 border-blue-500/30 rounded-tr-2xl xl:rounded-tr-3xl" />
+                  <div className="absolute bottom-0 left-0 w-16 h-16 xl:w-24 xl:h-24 border-b-2 border-l-2 border-blue-500/30 rounded-bl-2xl xl:rounded-bl-3xl" />
+                  <div className="absolute bottom-0 right-0 w-16 h-16 xl:w-24 xl:h-24 border-b-2 border-r-2 border-blue-500/30 rounded-br-2xl xl:rounded-br-3xl" />
                 </div>
 
                 {/* Outer glow effect */}
                 <motion.div
-                  className="absolute -inset-8 bg-gradient-to-b from-blue-500/5 via-indigo-500/5 to-transparent pointer-events-none blur-2xl"
+                  className="absolute -inset-4 xl:-inset-8 bg-gradient-to-b from-blue-500/5 via-indigo-500/5 to-transparent pointer-events-none blur-2xl"
                   animate={{
                     opacity: [0.3, 0.6, 0.3],
                   }}

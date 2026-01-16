@@ -33,7 +33,7 @@ export default function HeroSection() {
             }}
           >
             <source
-              src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761793838/9cc01971-7e57-46bd-8b62-2371cda76e82_h68lfm.mp4#t=0.1"
+              src="https://le40-cdn.b-cdn.net/videos/salles/salles-background.mp4#t=0.1"
               type="video/mp4"
             />
           </video>

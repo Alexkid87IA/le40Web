@@ -39,8 +39,7 @@ export default function FinalCTASection() {
       setSuccess(true);
       setEmail('');
       setName('');
-    } catch (err) {
-      console.error('Error submitting notification request:', err);
+    } catch {
       setError('Une erreur est survenue. Veuillez réessayer.');
     } finally {
       setLoading(false);

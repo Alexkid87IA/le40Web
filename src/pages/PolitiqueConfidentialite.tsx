@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Shield, Eye, Lock, FileText, Mail, Clock } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -292,7 +293,7 @@ export default function PolitiqueConfidentialite() {
   );
 }
 
-function Section({ icon: Icon, title, content }: { icon: any; title: string; content: React.ReactNode }) {
+function Section({ icon: Icon, title, content }: { icon: LucideIcon; title: string; content: React.ReactNode }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

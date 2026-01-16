@@ -182,7 +182,7 @@ export default function Gallery() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         >
-          <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761792125/f6861355-bc98-4c72-b9bc-fb13a1abdfb7_i7v3kj.mp4" type="video/mp4" />
+          <source src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-zinc-950/40 to-black/50" />
       </div>

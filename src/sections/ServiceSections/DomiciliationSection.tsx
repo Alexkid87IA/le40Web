@@ -48,7 +48,7 @@ export default function DomiciliationSection() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         >
-          <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761805289/e3c2235d-6478-42d0-85b3-6266f2227367_iazq5a.mp4" type="video/mp4" />
+          <source src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4" type="video/mp4" />
         </video>
         <motion.div
           style={{ opacity: gradientOpacity }}

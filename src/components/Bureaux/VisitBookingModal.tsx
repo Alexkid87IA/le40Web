@@ -50,8 +50,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
         setFormData({ name: '', email: '', phone: '', date: '', time: '', message: '' });
         setSubmitStatus('idle');
       }, 2000);
-    } catch (error) {
-      console.error('Error submitting visit request:', error);
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

@@ -47,7 +47,7 @@ export default function CoworkingSection() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         >
-          <source src="https://res.cloudinary.com/dwt7u0azs/video/upload/v1761803178/f6ec245d-506e-49b7-a107-01e3b561a567_1_mrh0xu.mp4" type="video/mp4" />
+          <source src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4" type="video/mp4" />
         </video>
         <motion.div
           style={{ opacity: gradientOpacity }}

@@ -155,7 +155,7 @@ export const releaseHold = async (holdId: string): Promise<boolean> => {
 export const cleanupExpiredHolds = async (): Promise<void> => {
   try {
     await supabase.rpc('cleanup_expired_holds');
-  } catch (err) {
-    console.error('Failed to cleanup expired holds:', err);
+  } catch {
+    // Cleanup failure is non-critical
   }
 };

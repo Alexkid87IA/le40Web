@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './router/AppRoutes';
-import { CartProvider } from './contexts/CartContext';
 import { UnifiedCartProvider } from './contexts/UnifiedCartContext';
 import { PrerollProvider } from './contexts/PrerollContext';
+import { AnnouncerProvider } from './components/A11y/Announcer';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -16,16 +16,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <PrerollProvider>
-        <CartProvider>
+      <AnnouncerProvider>
+        <ScrollToTop />
+        <PrerollProvider>
           <UnifiedCartProvider>
             <main id="main-content">
               <AppRoutes />
             </main>
           </UnifiedCartProvider>
-        </CartProvider>
-      </PrerollProvider>
+        </PrerollProvider>
+      </AnnouncerProvider>
     </BrowserRouter>
   );
 }

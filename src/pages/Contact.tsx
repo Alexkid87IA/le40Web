@@ -63,8 +63,7 @@ export default function Contact() {
           message: ''
         });
       }, 4000);
-    } catch (err) {
-      console.error('Erreur lors de l\'envoi:', err);
+    } catch {
       setError('Une erreur est survenue. Veuillez réessayer.');
     } finally {
       setIsSubmitting(false);

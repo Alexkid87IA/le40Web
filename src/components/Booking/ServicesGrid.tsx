@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { Building2, Presentation, Video, MapPin, Sparkles, Briefcase, ArrowRight } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 interface Service {
   id: string;
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   price: string;
   gradient: string;
   action: string;

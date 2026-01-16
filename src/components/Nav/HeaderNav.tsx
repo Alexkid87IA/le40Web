@@ -13,7 +13,7 @@ const navItems = [
   { name: 'Studio', href: '/studios' },
   { name: 'Packs', href: '/packs' },
   { name: 'Nos Events', href: '/events' },
-  { name: 'Le Club', href: '/experts' },
+  { name: 'Le Club', href: '/club' },
 ];
 
 // Fonction pour obtenir la couleur du trait selon la page
@@ -26,7 +26,7 @@ const getActiveIndicatorColor = (pathname: string): string => {
     '/studios': 'from-teal-400 via-cyan-500 to-teal-400',
     '/packs': 'from-amber-400 via-orange-500 to-amber-400',
     '/events': 'from-cyan-400 via-cyan-500 to-cyan-400',
-    '/experts': 'from-rose-400 via-red-500 to-rose-400',
+    '/club': 'from-rose-400 via-red-500 to-rose-400',
     '/contact': 'from-blue-400 via-blue-500 to-blue-400',
   };
   return colorMap[pathname] || 'from-amber-400 via-orange-500 to-amber-400';
@@ -67,14 +67,14 @@ export default function HeaderNav() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY < 50) {
         setIsAtTop(true);
         setIsVisible(true);
         setLastScrollY(currentScrollY);
         return;
       }
-      
+
       setIsAtTop(false);
 
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -102,7 +102,7 @@ export default function HeaderNav() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
@@ -128,6 +128,7 @@ export default function HeaderNav() {
           : 'bg-black/90 border-b border-white/[0.06]'
       }`}
       style={{ backdropFilter: 'blur(20px)', zIndex: Z_INDEX.headerNav }}
+      role="banner"
     >
       {/* Container aligné avec le contenu (max-w-7xl) */}
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
@@ -136,10 +137,17 @@ export default function HeaderNav() {
         <div className="flex items-center justify-between">
 
           {/* LOGO */}
-          <div onClick={() => handleNavigation('/')} className="flex-shrink-0 cursor-pointer">
+          <div
+            onClick={() => handleNavigation('/')}
+            className="flex-shrink-0 cursor-pointer"
+            role="button"
+            aria-label="Retour à l'accueil - Le 40 Coworking"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleNavigation('/')}
+          >
             <motion.img
               src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
-              alt="Le 40"
+              alt="Le 40 Coworking - Logo"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="brightness-0 invert w-14 lg:w-16 transition-all duration-300"
@@ -147,18 +155,21 @@ export default function HeaderNav() {
           </div>
 
           {/* NAVIGATION PRINCIPALE - Centrée */}
-          <nav className="flex-1 flex justify-center">
-            <ul className="flex items-center gap-0.5">
+          <nav className="flex-1 flex justify-center" aria-label="Navigation principale">
+            <ul className="flex items-center gap-0.5" role="menubar">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.href;
 
                 return (
-                  <li key={item.name}>
-                    <motion.div
+                  <li key={item.name} role="none">
+                    <motion.button
                       onClick={() => handleNavigation(item.href)}
                       className="relative group cursor-pointer"
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
+                      role="menuitem"
+                      aria-current={isActive ? 'page' : undefined}
+                      aria-label={`Aller à ${item.name}`}
                     >
                       <div className={`px-3 lg:px-4 py-2 rounded-lg transition-all duration-200 ${
                         isActive ? 'bg-white/[0.08]' : 'hover:bg-white/[0.04]'
@@ -188,7 +199,7 @@ export default function HeaderNav() {
                           <div className={`w-6 h-[2px] bg-gradient-to-r ${getActiveIndicatorColor(location.pathname)} rounded-full`} />
                         </motion.div>
                       )}
-                    </motion.div>
+                    </motion.button>
                   </li>
                 );
               })}
@@ -206,12 +217,13 @@ export default function HeaderNav() {
               className="group relative"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              aria-label="Planifier une visite de nos espaces"
             >
               {/* Glow effect */}
-              <div className={`absolute -inset-1 ${ctaColors.glow} rounded-xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-300`} />
-              
+              <div className={`absolute -inset-1 ${ctaColors.glow} rounded-xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-300`} aria-hidden="true" />
+
               <div className={`relative flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${ctaColors.bg} rounded-lg shadow-lg`}>
-                <Eye className="w-4 h-4 text-white" />
+                <Eye className="w-4 h-4 text-white" aria-hidden="true" />
                 <span className="font-semibold text-[13px] text-white">
                   Planifier une visite
                 </span>

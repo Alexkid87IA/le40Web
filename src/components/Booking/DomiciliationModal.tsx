@@ -123,8 +123,7 @@ export default function DomiciliationModal({ isOpen, onClose }: DomiciliationMod
         setSubmitStatus('idle');
         setErrors({});
       }, 2500);
-    } catch (error) {
-      console.error('Error submitting domiciliation request:', error);
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

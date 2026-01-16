@@ -11,7 +11,7 @@ const navItems = [
   { name: 'Salles', href: '/salles', icon: Presentation },
   { name: 'Studios', href: '/studios', icon: Video },
   { name: 'Events', href: '/events', icon: Calendar },
-  { name: 'Le Club', href: '/experts', icon: Sparkles },
+  { name: 'Le Club', href: '/club', icon: Sparkles },
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
@@ -25,7 +25,7 @@ const getActiveBgGradient = (pathname: string): string => {
     '/studios': 'from-teal-500/20 to-teal-500/20 border-teal-500/30',
     '/packs': 'from-amber-500/20 to-amber-500/20 border-amber-500/30',
     '/events': 'from-cyan-500/20 to-cyan-500/20 border-cyan-500/30',
-    '/experts': 'from-red-500/20 to-red-500/20 border-red-500/30',
+    '/club': 'from-red-500/20 to-red-500/20 border-red-500/30',
     '/contact': 'from-blue-500/20 to-blue-500/20 border-blue-500/30',
   };
 

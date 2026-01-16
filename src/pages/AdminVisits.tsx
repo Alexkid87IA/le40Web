@@ -47,8 +47,7 @@ export default function AdminVisits() {
       if (fetchError) throw fetchError;
 
       setVisits(data || []);
-    } catch (err) {
-      console.error('Error fetching visits:', err);
+    } catch {
       setError('Erreur lors du chargement des demandes de visite');
     } finally {
       setLoading(false);
@@ -71,8 +70,7 @@ export default function AdminVisits() {
       setVisits(visits.map(visit =>
         visit.id === id ? { ...visit, status: newStatus } : visit
       ));
-    } catch (err) {
-      console.error('Error updating status:', err);
+    } catch {
       alert('Erreur lors de la mise à jour du statut');
     }
   };

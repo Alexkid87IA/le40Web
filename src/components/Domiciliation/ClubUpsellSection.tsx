@@ -30,8 +30,8 @@ export default function ClubUpsellSection() {
           availableForSale: firstVariant.availableForSale,
         });
       }
-    } catch (error) {
-      console.error('Error adding to cart:', error);
+    } catch {
+      // Error adding to cart
     } finally {
       setAddingProductId(null);
     }

@@ -144,8 +144,7 @@ export default function Checkout() {
         state: { orderData: order }
       });
 
-    } catch (error) {
-      console.error('Order creation error:', error);
+    } catch {
       setOrderError('Une erreur est survenue lors de la création de votre commande. Veuillez réessayer.');
     } finally {
       setIsProcessing(false);

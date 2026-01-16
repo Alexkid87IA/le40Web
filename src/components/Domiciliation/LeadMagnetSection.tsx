@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ArrowRight, Check } from 'lucide-react';
+import { supabase } from '../../lib/supabase';
 
 const SUCCESS_MESSAGE_DURATION = 3000;
 
@@ -26,16 +27,25 @@ export default function LeadMagnetSection() {
 
     setIsSubmitting(true);
 
-    // TODO: Intégrer avec le backend
-    // await submitEmailToBackend(email);
+    try {
+      // Enregistrer l'email pour le lead magnet
+      await supabase.from('lead_magnets').insert({
+        email,
+        type: 'domiciliation_guide',
+        source: 'domiciliation_page',
+      });
 
-    setSubmitted(true);
-    setIsSubmitting(false);
+      setSubmitted(true);
 
-    setTimeout(() => {
-      setSubmitted(false);
-      setEmail('');
-    }, SUCCESS_MESSAGE_DURATION);
+      setTimeout(() => {
+        setSubmitted(false);
+        setEmail('');
+      }, SUCCESS_MESSAGE_DURATION);
+    } catch {
+      setError('Une erreur est survenue. Veuillez réessayer.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const benefits = [
