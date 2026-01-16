@@ -61,7 +61,9 @@ export default function LazyImage({
         onLoad?.();
       };
       img.onerror = () => {
-        console.error(`Failed to load image: ${src}`);
+        if (import.meta.env.DEV) {
+          console.warn(`[LazyImage] Failed to load: ${src}`);
+        }
         setIsLoaded(true);
       };
     }
