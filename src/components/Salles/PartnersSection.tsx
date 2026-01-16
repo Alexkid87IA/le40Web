@@ -4,7 +4,7 @@ import { Building2, Award } from 'lucide-react';
 
 export default function PartnersSection() {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]">
           <div className="absolute inset-0 bg-emerald-600/10 rounded-full blur-[150px]"></div>

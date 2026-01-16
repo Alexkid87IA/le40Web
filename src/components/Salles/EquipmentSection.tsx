@@ -4,7 +4,7 @@ import { Check } from 'lucide-react';
 
 export default function EquipmentSection() {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 bg-black">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute top-0 left-1/2 h-1/2 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>

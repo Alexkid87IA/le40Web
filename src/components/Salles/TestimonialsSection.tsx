@@ -4,7 +4,7 @@ import { testimonials } from '../../data/salles/testimonials';
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black to-zinc-900">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>

@@ -7,7 +7,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 bg-black">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -80,7 +80,7 @@ export default function SpaceComparatorSection() {
   };
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>

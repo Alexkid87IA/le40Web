@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function FinalCTASection() {
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 bg-black overflow-hidden">
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px]">
           <div className="absolute inset-0 bg-emerald-600/20 rounded-full blur-[200px] animate-pulse"></div>
