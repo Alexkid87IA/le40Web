@@ -62,7 +62,7 @@ export default function HeroSection() {
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source
-              src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4"
+              src="https://le40-cdn.b-cdn.net/videos/events/events-background.mp4"
               type="video/mp4"
             />
           </video>
