@@ -8,7 +8,6 @@ export default function StudiosSection() {
     <>
       <AnimatedServiceSection
         id="studios-pro"
-        videoSrc="https://le40-cdn.b-cdn.net/videos/studios/studios-background.mp4"
         gradientClasses="bg-gradient-to-br from-blue-950/60 via-black/80 to-slate-950/60"
         badge={{
           icon: Video,
@@ -70,7 +69,6 @@ export default function StudiosSection() {
 
       <AnimatedServiceSection
         id="studios-content"
-        videoSrc="https://le40-cdn.b-cdn.net/videos/club/club-background.mp4"
         gradientClasses="bg-gradient-to-br from-red-950/60 via-black/80 to-rose-950/60"
         badge={{
           icon: Camera,

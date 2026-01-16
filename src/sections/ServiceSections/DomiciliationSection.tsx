@@ -1,16 +1,13 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Mail, Building2, Shield, ArrowRight, Clock } from 'lucide-react';
-import { useScrollParallax } from '../../hooks/useScrollParallax';
 import { useMagneticHover } from '../../hooks/useMagneticHover';
 import { elegantFadeIn, staggerContainer, staggerItem } from '../../utils/animationVariants';
 
 export default function DomiciliationSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { y: videoY } = useScrollParallax(videoRef, { speed: 0.3 });
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start']
@@ -18,7 +15,6 @@ export default function DomiciliationSection() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.95, 1, 1, 0.9]);
   const scale = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 1, 1, 1]);
-  const gradientOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.75, 0.8, 0.75]);
 
   const btnMagnetic = useMagneticHover({ strength: 0.15 });
 
@@ -36,25 +32,12 @@ export default function DomiciliationSection() {
       style={{ opacity, scale, willChange: 'opacity' }}
       className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
     >
-      <motion.div
-        ref={videoRef}
-        style={{ y: videoY }}
-        className="absolute inset-0"
-      >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        >
-          <source src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4" type="video/mp4" />
-        </video>
+      <div className="absolute inset-0">
         <motion.div
-          style={{ opacity: gradientOpacity }}
+          style={{ opacity: 0.8 }}
           className="absolute inset-0 bg-gradient-to-br from-amber-950/60 via-black/80 to-orange-950/60"
         />
-      </motion.div>
+      </div>
 
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',

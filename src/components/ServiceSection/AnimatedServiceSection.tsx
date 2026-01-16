@@ -13,7 +13,7 @@ interface Feature {
 
 interface AnimatedServiceSectionProps {
   id: string;
-  videoSrc: string;
+  videoSrc?: string;
   gradientClasses: string;
   badge: {
     icon: LucideIcon;
@@ -87,21 +87,23 @@ export default function AnimatedServiceSection({
     >
       <motion.div
         ref={videoRef}
-        style={{ y: videoY, willChange: 'transform' }}
+        style={{ y: videoSrc ? videoY : 0, willChange: videoSrc ? 'transform' : 'auto' }}
         className="absolute inset-0"
       >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-          style={{ willChange: 'opacity' }}
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+        {videoSrc && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            style={{ willChange: 'opacity' }}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        )}
         <motion.div
-          style={{ opacity: gradientOpacity }}
+          style={{ opacity: videoSrc ? gradientOpacity : 0.8 }}
           className={`absolute inset-0 ${gradientClasses}`}
         />
       </motion.div>

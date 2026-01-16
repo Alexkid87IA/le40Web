@@ -7,7 +7,6 @@ export default function BureauxSection() {
   return (
     <AnimatedServiceSection
       id="bureaux"
-      videoSrc="https://le40-cdn.b-cdn.net/videos/bureaux/bureaux-background.mp4"
       gradientClasses="bg-gradient-to-br from-emerald-950/60 via-black/80 to-teal-950/60"
       badge={{
         icon: Building2,
