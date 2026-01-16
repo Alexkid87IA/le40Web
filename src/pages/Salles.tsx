@@ -53,30 +53,56 @@ export default function Salles() {
       />
 
       <main className="pt-24">
-        <HeroSection />
-        <ProcessSection />
-        {loading ? (
-          <div className="py-24 text-center text-white">Chargement des salles...</div>
-        ) : (
-          <SpacesGridSection
-            spaces={rooms}
-            onSpaceClick={setSelectedSpace}
-          />
-        )}
-        <EventTypesSection />
-        <SpaceComparatorSection />
-        <div id="equipment">
-          <EquipmentSection />
+        {/* ============================================
+            VIDÉO DE FOND FIXE
+            Visible sur toute la page
+        ============================================ */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source
+              src="https://le40-cdn.b-cdn.net/videos/salles/salles-background.mp4#t=0.1"
+              type="video/mp4"
+            />
+          </video>
+          {/* Overlay sombre pour lisibilité du contenu */}
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         </div>
-        <div id="pricing">
-          <PricingSimulatorSection />
+
+        {/* ============================================
+            CONTENU DE LA PAGE (par-dessus la vidéo)
+        ============================================ */}
+        <div className="relative z-10">
+          <HeroSection />
+          <ProcessSection />
+          {loading ? (
+            <div className="py-24 text-center text-white">Chargement des salles...</div>
+          ) : (
+            <SpacesGridSection
+              spaces={rooms}
+              onSpaceClick={setSelectedSpace}
+            />
+          )}
+          <EventTypesSection />
+          <SpaceComparatorSection />
+          <div id="equipment">
+            <EquipmentSection />
+          </div>
+          <div id="pricing">
+            <PricingSimulatorSection />
+          </div>
+          <AdditionalServicesSection />
+          <TestimonialsSection />
+          <PartnersSection />
+          <LocationSection />
+          <FAQSection />
+          <FinalCTASection />
         </div>
-        <AdditionalServicesSection />
-        <TestimonialsSection />
-        <PartnersSection />
-        <LocationSection />
-        <FAQSection />
-        <FinalCTASection />
       </main>
 
       <Footer />
