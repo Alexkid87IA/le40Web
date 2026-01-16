@@ -25,7 +25,9 @@
     "shopify:create-bundles": "tsx scripts/create-bundles.ts",
     "shopify:create-club": "tsx scripts/create-club-subscriptions.ts",
     "shopify:create-additional": "tsx scripts/create-additional-services.ts",
-    "shopify:create-studios": "tsx scripts/create-studios-simple.ts"
+    "shopify:create-studios": "tsx scripts/create-studios-simple.ts",
+    "bunny:migrate": "node scripts/migrate-to-bunny.js",
+    "bunny:update-urls": "node scripts/update-media-urls.js"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^5.4.1",
