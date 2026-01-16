@@ -1,19 +1,38 @@
 #!/usr/bin/env node
 /**
  * Upload des vidéos locales vers Bunny.net
+ *
+ * Usage: node scripts/upload-videos-bunny.js
+ *
+ * Requires .env file with:
+ * - BUNNY_STORAGE_ZONE
+ * - BUNNY_API_KEY
+ * - BUNNY_STORAGE_URL
+ * - BUNNY_PULL_ZONE_URL
  */
 
 import fs from 'fs';
 import path from 'path';
 import https from 'https';
+import { config } from 'dotenv';
 
-// Configuration Bunny.net
+// Load .env file
+config();
+
+// Configuration Bunny.net depuis .env
 const BUNNY_CONFIG = {
-  storageZone: 'le40-media',
-  apiKey: '13b935a9-3913-4528-94b533f34255-4cc1-45dc',
-  storageUrl: 'https://storage.bunnycdn.com',
-  pullZoneUrl: 'https://le40-cdn.b-cdn.net'
+  storageZone: process.env.BUNNY_STORAGE_ZONE,
+  apiKey: process.env.BUNNY_API_KEY,
+  storageUrl: process.env.BUNNY_STORAGE_URL || 'https://storage.bunnycdn.com',
+  pullZoneUrl: process.env.BUNNY_PULL_ZONE_URL
 };
+
+// Vérification des variables d'environnement
+if (!BUNNY_CONFIG.storageZone || !BUNNY_CONFIG.apiKey || !BUNNY_CONFIG.pullZoneUrl) {
+  console.error('Erreur: Variables Bunny manquantes dans .env');
+  console.error('Requis: BUNNY_STORAGE_ZONE, BUNNY_API_KEY, BUNNY_PULL_ZONE_URL');
+  process.exit(1);
+}
 
 // Vidéos à uploader
 const VIDEOS = [
