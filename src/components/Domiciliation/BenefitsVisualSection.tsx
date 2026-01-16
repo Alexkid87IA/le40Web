@@ -54,15 +54,10 @@ export default function BenefitsVisualSection() {
   ];
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-900/5 via-transparent to-transparent"></div>
-        <div className="absolute inset-0 opacity-[0.02]"
-             style={{
-               backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-               backgroundSize: '48px 48px'
-             }}>
-        </div>
+    <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden">
+      {/* Effet subtil */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-900/3 via-transparent to-transparent"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">

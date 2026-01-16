@@ -35,14 +35,8 @@ export default function GuaranteesSection() {
   ];
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-black via-zinc-950 to-black overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.015]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }}></div>
-      </div>
-
+    <section className="relative py-32 overflow-hidden">
+      {/* Effets lumineux subtils */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-1/2 right-1/3 w-96 h-96 rounded-full blur-[120px] bg-orange-500/8"

@@ -209,7 +209,7 @@ export default function Bureaux() {
           </div>
         </section>
 
-        <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
+        <section id="options" className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -321,7 +321,7 @@ export default function Bureaux() {
           </div>
         </section>
 
-        <section className="relative py-32 bg-black">
+        <section id="comparison" className="relative py-32 bg-black">
           <div className="absolute inset-0">
             <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
@@ -388,7 +388,7 @@ export default function Bureaux() {
           </div>
         </section>
 
-        <section className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
+        <section id="features" className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

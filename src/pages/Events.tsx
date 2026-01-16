@@ -37,10 +37,14 @@ export default function Events() {
         <HeroSection />
         <CategoriesSection />
         <FeaturedEventsSection />
-        <PastEventsSection />
+        <div id="past-events">
+          <PastEventsSection />
+        </div>
         <SpeakersSection />
         <FAQSection />
-        <OrganizeCTASection />
+        <div id="organize">
+          <OrganizeCTASection />
+        </div>
       </main>
 
       <Footer />

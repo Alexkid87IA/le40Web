@@ -39,7 +39,7 @@ export default function PricingSection() {
 
   if (loading) {
     return (
-      <section id="pricing" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-zinc-900 to-black">
+      <section id="pricing" className="py-16 md:py-24 lg:py-32 relative">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center text-white">
           Chargement des offres...
         </div>
@@ -48,7 +48,7 @@ export default function PricingSection() {
   }
 
   return (
-    <section id="pricing" className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-zinc-900 to-black">
+    <section id="pricing" className="py-16 md:py-24 lg:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <SectionHeader
           title="Choisissez selon"

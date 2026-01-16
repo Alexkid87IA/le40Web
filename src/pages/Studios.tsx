@@ -106,7 +106,9 @@ export default function Studios() {
               VISITE VIRTUELLE DES STUDIOS + SERVICES
               Permet de découvrir chaque studio avant de réserver
           ============================================ */}
-          <StudioShowcaseSection />
+          <section id="showcase">
+            <StudioShowcaseSection />
+          </section>
 
           {/* ============================================
               PARCOURS DE RÉSERVATION EN 4 ÉTAPES

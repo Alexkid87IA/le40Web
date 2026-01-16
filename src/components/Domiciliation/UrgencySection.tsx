@@ -39,13 +39,9 @@ export default function UrgencySection() {
   }, []);
 
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-br from-orange-600 via-orange-500 to-red-600 overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.08]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
+    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+      {/* Overlay orange semi-transparent pour l'urgence */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-600/80 via-orange-500/80 to-red-600/80 pointer-events-none"></div>
 
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -263,9 +259,6 @@ export default function UrgencySection() {
         </motion.div>
       </div>
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-      </div>
     </section>
   );
 }

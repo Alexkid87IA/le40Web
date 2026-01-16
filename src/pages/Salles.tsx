@@ -65,8 +65,12 @@ export default function Salles() {
         )}
         <EventTypesSection />
         <SpaceComparatorSection />
-        <EquipmentSection />
-        <PricingSimulatorSection />
+        <div id="equipment">
+          <EquipmentSection />
+        </div>
+        <div id="pricing">
+          <PricingSimulatorSection />
+        </div>
         <AdditionalServicesSection />
         <TestimonialsSection />
         <PartnersSection />

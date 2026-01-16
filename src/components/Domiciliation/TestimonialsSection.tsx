@@ -5,14 +5,8 @@ import { testimonials } from '../../data/domiciliation/testimonials';
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative py-32 bg-gradient-to-b from-zinc-900 via-black to-zinc-950 overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.015]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }}></div>
-      </div>
-
+    <section className="relative py-32 overflow-hidden">
+      {/* Effets lumineux subtils */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute bottom-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] bg-orange-500/8"

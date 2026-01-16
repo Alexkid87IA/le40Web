@@ -20,14 +20,8 @@ export default function FinalCTASection() {
   ];
 
   return (
-    <section ref={sectionRef} className="relative py-32 bg-gradient-to-b from-zinc-900 via-black to-zinc-950 overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }}></div>
-      </div>
-
+    <section ref={sectionRef} className="relative py-32 overflow-hidden">
+      {/* Effets lumineux subtils */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           style={{ y }}
@@ -176,7 +170,6 @@ export default function FinalCTASection() {
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
     </section>
   );
 }

@@ -43,9 +43,8 @@ export default function ClubUpsellSection() {
 
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-orange-950/20 to-transparent"></div>
-
-      <div className="absolute inset-0">
+      {/* Effets lumineux subtils */}
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-[120px]"></div>
       </div>

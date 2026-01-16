@@ -6,127 +6,79 @@ interface UnifiedCartButtonProps {
   pathname?: string;
 }
 
-// Fonction pour obtenir les couleurs selon la page
-const getCartColors = (pathname: string) => {
-  const colorMap: Record<string, {
-    bg: string;
-    border: string;
-    borderHover: string;
-    icon: string;
-    iconHover: string;
-    badge: string;
-    badgeShadow: string;
-    shimmer: string;
-  }> = {
-    '/': {
-      bg: 'from-orange-600/20 to-orange-700/20',
-      border: 'border-orange-500/30',
-      borderHover: 'hover:border-orange-500/50',
-      icon: 'text-orange-400',
-      iconHover: 'group-hover:text-orange-300',
-      badge: 'from-orange-600 to-orange-700',
-      badgeShadow: 'shadow-orange-500/50',
-      shimmer: 'from-orange-600/0 via-orange-600/30 to-orange-600/0',
-    },
-    '/bureaux': {
-      bg: 'from-blue-600/20 to-blue-700/20',
-      border: 'border-blue-500/30',
-      borderHover: 'hover:border-blue-500/50',
-      icon: 'text-blue-400',
-      iconHover: 'group-hover:text-blue-300',
-      badge: 'from-blue-600 to-blue-700',
-      badgeShadow: 'shadow-blue-500/50',
-      shimmer: 'from-blue-600/0 via-blue-600/30 to-blue-600/0',
-    },
-    '/domiciliation': {
-      bg: 'from-orange-600/20 to-orange-700/20',
-      border: 'border-orange-500/30',
-      borderHover: 'hover:border-orange-500/50',
-      icon: 'text-orange-400',
-      iconHover: 'group-hover:text-orange-300',
-      badge: 'from-orange-600 to-orange-700',
-      badgeShadow: 'shadow-orange-500/50',
-      shimmer: 'from-orange-600/0 via-orange-600/30 to-orange-600/0',
-    },
-    '/salles': {
-      bg: 'from-emerald-600/20 to-emerald-700/20',
-      border: 'border-emerald-500/30',
-      borderHover: 'hover:border-emerald-500/50',
-      icon: 'text-emerald-400',
-      iconHover: 'group-hover:text-emerald-300',
-      badge: 'from-emerald-600 to-emerald-700',
-      badgeShadow: 'shadow-emerald-500/50',
-      shimmer: 'from-emerald-600/0 via-emerald-600/30 to-emerald-600/0',
-    },
-    '/studios': {
-      bg: 'from-teal-600/20 to-teal-700/20',
-      border: 'border-teal-500/30',
-      borderHover: 'hover:border-teal-500/50',
-      icon: 'text-teal-400',
-      iconHover: 'group-hover:text-teal-300',
-      badge: 'from-teal-600 to-teal-700',
-      badgeShadow: 'shadow-teal-500/50',
-      shimmer: 'from-teal-600/0 via-teal-600/30 to-teal-600/0',
-    },
-    '/packs': {
-      bg: 'from-amber-600/20 to-amber-700/20',
-      border: 'border-amber-500/30',
-      borderHover: 'hover:border-amber-500/50',
-      icon: 'text-amber-400',
-      iconHover: 'group-hover:text-amber-300',
-      badge: 'from-amber-600 to-amber-700',
-      badgeShadow: 'shadow-amber-500/50',
-      shimmer: 'from-amber-600/0 via-amber-600/30 to-amber-600/0',
-    },
-    '/bundles': {
-      bg: 'from-amber-600/20 to-amber-700/20',
-      border: 'border-amber-500/30',
-      borderHover: 'hover:border-amber-500/50',
-      icon: 'text-amber-400',
-      iconHover: 'group-hover:text-amber-300',
-      badge: 'from-amber-600 to-amber-700',
-      badgeShadow: 'shadow-amber-500/50',
-      shimmer: 'from-amber-600/0 via-amber-600/30 to-amber-600/0',
-    },
-    '/events': {
-      bg: 'from-cyan-600/20 to-cyan-700/20',
-      border: 'border-cyan-500/30',
-      borderHover: 'hover:border-cyan-500/50',
-      icon: 'text-cyan-400',
-      iconHover: 'group-hover:text-cyan-300',
-      badge: 'from-cyan-600 to-cyan-700',
-      badgeShadow: 'shadow-cyan-500/50',
-      shimmer: 'from-cyan-600/0 via-cyan-600/30 to-cyan-600/0',
-    },
-    '/experts': {
-      bg: 'from-red-600/20 to-red-700/20',
-      border: 'border-red-500/30',
-      borderHover: 'hover:border-red-500/50',
-      icon: 'text-red-400',
-      iconHover: 'group-hover:text-red-300',
-      badge: 'from-red-600 to-red-700',
-      badgeShadow: 'shadow-red-500/50',
-      shimmer: 'from-red-600/0 via-red-600/30 to-red-600/0',
-    },
-    '/contact': {
-      bg: 'from-blue-600/20 to-blue-700/20',
-      border: 'border-blue-500/30',
-      borderHover: 'hover:border-blue-500/50',
-      icon: 'text-blue-400',
-      iconHover: 'group-hover:text-blue-300',
-      badge: 'from-blue-600 to-blue-700',
-      badgeShadow: 'shadow-blue-500/50',
-      shimmer: 'from-blue-600/0 via-blue-600/30 to-blue-600/0',
-    },
-  };
-
-  return colorMap[pathname] || colorMap['/'];
+// Couleurs par page
+const pageColors: Record<string, {
+  accent: string;
+  border: string;
+  borderHover: string;
+  badge: string;
+  glow: string;
+}> = {
+  '/': {
+    accent: 'text-amber-400',
+    border: 'border-amber-500/40',
+    borderHover: 'hover:border-amber-400/60',
+    badge: 'from-amber-500 to-orange-500',
+    glow: 'shadow-amber-500/25',
+  },
+  '/bureaux': {
+    accent: 'text-blue-400',
+    border: 'border-blue-500/40',
+    borderHover: 'hover:border-blue-400/60',
+    badge: 'from-blue-500 to-indigo-500',
+    glow: 'shadow-blue-500/25',
+  },
+  '/domiciliation': {
+    accent: 'text-orange-400',
+    border: 'border-orange-500/40',
+    borderHover: 'hover:border-orange-400/60',
+    badge: 'from-orange-500 to-amber-500',
+    glow: 'shadow-orange-500/25',
+  },
+  '/salles': {
+    accent: 'text-emerald-400',
+    border: 'border-emerald-500/40',
+    borderHover: 'hover:border-emerald-400/60',
+    badge: 'from-emerald-500 to-teal-500',
+    glow: 'shadow-emerald-500/25',
+  },
+  '/studios': {
+    accent: 'text-teal-400',
+    border: 'border-teal-500/40',
+    borderHover: 'hover:border-teal-400/60',
+    badge: 'from-teal-500 to-cyan-500',
+    glow: 'shadow-teal-500/25',
+  },
+  '/events': {
+    accent: 'text-cyan-400',
+    border: 'border-cyan-500/40',
+    borderHover: 'hover:border-cyan-400/60',
+    badge: 'from-cyan-500 to-blue-500',
+    glow: 'shadow-cyan-500/25',
+  },
+  '/club': {
+    accent: 'text-rose-400',
+    border: 'border-rose-500/40',
+    borderHover: 'hover:border-rose-400/60',
+    badge: 'from-rose-500 to-pink-500',
+    glow: 'shadow-rose-500/25',
+  },
+  '/contact': {
+    accent: 'text-blue-400',
+    border: 'border-blue-500/40',
+    borderHover: 'hover:border-blue-400/60',
+    badge: 'from-blue-500 to-indigo-500',
+    glow: 'shadow-blue-500/25',
+  },
 };
 
-export default function UnifiedCartButton({ pathname = '' }: UnifiedCartButtonProps) {
-  const { itemCount, setIsOpen } = useUnifiedCart();
+const getPageColors = (pathname: string) => {
+  return pageColors[pathname] || pageColors['/'];
+};
 
-  const colors = getCartColors(pathname);
+export default function UnifiedCartButton({ pathname = '/' }: UnifiedCartButtonProps) {
+  const { itemCount, setIsOpen } = useUnifiedCart();
+  const colors = getPageColors(pathname);
 
   const ariaLabel = itemCount > 0
     ? `Ouvrir le panier, ${itemCount} article${itemCount > 1 ? 's' : ''}`
@@ -135,16 +87,13 @@ export default function UnifiedCartButton({ pathname = '' }: UnifiedCartButtonPr
   return (
     <motion.button
       onClick={() => setIsOpen(true)}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${colors.bg}
-                 border ${colors.border} flex items-center justify-center group
-                 ${colors.borderHover} transition-all duration-300
-                 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white/50`}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className={`group relative w-10 h-10 rounded-xl bg-white/[0.06] border ${colors.border} ${colors.borderHover} backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:bg-white/[0.1] hover:shadow-lg ${colors.glow}`}
       aria-label={ariaLabel}
       aria-haspopup="dialog"
     >
-      <ShoppingCart className={`w-6 h-6 ${colors.icon} ${colors.iconHover} transition-colors`} aria-hidden="true" />
+      <ShoppingCart className={`w-[18px] h-[18px] ${colors.accent} transition-colors duration-300`} />
 
       <AnimatePresence>
         {itemCount > 0 && (
@@ -152,28 +101,12 @@ export default function UnifiedCartButton({ pathname = '' }: UnifiedCartButtonPr
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
-            className={`absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r ${colors.badge}
-                       rounded-full flex items-center justify-center shadow-lg ${colors.badgeShadow}`}
-            aria-hidden="true"
+            className={`absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 bg-gradient-to-r ${colors.badge} rounded-full flex items-center justify-center`}
           >
-            <span className="text-white text-xs font-bold">{itemCount > 99 ? '99+' : itemCount}</span>
+            <span className="text-white text-[10px] font-bold">{itemCount > 99 ? '99+' : itemCount}</span>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <motion.div
-        className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${colors.shimmer}`}
-        animate={{
-          x: [-100, 100],
-          opacity: [0, 1, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatDelay: 3,
-        }}
-        aria-hidden="true"
-      />
     </motion.button>
   );
 }

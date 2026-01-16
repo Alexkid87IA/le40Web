@@ -43,9 +43,15 @@ export default function Club() {
 
       <main className="pt-0">
         <HeroSection />
-        <WorkshopsSection />
-        <BenefitsSection />
-        <PricingSection />
+        <div id="workshops">
+          <WorkshopsSection />
+        </div>
+        <div id="benefits">
+          <BenefitsSection />
+        </div>
+        <div id="pricing">
+          <PricingSection />
+        </div>
         <EventsCalendarSection />
         {/* <TestimonialsSection /> */}
         <MembershipProcessSection />

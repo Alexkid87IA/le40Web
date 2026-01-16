@@ -23,7 +23,7 @@ import { MapPin } from 'lucide-react';
 
 export default function Domiciliation() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-hidden">
       <SEOHead
         title="Domiciliation Entreprise Marseille | Adresse Prestigieuse dès 39€/mois"
         description="Domiciliez votre entreprise à Marseille avec Le 40. Adresse prestigieuse, gestion du courrier, permanence téléphonique. Service premium dès 39€/mois. Accompagnement juridique inclus."
@@ -49,21 +49,53 @@ export default function Domiciliation() {
       />
 
       <main className="pt-24">
-        <HeroSection />
-        <TrustBannerSection />
-        <ProblemSection />
-        <BenefitsVisualSection />
-        <ServicesDetailSection />
-        <GalleryVisualSection />
-        <PricingSection />
-        <ClubUpsellSection />
-        <ProcessSection />
-        <TestimonialsSection />
-        <ComparisonTableSection />
-        <UrgencySection />
-        <FAQSection />
-        <GuaranteesSection />
-        <FinalCTASection />
+        {/* ============================================
+            VIDÉO DE FOND FIXE
+            Visible sur toute la page
+        ============================================ */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source
+              src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4"
+              type="video/mp4"
+            />
+          </video>
+          {/* Overlay sombre pour lisibilité du contenu */}
+          <div className="absolute inset-0 bg-black/75 backdrop-blur-sm"></div>
+        </div>
+
+        {/* ============================================
+            CONTENU DE LA PAGE (par-dessus la vidéo)
+        ============================================ */}
+        <div className="relative z-10">
+          <HeroSection />
+          <TrustBannerSection />
+          <ProblemSection />
+          <div id="benefits">
+            <BenefitsVisualSection />
+          </div>
+          <div id="services">
+            <ServicesDetailSection />
+          </div>
+          <GalleryVisualSection />
+          <PricingSection />
+          <ClubUpsellSection />
+          <ProcessSection />
+          <TestimonialsSection />
+          <ComparisonTableSection />
+          <UrgencySection />
+          <div id="faq">
+            <FAQSection />
+          </div>
+          <GuaranteesSection />
+          <FinalCTASection />
+        </div>
 
         <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 p-4 bg-black/95 backdrop-blur-xl border-t border-white/10">
           <div className="flex items-center justify-between gap-4">

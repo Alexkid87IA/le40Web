@@ -4,15 +4,8 @@ import { ArrowRight, Check } from 'lucide-react';
 
 export default function ServicesDetailSection() {
   return (
-    <section className="py-24 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
-
-      <div className="absolute inset-0 opacity-[0.015]"
-           style={{
-             backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-             backgroundSize: '48px 48px'
-           }}>
-      </div>
-
+    <section className="py-24 relative overflow-hidden">
+      {/* Effets lumineux subtils */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-20 -left-40 w-96 h-96 rounded-full blur-[120px] bg-amber-500/5"
