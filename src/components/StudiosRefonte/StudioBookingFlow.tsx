@@ -14,6 +14,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import BookingSidebar from './BookingSidebar';
 import BookingBottomSheet from './BookingBottomSheet';
+import StudioDetailModal from './StudioDetailModal';
 
 // Import step components
 import {
@@ -66,6 +67,9 @@ export default function StudioBookingFlow() {
 
   // Extra detail modal
   const [extraDetailModal, setExtraDetailModal] = useState<Extra | null>(null);
+
+  // Studio detail modal
+  const [studioDetailModal, setStudioDetailModal] = useState<Studio | null>(null);
 
   // LocalStorage save/restore
   const [showRestoreModal, setShowRestoreModal] = useState(false);
@@ -359,6 +363,14 @@ export default function StudioBookingFlow() {
         onToggleExtra={handleToggleExtra}
       />
 
+      {/* Studio Detail Modal */}
+      <StudioDetailModal
+        studio={studioDetailModal}
+        isOpen={studioDetailModal !== null}
+        onClose={() => setStudioDetailModal(null)}
+        onSelect={handleSelectStudio}
+      />
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         {/* Section title */}
         <motion.div
@@ -400,6 +412,7 @@ export default function StudioBookingFlow() {
                   selectedDuration={selectedDuration}
                   onSelectStudio={handleSelectStudio}
                   onSelectDuration={setSelectedDuration}
+                  onOpenStudioDetail={setStudioDetailModal}
                   durationSectionRef={durationSectionRef}
                 />
               )}

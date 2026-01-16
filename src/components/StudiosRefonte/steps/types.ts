@@ -13,6 +13,7 @@ export interface StudioStepProps {
   selectedDuration: string;
   onSelectStudio: (studio: Studio) => void;
   onSelectDuration: (duration: string) => void;
+  onOpenStudioDetail: (studio: Studio) => void;
   durationSectionRef: React.RefObject<HTMLDivElement>;
 }
 

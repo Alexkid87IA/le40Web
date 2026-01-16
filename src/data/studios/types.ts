@@ -14,11 +14,16 @@ export interface Studio {
   name: string;
   shortName: string;
   description: string;
+  longDescription?: string;
   icon: LucideIcon;
   color: string;
   gradient: string;
   basePrice: number;
   features: string[];
+  equipment?: string[];
+  useCases?: string[];
+  capacity?: string;
+  image?: string;
   recommended?: boolean;
 }
 
