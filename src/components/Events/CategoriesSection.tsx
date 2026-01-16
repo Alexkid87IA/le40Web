@@ -18,8 +18,9 @@ export default function CategoriesSection() {
 
   return (
     <>
-    <section className="py-16 md:py-24 lg:py-32 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-slate-950 to-black">
+    <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden">
+      {/* Effets lumineux (vidéo au niveau page) */}
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute top-40 left-20 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"
           animate={{
@@ -36,15 +37,6 @@ export default function CategoriesSection() {
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
-        <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
-          <svg width="100%" height="100%">
-            <filter id="noiseCategories">
-              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" />
-              <feColorMatrix type="saturate" values="0" />
-            </filter>
-            <rect width="100%" height="100%" filter="url(#noiseCategories)" />
-          </svg>
-        </div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">

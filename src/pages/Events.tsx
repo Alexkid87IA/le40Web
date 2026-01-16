@@ -34,16 +34,42 @@ export default function Events() {
       />
 
       <main className="pt-24">
-        <HeroSection />
-        <CategoriesSection />
-        <FeaturedEventsSection />
-        <div id="past-events">
-          <PastEventsSection />
+        {/* ============================================
+            VIDÉO DE FOND FIXE
+            Visible sur toute la page
+        ============================================ */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source
+              src="https://le40-cdn.b-cdn.net/videos/events/events-background.mp4"
+              type="video/mp4"
+            />
+          </video>
+          {/* Overlay sombre pour lisibilité du contenu */}
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         </div>
-        <SpeakersSection />
-        <FAQSection />
-        <div id="organize">
-          <OrganizeCTASection />
+
+        {/* ============================================
+            CONTENU DE LA PAGE (par-dessus la vidéo)
+        ============================================ */}
+        <div className="relative z-10">
+          <HeroSection />
+          <CategoriesSection />
+          <FeaturedEventsSection />
+          <div id="past-events">
+            <PastEventsSection />
+          </div>
+          <SpeakersSection />
+          <FAQSection />
+          <div id="organize">
+            <OrganizeCTASection />
+          </div>
         </div>
       </main>
 

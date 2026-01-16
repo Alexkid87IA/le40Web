@@ -7,31 +7,9 @@ export default function SpeakersSection() {
   const [hoveredSpeaker, setHoveredSpeaker] = useState<string | null>(null);
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-black relative overflow-hidden">
-      <div className="absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            transform: 'scaleY(-1)',
-            filter: 'brightness(0.6)',
-            playbackRate: 0.5
-          }}
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
-          ref={(video) => {
-            if (video) {
-              video.playbackRate = 0.5;
-            }
-          }}
-        >
-          <source
-            src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4#t=0.1"
-            type="video/mp4"
-          />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-slate-950/30 to-black/40" />
+    <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden">
+      {/* Effet lumineux (vidéo au niveau page) */}
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute top-20 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"
           animate={{
