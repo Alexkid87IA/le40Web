@@ -56,7 +56,7 @@ export default function TestimonialsSection() {
   const current = testimonials[currentIndex];
 
   return (
-    <section className="relative py-20 md:py-32 bg-black overflow-hidden">
+    <section className="relative py-20 md:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[150px]"></div>

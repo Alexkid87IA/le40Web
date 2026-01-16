@@ -33,7 +33,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-b from-black to-zinc-950">
+    <section className="relative py-20 md:py-32">
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div

@@ -465,7 +465,7 @@ export default function StudioShowcaseSection() {
   };
 
   return (
-    <section className="bg-[#0a0a0a] py-8 lg:py-12">
+    <section className="py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header minimaliste */}
         <div className="text-center mb-6">

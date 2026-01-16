@@ -39,8 +39,7 @@ export default function ProcessSection() {
 
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-zinc-950 to-black" />
+      {/* Background transparent - vidéo visible */}
 
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] opacity-30">

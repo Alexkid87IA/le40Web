@@ -339,7 +339,7 @@ export default function StudioBookingFlow() {
   // ============================================================
 
   return (
-    <section ref={sectionRef} id="booking-flow" className="relative py-16 md:py-24 bg-gradient-to-b from-black to-zinc-950 min-h-screen">
+    <section ref={sectionRef} id="booking-flow" className="relative py-16 md:py-24 min-h-screen">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
