@@ -21,7 +21,7 @@ export default function PageLoader({ message = 'Chargement...' }: PageLoaderProp
           className="mb-6"
         >
           <motion.img
-            src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+            src="/logo.png"
             alt="Le 40"
             className="w-16 h-auto brightness-0 invert mx-auto"
             animate={{

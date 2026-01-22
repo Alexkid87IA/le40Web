@@ -133,7 +133,7 @@ export default function MobileBurger() {
             {/* Logo container */}
             <div className="relative flex items-center justify-center w-12 h-12 bg-black/40 border border-white/30 rounded-xl overflow-hidden">
               <img
-                src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                src="/logo.png"
                 alt="Le 40 Coworking"
                 className="w-10 h-10 object-contain brightness-0 invert"
               />
@@ -226,7 +226,7 @@ export default function MobileBurger() {
                     <div className="absolute -inset-1 bg-gradient-to-br from-amber-500/30 to-orange-500/30 rounded-xl blur-lg" />
                     <div className="relative flex items-center justify-center w-12 h-12 bg-gradient-to-br from-white/[0.1] to-white/[0.02] border border-white/20 rounded-xl shadow-xl overflow-hidden">
                       <img
-                        src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                        src="/logo.png"
                         alt="Le 40"
                         className="w-10 h-10 object-contain brightness-0 invert"
                       />

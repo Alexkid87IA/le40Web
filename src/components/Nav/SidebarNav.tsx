@@ -268,7 +268,7 @@ export default function SidebarNav() {
                 }}
               />
               <img
-                src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                src="/logo.png"
                 alt="Le 40"
                 className="relative w-full max-w-[200px] h-auto mx-auto drop-shadow-2xl brightness-0 invert"
               />

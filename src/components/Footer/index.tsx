@@ -38,7 +38,7 @@ export default function Footer() {
               {/* Logo */}
               <Link to="/" className="inline-block mb-6">
                 <img
-                  src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                  src="/logo.png"
                   alt="Le 40"
                   className="h-10 w-auto brightness-0 invert"
                 />

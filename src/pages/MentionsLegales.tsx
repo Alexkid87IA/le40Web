@@ -49,14 +49,17 @@ export default function MentionsLegales() {
               <section>
                 <h2 className="text-2xl font-montserrat font-bold text-white mb-4">1. Éditeur du site</h2>
                 <div className="text-white/80 leading-relaxed space-y-2">
-                  <p><strong>Raison sociale :</strong> Le 40</p>
-                  <p><strong>Forme juridique :</strong> SAS</p>
+                  <p><strong>Raison sociale :</strong> PHOENIX</p>
+                  <p><strong>Nom commercial :</strong> Le 40</p>
+                  <p><strong>Forme juridique :</strong> SARL (Société à responsabilité limitée)</p>
+                  <p><strong>Capital social :</strong> 15 000,00 €</p>
                   <p><strong>Adresse du siège social :</strong> 40 Avenue de Saint Antoine, 13015 Marseille</p>
                   <p><strong>Téléphone :</strong> 04 91 96 21 51</p>
                   <p><strong>Email :</strong> contact@bureauxle40.fr</p>
-                  <p><strong>SIRET :</strong> [À compléter]</p>
-                  <p><strong>TVA Intracommunautaire :</strong> [À compléter]</p>
-                  <p><strong>Directeur de la publication :</strong> [À compléter]</p>
+                  <p><strong>SIRET :</strong> 402 794 267 00011</p>
+                  <p><strong>TVA Intracommunautaire :</strong> FR75402794267</p>
+                  <p><strong>RCS :</strong> 402 794 267 R.C.S. Marseille</p>
+                  <p><strong>Directeur de la publication :</strong> Christian Edouard Raymond Pretot</p>
                 </div>
               </section>
 

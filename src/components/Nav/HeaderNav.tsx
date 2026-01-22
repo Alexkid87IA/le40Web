@@ -323,7 +323,7 @@ export default function HeaderNav() {
                     : 'border-white/[0.12] group-hover:border-white/25'
                 }`}>
                   <img
-                    src="https://bureau-le40.fr/wp-content/uploads/2024/04/Logo-le-40.png"
+                    src="/logo.png"
                     alt="Le 40"
                     className="w-10 h-10 object-contain brightness-0 invert"
                   />
