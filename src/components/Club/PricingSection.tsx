@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, Crown, Sparkles, ArrowRight, Loader2, ShoppingCart } from 'lucide-react';
+import { Check, Crown, Star, ArrowRight, Loader2, ShoppingCart } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import { useState } from 'react';
@@ -188,7 +188,7 @@ export default function PricingSection() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-xs sm:text-sm font-inter font-semibold text-red-400 mb-4 sm:mb-6"
           >
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             TARIFICATION TRANSPARENTE
           </motion.span>
 

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Check, Sparkles, TrendingUp, Users, Calendar } from 'lucide-react';
+import { ArrowRight, Check, Star, TrendingUp, Users, Calendar } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import { useState } from 'react';
@@ -58,7 +58,7 @@ export default function ClubUpsellSection() {
           className="text-center mb-12 md:mb-16"
         >
           <div className="inline-flex items-center gap-3 mb-6">
-            <Sparkles className="w-8 h-8 text-orange-400" />
+            <Star className="w-8 h-8 text-orange-400" />
             <span className="text-orange-400 font-montserrat font-medium text-sm tracking-wider uppercase">
               Offre Combinée
             </span>
@@ -133,7 +133,7 @@ export default function ClubUpsellSection() {
               <div className="mb-6">
                 <div className="inline-flex items-center gap-2 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-600 to-amber-600 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-white" />
+                    <Star className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-montserrat font-bold text-white">Club + Domiciliation</h3>
                 </div>

@@ -5,7 +5,7 @@
 
 import { motion, AnimatePresence, PanInfo, useAnimation } from 'framer-motion';
 import {
-  Check, ChevronDown, ChevronUp, X, Sparkles, Clock, Calendar
+  Check, ChevronDown, ChevronUp, X, Star, Clock, Calendar
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -107,7 +107,7 @@ export default function BookingBottomSheet({
               {/* Infos résumées */}
               <div className="flex-1 text-left min-w-0">
                 <div className="flex items-center gap-2 text-white/60 text-xs mb-1">
-                  <Sparkles className="w-3 h-3 text-emerald-400" />
+                  <Star className="w-3 h-3 text-emerald-400" />
                   <span>Votre configuration</span>
                 </div>
                 <div className="flex items-center gap-2 text-white text-sm font-semibold truncate">
@@ -184,7 +184,7 @@ export default function BookingBottomSheet({
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xl font-montserrat font-black text-white flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-emerald-400" />
+                      <Star className="w-5 h-5 text-emerald-400" />
                       Récapitulatif
                     </h3>
                     <p className="text-white/60 text-sm mt-1">

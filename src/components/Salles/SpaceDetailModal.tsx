@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Sparkles, Calendar, Clock, ShoppingCart, Loader2 } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Check, Users, Wifi, Star, Calendar, Clock, ShoppingCart, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
@@ -334,7 +334,7 @@ export default function SpaceDetailModal({ space, onClose }: SpaceDetailModalPro
 
               <div className="mb-6 md:mb-8">
                 <h3 className="text-base md:text-lg font-montserrat font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
+                  <Star className="w-4 h-4 md:w-5 md:h-5 text-emerald-400" />
                   Équipements inclus
                 </h3>
                 <div className="grid grid-cols-2 gap-2">

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Users, MapPin, Monitor, Video, Network, ArrowRight, Sparkles, ChevronRight } from 'lucide-react';
+import { Users, MapPin, Monitor, Video, Network, ArrowRight, ChevronRight } from 'lucide-react';
 import { designTokens } from '../../styles/designTokens';
 
 const servicesData = [
@@ -176,7 +176,7 @@ export default function ServicesSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-orange-600/50 to-amber-600/50 rounded-full blur-xl opacity-50" />
               <div className="relative bg-black/60 border border-white/20 rounded-full px-6 py-3 backdrop-blur-xl">
                 <div className="flex items-center gap-3">
-                  <Sparkles className="w-4 h-4 text-orange-400" />
+                  <Network className="w-4 h-4 text-orange-400" />
                   <span className="text-white/90 font-medium text-sm uppercase tracking-wider">
                     Notre Écosystème
                   </span>

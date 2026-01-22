@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring, useInView } from 'framer-motion';
-import { Users, Calendar, Coffee, ArrowRight, Star, Heart, Zap, Target, Clock, Network, Sparkles, Rocket, Crown, TrendingUp, Handshake, Award, Shield, CheckCircle, Globe, Linkedin, Twitter, Mail, ChevronDown, Quote } from 'lucide-react';
+import { Users, Calendar, Coffee, ArrowRight, Star, Heart, Zap, Target, Clock, Network, Rocket, Crown, TrendingUp, Handshake, Award, Shield, CheckCircle, Globe, Linkedin, Twitter, Mail, ChevronDown, Quote } from 'lucide-react';
 // Import des composants existants sans les recréer
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
@@ -22,7 +22,7 @@ const communityBenefits = [
     stats: "120+ membres actifs"
   },
   {
-    icon: Sparkles,
+    icon: Handshake,
     title: "Entraide & Collaboration",
     description: "Partagez vos expériences et bénéficiez des conseils d'entrepreneurs expérimentés.",
     gradient: "from-emerald-600 to-teal-600",
@@ -421,7 +421,7 @@ export default function Community() {
             className="mb-8"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-sm font-medium text-white/70">
-              <Sparkles className="w-4 h-4" />
+              <Star className="w-4 h-4" />
               Communauté Active
             </span>
           </motion.div>

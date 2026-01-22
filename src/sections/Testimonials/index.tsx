@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Quote, Sparkles, Heart } from 'lucide-react';
+import { Star, Quote, Heart } from 'lucide-react';
 import { testimonials } from '../../data/mockData';
 
 export default function Testimonials() {
@@ -106,7 +106,7 @@ export default function Testimonials() {
                 {[
                   { value: "4.9/5", label: "Note moyenne", icon: Star, color: "text-violet-400" },
                   { value: "98%", label: "Recommandent Le 40", icon: Heart, color: "text-fuchsia-400" },
-                  { value: "200+", label: "Avis positifs", icon: Sparkles, color: "text-community" }
+                  { value: "200+", label: "Avis positifs", icon: Star, color: "text-community" }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}

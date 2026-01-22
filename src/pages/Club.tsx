@@ -13,7 +13,7 @@ import TestimonialsSection from '../components/Club/TestimonialsSection';
 import MembershipProcessSection from '../components/Club/MembershipProcessSection';
 import FAQSection from '../components/Club/FAQSection';
 import FinalCTASection from '../components/Club/FinalCTASection';
-import { Sparkles } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 export default function Club() {
   return (
@@ -38,7 +38,7 @@ export default function Club() {
         ctaText="Être notifié"
         ctaHref="#notify"
         phoneNumber="04 13 00 10 00"
-        icon={<Sparkles className="w-5 h-5 md:w-6 md:h-6 text-white" />}
+        icon={<Star className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />
 
       <main className="pt-0">

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X, Check, Sparkles, Home, Users, TrendingDown, TrendingUp } from 'lucide-react';
+import { X, Check, Star, Home, Users, TrendingDown, TrendingUp } from 'lucide-react';
 
 export default function ProblemSolutionSection() {
   return (
@@ -94,7 +94,7 @@ export default function ProblemSolutionSection() {
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 md:w-12 h-10 md:h-12 rounded-lg md:rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                <Sparkles className="w-5 md:w-6 h-5 md:h-6 text-emerald-400" />
+                <Star className="w-5 md:w-6 h-5 md:h-6 text-emerald-400" />
               </div>
               <div>
                 <div className="text-emerald-400 font-montserrat font-bold text-sm md:text-base lg:text-lg">

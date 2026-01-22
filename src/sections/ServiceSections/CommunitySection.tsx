@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Calendar, Award, Sparkles, Lightbulb, Clock } from 'lucide-react';
+import { Users, Calendar, Award, Lightbulb, Clock } from 'lucide-react';
 import AnimatedServiceSection from '../../components/ServiceSection/AnimatedServiceSection';
 
 export default function CommunitySection() {
@@ -48,7 +48,7 @@ export default function CommunitySection() {
         { icon: Calendar, text: 'Networking Events Mensuels', description: 'Rencontrez d\'autres entrepreneurs chaque mois' },
         { icon: Lightbulb, text: 'Ateliers & Masterclass Exclusifs', description: 'Formations par des experts reconnus' },
         { icon: Award, text: 'Programme de Mentorat', description: 'Conseils personnalisés de mentors expérimentés' },
-        { icon: Sparkles, text: 'Accès Prioritaire aux Événements', description: 'Réservez votre place en avant-première' }
+        { icon: Calendar, text: 'Accès Prioritaire aux Événements', description: 'Réservez votre place en avant-première' }
       ]}
       price={{
         amount: '50€',

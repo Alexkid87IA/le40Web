@@ -6,7 +6,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Check, Edit2, Calendar, Clock, ChevronDown, ChevronUp, X,
-  Sparkles, Package
+  Star, Package
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -103,7 +103,7 @@ export default function BookingSidebar({
           {/* Header */}
           <div className="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border-b border-white/10 p-6">
             <h3 className="text-xl font-montserrat font-black text-white flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-emerald-400" />
+              <Star className="w-5 h-5 text-emerald-400" />
               Votre Réservation
             </h3>
             <p className="text-white/60 text-sm mt-1">

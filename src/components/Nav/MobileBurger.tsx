@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, Sparkles, ShoppingCart, Search, ArrowRight, Eye } from 'lucide-react';
+import { X, Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, Star, ShoppingCart, Search, ArrowRight, Eye } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 
@@ -11,7 +11,7 @@ const navItems = [
   { name: 'Salles', href: '/salles', icon: Presentation },
   { name: 'Studios', href: '/studios', icon: Video },
   { name: 'Events', href: '/events', icon: Calendar },
-  { name: 'Le Club', href: '/club', icon: Sparkles },
+  { name: 'Le Club', href: '/club', icon: Star },
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 

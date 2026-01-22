@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Lock, ArrowLeft, AlertCircle, ShoppingCart, Loader2,
   Calendar, Clock, MapPin, Building2, Shield, BadgeCheck,
-  Users, Video, Monitor, Sparkles, ArrowRight, Trash2, Bell, Phone
+  Users, Video, Monitor, ArrowRight, Trash2, Bell, Phone, Calendar as CalendarIcon
 } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
@@ -31,7 +31,7 @@ const SERVICE_ICONS: Record<string, React.ReactNode> = {
   'studio': <Video className="w-6 h-6" />,
   'coworking': <Monitor className="w-6 h-6" />,
   'private-office': <Building2 className="w-6 h-6" />,
-  'event': <Sparkles className="w-6 h-6" />,
+  'event': <CalendarIcon className="w-6 h-6" />,
   'shopify': <ShoppingCart className="w-6 h-6" />,
 };
 

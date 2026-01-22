@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ArrowRight, Building2, Users, Video, Sparkles, Crown, Shield, Zap, TrendingUp, ChevronRight } from 'lucide-react';
+import { Check, ArrowRight, Building2, Users, Video, Crown, Shield, Zap, TrendingUp, ChevronRight } from 'lucide-react';
 import { pricingData } from '../../data/mockData';
 
 const categories = [
@@ -33,7 +33,7 @@ const categories = [
 const globalFeatures = [
   { icon: Shield, title: 'Sans Engagement', desc: 'Flexibilité maximale', gradient: 'from-emerald-500 to-green-500' },
   { icon: TrendingUp, title: 'Évolutif', desc: 'Changez à tout moment', gradient: 'from-blue-500 to-cyan-500' },
-  { icon: Sparkles, title: 'Qualité', desc: 'Services professionnels', gradient: 'from-purple-500 to-pink-500' },
+  { icon: Zap, title: 'Qualité', desc: 'Services professionnels', gradient: 'from-purple-500 to-pink-500' },
   { icon: Crown, title: 'Support Dédié', desc: 'Équipe à votre écoute', gradient: 'from-orange-500 to-amber-500' }
 ];
 
@@ -476,7 +476,7 @@ export default function Pricing() {
                 transition={{ duration: 4, repeat: Infinity }}
                 className="inline-block mb-8"
               >
-                <Sparkles className={`w-16 h-16 text-transparent bg-clip-text bg-gradient-to-r ${currentCategory.gradient}`} style={{ filter: `drop-shadow(0 0 20px ${currentCategory.shadowColor}40)` }} />
+                <Crown className={`w-16 h-16 text-transparent bg-clip-text bg-gradient-to-r ${currentCategory.gradient}`} style={{ filter: `drop-shadow(0 0 20px ${currentCategory.shadowColor}40)` }} />
               </motion.div>
 
               <h3 className="text-4xl md:text-5xl font-montserrat font-black text-white mb-6">

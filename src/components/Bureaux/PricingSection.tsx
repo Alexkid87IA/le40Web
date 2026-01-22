@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, ArrowRight, Sparkles, Zap, Crown } from 'lucide-react';
+import { Check, ArrowRight, Star, Zap, Crown } from 'lucide-react';
 import { useState } from 'react';
 import VisitBookingModal from './VisitBookingModal';
 
@@ -18,7 +18,7 @@ export default function PricingSection() {
       monthlyPrice: 499,
       annualPrice: 449,
       badge: 'Populaire',
-      badgeIcon: Sparkles,
+      badgeIcon: Star,
       badgeColor: 'from-amber-500 to-orange-500',
       gradient: 'from-amber-600 to-orange-600',
       image: 'https://static.eno.do/x/fs-209552-default/a09bf67dc5b41c71cbb959f542013b0c/media.jpg',
@@ -109,7 +109,7 @@ export default function PricingSection() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6"
           >
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+            <Star className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-300 font-medium">Tarifs transparents</span>
           </motion.div>
 

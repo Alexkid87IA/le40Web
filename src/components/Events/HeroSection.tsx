@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, Star, Sparkles, ArrowRight, MapPin } from 'lucide-react';
+import { Calendar, Star, ArrowRight, MapPin } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 
 const stats = [
@@ -82,8 +82,8 @@ export default function HeroSection() {
             className="mb-4 lg:mb-3"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span className="text-xs font-inter font-medium text-white/80 tracking-wide uppercase">Événements Premium</span>
+              <Calendar className="w-4 h-4 text-cyan-400" />
+              <span className="text-xs font-inter font-medium text-white/80 tracking-wide uppercase">Événements Le 40</span>
             </div>
           </motion.div>
 

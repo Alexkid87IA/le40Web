@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Video, Sliders, Sparkles, Calendar, ArrowRight } from 'lucide-react';
+import { Video, Sliders, Star, Calendar, ArrowRight } from 'lucide-react';
 
 export default function ProcessSection() {
   const steps = [
@@ -24,7 +24,7 @@ export default function ProcessSection() {
       title: 'Personnalisez',
       subtitle: 'vos extras',
       description: 'Montage, maquillage, catering...',
-      icon: Sparkles,
+      icon: Star,
       gradient: 'from-cyan-500 to-emerald-500',
     },
     {

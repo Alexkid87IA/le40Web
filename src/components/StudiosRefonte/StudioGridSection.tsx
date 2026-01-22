@@ -9,7 +9,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Sparkles,
+  Zap,
   Video,
   Mic,
   Camera,
@@ -140,7 +140,7 @@ const equipmentByType: Record<string, Array<{ icon: LucideIcon; label: string }>
     { icon: Camera, label: 'Setup vertical optimisé' },
     { icon: Lightbulb, label: 'Ring light pro' },
     { icon: Monitor, label: 'Prompteur vertical' },
-    { icon: Sparkles, label: 'Fonds tendance' },
+    { icon: Zap, label: 'Fonds tendance' },
   ],
   'default': [
     { icon: Video, label: 'Caméra 4K' },
@@ -295,7 +295,7 @@ function StudioCard({ product, onSelect }: StudioCardProps) {
       {/* Badge offre de lancement */}
       {isLaunch && (
         <div className="absolute top-4 left-4 z-10 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full text-white text-xs font-bold flex items-center gap-1.5 shadow-lg">
-          <Sparkles className="w-3 h-3" />
+          <Zap className="w-3 h-3" />
           Offre de lancement
         </div>
       )}

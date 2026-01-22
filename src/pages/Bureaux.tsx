@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Users, Lock, Wifi, Coffee, Clock, ArrowRight, Check, Sparkles, Shield, Zap, MapPin } from 'lucide-react';
+import { Building2, Users, Lock, Wifi, Coffee, Clock, ArrowRight, Check, Shield, Zap, MapPin, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
@@ -251,7 +251,7 @@ export default function Bureaux() {
 
                       <div className="absolute top-6 left-6">
                         <div className={`bg-gradient-to-r ${option.badgeColor} text-white text-xs font-medium px-4 py-1.5 rounded-full flex items-center gap-1`}>
-                          <Sparkles className="w-3 h-3" />
+                          <Star className="w-3 h-3" />
                           {option.badge}
                         </div>
                       </div>

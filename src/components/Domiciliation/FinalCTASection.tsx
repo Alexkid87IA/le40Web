@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Check, ArrowRight, MessageCircle, Sparkles } from 'lucide-react';
+import { Check, ArrowRight, MessageCircle, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 
@@ -50,7 +50,7 @@ export default function FinalCTASection() {
             transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-600/10 border border-orange-500/30 mb-8"
           >
-            <Sparkles className="w-8 h-8 text-orange-400" />
+            <Star className="w-8 h-8 text-orange-400" />
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 font-montserrat leading-tight">

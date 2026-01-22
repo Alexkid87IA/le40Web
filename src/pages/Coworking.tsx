@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Wifi, Coffee, Clock, Check, ArrowRight, Star, Shield, Building2, Sparkles, ChevronRight, MapPin, Zap, Calendar, Phone } from 'lucide-react';
+import { Users, Wifi, Coffee, Clock, Check, ArrowRight, Star, Shield, Building2, ChevronRight, MapPin, Zap, Calendar, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEO/SEOHead';
 import { serviceSchemas } from '../utils/seoSchemas';
@@ -658,7 +658,7 @@ export default function Coworking() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Sparkles className="w-12 h-12 text-cyan-400 mx-auto mb-6" />
+              <Star className="w-12 h-12 text-cyan-400 mx-auto mb-6" />
               <h2 className="text-5xl md:text-6xl font-montserrat font-black text-white mb-6">
                 PRÊT À <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">COMMENCER</span> ?
               </h2>

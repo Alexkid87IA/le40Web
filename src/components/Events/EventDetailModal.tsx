@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
-import { Calendar, Clock, Users, MapPin, X, Check, ArrowRight, Sparkles, TrendingUp, Target, Loader2 } from 'lucide-react';
+import { Calendar, Clock, Users, MapPin, X, Check, ArrowRight, TrendingUp, Target, Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UpcomingEvent } from '../../data/events/upcomingEvents';
@@ -163,7 +163,7 @@ export default function EventDetailModal({ event, onClose }: EventDetailModalPro
 
                       {spotsLeft <= 10 && spotsLeft > 0 && (
                         <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/40 text-orange-300 px-3 py-1.5 rounded-lg text-xs font-bold mb-4">
-                          <Sparkles className="w-3 h-3" />
+                          <TrendingUp className="w-3 h-3" />
                           Plus que {spotsLeft} places !
                         </div>
                       )}

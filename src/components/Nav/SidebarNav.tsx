@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, ArrowRight, Sparkles } from 'lucide-react';
+import { Home, Building2, MapPin, Presentation, Video, Users, Phone, Calendar, ShoppingCart, ArrowRight, Star } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../hooks/useCart';
 import { designTokens } from '../../styles/designTokens';
@@ -282,7 +282,7 @@ export default function SidebarNav() {
             className="mt-4 text-center"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-500/10 to-amber-500/10 border border-white/[0.08]">
-              <Sparkles className="w-3 h-3 text-orange-400" />
+              <Star className="w-3 h-3 text-orange-400" />
               <span className="text-[11px] font-inter font-semibold text-white/70 tracking-wider uppercase">Premium Space</span>
             </div>
           </motion.div>

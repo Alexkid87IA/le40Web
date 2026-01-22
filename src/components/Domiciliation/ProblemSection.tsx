@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { X, Check, Sparkles, AlertTriangle, Clock, TrendingDown, TrendingUp, Zap } from 'lucide-react';
+import { X, Check, Star, AlertTriangle, Clock, TrendingDown, TrendingUp, Zap } from 'lucide-react';
 
 export default function ProblemSection() {
   const painPoints = [
@@ -163,7 +163,7 @@ export default function ProblemSection() {
               <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-orange-500/40 rounded-2xl md:rounded-3xl p-6 md:p-10 h-full">
                 <div className="flex items-center gap-3 mb-6 md:mb-8">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-white" />
+                    <Star className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <div className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 font-montserrat font-bold text-lg">LE 40 MARSEILLE</div>

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star, Sparkles } from 'lucide-react';
+import { Check, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AddToCartButton from './AddToCartButton';
 
@@ -104,7 +104,7 @@ const PricingCard = memo<PricingCardProps>(function PricingCard({ plan, index = 
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/15 to-amber-500/15 border border-orange-400/30 mb-6"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Sparkles className="w-4 h-4 text-orange-400" />
+                  <Star className="w-4 h-4 text-orange-400" />
                   <span className="text-xs text-orange-300 font-bold tracking-wider uppercase">
                     Meilleur choix
                   </span>

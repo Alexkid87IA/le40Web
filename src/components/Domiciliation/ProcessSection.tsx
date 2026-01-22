@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Check, ArrowRight, FileCheck, Send, Sparkles } from 'lucide-react';
+import { Check, ArrowRight, FileCheck, Send, Star } from 'lucide-react';
 import { useRef } from 'react';
 import SectionHeader from './SectionHeader';
 
@@ -16,7 +16,7 @@ export default function ProcessSection() {
   const steps = [
     {
       number: '01',
-      icon: Sparkles,
+      icon: Star,
       duration: '5 minutes',
       title: 'Choisissez',
       subtitle: 'Choisissez votre formule',

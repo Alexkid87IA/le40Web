@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Eye, ArrowRight } from 'lucide-react';
+import { Star, Eye, ArrowRight } from 'lucide-react';
 import { enrichedGalleryData, galleryCategories, EnrichedSpaceDetail } from '../../data/bureaux/galleryEnriched';
 import SpaceDetailModal from './SpaceDetailModal';
 import VisitBookingModal from './VisitBookingModal';
@@ -38,7 +38,7 @@ export default function GallerySection() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6"
           >
-            <Sparkles className="w-4 h-4 text-emerald-400" />
+            <Star className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-300 font-medium">Explorez nos espaces</span>
           </motion.div>
 

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   MapPin, Phone, Mail, Clock, Send, Check,
   User, Building, MessageSquare, Calendar,
-  ArrowRight, Sparkles, CheckCircle2
+  ArrowRight, CheckCircle2
 } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
@@ -185,7 +185,7 @@ export default function Contact() {
                 transition={{ delay: 0.2 }}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full mb-6"
               >
-                <Sparkles className="w-4 h-4 text-blue-400" />
+                <Mail className="w-4 h-4 text-blue-400" />
                 <span className="text-blue-300 text-sm font-medium">Nous sommes là pour vous</span>
               </motion.div>
 

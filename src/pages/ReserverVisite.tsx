@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle, AlertCircle, Loader2, ArrowLeft, Sparkles, Star, Zap } from 'lucide-react';
+import { Calendar, Clock, User, Mail, Phone, MessageSquare, CheckCircle, AlertCircle, Loader2, ArrowLeft, Star, Zap } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
@@ -223,7 +223,7 @@ export default function ReserverVisite() {
               animate={{ opacity: 1, scale: 1 }}
               className="inline-flex items-center gap-2 bg-red-500/10 border border-red-400/20 rounded-full px-5 py-2 mb-6"
             >
-              <Sparkles className="w-4 h-4 text-red-400" />
+              <Star className="w-4 h-4 text-red-400" />
               <span className="text-sm font-bold uppercase tracking-wider text-red-300">Visite Gratuite</span>
             </motion.div>
 
@@ -461,7 +461,7 @@ export default function ReserverVisite() {
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                      <CheckCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
                       <span className="text-lg">C'est parti, je réserve !</span>
                     </>
                   )}

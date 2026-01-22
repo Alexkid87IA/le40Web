@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Filter, X, Loader2, Package, Sparkles, Zap } from 'lucide-react';
+import { ShoppingBag, Filter, X, Loader2, Package, Zap, Star } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -178,7 +178,7 @@ export default function ShopPage() {
                             {type}
                           </span>
                           {type === 'Bundle' && <Package className="w-3 h-3 text-pink-400" />}
-                          {type === 'Abonnement' && <Sparkles className="w-3 h-3 text-yellow-400" />}
+                          {type === 'Abonnement' && <Star className="w-3 h-3 text-yellow-400" />}
                         </label>
                       ))}
                     </div>

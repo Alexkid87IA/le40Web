@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Monitor, Video, ArrowRight, CheckCircle, Star, Award, Zap, ChevronLeft, ChevronRight, Sparkles, Building2, Shield } from 'lucide-react';
+import { Users, Monitor, Video, ArrowRight, CheckCircle, Star, Award, Zap, ChevronLeft, ChevronRight, Building2, Shield } from 'lucide-react';
 
 const spaceCategories = [
   {
@@ -29,7 +29,7 @@ const spaceCategories = [
         priceLabel: 'Inclus',
         features: ['Vue dégagée', 'Mobilier confort', 'Espace détente', 'Accès membres'],
         highlight: 'Travaillez en plein air',
-        icon: Sparkles
+        icon: Star
       }
     ]
   },
@@ -172,7 +172,7 @@ export default function SpacesSection() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
           >
-            <Sparkles className="w-4 h-4 text-orange-400" />
+            <Star className="w-4 h-4 text-orange-400" />
             <span className="text-sm text-white/70 font-medium">Nos Espaces Premium</span>
           </motion.div>
 

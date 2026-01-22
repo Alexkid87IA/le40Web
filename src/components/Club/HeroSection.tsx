@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Users, Calendar, TrendingUp, Sparkles, MapPin } from 'lucide-react';
+import { ArrowRight, Star, Users, Calendar, TrendingUp, CheckCircle, MapPin } from 'lucide-react';
 import { useRef } from 'react';
 
 export default function HeroSection() {
@@ -206,7 +206,7 @@ export default function HeroSection() {
               { icon: Calendar, text: 'Accès events', color: 'text-red-400' },
               { icon: Users, text: 'Réseau', color: 'text-rose-400' },
               { icon: TrendingUp, text: 'Ateliers', color: 'text-red-400' },
-              { icon: Sparkles, text: 'Sans engagement', color: 'text-rose-400' }
+              { icon: CheckCircle, text: 'Sans engagement', color: 'text-rose-400' }
             ].map((benefit, index) => (
               <div key={benefit.text} className="flex items-center gap-1.5">
                 <benefit.icon className={`w-4 h-4 ${benefit.color}`} />

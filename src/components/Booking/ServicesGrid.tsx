@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Building2, Presentation, Video, MapPin, Sparkles, Briefcase, ArrowRight } from 'lucide-react';
+import { Building2, Presentation, Video, MapPin, Star, Briefcase, ArrowRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface Service {
@@ -57,7 +57,7 @@ const services: Service[] = [
     id: 'club',
     title: 'Le Club',
     description: 'Membership exclusif et communauté premium',
-    icon: Sparkles,
+    icon: Star,
     price: 'Sur demande',
     gradient: 'from-red-600 to-orange-600',
     action: 'Candidater'
@@ -168,7 +168,7 @@ export default function ServicesGrid({ onSelectService }: ServicesGridProps) {
           <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 bg-white/5 backdrop-blur-xl rounded-2xl p-4 sm:p-6 border border-white/10">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+                <Star className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
               </div>
               <p className="text-sm sm:text-base text-white/70 font-inter">
                 Besoin d'aide pour choisir ?

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Clock, ArrowRight, BookOpen, Sparkles, Calendar } from 'lucide-react';
+import { Clock, ArrowRight, BookOpen, Calendar } from 'lucide-react';
 import { blogPosts } from '../../data/mockData';
 
 export default function BlogPreview() {

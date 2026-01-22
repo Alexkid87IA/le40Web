@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Clock, Users, DollarSign, Sparkles } from 'lucide-react';
+import { Play, Clock, Users, DollarSign, Star } from 'lucide-react';
 import { useShopifyCollection } from '../../hooks/useShopifyCollection';
 import { sanitizeHtml } from '../../lib/sanitize';
 import type { ShopifyProduct, ShopifyEdge, ShopifyVariant } from '../../types';
@@ -38,7 +38,7 @@ function StudioCard({ product, onSelect }: StudioCardProps) {
 
         {product.tags.includes('offre-lancement') && (
           <div className="absolute top-4 left-4 px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white text-xs font-bold flex items-center gap-1">
-            <Sparkles className="w-3 h-3" />
+            <Star className="w-3 h-3" />
             Offre de lancement
           </div>
         )}

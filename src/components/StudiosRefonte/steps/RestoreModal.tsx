@@ -3,7 +3,7 @@
  */
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Sparkles } from 'lucide-react';
+import { Check, Star } from 'lucide-react';
 import type { RestoreModalProps } from './types';
 
 export default function RestoreModal({
@@ -32,7 +32,7 @@ export default function RestoreModal({
             <div className="bg-gradient-to-br from-zinc-900 to-black border-2 border-emerald-500/30 rounded-2xl p-6 md:p-8 shadow-2xl">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center">
-                  <Sparkles className="w-8 h-8 text-white" />
+                  <Star className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-montserrat font-black text-white mb-2">
                   Bon retour !

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingCart, ArrowRight, Trash2, Clock, Calendar, Sparkles, Package, RefreshCw } from 'lucide-react';
+import { X, ShoppingCart, ArrowRight, Trash2, Clock, Calendar, Star, Package, RefreshCw } from 'lucide-react';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import { useNavigate } from 'react-router-dom';
 
@@ -186,7 +186,7 @@ export default function UnifiedCartDrawer() {
                   {hasLocalItems && (
                     <div>
                       <div className="flex items-center gap-2 mb-4">
-                        <Sparkles className="w-4 h-4 text-violet-400" />
+                        <Star className="w-4 h-4 text-violet-400" />
                         <h3 className="text-sm font-semibold text-white/80 uppercase tracking-wider">
                           Réservations Personnalisées
                         </h3>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, MapPin, Monitor, Video, Camera, Network, X, Sparkles, ArrowRight, TrendingUp, Star } from 'lucide-react';
+import { Users, MapPin, Monitor, Video, Camera, Network, X, ArrowRight, TrendingUp, Star } from 'lucide-react';
 
 interface PrerollOption {
   id: string;
@@ -200,7 +200,7 @@ export default function Preroll({ onSelect, onSkip }: PrerollProps) {
                   <div className="absolute -inset-2 bg-gradient-to-r from-amber-500 via-orange-500 to-emerald-500 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity"></div>
                   <div className="relative bg-slate-900/80 border border-white/20 rounded-full px-5 sm:px-6 py-2.5 sm:py-3 backdrop-blur-xl">
                     <div className="flex items-center gap-2.5">
-                      <Sparkles className="w-4 h-4 text-amber-400" />
+                      <Star className="w-4 h-4 text-amber-400" />
                       <span className="text-white/90 font-semibold text-xs sm:text-sm uppercase tracking-wide">
                         Bienvenue au 40
                       </span>

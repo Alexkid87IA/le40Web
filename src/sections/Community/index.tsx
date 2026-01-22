@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Calendar, Sparkles, ArrowRight, Lightbulb } from 'lucide-react';
+import { Users, Calendar, ArrowRight, Lightbulb } from 'lucide-react';
 
 const events = [
   { name: 'Afterwork Networking', frequency: 'Hebdo' },
@@ -13,7 +13,7 @@ const features = [
   { icon: Calendar, text: 'Networking Events Mensuels' },
   { icon: Lightbulb, text: 'Mentors & Experts Disponibles' },
   { icon: Users, text: 'Ateliers & Masterclass Members' },
-  { icon: Sparkles, text: 'Opportunités de Collaboration' }
+  { icon: Lightbulb, text: 'Opportunités de Collaboration' }
 ];
 
 const stats = [

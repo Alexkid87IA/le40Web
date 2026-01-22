@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, Check, Mail, Sparkles } from 'lucide-react';
+import { ArrowRight, Calendar, Check, Mail, Star } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 const quickFeatures = [
@@ -81,7 +81,7 @@ export default function FinalCTASection() {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-red-500/20 to-rose-500/20 border border-red-400/30 text-sm font-semibold text-red-400 mb-8"
           >
-            <Sparkles className="w-4 h-4" />
+            <Star className="w-4 h-4" />
             LANCEMENT IMMINENT
           </motion.span>
 

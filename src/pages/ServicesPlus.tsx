@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, ArrowRight, Sparkles, Zap, Target, Award, Users, CheckCircle, Calendar, Crown, ShoppingCart } from 'lucide-react';
+import { Star, ArrowRight, Zap, Target, Award, Users, CheckCircle, Calendar, Crown, ShoppingCart } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -416,7 +416,7 @@ export default function ServicesPlus() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <Sparkles className="w-12 h-12 text-violet-400 mx-auto mb-6" />
+              <Star className="w-12 h-12 text-violet-400 mx-auto mb-6" />
               <h2 className="text-3xl sm:text-4xl font-montserrat font-bold text-white mb-6">
                 Prêt à passer au niveau supérieur ?
               </h2>

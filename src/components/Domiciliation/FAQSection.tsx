@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Sparkles } from 'lucide-react';
+import { Search, Star } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import FAQItem from './FAQItem';
 import { faqItems } from '../../data/domiciliation/faq';
@@ -86,7 +86,7 @@ export default function FAQSection() {
             transition={{ delay: 0.3 }}
             className="mt-4 flex items-center gap-2 text-sm text-white/60 font-inter"
           >
-            <Sparkles className="w-4 h-4" />
+            <Star className="w-4 h-4" />
             <span>
               {searchQuery ? `${filteredFaqItems.length} résultat${filteredFaqItems.length > 1 ? 's' : ''}` : `${faqItems.length} questions fréquentes`}
             </span>

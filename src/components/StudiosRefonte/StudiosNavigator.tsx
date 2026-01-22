@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Camera, Zap, Calculator, Plus, MessageSquare, HelpCircle, Sparkles } from 'lucide-react';
+import { Camera, Zap, Calculator, Plus, MessageSquare, HelpCircle, Star } from 'lucide-react';
 
 interface Section {
   id: string;
@@ -11,7 +11,7 @@ interface Section {
 const sections: Section[] = [
   { id: 'studios', label: 'Studios', icon: Camera },
   { id: 'formulas', label: 'Formules', icon: Zap },
-  { id: 'equipment', label: 'Équipement', icon: Sparkles },
+  { id: 'equipment', label: 'Équipement', icon: Star },
   { id: 'configurator', label: 'Configurateur', icon: Calculator },
   { id: 'additional-services', label: 'Options', icon: Plus },
   { id: 'testimonials', label: 'Avis', icon: MessageSquare },

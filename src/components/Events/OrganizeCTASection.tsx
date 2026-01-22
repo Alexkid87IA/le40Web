@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Users, Calendar, Award, CheckCircle } from 'lucide-react';
+import { ArrowRight, Users, Calendar, Award, CheckCircle } from 'lucide-react';
 
 const benefits = [
   { icon: Users, text: 'Accès à une communauté de 120+ entrepreneurs' },
@@ -50,7 +50,7 @@ export default function OrganizeCTASection() {
             className="mb-8"
           >
             <div className="inline-flex items-center gap-2 md:gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-4 md:px-6 py-2 md:py-3">
-              <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
+              <Award className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
               <span className="text-white/80 font-inter font-medium text-xs md:text-sm">Organisez votre événement</span>
             </div>
           </motion.div>

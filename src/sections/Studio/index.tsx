@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Video, Clock, Users, Check, ArrowRight, Play, Mic, Camera, Sparkles, Monitor, Headphones, Radio, Plus, Minus, ShoppingCart, Star, Zap, Coffee, Car, FileText, TrendingUp, Palette, Globe, Package, ChevronDown, Phone } from 'lucide-react';
+import { Video, Clock, Users, Check, ArrowRight, Play, Mic, Camera, Monitor, Headphones, Radio, Plus, Minus, ShoppingCart, Star, Zap, Coffee, Car, FileText, TrendingUp, Palette, Globe, Package, ChevronDown, Phone } from 'lucide-react';
 
 // Packs de base
 const basePacks = [
@@ -59,7 +59,7 @@ const upsellCategories = [
   {
     id: 'creation',
     name: 'Création & Stratégie',
-    icon: Sparkles,
+    icon: Star,
     items: [
       { name: 'Coaching storytelling 1h', price: 119, unit: '' },
       { name: 'Script long-form (≤ 10 min)', price: 149, unit: '' },
@@ -549,7 +549,7 @@ export default function Studio() {
             className="text-center"
           >
             <div className="relative">
-              <Sparkles className="w-16 h-16 text-white/20 mx-auto mb-8" />
+              <Star className="w-16 h-16 text-white/20 mx-auto mb-8" />
               
               <h3 className="text-3xl md:text-4xl font-montserrat font-bold text-white mb-6">
                 Prêt à créer quelque chose d'extraordinaire ?

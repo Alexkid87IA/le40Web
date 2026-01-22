@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { studioEquipmentCategories } from '../../data/studios/studioEquipment';
-import { Check, Sparkles } from 'lucide-react';
+import { Check, Star } from 'lucide-react';
 
 export default function StudioEquipmentSection() {
   return (
@@ -117,7 +117,7 @@ export default function StudioEquipmentSection() {
             </div>
             <div className="w-px h-8 bg-white/20"></div>
             <div className="flex items-center gap-3">
-              <Sparkles className="w-5 h-5 text-teal-400" />
+              <Star className="w-5 h-5 text-teal-400" />
               <span className="text-white font-inter text-lg">
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">+40K€</span> de matériel disponible
               </span>

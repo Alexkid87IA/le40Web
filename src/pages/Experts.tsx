@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Star, ArrowRight, Sparkles, Award, Target, Zap, Heart, CheckCircle, Calendar, Phone, ShoppingCart } from 'lucide-react';
+import { Users, Star, ArrowRight, Award, Target, Zap, Heart, CheckCircle, Calendar, Phone, ShoppingCart } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -38,7 +38,7 @@ const expertCategories = [
     id: 4,
     title: "Développement & Tech",
     description: "Développeurs, consultants IT et experts techniques",
-    icon: Sparkles,
+    icon: Zap,
     color: "from-orange-400 to-orange-600",
     experts: ["DevTeam Pro - Développement web", "Tech Consulting - Architecture IT", "Digital Factory - Applications mobiles"]
   }

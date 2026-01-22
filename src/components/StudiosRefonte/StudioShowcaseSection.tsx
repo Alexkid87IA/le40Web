@@ -15,7 +15,7 @@ import {
   Monitor, Lightbulb, Headphones, Wifi, Armchair,
   Clock, Square, Star, Shield, Zap, TrendingUp,
   Calendar, ArrowRight, CheckCircle, AlertCircle,
-  Maximize2, Sparkles
+  Maximize2
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -531,7 +531,7 @@ export default function StudioShowcaseSection() {
                 {/* Badge popular */}
                 {studio.popular && (
                   <div className="absolute top-3 right-3 bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 rounded-full flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-white" />
+                    <Star className="w-3.5 h-3.5 text-white" />
                     <span className="text-white text-xs font-bold">Populaire</span>
                   </div>
                 )}

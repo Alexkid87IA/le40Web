@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MapPin, Users, Wifi, Coffee, Monitor, Phone, Building2, Sparkles } from 'lucide-react';
+import { X, MapPin, Users, Wifi, Coffee, Monitor, Phone, Building2, Zap } from 'lucide-react';
 
 export default function GalleryVisualSection() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -67,7 +67,7 @@ export default function GalleryVisualSection() {
     'Lounge': Building2,
     'Insonorisée': Phone,
     'Bureau': Building2,
-    'Éclairage': Sparkles
+    'Éclairage': Zap
   };
 
   return (

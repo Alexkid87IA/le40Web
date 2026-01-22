@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Users, Check, ArrowRight, Sparkles, Monitor, Wifi, Coffee, Shield, Calendar, Phone, Camera, Mic, Utensils, Projector, Headphones, Car, ChevronDown, Star, Zap } from 'lucide-react';
+import { Clock, Users, Check, ArrowRight, Monitor, Wifi, Coffee, Shield, Calendar, Phone, Camera, Mic, Utensils, Projector, Headphones, Car, ChevronDown, Star, Zap } from 'lucide-react';
 
 const meetingRooms = [
   {
@@ -278,7 +278,7 @@ export default function MeetingRooms() {
           >
             <div className="bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-pink-600/10 rounded-3xl p-12 backdrop-blur-sm border border-white/10">
               <div className="max-w-3xl mx-auto text-center">
-                <Sparkles className="w-12 h-12 text-white/60 mx-auto mb-6" />
+                <Star className="w-12 h-12 text-white/60 mx-auto mb-6" />
                 
                 <h3 className="text-3xl md:text-4xl font-montserrat font-bold text-white mb-6">
                   Réservation simple et rapide

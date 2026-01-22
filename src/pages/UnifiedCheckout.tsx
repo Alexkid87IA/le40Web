@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loader2, Store, Sparkles } from 'lucide-react';
+import { Loader2, Store, Star } from 'lucide-react';
 import { useUnifiedCart } from '../hooks/useUnifiedCart';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
@@ -63,7 +63,7 @@ export default function UnifiedCheckout() {
               >
                 <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-violet-600/20 to-fuchsia-600/20
                                rounded-2xl mb-6 mx-auto group-hover:scale-110 transition-transform">
-                  <Sparkles className="w-8 h-8 text-violet-400" />
+                  <Star className="w-8 h-8 text-violet-400" />
                 </div>
 
                 <h3 className="text-xl font-montserrat font-bold text-white mb-3 text-center">
