@@ -37,9 +37,9 @@ export const spaces: Space[] = [
       'Prises USB-C intégrées'
     ],
     images: [
-      'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1600'
+      'https://le40-cdn.b-cdn.net/salles/salle-focus-1.png',
+      'https://le40-cdn.b-cdn.net/salles/salle-focus-2.png',
+      'https://le40-cdn.b-cdn.net/salles/salle-focus-3.png'
     ],
     gradient: 'from-cyan-600 to-teal-600',
     accentColor: 'cyan',
@@ -65,9 +65,9 @@ export const spaces: Space[] = [
       'Système audio Bose'
     ],
     images: [
-      'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1600'
+      'https://le40-cdn.b-cdn.net/salles/salle-creative-1.png',
+      'https://le40-cdn.b-cdn.net/salles/salle-creative-2.png',
+      'https://le40-cdn.b-cdn.net/salles/salle-creative-3.png'
     ],
     gradient: 'from-emerald-600 to-teal-600',
     accentColor: 'emerald',
@@ -96,9 +96,9 @@ export const spaces: Space[] = [
       'Vestiaire 100 places'
     ],
     images: [
-      'https://images.pexels.com/photos/2833037/pexels-photo-2833037.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/3321793/pexels-photo-3321793.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1600'
+      'https://le40-cdn.b-cdn.net/salles/salle-conference-1.png',
+      'https://le40-cdn.b-cdn.net/salles/salle-conference-2.png',
+      'https://le40-cdn.b-cdn.net/salles/salle-conference-3.png'
     ],
     gradient: 'from-blue-600 to-cyan-600',
     accentColor: 'blue',
@@ -126,9 +126,9 @@ export const spaces: Space[] = [
       'Pergola bioclimatique 100m²'
     ],
     images: [
-      'https://images.pexels.com/photos/1449773/pexels-photo-1449773.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/2034335/pexels-photo-2034335.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1600'
+      'https://le40-cdn.b-cdn.net/salles/terrasse-1.png',
+      'https://le40-cdn.b-cdn.net/salles/terrasse-2.png',
+      'https://le40-cdn.b-cdn.net/salles/terrasse-3.png'
     ],
     gradient: 'from-amber-600 to-orange-600',
     accentColor: 'amber',
@@ -156,9 +156,9 @@ export const spaces: Space[] = [
       'Coin jeux (baby-foot, arcade)'
     ],
     images: [
-      'https://images.pexels.com/photos/1024248/pexels-photo-1024248.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      'https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?auto=compress&cs=tinysrgb&w=1600'
+      'https://le40-cdn.b-cdn.net/salles/lounge-1.png',
+      'https://le40-cdn.b-cdn.net/salles/lounge-2.png',
+      'https://le40-cdn.b-cdn.net/salles/lounge-3.png'
     ],
     gradient: 'from-rose-600 to-pink-600',
     accentColor: 'rose',
