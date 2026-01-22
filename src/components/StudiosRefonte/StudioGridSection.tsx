@@ -167,13 +167,18 @@ const getStudioType = (title: string): string => {
 };
 
 const getStudioImages = (product: ShopifyProduct): string[] => {
-  // D'abord, essayer les images Shopify
-  const shopifyImages = product.images?.edges?.map((e) => e.node.url) || [];
-  if (shopifyImages.length >= 2) return shopifyImages.slice(0, 4);
-
-  // Sinon, utiliser les images stock
+  // Utiliser les images CDN Le 40 en priorité
   const type = getStudioType(product.title);
-  return stockImageSets[type] || stockImageSets.default;
+  const cdnImages = stockImageSets[type] || stockImageSets.default;
+
+  // Si on a des images CDN, les utiliser
+  if (cdnImages && cdnImages.length > 0) {
+    return cdnImages;
+  }
+
+  // Fallback sur les images Shopify si vraiment aucune image CDN
+  const shopifyImages = product.images?.edges?.map((e) => e.node.url) || [];
+  return shopifyImages.slice(0, 6);
 };
 
 const getStudioIcon = (title: string) => {
