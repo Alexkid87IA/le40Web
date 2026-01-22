@@ -57,10 +57,7 @@ export default function StudiosSection() {
           }
         }}
         images={[
-          'https://images.pexels.com/photos/7991162/pexels-photo-7991162.jpeg',
-          'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg',
-          'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg',
-          'https://images.pexels.com/photos/7991206/pexels-photo-7991206.jpeg'
+          'https://le40-cdn.b-cdn.net/homepage/home-studio-pro.png'
         ]}
         noiseFilterId="noiseStudiosPro"
         noiseSeed="5"
@@ -118,10 +115,7 @@ export default function StudiosSection() {
           }
         }}
         images={[
-          'https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg',
-          'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg',
-          'https://images.pexels.com/photos/7224705/pexels-photo-7224705.jpeg',
-          'https://images.pexels.com/photos/6954174/pexels-photo-6954174.jpeg'
+          'https://le40-cdn.b-cdn.net/homepage/home-studio-createurs.png'
         ]}
         noiseFilterId="noiseStudiosContent"
         noiseSeed="6"

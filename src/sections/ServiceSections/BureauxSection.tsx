@@ -56,10 +56,7 @@ export default function BureauxSection() {
         }
       }}
       images={[
-        'https://images.pexels.com/photos/2747446/pexels-photo-2747446.jpeg',
-        'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg',
-        'https://images.pexels.com/photos/2467285/pexels-photo-2467285.jpeg',
-        'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg'
+        'https://le40-cdn.b-cdn.net/homepage/home-bureaux.png'
       ]}
       noiseFilterId="noiseBureaux"
       noiseSeed="4"

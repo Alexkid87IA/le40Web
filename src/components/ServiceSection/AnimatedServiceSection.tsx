@@ -266,47 +266,15 @@ export default function AnimatedServiceSection({
                 }}
               />
               <div className="relative h-full">
-                {isMobile ? (
-                  /* Mobile: Single static image for performance */
-                  <div className="absolute inset-0">
-                    <img
-                      src={`${images[0]}?auto=compress&cs=tinysrgb&w=800`}
-                      alt={id}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                  </div>
-                ) : (
-                  /* Desktop: Slideshow with animations */
-                  <>
-                    {images.map((src, index) => (
-                      <motion.div
-                        key={index}
-                        className="absolute inset-0"
-                        style={{
-                          opacity: 0,
-                          animation: `fadeInOut 16s infinite ${index * 4}s`,
-                        }}
-                      >
-                        <motion.img
-                          src={src}
-                          alt={`${id} ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          animate={{
-                            scale: [1, 1.03, 1],
-                          }}
-                          transition={{
-                            duration: 16,
-                            repeat: Infinity,
-                            ease: 'linear'
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                      </motion.div>
-                    ))}
-                  </>
-                )}
+                <div className="absolute inset-0">
+                  <img
+                    src={images[0]}
+                    alt={id}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                </div>
               </div>
             </motion.div>
           </motion.div>

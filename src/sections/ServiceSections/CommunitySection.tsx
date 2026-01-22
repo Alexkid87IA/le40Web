@@ -68,10 +68,7 @@ export default function CommunitySection() {
         }
       }}
       images={[
-        'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg',
-        'https://images.pexels.com/photos/1181622/pexels-photo-1181622.jpeg',
-        'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg',
-        'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg'
+        'https://le40-cdn.b-cdn.net/homepage/home-club.png'
       ]}
       noiseFilterId="noiseCommunity"
       noiseSeed="7"
