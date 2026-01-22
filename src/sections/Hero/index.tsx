@@ -43,9 +43,9 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-transparent lg:bg-black py-20 lg:py-12 xl:py-16">
-      {/* VIDEO DE FOND - Desktop uniquement (mobile utilise la vidéo fixe de Home.tsx) */}
-      <div className="absolute inset-0 z-0 hidden lg:block">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black py-20 lg:py-12 xl:py-16">
+      {/* VIDEO DE FOND */}
+      <div className="absolute inset-0 z-0">
         <video
           autoPlay
           loop
@@ -59,8 +59,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* Grid pattern overlay - Desktop uniquement */}
-      <div className="absolute inset-0 opacity-[0.02] z-[1] hidden lg:block" style={{
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02] z-[1]" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }} />

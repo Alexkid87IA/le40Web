@@ -23,28 +23,11 @@ export default function HomeNew() {
         schema={organizationSchema}
       />
 
-      {/* Vidéo de fond fixe - Mobile uniquement */}
-      <div className="fixed inset-0 z-0 lg:hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source
-            src="https://le40-cdn.b-cdn.net/videos/hero/hero-background.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div className="absolute inset-0 bg-black/60"></div>
-      </div>
-
       <HeaderNav />
       <MobileBurger />
       <MobileStickyCTA />
 
-      <main className="relative z-10">
+      <main>
         <Hero />
 
         <div className="relative">

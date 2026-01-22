@@ -37,16 +37,16 @@ export default function CoworkingSection() {
       ref={sectionRef}
       id="coworking"
       style={{ opacity, scale, willChange: 'opacity' }}
-      className="relative min-h-screen flex items-center bg-transparent lg:bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
+      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
     >
-      <div className="absolute inset-0 hidden lg:block">
+      <div className="absolute inset-0">
         <motion.div
           style={{ opacity: 0.8 }}
           className="absolute inset-0 bg-gradient-to-br from-cyan-950/60 via-black/80 to-blue-950/60"
         />
       </div>
 
-      <div className="absolute inset-0 opacity-[0.02] hidden lg:block" style={{
+      <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }} />

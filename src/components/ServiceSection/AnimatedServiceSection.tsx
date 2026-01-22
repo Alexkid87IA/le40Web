@@ -91,12 +91,12 @@ export default function AnimatedServiceSection({
       ref={sectionRef}
       id={id}
       style={{ opacity, scale, willChange: 'opacity' }}
-      className="relative min-h-screen flex items-center bg-transparent lg:bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
+      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
     >
       <motion.div
         ref={videoRef}
         style={{ y: videoSrc ? videoY : 0, willChange: videoSrc ? 'transform' : 'auto' }}
-        className="absolute inset-0 hidden lg:block"
+        className="absolute inset-0"
       >
         {videoSrc && (
           <video
@@ -116,7 +116,7 @@ export default function AnimatedServiceSection({
         />
       </motion.div>
 
-      <div className="absolute inset-0 opacity-[0.02] hidden lg:block" style={{
+      <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }} />
