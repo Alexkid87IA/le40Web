@@ -322,7 +322,7 @@ export default function BureauHeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-montserrat font-black text-white mb-2 lg:mb-3 leading-[1.1]"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-montserrat font-black text-white mb-3 lg:mb-4 leading-[1.1]"
               >
                 BUREAUX{' '}
                 <span className="relative inline-block">

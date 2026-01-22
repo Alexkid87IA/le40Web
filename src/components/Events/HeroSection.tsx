@@ -92,7 +92,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-montserrat font-black text-white mb-3 lg:mb-2 leading-[1.1]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-montserrat font-black text-white mb-3 lg:mb-4 leading-[1.1]"
           >
             NOS{' '}
             <span className="relative inline-block">
@@ -112,7 +112,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm md:text-base lg:text-sm xl:text-base text-white/70 font-inter max-w-2xl mx-auto mb-4 lg:mb-3 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl text-white/70 font-inter max-w-2xl mx-auto mb-4 lg:mb-5 leading-relaxed"
           >
             Ateliers, conférences et événements networking pour développer votre réseau et vos compétences
           </motion.p>
