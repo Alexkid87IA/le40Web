@@ -62,9 +62,10 @@ export default function DomiciliationSection() {
             className="lg:order-2"
           >
             <motion.div
-              className="relative h-[350px] lg:h-[450px] laptop:h-[350px] xl:h-[550px] rounded-2xl lg:rounded-3xl overflow-hidden"
+              className="relative h-[350px] lg:h-[450px] laptop:h-[350px] xl:h-[550px]"
               style={{ perspective: 1000 }}
             >
+              {/* Glow effect */}
               <motion.div
                 className="absolute -inset-4 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-20"
                 animate={{
@@ -77,8 +78,9 @@ export default function DomiciliationSection() {
                   ease: 'easeInOut'
                 }}
               />
-              <div className="relative h-full">
-                <div className="absolute inset-0">
+              {/* Glassmorphism container */}
+              <div className="relative h-full p-[3px] rounded-2xl lg:rounded-3xl bg-gradient-to-br from-white/30 via-white/10 to-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]">
+                <div className="relative h-full rounded-[14px] lg:rounded-[22px] overflow-hidden bg-black/20 backdrop-blur-sm">
                   <img
                     src="https://le40-cdn.b-cdn.net/homepage/home-domiciliation.png"
                     alt="Domiciliation Le 40"
@@ -86,6 +88,8 @@ export default function DomiciliationSection() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                  {/* Inner glass highlight */}
+                  <div className="absolute inset-0 rounded-[14px] lg:rounded-[22px] ring-1 ring-inset ring-white/10"></div>
                 </div>
               </div>
             </motion.div>
