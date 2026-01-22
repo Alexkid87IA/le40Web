@@ -23,7 +23,7 @@ import type { LucideIcon } from 'lucide-react';
 // CDN BUNNY.NET - Configuration
 // ============================================================
 
-const CDN_URL = 'https://le40cdn.b-cdn.net';
+const CDN_URL = 'https://le40-cdn.b-cdn.net';
 
 // ============================================================
 // TYPES & DATA
@@ -127,11 +127,11 @@ const STUDIOS: Studio[] = [
     minDuration: '2h',
     images: [
       `${CDN_URL}/studios/podcast/podcast1.png`,
-      `${CDN_URL}/studios/podcast/podcast%202.png`,
+      `${CDN_URL}/studios/podcast/podcast2.png`,
       `${CDN_URL}/studios/podcast/podcast3.png`,
-      `${CDN_URL}/studios/podcast/podcast%204.png`,
-      `${CDN_URL}/studios/podcast/podcast%205.png`,
-      `${CDN_URL}/studios/podcast/podcast%206.png`,
+      `${CDN_URL}/studios/podcast/podcast4.png`,
+      `${CDN_URL}/studios/podcast/podcast5.png`,
+      `${CDN_URL}/studios/podcast/podcast6.png`,
     ],
     equipment: [
       { name: '4x Shure SM7B', icon: Mic, included: true },
@@ -179,12 +179,12 @@ const STUDIOS: Studio[] = [
     surface: '25m²',
     minDuration: '2h',
     images: [
-      `${CDN_URL}/studios/live/stream1.png`,
-      `${CDN_URL}/studios/live/stream%202.png`,
-      `${CDN_URL}/studios/live/stream%203.png`,
-      `${CDN_URL}/studios/live/stream%204.png`,
-      `${CDN_URL}/studios/live/stream%205.png`,
-      `${CDN_URL}/studios/live/stream3.png`,
+      `${CDN_URL}/studios/live-stream/stream1.png`,
+      `${CDN_URL}/studios/live-stream/stream2.png`,
+      `${CDN_URL}/studios/live-stream/stream3.png`,
+      `${CDN_URL}/studios/live-stream/stream4.png`,
+      `${CDN_URL}/studios/live-stream/stream5.png`,
+      `${CDN_URL}/studios/live-stream/stream6.png`,
     ],
     equipment: [
       { name: '3 caméras PTZ 4K', icon: Camera, included: true },
@@ -237,7 +237,7 @@ const STUDIOS: Studio[] = [
       `${CDN_URL}/studios/talk-show/4c.png`,
       `${CDN_URL}/studios/talk-show/a4.png`,
       `${CDN_URL}/studios/talk-show/ae.png`,
-      `${CDN_URL}/studios/talk-show/ae.png`,
+      `${CDN_URL}/studios/talk-show/ae2.png`,
     ],
     equipment: [
       { name: 'Plateau modulable 4 places', icon: Users, included: true },
@@ -285,12 +285,12 @@ const STUDIOS: Studio[] = [
     surface: '18m²',
     minDuration: '2h',
     images: [
-      `${CDN_URL}/studios/interview/alexorigines_71937_Intimate_interview_studio_setup_two_comforta_d37695fa-59d9-4312-b3d7-9518f08b10ad.png`,
-      `${CDN_URL}/studios/interview/alexorigines_71937_Two-person_interview_configuration_from_side_2ab44313-b189-4e3f-8373-25f003ac2f03.png`,
-      `${CDN_URL}/studios/interview/alexorigines_71937_Cinematic_interview_lighting_setup_soft_diff_896cfc58-2040-4d10-aaaf-2ff6b08dd20d.png`,
-      `${CDN_URL}/studios/interview/alexorigines_71937_Beautiful_bokeh_background_for_interview_war_71e20421-ecd6-4b10-9b70-08ebc998259d.png`,
-      `${CDN_URL}/studios/interview/alexorigines_71937_Two_Sony_FX3_cameras_positioned_for_intervie_3fc9d153-9639-49cb-9bdb-1ad933dd68fc.png`,
-      `${CDN_URL}/studios/interview/alexorigines_71937_Cozy_interview_corner_with_designer_furnitur_6ad63ea5-2dbb-422e-b673-f8c1385ad272.png`,
+      `${CDN_URL}/studios/interview/interview1.png`,
+      `${CDN_URL}/studios/interview/interview2.png`,
+      `${CDN_URL}/studios/interview/interview3.png`,
+      `${CDN_URL}/studios/interview/interview4.png`,
+      `${CDN_URL}/studios/interview/interview5.png`,
+      `${CDN_URL}/studios/interview/interview6.png`,
     ],
     equipment: [
       { name: '2 caméras cinéma 4K', icon: Camera, included: true },
@@ -338,12 +338,12 @@ const STUDIOS: Studio[] = [
     surface: '12m²',
     minDuration: '2h',
     images: [
-      `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_video_recording_setup_camera_mounte_e2083961-ee73-44ac-a1dd-f3a8bf1f900a.png`,
-      `${CDN_URL}/studios/vertical/alexorigines_71937_TikTok_vertical_video_studio_phone_mount_in__1c46911e-4961-4ead-84aa-9a19afaee31d.png`,
-      `${CDN_URL}/studios/vertical/alexorigines_71937_Professional_ring_light_close-up_circular_LE_14f665c2-2b02-4a17-9987-c6062cd4dca9.png`,
-      `${CDN_URL}/studios/vertical/alexorigines_71937_RGB_LED_panel_backdrop_showing_multiple_colo_762a035a-2644-42ac-8c5d-e43b005561c7.png`,
-      `${CDN_URL}/studios/vertical/alexorigines_71937_Vertical_teleprompter_for_TikTok_content_scr_bbaa6816-6711-455f-966c-976810598620.png`,
-      `${CDN_URL}/studios/vertical/alexorigines_71937_Social_media_creator_workspace_makeup_mirror_92ffc7a3-b3d6-4dbc-8370-013144aab90b.png`,
+      `${CDN_URL}/studios/vertical/vertical1.png`,
+      `${CDN_URL}/studios/vertical/vertical2.png`,
+      `${CDN_URL}/studios/vertical/vertical3.png`,
+      `${CDN_URL}/studios/vertical/vertical4.png`,
+      `${CDN_URL}/studios/vertical/vertical5.png`,
+      `${CDN_URL}/studios/vertical/vertical6.png`,
     ],
     equipment: [
       { name: 'Setup format 9:16', icon: Smartphone, included: true },
