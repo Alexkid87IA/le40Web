@@ -47,7 +47,7 @@ export default function Contact() {
     {
       icon: Phone,
       title: "Téléphone",
-      content: "+33 4 91 23 45 67",
+      content: "04 91 96 21 51",
       subcontent: "Disponible 7j/7",
       gradient: "from-orange-500 via-amber-500 to-yellow-500"
     },
@@ -313,7 +313,7 @@ export default function Contact() {
 
             <div className="grid md:grid-cols-2 gap-4">
               <motion.a
-                href="tel:+33491234567"
+                href="tel:+33491962151"
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative px-6 py-5 rounded-2xl bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 text-white font-bold text-center shadow-xl overflow-hidden"

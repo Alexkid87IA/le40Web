@@ -89,9 +89,9 @@ export default function Contact() {
     {
       icon: Phone,
       title: "Téléphone",
-      content: ["+33 4 91 XX XX XX"],
+      content: ["04 91 96 21 51"],
       action: "Appeler maintenant",
-      link: "tel:+33491XXXXXX",
+      link: "tel:+33491962151",
       gradient: "from-cyan-500 to-teal-500"
     },
     {

@@ -112,8 +112,8 @@ export default function ShopifyConfirmation() {
                   <h3 className="font-semibold text-white mb-1">Besoin d'aide?</h3>
                   <p className="text-white/60 text-sm">
                     Notre équipe est disponible pour répondre à vos questions. Contactez-nous au{' '}
-                    <a href="tel:+33491234567" className="text-violet-400 hover:text-violet-300">
-                      +33 4 91 23 45 67
+                    <a href="tel:+33491962151" className="text-violet-400 hover:text-violet-300">
+                      04 91 96 21 51
                     </a>
                   </p>
                 </div>
