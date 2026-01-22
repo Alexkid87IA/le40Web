@@ -78,7 +78,7 @@ Deno.serve(async (req: Request) => {
               <p style="margin-top: 30px;">
                 <strong>Prochaines étapes :</strong><br>
                 1. Vous recevrez un rappel 24h avant votre réservation<br>
-                2. En cas de question, contactez-nous au 04 13 25 26 40<br>
+                2. En cas de question, contactez-nous au 04 91 96 21 51<br>
                 3. Vous pouvez annuler gratuitement jusqu'à 24h avant
               </p>
 
@@ -89,7 +89,7 @@ Deno.serve(async (req: Request) => {
               <div class="footer">
                 <p><strong>Le 40 - Coworking & Studios</strong><br>
                 40 Rue Sainte, 13001 Marseille<br>
-                04 13 25 26 40 • contact@le40-marseille.fr</p>
+                04 91 96 21 51 • contact@le40-marseille.fr</p>
               </div>
             </div>
           </div>

@@ -37,16 +37,16 @@ export default function CoworkingSection() {
       ref={sectionRef}
       id="coworking"
       style={{ opacity, scale, willChange: 'opacity' }}
-      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
+      className="relative min-h-screen flex items-center bg-transparent lg:bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
     >
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 hidden lg:block">
         <motion.div
           style={{ opacity: 0.8 }}
           className="absolute inset-0 bg-gradient-to-br from-cyan-950/60 via-black/80 to-blue-950/60"
         />
       </div>
 
-      <div className="absolute inset-0 opacity-[0.02]" style={{
+      <div className="absolute inset-0 opacity-[0.02] hidden lg:block" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }} />
@@ -58,7 +58,7 @@ export default function CoworkingSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="lg:order-1"
+            className="order-2 lg:order-1"
           >
             <motion.div
               className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-5 py-3 mb-8"
@@ -185,7 +185,7 @@ export default function CoworkingSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="lg:order-2"
+            className="order-1 lg:order-2"
           >
             <motion.div
               className="relative h-[350px] lg:h-[450px] laptop:h-[350px] xl:h-[550px] rounded-2xl lg:rounded-3xl overflow-hidden"

@@ -384,8 +384,8 @@ export default function MobileBurger() {
                 <div className="px-5 pb-6">
                   <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-3 text-center">Nous contacter</p>
                   <div className="flex flex-col items-center gap-2">
-                    <a href="tel:+33413252640" className="text-amber-400 font-bold text-lg hover:text-amber-300 transition-colors">
-                      04 13 25 26 40
+                    <a href="tel:+33491962151" className="text-amber-400 font-bold text-lg hover:text-amber-300 transition-colors">
+                      04 91 96 21 51
                     </a>
                     <p className="text-neutral-500 text-xs text-center">
                       40 Avenue de Saint Antoine, Marseille 13015

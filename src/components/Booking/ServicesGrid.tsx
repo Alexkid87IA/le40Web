@@ -175,10 +175,10 @@ export default function ServicesGrid({ onSelectService }: ServicesGridProps) {
               </p>
             </div>
             <a
-              href="tel:+33413252640"
+              href="tel:+33491962151"
               className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-montserrat font-semibold px-6 py-3 rounded-xl transition-all duration-300 text-sm sm:text-base whitespace-nowrap"
             >
-              04 13 25 26 40
+              04 91 96 21 51
             </a>
           </div>
         </motion.div>

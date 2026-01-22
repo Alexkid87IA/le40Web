@@ -339,7 +339,7 @@ export default function OrderConfirmation() {
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-6 h-6 rounded-full bg-fuchsia-500 flex items-center justify-center flex-shrink-0 text-sm font-bold">3</div>
-                <p>Pour toute question, contactez-nous au <a href="tel:+33413252640" className="text-fuchsia-400 hover:underline">04 13 25 26 40</a></p>
+                <p>Pour toute question, contactez-nous au <a href="tel:+33491962151" className="text-fuchsia-400 hover:underline">04 91 96 21 51</a></p>
               </div>
             </div>
           </motion.div>

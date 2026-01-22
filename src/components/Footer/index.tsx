@@ -69,11 +69,11 @@ export default function Footer() {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                   <a
-                    href="tel:+33413252640"
+                    href="tel:+33491962151"
                     className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-xl font-montserrat font-bold transition-all"
                   >
                     <Phone className="w-5 h-5" />
-                    04 13 25 26 40
+                    04 91 96 21 51
                   </a>
                 </div>
               </motion.div>
@@ -209,11 +209,11 @@ export default function Footer() {
               <ul className="space-y-3">
                 <li>
                   <a
-                    href="tel:+33413252640"
+                    href="tel:+33491962151"
                     className="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-2"
                   >
                     <Phone className="w-4 h-4 text-amber-500" />
-                    04 13 25 26 40
+                    04 91 96 21 51
                   </a>
                 </li>
                 <li>

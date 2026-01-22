@@ -22,14 +22,14 @@ export default function ContactBar() {
     {
       icon: Phone,
       label: 'Appeler',
-      href: 'tel:+33413252640',
+      href: 'tel:+33491962151',
       color: 'from-blue-600 to-cyan-600',
       hoverColor: 'from-blue-500 to-cyan-500'
     },
     {
       icon: MessageCircle,
       label: 'WhatsApp',
-      href: 'https://wa.me/33413252640',
+      href: 'https://wa.me/33491962151',
       color: 'from-green-600 to-emerald-600',
       hoverColor: 'from-green-500 to-emerald-500'
     },

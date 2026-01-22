@@ -91,12 +91,12 @@ export default function AnimatedServiceSection({
       ref={sectionRef}
       id={id}
       style={{ opacity, scale, willChange: 'opacity' }}
-      className="relative min-h-screen flex items-center bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
+      className="relative min-h-screen flex items-center bg-transparent lg:bg-black overflow-hidden py-12 lg:py-16 laptop:py-10 xl:py-20 transform-gpu"
     >
       <motion.div
         ref={videoRef}
         style={{ y: videoSrc ? videoY : 0, willChange: videoSrc ? 'transform' : 'auto' }}
-        className="absolute inset-0"
+        className="absolute inset-0 hidden lg:block"
       >
         {videoSrc && (
           <video
@@ -116,7 +116,7 @@ export default function AnimatedServiceSection({
         />
       </motion.div>
 
-      <div className="absolute inset-0 opacity-[0.02]" style={{
+      <div className="absolute inset-0 opacity-[0.02] hidden lg:block" style={{
         backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
         backgroundSize: '50px 50px'
       }} />
@@ -128,7 +128,7 @@ export default function AnimatedServiceSection({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px', amount: 0.2 }}
-            className={order === 'left' ? 'lg:order-1' : 'lg:order-2'}
+            className={`order-2 ${order === 'left' ? 'lg:order-1' : 'lg:order-2'}`}
           >
             <motion.div
               className={`inline-flex items-center gap-2 ${badge.colorClasses} rounded-full px-5 py-3 mb-8`}
@@ -247,7 +247,7 @@ export default function AnimatedServiceSection({
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
             viewport={{ once: true, amount: 0.3 }}
-            className={order === 'left' ? 'lg:order-2' : 'lg:order-1'}
+            className={`order-1 ${order === 'left' ? 'lg:order-2' : 'lg:order-1'}`}
           >
             <motion.div
               className="relative h-[350px] lg:h-[450px] laptop:h-[350px] xl:h-[550px] rounded-2xl lg:rounded-3xl overflow-hidden"

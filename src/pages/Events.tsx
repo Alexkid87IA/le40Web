@@ -29,7 +29,7 @@ export default function Events() {
         ]}
         ctaText="Voir les événements"
         ctaHref="#upcoming-events"
-        phoneNumber="04 13 25 26 40"
+        phoneNumber="04 91 96 21 51"
         icon={<Calendar className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />
 
