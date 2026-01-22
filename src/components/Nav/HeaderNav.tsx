@@ -345,7 +345,7 @@ export default function HeaderNav() {
                   >
                     <button
                       onClick={() => handleNavigation(item.href)}
-                      className={`group relative h-10 px-4 rounded-xl border transition-all duration-300 flex items-center justify-center gap-1.5 ${
+                      className={`group relative h-9 laptop:h-10 px-3 laptop:px-4 rounded-xl border transition-all duration-300 flex items-center justify-center gap-1 laptop:gap-1.5 ${
                         isActive
                           ? `${itemColors.activeBg} ${itemColors.activeBorder} shadow-lg`
                           : `bg-white/[0.04] ${itemColors.border} ${itemColors.borderHover} hover:bg-white/[0.08]`
@@ -358,7 +358,7 @@ export default function HeaderNav() {
                       {isActive && (
                         <div className={`absolute -inset-1 ${itemColors.glowColor} rounded-xl blur-md -z-10`} />
                       )}
-                      <span className={`text-[11px] font-bold tracking-wider uppercase leading-none transition-colors duration-300 ${
+                      <span className={`text-[10px] laptop:text-[11px] font-bold tracking-wider uppercase leading-none transition-colors duration-300 whitespace-nowrap ${
                         isActive ? itemColors.accent : 'text-white'
                       }`}>
                         {item.name}
@@ -570,12 +570,12 @@ export default function HeaderNav() {
                 onClick={() => navigate('/reserver-visite')}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative px-5 py-2.5 rounded-xl bg-white/[0.06] border ${colors.border} ${colors.borderHover} backdrop-blur-sm transition-all duration-300 hover:bg-white/[0.1] hover:shadow-lg ${colors.glow}`}
+                className={`group relative px-3 laptop:px-4 xl:px-5 py-2 laptop:py-2.5 rounded-xl bg-white/[0.06] border ${colors.border} ${colors.borderHover} backdrop-blur-sm transition-all duration-300 hover:bg-white/[0.1] hover:shadow-lg ${colors.glow}`}
                 aria-label="Planifier une visite"
               >
-                <div className="flex items-center gap-2">
-                  <Eye className={`w-4 h-4 ${colors.accent} transition-colors duration-300`} />
-                  <span className="text-[12px] font-semibold text-white">
+                <div className="flex items-center gap-1.5 laptop:gap-2 whitespace-nowrap">
+                  <Eye className={`w-3.5 h-3.5 laptop:w-4 laptop:h-4 ${colors.accent} transition-colors duration-300`} />
+                  <span className="text-[10px] laptop:text-[11px] xl:text-[12px] font-semibold text-white">
                     Planifier une visite
                   </span>
                 </div>
