@@ -1,4 +1,4 @@
-import React, { useRef, ReactNode } from 'react';
+import React, { useRef, ReactNode, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 import { useScrollParallax } from '../../hooks/useScrollParallax';
@@ -63,8 +63,16 @@ export default function AnimatedServiceSection({
 }: AnimatedServiceSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const { y: videoY } = useScrollParallax(videoRef, { speed: 0.3 });
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const { y: videoY } = useScrollParallax(videoRef, { speed: isMobile ? 0 : 0.3 });
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start']
@@ -258,45 +266,47 @@ export default function AnimatedServiceSection({
                 }}
               />
               <div className="relative h-full">
-                {images.map((src, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1
-                    }}
-                    transition={{
-                      duration: 0.8,
-                      delay: index * 4,
-                      repeat: Infinity,
-                      repeatDelay: 12
-                    }}
-                    className="absolute inset-0"
-                    style={{
-                      opacity: 0,
-                      animation: `fadeInOut 16s infinite ${index * 4}s`,
-                      willChange: 'opacity'
-                    }}
-                  >
-                    <motion.img
-                      src={src}
-                      alt={`${id} ${index + 1}`}
+                {isMobile ? (
+                  /* Mobile: Single static image for performance */
+                  <div className="absolute inset-0">
+                    <img
+                      src={`${images[0]}?auto=compress&cs=tinysrgb&w=800`}
+                      alt={id}
                       className="w-full h-full object-cover"
-                      animate={{
-                        scale: [1, 1.05, 1],
-                        x: [0, -5, 0],
-                        y: [0, -3, 0]
-                      }}
-                      transition={{
-                        duration: 16,
-                        repeat: Infinity,
-                        ease: 'linear'
-                      }}
-                      style={{ willChange: 'transform' }}
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                  </motion.div>
-                ))}
+                  </div>
+                ) : (
+                  /* Desktop: Slideshow with animations */
+                  <>
+                    {images.map((src, index) => (
+                      <motion.div
+                        key={index}
+                        className="absolute inset-0"
+                        style={{
+                          opacity: 0,
+                          animation: `fadeInOut 16s infinite ${index * 4}s`,
+                        }}
+                      >
+                        <motion.img
+                          src={src}
+                          alt={`${id} ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          animate={{
+                            scale: [1, 1.03, 1],
+                          }}
+                          transition={{
+                            duration: 16,
+                            repeat: Infinity,
+                            ease: 'linear'
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                      </motion.div>
+                    ))}
+                  </>
+                )}
               </div>
             </motion.div>
           </motion.div>

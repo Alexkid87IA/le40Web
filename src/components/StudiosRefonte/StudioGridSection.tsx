@@ -29,62 +29,76 @@ import { useShopifyCheckout } from '../../hooks/useShopifyCheckout';
 import type { ShopifyProduct, ShopifyEdge, ShopifyVariant } from '../../types';
 
 // ============================================
-// IMAGES DE STOCK PAR TYPE DE STUDIO
+// IMAGES CDN PAR TYPE DE STUDIO
 // ============================================
+const CDN_BASE = 'https://le40-cdn.b-cdn.net/studios';
+
 const stockImageSets: Record<string, string[]> = {
   'face-cam': [
-    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80',
-    'https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=800&q=80',
-    'https://images.unsplash.com/photo-1604514628550-37477afdf4e3?w=800&q=80',
-    'https://images.unsplash.com/photo-1593697821028-7cc59cfd7399?w=800&q=80',
+    `${CDN_BASE}/face-cam/facecam1.png`,
+    `${CDN_BASE}/face-cam/facecam2.png`,
+    `${CDN_BASE}/face-cam/facecam3.png`,
+    `${CDN_BASE}/face-cam/facecam4.png`,
+    `${CDN_BASE}/face-cam/facecam5.png`,
+    `${CDN_BASE}/face-cam/facecam6.png`,
   ],
   'podcast': [
-    'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&q=80',
-    'https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800&q=80',
-    'https://images.unsplash.com/photo-1598550473359-433795503a0f?w=800&q=80',
-    'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&q=80',
+    `${CDN_BASE}/podcast/podcast1.png`,
+    `${CDN_BASE}/podcast/podcast2.png`,
+    `${CDN_BASE}/podcast/podcast3.png`,
+    `${CDN_BASE}/podcast/podcast4.png`,
+    `${CDN_BASE}/podcast/podcast5.png`,
+    `${CDN_BASE}/podcast/podcast6.png`,
   ],
   'interview': [
-    'https://images.unsplash.com/photo-1609234656388-0ff363383899?w=800&q=80',
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
-    'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
-    'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80',
+    `${CDN_BASE}/interview/interview1.png`,
+    `${CDN_BASE}/interview/interview2.png`,
+    `${CDN_BASE}/interview/interview3.png`,
+    `${CDN_BASE}/interview/interview4.png`,
+    `${CDN_BASE}/interview/interview5.png`,
+    `${CDN_BASE}/interview/interview6.png`,
   ],
   'stream': [
-    'https://images.unsplash.com/photo-1603739903239-8b6e64c3b185?w=800&q=80',
-    'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&q=80',
-    'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=800&q=80',
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    `${CDN_BASE}/live-stream/stream1.png`,
+    `${CDN_BASE}/live-stream/stream2.png`,
+    `${CDN_BASE}/live-stream/stream3.png`,
+    `${CDN_BASE}/live-stream/stream4.png`,
+    `${CDN_BASE}/live-stream/stream5.png`,
+    `${CDN_BASE}/live-stream/stream6.png`,
   ],
   'video': [
-    'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
-    'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80',
-    'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80',
-    'https://images.unsplash.com/photo-1540655037529-dec987208707?w=800&q=80',
+    `${CDN_BASE}/face-cam/facecam1.png`,
+    `${CDN_BASE}/face-cam/facecam2.png`,
+    `${CDN_BASE}/face-cam/facecam3.png`,
+    `${CDN_BASE}/face-cam/facecam4.png`,
   ],
   'photo': [
-    'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80',
-    'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=800&q=80',
-    'https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=800&q=80',
-    'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&q=80',
+    `${CDN_BASE}/interview/interview1.png`,
+    `${CDN_BASE}/interview/interview2.png`,
+    `${CDN_BASE}/interview/interview3.png`,
+    `${CDN_BASE}/interview/interview4.png`,
   ],
   'plateau': [
-    'https://images.unsplash.com/photo-1578022761797-b8636ac1773c?w=800&q=80',
-    'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80',
-    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80',
-    'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80',
+    `${CDN_BASE}/talk-show/4a.png`,
+    `${CDN_BASE}/talk-show/4b.png`,
+    `${CDN_BASE}/talk-show/4c.png`,
+    `${CDN_BASE}/talk-show/a4.png`,
+    `${CDN_BASE}/talk-show/ae.png`,
+    `${CDN_BASE}/talk-show/ae2.png`,
   ],
   'vertical': [
-    'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80',
-    'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80',
-    'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&q=80',
-    'https://images.unsplash.com/photo-1533928298208-27ff66555d8d?w=800&q=80',
+    `${CDN_BASE}/vertical/vertical1.png`,
+    `${CDN_BASE}/vertical/vertical2.png`,
+    `${CDN_BASE}/vertical/vertical3.png`,
+    `${CDN_BASE}/vertical/vertical4.png`,
+    `${CDN_BASE}/vertical/vertical5.png`,
+    `${CDN_BASE}/vertical/vertical6.png`,
   ],
   'default': [
-    'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80',
-    'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&q=80',
-    'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80',
-    'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&q=80',
+    `${CDN_BASE}/face-cam/facecam1.png`,
+    `${CDN_BASE}/podcast/podcast1.png`,
+    `${CDN_BASE}/interview/interview1.png`,
+    `${CDN_BASE}/live-stream/stream1.png`,
   ]
 };
 

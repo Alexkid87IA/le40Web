@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Users, Wifi, Coffee, Clock, ArrowRight } from 'lucide-react';
 import { useMagneticHover } from '../../hooks/useMagneticHover';
@@ -6,6 +6,14 @@ import { elegantFadeIn, staggerContainer, staggerItem } from '../../utils/animat
 
 export default function CoworkingSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -196,49 +204,52 @@ export default function CoworkingSection() {
                 }}
               />
               <div className="relative h-full">
-                {[
-                  'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg',
-                  'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg',
-                  'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg',
-                  'https://images.pexels.com/photos/1181622/pexels-photo-1181622.jpeg'
-                ].map((src, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{
-                      opacity: 1,
-                      scale: 1.05
-                    }}
-                    transition={{
-                      duration: 1,
-                      delay: index * 4,
-                      repeat: Infinity,
-                      repeatDelay: 12
-                    }}
-                    className="absolute inset-0"
-                    style={{
-                      opacity: 0,
-                      animation: `fadeInOut 16s infinite ${index * 4}s`
-                    }}
-                  >
-                    <motion.img
-                      src={src}
-                      alt={`Coworking ${index + 1}`}
+                {isMobile ? (
+                  /* Mobile: Single static image */
+                  <div className="absolute inset-0">
+                    <img
+                      src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800"
+                      alt="Coworking Le 40"
                       className="w-full h-full object-cover"
-                      animate={{
-                        scale: [1, 1.08, 1],
-                        x: [0, -10, 0],
-                        y: [0, -5, 0]
-                      }}
-                      transition={{
-                        duration: 16,
-                        repeat: Infinity,
-                        ease: 'easeInOut'
-                      }}
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                  </motion.div>
-                ))}
+                  </div>
+                ) : (
+                  /* Desktop: Slideshow with animations */
+                  <>
+                    {[
+                      'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg',
+                      'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg',
+                      'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg',
+                      'https://images.pexels.com/photos/1181622/pexels-photo-1181622.jpeg'
+                    ].map((src, index) => (
+                      <motion.div
+                        key={index}
+                        className="absolute inset-0"
+                        style={{
+                          opacity: 0,
+                          animation: `fadeInOut 16s infinite ${index * 4}s`
+                        }}
+                      >
+                        <motion.img
+                          src={src}
+                          alt={`Coworking ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          animate={{
+                            scale: [1, 1.05, 1],
+                          }}
+                          transition={{
+                            duration: 16,
+                            repeat: Infinity,
+                            ease: 'easeInOut'
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                      </motion.div>
+                    ))}
+                  </>
+                )}
               </div>
             </motion.div>
           </motion.div>

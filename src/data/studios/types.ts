@@ -24,6 +24,7 @@ export interface Studio {
   useCases?: string[];
   capacity?: string;
   image?: string;
+  images?: string[];
   recommended?: boolean;
 }
 

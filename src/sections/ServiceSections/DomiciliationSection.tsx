@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Mail, Building2, Shield, ArrowRight, Clock } from 'lucide-react';
 import { useMagneticHover } from '../../hooks/useMagneticHover';
@@ -7,6 +7,14 @@ import { elegantFadeIn, staggerContainer, staggerItem } from '../../utils/animat
 export default function DomiciliationSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -70,49 +78,52 @@ export default function DomiciliationSection() {
                 }}
               />
               <div className="relative h-full">
-                {[
-                  'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg',
-                  'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg',
-                  'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
-                  'https://images.pexels.com/photos/2451567/pexels-photo-2451567.jpeg'
-                ].map((src, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{
-                      opacity: 1,
-                      scale: 1.05
-                    }}
-                    transition={{
-                      duration: 1,
-                      delay: index * 4,
-                      repeat: Infinity,
-                      repeatDelay: 12
-                    }}
-                    className="absolute inset-0"
-                    style={{
-                      opacity: 0,
-                      animation: `fadeInOut 16s infinite ${index * 4}s`
-                    }}
-                  >
-                    <motion.img
-                      src={src}
-                      alt={`Domiciliation ${index + 1}`}
+                {isMobile ? (
+                  /* Mobile: Single static image */
+                  <div className="absolute inset-0">
+                    <img
+                      src="https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800"
+                      alt="Domiciliation Le 40"
                       className="w-full h-full object-cover"
-                      animate={{
-                        scale: [1, 1.08, 1],
-                        x: [0, -10, 0],
-                        y: [0, -5, 0]
-                      }}
-                      transition={{
-                        duration: 16,
-                        repeat: Infinity,
-                        ease: 'easeInOut'
-                      }}
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                  </motion.div>
-                ))}
+                  </div>
+                ) : (
+                  /* Desktop: Slideshow with animations */
+                  <>
+                    {[
+                      'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg',
+                      'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg',
+                      'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
+                      'https://images.pexels.com/photos/2451567/pexels-photo-2451567.jpeg'
+                    ].map((src, index) => (
+                      <motion.div
+                        key={index}
+                        className="absolute inset-0"
+                        style={{
+                          opacity: 0,
+                          animation: `fadeInOut 16s infinite ${index * 4}s`
+                        }}
+                      >
+                        <motion.img
+                          src={src}
+                          alt={`Domiciliation ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          animate={{
+                            scale: [1, 1.05, 1],
+                          }}
+                          transition={{
+                            duration: 16,
+                            repeat: Infinity,
+                            ease: 'easeInOut'
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                      </motion.div>
+                    ))}
+                  </>
+                )}
               </div>
             </motion.div>
           </motion.div>
