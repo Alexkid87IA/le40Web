@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Lock, ArrowLeft, AlertCircle, ShoppingCart, Loader2,
   Calendar, Clock, MapPin, Building2, Shield, BadgeCheck,
-  Users, Video, Monitor, Sparkles, ArrowRight, Trash2
+  Users, Video, Monitor, Sparkles, ArrowRight, Trash2, Bell, Phone
 } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
@@ -58,6 +58,9 @@ const SERVICE_LABELS: Record<string, string> = {
 // =============================================================================
 // COMPOSANT PRINCIPAL
 // =============================================================================
+
+// MODE BIENTÔT DISPONIBLE
+const IS_COMING_SOON = true;
 
 export default function CheckoutWithStripe() {
   const navigate = useNavigate();
@@ -472,41 +475,88 @@ export default function CheckoutWithStripe() {
             </motion.div>
           )}
 
-          {/* Bouton CTA */}
+          {/* Bouton CTA ou Coming Soon */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
             className="text-center"
           >
-            <motion.button
-              onClick={handleCheckout}
-              disabled={isProcessing}
-              whileHover={!isProcessing ? { scale: 1.02 } : {}}
-              whileTap={!isProcessing ? { scale: 0.98 } : {}}
-              className={`w-full md:w-auto px-12 py-5 bg-gradient-to-r ${mainColor}
-                       rounded-2xl font-montserrat font-bold text-white text-lg
-                       flex items-center justify-center gap-3 shadow-lg
-                       disabled:opacity-50 disabled:cursor-not-allowed transition-all mx-auto`}
-            >
-              {isProcessing ? (
-                <>
-                  <Loader2 className="w-6 h-6 animate-spin" />
-                  Redirection vers le paiement...
-                </>
-              ) : (
-                <>
-                  <Lock className="w-5 h-5" />
-                  Procéder au paiement sécurisé
-                  <ArrowRight className="w-5 h-5" />
-                </>
-              )}
-            </motion.button>
+            {IS_COMING_SOON ? (
+              /* MODE BIENTÔT DISPONIBLE */
+              <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl p-8 max-w-2xl mx-auto">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full mb-6">
+                  <Clock className="w-4 h-4 text-amber-400" />
+                  <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">Paiement en ligne bientôt disponible</span>
+                </div>
 
-            <div className="flex items-center justify-center gap-2 text-white/40 text-sm mt-4">
-              <Lock className="w-4 h-4" />
-              <span>Paiement 100% sécurisé via Shopify</span>
-            </div>
+                <h3 className="text-2xl font-montserrat font-bold text-white mb-4">
+                  Finalisez votre réservation par téléphone
+                </h3>
+
+                <p className="text-white/70 mb-6 font-inter">
+                  Notre système de paiement en ligne arrive bientôt. En attendant, notre équipe est disponible pour finaliser votre réservation.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                  <motion.a
+                    href="tel:+33413001000"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold shadow-lg shadow-amber-500/30"
+                  >
+                    <Phone className="w-5 h-5" />
+                    <span>04 13 00 10 00</span>
+                  </motion.a>
+
+                  <motion.a
+                    href="/contact"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white rounded-xl font-montserrat font-bold transition-all"
+                  >
+                    Nous contacter
+                  </motion.a>
+                </div>
+
+                <div className="flex items-center justify-center gap-2 text-white/50 text-sm">
+                  <Bell className="w-4 h-4" />
+                  <span>Le paiement en ligne sera disponible très prochainement</span>
+                </div>
+              </div>
+            ) : (
+              /* MODE PAIEMENT ACTIF */
+              <>
+                <motion.button
+                  onClick={handleCheckout}
+                  disabled={isProcessing}
+                  whileHover={!isProcessing ? { scale: 1.02 } : {}}
+                  whileTap={!isProcessing ? { scale: 0.98 } : {}}
+                  className={`w-full md:w-auto px-12 py-5 bg-gradient-to-r ${mainColor}
+                           rounded-2xl font-montserrat font-bold text-white text-lg
+                           flex items-center justify-center gap-3 shadow-lg
+                           disabled:opacity-50 disabled:cursor-not-allowed transition-all mx-auto`}
+                >
+                  {isProcessing ? (
+                    <>
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                      Redirection vers le paiement...
+                    </>
+                  ) : (
+                    <>
+                      <Lock className="w-5 h-5" />
+                      Procéder au paiement sécurisé
+                      <ArrowRight className="w-5 h-5" />
+                    </>
+                  )}
+                </motion.button>
+
+                <div className="flex items-center justify-center gap-2 text-white/40 text-sm mt-4">
+                  <Lock className="w-4 h-4" />
+                  <span>Paiement 100% sécurisé via Stripe</span>
+                </div>
+              </>
+            )}
           </motion.div>
         </div>
       </main>

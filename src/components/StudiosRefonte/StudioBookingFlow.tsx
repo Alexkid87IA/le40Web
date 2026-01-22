@@ -5,12 +5,14 @@
  * Étape 2: Choix de la formule (Autonome/Assisté/Full Service)
  * Étape 3: Ajout des extras
  * Étape 4: Récapitulatif & Paiement
+ *
+ * STATUS: BIENTÔT DISPONIBLE
  */
 
 import { useState, useMemo, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Clock, Bell } from 'lucide-react';
 import { useUnifiedCart } from '../../hooks/useUnifiedCart';
 import BookingSidebar from './BookingSidebar';
 import BookingBottomSheet from './BookingBottomSheet';
@@ -338,54 +340,143 @@ export default function StudioBookingFlow() {
   // RENDER
   // ============================================================
 
+  // Coming Soon state
+  const isComingSoon = true;
+
   return (
-    <section ref={sectionRef} id="booking-flow" className="relative py-16 md:py-24 min-h-screen">
+    <section ref={sectionRef} id="booking-flow" className="relative py-16 md:py-24">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-[120px]"></div>
       </div>
 
-      {/* Restore Modal */}
-      {showRestoreModal && savedBooking && (
-        <RestoreModal
-          savedBooking={savedBooking}
-          onRestore={handleRestoreBooking}
-          onStartFresh={handleStartFresh}
-        />
+      {/* Coming Soon Overlay */}
+      {isComingSoon && (
+        <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-16 md:py-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            {/* Badge Bientôt disponible */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500/20 border border-amber-500/30 rounded-full mb-8"
+            >
+              <Clock className="w-5 h-5 text-amber-400" />
+              <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">Bientôt disponible</span>
+            </motion.div>
+
+            {/* Titre */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white mb-6">
+              Réservation en ligne
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
+                Arrive bientôt
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10 font-inter leading-relaxed">
+              Nous finalisons notre système de réservation en ligne pour vous offrir une expérience optimale.
+              En attendant, contactez-nous pour réserver votre session studio.
+            </p>
+
+            {/* CTA Téléphone */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <motion.a
+                href="tel:+33413001000"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative"
+              >
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
+                  animate={{ opacity: [0.5, 0.75, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
+                  <span>Appelez-nous : 04 13 00 10 00</span>
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="/contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white rounded-xl font-montserrat font-bold transition-all duration-300"
+              >
+                Nous contacter
+              </motion.a>
+            </div>
+
+            {/* Notification signup */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="mt-12 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 max-w-md mx-auto"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <Bell className="w-5 h-5 text-emerald-400" />
+                <span className="text-white font-semibold">Être notifié du lancement</span>
+              </div>
+              <p className="text-white/60 text-sm">
+                Laissez-nous votre email pour être informé dès que la réservation en ligne sera disponible.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
       )}
 
-      {/* Extra Detail Modal */}
-      <ExtraDetailModal
-        extra={extraDetailModal}
-        selectedExtras={selectedExtras}
-        onClose={() => setExtraDetailModal(null)}
-        onToggleExtra={handleToggleExtra}
-      />
+      {/* Original Booking Flow - Hidden when Coming Soon */}
+      {!isComingSoon && (
+        <>
+          {/* Restore Modal */}
+          {showRestoreModal && savedBooking && (
+            <RestoreModal
+              savedBooking={savedBooking}
+              onRestore={handleRestoreBooking}
+              onStartFresh={handleStartFresh}
+            />
+          )}
 
-      {/* Studio Detail Modal */}
-      <StudioDetailModal
-        studio={studioDetailModal}
-        isOpen={studioDetailModal !== null}
-        onClose={() => setStudioDetailModal(null)}
-        onSelect={handleSelectStudio}
-      />
+          {/* Extra Detail Modal */}
+          <ExtraDetailModal
+            extra={extraDetailModal}
+            selectedExtras={selectedExtras}
+            onClose={() => setExtraDetailModal(null)}
+            onToggleExtra={handleToggleExtra}
+          />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
-        {/* Section title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-8 lg:mb-12"
-        >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white mb-4">
-            RÉSERVEZ
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
-              VOTRE SESSION
-            </span>
-          </h1>
-        </motion.div>
+          {/* Studio Detail Modal */}
+          <StudioDetailModal
+            studio={studioDetailModal}
+            isOpen={studioDetailModal !== null}
+            onClose={() => setStudioDetailModal(null)}
+            onSelect={handleSelectStudio}
+          />
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+            {/* Section title */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8 lg:mb-12"
+            >
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white mb-4">
+                RÉSERVEZ
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
+                  VOTRE SESSION
+                </span>
+              </h1>
+            </motion.div>
 
         {/* 2-column layout on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -544,6 +635,8 @@ export default function StudioBookingFlow() {
         canCheckout={canProceed() && currentStep === 4}
         isProcessing={isProcessing}
       />
+        </>
+      )}
     </section>
   );
 }

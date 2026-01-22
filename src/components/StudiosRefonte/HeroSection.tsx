@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, Video, MapPin } from 'lucide-react';
+import { ArrowRight, Star, Video, MapPin, Clock } from 'lucide-react';
 import { useRef } from 'react';
 
 export default function HeroSection() {
@@ -62,6 +62,17 @@ export default function HeroSection() {
               />
             </span>
           </motion.h1>
+
+          {/* Badge Bientôt disponible */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-full mb-3"
+          >
+            <Clock className="w-4 h-4 text-amber-400" />
+            <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">Réservation en ligne bientôt disponible</span>
+          </motion.div>
 
           {/* Description */}
           <motion.p

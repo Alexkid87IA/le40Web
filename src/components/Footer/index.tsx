@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail, Linkedin, Instagram, ArrowRight, Clock } from 'lucide-react';
 
 const navigation = {
   services: [
@@ -10,8 +11,9 @@ const navigation = {
     { name: 'Domiciliation', href: '/domiciliation' },
   ],
   company: [
-    { name: 'Nos Events', href: '/events' },
+    { name: 'Événements', href: '/events' },
     { name: 'Le Club', href: '/club' },
+    { name: 'Tarifs', href: '/tarifs' },
     { name: 'Contact', href: '/contact' },
   ],
   legal: [
@@ -22,155 +24,241 @@ const navigation = {
 };
 
 const social = [
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com' },
-  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/le40marseille' },
+  { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/le40marseille' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative bg-zinc-950 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main footer content */}
-        <div className="py-12 lg:py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-            {/* Brand & Contact - Takes more space */}
-            <div className="lg:col-span-4">
-              {/* Logo */}
+    <footer className="relative bg-black overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-600/5 to-orange-600/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-emerald-600/5 to-teal-600/5 rounded-full blur-[120px]" />
+      </div>
+
+      {/* Top CTA Section */}
+      <div className="relative border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left - CTA */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-400 text-sm font-medium mb-6">
+                  Visitez nos espaces
+                </span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 leading-tight">
+                  Prêt à rejoindre
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
+                    Le 40 ?
+                  </span>
+                </h2>
+                <p className="text-white/60 text-lg mb-8 max-w-md">
+                  Découvrez l'espace de travail qui transformera votre quotidien professionnel.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    to="/reserver-visite"
+                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all"
+                  >
+                    Planifier une visite gratuite
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <a
+                    href="tel:+33413252640"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-xl font-montserrat font-bold transition-all"
+                  >
+                    <Phone className="w-5 h-5" />
+                    04 13 25 26 40
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right - Hours & Location Card */}
+            <div className="lg:justify-self-end">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-2xl border border-white/10 p-8 max-w-sm"
+              >
+                {/* Hours */}
+                <div className="flex items-start gap-4 mb-6 pb-6 border-b border-white/10">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold mb-2">Horaires d'ouverture</h3>
+                    <p className="text-white/60 text-sm">Lun - Ven : 8h30 - 19h00</p>
+                    <p className="text-white/60 text-sm">Sam : 9h00 - 13h00</p>
+                    <p className="text-emerald-400 text-sm font-medium mt-1">Accès 24/7 membres</p>
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-amber-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold mb-2">Notre adresse</h3>
+                    <p className="text-white/60 text-sm">40 Avenue de Saint Antoine</p>
+                    <p className="text-white/60 text-sm">13015 Marseille</p>
+                    <a
+                      href="https://maps.google.com/?q=40+Avenue+de+Saint+Antoine+13015+Marseille"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-amber-400 text-sm font-medium mt-2 hover:text-amber-300 transition-colors"
+                    >
+                      Voir sur Google Maps
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
+            {/* Brand Column */}
+            <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
               <Link to="/" className="inline-block mb-6">
                 <img
                   src="/logo.png"
                   alt="Le 40"
-                  className="h-10 w-auto brightness-0 invert"
+                  className="h-12 w-auto brightness-0 invert"
                 />
               </Link>
-
-              <p className="text-white/50 text-sm mb-6 max-w-xs">
-                Votre espace de travail premium au coeur de Marseille. Coworking, bureaux, studios et événements.
+              <p className="text-white/50 text-sm leading-relaxed mb-6">
+                L'espace de travail premium qui réunit entrepreneurs, créatifs et innovateurs au cœur de Marseille.
               </p>
 
-              {/* Contact info */}
-              <div className="space-y-3">
-                <a
-                  href="https://maps.google.com/?q=40+Avenue+de+Saint+Antoine+13015+Marseille"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-white/60 hover:text-white transition-colors group"
-                >
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm">40 Avenue de Saint Antoine, 13015 Marseille</span>
-                </a>
-                <a
-                  href="tel:+33491962151"
-                  className="flex items-center gap-3 text-white/60 hover:text-white transition-colors"
-                >
-                  <Phone className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-sm">04 91 96 21 51</span>
-                </a>
-                <a
-                  href="mailto:contact@bureauxle40.fr"
-                  className="flex items-center gap-3 text-white/60 hover:text-white transition-colors"
-                >
-                  <Mail className="w-4 h-4 flex-shrink-0" />
-                  <span className="text-sm">contact@bureauxle40.fr</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Navigation Links */}
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
-                {/* Services */}
-                <div>
-                  <h3 className="text-white font-semibold text-sm mb-4">Services</h3>
-                  <ul className="space-y-2.5">
-                    {navigation.services.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          to={item.href}
-                          className="text-white/50 hover:text-white text-sm transition-colors"
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Company */}
-                <div>
-                  <h3 className="text-white font-semibold text-sm mb-4">Le 40</h3>
-                  <ul className="space-y-2.5">
-                    {navigation.company.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          to={item.href}
-                          className="text-white/50 hover:text-white text-sm transition-colors"
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* CTA Card */}
-                <div className="col-span-2 sm:col-span-1">
-                  <div className="bg-white/5 rounded-xl p-5 border border-white/10">
-                    <h3 className="text-white font-semibold text-sm mb-2">
-                      Visitez nos espaces
-                    </h3>
-                    <p className="text-white/50 text-xs mb-4">
-                      Découvrez Le 40 et trouvez l'espace idéal pour votre activité.
-                    </p>
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
-                    >
-                      Planifier une visite
-                      <ArrowUpRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="py-6 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Copyright & Legal */}
-            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
-              <span className="text-white/40 text-xs">
-                © {new Date().getFullYear()} Le 40 Marseille
-              </span>
-              <div className="flex items-center gap-4">
-                {navigation.legal.map((item) => (
-                  <Link
+              {/* Social Links */}
+              <div className="flex items-center gap-3">
+                {social.map((item) => (
+                  <a
                     key={item.name}
-                    to={item.href}
-                    className="text-white/40 hover:text-white/60 text-xs transition-colors"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl bg-white/5 hover:bg-gradient-to-br hover:from-amber-500/20 hover:to-orange-500/20 border border-white/10 hover:border-amber-500/30 flex items-center justify-center transition-all group"
+                    aria-label={item.name}
                   >
-                    {item.name}
-                  </Link>
+                    <item.icon className="w-5 h-5 text-white/60 group-hover:text-amber-400 transition-colors" />
+                  </a>
                 ))}
               </div>
             </div>
 
-            {/* Social */}
-            <div className="flex items-center gap-3">
-              {social.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
-                  aria-label={item.name}
-                >
-                  <item.icon className="w-4 h-4 text-white/60" />
-                </a>
-              ))}
+            {/* Services */}
+            <div>
+              <h3 className="text-white font-montserrat font-bold text-sm mb-5 uppercase tracking-wider">
+                Services
+              </h3>
+              <ul className="space-y-3">
+                {navigation.services.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.href}
+                      className="text-white/50 hover:text-white text-sm transition-colors inline-flex items-center gap-1 group"
+                    >
+                      {item.name}
+                      <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="text-white font-montserrat font-bold text-sm mb-5 uppercase tracking-wider">
+                Le 40
+              </h3>
+              <ul className="space-y-3">
+                {navigation.company.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.href}
+                      className="text-white/50 hover:text-white text-sm transition-colors inline-flex items-center gap-1 group"
+                    >
+                      {item.name}
+                      <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h3 className="text-white font-montserrat font-bold text-sm mb-5 uppercase tracking-wider">
+                Contact
+              </h3>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="tel:+33413252640"
+                    className="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-2"
+                  >
+                    <Phone className="w-4 h-4 text-amber-500" />
+                    04 13 25 26 40
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:contact@le40.fr"
+                    className="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-2"
+                  >
+                    <Mail className="w-4 h-4 text-amber-500" />
+                    contact@le40.fr
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h3 className="text-white font-montserrat font-bold text-sm mb-5 uppercase tracking-wider">
+                Légal
+              </h3>
+              <ul className="space-y-3">
+                {navigation.legal.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.href}
+                      className="text-white/50 hover:text-white text-sm transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-white/40 text-sm text-center md:text-left">
+                © {new Date().getFullYear()} Le 40 Marseille. Tous droits réservés.
+              </p>
+              <p className="text-white/30 text-xs">
+                Conçu avec passion à Marseille
+              </p>
             </div>
           </div>
         </div>

@@ -43,7 +43,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black py-20 lg:pt-24 lg:pb-8">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black py-20 lg:py-12 xl:py-16">
       {/* VIDEO DE FOND */}
       <div className="absolute inset-0 z-0">
         <video
@@ -306,7 +306,7 @@ export default function Hero() {
 
         {/* Desktop Layout: Side by side */}
         <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr,280px] xl:grid-cols-[1fr,320px] gap-6 xl:gap-8 items-center">
+          <div className="grid lg:grid-cols-[1fr,300px] xl:grid-cols-[1fr,340px] 2xl:grid-cols-[1fr,380px] gap-8 xl:gap-12 items-center">
 
             <div>
               <motion.div
@@ -484,10 +484,10 @@ export default function Hero() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative flex items-center justify-center"
             >
               {/* Video Card with sophisticated design - True 9:16 ratio */}
-              <div className="relative w-full aspect-[9/16] max-h-[60vh] xl:max-h-[70vh] 2xl:max-h-[calc(100vh-140px)] rounded-2xl xl:rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative w-full aspect-[9/16] rounded-2xl xl:rounded-3xl overflow-hidden shadow-2xl">
                 {/* Animated border glow */}
                 <motion.div
                   className="absolute -inset-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-2xl xl:rounded-3xl opacity-60 blur-xl"
