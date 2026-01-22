@@ -48,7 +48,7 @@ export default function Salles() {
         ]}
         ctaText="Réserver"
         ctaHref="#spaces"
-        phoneNumber="04 13 00 10 00"
+        phoneNumber="04 91 96 21 51"
         icon={<Calendar className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />
 

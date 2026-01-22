@@ -72,11 +72,11 @@ export default function StickyHeader() {
                 )}
 
                 <a
-                  href="tel:+33413001000"
+                  href="tel:+33491962151"
                   className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl border border-white/20 transition-all duration-300"
                 >
                   <Phone className="w-4 h-4" />
-                  <span className="font-inter font-medium text-sm">04 13 00 10 00</span>
+                  <span className="font-inter font-medium text-sm">04 91 96 21 51</span>
                 </a>
 
                 <motion.a

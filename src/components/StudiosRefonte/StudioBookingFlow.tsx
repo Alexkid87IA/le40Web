@@ -389,7 +389,7 @@ export default function StudioBookingFlow() {
             {/* CTA Téléphone */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a
-                href="tel:+33413001000"
+                href="tel:+33491962151"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group relative"
@@ -400,7 +400,7 @@ export default function StudioBookingFlow() {
                   transition={{ duration: 2, repeat: Infinity }}
                 />
                 <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
-                  <span>Appelez-nous : 04 13 00 10 00</span>
+                  <span>Appelez-nous : 04 91 96 21 51</span>
                 </div>
               </motion.a>
 

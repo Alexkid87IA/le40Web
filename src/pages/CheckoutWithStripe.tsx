@@ -500,13 +500,13 @@ export default function CheckoutWithStripe() {
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
                   <motion.a
-                    href="tel:+33413001000"
+                    href="tel:+33491962151"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold shadow-lg shadow-amber-500/30"
                   >
                     <Phone className="w-5 h-5" />
-                    <span>04 13 00 10 00</span>
+                    <span>04 91 96 21 51</span>
                   </motion.a>
 
                   <motion.a
