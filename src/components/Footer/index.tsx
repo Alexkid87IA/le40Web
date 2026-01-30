@@ -51,7 +51,7 @@ export default function Footer() {
                 <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm font-medium mb-6">
                   Visitez nos espaces
                 </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 leading-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-montserrat font-black text-white mb-4 leading-tight">
                   Prêt à rejoindre
                   <span className="block text-white/60">
                     Le 40 ?
@@ -130,9 +130,9 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div className="relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-8 xl:gap-12">
             {/* Brand Column */}
-            <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
+            <div className="col-span-2 md:col-span-4 lg:col-span-4 xl:col-span-1 mb-4 lg:mb-0">
               <Link to="/" className="inline-block mb-6">
                 <img
                   src="/logo.png"
