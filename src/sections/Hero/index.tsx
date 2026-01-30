@@ -268,8 +268,8 @@ export default function Hero() {
         </div>
 
         {/* Desktop Layout: Side by side */}
-        <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-          <div className="grid lg:grid-cols-[1fr,300px] xl:grid-cols-[1fr,340px] 2xl:grid-cols-[1fr,380px] gap-8 xl:gap-12 items-center">
+        <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 laptop:px-6 pt-20">
+          <div className="grid lg:grid-cols-[1fr,280px] laptop:grid-cols-[1fr,300px] xl:grid-cols-[1fr,340px] 2xl:grid-cols-[1fr,380px] gap-6 laptop:gap-8 xl:gap-12 items-center">
 
             <div>
               <motion.div
@@ -288,7 +288,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-montserrat font-black text-white mb-3 lg:mb-4 leading-[1.1]"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl laptop:text-5xl xl:text-6xl 2xl:text-7xl font-montserrat font-black text-white mb-3 lg:mb-4 leading-[1.1]"
               >
                 DÉVELOPPEZ VOTRE{' '}
                 <span className="relative inline-block">
@@ -302,7 +302,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-sm lg:text-base xl:text-lg text-white/70 font-inter mb-4 xl:mb-6 leading-relaxed max-w-xl"
+                className="text-sm lg:text-sm laptop:text-base xl:text-lg text-white/70 font-inter mb-4 xl:mb-6 leading-relaxed max-w-xl"
               >
                 Coworking, bureaux privés, studios et salles de réunion.
                 <span className="text-white font-semibold"> Rejoignez 120+ entrepreneurs.</span>
@@ -312,7 +312,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="grid grid-cols-4 gap-2 xl:gap-3 mb-4 xl:mb-6"
+                className="grid grid-cols-4 gap-1.5 laptop:gap-2 xl:gap-3 mb-4 xl:mb-6"
               >
                 {[
                   { value: '4000m²', label: 'd\'espace', color: 'from-amber-500 to-orange-500' },
@@ -329,7 +329,7 @@ export default function Hero() {
                     className="relative group"
                   >
                     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-2 xl:p-3 group-hover:border-white/20 transition-all duration-300 text-center">
-                      <div className={`text-lg lg:text-xl xl:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5 xl:mb-1`}>
+                      <div className={`text-lg lg:text-lg laptop:text-xl xl:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5 xl:mb-1`}>
                         {stat.value}
                       </div>
                       <div className="text-[9px] xl:text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
