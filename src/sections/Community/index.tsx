@@ -73,7 +73,7 @@ export default function Community() {
               <span className="text-purple-300 text-sm font-bold uppercase tracking-wider">Communauté</span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
               Rejoignez le<br />
               Réseau<br />
               <span className="relative inline-block">

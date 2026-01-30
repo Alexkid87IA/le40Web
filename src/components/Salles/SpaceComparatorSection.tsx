@@ -94,7 +94,7 @@ export default function SpaceComparatorSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             COMPAREZ
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               NOS ESPACES

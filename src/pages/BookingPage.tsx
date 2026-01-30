@@ -108,7 +108,7 @@ export default function BookingPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold text-white mb-3 md:mb-4">
+                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-bold text-white mb-3 md:mb-4">
                         Nos Services
                       </h1>
                       <p className="text-base sm:text-lg md:text-xl text-white/60 font-inter max-w-3xl">

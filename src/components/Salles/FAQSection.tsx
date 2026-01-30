@@ -16,7 +16,7 @@ export default function FAQSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 md:mb-12 lg:mb-16 px-4"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-4 md:mb-6">
             QUESTIONS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">FRÉQUENTES</span>
           </h2>
           <p className="text-sm md:text-base lg:text-lg font-inter text-white/60">

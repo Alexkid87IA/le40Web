@@ -85,7 +85,7 @@ export default function Packs() {
               <span className="text-sm font-bold text-amber-300">BIENTÔT DISPONIBLE</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black text-white mb-4">
               Packs{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
                 tout inclus

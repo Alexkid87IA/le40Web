@@ -26,7 +26,7 @@ export default function PartnersSection() {
               Nos clients
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             ILS ORGANISENT
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
               CHEZ NOUS
@@ -126,7 +126,7 @@ export default function PartnersSection() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.8 + index * 0.1, type: "spring", stiffness: 200 }}
-                  className={`text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient} mb-2`}
+                  className={`text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient} mb-2`}
                 >
                   {stat.number}
                 </motion.div>

@@ -63,7 +63,7 @@ export default function BookingHeroChoice({ onSelectVisit, onSelectService }: Bo
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-montserrat font-bold text-white mb-4 md:mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-montserrat font-bold text-white mb-4 md:mb-6 leading-tight"
             >
               Bienvenue au 40
             </motion.h1>

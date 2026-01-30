@@ -57,7 +57,7 @@ export default function Contact() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-[1.1]"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-6 leading-[1.1]"
             >
               CONTACTEZ
               <br />

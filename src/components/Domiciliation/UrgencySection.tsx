@@ -124,7 +124,7 @@ export default function UrgencySection() {
 
                     <motion.div
                       whileHover={{ scale: 1.05 }}
-                      className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-2 md:mb-3 font-montserrat"
+                      className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black text-white mb-2 md:mb-3 font-montserrat"
                     >
                       {item.count}
                     </motion.div>

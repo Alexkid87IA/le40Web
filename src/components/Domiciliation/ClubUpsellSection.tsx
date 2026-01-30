@@ -63,7 +63,7 @@ export default function ClubUpsellSection() {
               Offre Combinée
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-6">
             DOMICILIATION
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-500 to-orange-400">
               + LE 40 CLUB

@@ -53,7 +53,7 @@ export default function FinalCTASection() {
             <Star className="w-8 h-8 text-orange-400" />
           </motion.div>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 font-montserrat leading-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black text-white mb-4 font-montserrat leading-tight">
             Prêt pour une domiciliation
           </h2>
           <motion.h3
@@ -61,7 +61,7 @@ export default function FinalCTASection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-12 font-montserrat leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black mb-12 font-montserrat leading-tight"
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-orange-500"
                   style={{

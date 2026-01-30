@@ -239,7 +239,7 @@ export default function ProblemSection() {
               <Clock className="w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 text-orange-400" />
               <TrendingUp className="w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 text-orange-400" />
             </div>
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 mb-4 md:mb-6">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-400 mb-4 md:mb-6">
               5h/mois économisées
             </div>
             <p className="text-sm md:text-base lg:text-lg xl:text-xl text-white/90 max-w-3xl mx-auto mb-4 font-inter leading-relaxed px-4">

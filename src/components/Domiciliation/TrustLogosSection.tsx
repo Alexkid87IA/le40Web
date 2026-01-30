@@ -29,7 +29,7 @@ export default function TrustLogosSection() {
             ILS NOUS FONT CONFIANCE
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-8 items-center">
             {clients.map((client, index) => (
               <motion.div
                 key={index}

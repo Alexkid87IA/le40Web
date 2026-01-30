@@ -38,7 +38,7 @@ export default function ServicesDetailSection() {
             <span className="text-amber-400 font-inter text-sm font-bold">8 services premium inclus</span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-6 leading-tight">
             Tout ce que vous obtenez
             <br />
             <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-orange-500 bg-clip-text text-transparent">
