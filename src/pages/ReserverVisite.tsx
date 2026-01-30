@@ -4,12 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 
 export default function ReserverVisite() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-black">
+      <SEOHead
+        title="Réserver une Visite Gratuite"
+        description="Réservez une visite gratuite du 40 à Marseille. Découvrez nos espaces de coworking, bureaux privés, salles de réunion et studios. Visite personnalisée de 30 min."
+        keywords="visite coworking Marseille, visiter Le 40, réservation visite espace travail Marseille"
+      />
       <HeaderNav />
       <MobileBurger />
 

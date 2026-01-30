@@ -10,11 +10,17 @@ import SpeakersSection from '../components/Events/SpeakersSection';
 import FAQSection from '../components/Events/FAQSection';
 import OrganizeCTASection from '../components/Events/OrganizeCTASection';
 import { Calendar } from 'lucide-react';
+import SEOHead from '../components/SEO/SEOHead';
 
 export default function Events() {
 
   return (
     <div className="min-h-screen bg-black">
+      <SEOHead
+        title="Événements & Networking Marseille"
+        description="Participez aux événements du 40 à Marseille : networking, workshops, conférences et afterworks pour entrepreneurs. Événements mensuels gratuits."
+        keywords="événements coworking Marseille, networking entrepreneurs Marseille, workshop Marseille, afterwork professionnel Marseille"
+      />
       <HeaderNav />
       <MobileBurger />
 

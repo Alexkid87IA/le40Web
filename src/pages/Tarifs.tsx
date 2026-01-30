@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Star, Zap, Shield, Coffee, Wifi, Users, Calendar } from 'lucide-react';
+import SEOHead from '../components/SEO/SEOHead';
 
 // Types pour les données de tarification
 interface PricingFeature {
@@ -177,6 +178,11 @@ const Tarifs = () => {
 
   return (
     <div className="min-h-screen bg-black-deep relative overflow-hidden">
+      <SEOHead
+        title="Tarifs - Coworking, Bureaux & Domiciliation"
+        description="Découvrez les tarifs du 40 à Marseille. Domiciliation dès 49€/mois, coworking dès 29€/jour, bureaux privés dès 499€/mois. Tarifs transparents, sans surprise."
+        keywords="tarifs coworking Marseille, prix domiciliation Marseille, coût bureau privé Marseille, tarif salle réunion Marseille"
+      />
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet-600/20 rounded-full blur-[120px]" />

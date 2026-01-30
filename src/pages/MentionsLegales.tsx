@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 
 export default function MentionsLegales() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEOHead
+        title="Mentions Légales"
+        description="Mentions légales du 40, espace de coworking et domiciliation à Marseille. Informations légales, éditeur et hébergeur du site."
+        noindex={true}
+      />
       <HeaderNav />
       <MobileBurger />
 

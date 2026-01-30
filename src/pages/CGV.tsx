@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 
 export default function CGV() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEOHead
+        title="Conditions Générales de Vente"
+        description="Consultez les conditions générales de vente du 40, espace de coworking à Marseille. CGV applicables à nos services de domiciliation, bureaux et salles."
+        noindex={true}
+      />
       <HeaderNav />
       <MobileBurger />
 

@@ -99,6 +99,72 @@ export const localBusinessSchema = {
  */
 export const organizationSchema = localBusinessSchema;
 
+/**
+ * SiteNavigationElement schema - helps Google understand site structure for sitelinks
+ */
+export const siteNavigationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "SiteNavigationElement",
+      "position": 1,
+      "name": "Domiciliation",
+      "description": "Domiciliation d'entreprise à Marseille avec adresse prestigieuse",
+      "url": `${businessInfo.url}/domiciliation`
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 2,
+      "name": "Bureaux Privés",
+      "description": "Location de bureaux privés équipés à Marseille",
+      "url": `${businessInfo.url}/bureaux`
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 3,
+      "name": "Coworking",
+      "description": "Espace de coworking premium à Marseille",
+      "url": `${businessInfo.url}/coworking`
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 4,
+      "name": "Salles de Réunion",
+      "description": "Location de salles de réunion équipées à Marseille",
+      "url": `${businessInfo.url}/salles`
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 5,
+      "name": "Studios",
+      "description": "Studios photo et vidéo professionnels à Marseille",
+      "url": `${businessInfo.url}/studios`
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 6,
+      "name": "Contact",
+      "description": "Contactez Le 40 Marseille",
+      "url": `${businessInfo.url}/contact`
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 7,
+      "name": "Tarifs",
+      "description": "Tarifs des espaces de travail Le 40",
+      "url": `${businessInfo.url}/tarifs`
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 8,
+      "name": "Événements",
+      "description": "Événements et networking au 40 Marseille",
+      "url": `${businessInfo.url}/events`
+    }
+  ]
+};
+
 // ============================================================================
 // SERVICE SCHEMAS
 // ============================================================================

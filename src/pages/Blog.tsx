@@ -4,6 +4,7 @@ import { Clock, ArrowRight, Search, Filter, BookOpen } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 import { blogPosts } from '../data/mockData';
 
 // Extended mock blog posts for pagination demo
@@ -58,9 +59,14 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-[#0F172A]">
+      <SEOHead
+        title="Blog - Actualités & Conseils Entrepreneurs"
+        description="Le blog du 40 : conseils pour entrepreneurs, tendances du coworking, actualités de notre communauté à Marseille. Guides pratiques et retours d'expérience."
+        keywords="blog coworking Marseille, conseils entrepreneurs, actualités coworking, guide domiciliation"
+      />
       <HeaderNav />
       <MobileBurger />
-      
+
       <main className="pt-24">
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900">

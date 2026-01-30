@@ -15,10 +15,18 @@ import UrgencySection from '../components/Bureaux/UrgencySection';
 import FAQSection from '../components/Bureaux/FAQSection';
 import GuaranteesSection from '../components/Bureaux/GuaranteesSection';
 import FinalCTASection from '../components/Bureaux/FinalCTASection';
+import SEOHead from '../components/SEO/SEOHead';
+import { serviceSchemas } from '../lib/seo-schemas';
 
 export default function BureauxPrives() {
   return (
     <div className="min-h-screen bg-black overflow-hidden">
+      <SEOHead
+        title="Bureaux Privés Marseille"
+        description="Louez votre bureau privé au 40 à Marseille. Espaces de 2 à 10 personnes, tout équipés, flexibles. À partir de 499€/mois. Installation sous 48h."
+        keywords="bureau privé Marseille, location bureau Marseille, bureau équipé Marseille, espace de travail privé, bureau à louer Marseille 13015"
+        schema={serviceSchemas.coworking}
+      />
       <HeaderNav />
       <MobileBurger />
 

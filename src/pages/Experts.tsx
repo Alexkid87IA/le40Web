@@ -4,6 +4,7 @@ import { Users, Star, ArrowRight, Award, Target, Zap, Heart, CheckCircle, Calend
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 import { useShopifyCollection } from '../hooks/useShopifyCollection';
 import { useUnifiedCart } from '../hooks/useUnifiedCart';
 import type { ShopifyProduct } from '../lib/shopify';
@@ -101,9 +102,14 @@ export default function Experts() {
 
   return (
     <div className="min-h-screen bg-[#0F172A]">
+      <SEOHead
+        title="Experts & Services Professionnels"
+        description="Accédez aux experts du réseau Le 40 : avocats, comptables, consultants marketing, développeurs. Des professionnels vérifiés au service de votre croissance."
+        keywords="experts professionnels Marseille, services entreprise Marseille, comptable Marseille, avocat entreprise Marseille"
+      />
       <HeaderNav />
       <MobileBurger />
-      
+
       <main className="pt-24">
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#0F172A] to-slate-900 film-grain">

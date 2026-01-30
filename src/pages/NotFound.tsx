@@ -3,10 +3,16 @@ import { motion } from 'framer-motion';
 import { Home, ArrowLeft, Search, Building2 } from 'lucide-react';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
+import SEOHead from '../components/SEO/SEOHead';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#0F172A]">
+      <SEOHead
+        title="Page non trouvée"
+        description="La page que vous recherchez n'existe pas ou a été déplacée."
+        noindex={true}
+      />
       <HeaderNav />
       <MobileBurger />
       

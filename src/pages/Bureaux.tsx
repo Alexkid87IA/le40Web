@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 
 const workspaceOptions = [
   {
@@ -99,6 +100,11 @@ const comparisonFeatures = [
 export default function Bureaux() {
   return (
     <div className="min-h-screen bg-black overflow-hidden">
+      <SEOHead
+        title="Nos Bureaux - Coworking & Espaces de Travail"
+        description="Découvrez tous les espaces de travail du 40 à Marseille : coworking open space, bureaux privés, postes dédiés. Trouvez l'espace idéal pour votre activité."
+        keywords="bureaux Marseille, espace travail Marseille, coworking open space, poste dédié Marseille, bureau partagé"
+      />
       <HeaderNav />
       <MobileBurger />
 

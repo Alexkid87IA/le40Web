@@ -4,6 +4,7 @@ import { Check, ArrowRight, Star, Building2, Users, Video, MapPin } from 'lucide
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 import { pricingData } from '../data/mockData';
 
 const offerCategories = [
@@ -48,9 +49,14 @@ const faqData = [
 export default function Offres() {
   return (
     <div className="min-h-screen bg-[#0F172A]">
+      <SEOHead
+        title="Nos Offres"
+        description="Découvrez toutes les offres du 40 à Marseille : domiciliation dès 49€/mois, coworking, bureaux privés et studios de production. Tarifs flexibles sans engagement."
+        keywords="offres coworking Marseille, tarifs domiciliation Marseille, prix bureau privé Marseille, abonnement coworking"
+      />
       <HeaderNav />
       <MobileBurger />
-      
+
       <main className="pt-24">
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-b from-[#0F172A] to-slate-900">

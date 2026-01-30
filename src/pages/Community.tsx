@@ -5,6 +5,7 @@ import { Users, Calendar, Coffee, ArrowRight, Star, Heart, Zap, Target, Clock, N
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
 
 // Données Premium
 const communityStats = [
@@ -359,6 +360,11 @@ export default function Community() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden">
+      <SEOHead
+        title="Communauté Entrepreneurs Marseille"
+        description="Rejoignez la communauté du 40 à Marseille : 120+ entrepreneurs actifs, networking régulier, workshops et événements. Développez votre réseau professionnel."
+        keywords="communauté entrepreneurs Marseille, réseau professionnel Marseille, networking coworking, communauté coworking Marseille"
+      />
       {/* Sidebar Navigation */}
       <HeaderNav />
       

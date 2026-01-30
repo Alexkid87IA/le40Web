@@ -3,10 +3,18 @@ import { MapPin, Phone, Mail, Clock, ArrowRight, Building2 } from 'lucide-react'
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEO/SEOHead';
+import { localBusinessSchema } from '../lib/seo-schemas';
 
 export default function Contact() {
   return (
     <div className="min-h-screen bg-black">
+      <SEOHead
+        title="Contact"
+        description="Contactez l'équipe du 40 à Marseille. Appelez le 04 91 96 21 51 ou visitez-nous au 40 Avenue de Saint Antoine, 13015 Marseille. Réponse sous 24h."
+        keywords="contact Le 40, coworking Marseille contact, adresse Le 40, téléphone Le 40 Marseille"
+        schema={localBusinessSchema}
+      />
       <HeaderNav />
       <MobileBurger />
 
