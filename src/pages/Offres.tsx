@@ -223,7 +223,7 @@ export default function Offres() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-                Prêt à nous rejoindre ?
+                Prêt à nous rejoindre{'\u00A0'}?
               </h2>
               <p className="text-xl text-gray-300 mb-8">
                 Réservez votre visite gratuite et découvrez l'espace qui transformera votre façon de travailler

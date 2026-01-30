@@ -131,26 +131,24 @@ export default function WorkshopsSection() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-8 px-8 py-6 bg-gradient-to-r from-red-500/10 to-rose-500/10 backdrop-blur-xl border border-red-500/20 rounded-2xl">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-md sm:max-w-lg mx-auto px-4 sm:px-8 py-6 bg-gradient-to-r from-red-500/10 to-rose-500/10 backdrop-blur-xl border border-red-500/20 rounded-2xl">
             <div className="text-center">
-              <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
+              <div className="text-2xl sm:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
                 15+
               </div>
-              <div className="text-sm text-white/60 font-inter font-semibold">Événements/mois</div>
+              <div className="text-xs sm:text-sm text-white/60 font-inter font-semibold">Événements/mois</div>
             </div>
-            <div className="w-px h-12 bg-white/20" />
-            <div className="text-center">
-              <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-400">
+            <div className="text-center border-x border-white/20">
+              <div className="text-2xl sm:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-400">
                 100%
               </div>
-              <div className="text-sm text-white/60 font-inter font-semibold">Inclus</div>
+              <div className="text-xs sm:text-sm text-white/60 font-inter font-semibold">Inclus</div>
             </div>
-            <div className="w-px h-12 bg-white/20" />
             <div className="text-center">
-              <div className="text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
+              <div className="text-2xl sm:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">
                 ∞
               </div>
-              <div className="text-sm text-white/60 font-inter font-semibold">Sans limite</div>
+              <div className="text-xs sm:text-sm text-white/60 font-inter font-semibold">Sans limite</div>
             </div>
           </div>
         </motion.div>

@@ -13,7 +13,7 @@ export default function ComparisonSection() {
           className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
-            POURQUOI CHOISIR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">LE 40</span> ?
+            POURQUOI CHOISIR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">LE 40</span>{'\u00A0'}?
           </h2>
           <p className="text-sm md:text-base lg:text-xl font-inter text-white/60 max-w-3xl mx-auto px-4">
             Comparaison détaillée avec les solutions traditionnelles. Les chiffres parlent d'eux-mêmes.

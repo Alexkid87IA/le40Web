@@ -152,9 +152,9 @@ export default function FinalCTASection() {
               <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-4">
                 <Check className="w-6 h-6 text-red-400" />
               </div>
-              <h3 className="text-xl font-montserrat font-bold text-white mb-2">Merci pour votre inscription !</h3>
+              <h3 className="text-xl font-montserrat font-bold text-white mb-2">Merci pour votre inscription{'\u00A0'}!</h3>
               <p className="text-white/70 font-inter text-sm">
-                Vous serez parmi les premiers informés du lancement du Club. À très bientôt !
+                Vous serez parmi les premiers informés du lancement du Club. À très bientôt{'\u00A0'}!
               </p>
             </motion.div>
           ) : (

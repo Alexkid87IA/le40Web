@@ -52,7 +52,7 @@ export default function FinalCTASection() {
             PRÊT À CRÉER DU{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
               CONTENU PRO
-            </span> ?
+            </span>{'\u00A0'}?
           </h2>
 
           <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-12 font-inter">

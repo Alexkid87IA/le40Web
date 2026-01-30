@@ -253,7 +253,7 @@ export default function Gallery() {
                 C'est l'environnement où vous allez construire quelque chose d'extraordinaire."
               </p>
 
-              <div className="pt-4 grid grid-cols-3 gap-6">
+              <div className="pt-4 grid grid-cols-3 gap-3 sm:gap-6">
                 <div className="text-center">
                   <div className="text-3xl font-black bg-gradient-to-r from-slate-300 to-zinc-100 bg-clip-text text-transparent mb-2">
                     30+

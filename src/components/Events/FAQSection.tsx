@@ -108,9 +108,9 @@ export default function FAQSection() {
         >
           <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
             <div>
-              <h3 className="text-xl md:text-2xl font-montserrat font-bold text-white mb-3">Vous ne trouvez pas votre réponse ?</h3>
+              <h3 className="text-xl md:text-2xl font-montserrat font-bold text-white mb-3">Vous ne trouvez pas votre réponse{'\u00A0'}?</h3>
               <p className="text-white/70 mb-6 font-inter text-sm md:text-base">
-                Notre équipe est là pour vous aider. Contactez-nous directement !
+                Notre équipe est là pour vous aider. Contactez-nous directement{'\u00A0'}!
               </p>
               <motion.a
                 href="/contact"

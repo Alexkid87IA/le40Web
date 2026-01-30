@@ -58,7 +58,7 @@ export default function MembershipProcessSection() {
           </motion.span>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">MARCHE</span> ?
+            COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">MARCHE</span>{'\u00A0'}?
           </h2>
 
           <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter">

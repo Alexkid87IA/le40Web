@@ -124,7 +124,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-montserrat font-bold text-white mb-2">Demande envoyée !</h3>
+                  <h3 className="text-2xl font-montserrat font-bold text-white mb-2">Demande envoyée{'\u00A0'}!</h3>
                   <p className="text-white/70">Nous vous contacterons rapidement pour confirmer votre visite.</p>
                 </motion.div>
               ) : (

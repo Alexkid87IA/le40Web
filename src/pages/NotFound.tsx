@@ -134,7 +134,7 @@ export default function NotFound() {
               className="pt-8 border-t border-white/10"
             >
               <p className="text-sm text-gray-400">
-                Besoin d'aide ? <a href="/contact" className="text-orange-400 hover:text-orange-300 transition-colors">Contactez-nous</a>
+                Besoin d'aide{'\u00A0'}? <a href="/contact" className="text-orange-400 hover:text-orange-300 transition-colors">Contactez-nous</a>
               </p>
             </motion.div>
           </motion.div>

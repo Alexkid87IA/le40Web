@@ -29,7 +29,7 @@ export default function FormuleStep({
         <h2 className="text-xl md:text-2xl font-montserrat font-black text-white mb-1">
           Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">formule</span>
         </h2>
-        <p className="text-white/60 text-sm">Quel niveau d'accompagnement souhaitez-vous ?</p>
+        <p className="text-white/60 text-sm">Quel niveau d'accompagnement souhaitez-vous{'\u00A0'}?</p>
       </div>
 
       {/* Formules - horizontal on desktop */}

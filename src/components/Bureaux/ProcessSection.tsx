@@ -55,7 +55,7 @@ export default function ProcessSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">MARCHE</span> ?
+            COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">MARCHE</span>{'\u00A0'}?
           </h2>
           <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto">
             De la visite à l'emménagement en <span className="text-blue-400 font-bold">moins d'une semaine</span>. Simple, transparent, sans surprise.

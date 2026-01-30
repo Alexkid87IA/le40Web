@@ -14,7 +14,7 @@ export default function ProblemSolutionSection() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 md:mb-6 px-4">
             Votre équipe grandit.
             <br />
-            <span className="text-white/60">Mais où installer tout le monde ?</span>
+            <span className="text-white/60">Mais où installer tout le monde{'\u00A0'}?</span>
           </h2>
           <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto px-4">
             Le télétravail a ses limites. La location classique est trop rigide et coûteuse.

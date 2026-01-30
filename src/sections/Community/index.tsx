@@ -188,7 +188,7 @@ export default function Community() {
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 rounded-3xl blur-2xl opacity-20"></div>
               <div className="relative bg-gradient-to-br from-purple-950/40 to-fuchsia-950/30 backdrop-blur-xl border border-purple-500/20 rounded-3xl p-8">
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-3 gap-3 sm:gap-6">
                   {stats.map((stat, index) => (
                     <motion.div
                       key={index}

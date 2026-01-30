@@ -97,7 +97,7 @@ export default function GoogleReviewsSection() {
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-white/60 mb-4 font-inter">Vous êtes client ? Partagez votre expérience</p>
+            <p className="text-white/60 mb-4 font-inter">Vous êtes client{'\u00A0'}? Partagez votre expérience</p>
             <a
               href="https://www.google.com/search?q=le+40+marseille"
               target="_blank"

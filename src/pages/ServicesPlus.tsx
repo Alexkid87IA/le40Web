@@ -418,7 +418,7 @@ export default function ServicesPlus() {
             >
               <Star className="w-12 h-12 text-violet-400 mx-auto mb-6" />
               <h2 className="text-3xl sm:text-4xl font-montserrat font-bold text-white mb-6">
-                Prêt à passer au niveau supérieur ?
+                Prêt à passer au niveau supérieur{'\u00A0'}?
               </h2>
               <p className="text-xl font-inter text-white/70 mb-8">
                 Discutons de vos objectifs et créons ensemble la stratégie qui transformera votre vision en réalité
