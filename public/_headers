@@ -1,0 +1,13 @@
+# Assets avec hash dans le nom : cache longue durée
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# index.html : jamais en cache (pour toujours charger les bons chunks)
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Fichiers statiques
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
