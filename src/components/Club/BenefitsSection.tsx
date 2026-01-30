@@ -1,181 +1,96 @@
-import React, { useState, useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Check } from 'lucide-react';
 import { membershipBenefits } from '../../data/club/benefits';
 
 const BenefitCard = ({ benefit, index }) => {
-  const cardRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useTransform(mouseY, [-100, 100], [5, -5]);
-  const rotateY = useTransform(mouseX, [-100, 100], [-5, 5]);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-    setIsHovered(false);
-  };
-
   const Icon = benefit.icon;
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.05, duration: 0.6 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={() => setIsHovered(true)}
-      style={{ perspective: 1000 }}
-      className="relative group h-full"
+      transition={{ delay: index * 0.05, duration: 0.5 }}
+      whileHover={{ y: -4 }}
+      className="group"
     >
-      <motion.div
-        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-        className="h-full"
-      >
-        <div className={`absolute -inset-1 bg-gradient-to-r ${benefit.gradient} rounded-3xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity`} />
-
-        <div className="relative h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 group-hover:border-white/20 transition-all overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-              backgroundSize: '20px 20px'
-            }} />
+      <div className="h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 group-hover:border-red-500/30 transition-all duration-300">
+        <div className="flex items-start gap-6">
+          <div className={`w-14 h-14 bg-gradient-to-br ${benefit.gradient} rounded-xl flex items-center justify-center shrink-0`}>
+            <Icon className="w-7 h-7 text-white" />
           </div>
 
-          <motion.div
-            animate={{ rotate: isHovered ? 360 : 0 }}
-            transition={{ duration: 0.8 }}
-            className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${benefit.gradient} mb-6`}
-          >
-            <Icon className="w-8 h-8 text-white" />
-          </motion.div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
+              {benefit.title}
+            </h3>
+            <p className="text-white/60 text-sm font-inter leading-relaxed mb-3">
+              {benefit.description}
+            </p>
+            <span className="inline-flex items-center text-xs font-inter font-semibold text-red-400/80">
+              {benefit.stats}
+            </span>
+          </div>
 
-          <h3 className="text-2xl font-montserrat font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-red-400 group-hover:to-rose-400 transition-all">
-            {benefit.title}
-          </h3>
-
-          <p className="text-white/70 mb-6 leading-relaxed font-inter">
-            {benefit.description}
-          </p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0.5 }}
-            className={`inline-flex items-center px-4 py-2 rounded-full text-xs font-bold text-white bg-gradient-to-r ${benefit.gradient} bg-opacity-20`}
-          >
-            {benefit.stats}
-          </motion.div>
-
-          <motion.div
-            className="absolute top-0 right-0 w-32 h-32 opacity-10"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          >
-            <div className={`w-full h-full bg-gradient-to-br ${benefit.gradient} rounded-full blur-3xl`} />
-          </motion.div>
+          <Check className="w-5 h-5 text-red-400 shrink-0 mt-1" />
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
 
 export default function BenefitsSection() {
   return (
-    <section className="py-32 bg-black relative overflow-hidden">
-      <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[128px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-rose-600/10 rounded-full blur-[128px]"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+    <section className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-rose-600/20 rounded-full blur-[150px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-semibold text-red-400 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-medium text-red-400 mb-6"
           >
             AVANTAGES EXCLUSIFS
           </motion.span>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-montserrat font-black text-white mb-6 leading-tight">
-            Tout ce dont vous avez
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">
-              besoin pour réussir
-            </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            CE QUI EST <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">INCLUS</span>
           </h2>
 
-          <p className="text-xl text-white/60 max-w-3xl mx-auto font-inter">
-            10 avantages puissants inclus dans votre abonnement pour accélérer votre croissance
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter">
+            Tout ce dont votre entreprise a besoin pour grandir, inclus dans votre abonnement
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {membershipBenefits.slice(0, 9).map((benefit, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {membershipBenefits.map((benefit, index) => (
             <BenefitCard key={index} benefit={benefit} index={index} />
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-          {membershipBenefits.slice(9).map((benefit, index) => (
-            <BenefitCard key={index + 9} benefit={benefit} index={index + 9} />
-          ))}
-        </div>
-
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 text-center"
+          className="bg-gradient-to-r from-red-950/50 to-rose-950/50 border border-red-500/30 rounded-2xl p-10 text-center"
         >
-          <div className="inline-flex flex-col gap-4 p-8 bg-gradient-to-r from-red-500/10 to-rose-500/10 backdrop-blur-xl border border-red-500/20 rounded-3xl">
-            <p className="text-2xl font-montserrat font-bold text-white">
-              Tout ça pour seulement <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">50€ par mois</span>
-            </p>
-            <p className="text-white/60 font-inter">
-              Sans engagement • Résiliation à tout moment • Essai avec visite découverte gratuite
-            </p>
-          </div>
+          <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-4">
+            Tout ça pour seulement <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">50€ par mois</span>
+          </h3>
+          <p className="text-base text-white/60 font-inter">
+            Sans engagement · Résiliation à tout moment · Visite découverte gratuite
+          </p>
         </motion.div>
       </div>
     </section>

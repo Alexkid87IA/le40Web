@@ -67,7 +67,7 @@ export default function Domiciliation() {
             />
           </video>
           {/* Overlay sombre pour lisibilité du contenu */}
-          <div className="absolute inset-0 bg-black/75 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
         </div>
 
         {/* ============================================

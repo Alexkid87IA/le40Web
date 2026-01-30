@@ -15,11 +15,11 @@ const pageColors: Record<string, {
   glow: string;
 }> = {
   '/': {
-    accent: 'text-amber-400',
-    border: 'border-amber-500/40',
-    borderHover: 'hover:border-amber-400/60',
-    badge: 'from-amber-500 to-orange-500',
-    glow: 'shadow-amber-500/25',
+    accent: 'text-white/80',
+    border: 'border-white/20',
+    borderHover: 'hover:border-white/40',
+    badge: 'from-white/90 to-white/70',
+    glow: 'shadow-white/10',
   },
   '/bureaux': {
     accent: 'text-blue-400',

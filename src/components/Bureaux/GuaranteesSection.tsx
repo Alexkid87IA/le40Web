@@ -6,19 +6,19 @@ const guarantees = [
     icon: Shield,
     title: 'Satisfait ou remboursé 3 mois',
     description: 'Pas convaincu ? On vous rembourse intégralement les 3 premiers mois. Sans question, sans discussion.',
-    color: 'from-emerald-600 to-teal-600'
+    color: 'from-blue-600 to-indigo-600'
   },
   {
     icon: RefreshCw,
     title: 'Upgrade/Downgrade flexible',
     description: 'Votre équipe grandit ou diminue ? Changez de bureau facilement. Adaptation permanente à vos besoins.',
-    color: 'from-teal-600 to-cyan-600'
+    color: 'from-indigo-600 to-blue-600'
   },
   {
     icon: HeadphonesIcon,
     title: 'Support dédié 5j/7',
     description: 'Une question ? Un problème ? Notre équipe répond en moins de 2h. Support français et réactif.',
-    color: 'from-cyan-600 to-blue-600'
+    color: 'from-blue-500 to-indigo-500'
   },
   {
     icon: Award,
@@ -30,19 +30,19 @@ const guarantees = [
     icon: Lock,
     title: 'Sécurité certifiée',
     description: 'Vidéosurveillance 24/7, contrôle d\'accès sécurisé, assurance tous risques. Vos données et matériel en sécurité.',
-    color: 'from-emerald-600 to-teal-600'
+    color: 'from-blue-600 to-indigo-600'
   },
   {
     icon: Zap,
     title: 'Aucune surprise',
     description: 'Prix tout inclus, transparence totale. Ce que vous voyez sur le devis est ce que vous payez. Point.',
-    color: 'from-teal-600 to-cyan-600'
+    color: 'from-indigo-600 to-blue-600'
   }
 ];
 
 export default function GuaranteesSection() {
   return (
-    <section className="py-32 bg-gradient-to-b from-zinc-900 to-black">
+    <section className="py-32">
       <div className="max-w-7xl mx-auto px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -51,7 +51,7 @@ export default function GuaranteesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">GARANTIES</span>
+            NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">GARANTIES</span>
           </h2>
           <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto">
             Louez en toute sérénité. Nous assumons tous les risques pour que vous n'en ayez aucun.
@@ -96,9 +96,9 @@ export default function GuaranteesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 p-10 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-3xl text-center"
+          className="mt-16 p-10 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 rounded-3xl text-center"
         >
-          <Shield className="w-16 h-16 text-emerald-400 mx-auto mb-6" />
+          <Shield className="w-16 h-16 text-blue-400 mx-auto mb-6" />
           <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-4">
             Protection totale de votre investissement
           </h3>

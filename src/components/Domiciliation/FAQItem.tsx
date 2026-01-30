@@ -21,8 +21,8 @@ const FAQItem = memo<FAQItemProps>(function FAQItem({ item, index, isOpen, onTog
     >
       <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-      <div className={`relative bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-500 ${
-        isOpen ? 'border-orange-500/30' : 'border-white/[0.08] group-hover:border-white/[0.15]'
+      <div className={`relative bg-white/5 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-500 ${
+        isOpen ? 'border-orange-500/30' : 'border-white/10 group-hover:border-white/[0.15]'
       }`}>
         <motion.button
           onClick={onToggle}

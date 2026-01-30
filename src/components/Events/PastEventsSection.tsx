@@ -14,26 +14,35 @@ export default function PastEventsSection() {
         backgroundSize: '40px 40px'
       }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10 md:mb-16 lg:mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6">
-            Événements{' '}
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-sm font-medium text-cyan-400 mb-6"
+          >
+            RÉTROSPECTIVE
+          </motion.span>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            ÉVÉNEMENTS{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
-              Passés
+              PASSÉS
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 max-w-3xl mx-auto font-inter px-4">
+          <p className="text-base md:text-lg text-white/60 max-w-3xl mx-auto font-inter">
             Découvrez nos précédents événements et leur impact sur la communauté
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 auto-rows-fr">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
           {pastEvents.map((event, index) => (
             <motion.div
               key={event.id}
@@ -45,8 +54,7 @@ export default function PastEventsSection() {
               onHoverEnd={() => setSelectedEvent(null)}
               className="group relative flex"
             >
-              <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 transition-all duration-500 flex flex-col w-full">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 group-hover:border-cyan-500/30 transition-all duration-300 flex flex-col w-full">
 
                 <div className="relative h-44 md:h-56 overflow-hidden shrink-0">
                   <motion.img
@@ -56,7 +64,7 @@ export default function PastEventsSection() {
                     animate={{ scale: selectedEvent === event.id ? 1.1 : 1 }}
                     transition={{ duration: 0.5 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
                   <div className="absolute top-3 left-3 md:top-4 md:left-4 lg:top-6 lg:left-6 flex items-center gap-2 md:gap-3">
                     <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 rounded-lg md:rounded-xl text-[10px] md:text-xs lg:text-sm font-bold shadow-lg">
@@ -117,7 +125,7 @@ export default function PastEventsSection() {
           transition={{ delay: 0.5 }}
           className="mt-12 md:mt-16 lg:mt-20 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 md:gap-8 bg-gradient-to-r from-cyan-950/50 to-blue-950/50 backdrop-blur-xl border border-cyan-500/20 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-6 md:gap-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8">
             <div className="text-center">
               <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-2">
                 150+

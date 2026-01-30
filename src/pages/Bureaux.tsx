@@ -98,51 +98,39 @@ const comparisonFeatures = [
 
 export default function Bureaux() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-hidden">
       <HeaderNav />
       <MobileBurger />
 
       <main className="pt-24">
+        {/* ============================================
+            VIDÉO DE FOND FIXE
+            Visible sur toute la page
+        ============================================ */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source
+              src="https://le40-cdn.b-cdn.net/videos/bureaux/bureaux-background.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        </div>
+
+        {/* ============================================
+            CONTENU DE LA PAGE (par-dessus la vidéo)
+        ============================================ */}
+        <div className="relative z-10">
+
+        {/* HERO */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
-          <div className="absolute inset-0">
-            <motion.div
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-              className="absolute inset-0"
-            >
-              <img
-                src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920"
-                alt="Bureaux Le 40"
-                className="w-full h-full object-cover opacity-20"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black"></div>
-
-            <div className="absolute inset-0">
-              {[...Array(20)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-white/20 rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    y: [0, -30, 0],
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: Math.random() * 5 + 5,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="relative z-10 w-full">
+          <div className="w-full">
             <div className="max-w-7xl mx-auto px-8 lg:px-16 py-32">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -209,7 +197,8 @@ export default function Bureaux() {
           </div>
         </section>
 
-        <section id="options" className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
+        {/* FORMULES */}
+        <section id="options" className="relative py-32">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -321,8 +310,9 @@ export default function Bureaux() {
           </div>
         </section>
 
-        <section id="comparison" className="relative py-32 bg-black">
-          <div className="absolute inset-0">
+        {/* COMPARATIF */}
+        <section id="comparison" className="relative py-32">
+          <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
           </div>
@@ -388,7 +378,8 @@ export default function Bureaux() {
           </div>
         </section>
 
-        <section id="features" className="relative py-32 bg-gradient-to-b from-black to-zinc-900">
+        {/* INCLUS */}
+        <section id="features" className="relative py-32">
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -435,8 +426,9 @@ export default function Bureaux() {
           </div>
         </section>
 
-        <section className="relative py-32 bg-black">
-          <div className="absolute inset-0">
+        {/* CTA */}
+        <section className="relative py-32">
+          <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-600/10 via-emerald-600/10 to-teal-600/10 rounded-full blur-[150px]"></div>
           </div>
 
@@ -461,7 +453,7 @@ export default function Bureaux() {
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="relative bg-black rounded-2xl px-10 py-5 border border-cyan-500/50"
+                    className="relative bg-white/5 backdrop-blur-xl rounded-2xl px-10 py-5 border border-cyan-500/50"
                   >
                     <span className="font-montserrat font-semibold text-white flex items-center gap-3">
                       Réserver une visite
@@ -485,6 +477,8 @@ export default function Bureaux() {
             </motion.div>
           </div>
         </section>
+
+        </div>
       </main>
 
       <Footer />

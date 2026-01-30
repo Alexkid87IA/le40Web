@@ -18,7 +18,7 @@ import FinalCTASection from '../components/Bureaux/FinalCTASection';
 
 export default function BureauxPrives() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-hidden">
       <HeaderNav />
       <MobileBurger />
 
@@ -40,19 +40,43 @@ export default function BureauxPrives() {
       {/* Hero plein écran - pas de padding */}
       <BureauHeroSection />
 
-      {/* Autres sections avec padding pour le header */}
       <main>
-        <ProblemSolutionSection />
-        <StatsSection />
-        <GallerySection />
-        <PricingSection />
-        <TestimonialsSection />
-        <ProcessSection />
-        <ComparisonSection />
-        <UrgencySection />
-        <FAQSection />
-        <GuaranteesSection />
-        <FinalCTASection />
+        {/* ============================================
+            VIDÉO DE FOND FIXE
+            Visible sur toute la page
+        ============================================ */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source
+              src="https://le40-cdn.b-cdn.net/videos/bureaux/bureaux-background.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        </div>
+
+        {/* ============================================
+            CONTENU DE LA PAGE (par-dessus la vidéo)
+        ============================================ */}
+        <div className="relative z-10">
+          <ProblemSolutionSection />
+          <StatsSection />
+          <GallerySection />
+          <PricingSection />
+          <TestimonialsSection />
+          <ProcessSection />
+          <ComparisonSection />
+          <UrgencySection />
+          <FAQSection />
+          <GuaranteesSection />
+          <FinalCTASection />
+        </div>
       </main>
 
       <Footer />

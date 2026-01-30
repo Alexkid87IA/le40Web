@@ -36,7 +36,7 @@ export default function OrganizeCTASection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -55,25 +55,19 @@ export default function OrganizeCTASection() {
             </div>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-6 md:mb-8 leading-tight"
-          >
-            Créez Votre{' '}
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6 leading-tight">
+            CRÉEZ VOTRE{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
-              Événement
+              ÉVÉNEMENT
             </span>
-          </motion.h2>
+          </h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto mb-8 md:mb-10 lg:mb-12 leading-relaxed font-inter px-4"
+            className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-12 font-inter"
           >
             Vous souhaitez organiser un atelier, une conférence ou un événement de networking dans nos espaces ?
             Nous mettons à votre disposition nos infrastructures professionnelles et notre communauté engagée.
@@ -93,13 +87,12 @@ export default function OrganizeCTASection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-start gap-3 md:gap-4 bg-slate-950/50 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 text-left group hover:border-white/20 transition-all duration-300 relative overflow-hidden"
+                className="flex items-start gap-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-left group hover:border-cyan-500/30 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10 p-2 md:p-3 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg md:rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <benefit.icon className="w-5 h-5 md:w-6 md:h-6 text-cyan-400" />
+                <div className="p-3 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl shrink-0">
+                  <benefit.icon className="w-5 h-5 text-cyan-400" />
                 </div>
-                <span className="relative z-10 text-white/80 font-inter pt-1.5 md:pt-2 text-sm md:text-base">{benefit.text}</span>
+                <span className="text-white/80 font-inter pt-2 text-sm">{benefit.text}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -115,7 +108,7 @@ export default function OrganizeCTASection() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-gradient-to-r from-cyan-500 via-blue-500 to-amber-500 hover:from-cyan-400 hover:via-blue-400 hover:to-amber-400 text-white rounded-xl font-montserrat font-bold text-sm md:text-base lg:text-lg transition-all duration-300 shadow-lg"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-montserrat font-bold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all"
             >
               <span>Proposer mon événement</span>
               <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -125,7 +118,7 @@ export default function OrganizeCTASection() {
               href="/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-slate-950/50 hover:bg-slate-900/50 backdrop-blur-xl border border-white/10 hover:border-white/20 text-white rounded-xl font-montserrat font-bold text-sm md:text-base lg:text-lg transition-all duration-300"
+              className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold transition-all"
             >
               Demander des informations
             </motion.a>
@@ -143,15 +136,6 @@ export default function OrganizeCTASection() {
         </motion.div>
       </div>
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
-        <svg width="100%" height="100%">
-          <filter id="noiseOrganizeCTA">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseOrganizeCTA)" />
-        </svg>
-      </div>
     </section>
   );
 }

@@ -75,7 +75,7 @@ export default function FAQSection() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 aria-label="Rechercher dans les questions fréquentes"
-                className="w-full pl-14 pr-5 py-5 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl border border-white/[0.08] rounded-2xl text-white placeholder-white/40 focus:outline-none focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/50 transition-all duration-300 font-inter"
+                className="w-full pl-14 pr-5 py-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:border-orange-400/50 focus:ring-2 focus:ring-orange-400/50 transition-all duration-300 font-inter"
               />
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function FAQSection() {
           transition={{ delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex flex-col items-center gap-4 p-8 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl rounded-2xl border border-white/[0.08]">
+          <div className="inline-flex flex-col items-center gap-4 p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
             <div className="text-white/60 font-inter">
               Vous ne trouvez pas votre réponse ?
             </div>

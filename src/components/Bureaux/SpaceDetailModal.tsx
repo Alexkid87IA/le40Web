@@ -182,7 +182,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                   </div>
 
                   <div className="absolute top-6 left-6">
-                    <span className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-semibold rounded-full shadow-lg">
+                    <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-semibold rounded-full shadow-lg">
                       {space.category}
                     </span>
                   </div>
@@ -198,7 +198,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                         onClick={() => handleThumbnailClick(index)}
                         className={`relative flex-shrink-0 w-20 h-16 rounded-xl overflow-hidden border-2 transition-all ${
                           index === currentImageIndex
-                            ? 'border-emerald-500 shadow-lg shadow-emerald-500/30'
+                            ? 'border-blue-500 shadow-lg shadow-blue-500/30'
                             : 'border-white/20 hover:border-white/40'
                         }`}
                         role="tab"
@@ -238,17 +238,17 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     className="grid grid-cols-3 gap-4"
                   >
                     <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10">
-                      <Users className="w-6 h-6 text-emerald-400 mb-2" aria-hidden="true" />
+                      <Users className="w-6 h-6 text-blue-400 mb-2" aria-hidden="true" />
                       <div className="text-white/70 text-xs mb-1">Capacité</div>
                       <div className="text-white font-bold">{space.capacity}</div>
                     </div>
                     <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10">
-                      <Maximize2 className="w-6 h-6 text-emerald-400 mb-2" aria-hidden="true" />
+                      <Maximize2 className="w-6 h-6 text-blue-400 mb-2" aria-hidden="true" />
                       <div className="text-white/70 text-xs mb-1">Surface</div>
                       <div className="text-white font-bold">{space.surface}</div>
                     </div>
                     <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10">
-                      <Clock className="w-6 h-6 text-emerald-400 mb-2" aria-hidden="true" />
+                      <Clock className="w-6 h-6 text-blue-400 mb-2" aria-hidden="true" />
                       <div className="text-white/70 text-xs mb-1">Accès</div>
                       <div className="text-white font-bold">24/7</div>
                     </div>
@@ -260,14 +260,14 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.4 }}
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <Star className="w-5 h-5 text-emerald-400" aria-hidden="true" />
+                      <Star className="w-5 h-5 text-blue-400" aria-hidden="true" />
                       <h3 className="text-xl font-black font-montserrat text-white">Points Forts</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {space.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-emerald-300 text-sm font-medium rounded-full"
+                          className="px-4 py-2 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium rounded-full"
                         >
                           {tag}
                         </span>
@@ -281,7 +281,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.5 }}
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <CheckCircle className="w-5 h-5 text-emerald-400" aria-hidden="true" />
+                      <CheckCircle className="w-5 h-5 text-blue-400" aria-hidden="true" />
                       <h3 className="text-xl font-black font-montserrat text-white">Caractéristiques</h3>
                     </div>
                     <div className="grid grid-cols-1 gap-3">
@@ -293,7 +293,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                           transition={{ delay: 0.5 + index * 0.05 }}
                           className="flex items-start gap-3 p-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all"
                         >
-                          <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                          <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                           <span className="text-white/90 font-inter">{feature}</span>
                         </motion.div>
                       ))}
@@ -306,7 +306,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     transition={{ delay: 0.6 }}
                   >
                     <div className="flex items-center gap-2 mb-4">
-                      <Zap className="w-5 h-5 text-emerald-400" aria-hidden="true" />
+                      <Zap className="w-5 h-5 text-blue-400" aria-hidden="true" />
                       <h3 className="text-xl font-black font-montserrat text-white">Équipements</h3>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
@@ -318,7 +318,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                           transition={{ delay: 0.6 + index * 0.03 }}
                           className="flex items-center gap-2 px-3 py-2 bg-white/5 rounded-lg border border-white/10"
                         >
-                          <Shield className="w-4 h-4 text-emerald-400 flex-shrink-0" aria-hidden="true" />
+                          <Shield className="w-4 h-4 text-blue-400 flex-shrink-0" aria-hidden="true" />
                           <span className="text-white/80 text-sm font-inter">{equipment}</span>
                         </motion.div>
                       ))}
@@ -329,10 +329,10 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7 }}
-                    className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 rounded-2xl p-6 border border-emerald-500/20"
+                    className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-2xl p-6 border border-blue-500/20"
                   >
                     <div className="flex items-baseline gap-2 mb-2">
-                      <span className="text-4xl font-black font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">
+                      <span className="text-4xl font-black font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
                         {space.priceFrom}
                       </span>
                       <span className="text-white/60 font-inter">/mois</span>
@@ -352,7 +352,7 @@ export default function SpaceDetailModal({ space, isOpen, onClose }: SpaceDetail
                       }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold font-montserrat rounded-xl shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2"
+                      className="w-full py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold font-montserrat rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all flex items-center justify-center gap-2"
                     >
                       <span>Réserver une visite</span>
                       <ArrowRight className="w-5 h-5" aria-hidden="true" />

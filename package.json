@@ -33,6 +33,7 @@
     "bunny:update-urls": "node scripts/update-media-urls.js"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "@stripe/react-stripe-js": "^5.4.1",
     "@stripe/stripe-js": "^8.5.3",
     "@supabase/supabase-js": "^2.76.1",

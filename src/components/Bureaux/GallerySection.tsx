@@ -19,10 +19,10 @@ export default function GallerySection() {
   };
 
   return (
-    <section className="py-32 bg-black relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-600/30 rounded-full blur-[140px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-teal-600/30 rounded-full blur-[140px]" />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/30 rounded-full blur-[140px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-indigo-600/30 rounded-full blur-[140px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-8 relative z-10">
@@ -36,14 +36,14 @@ export default function GallerySection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 mb-6"
           >
-            <Star className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm text-emerald-300 font-medium">Explorez nos espaces</span>
+            <Star className="w-4 h-4 text-blue-400" />
+            <span className="text-sm text-blue-300 font-medium">Explorez nos espaces</span>
           </motion.div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            VISITEZ NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">ESPACES</span>
+            VISITEZ NOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">ESPACES</span>
           </h2>
           <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto">
             Découvrez en images nos bureaux privés et espaces communs. Cliquez sur une carte pour explorer en détail.
@@ -64,14 +64,14 @@ export default function GallerySection() {
               whileTap={{ scale: 0.95 }}
               className={`relative px-6 py-3 rounded-xl font-inter font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/30'
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/30'
                   : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20'
               }`}
             >
               {activeCategory === category && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl -z-10"
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl -z-10"
                 />
               )}
               {category}
@@ -106,9 +106,9 @@ export default function GallerySection() {
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="relative h-full"
                 >
-                  <div className="absolute -inset-1 bg-gradient-to-br from-emerald-500/20 via-teal-500/20 to-cyan-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-500" />
+                  <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/20 via-indigo-500/20 to-blue-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-2xl transition-all duration-500" />
 
-                  <div className="relative h-full bg-zinc-900/50 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden group-hover:border-emerald-500/30 transition-all duration-500">
+                  <div className="relative h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden group-hover:border-blue-500/30 transition-all duration-500">
                     <div className="aspect-[4/3] relative overflow-hidden">
                       <img
                         src={item.images[0].url}
@@ -120,7 +120,7 @@ export default function GallerySection() {
 
                       {/* Badge catégorie */}
                       <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1.5 bg-emerald-500 text-white text-xs font-bold rounded-full shadow-lg">
+                        <span className="px-3 py-1.5 bg-blue-500 text-white text-xs font-bold rounded-full shadow-lg">
                           {item.category}
                         </span>
                       </div>
@@ -131,7 +131,7 @@ export default function GallerySection() {
                         whileHover={{ opacity: 1 }}
                         className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm"
                       >
-                        <div className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full font-bold shadow-xl">
+                        <div className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full font-bold shadow-xl">
                           <Eye className="w-5 h-5" />
                           <span>Voir les détails</span>
                         </div>
@@ -139,7 +139,7 @@ export default function GallerySection() {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors duration-300">
+                      <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
                         {item.title}
                       </h3>
 
@@ -149,9 +149,9 @@ export default function GallerySection() {
 
                       <div className="flex items-center justify-between pt-4 border-t border-white/5">
                         <div className="flex items-center gap-4 text-xs">
-                          <span className="text-emerald-400 font-bold">{item.capacity}</span>
+                          <span className="text-blue-400 font-bold">{item.capacity}</span>
                           <span className="text-white/70">•</span>
-                          <span className="text-teal-400 font-bold">{item.surface}</span>
+                          <span className="text-indigo-400 font-bold">{item.surface}</span>
                         </div>
                         <span className="text-white font-bold">Dès {item.priceFrom}</span>
                       </div>
@@ -176,7 +176,7 @@ export default function GallerySection() {
             onClick={() => setIsBookingModalOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-montserrat font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-600/30 transition-all"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-montserrat font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-600/30 transition-all"
           >
             Réserver une visite guidée gratuite
             <ArrowRight className="w-5 h-5" />

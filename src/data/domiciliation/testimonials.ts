@@ -1,82 +1,35 @@
-export interface TestimonialMetric {
-  metric: string;
-  label: string;
-}
-
 export interface Testimonial {
-  initial: string;
   name: string;
   role: string;
-  image?: string;
-  before: string[];
-  after: TestimonialMetric[];
+  company: string;
+  image: string;
   quote: string;
+  bio: string;
 }
 
 export const testimonials: Testimonial[] = [
   {
-    initial: 'S',
-    name: 'Sophie Martin',
-    role: 'E-commerce beauté',
-    before: [
-      'Adresse perso sur le site',
-      'Courrier souvent volé',
-      '1h/jour à gérer admin'
-    ],
-    after: [
-      { metric: '+22%', label: 'Taux de conversion' },
-      { metric: '✓', label: 'Plus jamais raté un courrier' },
-      { metric: '30h/mois', label: 'Temps gagné' }
-    ],
-    quote: 'Le scan automatique du courrier m\'a changé la vie. Et mes clients me prennent enfin au sérieux.'
-  },
-  {
-    initial: 'M',
-    name: 'Marc Dubois',
-    role: 'Consultant IT',
-    before: [
-      'Pas de numéro fixe pro',
-      'Rendez-vous dans les cafés',
-      'Image peu professionnelle'
-    ],
-    after: [
-      { metric: '+35%', label: 'Taux de signature' },
-      { metric: '✓', label: 'Standard pro 24/7' },
-      { metric: '15h/mois', label: 'Salle de réunion utilisée' }
-    ],
-    quote: 'Le standard téléphonique et les salles de réunion ont transformé mon image professionnelle.'
-  },
-  {
-    initial: 'J',
-    name: 'Julie Renard',
-    role: 'Startup tech',
-    before: [
-      'Domiciliation basique',
-      'Pas d\'accueil client',
-      'Organisation compliquée'
-    ],
-    after: [
-      { metric: '+40%', label: 'Deals signés' },
-      { metric: '✓', label: 'Accueil premium' },
-      { metric: '20h/mois', label: 'Admin gagnées' }
-    ],
-    quote: 'L\'accompagnement complet nous a permis de nous concentrer sur notre croissance.'
-  },
-  {
-    initial: 'M',
     name: 'Morgan Aiwekhoe',
-    role: 'CEO @ South Management',
-    image: 'https://media.licdn.com/dms/image/v2/D4D03AQFlUkvzeP7ZMQ/profile-displayphoto-shrink_400_400/B4DZQryeOKHwAg-/0/1735901440262?e=1767225600&v=beta&t=C1jlypUXePxHF4zbP__T-OOVtfdgyBm6Pwcx8zy-4Zs',
-    before: [
-      'Image peu professionnelle',
-      'Difficile de recevoir des clients',
-      'Gestion administrative complexe'
-    ],
-    after: [
-      { metric: '10', label: 'Membres d\'équipe recrutés' },
-      { metric: '✓', label: 'Réseau professionnel actif' },
-      { metric: '✓', label: 'Adresse prestigieuse' }
-    ],
-    quote: 'Tout est à prix au sourire incroyable. On a constitué une équipe de presque 10 personnes, le réseau ont été déterminants.'
+    role: 'CEO',
+    company: 'South Management',
+    image: '/images/testimonials/morgane.jpeg',
+    quote: 'Tout est au top, l\'accueil est incroyable. On a constitué une équipe de presque 10 personnes grâce au réseau du 40, ça a été déterminant pour notre croissance.',
+    bio: 'Morgan dirige South Management, une agence de talents basée à Marseille. Domicilié au 40 depuis 2022, il y a trouvé bien plus qu\'une adresse : un vrai écosystème pour développer son activité.'
+  },
+  {
+    name: 'Alexandre Quilghini',
+    role: 'Président',
+    company: 'Origines Média',
+    image: '/images/testimonials/alexandre.jpeg',
+    quote: 'Le 40 nous a permis de professionnaliser notre image dès le lancement. L\'adresse, le standard téléphonique, les salles de réunion — tout est inclus et ça change tout.',
+    bio: 'Alexandre est le président d\'Origines Média, une agence de communication et production audiovisuelle. Il a choisi Le 40 pour ancrer son entreprise dans un lieu qui reflète son ambition.'
+  },
+  {
+    name: 'Djamal Biyou',
+    role: 'Fondateur',
+    company: 'Biyoo',
+    image: '/images/testimonials/djamal.jpeg',
+    quote: 'Ce qui m\'a convaincu c\'est la réactivité. Le courrier scanné en 2h, un conseiller qui répond dans l\'heure — quand on est entrepreneur, ce gain de temps est inestimable.',
+    bio: 'Djamal a fondé Biyoo, une entreprise spécialisée dans les services aux professionnels. Il a rejoint Le 40 pour bénéficier d\'une domiciliation complète sans les contraintes d\'un bail classique.'
   }
 ];

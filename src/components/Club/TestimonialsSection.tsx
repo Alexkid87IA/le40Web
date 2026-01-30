@@ -12,9 +12,7 @@ const TestimonialCard = ({ testimonial, index }) => {
       transition={{ delay: index * 0.1, duration: 0.6 }}
       className="relative group h-full"
     >
-      <div className="absolute -inset-1 bg-gradient-to-r from-red-500/20 to-rose-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity blur-xl" />
-
-      <div className="relative h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 group-hover:border-white/20 transition-all">
+      <div className="relative h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 group-hover:border-red-500/30 transition-all">
         <Quote className="absolute top-6 right-6 w-10 h-10 text-white/5" />
 
         <div className="flex items-start gap-4 mb-6">
@@ -32,7 +30,7 @@ const TestimonialCard = ({ testimonial, index }) => {
 
         <div className="flex mb-4">
           {[...Array(testimonial.rating)].map((_, i) => (
-            <Star key={i} className="w-4 h-4 text-rose-400 fill-current" />
+            <Star key={i} className="w-4 h-4 text-amber-400 fill-current" />
           ))}
         </div>
 
@@ -54,36 +52,38 @@ const TestimonialCard = ({ testimonial, index }) => {
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-32 bg-gradient-to-b from-black to-slate-950 relative overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+    <section className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-rose-600/20 rounded-full blur-[150px]" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-semibold text-red-400 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-medium text-red-400 mb-6"
           >
             ILS TÉMOIGNENT
           </motion.span>
 
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Ce que disent
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-pink-400">
-              nos membres
-            </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            CE QUE DISENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">NOS MEMBRES</span>
           </h2>
 
-          <p className="text-xl text-white/60 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter">
             Découvrez les témoignages authentiques de membres qui ont transformé leur activité grâce au Club
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {clubTestimonials.map((testimonial, index) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
           ))}

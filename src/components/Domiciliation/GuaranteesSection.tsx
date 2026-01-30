@@ -83,7 +83,7 @@ export default function GuaranteesSection() {
                   style={{ backgroundColor: guarantee.glowColor }}
                 />
 
-                <div className="relative text-center p-8 lg:p-10 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl border border-white/[0.08] group-hover:border-white/[0.15] rounded-2xl transition-all duration-500 h-full overflow-hidden">
+                <div className="relative text-center p-6 md:p-8 bg-white/5 backdrop-blur-xl border border-white/10 group-hover:border-white/[0.15] rounded-2xl transition-all duration-500 h-full overflow-hidden">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/5 to-transparent rounded-bl-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                   <motion.div
@@ -124,7 +124,7 @@ export default function GuaranteesSection() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-br from-zinc-900/60 to-zinc-950/60 backdrop-blur-xl rounded-xl border border-white/[0.08]">
+          <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
             <Shield className="w-5 h-5 text-orange-400" />
             <span className="text-white/70 font-inter">
               <strong className="text-white font-semibold">120+ entreprises</strong> nous font confiance depuis 2020

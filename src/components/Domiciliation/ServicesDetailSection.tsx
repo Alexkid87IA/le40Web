@@ -25,7 +25,7 @@ export default function ServicesDetailSection() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -64,7 +64,7 @@ export default function ServicesDetailSection() {
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
 
-              <div className="relative h-full p-6 bg-gradient-to-br from-slate-900/90 to-slate-800/90 border border-white/10 rounded-2xl backdrop-blur-sm hover:border-amber-500/30 transition-all duration-300">
+              <div className="relative h-full p-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl hover:border-amber-500/30 transition-all duration-300">
 
                 <div className="mb-4">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-400/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">

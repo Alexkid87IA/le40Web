@@ -5,10 +5,10 @@ export default function LocationSection() {
   const transportOptions = [
     {
       icon: Train,
-      title: 'Métro & RER',
+      title: 'Métro',
       description: 'Stations à proximité',
       time: '2 min à pied',
-      lines: ['Ligne 1', 'Ligne 2'],
+      lines: ['M1', 'M2'],
       gradient: 'from-blue-600 to-cyan-600'
     },
     {
@@ -21,9 +21,9 @@ export default function LocationSection() {
     },
     {
       icon: PlaneTakeoff,
-      title: 'Aéroport CDG',
-      description: 'RER B direct',
-      time: '35 min',
+      title: 'Aéroport Marseille Provence',
+      description: 'Marignane - accès autoroute',
+      time: '15 min',
       lines: ['Navette disponible', 'Service VIP'],
       gradient: 'from-violet-600 to-purple-600'
     }
@@ -57,7 +57,7 @@ export default function LocationSection() {
             </span>
           </h2>
           <p className="text-base md:text-lg lg:text-xl font-inter font-light text-white/60 max-w-3xl mx-auto px-4">
-            Un emplacement stratégique accessible depuis toute l'Île-de-France
+            Un emplacement stratégique accessible depuis toute la métropole marseillaise
           </p>
         </motion.div>
 
@@ -175,7 +175,7 @@ export default function LocationSection() {
             {
               icon: Train,
               title: 'Hyper connecté',
-              description: '5 lignes de métro à proximité',
+              description: '2 lignes de métro à proximité',
               gradient: 'from-emerald-600 to-teal-600'
             },
             {

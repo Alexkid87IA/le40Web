@@ -59,27 +59,15 @@ export default function ProcessSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block text-emerald-400 text-sm font-semibold tracking-widest uppercase mb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-400 mb-6"
           >
-            Processus simplifié
+            PROCESSUS SIMPLIFIÉ
           </motion.span>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-6">
-            Comment ça{' '}
-            <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
-                fonctionne
-              </span>
-              <motion.span
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 rounded-full origin-left"
-              />
-            </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">FONCTIONNE</span>
           </h2>
-          <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter">
             Réservez votre studio en 4 étapes simples
           </p>
         </motion.div>
@@ -96,48 +84,24 @@ export default function ProcessSection() {
                 transition={{ delay: index * 0.15, duration: 0.6, ease: "easeOut" }}
                 className="group relative"
               >
-                {/* Card */}
-                <div className="relative h-full">
-                  {/* Glow on hover */}
-                  <div className={`absolute -inset-1 bg-gradient-to-r ${step.gradient} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500`} />
-
-                  <div className="relative h-full bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.08] p-6 group-hover:border-white/20 group-hover:bg-white/[0.05] transition-all duration-500">
-                    {/* Number - Large watermark style */}
-                    <div className="absolute top-4 right-4">
-                      <span className={`text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br ${step.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-500`}>
-                        {step.number}
-                      </span>
-                    </div>
-
-                    {/* Icon container */}
-                    <motion.div
-                      whileHover={{ scale: 1.05, rotate: 3 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                      className={`relative w-16 h-16 rounded-xl bg-gradient-to-br ${step.gradient} p-[1px] mb-6`}
-                    >
-                      <div className="w-full h-full rounded-xl bg-black/80 flex items-center justify-center backdrop-blur-sm">
-                        <step.icon className="w-7 h-7 text-white" />
-                      </div>
-                      {/* Icon glow */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient} rounded-xl blur-lg opacity-50 -z-10`} />
-                    </motion.div>
-
-                    {/* Text */}
-                    <div className="relative z-10">
-                      <h3 className="text-xl font-bold text-white mb-1">
-                        {step.title}
-                      </h3>
-                      <h4 className={`text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r ${step.gradient} mb-3`}>
-                        {step.subtitle}
-                      </h4>
-                      <p className="text-white/50 text-sm leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-
-                    {/* Bottom accent line */}
-                    <div className={`absolute bottom-0 left-6 right-6 h-[2px] bg-gradient-to-r ${step.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className="relative h-full bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 group-hover:border-emerald-500/30 transition-all">
+                  <div className="text-sm font-montserrat font-bold text-emerald-400/60 mb-4">
+                    ÉTAPE {step.number}
                   </div>
+
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${step.gradient} flex items-center justify-center mb-6`}>
+                    <step.icon className="w-7 h-7 text-white" />
+                  </div>
+
+                  <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-1">
+                    {step.title}
+                  </h3>
+                  <h4 className={`text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r ${step.gradient} mb-3`}>
+                    {step.subtitle}
+                  </h4>
+                  <p className="text-white/60 text-sm font-inter leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
 
                 {/* Connector arrow */}
@@ -173,14 +137,9 @@ export default function ProcessSection() {
               <div className="relative flex gap-4">
                 {/* Left - Number & Line */}
                 <div className="flex flex-col items-center">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.gradient} p-[1px] flex-shrink-0`}
-                  >
-                    <div className="w-full h-full rounded-xl bg-black flex items-center justify-center">
-                      <span className="text-white font-black text-lg">{step.number}</span>
-                    </div>
-                  </motion.div>
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.gradient} flex-shrink-0 flex items-center justify-center`}>
+                    <span className="text-white font-black text-lg">{step.number}</span>
+                  </div>
                   {index < steps.length - 1 && (
                     <div className="w-[2px] flex-1 mt-3 bg-gradient-to-b from-white/20 to-transparent" />
                   )}
@@ -188,12 +147,10 @@ export default function ProcessSection() {
 
                 {/* Right - Content */}
                 <div className="flex-1 pb-6">
-                  <div className="bg-white/[0.03] rounded-xl p-4 border border-white/[0.08] group-hover:border-white/20 transition-all">
+                  <div className="bg-white/5 backdrop-blur-xl rounded-xl p-4 border border-white/10 group-hover:border-emerald-500/30 transition-all">
                     <div className="flex items-start gap-3">
-                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${step.gradient} p-[1px] flex-shrink-0`}>
-                        <div className="w-full h-full rounded-lg bg-black/80 flex items-center justify-center">
-                          <step.icon className="w-5 h-5 text-white" />
-                        </div>
+                      <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${step.gradient} flex-shrink-0 flex items-center justify-center`}>
+                        <step.icon className="w-5 h-5 text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-white font-bold">{step.title}</h3>
@@ -224,19 +181,10 @@ export default function ProcessSection() {
             href="#booking-flow"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 overflow-hidden rounded-xl font-bold text-lg"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-xl text-white font-montserrat font-bold shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all"
           >
-            {/* Button gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500" />
-
-            {/* Shine effect on hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-
-            {/* Button glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 blur-xl opacity-50 -z-10" />
-
-            <span className="relative text-white">Commencer ma réservation</span>
-            <ArrowRight className="relative w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+            <span>Commencer ma réservation</span>
+            <ArrowRight className="w-5 h-5" />
           </motion.a>
         </motion.div>
       </div>

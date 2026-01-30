@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle, ArrowRight, Clock, Users, Zap, TrendingUp, CheckCircle } from 'lucide-react';
+import { AlertCircle, ArrowRight, Clock, Users, Zap, CheckCircle } from 'lucide-react';
 
 export default function UrgencySection() {
   const [timeLeft, setTimeLeft] = useState({
@@ -8,12 +8,6 @@ export default function UrgencySection() {
     minutes: 47,
     seconds: 32
   });
-
-  const [recentSignups, setRecentSignups] = useState([
-    { name: 'Sophie M.', plan: 'Business', time: '3 min' },
-    { name: 'Marc D.', plan: 'Starter', time: '12 min' },
-    { name: 'Julie R.', plan: 'Scale-Up', time: '28 min' }
-  ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,7 +58,7 @@ export default function UrgencySection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 md:px-8 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 text-center">
         <motion.div
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           whileInView={{ scale: 1, opacity: 1, y: 0 }}
@@ -187,33 +181,6 @@ export default function UrgencySection() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="mb-8 md:mb-12"
           >
-            <div className="bg-white/10 backdrop-blur-xl border border-white/30 rounded-xl md:rounded-2xl p-4 md:p-6 max-w-md mx-auto mb-6 md:mb-8">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <TrendingUp className="w-5 h-5 text-white" />
-                <span className="text-white font-montserrat font-bold text-sm md:text-base">Inscriptions récentes</span>
-              </div>
-              <div className="space-y-3">
-                {recentSignups.map((signup, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.2 }}
-                    className="flex items-center justify-between bg-white/10 rounded-xl p-3"
-                  >
-                    <div className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-orange-400" />
-                      <div>
-                        <div className="text-white font-inter font-semibold text-sm">{signup.name}</div>
-                        <div className="text-white/70 text-xs">Formule {signup.plan}</div>
-                      </div>
-                    </div>
-                    <div className="text-white/60 text-xs font-inter">Il y a {signup.time}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
             <motion.a
               href="#pricing"
               whileHover={{ scale: 1.05, y: -2 }}

@@ -22,14 +22,6 @@ export default function StudiosSection() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
                   8K Ultra HD
                 </span>
-                <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 blur-3xl -z-10"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                />
               </span>
             </h2>
             <motion.div
@@ -92,14 +84,6 @@ export default function StudiosSection() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-pink-400">
                   Contenus Viraux
                 </span>
-                <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-red-500/20 via-rose-500/20 to-pink-500/20 blur-3xl -z-10"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                />
               </span>
             </h2>
             <motion.div

@@ -95,15 +95,8 @@ export default function HeroSection() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-montserrat font-black text-white mb-3 lg:mb-4 leading-[1.1]"
           >
             NOS{' '}
-            <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
-                ÉVÉNEMENTS
-              </span>
-              <motion.div
-                className="absolute -inset-2 bg-gradient-to-r from-cyan-500/20 to-amber-500/20 blur-2xl -z-10"
-                animate={{ opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
+              ÉVÉNEMENTS
             </span>
           </motion.h1>
 
@@ -162,9 +155,7 @@ export default function HeroSection() {
                 whileHover={{ y: -3 }}
                 className="relative group"
               >
-                <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-40 blur-lg transition-opacity duration-300`} />
-
-                <div className="relative bg-black/50 backdrop-blur-xl border border-white/10 rounded-xl p-2 lg:p-3 group-hover:border-white/20 transition-all duration-300">
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-2 lg:p-3 group-hover:border-white/20 transition-all duration-300">
                   <div className={`text-xl sm:text-2xl lg:text-xl xl:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5`}>
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} delay={1000 + index * 200} />
                   </div>
@@ -183,27 +174,20 @@ export default function HeroSection() {
           >
             <motion.a
               href="#upcoming-events"
-              whileHover={{ scale: 1.02, y: -2 }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative"
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-all"
             >
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
-                animate={{ opacity: [0.5, 0.75, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <div className="relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-2xl">
-                <Calendar className="w-4 h-4" />
-                <span>Voir les événements</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
+              <Calendar className="w-4 h-4" />
+              <span>Voir les événements</span>
+              <ArrowRight className="w-4 h-4" />
             </motion.a>
 
             <motion.a
               href="#organize-event"
-              whileHover={{ scale: 1.02, y: -2 }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-sm transition-all duration-300"
+              className="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-sm transition-all"
             >
               Organiser un événement
             </motion.a>

@@ -18,8 +18,8 @@ export default function TrustLogosSection() {
   ];
 
   return (
-    <section className="py-16 bg-zinc-900/50 border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-8">
+    <section className="py-16 border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

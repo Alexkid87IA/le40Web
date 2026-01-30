@@ -2,37 +2,36 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 
-// Témoignages mockés (à remplacer par de vrais avis plus tard)
 const testimonials = [
   {
     id: 1,
-    name: 'Sophie Martin',
-    role: 'YouTubeuse Tech',
-    company: '@SophieTech',
-    content: "Le studio Face-Cam est exactement ce qu'il me fallait. Qualité pro, équipement au top, et l'équipe est super réactive. Je recommande à 100% !",
+    name: 'Alexandre Quilghini',
+    role: 'Président',
+    company: 'Origines Média',
+    content: "Les studios du 40 ont transformé notre production. On tourne nos vidéos clients ici chaque semaine — l'équipement 4K, l'éclairage pro, tout est prêt. Ça nous a permis de monter en gamme sans investir dans du matériel.",
     rating: 5,
     studioUsed: 'Studio Face-Cam',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
+    image: '/images/testimonials/alexandre.jpeg',
   },
   {
     id: 2,
-    name: 'Lucas Bernard',
-    role: 'Podcaster',
-    company: 'Le Podcast du Matin',
-    content: "Enfin un vrai studio podcast à Marseille ! L'acoustique est parfaite, le matériel est pro. J'enregistre mes épisodes ici chaque semaine.",
+    name: 'Morgan Aiwekhoe',
+    role: 'CEO',
+    company: 'South Management',
+    content: "On utilise les studios pour les shootings de nos talents. Le rendu est ultra professionnel et l'équipe technique est top. Nos artistes adorent venir tourner ici.",
     rating: 5,
-    studioUsed: 'Studio Podcast',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+    studioUsed: 'Studio Talk-Show',
+    image: '/images/testimonials/morgane.jpeg',
   },
   {
     id: 3,
-    name: 'Marie Dubois',
-    role: 'Consultante',
-    company: 'Strategy First',
-    content: "J'utilise le studio pour mes webinaires clients. Le rendu est ultra professionnel, mes clients sont bluffés par la qualité.",
+    name: 'Djamal Biyou',
+    role: 'Fondateur',
+    company: 'Biyoo',
+    content: "J'ai lancé mon podcast ici. L'acoustique est parfaite, le matériel est pro, et je n'ai rien eu à apporter. En 30 minutes j'étais installé et je tournais mon premier épisode.",
     rating: 5,
-    studioUsed: 'Studio Interview',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
+    studioUsed: 'Studio Podcast',
+    image: '/images/testimonials/djamal.jpeg',
   },
 ];
 
@@ -62,18 +61,30 @@ export default function TestimonialsSection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal-600/10 rounded-full blur-[150px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white mb-4">
-            Ils nous font
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400"> confiance</span>
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-400 mb-6"
+          >
+            TÉMOIGNAGES
+          </motion.span>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            ILS NOUS FONT <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">CONFIANCE</span>
           </h2>
+
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter">
+            Découvrez les retours de nos créateurs et entreprises
+          </p>
         </motion.div>
 
         {/* Testimonial Card */}
@@ -85,7 +96,7 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.4 }}
           className="relative"
         >
-          <div className="bg-zinc-900/80 backdrop-blur-xl rounded-2xl border border-white/10 p-8 md:p-10">
+          <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6 md:p-8">
             {/* Quote icon */}
             <Quote className="absolute top-6 right-6 w-12 h-12 text-white/5" />
             
@@ -93,7 +104,7 @@ export default function TestimonialsSection() {
             <div className="flex flex-col md:flex-row items-start gap-6">
               {/* Avatar */}
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-emerald-500/50">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-white/20">
                   <img
                     src={current.image}
                     alt={current.name}

@@ -65,19 +65,6 @@ export default function DomiciliationSection() {
               className="relative h-[350px] lg:h-[450px] laptop:h-[350px] xl:h-[550px]"
               style={{ perspective: 1000 }}
             >
-              {/* Glow effect */}
-              <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-amber-600 to-orange-600 rounded-3xl blur-3xl opacity-20"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.2, 0.3, 0.2]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              />
               {/* Glassmorphism container */}
               <div className="relative h-full p-[3px] rounded-2xl lg:rounded-3xl bg-gradient-to-br from-white/30 via-white/10 to-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]">
                 <div className="relative h-full rounded-[14px] lg:rounded-[22px] overflow-hidden bg-black/20 backdrop-blur-sm">
@@ -134,14 +121,6 @@ export default function DomiciliationSection() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
                   En 24h
                 </span>
-                <motion.div
-                  className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-3xl -z-10"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                />
               </span>
             </motion.h2>
 
@@ -160,23 +139,11 @@ export default function DomiciliationSection() {
                 <motion.div
                   key={index}
                   variants={staggerItem}
-                  whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                    borderColor: 'rgba(251, 146, 60, 0.3)',
-                    boxShadow: '0 20px 40px rgba(251, 146, 60, 0.1)'
-                  }}
-                  transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-                  className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 cursor-pointer"
-                  style={{ transformStyle: 'preserve-3d' }}
+                  className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-amber-500/30 transition-all duration-300"
                 >
-                  <motion.div
-                    className="p-2 bg-amber-500/10 rounded-xl shrink-0"
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.6, ease: 'easeInOut' }}
-                  >
+                  <div className="p-2 bg-amber-500/10 rounded-xl shrink-0">
                     <feature.icon className="w-5 h-5 text-amber-400" />
-                  </motion.div>
+                  </div>
                   <span className="text-white/80 text-sm leading-tight pt-2 font-medium">{feature.text}</span>
                 </motion.div>
               ))}
@@ -209,12 +176,7 @@ export default function DomiciliationSection() {
                 whileTap={{ scale: 0.95 }}
                 className="group relative"
               >
-                <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
-                  animate={{ opacity: [0.5, 0.75, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <div className="relative flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold shadow-2xl">
+                <div className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold shadow-lg shadow-amber-500/20">
                   <span>OBTENIR UNE ADRESSE</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
@@ -243,15 +205,6 @@ export default function DomiciliationSection() {
         </div>
       </div>
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
-        <svg width="100%" height="100%">
-          <filter id="noiseDomiciliation">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseDomiciliation)" />
-        </svg>
-      </div>
     </motion.section>
   );
 }

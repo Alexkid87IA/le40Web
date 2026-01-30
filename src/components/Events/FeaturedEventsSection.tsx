@@ -76,23 +76,30 @@ export default function FeaturedEventsSection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10 md:mb-16 lg:mb-20"
+          className="text-center mb-16"
         >
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white">
-              Événements à {' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
-                Venir
-              </span>
-            </h2>
-          </div>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 font-inter">
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-sm font-medium text-cyan-400 mb-6"
+          >
+            AGENDA
+          </motion.span>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            ÉVÉNEMENTS À{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
+              VENIR
+            </span>
+          </h2>
+          <p className="text-base md:text-lg text-white/60 font-inter">
             {filteredEvents.length} événement{filteredEvents.length > 1 ? 's' : ''} disponible{filteredEvents.length > 1 ? 's' : ''}
           </p>
         </motion.div>
@@ -116,8 +123,7 @@ export default function FeaturedEventsSection() {
                 onClick={() => setSelectedEvent(event)}
                 className="group relative flex cursor-pointer"
               >
-                <div className="relative overflow-hidden rounded-xl md:rounded-2xl bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-cyan-500/30 transition-all duration-300 flex flex-col w-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 group-hover:border-cyan-500/30 transition-all duration-300 flex flex-col w-full">
 
                   <div className="relative h-40 md:h-48 overflow-hidden shrink-0">
                     <motion.img
@@ -127,7 +133,7 @@ export default function FeaturedEventsSection() {
                       animate={{ scale: isHovered ? 1.05 : 1 }}
                       transition={{ duration: 0.4 }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
                     <div className="absolute top-2 left-2 md:top-3 md:left-3">
                       <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-2 py-0.5 md:px-3 md:py-1 rounded-md md:rounded-lg text-[10px] md:text-xs font-bold shadow-lg">
@@ -187,7 +193,7 @@ export default function FeaturedEventsSection() {
                                 key={speaker.id}
                                 src={speaker.photoUrl}
                                 alt={speaker.name}
-                                className="w-6 h-6 md:w-7 md:h-7 rounded-full object-cover border-2 border-slate-950"
+                                className="w-6 h-6 md:w-7 md:h-7 rounded-full object-cover border-2 border-black"
                               />
                             ))}
                           </div>
@@ -220,16 +226,6 @@ export default function FeaturedEventsSection() {
             </button>
           </motion.div>
         )}
-      </div>
-
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
-        <svg width="100%" height="100%">
-          <filter id="noiseFeaturedEvents">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseFeaturedEvents)" />
-        </svg>
       </div>
 
       <EventDetailModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />

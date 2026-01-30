@@ -80,7 +80,7 @@ export default function ClubUpsellSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-zinc-900/50 backdrop-blur-xl rounded-3xl p-8 border border-white/10"
+            className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-white/10"
           >
             <div className="mb-6">
               <div className="inline-flex items-center gap-2 mb-4">
@@ -123,7 +123,7 @@ export default function ClubUpsellSection() {
             className="relative"
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 via-amber-600 to-orange-600 rounded-3xl blur-lg opacity-30"></div>
-            <div className="relative bg-gradient-to-br from-zinc-900 to-zinc-950 backdrop-blur-xl rounded-3xl p-8 border border-orange-500/30">
+            <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-orange-500/30">
               <div className="absolute -top-4 -right-4">
                 <div className="bg-gradient-to-r from-orange-600 to-amber-600 text-white text-sm font-bold px-6 py-2 rounded-full shadow-xl">
                   RECOMMANDÉ

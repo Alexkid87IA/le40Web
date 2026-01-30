@@ -24,7 +24,7 @@ export default function UrgencySection() {
   }, []);
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-black relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-[120px] animate-pulse"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] animate-pulse"></div>
@@ -68,7 +68,7 @@ export default function UrgencySection() {
           </div>
 
           <p className="text-sm md:text-base text-white/80 font-inter">
-            <span className="font-bold text-emerald-400">1 mois offert</span> pour toute réservation avant la fin du compte à rebours
+            <span className="font-bold text-blue-400">1 mois offert</span> pour toute réservation avant la fin du compte à rebours
           </p>
         </motion.div>
 
@@ -159,11 +159,11 @@ export default function UrgencySection() {
             <div className="text-white/70 text-xs md:text-sm">Dernières réservations :</div>
             <div className="flex -space-x-2">
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="w-8 md:w-10 h-8 md:h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 border-2 border-black"></div>
+                <div key={i} className="w-8 md:w-10 h-8 md:h-10 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 border-2 border-black"></div>
               ))}
             </div>
             <div className="text-white/70 text-xs md:text-sm">
-              <span className="text-emerald-400 font-bold">+5 entreprises</span> cette semaine
+              <span className="text-blue-400 font-bold">+5 entreprises</span> cette semaine
             </div>
           </div>
         </motion.div>

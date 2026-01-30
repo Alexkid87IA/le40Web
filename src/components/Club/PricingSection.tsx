@@ -16,7 +16,7 @@ interface PricingCardProps {
 const PricingCard = ({ product, index, isPopular, onAddToCart, isAdding }: PricingCardProps) => {
   const price = parseFloat(product.priceRange.minVariantPrice.amount);
   const gradient = isPopular
-    ? 'from-emerald-500 to-teal-500'
+    ? 'from-red-500 to-rose-500'
     : index === 0
     ? 'from-red-500 to-rose-500'
     : 'from-orange-500 to-amber-500';
@@ -58,7 +58,7 @@ const PricingCard = ({ product, index, isPopular, onAddToCart, isAdding }: Prici
     >
       {isPopular && (
         <div className="absolute -top-0 left-1/2 -translate-x-1/2 z-20 whitespace-nowrap">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-inter font-bold shadow-lg">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500 to-rose-500 text-white text-xs font-inter font-bold shadow-lg">
             <Crown className="w-4 h-4" />
             LE PLUS POPULAIRE
           </span>
@@ -67,7 +67,7 @@ const PricingCard = ({ product, index, isPopular, onAddToCart, isAdding }: Prici
 
       <div className={`absolute -inset-1 bg-gradient-to-r ${gradient} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity`} />
 
-      <div className={`relative w-full bg-gradient-to-br ${isPopular ? 'from-white/15 to-white/10' : 'from-white/10 to-white/5'} backdrop-blur-xl border ${isPopular ? 'border-emerald-500/30' : 'border-white/10'} rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 group-hover:border-white/20 transition-all flex flex-col`}>
+      <div className={`relative w-full bg-white/5 backdrop-blur-xl border ${isPopular ? 'border-red-500/50 shadow-lg shadow-red-500/20' : 'border-white/10 hover:border-white/20'} rounded-2xl p-5 sm:p-6 md:p-8 transition-all flex flex-col`}>
 
         <div className="text-center mb-5 sm:mb-6">
           <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-white mb-2">{tier}</h3>
@@ -85,8 +85,8 @@ const PricingCard = ({ product, index, isPopular, onAddToCart, isAdding }: Prici
           <p className="text-xs text-white/50 mb-2 font-inter">Engagement mensuel</p>
 
           {isPopular && (
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/30">
-              <span className="text-xs font-inter font-bold text-emerald-400">Meilleur rapport qualité/prix</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/20 border border-red-500/30">
+              <span className="text-xs font-inter font-bold text-red-400">Meilleur rapport qualité/prix</span>
             </div>
           )}
         </div>
@@ -108,7 +108,7 @@ const PricingCard = ({ product, index, isPopular, onAddToCart, isAdding }: Prici
               transition={{ delay: index * 0.1 + idx * 0.05 }}
               className="flex items-start gap-3"
             >
-              <Check className={`w-5 h-5 ${isPopular ? 'text-emerald-400' : 'text-red-400'} flex-shrink-0 mt-0.5`} />
+              <Check className={`w-5 h-5 ${isPopular ? 'text-red-400' : 'text-red-400'} flex-shrink-0 mt-0.5`} />
               <span className="text-white/80 text-sm leading-relaxed font-inter">{feature}</span>
             </motion.div>
           ))}
@@ -155,10 +155,10 @@ export default function PricingSection() {
 
   if (loading) {
     return (
-      <section id="pricing" className="py-32 bg-gradient-to-b from-slate-950 to-black relative overflow-hidden">
-        <div className="relative z-10 max-w-7xl mx-auto px-6 flex items-center justify-center">
+      <section id="pricing" className="py-32 relative overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
           <div className="flex items-center gap-3 text-white">
-            <Loader2 className="w-8 h-8 animate-spin text-emerald-400" />
+            <Loader2 className="w-8 h-8 animate-spin text-red-400" />
             <span className="text-lg font-inter">Chargement des abonnements...</span>
           </div>
         </div>
@@ -167,39 +167,34 @@ export default function PricingSection() {
   }
 
   return (
-    <section id="pricing" className="py-32 bg-gradient-to-b from-slate-950 to-black relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }} />
+    <section id="pricing" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-rose-600/20 rounded-full blur-[150px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-16"
         >
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-xs sm:text-sm font-inter font-semibold text-red-400 mb-4 sm:mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-medium text-red-400 mb-6"
           >
-            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <Star className="w-4 h-4" />
             TARIFICATION TRANSPARENTE
           </motion.span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-4 sm:mb-6 leading-tight px-4 sm:px-0">
-            Un prix
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400 break-words">
-              ridiculement abordable
-            </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            CHOISISSEZ VOTRE <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">FORMULE</span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-white/60 max-w-3xl mx-auto font-inter px-4 sm:px-0">
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter">
             Choisissez la formule qui vous convient. Sans engagement, résiliable à tout moment.
           </p>
         </motion.div>
@@ -232,7 +227,7 @@ export default function PricingSection() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8">
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8">
             <div className="text-center mb-6 sm:mb-8">
               <h3 className="text-xl sm:text-2xl font-montserrat font-bold text-white mb-2 sm:mb-3">
                 Comparez avec le prix réel des événements
@@ -253,16 +248,16 @@ export default function PricingSection() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 rounded-xl sm:rounded-2xl p-5 sm:p-6">
+              <div className="bg-gradient-to-br from-red-500/10 to-rose-500/10 border border-red-500/30 rounded-xl sm:rounded-2xl p-5 sm:p-6">
                 <h4 className="text-base sm:text-lg font-montserrat font-bold text-white mb-3 sm:mb-4 flex items-center gap-2">
-                  <Crown className="w-5 h-5 text-emerald-400" />
+                  <Crown className="w-5 h-5 text-red-400" />
                   Avec le Club
                 </h4>
                 <ul className="space-y-2 text-white/80 text-sm font-inter">
                   <li>Workshops illimités ✓</li>
                   <li>Networking illimité ✓</li>
                   <li>Coworking inclus ✓</li>
-                  <li className="pt-2 border-t border-emerald-500/30 font-bold text-emerald-400">Dès 50€/mois</li>
+                  <li className="pt-2 border-t border-red-500/30 font-bold text-red-400">Dès 50€/mois</li>
                 </ul>
               </div>
             </div>

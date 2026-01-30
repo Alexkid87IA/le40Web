@@ -107,7 +107,7 @@ export default function ProcessSection() {
                 >
                   <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-white/10 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                  <div className="relative p-6 md:p-8 lg:p-10 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/[0.08] group-hover:border-white/[0.15] transition-all duration-500 h-full">
+                  <div className="relative p-6 md:p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 group-hover:border-white/[0.15] transition-all duration-500 h-full">
                     <motion.div
                       className="absolute -inset-[2px] rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-700"
                       style={{ backgroundColor: step.glowColor }}

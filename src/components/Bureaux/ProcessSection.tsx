@@ -8,7 +8,7 @@ const processSteps = [
     title: 'Réservez votre visite',
     description: 'En ligne ou par téléphone en 2 minutes. Choisissez le créneau qui vous convient.',
     duration: '2 min',
-    color: 'from-emerald-600 to-teal-600'
+    color: 'from-blue-600 to-indigo-600'
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const processSteps = [
     title: 'Visitez les bureaux',
     description: 'Découvrez nos espaces disponibles, posez toutes vos questions. Visite sans engagement.',
     duration: '30-45 min',
-    color: 'from-teal-600 to-cyan-600'
+    color: 'from-indigo-600 to-blue-600'
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ const processSteps = [
     title: 'Signez votre contrat',
     description: 'Contrat simple et transparent. Tout se fait en ligne ou sur place selon votre préférence.',
     duration: '15 min',
-    color: 'from-cyan-600 to-blue-600'
+    color: 'from-blue-500 to-indigo-500'
   },
   {
     id: 4,
@@ -40,13 +40,13 @@ const processSteps = [
     title: 'Emménagez et lancez-vous',
     description: 'Bureau prêt à l\'emploi : mobilier, fibre, ligne téléphonique. Il ne reste qu\'à travailler !',
     duration: '48-72h',
-    color: 'from-emerald-600 to-teal-600'
+    color: 'from-blue-600 to-indigo-600'
   }
 ];
 
 export default function ProcessSection() {
   return (
-    <section className="py-32 bg-gradient-to-b from-zinc-900 to-black">
+    <section className="py-32">
       <div className="max-w-7xl mx-auto px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -55,15 +55,15 @@ export default function ProcessSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">MARCHE</span> ?
+            COMMENT ÇA <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">MARCHE</span> ?
           </h2>
           <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto">
-            De la visite à l'emménagement en <span className="text-emerald-400 font-bold">moins d'une semaine</span>. Simple, transparent, sans surprise.
+            De la visite à l'emménagement en <span className="text-blue-400 font-bold">moins d'une semaine</span>. Simple, transparent, sans surprise.
           </p>
         </motion.div>
 
         <div className="relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-emerald-600 via-teal-600 to-cyan-600 opacity-20 hidden lg:block"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-600 via-indigo-600 to-blue-600 opacity-20 hidden lg:block"></div>
 
           {processSteps.map((step, index) => (
             <motion.div
@@ -110,7 +110,7 @@ export default function ProcessSection() {
 
                 <div className="flex-1 lg:pl-12">
                   {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block w-full h-1 bg-gradient-to-r from-emerald-600/20 to-teal-600/20 mt-8"></div>
+                    <div className="hidden lg:block w-full h-1 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 mt-8"></div>
                   )}
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function ProcessSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-20 p-10 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-3xl text-center"
+          className="mt-20 p-10 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 rounded-3xl text-center"
         >
           <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-4">
             Prêt en moins d'une semaine
@@ -132,15 +132,15 @@ export default function ProcessSection() {
           </p>
           <div className="flex flex-wrap justify-center gap-8">
             <div className="text-center">
-              <div className="text-5xl font-black text-emerald-400 mb-2">48-72h</div>
+              <div className="text-5xl font-black text-blue-400 mb-2">48-72h</div>
               <div className="text-white/60 text-sm">Délai d'emménagement</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-black text-emerald-400 mb-2">0€</div>
+              <div className="text-5xl font-black text-blue-400 mb-2">0€</div>
               <div className="text-white/60 text-sm">Frais d'aménagement</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-black text-emerald-400 mb-2">100%</div>
+              <div className="text-5xl font-black text-blue-400 mb-2">100%</div>
               <div className="text-white/60 text-sm">Prêt à l'emploi</div>
             </div>
           </div>

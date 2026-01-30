@@ -77,7 +77,7 @@ export default function GalleryVisualSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-orange-900/5 via-transparent to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -116,7 +116,7 @@ export default function GalleryVisualSection() {
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl opacity-0 group-hover:opacity-50 blur-lg transition-all duration-500"></div>
 
-              <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden group-hover:border-orange-500/50 transition-all duration-500">
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden group-hover:border-orange-500/50 transition-all duration-500">
                 <div className="relative h-64 overflow-hidden">
                   <motion.img
                     src={item.image}
@@ -142,7 +142,7 @@ export default function GalleryVisualSection() {
                 </div>
 
                 <div className="p-6">
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-nowrap gap-2 overflow-hidden">
                     {item.amenities.map((amenity, idx) => {
                       const Icon = amenityIcons[amenity] || Building2;
                       return (
@@ -169,7 +169,7 @@ export default function GalleryVisualSection() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-12 md:mt-16 lg:mt-20 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-6 md:gap-8 bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-xl md:rounded-2xl p-6 md:p-8">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-6 md:gap-8 bg-white/5 backdrop-blur-xl border border-orange-500/30 rounded-2xl p-6 md:p-8">
             <div className="grid grid-cols-3 gap-3 md:gap-6">
               <div className="text-center">
                 <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-1 md:mb-2 leading-tight">

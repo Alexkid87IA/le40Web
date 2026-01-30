@@ -46,7 +46,7 @@ export default function BureauHeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black py-20 lg:pt-24 lg:pb-8">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black py-20 lg:py-12 xl:py-16">
       {/* VIDEO DE FOND */}
       <div className="absolute inset-0 z-0">
         <video
@@ -62,12 +62,6 @@ export default function BureauHeroSection() {
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.02] z-[1]" style={{
-        backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
-        backgroundSize: '50px 50px'
-      }} />
-
       <div className="relative z-10 w-full">
         {/* Mobile Layout: Video with overlaid content */}
         <div className="lg:hidden relative min-h-screen">
@@ -80,19 +74,9 @@ export default function BureauHeroSection() {
           >
             {/* Video Card with sophisticated design */}
             <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
-              {/* Animated border glow */}
-              <motion.div
-                className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-3xl opacity-60 blur-xl"
-                animate={{
-                  opacity: [0.4, 0.7, 0.4],
-                  scale: [1, 1.02, 1]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-
               {/* Inner video container */}
               <div
-                className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-blue-500/30 bg-black cursor-pointer"
+                className="relative w-full h-full rounded-3xl overflow-hidden border border-white/20 bg-black cursor-pointer"
                 onClick={togglePlayPause}
               >
                 {isMobile && (
@@ -152,21 +136,7 @@ export default function BureauHeroSection() {
                   </div>
                 </motion.button>
 
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-500/30 rounded-tl-3xl" />
-                <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-blue-500/30 rounded-tr-3xl" />
-                <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-blue-500/30 rounded-bl-3xl" />
-                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-500/30 rounded-br-3xl" />
               </div>
-
-              {/* Outer glow effect */}
-              <motion.div
-                className="absolute -inset-8 bg-gradient-to-b from-blue-500/5 via-indigo-500/5 to-transparent pointer-events-none blur-2xl"
-                animate={{
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
 
               {/* Content overlaid on bottom third of video */}
               <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-16 bg-gradient-to-t from-black via-black/95 to-transparent rounded-b-3xl">
@@ -483,21 +453,11 @@ export default function BureauHeroSection() {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              {/* Video Card with sophisticated design - True 9:16 ratio */}
-              <div className="relative w-full aspect-[9/16] max-h-[60vh] xl:max-h-[70vh] 2xl:max-h-[calc(100vh-140px)] rounded-2xl xl:rounded-3xl overflow-hidden shadow-2xl">
-                {/* Animated border glow */}
-                <motion.div
-                  className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-2xl xl:rounded-3xl opacity-60 blur-xl"
-                  animate={{
-                    opacity: [0.4, 0.7, 0.4],
-                    scale: [1, 1.02, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-
+              {/* Video Card - True 9:16 ratio */}
+              <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl">
                 {/* Inner video container */}
                 <div
-                  className="relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden border-2 border-blue-500/30 bg-black cursor-pointer"
+                  className="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 bg-black cursor-pointer"
                   onClick={togglePlayPause}
                 >
                   {!isMobile && (
@@ -554,21 +514,7 @@ export default function BureauHeroSection() {
                     </div>
                   </motion.button>
 
-                  {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-16 h-16 xl:w-24 xl:h-24 border-t-2 border-l-2 border-blue-500/30 rounded-tl-2xl xl:rounded-tl-3xl" />
-                  <div className="absolute top-0 right-0 w-16 h-16 xl:w-24 xl:h-24 border-t-2 border-r-2 border-blue-500/30 rounded-tr-2xl xl:rounded-tr-3xl" />
-                  <div className="absolute bottom-0 left-0 w-16 h-16 xl:w-24 xl:h-24 border-b-2 border-l-2 border-blue-500/30 rounded-bl-2xl xl:rounded-bl-3xl" />
-                  <div className="absolute bottom-0 right-0 w-16 h-16 xl:w-24 xl:h-24 border-b-2 border-r-2 border-blue-500/30 rounded-br-2xl xl:rounded-br-3xl" />
                 </div>
-
-                {/* Outer glow effect */}
-                <motion.div
-                  className="absolute -inset-4 xl:-inset-8 bg-gradient-to-b from-blue-500/5 via-indigo-500/5 to-transparent pointer-events-none blur-2xl"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
               </div>
             </motion.div>
           </div>
@@ -577,15 +523,11 @@ export default function BureauHeroSection() {
 
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-[2]" />
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none z-[1]">
-        <svg width="100%" height="100%">
-          <filter id="noiseBureauxHero">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseBureauxHero)" />
-        </svg>
-      </div>
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.02] z-[1]" style={{
+        backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }} />
 
       <VisitBookingModal
         isOpen={isBookingModalOpen}

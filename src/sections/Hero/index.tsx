@@ -77,19 +77,9 @@ export default function Hero() {
           >
             {/* Video Card with sophisticated design */}
             <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
-              {/* Animated border glow */}
-              <motion.div
-                className="absolute -inset-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-3xl opacity-60 blur-xl"
-                animate={{
-                  opacity: [0.4, 0.7, 0.4],
-                  scale: [1, 1.02, 1]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-
               {/* Inner video container */}
               <div
-                className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
+                className="relative w-full h-full rounded-3xl overflow-hidden border border-white/20 bg-black cursor-pointer"
                 onClick={togglePlayPause}
                 role="button"
                 tabIndex={0}
@@ -155,21 +145,7 @@ export default function Hero() {
                   </div>
                 </motion.button>
 
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-amber-500/30 rounded-tl-3xl" />
-                <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-amber-500/30 rounded-tr-3xl" />
-                <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-amber-500/30 rounded-bl-3xl" />
-                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-amber-500/30 rounded-br-3xl" />
               </div>
-
-              {/* Outer glow effect */}
-              <motion.div
-                className="absolute -inset-8 bg-gradient-to-b from-amber-500/5 via-orange-500/5 to-transparent pointer-events-none blur-2xl"
-                animate={{
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
 
               {/* Content overlaid on bottom third of video */}
               <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-16 bg-gradient-to-t from-black via-black/95 to-transparent rounded-b-3xl">
@@ -196,14 +172,6 @@ export default function Hero() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400">
                     ACTIVITÉ
                   </span>
-                  <motion.div
-                    className="absolute -inset-2 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-2xl -z-10"
-                    animate={{
-                      opacity: [0.5, 0.8, 0.5],
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
                 </span>
               </motion.h1>
 
@@ -269,7 +237,7 @@ export default function Hero() {
           </motion.div>
 
           {/* CTA Section below video */}
-          <div className="px-5 py-6 bg-gradient-to-b from-black to-zinc-950">
+          <div className="px-5 py-6 bg-black">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -282,12 +250,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="group relative"
               >
-                <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-xl opacity-75 blur-lg group-active:opacity-100 transition-opacity duration-300"
-                  animate={{ opacity: [0.5, 0.75, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <div className="relative flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-base shadow-2xl">
+                <div className="flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold text-base shadow-lg shadow-amber-500/20">
                   <span>Réserver une visite</span>
                   <ArrowRight className="w-5 h-5" />
                 </div>
@@ -305,7 +268,7 @@ export default function Hero() {
         </div>
 
         {/* Desktop Layout: Side by side */}
-        <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <div className="grid lg:grid-cols-[1fr,300px] xl:grid-cols-[1fr,340px] 2xl:grid-cols-[1fr,380px] gap-8 xl:gap-12 items-center">
 
             <div>
@@ -332,14 +295,6 @@ export default function Hero() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400">
                     ACTIVITÉ
                   </span>
-                  <motion.div
-                    className="absolute -inset-2 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 blur-2xl -z-10"
-                    animate={{
-                      opacity: [0.5, 0.8, 0.5],
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
                 </span>
               </motion.h1>
 
@@ -373,8 +328,7 @@ export default function Hero() {
                     whileHover={{ y: -3 }}
                     className="relative group"
                   >
-                    <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300`} />
-                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-2 xl:p-3 group-hover:border-white/30 transition-all duration-300 text-center">
+                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-2 xl:p-3 group-hover:border-white/20 transition-all duration-300 text-center">
                       <div className={`text-lg lg:text-xl xl:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5 xl:mb-1`}>
                         {stat.value}
                       </div>
@@ -431,7 +385,7 @@ export default function Hero() {
                     animate={{ opacity: [0.5, 0.75, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
-                  <div className="relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-2xl">
+                  <div className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-lg shadow-amber-500/20">
                     <span>Réserver une visite</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
@@ -486,21 +440,9 @@ export default function Hero() {
               transition={{ duration: 0.8 }}
               className="relative flex items-center justify-center"
             >
-              {/* Video Card with sophisticated design - True 9:16 ratio */}
-              <div className="relative w-full aspect-[9/16] rounded-2xl xl:rounded-3xl overflow-hidden shadow-2xl">
-                {/* Animated border glow */}
-                <motion.div
-                  className="absolute -inset-[2px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-2xl xl:rounded-3xl opacity-60 blur-xl"
-                  animate={{
-                    opacity: [0.4, 0.7, 0.4],
-                    scale: [1, 1.02, 1]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-
-                {/* Inner video container */}
+              <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl">
                 <div
-                  className="relative w-full h-full rounded-2xl xl:rounded-3xl overflow-hidden border-2 border-amber-500/30 bg-black cursor-pointer"
+                  className="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 bg-black cursor-pointer"
                   onClick={togglePlayPause}
                   role="button"
                   tabIndex={0}
@@ -563,21 +505,7 @@ export default function Hero() {
                     </div>
                   </motion.button>
 
-                  {/* Corner accents */}
-                  <div className="absolute top-0 left-0 w-16 h-16 xl:w-24 xl:h-24 border-t-2 border-l-2 border-amber-500/30 rounded-tl-2xl xl:rounded-tl-3xl" />
-                  <div className="absolute top-0 right-0 w-16 h-16 xl:w-24 xl:h-24 border-t-2 border-r-2 border-amber-500/30 rounded-tr-2xl xl:rounded-tr-3xl" />
-                  <div className="absolute bottom-0 left-0 w-16 h-16 xl:w-24 xl:h-24 border-b-2 border-l-2 border-amber-500/30 rounded-bl-2xl xl:rounded-bl-3xl" />
-                  <div className="absolute bottom-0 right-0 w-16 h-16 xl:w-24 xl:h-24 border-b-2 border-r-2 border-amber-500/30 rounded-br-2xl xl:rounded-br-3xl" />
                 </div>
-
-                {/* Outer glow effect */}
-                <motion.div
-                  className="absolute -inset-4 xl:-inset-8 bg-gradient-to-b from-amber-500/5 via-orange-500/5 to-transparent pointer-events-none blur-2xl"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
               </div>
             </motion.div>
           </div>
@@ -586,15 +514,6 @@ export default function Hero() {
 
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-[2]" />
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none z-[1]">
-        <svg width="100%" height="100%">
-          <filter id="noiseHomeHero">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseHomeHero)" />
-        </svg>
-      </div>
     </section>
   );
 }

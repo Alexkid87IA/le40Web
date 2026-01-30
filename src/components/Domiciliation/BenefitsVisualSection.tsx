@@ -60,7 +60,7 @@ export default function BenefitsVisualSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-900/3 via-transparent to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export default function BenefitsVisualSection() {
             >
               <div className={`absolute -inset-0.5 bg-gradient-to-r ${benefit.gradient} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-all duration-500`}></div>
 
-              <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden group-hover:border-white/30 transition-all duration-500 h-full flex flex-col">
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden group-hover:border-white/30 transition-all duration-500 h-full flex flex-col">
                 <div className="relative h-40 md:h-56 overflow-hidden">
                   <motion.img
                     src={benefit.image}
@@ -150,7 +150,7 @@ export default function BenefitsVisualSection() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-12 md:mt-16 lg:mt-20 text-center"
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-xl md:rounded-2xl p-6 md:p-8">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/5 backdrop-blur-xl border border-orange-500/30 rounded-2xl p-6 md:p-8">
             <div className="flex items-center gap-4">
               <Clock className="w-10 md:w-12 h-10 md:h-12 text-orange-400" />
               <div className="text-left">

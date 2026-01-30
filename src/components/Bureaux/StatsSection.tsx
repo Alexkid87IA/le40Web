@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Shield, Zap, Users, TrendingUp, Award, Clock, Star, Check } from 'lucide-react';
 
+/* Bureaux master color: blue/indigo (matching hero) */
+
 export default function StatsSection() {
   const stats = [
     {
@@ -34,13 +36,13 @@ export default function StatsSection() {
       icon: Shield,
       title: 'Sécurité maximale',
       description: 'Accès par badge 24/7, vidéosurveillance, alarme connectée',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-blue-500 to-indigo-500',
     },
     {
       icon: Zap,
       title: 'Internet haut débit compris',
       description: 'Connexion ultra-rapide et stable pour toute votre équipe',
-      color: 'from-emerald-500 to-teal-500',
+      color: 'from-blue-500 to-indigo-500',
     },
     {
       icon: Award,
@@ -57,10 +59,10 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-zinc-900 to-black relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-teal-600/20 rounded-full blur-[150px]" />
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[150px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-8 relative z-10">
@@ -71,7 +73,7 @@ export default function StatsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            DES CHIFFRES QUI <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">PARLENT</span>
+            DES CHIFFRES QUI <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">PARLENT</span>
           </h2>
           <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto">
             Rejoignez des entrepreneurs ambitieux qui ont trouvé leur espace idéal
@@ -89,18 +91,18 @@ export default function StatsSection() {
               whileHover={{ y: -8, scale: 1.02 }}
               className="relative group"
             >
-              <div className="absolute -inset-1 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
+              <div className="absolute -inset-1 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
 
-              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center group-hover:border-emerald-500/30 transition-all duration-500">
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 text-center group-hover:border-blue-500/30 transition-all duration-500 h-full">
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
-                  className="w-16 h-16 bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/30"
+                  className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-blue-500/30"
                 >
-                  <stat.icon className="w-8 h-8 text-emerald-400" />
+                  <stat.icon className="w-8 h-8 text-blue-400" />
                 </motion.div>
 
-                <div className="text-4xl md:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400 mb-2 leading-none h-[3rem] md:h-[3.5rem] flex items-center justify-center">
+                <div className="text-4xl md:text-5xl font-montserrat font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 mb-2 leading-none h-[3rem] md:h-[3.5rem] flex items-center justify-center">
                   {stat.value}
                 </div>
 
@@ -123,7 +125,7 @@ export default function StatsSection() {
           className="text-center mb-12"
         >
           <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-4">
-            CE QUI EST <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">INCLUS</span>
+            CE QUI EST <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">INCLUS</span>
           </h3>
           <p className="text-sm md:text-base text-white/60">
             Tout ce dont votre équipe a besoin pour performer
@@ -141,7 +143,7 @@ export default function StatsSection() {
               whileHover={{ y: -4 }}
               className="group"
             >
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 group-hover:border-emerald-500/30 transition-all duration-500">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 group-hover:border-blue-500/30 transition-all duration-500">
                 <div className="flex items-start gap-6">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -151,7 +153,7 @@ export default function StatsSection() {
                   </motion.div>
 
                   <div className="flex-1">
-                    <h4 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                    <h4 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
                       {benefit.title}
                     </h4>
                     <p className="text-white/70 font-inter leading-relaxed">
@@ -170,7 +172,7 @@ export default function StatsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-emerald-950/50 to-teal-950/50 border border-emerald-500/30 rounded-3xl p-12 text-center"
+          className="bg-gradient-to-r from-blue-950/50 to-indigo-950/50 border border-blue-500/30 rounded-3xl p-12 text-center"
         >
           <div className="flex items-center justify-center gap-2 mb-6">
             <Star className="w-6 h-6 text-amber-400 fill-amber-400" />
@@ -185,9 +187,9 @@ export default function StatsSection() {
           </blockquote>
 
           <div className="flex items-center justify-center gap-4">
-            <div className="w-14 h-14 rounded-full overflow-hidden ring-4 ring-emerald-500/30">
+            <div className="w-14 h-14 rounded-full overflow-hidden ring-4 ring-blue-500/30">
               <img
-                src="https://media.licdn.com/dms/image/v2/D4D03AQFlUkvzeP7ZMQ/profile-displayphoto-shrink_400_400/B4DZQryeOKHwAg-/0/1735901440262?e=1767225600&v=beta&t=C1jlypUXePxHF4zbP__T-OOVtfdgyBm6Pwcx8zy-4Zs"
+                src="/images/testimonials/morgane.jpeg"
                 alt="Morgan Aiwekhoe"
                 className="w-full h-full object-cover"
               />
@@ -200,7 +202,7 @@ export default function StatsSection() {
                   href="https://www.linkedin.com/in/morgan-aiwekhoe/?originalSubdomain=fr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-400 hover:text-emerald-300 transition-colors underline decoration-emerald-400/30 hover:decoration-emerald-300"
+                  className="text-blue-400 hover:text-blue-300 transition-colors underline decoration-blue-400/30 hover:decoration-blue-300"
                 >
                   @ South Management
                 </a>

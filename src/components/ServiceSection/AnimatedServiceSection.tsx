@@ -41,8 +41,8 @@ interface AnimatedServiceSectionProps {
     };
   };
   images: string[];
-  noiseFilterId: string;
-  noiseSeed: string;
+  noiseFilterId?: string;
+  noiseSeed?: string;
   order?: 'left' | 'right';
 }
 
@@ -57,8 +57,6 @@ export default function AnimatedServiceSection({
   price,
   cta,
   images,
-  noiseFilterId,
-  noiseSeed,
   order = 'left'
 }: AnimatedServiceSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -167,22 +165,13 @@ export default function AnimatedServiceSection({
                   <motion.div
                     key={index}
                     variants={staggerItem}
-                    whileHover={{
-                      y: -8,
-                      scale: 1.02,
-                      boxShadow: '0 20px 40px rgba(255, 255, 255, 0.05)'
-                    }}
-                    transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
-                    className="flex items-start gap-3 bg-white/8 backdrop-blur-sm border border-white/20 rounded-xl md:rounded-2xl p-3 md:p-4 cursor-pointer hover:bg-white/12 transition-colors"
-                    style={{ transformStyle: 'preserve-3d' }}
+                    className="flex items-start gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 hover:border-white/20 transition-all duration-300"
                   >
-                    <motion.div
+                    <div
                       className={`p-2 ${badge.colorClasses.replace('border', 'bg')} rounded-xl shrink-0`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6, ease: 'easeInOut' }}
                     >
                       <FeatureIcon className="w-5 h-5" />
-                    </motion.div>
+                    </div>
                     <div className="flex-1">
                       <div className="text-white text-sm md:text-base leading-tight font-semibold mb-1">{feature.text}</div>
                       {feature.description && (
@@ -221,12 +210,7 @@ export default function AnimatedServiceSection({
                 whileTap={{ scale: 0.95 }}
                 className="group relative"
               >
-                <motion.div
-                  className={`absolute -inset-1 ${cta.primary.gradientClasses} rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300`}
-                  animate={{ opacity: [0.5, 0.75, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <div className={`relative flex items-center justify-center gap-2 md:gap-3 px-5 md:px-6 py-3 md:py-4 ${cta.primary.gradientClasses} text-white rounded-xl font-montserrat font-bold shadow-2xl text-xs md:text-sm`}>
+                <div className={`flex items-center justify-center gap-2 md:gap-3 px-5 md:px-6 py-3 md:py-4 ${cta.primary.gradientClasses} text-white rounded-xl font-montserrat font-bold shadow-lg text-xs md:text-sm`}>
                   <span>{cta.primary.text}</span>
                 </div>
               </motion.a>
@@ -253,19 +237,6 @@ export default function AnimatedServiceSection({
               className="relative h-[350px] lg:h-[450px] laptop:h-[350px] xl:h-[550px]"
               style={{ perspective: 1000 }}
             >
-              {/* Glow effect */}
-              <motion.div
-                className={`absolute -inset-4 ${price.gradientClasses.replace('bg-gradient-to-r', 'bg-gradient-to-r')} rounded-3xl blur-3xl opacity-20`}
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.2, 0.3, 0.2]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              />
               {/* Glassmorphism container */}
               <div className="relative h-full p-[3px] rounded-2xl lg:rounded-3xl bg-gradient-to-br from-white/30 via-white/10 to-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]">
                 <div className="relative h-full rounded-[14px] lg:rounded-[22px] overflow-hidden bg-black/20 backdrop-blur-sm">
@@ -285,15 +256,6 @@ export default function AnimatedServiceSection({
         </div>
       </div>
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
-        <svg width="100%" height="100%">
-          <filter id={noiseFilterId}>
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed={noiseSeed} />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter={`url(#${noiseFilterId})`} />
-        </svg>
-      </div>
     </motion.section>
   );
 }

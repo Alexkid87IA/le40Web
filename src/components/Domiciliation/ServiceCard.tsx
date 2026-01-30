@@ -37,7 +37,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
           }}
         />
 
-        <div className="relative h-full bg-gradient-to-br from-zinc-900/95 via-zinc-900/90 to-zinc-950/95 backdrop-blur-2xl rounded-3xl border border-white/[0.06] group-hover:border-white/[0.12] transition-all duration-500 overflow-hidden">
+        <div className="relative h-full bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 group-hover:border-white/[0.12] transition-all duration-500 overflow-hidden">
           <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-orange-500/[0.08] via-transparent to-transparent rounded-bl-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
           <div className="absolute inset-0 opacity-[0.03]">
@@ -57,7 +57,7 @@ const ServiceCard = memo<ServiceCardProps>(function ServiceCard({ service, index
                 style={{
                   background: `radial-gradient(circle, ${service.color.replace('text-', '').replace('-400', '-500').replace('-', ' ')}/40, transparent)`
                 }}></div>
-              <div className={`relative inline-flex p-5 rounded-2xl bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 border border-white/[0.08] group-hover:border-white/[0.15] transition-all duration-500 shadow-lg`}>
+              <div className={`relative inline-flex p-5 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 group-hover:border-white/[0.15] transition-all duration-500 shadow-lg`}>
                 <service.icon className={`w-14 h-14 ${service.color}`} />
               </div>
             </motion.div>

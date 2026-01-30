@@ -86,7 +86,7 @@ export default function FinalCTASection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl rounded-xl border border-white/[0.08] hover:border-orange-500/30 transition-all group"
+                className="flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-orange-500/30 transition-all group"
               >
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.2 }}
@@ -147,7 +147,7 @@ export default function FinalCTASection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.9, duration: 0.6 }}
-            className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-br from-zinc-900/60 to-zinc-950/60 backdrop-blur-xl rounded-xl border border-white/[0.08]"
+            className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10"
           >
             <div className="flex -space-x-2">
               {[...Array(3)].map((_, i) => (

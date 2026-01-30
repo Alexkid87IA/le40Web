@@ -4,32 +4,27 @@ import { Calendar, Clock, Users, MapPin, ArrowRight } from 'lucide-react';
 import { upcomingEvents } from '../../data/club/events';
 
 const EventCard = ({ event, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const availableSeats = event.maxParticipants - event.currentParticipants;
   const fillPercentage = (event.currentParticipants / event.maxParticipants) * 100;
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: -30 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="group relative"
+      transition={{ delay: index * 0.05, duration: 0.5 }}
+      className="group"
     >
-      <div className="absolute -inset-1 bg-gradient-to-r from-white/5 to-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity blur-lg" />
-
-      <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 group-hover:border-white/20 transition-all">
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 group-hover:border-red-500/30 transition-all">
         <div className="flex items-start justify-between mb-4">
           <div>
             <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${event.gradient} mb-3`}>
               {event.type.toUpperCase()}
             </span>
-            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-red-400 group-hover:to-rose-400 transition-all">
+            <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
               {event.title}
             </h3>
-            <p className="text-white/60 text-sm leading-relaxed">{event.description}</p>
+            <p className="text-white/60 text-sm font-inter leading-relaxed">{event.description}</p>
           </div>
         </div>
 
@@ -70,7 +65,7 @@ const EventCard = ({ event, index }) => {
 
         <div className="flex items-center justify-between">
           {event.isMembersOnly ? (
-            <span className="text-xs font-semibold text-emerald-400">Membres uniquement</span>
+            <span className="text-xs font-semibold text-rose-400">Membres uniquement</span>
           ) : (
             <span className="text-xs font-semibold text-red-400">Ouvert à tous</span>
           )}
@@ -105,15 +100,13 @@ export default function EventsCalendarSection() {
   ];
 
   return (
-    <section className="py-32 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }} />
+    <section className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-rose-600/20 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-[150px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,19 +117,16 @@ export default function EventsCalendarSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-semibold text-red-400 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-rose-500/10 border border-red-500/20 text-sm font-medium text-red-400 mb-6"
           >
             CALENDRIER DES ÉVÉNEMENTS
           </motion.span>
 
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Prochains
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-pink-400">
-              Événements
-            </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            PROCHAINS <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-400">ÉVÉNEMENTS</span>
           </h2>
 
-          <p className="text-xl text-white/60 max-w-3xl mx-auto mb-12">
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter mb-12">
             Réservez votre place dès maintenant pour nos prochains événements
           </p>
 

@@ -20,26 +20,35 @@ export default function SpeakersSection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-10 md:mb-16 lg:mb-20"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-black text-white mb-4 md:mb-6">
-            Nos{' '}
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-sm font-medium text-cyan-400 mb-6"
+          >
+            EXPERTS
+          </motion.span>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            NOS{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-amber-400">
-              Intervenants
+              INTERVENANTS
             </span>
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 max-w-3xl mx-auto font-inter px-4">
+          <p className="text-base md:text-lg text-white/60 max-w-3xl mx-auto font-inter">
             Des experts reconnus qui partagent leur savoir-faire et leur expérience
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 auto-rows-fr">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
           {eventSpeakers.map((speaker, index) => {
             const isHovered = hoveredSpeaker === speaker.id;
 
@@ -54,8 +63,7 @@ export default function SpeakersSection() {
                 onHoverEnd={() => setHoveredSpeaker(null)}
                 className="group relative flex"
               >
-                <div className="relative h-full bg-slate-950/50 backdrop-blur-xl border border-white/10 group-hover:border-white/20 rounded-2xl md:rounded-3xl overflow-hidden transition-all duration-500 flex flex-col w-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative h-full bg-white/5 backdrop-blur-xl border border-white/10 group-hover:border-cyan-500/30 rounded-2xl overflow-hidden transition-all duration-300 flex flex-col w-full">
                   <div className="relative h-52 md:h-64 overflow-hidden shrink-0">
                     <motion.img
                       src={speaker.photoUrl}
@@ -64,7 +72,7 @@ export default function SpeakersSection() {
                       animate={{ scale: isHovered ? 1.1 : 1 }}
                       transition={{ duration: 0.5 }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
                     <div className="absolute bottom-6 left-6 right-6">
                       <div className="flex items-center justify-between">
@@ -137,7 +145,7 @@ export default function SpeakersSection() {
           transition={{ delay: 0.5 }}
           className="mt-12 md:mt-16 text-center"
         >
-          <div className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-cyan-950/50 to-blue-950/50 backdrop-blur-xl border border-cyan-500/20 rounded-xl md:rounded-2xl px-4 md:px-6 py-3 md:py-4 mx-4">
+          <div className="inline-flex items-center gap-2 md:gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-4">
             <Award className="w-6 h-6 text-cyan-400" />
             <span className="text-white font-inter text-sm md:text-base">
               Vous souhaitez intervenir ?{' '}
@@ -149,15 +157,6 @@ export default function SpeakersSection() {
         </motion.div>
       </div>
 
-      <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay pointer-events-none">
-        <svg width="100%" height="100%">
-          <filter id="noiseSpeakers">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseSpeakers)" />
-        </svg>
-      </div>
     </section>
   );
 }

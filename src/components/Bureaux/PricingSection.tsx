@@ -43,8 +43,8 @@ export default function PricingSection() {
       annualPrice: 1169,
       badge: 'Recommandé',
       badgeIcon: Zap,
-      badgeColor: 'from-emerald-500 to-teal-500',
-      gradient: 'from-emerald-600 to-teal-600',
+      badgeColor: 'from-blue-500 to-indigo-500',
+      gradient: 'from-blue-600 to-indigo-600',
       image: 'https://static.eno.do/x/fs-209553-default/471645ef37b5d4fc6eaaa10e3eab6123/media.jpg',
       features: [
         'Bureau privé 40-60m²',
@@ -88,11 +88,11 @@ export default function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="py-32 bg-black relative overflow-hidden">
+    <section id="pricing" className="py-32 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-teal-600/20 rounded-full blur-[150px]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[150px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -107,14 +107,14 @@ export default function PricingSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 mb-6"
           >
-            <Star className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm text-emerald-300 font-medium">Tarifs transparents</span>
+            <Star className="w-4 h-4 text-blue-400" />
+            <span className="text-sm text-blue-300 font-medium">Tarifs transparents</span>
           </motion.div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            CHOISISSEZ VOTRE <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">ESPACE</span>
+            CHOISISSEZ VOTRE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">ESPACE</span>
           </h2>
           <p className="text-base md:text-lg font-inter text-white/60 max-w-2xl mx-auto mb-10">
             Trois formules adaptées à la taille de votre équipe. Tout inclus, sans surprise.
@@ -126,7 +126,7 @@ export default function PricingSection() {
               onClick={() => setBillingPeriod('monthly')}
               className={`px-6 py-2.5 rounded-full font-medium transition-all ${
                 billingPeriod === 'monthly'
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
                   : 'text-white/60 hover:text-white'
               }`}
             >
@@ -136,7 +136,7 @@ export default function PricingSection() {
               onClick={() => setBillingPeriod('annual')}
               className={`px-6 py-2.5 rounded-full font-medium transition-all flex items-center gap-2 ${
                 billingPeriod === 'annual'
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
                   : 'text-white/60 hover:text-white'
               }`}
             >
@@ -157,19 +157,19 @@ export default function PricingSection() {
               transition={{ delay: index * 0.15 }}
               className="group"
             >
-              <div className={`relative h-full bg-zinc-900/50 backdrop-blur-sm rounded-3xl overflow-hidden border transition-all duration-500 ${
+              <div className={`relative h-full bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border transition-all duration-500 flex flex-col ${
                 plan.id === 'growth' 
-                  ? 'border-emerald-500/50 shadow-lg shadow-emerald-500/20' 
+                  ? 'border-blue-500/50 shadow-lg shadow-blue-500/20' 
                   : 'border-white/10 hover:border-white/20'
               }`}>
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 lg:h-44 overflow-hidden">
                   <img
                     src={plan.image}
                     alt={plan.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                   
                   {/* Badge */}
                   <div className="absolute top-4 left-4">
@@ -191,38 +191,43 @@ export default function PricingSection() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
-                  <p className={`text-xs font-bold uppercase tracking-wider mb-2 text-transparent bg-clip-text bg-gradient-to-r ${plan.badgeColor}`}>
+                <div className="p-5 lg:p-6 flex flex-col flex-1">
+                  <p className={`text-xs font-bold uppercase tracking-wider mb-1.5 text-transparent bg-clip-text bg-gradient-to-r ${plan.badgeColor}`}>
                     {plan.subtitle}
                   </p>
-                  <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-4">
+                  <h3 className="text-xl md:text-2xl font-montserrat font-black text-white mb-3">
                     {plan.name}
                   </h3>
 
                   {/* Price */}
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-4xl md:text-5xl font-montserrat font-black text-white">
+                      <span className="text-3xl md:text-4xl font-montserrat font-black text-white">
                         {billingPeriod === 'monthly' ? plan.monthlyPrice : plan.annualPrice}€
                       </span>
-                      <span className="text-white/60 font-inter text-base">/mois</span>
+                      <span className="text-white/60 font-inter text-sm">/mois</span>
                     </div>
 
                     {billingPeriod === 'annual' && (
-                      <p className="text-emerald-400 text-sm font-semibold mt-2">
+                      <p className="text-blue-400 text-sm font-semibold mt-1">
                         Économisez {(plan.monthlyPrice - plan.annualPrice) * 12}€/an
                       </p>
                     )}
                   </div>
 
                   {/* Features */}
-                  <div className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5">
-                        <Check className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                        <span className="text-white/80 text-sm font-inter leading-snug">{feature}</span>
+                  <div className="space-y-2 mb-6 flex-1">
+                    {plan.features.slice(0, 8).map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                        <span className="text-white/80 text-xs lg:text-sm font-inter leading-snug">{feature}</span>
                       </div>
                     ))}
+                    {plan.features.length > 8 && (
+                      <div className="text-blue-400/70 text-xs font-inter font-medium pl-6">
+                        + {plan.features.length - 8} autres avantages
+                      </div>
+                    )}
                   </div>
 
                   {/* CTA */}
@@ -233,7 +238,7 @@ export default function PricingSection() {
                     }}
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`mt-auto w-full bg-gradient-to-r ${plan.gradient} rounded-2xl px-6 py-4 flex items-center justify-center gap-3 group/btn shadow-lg`}
+                    className={`mt-auto w-full bg-gradient-to-r ${plan.gradient} rounded-xl px-6 py-3.5 flex items-center justify-center gap-3 group/btn shadow-lg`}
                   >
                     <span className="font-montserrat font-semibold text-white">
                       Réserver une visite
@@ -251,7 +256,7 @@ export default function PricingSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 bg-gradient-to-r from-emerald-950/50 to-teal-950/50 border border-emerald-500/30 rounded-3xl p-8 text-center"
+          className="mt-16 bg-gradient-to-r from-blue-950/50 to-indigo-950/50 border border-blue-500/30 rounded-3xl p-8 text-center"
         >
           <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-4">
             Besoin d'un espace plus grand ou personnalisé ?

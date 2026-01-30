@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, Shield, Check, Zap, Star } from 'lucide-react';
+import { ArrowRight, Shield, Check, Star, Phone, Calendar } from 'lucide-react';
 
 export default function FinalCTASection() {
-  const remainingSlots = 37;
-  const totalSlots = 50;
-
   return (
-    <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section className="relative py-32 overflow-hidden">
       <div className="absolute inset-0">
         <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-600/20 rounded-full blur-[150px]"
@@ -34,7 +31,7 @@ export default function FinalCTASection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,136 +40,110 @@ export default function FinalCTASection() {
           className="text-center"
         >
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 md:gap-3 px-4 md:px-6 py-2 md:py-3 rounded-full bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 backdrop-blur-xl border border-teal-400/30 mb-6 md:mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-400 mb-8"
           >
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <Zap className="w-4 h-4 md:w-5 md:h-5 text-teal-400" />
-            </motion.div>
-            <span className="text-xs md:text-sm font-inter font-medium text-white tracking-wide uppercase">
-              Offre de lancement limitée
-            </span>
+            PASSEZ À L'ACTION
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-4 md:mb-6 leading-tight"
-          >
-            PRÊT À CRÉER DU
-            <span className="block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
-                CONTENU PRO
-              </span>
-              <span className="text-white"> ?</span>
-            </span>
-          </motion.h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6 leading-tight">
+            PRÊT À CRÉER DU{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
+              CONTENU PRO
+            </span> ?
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-white/70 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed font-inter px-4"
-          >
-            Réservez votre session studio maintenant et profitez de 40% de réduction sur nos tarifs
-          </motion.p>
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto mb-12 font-inter">
+            Réservez votre session studio et commencez à produire du contenu de qualité professionnelle
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mb-8 md:mb-12"
-          >
-            <div className="inline-flex flex-col items-center gap-3 md:gap-4 px-6 md:px-8 py-5 md:py-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl">
-              <div className="flex items-center gap-3">
-                <Clock className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
-                <span className="text-white font-inter text-sm md:text-base lg:text-lg">
-                  Plus que <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">{remainingSlots}</span> places sur {totalSlots}
-                </span>
-              </div>
-              <div className="w-full max-w-xs">
-                <div className="h-3 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${((totalSlots - remainingSlots) / totalSlots) * 100}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"
-                  />
+          {/* 3 cards CTA */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <a href="#booking-flow" className="group">
+              <motion.div
+                whileHover={{ y: -4 }}
+                className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-emerald-500/30 transition-all h-full"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Calendar className="w-7 h-7 text-white" />
                 </div>
+                <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3">
+                  Réserver en ligne
+                </h3>
+                <p className="text-white/60 font-inter text-sm mb-4">
+                  Choisissez votre studio, formule et créneau en quelques clics
+                </p>
+                <div className="inline-flex items-center gap-2 text-emerald-400 font-semibold text-sm">
+                  Configurer ma session
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </motion.div>
+            </a>
+
+            <a href="tel:+33491962151" className="group">
+              <motion.div
+                whileHover={{ y: -4 }}
+                className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-teal-500/30 transition-all h-full"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Phone className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3">
+                  Appeler maintenant
+                </h3>
+                <p className="text-white/60 font-inter text-sm mb-4">
+                  Posez vos questions directement à notre équipe
+                </p>
+                <div className="inline-flex items-center gap-2 text-teal-400 font-semibold text-sm">
+                  04 91 96 21 51
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </motion.div>
+            </a>
+
+            <a href="/reserver-visite" className="group">
+              <motion.div
+                whileHover={{ y: -4 }}
+                className="relative p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-cyan-500/30 transition-all h-full"
+              >
+                <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Star className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-3">
+                  Visiter les studios
+                </h3>
+                <p className="text-white/60 font-inter text-sm mb-4">
+                  Découvrez nos espaces et testez l'équipement sur place
+                </p>
+                <div className="inline-flex items-center gap-2 text-cyan-400 font-semibold text-sm">
+                  Réserver une visite
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </motion.div>
+            </a>
+          </div>
+
+          {/* Info bar */}
+          <div className="p-6 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-2xl">
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-emerald-400" />
+                <span className="text-white/80 font-inter text-sm">Paiement sécurisé</span>
+              </div>
+              <div className="hidden sm:block w-px h-4 bg-white/10" />
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span className="text-white/80 font-inter text-sm">Confirmation immédiate</span>
+              </div>
+              <div className="hidden sm:block w-px h-4 bg-white/10" />
+              <div className="flex items-center gap-2">
+                <Star className="w-4 h-4 text-emerald-400" />
+                <span className="text-white/80 font-inter text-sm">Annulation flexible</span>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-12 md:mb-16"
-          >
-            <motion.a
-              href="#configurator"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative"
-            >
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
-                animate={{ opacity: [0.5, 0.75, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <div className="relative flex items-center gap-2 md:gap-3 px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white rounded-lg md:rounded-xl font-montserrat font-bold text-sm md:text-base lg:text-lg shadow-2xl">
-                <span>Réserver maintenant</span>
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
-            </motion.a>
-
-            <motion.a
-              href="/contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-lg md:rounded-xl font-montserrat font-bold text-sm md:text-base lg:text-lg transition-all duration-300"
-            >
-              Poser une question
-            </motion.a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto"
-          >
-            {[
-              { icon: Shield, text: 'Paiement sécurisé' },
-              { icon: Check, text: 'Confirmation immédiate' },
-              { icon: Star, text: 'Annulation flexible' }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 1.2 + (index * 0.1), duration: 0.4 }}
-                className="flex items-center justify-center gap-2 md:gap-3 px-4 md:px-6 py-3 md:py-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg md:rounded-xl"
-              >
-                <item.icon className="w-4 h-4 md:w-5 md:h-5 text-teal-400" />
-                <span className="text-sm md:text-base text-white/80 font-inter">{item.text}</span>
-              </motion.div>
-            ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

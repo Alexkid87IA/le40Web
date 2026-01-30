@@ -9,7 +9,6 @@ import WorkshopsSection from '../components/Club/WorkshopsSection';
 import BenefitsSection from '../components/Club/BenefitsSection';
 import PricingSection from '../components/Club/PricingSection';
 import EventsCalendarSection from '../components/Club/EventsCalendarSection';
-import TestimonialsSection from '../components/Club/TestimonialsSection';
 import MembershipProcessSection from '../components/Club/MembershipProcessSection';
 import FAQSection from '../components/Club/FAQSection';
 import FinalCTASection from '../components/Club/FinalCTASection';
@@ -41,34 +40,49 @@ export default function Club() {
         icon={<Star className="w-5 h-5 md:w-6 md:h-6 text-white" />}
       />
 
-      <main className="pt-0">
-        <HeroSection />
-        <div id="workshops">
-          <WorkshopsSection />
+      <main>
+        {/* Vidéo de fond fixe */}
+        <div className="fixed inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            ref={(video) => {
+              if (video) {
+                video.playbackRate = 0.7;
+              }
+            }}
+          >
+            <source
+              src="https://le40-cdn.b-cdn.net/videos/club/club-background.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
         </div>
-        <div id="benefits">
-          <BenefitsSection />
+
+        {/* Contenu de la page */}
+        <div className="relative z-10">
+          <HeroSection />
+          <div id="workshops">
+            <WorkshopsSection />
+          </div>
+          <div id="benefits">
+            <BenefitsSection />
+          </div>
+          <div id="pricing">
+            <PricingSection />
+          </div>
+          <EventsCalendarSection />
+          <MembershipProcessSection />
+          <FAQSection />
+          <FinalCTASection />
         </div>
-        <div id="pricing">
-          <PricingSection />
-        </div>
-        <EventsCalendarSection />
-        {/* <TestimonialsSection /> */}
-        <MembershipProcessSection />
-        <FAQSection />
-        <FinalCTASection />
       </main>
 
       <Footer />
-
-      <div className="fixed inset-0 opacity-[0.015] pointer-events-none mix-blend-overlay z-[100]">
-        <svg width="100%" height="100%">
-          <filter id="noiseFilter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-        </svg>
-      </div>
     </div>
   );
 }

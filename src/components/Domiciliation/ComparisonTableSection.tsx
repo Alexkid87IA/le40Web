@@ -56,7 +56,7 @@ export default function ComparisonTableSection() {
         />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <SectionHeader
           title="Pourquoi nos clients"
           highlightedText="ne partent pas"
@@ -74,7 +74,7 @@ export default function ComparisonTableSection() {
           <div className="hidden lg:block">
             <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-orange-500/10 via-orange-500/5 to-transparent opacity-50 blur"></div>
 
-            <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
@@ -181,7 +181,7 @@ export default function ComparisonTableSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="bg-gradient-to-br from-zinc-900/80 to-zinc-950/80 backdrop-blur-xl rounded-xl border border-white/[0.08] overflow-hidden"
+                className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden"
               >
                 <div className="bg-gradient-to-r from-orange-500/10 to-transparent p-4 border-b border-white/10">
                   <h3 className="text-white font-montserrat font-bold text-sm">{row.feature}</h3>
@@ -249,7 +249,7 @@ export default function ComparisonTableSection() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mt-8 md:mt-12 text-center"
           >
-            <div className="inline-flex flex-col items-center gap-4 p-6 md:p-8 bg-gradient-to-br from-zinc-900/60 to-zinc-950/60 backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/[0.08]">
+            <div className="inline-flex flex-col items-center gap-4 p-6 md:p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
               <p className="text-base md:text-lg lg:text-xl text-white/70 max-w-2xl font-inter leading-relaxed px-4">
                 Le prix n'est <strong className="text-white font-bold">PAS</strong> le seul critère.
                 <br />

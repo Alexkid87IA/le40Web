@@ -91,8 +91,8 @@ export default function PricingSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className={`p-6 md:p-8 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-xl md:rounded-2xl relative ${
-                plan.popular ? 'border-2 border-orange-500' : 'border border-zinc-700'
+              className={`p-6 md:p-8 bg-white/5 backdrop-blur-xl rounded-2xl relative ${
+                plan.popular ? 'border-2 border-orange-500' : 'border border-white/10'
               }`}
             >
               {plan.popular && (

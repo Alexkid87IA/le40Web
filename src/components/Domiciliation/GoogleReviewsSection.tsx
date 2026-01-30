@@ -27,8 +27,8 @@ export default function GoogleReviewsSection() {
   ];
 
   return (
-    <section className="py-20 bg-zinc-900/50">
-      <div className="max-w-6xl mx-auto px-8">
+    <section className="py-20">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

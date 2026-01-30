@@ -13,6 +13,7 @@ export default {
     extend: {
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
+        'clash': ['"Clash Display"', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],
         'playfair': ['Playfair Display', 'serif'],
       },

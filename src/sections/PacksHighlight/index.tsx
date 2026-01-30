@@ -10,13 +10,13 @@ export default function PacksHighlightSection() {
   }
 
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden bg-black">
+    <section className="relative py-20 md:py-32 overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-pink-600/10 rounded-full blur-[150px]"></div>
         <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-rose-600/10 rounded-full blur-[150px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export default function PacksHighlightSection() {
               Packs tout inclus
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-montserrat font-black text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
             ÉCONOMISEZ
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-500 to-pink-400">
               AVEC NOS PACKS
@@ -63,9 +63,7 @@ export default function PacksHighlightSection() {
                 </div>
 
                 <div className="relative h-full opacity-75">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 via-rose-600 to-pink-600 rounded-3xl opacity-10 blur-xl" />
-
-                  <div className="relative bg-zinc-900/60 backdrop-blur-xl rounded-2xl md:rounded-3xl overflow-hidden border border-white/5 h-full flex flex-col">
+                  <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/10 h-full flex flex-col">
                     {image && (
                       <div className="relative h-48 overflow-hidden">
                         <img
@@ -73,7 +71,7 @@ export default function PacksHighlightSection() {
                           alt={pack.title}
                           className="w-full h-full object-cover opacity-60"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
                       </div>
                     )}
 

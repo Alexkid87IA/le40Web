@@ -31,10 +31,10 @@ const social = [
 export default function Footer() {
   return (
     <footer className="relative bg-black overflow-hidden">
-      {/* Background Effects */}
+      {/* Background Effects - neutral */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-600/5 to-orange-600/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-emerald-600/5 to-teal-600/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-white/[0.02] to-white/[0.01] rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-white/[0.02] to-white/[0.01] rounded-full blur-[120px]" />
       </div>
 
       {/* Top CTA Section */}
@@ -48,22 +48,22 @@ export default function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-400 text-sm font-medium mb-6">
+                <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-white/70 text-sm font-medium mb-6">
                   Visitez nos espaces
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-4 leading-tight">
                   Prêt à rejoindre
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
+                  <span className="block text-white/60">
                     Le 40 ?
                   </span>
                 </h2>
-                <p className="text-white/60 text-lg mb-8 max-w-md">
+                <p className="text-white/50 text-lg mb-8 max-w-md">
                   Découvrez l'espace de travail qui transformera votre quotidien professionnel.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     to="/reserver-visite"
-                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-montserrat font-bold shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all"
+                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black rounded-xl font-montserrat font-bold shadow-lg shadow-white/10 hover:shadow-white/20 transition-all"
                   >
                     Planifier une visite gratuite
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -90,21 +90,21 @@ export default function Footer() {
               >
                 {/* Hours */}
                 <div className="flex items-start gap-4 mb-6 pb-6 border-b border-white/10">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-emerald-400" />
+                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-white/70" />
                   </div>
                   <div>
                     <h3 className="text-white font-bold mb-2">Horaires d'ouverture</h3>
                     <p className="text-white/60 text-sm">Lun - Ven : 8h30 - 19h00</p>
                     <p className="text-white/60 text-sm">Sam : 9h00 - 13h00</p>
-                    <p className="text-emerald-400 text-sm font-medium mt-1">Accès 24/7 membres</p>
+                    <p className="text-white/80 text-sm font-medium mt-1">Accès 24/7 membres</p>
                   </div>
                 </div>
 
                 {/* Location */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-amber-400" />
+                  <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-white/70" />
                   </div>
                   <div>
                     <h3 className="text-white font-bold mb-2">Notre adresse</h3>
@@ -114,7 +114,7 @@ export default function Footer() {
                       href="https://maps.google.com/?q=40+Avenue+de+Saint+Antoine+13015+Marseille"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-amber-400 text-sm font-medium mt-2 hover:text-amber-300 transition-colors"
+                      className="inline-flex items-center gap-1 text-white/80 text-sm font-medium mt-2 hover:text-white transition-colors"
                     >
                       Voir sur Google Maps
                       <ArrowRight className="w-3 h-3" />
@@ -152,10 +152,10 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-xl bg-white/5 hover:bg-gradient-to-br hover:from-amber-500/20 hover:to-orange-500/20 border border-white/10 hover:border-amber-500/30 flex items-center justify-center transition-all group"
+                    className="w-11 h-11 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 flex items-center justify-center transition-all group"
                     aria-label={item.name}
                   >
-                    <item.icon className="w-5 h-5 text-white/60 group-hover:text-amber-400 transition-colors" />
+                    <item.icon className="w-5 h-5 text-white/60 group-hover:text-white transition-colors" />
                   </a>
                 ))}
               </div>
@@ -212,7 +212,7 @@ export default function Footer() {
                     href="tel:+33491962151"
                     className="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-2"
                   >
-                    <Phone className="w-4 h-4 text-amber-500" />
+                    <Phone className="w-4 h-4 text-white/40" />
                     04 91 96 21 51
                   </a>
                 </li>
@@ -221,7 +221,7 @@ export default function Footer() {
                     href="mailto:contact@le40.fr"
                     className="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-2"
                   >
-                    <Mail className="w-4 h-4 text-amber-500" />
+                    <Mail className="w-4 h-4 text-white/40" />
                     contact@le40.fr
                   </a>
                 </li>

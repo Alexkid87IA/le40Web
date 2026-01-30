@@ -30,7 +30,7 @@ export default function ProblemSection() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/5 via-transparent to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export default function ProblemSection() {
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-30 blur-lg transition-all duration-500"></div>
 
-              <div className="relative bg-slate-900/80 backdrop-blur-xl border border-red-900/30 rounded-xl md:rounded-2xl p-6 md:p-8 text-center h-full">
+              <div className="relative bg-white/5 backdrop-blur-xl border border-red-900/30 rounded-2xl p-6 md:p-8 text-center h-full">
                 <div className="w-12 md:w-16 h-12 md:h-16 rounded-lg md:rounded-xl bg-gradient-to-br from-red-500/20 to-orange-500/20 border border-red-400/30 flex items-center justify-center mx-auto mb-4 md:mb-6">
                   <pain.icon className="w-6 md:w-8 h-6 md:h-8 text-red-400" />
                 </div>
@@ -103,7 +103,7 @@ export default function ProblemSection() {
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-red-600 rounded-3xl opacity-20 group-hover:opacity-30 blur-lg transition-all duration-500"></div>
 
-              <div className="relative bg-slate-900/90 backdrop-blur-xl border border-red-900/40 rounded-2xl md:rounded-3xl p-6 md:p-10 h-full">
+              <div className="relative bg-white/5 backdrop-blur-xl border border-red-900/40 rounded-2xl md:rounded-3xl p-6 md:p-8 h-full">
                 <div className="flex items-center gap-3 mb-6 md:mb-8">
                   <div className="w-12 h-12 rounded-xl bg-red-500/20 border border-red-400/30 flex items-center justify-center">
                     <X className="w-6 h-6 text-red-400" />
@@ -160,7 +160,7 @@ export default function ProblemSection() {
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 rounded-3xl opacity-50 group-hover:opacity-70 blur-xl transition-all duration-500"></div>
 
-              <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl border border-orange-500/40 rounded-2xl md:rounded-3xl p-6 md:p-10 h-full">
+              <div className="relative bg-white/5 backdrop-blur-xl border border-orange-500/40 rounded-2xl md:rounded-3xl p-6 md:p-8 h-full">
                 <div className="flex items-center gap-3 mb-6 md:mb-8">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center">
                     <Star className="w-6 h-6 text-white" />
@@ -234,7 +234,7 @@ export default function ProblemSection() {
         >
           <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20 rounded-2xl md:rounded-3xl blur-2xl"></div>
 
-          <div className="relative bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-2xl border border-orange-500/30 rounded-2xl md:rounded-3xl p-6 md:p-10 lg:p-12 text-center">
+          <div className="relative bg-white/5 backdrop-blur-xl border border-orange-500/30 rounded-2xl md:rounded-3xl p-6 md:p-8 text-center">
             <div className="flex items-center justify-center gap-3 md:gap-4 mb-4 md:mb-6">
               <Clock className="w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 text-orange-400" />
               <TrendingUp className="w-8 md:w-10 lg:w-12 h-8 md:h-10 lg:h-12 text-orange-400" />

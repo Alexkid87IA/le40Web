@@ -80,7 +80,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl bg-gradient-to-br from-slate-900 to-slate-800 border border-emerald-500/30 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-2xl bg-gradient-to-br from-slate-900 to-slate-800 border border-blue-500/30 rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
           >
             <button
               onClick={onClose}
@@ -95,7 +95,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring" }}
-                  className="w-20 h-20 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
+                  className="w-20 h-20 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6"
                 >
                   <Calendar className="w-10 h-10 text-white" />
                 </motion.div>
@@ -106,8 +106,8 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                   Choisissez votre créneau et découvrez nos espaces
                 </p>
                 {officeTitle && (
-                  <div className="mt-4 inline-block px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-xl">
-                    <p className="text-emerald-400 font-semibold">{officeTitle}</p>
+                  <div className="mt-4 inline-block px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-xl">
+                    <p className="text-blue-400 font-semibold">{officeTitle}</p>
                     {officePrice && <p className="text-white/70 text-sm">{officePrice}</p>}
                   </div>
                 )}
@@ -119,8 +119,8 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
                 >
-                  <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-10 h-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-10 h-10 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -140,7 +140,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-emerald-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-blue-500 focus:outline-none transition-colors"
                         placeholder="Jean Dupont"
                       />
                     </div>
@@ -155,7 +155,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-emerald-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-blue-500 focus:outline-none transition-colors"
                         placeholder="jean@exemple.fr"
                       />
                     </div>
@@ -171,7 +171,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-emerald-500 focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-blue-500 focus:outline-none transition-colors"
                       placeholder="06 12 34 56 78"
                     />
                   </div>
@@ -188,7 +188,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                         min={today}
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:border-emerald-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:border-blue-500 focus:outline-none transition-colors"
                       />
                     </div>
 
@@ -201,7 +201,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                         required
                         value={formData.time}
                         onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:border-emerald-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:border-blue-500 focus:outline-none transition-colors"
                       >
                         <option value="" className="bg-slate-800">Choisir un créneau</option>
                         {timeSlots.map((slot) => (
@@ -220,7 +220,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={4}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-emerald-500 focus:outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-blue-500 focus:outline-none transition-colors resize-none"
                       placeholder="Des questions ou besoins spécifiques ?"
                     />
                   </div>
@@ -240,7 +240,7 @@ export default function VisitBookingModal({ isOpen, onClose, officeTitle, office
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-montserrat font-bold rounded-xl shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-montserrat font-bold rounded-xl shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Envoi en cours...' : 'Confirmer ma visite'}
                   </motion.button>

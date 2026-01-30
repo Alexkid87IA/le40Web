@@ -24,7 +24,7 @@ export default function FAQSection() {
   const displayedFAQ = showAll || activeCategory !== 'Essentiel' ? filteredFAQ : filteredFAQ.slice(0, 6);
 
   return (
-    <section className="py-32 bg-gradient-to-b from-black to-zinc-900">
+    <section className="py-32">
       <div className="max-w-4xl mx-auto px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -33,7 +33,7 @@ export default function FAQSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
-            VOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">QUESTIONS</span>
+            VOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400">QUESTIONS</span>
           </h2>
           <p className="text-base md:text-lg font-inter text-white/60">
             Toutes les réponses pour prendre votre décision en toute sérénité
@@ -53,7 +53,7 @@ export default function FAQSection() {
               placeholder="Rechercher une question..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-emerald-500/50 transition-all"
+              className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-blue-500/50 transition-all"
             />
           </div>
         </motion.div>
@@ -70,7 +70,7 @@ export default function FAQSection() {
               onClick={() => setActiveCategory(category)}
               className={`px-4 py-2 rounded-lg font-inter text-sm font-medium transition-all ${
                 activeCategory === category
-                  ? 'bg-emerald-600 text-white'
+                  ? 'bg-blue-600 text-white'
                   : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
               }`}
             >
@@ -87,15 +87,15 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all"
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/30 transition-all"
             >
               <button
                 onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
                 className="w-full p-6 flex items-center justify-between text-left group"
               >
                 <div className="flex-1">
-                  <div className="text-emerald-400 text-xs font-semibold mb-1">{faq.category}</div>
-                  <div className="text-white font-inter text-lg font-semibold group-hover:text-emerald-400 transition-colors">
+                  <div className="text-blue-400 text-xs font-semibold mb-1">{faq.category}</div>
+                  <div className="text-white font-inter text-lg font-semibold group-hover:text-blue-400 transition-colors">
                     {faq.question}
                   </div>
                 </div>
@@ -104,7 +104,7 @@ export default function FAQSection() {
                   transition={{ duration: 0.3 }}
                   className="ml-4"
                 >
-                  <ChevronDown className="w-6 h-6 text-emerald-400" />
+                  <ChevronDown className="w-6 h-6 text-blue-400" />
                 </motion.div>
               </button>
 
@@ -158,7 +158,7 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 p-8 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-2xl text-center"
+          className="mt-16 p-8 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 rounded-2xl text-center"
         >
           <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-4">
             Vous ne trouvez pas la réponse ?
@@ -168,7 +168,7 @@ export default function FAQSection() {
           </p>
           <a
             href="/contact"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-montserrat font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-600/30 transition-all"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-montserrat font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-600/30 transition-all"
           >
             Nous contacter
           </a>

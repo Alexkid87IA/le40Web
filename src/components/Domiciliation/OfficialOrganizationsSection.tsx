@@ -11,8 +11,8 @@ export default function OfficialOrganizationsSection() {
   ];
 
   return (
-    <section className="py-20 bg-black">
-      <div className="max-w-6xl mx-auto px-8">
+    <section className="py-20">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

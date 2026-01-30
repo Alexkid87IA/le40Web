@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
 const faqData = [
   {
@@ -33,23 +33,36 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative py-20 md:py-32">
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+    <section className="relative py-32 overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-600/20 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-teal-600/20 rounded-full blur-[150px]" />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
-            <HelpCircle className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm text-white/70 font-inter">Questions fréquentes</span>
-          </div>
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-black text-white">
-            Des questions ?
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-400 mb-6"
+          >
+            QUESTIONS FRÉQUENTES
+          </motion.span>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-black text-white mb-6">
+            VOS <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">QUESTIONS</span>
           </h2>
+
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto font-inter">
+            Trouvez les réponses aux questions les plus fréquentes sur nos studios
+          </p>
         </motion.div>
 
         {/* FAQ Items */}
@@ -62,7 +75,7 @@ export default function FAQSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
             >
-              <div className="bg-zinc-900/80 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden hover:border-white/20 transition-colors">
+              <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden hover:border-emerald-500/30 transition-colors">
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left"
@@ -70,15 +83,11 @@ export default function FAQSection() {
                   <span className="text-base font-inter font-medium text-white">
                     {faq.question}
                   </span>
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                    openIndex === index
-                      ? 'bg-emerald-500 text-white'
-                      : 'bg-white/10 text-white/60'
-                  }`}>
+                  <div className="flex-shrink-0">
                     {openIndex === index ? (
-                      <Minus className="w-4 h-4" />
+                      <Minus className="w-5 h-5 text-emerald-400" />
                     ) : (
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-5 h-5 text-white/40" />
                     )}
                   </div>
                 </button>
@@ -107,21 +116,25 @@ export default function FAQSection() {
 
         {/* Contact CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-10 text-center"
+          className="mt-16 text-center p-8 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/10 rounded-2xl"
         >
-          <p className="text-white/60 mb-4">
-            Vous ne trouvez pas votre réponse ?
+          <h3 className="text-2xl font-montserrat font-bold text-white mb-3">
+            Vous avez d'autres questions ?
+          </h3>
+          <p className="text-white/60 font-inter mb-6">
+            Notre équipe est là pour répondre à toutes vos interrogations
           </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 rounded-xl text-white font-inter font-medium transition-all"
+          <motion.a
+            href="tel:+33491962151"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white font-montserrat font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all"
           >
-            <span>Contactez-nous</span>
-          </a>
+            Contactez-nous
+          </motion.a>
         </motion.div>
       </div>
     </section>

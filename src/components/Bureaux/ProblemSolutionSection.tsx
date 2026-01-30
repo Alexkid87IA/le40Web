@@ -3,7 +3,7 @@ import { X, Check, Star, Home, Users, TrendingDown, TrendingUp } from 'lucide-re
 
 export default function ProblemSolutionSection() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-black to-zinc-900">
+    <section className="py-16 md:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -19,7 +19,7 @@ export default function ProblemSolutionSection() {
           <p className="text-base md:text-lg text-white/70 max-w-3xl mx-auto px-4">
             Le télétravail a ses limites. La location classique est trop rigide et coûteuse.
             <br />
-            <span className="text-emerald-400 font-bold">Il existe une 3ème voie.</span>
+            <span className="text-blue-400 font-bold">Il existe une 3ème voie.</span>
           </p>
         </motion.div>
 
@@ -90,14 +90,14 @@ export default function ProblemSolutionSection() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="p-6 md:p-8 bg-gradient-to-br from-emerald-950/30 to-teal-950/30 border border-emerald-900/30 rounded-xl md:rounded-2xl"
+            className="p-6 md:p-8 bg-gradient-to-br from-blue-950/30 to-indigo-950/30 border border-blue-900/30 rounded-xl md:rounded-2xl"
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 md:w-12 h-10 md:h-12 rounded-lg md:rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                <Star className="w-5 md:w-6 h-5 md:h-6 text-emerald-400" />
+              <div className="w-10 md:w-12 h-10 md:h-12 rounded-lg md:rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                <Star className="w-5 md:w-6 h-5 md:h-6 text-blue-400" />
               </div>
               <div>
-                <div className="text-emerald-400 font-montserrat font-bold text-sm md:text-base lg:text-lg">
+                <div className="text-blue-400 font-montserrat font-bold text-sm md:text-base lg:text-lg">
                   LA SOLUTION LE 40
                 </div>
                 <div className="text-white/70 text-xs md:text-sm font-inter">
@@ -107,7 +107,7 @@ export default function ProblemSolutionSection() {
             </div>
 
             <div className="space-y-3 md:space-y-4">
-              <div className="flex items-start gap-3 p-3 md:p-4 bg-white/5 rounded-lg md:rounded-xl border border-emerald-500/20">
+              <div className="flex items-start gap-3 p-3 md:p-4 bg-white/5 rounded-lg md:rounded-xl border border-blue-500/20">
                 <Check className="w-4 md:w-5 h-4 md:h-5 text-green-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-white font-semibold mb-1 text-sm md:text-base">Bureau privé dédié à votre équipe</div>
@@ -117,7 +117,7 @@ export default function ProblemSolutionSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 md:p-4 bg-white/5 rounded-lg md:rounded-xl border border-emerald-500/20">
+              <div className="flex items-start gap-3 p-3 md:p-4 bg-white/5 rounded-lg md:rounded-xl border border-blue-500/20">
                 <Check className="w-4 md:w-5 h-4 md:h-5 text-green-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-white font-semibold mb-1 text-sm md:text-base">Zéro gestion, tout inclus</div>
@@ -127,7 +127,7 @@ export default function ProblemSolutionSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 md:p-4 bg-white/5 rounded-lg md:rounded-xl border border-emerald-500/20">
+              <div className="flex items-start gap-3 p-3 md:p-4 bg-white/5 rounded-lg md:rounded-xl border border-blue-500/20">
                 <Check className="w-4 md:w-5 h-4 md:h-5 text-green-400 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-white font-semibold mb-1 text-sm md:text-base">Flexibilité & communauté</div>
@@ -138,9 +138,9 @@ export default function ProblemSolutionSection() {
               </div>
             </div>
 
-            <div className="mt-4 md:mt-6 p-3 md:p-4 bg-gradient-to-r from-emerald-950/50 to-teal-950/50 rounded-lg md:rounded-xl border border-emerald-500/30">
+            <div className="mt-4 md:mt-6 p-3 md:p-4 bg-gradient-to-r from-blue-950/50 to-indigo-950/50 rounded-lg md:rounded-xl border border-blue-500/30">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl lg:text-4xl font-black text-emerald-400 mb-1 md:mb-2">
+                <div className="text-2xl md:text-3xl lg:text-4xl font-black text-blue-400 mb-1 md:mb-2">
                   499€/mois
                   <span className="text-sm md:text-base lg:text-lg text-white/60 ml-2">tout inclus</span>
                 </div>
@@ -156,9 +156,9 @@ export default function ProblemSolutionSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 rounded-xl md:rounded-2xl p-6 md:p-8 lg:p-12 text-center"
+          className="bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 rounded-xl md:rounded-2xl p-6 md:p-8 lg:p-12 text-center"
         >
-          <TrendingUp className="w-10 md:w-12 h-10 md:h-12 text-emerald-400 mx-auto mb-4 md:mb-6" />
+          <TrendingUp className="w-10 md:w-12 h-10 md:h-12 text-blue-400 mx-auto mb-4 md:mb-6" />
           <h3 className="text-xl md:text-2xl lg:text-3xl font-montserrat font-black text-white mb-3 md:mb-4 px-4">
             127 équipes ont fait le choix Le 40
           </h3>
@@ -167,15 +167,15 @@ export default function ProblemSolutionSection() {
           </p>
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-6 md:mt-8">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-black text-emerald-400">-70%</div>
+              <div className="text-3xl md:text-4xl font-black text-blue-400">-70%</div>
               <div className="text-white/60 text-xs md:text-sm">vs location classique</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-black text-emerald-400">48h</div>
+              <div className="text-3xl md:text-4xl font-black text-blue-400">48h</div>
               <div className="text-white/60 text-xs md:text-sm">pour emménager</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-black text-emerald-400">0€</div>
+              <div className="text-3xl md:text-4xl font-black text-blue-400">0€</div>
               <div className="text-white/60 text-xs md:text-sm">frais d'aménagement</div>
             </div>
           </div>
