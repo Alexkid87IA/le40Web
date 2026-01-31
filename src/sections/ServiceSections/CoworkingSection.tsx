@@ -132,7 +132,7 @@ export default function CoworkingSection() {
             >
               <motion.a
                 ref={btnMagnetic.ref as any}
-                href="/coworking"
+                href="/bureaux-prives"
                 style={{ x: btnMagnetic.x, y: btnMagnetic.y }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

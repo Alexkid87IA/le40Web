@@ -106,7 +106,7 @@ export default function NotFound() {
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {[
-                  { name: 'Coworking', href: '/coworking' },
+                  { name: 'Coworking', href: '/bureaux-prives' },
                   { name: 'Domiciliation', href: '/domiciliation' },
                   { name: 'Salles', href: '/salles' },
                   { name: 'Studios', href: '/studios' },

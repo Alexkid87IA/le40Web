@@ -28,7 +28,7 @@ export default function WhatsAppWidget() {
       };
     }
 
-    if (path.includes('/coworking')) {
+    if (path.includes('/coworking') || path.includes('/bureaux-prives')) {
       return {
         bg: 'bg-gradient-to-r from-cyan-600 via-blue-600 to-teal-600',
         bgHover: 'hover:from-cyan-700 hover:via-blue-700 hover:to-teal-700',

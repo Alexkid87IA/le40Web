@@ -465,8 +465,8 @@ export default function StudioShowcaseSection() {
   };
 
   return (
-    <section className="py-8 lg:py-12">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-8 lg:py-12 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 overflow-hidden">
         {/* Header minimaliste */}
         <div className="text-center mb-6">
           <h2 className="text-2xl lg:text-3xl font-black text-white mb-2">
@@ -555,19 +555,19 @@ export default function StudioShowcaseSection() {
               </div>
 
               {/* Mini stats sous les thumbnails */}
-              <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 mt-4 pt-4 border-t border-white/10">
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                    <Star className="w-4 h-4 text-amber-400 fill-amber-400 flex-shrink-0" />
                     <span className="text-white font-bold text-sm">{studio.rating}</span>
                     <span className="text-white/50 text-xs">({studio.reviewCount})</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-white/60 text-xs">
-                    <TrendingUp className="w-3.5 h-3.5" />
-                    {studio.reservations} réservations
+                    <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" />
+                    <span className="truncate">{studio.reservations} réservations</span>
                   </div>
                 </div>
-                <div className="text-right">
+                <div className="text-right flex-shrink-0">
                   <span className="text-white/50 text-xs">à partir de</span>
                   <span className="text-white font-black text-lg ml-1">{studio.basePrice}€</span>
                   <span className="text-white/50 text-xs">/h</span>
@@ -625,7 +625,7 @@ export default function StudioShowcaseSection() {
               </div>
 
               {/* Contenu des tabs - Scrollable */}
-              <div className="flex-1 overflow-y-auto custom-scrollbar max-h-[320px]">
+              <div className="flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar max-h-[50vh] lg:max-h-[320px]">
                 {/* TAB OVERVIEW */}
                 {activeTab === 'overview' && (
                   <motion.div
@@ -633,7 +633,7 @@ export default function StudioShowcaseSection() {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-4"
                   >
-                    <p className="text-white/80 text-sm leading-relaxed">
+                    <p className="text-white/80 text-sm leading-relaxed break-words">
                       {studio.description}
                     </p>
 

@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, Linkedin, Instagram, ArrowRight, Clock } from 'luc
 
 const navigation = {
   services: [
-    { name: 'Coworking', href: '/coworking' },
+    { name: 'Coworking', href: '/bureaux-prives' },
     { name: 'Bureaux Privés', href: '/bureaux' },
     { name: 'Salles de Réunion', href: '/salles' },
     { name: 'Studios', href: '/studios' },

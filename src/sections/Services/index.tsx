@@ -11,7 +11,7 @@ const servicesData = [
     icon: Users,
     description: "Rejoignez une communauté de 120+ entrepreneurs dans un espace professionnel de 300m²",
     features: ["Fibre 1Gb/s incluse", "Networking régulier", "Conciergerie disponible"],
-    link: "/coworking",
+    link: "/bureaux-prives",
     metric: "4000",
     metricLabel: "m² d'innovation",
     tagline: "Travaillez entouré d'entrepreneurs comme vous",

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import UnifiedCartDrawer from '../components/Cart/UnifiedCartDrawer';
 import PageLoader from '../components/UI/PageLoader';
 
@@ -14,7 +14,7 @@ const Tarifs = lazy(() => import('../pages/Tarifs'));
 
 // Services
 const BureauxComparison = lazy(() => import('../pages/Bureaux'));
-const Coworking = lazy(() => import('../pages/Coworking'));
+
 const BureauxPrives = lazy(() => import('../pages/BureauxPrives'));
 const Domiciliation = lazy(() => import('../pages/Domiciliation'));
 const Salles = lazy(() => import('../pages/Salles'));
@@ -70,7 +70,7 @@ export default function AppRoutes() {
 
           {/* Services - Bureaux */}
           <Route path="/bureaux" element={<BureauxPrives />} />
-          <Route path="/coworking" element={<Coworking />} />
+          <Route path="/coworking" element={<Navigate to="/bureaux-prives" replace />} />
           <Route path="/bureaux-prives" element={<BureauxPrives />} />
           <Route path="/bureaux-comparaison" element={<BureauxComparison />} />
 

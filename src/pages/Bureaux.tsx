@@ -31,7 +31,7 @@ const workspaceOptions = [
       { icon: Coffee, text: 'Espace café' }
     ],
     gradient: 'from-cyan-600 via-blue-600 to-teal-600',
-    link: '/coworking',
+    link: '/bureaux-prives',
     badge: 'Populaire',
     badgeColor: 'from-cyan-600 to-blue-600'
   },
