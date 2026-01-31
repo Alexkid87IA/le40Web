@@ -508,10 +508,10 @@ export default function StudioShowcaseSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid lg:grid-cols-2 gap-6 bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 rounded-3xl overflow-hidden"
+            className="grid lg:grid-cols-2 gap-6 bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 rounded-3xl overflow-hidden w-full max-w-full"
           >
             {/* GAUCHE - Galerie */}
-            <div className="relative p-4 lg:p-6">
+            <div className="relative p-4 lg:p-6 min-w-0 overflow-hidden">
               {/* Image principale */}
               <div
                 className="relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer group"
@@ -576,7 +576,7 @@ export default function StudioShowcaseSection() {
             </div>
 
             {/* DROITE - Infos avec tabs */}
-            <div className="p-4 lg:p-6 flex flex-col">
+            <div className="p-4 lg:p-6 flex flex-col min-w-0 overflow-hidden">
               {/* Header */}
               <div className="mb-4">
                 <div className="flex items-center gap-3 mb-2">
