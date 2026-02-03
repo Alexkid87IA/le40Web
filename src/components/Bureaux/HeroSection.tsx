@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX, Play, Building2 } from 'lucide-react';
+import { ArrowRight, Star, MapPin, Clock, Volume2, VolumeX, Play, Building2, Users, Wifi, Lock } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import VisitBookingModal from './VisitBookingModal';
 
+const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } };
+const fade = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } };
+const videoReveal = { hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 } } };
+
 export default function BureauHeroSection() {
-  // VIDÉOS BUREAUX
   const videoUrl = "https://le40-cdn.b-cdn.net/videos/promo/bureau-promo-916.mp4";
   const backgroundVideoUrl = "https://le40-cdn.b-cdn.net/videos/bureaux/bureaux-background.mp4";
 
@@ -14,7 +17,6 @@ export default function BureauHeroSection() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Détecter mobile/desktop
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
@@ -23,19 +25,14 @@ export default function BureauHeroSection() {
   }, []);
 
   const toggleMute = () => {
-    const newMutedState = !isMuted;
-    setIsMuted(newMutedState);
-    if (videoRef.current) {
-      videoRef.current.muted = newMutedState;
-    }
+    setIsMuted(!isMuted);
+    if (videoRef.current) videoRef.current.muted = !isMuted;
   };
 
   const togglePlayPause = () => {
-    const newPlayingState = !isPlaying;
-    setIsPlaying(newPlayingState);
+    setIsPlaying(!isPlaying);
     if (videoRef.current) {
-      if (newPlayingState) {
-        // Quand on clique sur play, on active aussi le son
+      if (!isPlaying) {
         videoRef.current.muted = false;
         setIsMuted(false);
         videoRef.current.play();
@@ -46,488 +43,296 @@ export default function BureauHeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black py-20 lg:py-12 xl:py-16">
-      {/* VIDEO DE FOND */}
+    <section className="relative h-screen bg-black overflow-hidden">
+      {/* Background video + overlays */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-50">
           <source src={backgroundVideoUrl} type="video/mp4" />
         </video>
-        {/* Overlay sombre */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20" />
       </div>
 
-      <div className="relative z-10 w-full">
-        {/* Mobile Layout: Video with overlaid content */}
-        <div className="lg:hidden relative min-h-screen">
-          {/* Video Section - 9:16 format with sophisticated card design */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative w-full px-4 pt-20"
-          >
-            {/* Video Card with sophisticated design */}
-            <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
-              {/* Inner video container */}
-              <div
-                className="relative w-full h-full rounded-3xl overflow-hidden border border-white/20 bg-black cursor-pointer"
-                onClick={togglePlayPause}
-              >
-                {isMobile && (
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    loop
-                    muted={true}
-                    playsInline
-                    preload="metadata"
-                    className="w-full h-full object-contain"
-                  >
-                    <source src={videoUrl} type="video/mp4" />
-                  </video>
-                )}
+      {/* Grid texture */}
+      <div className="absolute inset-0 opacity-[0.015] z-[1]" style={{
+        backgroundImage: 'linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)',
+        backgroundSize: '60px 60px'
+      }} />
 
-                {/* Gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
-
-                {/* Play/Pause Button (Center) - Shows when paused */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: isPlaying ? 0 : 0.8,
-                    scale: isPlaying ? 0.8 : 1
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                >
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-blue-500/30 rounded-full blur-3xl" />
-                    <div className="relative w-20 h-20 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
-                      <Play className="w-8 h-8 text-white fill-white ml-1" />
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Sound Control Button - Top Right */}
-                <motion.button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleMute();
-                  }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 0.6, scale: 1 }}
-                  whileHover={{ opacity: 1, scale: 1.05 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="absolute top-4 right-4 z-20 group"
-                >
-                  <div className="relative flex items-center justify-center w-8 h-8 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-blue-400/50 transition-all duration-300">
-                    {isMuted ? (
-                      <VolumeX className="w-4 h-4 text-white/70 group-hover:text-blue-400" />
-                    ) : (
-                      <Volume2 className="w-4 h-4 text-blue-400" />
-                    )}
-                  </div>
-                </motion.button>
-
-              </div>
-
-              {/* Content overlaid on bottom third of video */}
-              <div className="absolute bottom-0 left-0 right-0 px-5 pb-6 pt-16 bg-gradient-to-t from-black via-black/95 to-transparent rounded-b-3xl">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mb-3"
-              >
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
-                  <Building2 className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">À partir de 499€/mois</span>
-                </div>
-              </motion.div>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-3xl font-montserrat font-black text-white mb-2 leading-[1.1]"
-              >
-                BUREAUX{' '}
-                <span className="relative inline-block">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400">
-                    PRIVATIFS
-                  </span>
-                  <motion.div
-                    className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 blur-2xl -z-10"
-                    animate={{
-                      opacity: [0.5, 0.8, 0.5],
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-                </span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-sm text-white/70 font-inter mb-4 leading-relaxed"
-              >
-                De 15m² à 100m². Tout équipé.
-                <br />
-                <span className="text-white font-semibold">127+ entreprises hébergées</span>
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="grid grid-cols-3 gap-2 mb-4"
-              >
-                {[
-                  { value: '100m²', label: 'max', color: 'from-blue-500 to-indigo-500' },
-                  { value: '127+', label: 'entreprises', color: 'from-indigo-500 to-blue-500' },
-                  { value: '9h-20h', label: 'Lun-Ven', color: 'from-blue-600 to-indigo-600' },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6 + index * 0.05, duration: 0.4 }}
-                    className="relative"
-                  >
-                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-2.5 text-center">
-                      <div className={`text-sm font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5`}>
-                        {stat.value}
-                      </div>
-                      <div className="text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
-                        {stat.label}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="flex items-center justify-center gap-2"
-              >
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-md border border-blue-400/30">
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-2.5 h-2.5 text-amber-400 fill-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
-                </div>
-                <span className="text-white/60 font-inter text-xs">127+ entreprises</span>
-              </motion.div>
-            </div>
-            </div>
-          </motion.div>
-
-          {/* CTA Section below video */}
-          <div className="px-5 py-6 bg-gradient-to-b from-black to-zinc-950">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="flex flex-col gap-3"
+      {/* ══════════════════════════════════════════
+          MOBILE
+          ══════════════════════════════════════════ */}
+      <div className="lg:hidden relative h-full">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full h-full px-4 pt-20 pb-6 flex flex-col"
+        >
+          {/* Video card */}
+          <div className="relative flex-1 min-h-0 rounded-2xl overflow-hidden">
+            <div
+              className="relative w-full h-full rounded-2xl overflow-hidden border border-white/15 bg-black cursor-pointer"
+              onClick={togglePlayPause}
             >
-              <motion.a
-                href="#pricing"
-                whileTap={{ scale: 0.98 }}
-                className="group relative"
-              >
-                <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-xl opacity-75 blur-lg group-active:opacity-100 transition-opacity duration-300"
-                  animate={{ opacity: [0.5, 0.75, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <div className="relative flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 text-white rounded-xl font-montserrat font-bold text-base shadow-2xl">
-                  <Building2 className="w-5 h-5" />
-                  <span>Découvrir les bureaux</span>
-                  <ArrowRight className="w-5 h-5" />
-                </div>
-              </motion.a>
+              {isMobile && (
+                <video ref={videoRef} autoPlay loop muted={true} playsInline preload="metadata" className="w-full h-full object-cover">
+                  <source src={videoUrl} type="video/mp4" />
+                </video>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/90 pointer-events-none" />
 
-              <motion.button
-                onClick={() => setIsBookingModalOpen(true)}
-                whileTap={{ scale: 0.98 }}
-                className="px-6 py-4 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-xl font-montserrat font-bold text-base transition-all duration-300 text-center"
-              >
-                Réserver une visite
-              </motion.button>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Desktop Layout: Side by side */}
-        <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr,280px] xl:grid-cols-[1fr,320px] gap-6 xl:gap-8 items-center">
-
-            <div>
+              {/* Play button */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="mb-4"
+                animate={{ opacity: isPlaying ? 0 : 0.9, scale: isPlaying ? 0.8 : 1 }}
+                transition={{ duration: 0.25 }}
+                className="absolute inset-0 flex items-center justify-center pointer-events-none"
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20">
-                  <Building2 className="w-4 h-4 text-blue-400" />
-                  <span className="text-xs font-inter font-medium text-white tracking-wide uppercase">À partir de 499€/mois · Tout Inclus</span>
+                <div className="w-16 h-16 rounded-full bg-black/50 backdrop-blur-xl border border-white/20 flex items-center justify-center">
+                  <Play className="w-6 h-6 text-white fill-white ml-0.5" />
                 </div>
               </motion.div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-montserrat font-black text-white mb-3 lg:mb-4 leading-[1.1]"
+              {/* Mute button */}
+              <button
+                onClick={(e) => { e.stopPropagation(); toggleMute(); }}
+                className="absolute top-3 right-3 z-20 w-8 h-8 bg-black/40 backdrop-blur-md border border-white/15 rounded-full flex items-center justify-center"
               >
-                BUREAUX{' '}
-                <span className="relative inline-block">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400">
-                    PRIVATIFS
-                  </span>
-                  <motion.div
-                    className="absolute -inset-2 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20 blur-2xl -z-10"
-                    animate={{
-                      opacity: [0.5, 0.8, 0.5],
-                      scale: [1, 1.05, 1]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-                </span>
+                {isMuted ? <VolumeX className="w-4 h-4 text-white/60" /> : <Volume2 className="w-4 h-4 text-blue-400" />}
+              </button>
+
+              {/* Overlaid content */}
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 mb-3">
+                  <Building2 className="w-4 h-4 text-blue-400" />
+                  <span className="text-[11px] font-inter font-medium text-white/90 tracking-wide uppercase">Bureaux Privés</span>
+                </div>
+                <h1 className="text-2xl font-montserrat font-black text-white mb-2 leading-[1.1]">
+                  VOTRE ESPACE{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400">100% DÉDIÉ</span>
+                </h1>
+                <p className="text-sm text-white/70 font-inter mb-3">
+                  De 15m² à 100m². Tout équipé. <span className="text-white font-medium">127+ entreprises hébergées.</span>
+                </p>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30">
+                    <div className="flex gap-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 text-amber-400 fill-amber-400" />)}</div>
+                    <span className="text-white text-xs font-semibold">4.9</span>
+                  </div>
+                  <span className="text-white/50 text-xs">127+ entreprises</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTAs */}
+          <div className="pt-4 flex flex-col gap-2.5">
+            <a href="#pricing" className="flex items-center justify-center gap-2 px-5 py-3.5 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-lg shadow-blue-500/20">
+              Découvrir les bureaux <ArrowRight className="w-4 h-4" />
+            </a>
+            <button
+              onClick={() => setIsBookingModalOpen(true)}
+              className="px-5 py-3.5 bg-white/10 backdrop-blur border border-white/15 text-white rounded-xl font-montserrat font-bold text-sm text-center"
+            >
+              Réserver une visite
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ══════════════════════════════════════════
+          DESKTOP — Split 50/50 (style homepage)
+          ══════════════════════════════════════════ */}
+      <div className="h-full hidden lg:flex items-center justify-center relative z-10 pt-20">
+        <div className="w-full max-w-[1200px] mx-auto px-8 flex items-center justify-center gap-12">
+
+          {/* ── TEXTE ── */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate="visible"
+            className="flex-1 max-w-md"
+          >
+            <div>
+              {/* Badge */}
+              <motion.div variants={fade}>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] backdrop-blur-sm border border-white/[0.08] mb-4">
+                  <Building2 className="w-4 h-4 text-blue-400" />
+                  <span className="text-xs font-inter font-medium text-white/80 tracking-[0.12em] uppercase">Bureaux Privés · À partir de 499€/mois</span>
+                </div>
+              </motion.div>
+
+              {/* Titre */}
+              <motion.h1 variants={fade} className="text-4xl font-montserrat font-black text-white mb-3 leading-[0.95] tracking-[-0.02em]">
+                VOTRE ESPACE<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-400">100% DÉDIÉ</span>
               </motion.h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-sm lg:text-base xl:text-lg text-white/70 font-inter mb-4 xl:mb-6 leading-relaxed max-w-xl"
-              >
-                De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion.
-                <span className="text-white font-semibold"> 127+ entreprises hébergées.</span>
+              {/* Sous-titre */}
+              <motion.p variants={fade} className="text-sm text-white/60 font-inter mb-4 leading-relaxed">
+                De 15m² à 100m². Équipement complet inclus : fibre, mobilier premium, salles de réunion.{' '}
+                <span className="text-white/90 font-medium">127+ entreprises hébergées.</span>
               </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="grid grid-cols-4 gap-2 xl:gap-3 mb-4 xl:mb-6"
-              >
-                {[
-                  { value: '100m²', label: 'surface max', color: 'from-blue-500 to-indigo-500' },
-                  { value: '127+', label: 'entreprises', color: 'from-indigo-500 to-blue-500' },
-                  { value: '50+', label: 'bureaux', color: 'from-blue-600 to-indigo-600' },
-                  { value: '9h-20h', label: 'Lun-Ven', color: 'from-indigo-600 to-blue-600' },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + index * 0.05, duration: 0.4 }}
-                    whileHover={{ y: -3 }}
-                    className="relative group"
-                  >
-                    <div className={`absolute -inset-[1px] bg-gradient-to-r ${stat.color} rounded-xl opacity-0 group-hover:opacity-50 blur-lg transition-opacity duration-300`} />
-                    <div className="relative bg-black/70 backdrop-blur-xl border border-white/20 rounded-xl p-2 xl:p-3 group-hover:border-white/30 transition-all duration-300 text-center">
-                      <div className={`text-lg lg:text-xl xl:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.color} mb-0.5 xl:mb-1`}>
-                        {stat.value}
-                      </div>
-                      <div className="text-[9px] xl:text-[10px] text-white/60 font-inter font-medium uppercase tracking-wide">
-                        {stat.label}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="flex items-center gap-3 mb-4 xl:mb-6"
-              >
-                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/20 backdrop-blur-md border border-blue-400/30">
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 text-amber-400 fill-amber-400" />
-                    ))}
-                  </div>
-                  <span className="text-white font-inter text-xs font-semibold">4.9/5</span>
-                </div>
-
-                <div className="flex items-center gap-1.5">
-                  <motion.div
-                    className="w-1.5 h-1.5 rounded-full bg-blue-400"
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <span className="text-white/80 font-inter text-sm">
-                    <span className="text-blue-400 font-semibold">127+ entreprises</span>
-                  </span>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex flex-wrap gap-3"
-              >
+              {/* CTAs */}
+              <motion.div variants={fade} className="flex items-center gap-3 mb-4">
                 <motion.a
                   href="#pricing"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   className="group relative"
                 >
-                  <motion.div
-                    className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 rounded-xl opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{ opacity: [0.5, 0.75, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <div className="relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 text-white rounded-xl font-montserrat font-bold text-sm shadow-2xl">
-                    <Building2 className="w-4 h-4" />
-                    <span>Découvrir les bureaux</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl opacity-40 blur-xl group-hover:opacity-70 transition-opacity duration-500" />
+                  <div className="relative flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-xl font-montserrat font-bold text-sm">
+                    Découvrir les bureaux
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </motion.a>
 
                 <motion.button
                   onClick={() => setIsBookingModalOpen(true)}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white rounded-xl font-montserrat font-bold text-sm transition-all duration-300"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="px-5 py-2.5 bg-white/[0.06] hover:bg-white/[0.1] backdrop-blur-sm border border-white/[0.1] hover:border-white/[0.2] text-white rounded-xl font-montserrat font-bold text-sm transition-colors duration-300"
                 >
                   Réserver une visite
                 </motion.button>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="flex flex-wrap items-center gap-4 mt-6"
-              >
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-white/60 text-xs font-inter">Marseille</span>
-                </div>
-
-                <div className="w-px h-4 bg-white/10" />
-
-                <div className="flex items-center gap-2">
-                  <Clock className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-white/60 text-xs font-inter">9h-20h Lun-Ven</span>
-                </div>
-
-                <div className="w-px h-4 bg-white/10" />
-
-                <div className="flex items-center gap-1.5">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 via-indigo-500 to-blue-600 border-2 border-black flex items-center justify-center text-white font-bold text-[10px]">
-                        {String.fromCharCode(64 + i)}
-                      </div>
-                    ))}
+              {/* Services chips */}
+              <motion.div variants={fade} className="flex flex-wrap gap-2 mb-4">
+                {[
+                  { icon: Lock, label: 'Bureaux Sécurisés' },
+                  { icon: Wifi, label: 'Fibre 1 Gbps' },
+                  { icon: Users, label: 'De 2 à 20 pers.' },
+                  { icon: Building2, label: '15m² à 100m²' },
+                ].map((service, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.08] hover:border-white/20 transition-colors cursor-default"
+                  >
+                    <service.icon className="w-3.5 h-3.5 text-blue-400/70" />
+                    <span className="text-xs font-inter font-medium text-white/70">{service.label}</span>
                   </div>
-                  <span className="text-white/60 text-xs font-inter">+127</span>
+                ))}
+              </motion.div>
+
+              {/* Social proof + Info */}
+              <motion.div variants={fade} className="flex flex-col gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-1.5">
+                    <div className="flex gap-0.5">
+                      {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />)}
+                    </div>
+                    <span className="text-white font-inter text-sm font-bold ml-0.5">4.9/5</span>
+                  </div>
+                  <div className="w-px h-4 bg-white/10" />
+                  <div className="flex items-center gap-2">
+                    <div className="flex -space-x-1.5">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 border-2 border-black flex items-center justify-center text-white font-bold text-[8px]">
+                          {String.fromCharCode(64 + i)}
+                        </div>
+                      ))}
+                    </div>
+                    <span className="text-white/50 font-inter text-sm">
+                      <span className="text-blue-400 font-semibold">127+</span> entreprises
+                    </span>
+                  </div>
+                </div>
+
+                {/* Location & Hours */}
+                <div className="flex items-center gap-4 text-white/40 text-xs font-inter">
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5" />
+                    <span>Marseille 15e</span>
+                  </div>
+                  <div className="w-px h-3 bg-white/10" />
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>Lun-Ven 9h-20h</span>
+                  </div>
                 </div>
               </motion.div>
             </div>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              {/* Video Card - True 9:16 ratio */}
-              <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl">
-                {/* Inner video container */}
+          {/* ── VIDÉO ── */}
+          <motion.div
+            variants={videoReveal}
+            initial="hidden"
+            animate="visible"
+            className="flex-shrink-0"
+          >
+            <div className="relative">
+              {/* Glow ambiant */}
+              <div className="absolute -inset-6 bg-gradient-to-br from-blue-500/20 via-indigo-500/10 to-transparent rounded-[2rem] blur-3xl pointer-events-none" />
+
+              {/* Glass card */}
+              <div
+                className="relative p-3 rounded-2xl"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  boxShadow: '0 0 0 1px rgba(255,255,255,0.1), 0 32px 64px -16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
+                }}
+              >
                 <div
-                  className="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 bg-black cursor-pointer"
+                  className="relative w-[240px] h-[420px] rounded-xl overflow-hidden cursor-pointer group"
                   onClick={togglePlayPause}
                 >
                   {!isMobile && (
-                    <video
-                      ref={videoRef}
-                      autoPlay
-                      loop
-                      muted={true}
-                      playsInline
-                      preload="metadata"
-                      className="w-full h-full object-contain"
-                    >
+                    <video ref={videoRef} autoPlay loop muted={true} playsInline preload="metadata"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]">
                       <source src={videoUrl} type="video/mp4" />
                     </video>
                   )}
 
-                  {/* Play/Pause Button (Center) - Shows when paused */}
+                  {/* Vignette subtile */}
+                  <div className="absolute inset-0 pointer-events-none" style={{
+                    background: 'radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.15) 100%)',
+                  }} />
+
+                  {/* Play button */}
                   <motion.div
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{
-                      opacity: isPlaying ? 0 : 0.8,
-                      scale: isPlaying ? 0.8 : 1
-                    }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ opacity: isPlaying ? 0 : 1, scale: isPlaying ? 0.9 : 1 }}
+                    transition={{ duration: 0.2 }}
                     className="absolute inset-0 flex items-center justify-center pointer-events-none"
                   >
                     <div className="relative">
-                      <div className="absolute inset-0 bg-blue-500/30 rounded-full blur-3xl" />
-                      <div className="relative w-24 h-24 rounded-full bg-black/60 backdrop-blur-xl border-2 border-white/30 flex items-center justify-center">
-                        <Play className="w-10 h-10 text-white fill-white ml-1" />
+                      <div className="absolute -inset-4 bg-blue-500/20 rounded-full blur-2xl" />
+                      <div className="relative w-16 h-16 rounded-full bg-black/50 backdrop-blur-xl border border-white/20 flex items-center justify-center">
+                        <Play className="w-6 h-6 text-white fill-white ml-0.5" />
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* Sound Control Button - Top Right */}
+                  {/* Mute button */}
                   <motion.button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleMute();
-                    }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 0.6, scale: 1 }}
-                    whileHover={{ opacity: 1, scale: 1.05 }}
-                    transition={{ delay: 1, duration: 0.5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="absolute top-4 right-4 z-20 group"
+                    onClick={(e) => { e.stopPropagation(); toggleMute(); }}
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.5 }}
+                    whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}
+                    className="absolute top-3 right-3 z-20 group/mute"
                   >
-                    <div className="relative flex items-center justify-center w-10 h-10 bg-black/50 backdrop-blur-md border border-white/20 rounded-full group-hover:border-blue-400/50 transition-all duration-300">
-                      {isMuted ? (
-                        <VolumeX className="w-5 h-5 text-white/70 group-hover:text-blue-400" />
-                      ) : (
-                        <Volume2 className="w-5 h-5 text-blue-400" />
-                      )}
+                    <div className="flex items-center justify-center w-9 h-9 bg-black/40 backdrop-blur-md border border-white/10 rounded-full group-hover/mute:border-blue-400/40 transition-colors duration-300">
+                      {isMuted
+                        ? <VolumeX className="w-4 h-4 text-white/50 group-hover/mute:text-blue-400 transition-colors" />
+                        : <Volume2 className="w-4 h-4 text-blue-400" />
+                      }
                     </div>
                   </motion.button>
-
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
 
+      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-[2]" />
-
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.02] z-[1]" style={{
-        backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)',
-        backgroundSize: '50px 50px'
-      }} />
 
       <VisitBookingModal
         isOpen={isBookingModalOpen}

@@ -14,7 +14,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Video, ArrowRight, Phone } from 'lucide-react';
 import SEOHead from '../components/SEO/SEOHead';
-import { serviceSchemas } from '../utils/seoSchemas';
+import { pageSchemas } from '../lib/seo-schemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -45,10 +45,10 @@ export default function Studios() {
   return (
     <div className="min-h-screen bg-black overflow-hidden">
       <SEOHead
-        title="Studios Créatifs & Production Audio-Visuelle Marseille | Le 40"
-        description="Louez nos studios créatifs équipés à Marseille. Face-Cam, Podcast, Live Stream, Talk-Show. Formules Autonome, Assisté ou Full Service. Réservation en ligne instantanée."
-        keywords="studio créatif Marseille, studio podcast Marseille, studio vidéo Marseille, location studio tournage, production audiovisuelle Marseille, studio YouTube Marseille, studio TikTok"
-        schema={serviceSchemas.studios}
+        title="Studios Photo & Podcast Marseille — Dès 35€/h"
+        description="Studios professionnels à Marseille : photo (fond cyclo), podcast (insonorisé), vidéo. Équipement pro inclus. Réservation en ligne. 5/5 étoiles."
+        keywords="studio photo Marseille, studio podcast Marseille, location studio Marseille, studio vidéo Marseille, studio YouTube, studio TikTok Marseille"
+        schema={[pageSchemas.studios.service, pageSchemas.studios.breadcrumb]}
       />
 
       <HeaderNav />

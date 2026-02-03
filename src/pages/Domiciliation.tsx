@@ -1,5 +1,5 @@
 import SEOHead from '../components/SEO/SEOHead';
-import { serviceSchemas } from '../utils/seoSchemas';
+import { pageSchemas } from '../lib/seo-schemas';
 import HeaderNav from '../components/Nav/HeaderNav';
 import MobileBurger from '../components/Nav/MobileBurger';
 import Footer from '../components/Footer';
@@ -25,10 +25,10 @@ export default function Domiciliation() {
   return (
     <div className="min-h-screen bg-black overflow-hidden">
       <SEOHead
-        title="Domiciliation Entreprise Marseille | Adresse Prestigieuse dès 39€/mois"
-        description="Domiciliez votre entreprise à Marseille avec Le 40. Adresse prestigieuse, gestion du courrier, permanence téléphonique. Service premium dès 39€/mois. Accompagnement juridique inclus."
-        keywords="domiciliation entreprise Marseille, domiciliation société Marseille, adresse commerciale Marseille, siège social Marseille, domiciliation pas cher Marseille, domiciliation auto-entrepreneur"
-        schema={serviceSchemas.domiciliation}
+        title="Domiciliation Entreprise Marseille — Dès 39€/mois"
+        description="Domiciliation entreprise à Marseille en 24h : adresse pro, scan courrier 2h, réexpédition. Agrément préfecture. 4.9/5 étoiles. 120+ entreprises."
+        keywords="domiciliation entreprise Marseille, domiciliation société Marseille, siège social Marseille, adresse commerciale Marseille, domiciliation auto-entrepreneur"
+        schema={[pageSchemas.domiciliation.service, pageSchemas.domiciliation.breadcrumb]}
       />
       <HeaderNav />
       <MobileBurger />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Lock, Wifi, Coffee, Users, Building2 } from 'lucide-react';
 import AnimatedServiceSection from '../../components/ServiceSection/AnimatedServiceSection';
 
@@ -14,12 +13,10 @@ export default function BureauxSection() {
         colorClasses: 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-300'
       }}
       title={
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl laptop:text-4xl font-montserrat font-black text-white mb-6 laptop:mb-4 leading-tight">
+        <h2>
           Votre Espace<br />
-          <span className="relative inline-block">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
-              100% Dédié
-            </span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400">
+            100% Dédié
           </span>
         </h2>
       }

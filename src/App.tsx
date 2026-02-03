@@ -4,7 +4,7 @@ import AppRoutes from './router/AppRoutes';
 import { UnifiedCartProvider } from './contexts/UnifiedCartContext';
 import { PrerollProvider } from './contexts/PrerollContext';
 import { AnnouncerProvider } from './components/A11y/Announcer';
-import ScrollToTop from './components/ScrollToTop';
+import PageTransition from './components/PageTransition';
 
 function App() {
   // Disable browser scroll restoration
@@ -17,12 +17,13 @@ function App() {
   return (
     <BrowserRouter>
       <AnnouncerProvider>
-        <ScrollToTop />
         <PrerollProvider>
           <UnifiedCartProvider>
-            <main id="main-content">
-              <AppRoutes />
-            </main>
+            <PageTransition>
+              <main id="main-content">
+                <AppRoutes />
+              </main>
+            </PageTransition>
           </UnifiedCartProvider>
         </PrerollProvider>
       </AnnouncerProvider>

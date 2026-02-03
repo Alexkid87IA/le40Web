@@ -11,15 +11,17 @@ import FAQSection from '../components/Events/FAQSection';
 import OrganizeCTASection from '../components/Events/OrganizeCTASection';
 import { Calendar } from 'lucide-react';
 import SEOHead from '../components/SEO/SEOHead';
+import { pageSchemas } from '../lib/seo-schemas';
 
 export default function Events() {
 
   return (
     <div className="min-h-screen bg-black">
       <SEOHead
-        title="Événements & Networking Marseille"
-        description="Participez aux événements du 40 à Marseille : networking, workshops, conférences et afterworks pour entrepreneurs. Événements mensuels gratuits."
-        keywords="événements coworking Marseille, networking entrepreneurs Marseille, workshop Marseille, afterwork professionnel Marseille"
+        title="Événements & Location Espace Marseille — Dès 500€/jour"
+        description="Location espaces événementiels à Marseille : séminaires, team building, conférences jusqu'à 200 personnes. Networking mensuel gratuit. Le 40."
+        keywords="événement entreprise Marseille, location salle événement Marseille, séminaire Marseille, team building Marseille, networking Marseille"
+        schema={[pageSchemas.events.service, pageSchemas.events.breadcrumb]}
       />
       <HeaderNav />
       <MobileBurger />

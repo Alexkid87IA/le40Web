@@ -13,14 +13,16 @@ import MembershipProcessSection from '../components/Club/MembershipProcessSectio
 import FAQSection from '../components/Club/FAQSection';
 import FinalCTASection from '../components/Club/FinalCTASection';
 import { Star } from 'lucide-react';
+import { pageSchemas } from '../lib/seo-schemas';
 
 export default function Club() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       <SEOHead
-        title="Club Le 40 | Réseau d'Entrepreneurs & Événements Business Marseille"
-        description="Rejoignez le Club Le 40, la communauté d'entrepreneurs à Marseille. Workshops exclusifs, networking, mentorat, événements business. Développez votre réseau professionnel."
-        keywords="club entrepreneurs Marseille, réseau entrepreneurs Marseille, networking Marseille, communauté business Marseille, événements networking Marseille, workshops entrepreneurs"
+        title="Le Club — Communauté Entrepreneurs Marseille"
+        description="Rejoignez Le Club Le 40 : communauté 120+ entrepreneurs à Marseille. Workshops, networking, mentorat, événements exclusifs. Accès dès 0€/mois."
+        keywords="club entrepreneurs Marseille, réseau entrepreneurs Marseille, networking Marseille, communauté business Marseille, mentorat entrepreneurs"
+        schema={[pageSchemas.club.service, pageSchemas.club.breadcrumb]}
       />
       <HeaderNav />
       <MobileBurger />
