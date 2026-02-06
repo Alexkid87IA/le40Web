@@ -42,7 +42,7 @@ export default function Footer() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             {/* Left - CTA */}
-            <div>
+            <div className="text-center lg:text-left">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -57,10 +57,10 @@ export default function Footer() {
                     Le 40 ?
                   </span>
                 </h2>
-                <p className="text-white/50 text-sm mb-5 max-w-md">
+                <p className="text-white/50 text-sm mb-5 max-w-md mx-auto lg:mx-0">
                   Découvrez l'espace de travail qui transformera votre quotidien professionnel.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex flex-col gap-3">
                   <Link
                     to="/reserver-visite"
                     className="group inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white text-black rounded-xl font-montserrat font-bold text-sm shadow-lg shadow-white/10 hover:shadow-white/20 transition-all"
@@ -80,13 +80,13 @@ export default function Footer() {
             </div>
 
             {/* Right - Hours & Location Card */}
-            <div className="flex-shrink-0">
+            <div className="w-full lg:flex-shrink-0 lg:w-auto">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-xl border border-white/10 p-4 w-72"
+                className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-xl border border-white/10 p-4 w-full lg:w-72"
               >
                 {/* Hours */}
                 <div className="flex items-start gap-2.5 mb-3 pb-3 border-b border-white/10">
@@ -130,22 +130,22 @@ export default function Footer() {
       {/* Main Footer Content */}
       <div className="relative">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 sm:gap-6 lg:gap-8">
             {/* Brand Column */}
-            <div className="col-span-2 md:col-span-1 mb-2 md:mb-0">
+            <div className="col-span-1 sm:col-span-2 md:col-span-1 mb-2 md:mb-0 text-center sm:text-left">
               <Link to="/" className="inline-block mb-4">
                 <img
                   src="/logo.png"
                   alt="Le 40"
-                  className="h-9 w-auto brightness-0 invert"
+                  className="h-9 w-auto brightness-0 invert mx-auto sm:mx-0"
                 />
               </Link>
-              <p className="text-white/50 text-xs leading-relaxed mb-4">
+              <p className="text-white/50 text-xs leading-relaxed mb-4 max-w-xs mx-auto sm:mx-0">
                 L'espace de travail premium qui réunit entrepreneurs, créatifs et innovateurs au cœur de Marseille.
               </p>
 
               {/* Social Links */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 justify-center sm:justify-start">
                 {social.map((item) => (
                   <a
                     key={item.name}
@@ -162,11 +162,11 @@ export default function Footer() {
             </div>
 
             {/* Services */}
-            <div>
+            <div className="text-center sm:text-left">
               <h3 className="text-white font-montserrat font-bold text-xs mb-4 uppercase tracking-wider">
                 Services
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {navigation.services.map((item) => (
                   <li key={item.name}>
                     <Link
@@ -182,11 +182,11 @@ export default function Footer() {
             </div>
 
             {/* Company */}
-            <div>
+            <div className="text-center sm:text-left">
               <h3 className="text-white font-montserrat font-bold text-xs mb-4 uppercase tracking-wider">
                 Le 40
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {navigation.company.map((item) => (
                   <li key={item.name}>
                     <Link
@@ -202,15 +202,15 @@ export default function Footer() {
             </div>
 
             {/* Contact */}
-            <div>
+            <div className="text-center sm:text-left">
               <h3 className="text-white font-montserrat font-bold text-xs mb-4 uppercase tracking-wider">
                 Contact
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 <li>
                   <a
                     href="tel:+33491962151"
-                    className="text-white/50 hover:text-white text-xs transition-colors flex items-center gap-1.5"
+                    className="text-white/50 hover:text-white text-xs transition-colors inline-flex items-center gap-1.5"
                   >
                     <Phone className="w-3.5 h-3.5 text-white/40" />
                     04 91 96 21 51
@@ -219,7 +219,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="mailto:contact@le40.fr"
-                    className="text-white/50 hover:text-white text-xs transition-colors flex items-center gap-1.5"
+                    className="text-white/50 hover:text-white text-xs transition-colors inline-flex items-center gap-1.5"
                   >
                     <Mail className="w-3.5 h-3.5 text-white/40" />
                     contact@le40.fr
@@ -229,11 +229,11 @@ export default function Footer() {
             </div>
 
             {/* Legal */}
-            <div>
+            <div className="text-center sm:text-left">
               <h3 className="text-white font-montserrat font-bold text-xs mb-4 uppercase tracking-wider">
                 Légal
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {navigation.legal.map((item) => (
                   <li key={item.name}>
                     <Link
