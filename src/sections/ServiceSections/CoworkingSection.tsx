@@ -54,31 +54,53 @@ export default function CoworkingSection() {
       }} />
 
       {/* ══════════════════════════════════════════
-          MOBILE — Image plein écran + texte overlay
+          MOBILE — Image card + texte en dessous
           ══════════════════════════════════════════ */}
-      <div className="md:hidden relative h-full">
-        <div className="absolute inset-0">
-          <img src="https://le40-cdn.b-cdn.net/homepage/home-coworking.png" alt="Coworking Le 40" className="w-full h-full object-cover" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
-        </div>
-        <div className="relative h-full flex flex-col justify-end px-5 pb-8 pt-20">
-          <motion.div
-            ref={contentRef}
-            variants={stagger}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-          >
-            <motion.div variants={fade} className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-3 py-1.5 mb-3">
+      <div className="md:hidden relative h-full flex flex-col justify-center px-4 py-20 overflow-hidden">
+        <motion.div
+          ref={contentRef}
+          variants={stagger}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="flex flex-col gap-5"
+        >
+          {/* Image dans un container glass */}
+          <motion.div variants={fade} className="relative">
+            <div className="absolute -inset-3 bg-gradient-to-br from-cyan-500/15 via-blue-500/10 to-transparent rounded-2xl blur-2xl pointer-events-none opacity-60" />
+            <div
+              className="relative p-2 rounded-xl"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                boxShadow: '0 0 0 1px rgba(255,255,255,0.1), 0 15px 30px -8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
+              }}
+            >
+              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                <img
+                  src="https://le40-cdn.b-cdn.net/homepage/home-coworking.png"
+                  alt="Coworking Le 40"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contenu texte */}
+          <div className="flex flex-col">
+            <motion.div variants={fade} className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-3 py-1.5 mb-3 self-start">
               <Users className="w-4 h-4 text-cyan-400" />
               <span className="text-cyan-300 text-xs font-bold uppercase tracking-wider">Coworking</span>
             </motion.div>
 
-            <motion.h2 variants={fade} className="text-2xl sm:text-3xl font-montserrat font-black text-white leading-tight mb-2">
+            <motion.h2 variants={fade} className="text-2xl font-montserrat font-black text-white leading-tight mb-2">
               Travaillez<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400">Entouré d'Entrepreneurs</span>
             </motion.h2>
 
-            <motion.p variants={fade} className="text-sm text-white/70 mb-3 leading-relaxed font-inter line-clamp-2">
+            <motion.p variants={fade} className="text-sm text-white/70 mb-3 leading-relaxed font-inter">
               Rejoignez une communauté dynamique dans nos espaces de travail haut de gamme.
             </motion.p>
 
@@ -96,8 +118,8 @@ export default function CoworkingSection() {
                 Demander une visite
               </a>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* ══════════════════════════════════════════

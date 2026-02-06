@@ -110,28 +110,50 @@ export default function AnimatedServiceSection({
       }} />
 
       {/* ══════════════════════════════════════════
-          MOBILE — Image plein écran + texte overlay
+          MOBILE — Image card + texte en dessous
           ══════════════════════════════════════════ */}
-      <div className="md:hidden relative h-full">
-        <div className="absolute inset-0">
-          <img src={images[0]} alt={id} className="w-full h-full object-cover" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
-        </div>
-        <div className="relative h-full flex flex-col justify-end px-5 pb-8 pt-20">
-          <motion.div
-            ref={contentRef}
-            variants={stagger}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-          >
-            <motion.div variants={fade} className={`inline-flex items-center gap-2 ${badge.colorClasses} rounded-full px-3 py-1.5 mb-3`}>
+      <div className="md:hidden relative h-full flex flex-col justify-center px-4 py-20 overflow-hidden">
+        <motion.div
+          ref={contentRef}
+          variants={stagger}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="flex flex-col gap-5"
+        >
+          {/* Image dans un container glass */}
+          <motion.div variants={fade} className="relative">
+            <div className={`absolute -inset-3 bg-gradient-to-br ${getGlowColor()} to-transparent rounded-2xl blur-2xl pointer-events-none opacity-60`} />
+            <div
+              className="relative p-2 rounded-xl"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                boxShadow: '0 0 0 1px rgba(255,255,255,0.1), 0 15px 30px -8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
+              }}
+            >
+              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                <img
+                  src={images[0]}
+                  alt={id}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contenu texte */}
+          <div className="flex flex-col">
+            <motion.div variants={fade} className={`inline-flex items-center gap-2 ${badge.colorClasses} rounded-full px-3 py-1.5 mb-3 self-start`}>
               <BadgeIcon className="w-4 h-4" />
               <span className="text-xs font-bold uppercase tracking-wider">{badge.text}</span>
             </motion.div>
 
             <motion.div variants={fade} className="mb-2">
               {React.cloneElement(title as React.ReactElement, {
-                className: 'text-2xl sm:text-3xl font-montserrat font-black text-white leading-tight'
+                className: 'text-2xl font-montserrat font-black text-white leading-tight'
               })}
               {comingSoon && (
                 <div className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 bg-amber-500/20 border border-amber-500/30 rounded-full">
@@ -141,7 +163,7 @@ export default function AnimatedServiceSection({
               )}
             </motion.div>
 
-            <motion.p variants={fade} className="text-sm text-white/70 mb-3 leading-relaxed font-inter line-clamp-2">
+            <motion.p variants={fade} className="text-sm text-white/70 mb-3 leading-relaxed font-inter">
               {description}
             </motion.p>
 
@@ -159,8 +181,8 @@ export default function AnimatedServiceSection({
                 {cta.secondary.text}
               </a>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* ══════════════════════════════════════════

@@ -54,31 +54,53 @@ export default function DomiciliationSection() {
       }} />
 
       {/* ══════════════════════════════════════════
-          MOBILE — Image plein écran + texte overlay
+          MOBILE — Image card + texte en dessous
           ══════════════════════════════════════════ */}
-      <div className="md:hidden relative h-full">
-        <div className="absolute inset-0">
-          <img src="https://le40-cdn.b-cdn.net/homepage/home-domiciliation.png" alt="Domiciliation Le 40" className="w-full h-full object-cover" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
-        </div>
-        <div className="relative h-full flex flex-col justify-end px-5 pb-8 pt-20">
-          <motion.div
-            ref={contentRef}
-            variants={stagger}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-          >
-            <motion.div variants={fade} className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-3 py-1.5 mb-3">
+      <div className="md:hidden relative h-full flex flex-col justify-center px-4 py-20 overflow-hidden">
+        <motion.div
+          ref={contentRef}
+          variants={stagger}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="flex flex-col gap-5"
+        >
+          {/* Image dans un container glass */}
+          <motion.div variants={fade} className="relative">
+            <div className="absolute -inset-3 bg-gradient-to-br from-amber-500/15 via-orange-500/10 to-transparent rounded-2xl blur-2xl pointer-events-none opacity-60" />
+            <div
+              className="relative p-2 rounded-xl"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 100%)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                boxShadow: '0 0 0 1px rgba(255,255,255,0.1), 0 15px 30px -8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)',
+              }}
+            >
+              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                <img
+                  src="https://le40-cdn.b-cdn.net/homepage/home-domiciliation.png"
+                  alt="Domiciliation Le 40"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contenu texte */}
+          <div className="flex flex-col">
+            <motion.div variants={fade} className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-3 py-1.5 mb-3 self-start">
               <MapPin className="w-4 h-4 text-amber-400" />
               <span className="text-amber-300 text-xs font-bold uppercase tracking-wider">Domiciliation</span>
             </motion.div>
 
-            <motion.h2 variants={fade} className="text-2xl sm:text-3xl font-montserrat font-black text-white leading-tight mb-2">
+            <motion.h2 variants={fade} className="text-2xl font-montserrat font-black text-white leading-tight mb-2">
               Domiciliation<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">En 24h</span>
             </motion.h2>
 
-            <motion.p variants={fade} className="text-sm text-white/70 mb-3 leading-relaxed font-inter line-clamp-2">
+            <motion.p variants={fade} className="text-sm text-white/70 mb-3 leading-relaxed font-inter">
               Domiciliez votre entreprise au coeur de Marseille. Configuration rapide et services pro inclus.
             </motion.p>
 
@@ -96,8 +118,8 @@ export default function DomiciliationSection() {
                 Nous contacter
               </a>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* ══════════════════════════════════════════
