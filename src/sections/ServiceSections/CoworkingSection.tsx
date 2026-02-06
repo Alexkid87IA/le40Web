@@ -63,7 +63,7 @@ export default function CoworkingSection() {
         </div>
         <div className="relative h-full flex flex-col justify-end px-5 pb-8 pt-20">
           <motion.div
-            ref={isMobile ? contentRef : undefined}
+            ref={contentRef}
             variants={stagger}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
@@ -108,7 +108,6 @@ export default function CoworkingSection() {
 
         {/* ── TEXTE ── */}
         <motion.div
-          ref={!isMobile ? contentRef : undefined}
           variants={stagger}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
