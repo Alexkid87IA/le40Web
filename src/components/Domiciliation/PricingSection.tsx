@@ -52,8 +52,8 @@ export default function PricingSection() {
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <SectionHeader
           title="Choisissez selon"
-          highlightedText="VOS"
-          subtitle="besoins - Pas selon notre envie de vendre"
+          highlightedText="VOS besoins"
+          subtitle="Pas selon notre envie de vendre"
           className="mb-8 md:mb-12"
         />
 

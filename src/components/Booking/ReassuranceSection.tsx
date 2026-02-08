@@ -110,7 +110,7 @@ export default function ReassuranceSection() {
           viewport={{ once: true }}
           className="mb-12 md:mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-montserrat font-bold text-white mb-2 md:mb-4 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-montserrat font-bold text-white mb-2 md:mb-4 text-center text-balance">
             Ils Nous Font Confiance
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-white/60 font-inter text-center mb-8 md:mb-12">
@@ -170,7 +170,7 @@ export default function ReassuranceSection() {
           viewport={{ once: true }}
           className="bg-white/5 backdrop-blur-xl rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 border border-white/10"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-montserrat font-bold text-white mb-2 md:mb-4 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-montserrat font-bold text-white mb-2 md:mb-4 text-center text-balance">
             Questions Fréquentes
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-white/60 font-inter text-center mb-8 md:mb-10">

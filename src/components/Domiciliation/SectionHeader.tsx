@@ -15,7 +15,7 @@ export default function SectionHeader({ title, highlightedText, subtitle, classN
       viewport={{ once: true }}
       className={className}
     >
-      <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white text-center mb-4 md:mb-6 px-4 leading-tight">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white text-center mb-4 md:mb-6 px-4 leading-tight text-balance">
         {title}{' '}
         {highlightedText && (
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">

@@ -89,7 +89,7 @@ export default function ProblemSection() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-white text-center mb-8 md:mb-12 px-4">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-black text-white text-center mb-8 md:mb-12 px-4 text-balance">
             La différence est <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">évidente</span>
           </h3>
 
