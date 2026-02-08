@@ -1,5 +1,5 @@
-import React, { useRef, ReactNode, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import React, { useRef, ReactNode } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { LucideIcon, ArrowRight, Clock } from 'lucide-react';
 
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } };
@@ -61,16 +61,6 @@ export default function AnimatedServiceSection({
   comingSoon = false
 }: AnimatedServiceSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(contentRef, { once: true, amount: 0.3 });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -114,10 +104,10 @@ export default function AnimatedServiceSection({
           ══════════════════════════════════════════ */}
       <div className="md:hidden relative h-full flex flex-col justify-center px-4 py-20 overflow-hidden">
         <motion.div
-          ref={contentRef}
           variants={stagger}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           className="flex flex-col gap-5"
         >
           {/* Image dans un container glass */}
@@ -195,7 +185,8 @@ export default function AnimatedServiceSection({
         <motion.div
           variants={stagger}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           className="flex-1 max-w-md"
         >
           <div>
