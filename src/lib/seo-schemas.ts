@@ -16,10 +16,10 @@ export const businessInfo = {
   alternateName: ["Le 40 Coworking", "Le 40 Marseille", "Le40"],
   description: "4000m² d'espaces premium à Marseille : coworking, bureaux privés, studios de production, salles de réunion et événements. Rejoignez 127+ entrepreneurs.",
   slogan: "Développez votre activité à Marseille",
-  url: "https://le40.fr",
-  logo: "https://le40.fr/logo.png",
+  url: "https://www.bureaux-le40.fr",
+  logo: "https://www.bureaux-le40.fr/logo.png",
   image: [
-    "https://le40.fr/og-image.jpg",
+    "https://www.bureaux-le40.fr/og-image.jpg",
     "https://le40-cdn.b-cdn.net/homepage/home-bureaux.png",
     "https://le40-cdn.b-cdn.net/homepage/home-coworking.png"
   ],

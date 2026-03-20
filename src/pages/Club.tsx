@@ -22,6 +22,7 @@ export default function Club() {
         title="Le Club — Communauté Entrepreneurs Marseille"
         description="Rejoignez Le Club Le 40 : communauté 120+ entrepreneurs à Marseille. Workshops, networking, mentorat, événements exclusifs. Accès dès 0€/mois."
         keywords="club entrepreneurs Marseille, réseau entrepreneurs Marseille, networking Marseille, communauté business Marseille, mentorat entrepreneurs"
+        ogImage="https://le40-cdn.b-cdn.net/homepage/home-club.png"
         schema={[pageSchemas.club.service, pageSchemas.club.breadcrumb]}
       />
       <HeaderNav />

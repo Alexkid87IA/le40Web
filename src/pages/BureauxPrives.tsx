@@ -25,6 +25,7 @@ export default function BureauxPrives() {
         title="Bureaux Privés à Marseille — Dès 499€/mois"
         description="Location bureaux privés à Marseille : 15m² à 100m², fibre 1Gbps, mobilier premium, salles de réunion incluses. 127+ entreprises. Installation 48h. Visite gratuite."
         keywords="bureau privé Marseille, location bureau Marseille, bureau équipé Marseille, espace de travail privé, bureau à louer Marseille 15"
+        ogImage="https://le40-cdn.b-cdn.net/homepage/home-bureaux.png"
         schema={[pageSchemas.bureaux.service, pageSchemas.bureaux.breadcrumb]}
       />
       <HeaderNav />

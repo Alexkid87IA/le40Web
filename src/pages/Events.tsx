@@ -21,6 +21,7 @@ export default function Events() {
         title="Événements & Location Espace Marseille — Dès 500€/jour"
         description="Location espaces événementiels à Marseille : séminaires, team building, conférences jusqu'à 200 personnes. Networking mensuel gratuit. Le 40."
         keywords="événement entreprise Marseille, location salle événement Marseille, séminaire Marseille, team building Marseille, networking Marseille"
+        ogImage="https://le40-cdn.b-cdn.net/homepage/home-events.png"
         schema={[pageSchemas.events.service, pageSchemas.events.breadcrumb]}
       />
       <HeaderNav />

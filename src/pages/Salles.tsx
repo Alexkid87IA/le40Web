@@ -32,6 +32,7 @@ export default function Salles() {
         title="Salles de Réunion Marseille — Dès 25€/h"
         description="Location salles de réunion à Marseille : 4 à 50 personnes, écran 4K, visioconférence, WiFi fibre. Réservation en ligne. 4.9/5 étoiles."
         keywords="salle réunion Marseille, location salle Marseille, salle séminaire Marseille, salle formation Marseille, salle conférence Marseille"
+        ogImage="https://le40-cdn.b-cdn.net/homepage/home-salles.png"
         schema={[pageSchemas.salles.service, pageSchemas.salles.breadcrumb]}
       />
       <HeaderNav />

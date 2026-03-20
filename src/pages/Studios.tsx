@@ -48,6 +48,7 @@ export default function Studios() {
         title="Studios Photo & Podcast Marseille — Dès 35€/h"
         description="Studios professionnels à Marseille : photo (fond cyclo), podcast (insonorisé), vidéo. Équipement pro inclus. Réservation en ligne. 5/5 étoiles."
         keywords="studio photo Marseille, studio podcast Marseille, location studio Marseille, studio vidéo Marseille, studio YouTube, studio TikTok Marseille"
+        ogImage="https://le40-cdn.b-cdn.net/homepage/home-studios.png"
         schema={[pageSchemas.studios.service, pageSchemas.studios.breadcrumb]}
       />
 

@@ -28,6 +28,7 @@ export default function Domiciliation() {
         title="Domiciliation Entreprise Marseille — Dès 39€/mois"
         description="Domiciliation entreprise à Marseille en 24h : adresse pro, scan courrier 2h, réexpédition. Agrément préfecture. 4.9/5 étoiles. 120+ entreprises."
         keywords="domiciliation entreprise Marseille, domiciliation société Marseille, siège social Marseille, adresse commerciale Marseille, domiciliation auto-entrepreneur"
+        ogImage="https://le40-cdn.b-cdn.net/homepage/home-domiciliation.png"
         schema={[pageSchemas.domiciliation.service, pageSchemas.domiciliation.breadcrumb]}
       />
       <HeaderNav />

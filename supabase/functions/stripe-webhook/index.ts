@@ -4,6 +4,8 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
+  "https://www.bureaux-le40.fr",
+  "https://bureaux-le40.fr",
   "https://le40coworking.fr",
   "https://www.le40coworking.fr",
   "https://le40web.vercel.app",

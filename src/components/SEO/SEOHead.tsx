@@ -15,10 +15,10 @@ interface SEOHeadProps {
 
 const DEFAULT_META = {
   siteName: 'Le 40 Coworking',
-  baseUrl: 'https://le40coworking.fr',
+  baseUrl: 'https://www.bureaux-le40.fr',
   defaultTitle: 'Le 40 - Coworking Premium Marseille | Domiciliation & Salles de Réunion',
   defaultDescription: 'Espace de coworking premium au cœur de Marseille. Domiciliation d\'entreprise, salles de réunion équipées, studios créatifs et communauté d\'entrepreneurs. Réservez votre visite gratuite.',
-  defaultImage: 'https://le40coworking.fr/og-image.jpg',
+  defaultImage: 'https://www.bureaux-le40.fr/og-image.jpg',
   defaultKeywords: 'coworking Marseille, espace de travail Marseille, domiciliation entreprise Marseille, salle de réunion Marseille, bureau privé Marseille, coworking premium, studio créatif Marseille',
   twitterHandle: '@le40coworking',
 };
