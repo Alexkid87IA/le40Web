@@ -117,10 +117,10 @@ export default function Hero() {
                   <div className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
                   <span className="text-[11px] font-inter font-medium text-white/90 tracking-wide uppercase">4000m² Premium</span>
                 </div>
-                <h1 className="text-2xl font-montserrat font-black text-white mb-2 leading-[1.1]">
+                <p className="text-2xl font-montserrat font-black text-white mb-2 leading-[1.1]" aria-hidden="true">
                   DÉVELOPPEZ VOTRE{' '}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400">ACTIVITÉ</span>
-                </h1>
+                </p>
                 <p className="text-sm text-white/70 font-inter mb-3">
                   Coworking, bureaux privés, studios. <span className="text-white font-medium">Rejoignez 120+ entrepreneurs.</span>
                 </p>
