@@ -8,7 +8,8 @@
  * Usage: node scripts/prerender.js
  */
 
-import { launch } from 'puppeteer';
+import puppeteer from 'puppeteer';
+import chromium from '@sparticuz/chromium';
 import { createServer } from 'http';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
@@ -16,6 +17,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST_DIR = join(__dirname, '..', 'dist');
+const IS_CI = !!process.env.CI || !!process.env.VERCEL;
 
 // All static routes to prerender (excludes dynamic routes like /blog/:slug)
 const ROUTES = [
@@ -84,10 +86,22 @@ async function prerender() {
   const server = await startServer(PORT);
   console.log(`Static server running on http://localhost:${PORT}`);
 
-  const browser = await launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+  let browser;
+  if (IS_CI) {
+    // CI/Vercel: use @sparticuz/chromium (bundled headless Chrome)
+    const puppeteerCore = await import('puppeteer-core');
+    browser = await puppeteerCore.default.launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    });
+  } else {
+    // Local: use regular puppeteer with its bundled Chrome
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+  }
 
   let successCount = 0;
   let errorCount = 0;
